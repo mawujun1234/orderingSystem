@@ -1,19 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.youngor</groupId>
-  <artifactId>orderingSystem</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>orderingSystem Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-    <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.youngor</groupId>
+	<artifactId>orderingSystem</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>orderingSystem Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<org.aspectj.version>1.8.6</org.aspectj.version>
 		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
-		
+
 		<org.hibernate.version>5.1.0.Final</org.hibernate.version>
 		<org.hibernate-validator.version>5.2.4.Final</org.hibernate-validator.version>
 		<javax.el.version>2.2.4</javax.el.version>
@@ -30,10 +30,45 @@
 		<druid.version>1.0.17</druid.version>
 		<oracle.version>11.2</oracle.version>
 		<tomcat.version>8.0.30</tomcat.version>
- 	</properties>
-  
-  <dependencies>
-  		<dependency>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+				<log4j2.level>debug</log4j2.level>
+				<finalName>ROOT</finalName>
+				<oracle.host>127.0.0.1</oracle.host>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>dev_home</id>
+			<properties>
+				<profiles.active>dev_home</profiles.active>
+				<log4j2.level>debug</log4j2.level>
+				<finalName>ROOT</finalName>
+				<oracle.host>127.0.0.2</oracle.host>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
+				<log4j2.level>warn</log4j2.level>
+				<finalName>ROOT</finalName>
+				<oracle.host>127.0.0.3</oracle.host>
+			</properties>
+		</profile>
+
+	</profiles>
+	<dependencies>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -45,7 +80,7 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-    	<dependency>
+		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${org.apache.logging.log4j.version}</version>
@@ -65,23 +100,23 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- 展示层要用到的jar=============================================================== -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>${com.fasterxml.jackson.core.version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${com.fasterxml.jackson.core.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>${com.fasterxml.jackson.core.version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${com.fasterxml.jackson.core.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.fasterxml.jackson.jaxrs</groupId>
-		    <artifactId>jackson-jaxrs-json-provider</artifactId>
-		    <version>${com.fasterxml.jackson.core.version}</version>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${com.fasterxml.jackson.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
@@ -124,7 +159,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -165,21 +200,13 @@
 			<artifactId>spring-messaging</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-oxm</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
-		-->
-   	
-   	
-   	<!-- ======================================持久层=========================================================== -->
+		<!--<dependency> <groupId>org.springframework</groupId> <artifactId>spring-oxm</artifactId> 
+			<version>${org.springframework.version}</version> </dependency> <dependency> 
+			<groupId>org.springframework</groupId> <artifactId>spring-jdbc</artifactId> 
+			<version>${org.springframework.version}</version> </dependency> -->
+
+
+		<!-- ======================================持久层=========================================================== -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -202,15 +229,12 @@
 			<version>${org.hibernate-validator.version}</version>
 		</dependency>
 		<dependency>
-		   <groupId>javax.el</groupId>
-		   <artifactId>javax.el-api</artifactId>
-		   <version>${javax.el.version}</version>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>${javax.el.version}</version>
 		</dependency>
-		<!--  <dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>${org.hibernate.javax.persistence.version}</version>
-		</dependency>-->
+		<!-- <dependency> <groupId>org.hibernate.javax.persistence</groupId> <artifactId>hibernate-jpa-2.0-api</artifactId> 
+			<version>${org.hibernate.javax.persistence.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -221,18 +245,18 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${org.mybatis-spring.version}</version>
 		</dependency>
-   		<dependency>
-		     <groupId>com.alibaba</groupId>
-		     <artifactId>druid</artifactId>
-		     <version>${druid.version}</version>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>${oracle.version}</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>com.mawujun</groupId>
 			<artifactId>leon-repository</artifactId>
@@ -248,8 +272,51 @@
 			<artifactId>leon-utils-new</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>orderingSystem</finalName>
-  </build>
+		<dependency>
+			<groupId>com.mawujun</groupId>
+			<artifactId>leon-generator</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>${finalName}</finalName>
+		<!-- 进行profile的切换 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<!-- 是否替换资源中的属性 -->
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<!-- <warSourceExcludes>www/**/*.*,**/*.js,**/*.css</warSourceExcludes> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<port>8086</port>
+					<path>/</path>
+					<contextReloadable>false</contextReloadable>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

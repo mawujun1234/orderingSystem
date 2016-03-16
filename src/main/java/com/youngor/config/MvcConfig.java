@@ -31,7 +31,7 @@ import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 
 
 @Configuration
-@ComponentScan(basePackages="com.mawujun.controller.spring.mvc.jackson",
+@ComponentScan(basePackages="com.mawujun",
 	includeFilters = @Filter(type = FilterType.ANNOTATION, value = {Controller.class}))
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
@@ -46,7 +46,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	        //.modulesToInstall(new ParameterNamesModule());
 		ObjectMapper mapper=builder.build();
 		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true); //允许出现没有双引号的字段名称
-		mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true) ;//允许出现单引�?
+		mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true) ;//允许出现单引�?
 		return mapper;
 	}
 	
@@ -56,7 +56,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
 	/**
-	 * 主要用于@ResponseBody和@RequestBody的时候，或�?�请求发过来的content-type是applicaiton/json的时�?
+	 * 主要用于@ResponseBody和@RequestBody的时候，或�?�请求发过来的content-type是applicaiton/json的时�?
 	 */
 	@Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -77,11 +77,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	/**
-	 * 视图解析�?
+	 * 视图解析�?
 	 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		//默认使用jackson作为视图解析�?
+		//默认使用jackson作为视图解析�?
 		registry.enableContentNegotiation(getMappingJackson2JsonView());
 		registry.jsp();
 	}
@@ -89,16 +89,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Bean(name="exceptionResolver")  
     public SimpleMappingExceptionResolver simpleMappingExceptionResolver(){  
 		MappingExceptionResolver simpleMappingExceptionResolver= new MappingExceptionResolver();  
-        simpleMappingExceptionResolver.setDefaultErrorView("common_error"); //默认的视图，如果是json这个设不设都没关�?
-        simpleMappingExceptionResolver.setDefaultStatusCode(503);//当发生异常的时�?�，默认的服务器响应代码
+        simpleMappingExceptionResolver.setDefaultErrorView("common_error"); //默认的视图，如果是json这个设不设都没关�?
+        simpleMappingExceptionResolver.setDefaultStatusCode(503);//当发生异常的时�?�，默认的服务器响应代码
         simpleMappingExceptionResolver.setWarnLogCategory("WARN");
-        //simpleMappingExceptionResolver.setExceptionAttribute("exception"); //默认就是exception 属�?�名�?
+        //simpleMappingExceptionResolver.setExceptionAttribute("exception"); //默认就是exception 属�?�名�?
         
         Properties properties = new Properties();  
         
-        //指定�?么异常返回什么界面，后面只要逐步加进去就可以�?
+        //指定�?么异常返回什么界面，后面只要逐步加进去就可以�?
         String viewname="common_error";
-        properties.setProperty(Exception.class.getName(), viewname);//指定异常和jsp页面的对应关�?  
+        properties.setProperty(Exception.class.getName(), viewname);//指定异常和jsp页面的对应关�?  
         simpleMappingExceptionResolver.addStatusCode(viewname, 503);//指定返回页面的时候，返回的错误状态码
         simpleMappingExceptionResolver.addErrorMsg(viewname, "系统发生异常");
         simpleMappingExceptionResolver.setExceptionMappings(properties);  
