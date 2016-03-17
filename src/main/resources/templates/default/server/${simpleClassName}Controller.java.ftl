@@ -2,7 +2,7 @@
 <#assign simpleClassNameFirstLower = simpleClassName?uncap_first> 
 package ${basepackage};
 import java.util.List;
-
+import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -33,14 +33,15 @@ public class ${simpleClassName}Controller {
 	 * @param id 是父节点的id
 	 * @return
 	 */
-	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
+	/**@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
 	public List<${simpleClassName}> query(String id) {
-		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.parent.id, "root".equals(id)?null:id);
+		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.id, "root".equals(id)?null:id);
 		List<${simpleClassName}> ${simpleClassNameFirstLower}es=${simpleClassNameFirstLower}Service.query(cnd);
 		//JsonConfigHolder.setFilterPropertys(${simpleClassName}.class,M.${simpleClassName}.parent.name());
 		return ${simpleClassNameFirstLower}es;
 	}
+	**/
 
 	/**
 	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
@@ -71,29 +72,29 @@ public class ${simpleClassName}Controller {
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/create.do")
-	@ResponseBody
-	public ${simpleClassName} create(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
+	//@ResponseBody
+	public ${simpleClassName} create(${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.create(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/update.do")
-	@ResponseBody
-	public  ${simpleClassName} update(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
+	//@ResponseBody
+	public  ${simpleClassName} update(${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.update(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/deleteById.do")
-	@ResponseBody
+	//@ResponseBody
 	public ${idType} deleteById(${idType} id) {
 		${simpleClassNameFirstLower}Service.deleteById(id);
 		return id;
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/destroy.do")
-	@ResponseBody
-	public ${simpleClassName} destroy(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
+	//@ResponseBody
+	public ${simpleClassName} destroy(${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.delete(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}

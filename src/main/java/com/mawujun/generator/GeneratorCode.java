@@ -2,7 +2,7 @@ package com.mawujun.generator;
 
 import java.io.IOException;
 
-import com.mawujun.utils.properties.PropertiesUtils;
+import com.mawujun.base.OrderMeet;
 
 import freemarker.template.TemplateException;
 /**
@@ -15,7 +15,7 @@ public class GeneratorCode {
 	static GeneratorService generatorService=new GeneratorService();
 
 	public static void main(String[] args) throws TemplateException, IOException, ClassNotFoundException {	
-		generatorService.generatorAllFile(EntityTest.class);
+		generatorService.generatorAllFile(OrderMeet.class);
 
 	}
 	
