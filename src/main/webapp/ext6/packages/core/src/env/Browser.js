@@ -13,15 +13,15 @@
 // @require Ext.Version
 
     var me = this,
-        browserPrefixes = Ext.Boot.browserPrefixes,
-        browserNames = Ext.Boot.browserNames,
+        browserPrefixes = me.browserPrefixes,
         enginePrefixes = me.enginePrefixes,
-        engineNames = me.engineNames,
-        browserMatch = userAgent.match(new RegExp('((?:' +
+        browserMatch = userAgent.match(new RegExp('((?:' + 
                 Ext.Object.getValues(browserPrefixes).join(')|(?:') + '))([\\w\\._]+)')),
-        engineMatch = userAgent.match(new RegExp('((?:' +
+        engineMatch = userAgent.match(new RegExp('((?:' + 
                 Ext.Object.getValues(enginePrefixes).join(')|(?:') + '))([\\w\\._]+)')),
+        browserNames = me.browserNames,
         browserName = browserNames.other,
+        engineNames = me.engineNames,
         engineName = engineNames.other,
         browserVersion = '',
         engineVersion = '',
@@ -34,12 +34,6 @@
      * Browser User Agent string.
      */
     me.userAgent = userAgent;
-
-    // Edge has a userAgent with All browsers so we manage it separately
-    // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
-    if (/Edge\//.test(userAgent)) {
-        browserMatch = userAgent.match(/(Edge\/)([\w.]+)/);
-    }
 
     if (browserMatch) {
         browserName = browserNames[Ext.Object.getKey(browserPrefixes, browserMatch[1])];
@@ -342,7 +336,7 @@
                 majorVer = 11;
             }
 
-            maxIEVersion = Math.max(majorVer, Ext.Boot.maxIEVersion);
+            maxIEVersion = Math.max(majorVer, 11);
             for (i = 7; i <= maxIEVersion; ++i) {
                 prefix = 'isIE' + i; 
                 if (majorVer <= i) {
@@ -408,6 +402,14 @@
         this.setFlag('PhoneGap');
         this.setFlag('Cordova');
     }
+    else if (!!window.isNK) {
+        isWebView = true;
+        this.setFlag('Sencha');
+    }
+
+    if (/(Glass)/i.test(userAgent)) {
+        this.setFlag('GoogleGlass');
+    }
 
     // Check if running in UIWebView
     if (/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)(?!.*FBAN)/i.test(userAgent)) {
@@ -436,6 +438,19 @@
 Ext.env.Browser.prototype = {
     constructor: Ext.env.Browser,
 
+    browserNames: {
+        ie: 'IE',
+        firefox: 'Firefox',
+        safari: 'Safari',
+        chrome: 'Chrome',
+        opera: 'Opera',
+        dolfin: 'Dolfin',
+        webosbrowser: 'webOSBrowser',
+        chromeMobile: 'ChromeMobile',
+        chromeiOS: 'ChromeiOS',
+        silk: 'Silk',
+        other: 'Other'
+    },
     engineNames: {
         webkit: 'WebKit',
         gecko: 'Gecko',
@@ -443,12 +458,23 @@ Ext.env.Browser.prototype = {
         trident: 'Trident',
         other: 'Other'
     },
-
     enginePrefixes: {
         webkit: 'AppleWebKit/',
         gecko: 'Gecko/',
         presto: 'Presto/',
         trident: 'Trident/'
+    },
+    browserPrefixes: {
+        ie: 'MSIE ',
+        firefox: 'Firefox/',
+        chrome: 'Chrome/',
+        safari: 'Version/',
+        opera: 'OPR/',
+        dolfin: 'Dolfin/',
+        webosbrowser: 'wOSBrowser/',
+        chromeMobile: 'CrMo/',
+        chromeiOS: 'CriOS/',
+        silk: 'Silk/'
     },
 
     styleDashPrefixes: {

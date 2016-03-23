@@ -282,6 +282,9 @@ Ext.define('Ext.Editor', {
         this.updateLayout();
     },
 
+    /**
+     * @private
+     */
     afterRender: function(ct, position) {
         var me = this,
             field = me.field,
@@ -439,6 +442,9 @@ Ext.define('Ext.Editor', {
         }
     },
 
+    /**
+     * @private
+     */
     onShow: function() {
         var me = this;
 
@@ -482,6 +488,9 @@ Ext.define('Ext.Editor', {
         }
     },
 
+    /**
+     * @private
+     */
     onFocusLeave: function(e) {
         var me = this;
 
@@ -491,6 +500,9 @@ Ext.define('Ext.Editor', {
         me.callParent([e]);
     },
 
+    /**
+     * @private
+     */
     onHide: function() {
         var me = this,
             field = me.field;

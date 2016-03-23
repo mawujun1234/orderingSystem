@@ -15,19 +15,6 @@ Ext.define('KitchenSink.view.charts.line.BasicController', {
         tooltip.setHtml(record.get('month') + ': ' + record.get('data1') + '%');
     },
 
-    onItemHighlightChange: function (chart, newHighlightItem, oldHighlightItem) {
-        this.setSeriesLineWidth(newHighlightItem, 4);
-        this.setSeriesLineWidth(oldHighlightItem, 2);
-    },
-
-    setSeriesLineWidth: function (item, lineWidth) {
-        if (item) {
-            item.series.setStyle({
-                lineWidth: lineWidth
-            });
-        }
-    },
-
     onPreview: function () {
         var chart = this.lookupReference('chart');
         chart.preview();

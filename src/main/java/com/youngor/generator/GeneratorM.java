@@ -16,7 +16,7 @@ public class GeneratorM {
 
 		// TODO Auto-generated method stub
 		GeneratorMT generatorMT=new GeneratorMT();
-		generatorMT.generateM("com.mawujun","E:\\eclipse\\aaa\\orderingSystem\\src\\main\\java","com.youngor.m");
+		generatorMT.generateM("com.youngor","E:\\eclipse\\aaa\\orderingSystem\\src\\main\\java","com.youngor.utils");
 	}
 
 }

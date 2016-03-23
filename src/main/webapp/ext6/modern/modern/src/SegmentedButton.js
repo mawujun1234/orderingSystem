@@ -30,12 +30,7 @@
 Ext.define('Ext.SegmentedButton', {
     extend: 'Ext.Container',
     xtype : 'segmentedbutton',
-
-    alternateClassName: 'Ext.button.Segmented',
-
-    requires: [
-        'Ext.Button'
-    ],
+    requires: ['Ext.Button'],
 
     isSegmentedButton: true,
 

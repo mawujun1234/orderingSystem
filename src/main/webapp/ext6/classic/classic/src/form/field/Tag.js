@@ -941,61 +941,58 @@ Ext.define('Ext.form.field.Tag', {
             valueField = me.valueField,
             unknownValues = [],
             store = me.store,
-            autoLoadOnValue = me.autoLoadOnValue,
-            isLoaded = store.getCount() > 0 || store.isLoaded(),
-            pendingLoad = store.hasPendingLoad(),
-            unloaded = autoLoadOnValue && !isLoaded && !pendingLoad,
             record, len, i, valueRecord, cls, params;
 
         if (Ext.isEmpty(value)) {
             value = null;
-        } else if (Ext.isString(value) && me.multiSelect) {
-            value = value.split(me.delimiter);
-        } else {
-            value = Ext.Array.from(value, true);
         }
+        if (Ext.isString(value) && me.multiSelect) {
+            value = value.split(me.delimiter);
+        }
+        value = Ext.Array.from(value, true);
 
-        if (value && me.queryMode === 'remote' && !store.isEmptyStore && skipLoad !== true && unloaded) {
-            for (i = 0, len = value.length; i < len; i++) {
-                record = value[i];
-                if (!record || !record.isModel) {
-                    valueRecord = valueStore.findExact(valueField, record);
-                    if (valueRecord > -1) {
-                        value[i] = valueStore.getAt(valueRecord);
-                    } else {
-                        valueRecord = me.findRecord(valueField, record);
-                        if (!valueRecord) {
-                            if (me.forceSelection) {
-                                unknownValues.push(record);
-                            } else {
-                                valueRecord = {};
-                                valueRecord[me.valueField] = record;
-                                valueRecord[me.displayField] = record;
+        for (i = 0, len = value.length; i < len; i++) {
+            record = value[i];
+            if (!record || !record.isModel) {
+                valueRecord = valueStore.findExact(valueField, record);
+                if (valueRecord > -1) {
+                    value[i] = valueStore.getAt(valueRecord);
+                } else {
+                    valueRecord = me.findRecord(valueField, record);
+                    if (!valueRecord) {
+                        if (me.forceSelection) {
+                            unknownValues.push(record);
+                        } else {
+                            valueRecord = {};
+                            valueRecord[me.valueField] = record;
+                            valueRecord[me.displayField] = record;
 
-                                cls = me.valueStore.getModel();
-                                valueRecord = new cls(valueRecord);
-                            }
+                            cls = me.valueStore.getModel();
+                            valueRecord = new cls(valueRecord);
                         }
-                        if (valueRecord) {
-                            value[i] = valueRecord;
-                        }
+                    }
+                    if (valueRecord) {
+                        value[i] = valueRecord;
                     }
                 }
             }
+        }
 
-            if (unknownValues.length) {
-                params = {};
-                params[me.valueParam || me.valueField] = unknownValues.join(me.delimiter);
-                store.load({
-                    params: params,
-                    callback: function() {
-                        me.setValue(value, add, true);
-                        me.autoSize();
-                        me.lastQuery = false;
+        if (!store.isEmptyStore && skipLoad !== true && unknownValues.length > 0 && me.queryMode === 'remote') {
+            params = {};
+            params[me.valueParam || me.valueField] = unknownValues.join(me.delimiter);
+            store.load({
+                params: params,
+                callback: function() {
+                    if (me.itemList) {
+                        me.itemList.unmask();
                     }
-                });
-                return false;
-            }
+                    me.setValue(value, add, true);
+                    me.autoSize();
+                    me.lastQuery = false;
+                }
+            });
+            return false;
         }
 
         // For single-select boxes, use the last good (formal record) value if possible

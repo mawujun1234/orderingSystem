@@ -21,14 +21,14 @@ Ext.define('KitchenSink.view.binding.Association', {
 
     items: [{
         xtype: 'list',
-        flex: 2,
+        flex: 1,
         title: 'People',
         itemTpl: '{firstName} {lastName}',
         reference: 'peopleList',
         bind: '{people}'
     }, {
         xtype: 'list',
-        flex: 3,
+        flex: 1,
         itemTpl: 'Created: {created:date("Y-m-d")}, Key: {accountKey}',
         items: [{
             xtype: 'titlebar',

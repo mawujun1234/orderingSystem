@@ -216,13 +216,12 @@
  * will receive `getDefaultType` and `setDefaultType` methods, and so on.
  */
 Ext.define('Ext.Component', {
+
     extend: 'Ext.Widget',
 
     alternateClassName: 'Ext.lib.Component',
 
-    mixins: [
-        'Ext.mixin.Traversable'
-    ],
+    mixins: ['Ext.mixin.Traversable'],
 
     requires: [
         'Ext.ComponentManager',
@@ -292,10 +291,7 @@ Ext.define('Ext.Component', {
         baseCls: null,
 
         /**
-         * @cfg {String/String[]} cls The CSS class to add to this component's element, in
-         * addition to the {@link #baseCls}. In many cases, this property will be specified
-         * by the derived component class. See {@link #userCls} for adding additional CSS
-         * classes to component instances (such as items in a {@link Ext.Container}).
+         * @cfg {String/String[]} cls The CSS class to add to this component's element, in addition to the {@link #baseCls}
          * @accessor
          */
         cls: null,
@@ -931,25 +927,8 @@ Ext.define('Ext.Component', {
     },
 
     statics: {
-        /**
-         * Find the Widget or Component to which the given Element belongs.
-         *
-         * @param {Ext.dom.Element/HTMLElement} el The element from which to start to find an owning Component.
-         * @param {Ext.dom.Element/HTMLElement} [limit] The element at which to stop upward searching for an
-         * owning Component, or the number of Components to traverse before giving up.
-         * Defaults to the document's HTML element.
-         * @param {String} [selector] An optional {@link Ext.ComponentQuery} selector to filter the target.
-         * @return {Ext.Component/null} Component, or null
-         *
-         * @since 6.0.1
-         */
-        fromElement: function(node, limit, selector) {
-            return Ext.ComponentManager.fromElement(node, limit, selector);
-        }
+        fromElement: Ext.emptyFn  // TODO
     },
-
-    initialConfig: null,
-    $initParent: null,
 
     /**
      * Creates new Component.
@@ -957,45 +936,12 @@ Ext.define('Ext.Component', {
      */
     constructor: function(config) {
         var me = this,
-            plugins = config && config.plugins,
-            responsive = 'responsive',
-            i, p;
+            controller;
 
         me.onInitializedListeners = [];
+        me.initialConfig = config;
 
-        if (config) {
-            me.initialConfig = config;
-            // We need to copy this over here and not rely on initConfig to do so since
-            // configs (esp cached configs like "ui") can be set() prior to copying of
-            // such properties.
-            me.$initParent = config.$initParent;
-        }
-
-        // The Responsive plugin must be created before initConfig runs in order to
-        // process the initial responsiveConfig block. The simplest and safest solution
-        // is to accelerate the creation of this plugin here and leave the timing as it
-        // has always been for other plugins.
-        if (plugins) {
-            plugins = Ext.Array.from(plugins);
-
-            for (i = plugins.length; i-- > 0; ) {
-                p = plugins[i];
-
-                if (p === responsive || p.type === responsive) {
-                    me.initialConfig = config = Ext.apply({}, config);
-                    config.plugins = plugins = plugins.slice(0);
-
-                    // Put the instance in the plugins array so it will be included in
-                    // the applyPlugins loop for normal processing of plugins.
-                    plugins[i] = me.createPlugin(p);
-
-                    config = me.initialConfig;
-                    break;
-                }
-            }
-        }
-
-        me.callParent([ config ]);
+        me.callParent([me.initialConfig]);
 
         me.refreshSizeState = me.doRefreshSizeState;
         me.refreshFloating = me.doRefreshFloating;
@@ -1011,20 +957,18 @@ Ext.define('Ext.Component', {
         me.initialize();
 
         me.triggerInitialized();
-
         /**
-         * Force the component to take up 100% width and height available, by adding it
-         * to {@link Ext.Viewport}.
+         * Force the component to take up 100% width and height available, by adding it to {@link Ext.Viewport}.
          * @cfg {Boolean} fullscreen
          */
-        if (me.fullscreen) {
+        if (me.config.fullscreen) {
             me.fireEvent('fullscreen', me);
         }
 
         me.fireEvent('initialize', me);
     },
 
-    beforeInitConfig: function (config) {
+    beforeInitConfig: function(config) {
         this.beforeInitialize.apply(this, arguments);
     },
 
@@ -1034,7 +978,6 @@ Ext.define('Ext.Component', {
     beforeInitialize: Ext.emptyFn,
 
     /**
-     * @method
      * Allows addition of behavior to the rendering phase.
      * @protected
      * @template
@@ -1141,8 +1084,7 @@ Ext.define('Ext.Component', {
     },
 
     applyPlugins: function(plugins) {
-        var me = this,
-            config, ln, i, plugin;
+        var ln, i, plugin;
 
         if (!plugins) {
             return plugins;
@@ -1151,36 +1093,14 @@ Ext.define('Ext.Component', {
         plugins = [].concat(plugins);
 
         for (i = 0, ln = plugins.length; i < ln; i++) {
-            plugins[i] = me.createPlugin(plugins[i]);
+            plugin = Ext.factory(plugins[i], 'Ext.plugin.Plugin', null, 'plugin');
+            if (plugin.setCmp) {
+                plugin.setCmp(this);
+            }
+            plugins[i] = plugin;
         }
 
         return plugins;
-    },
-
-    createPlugin: function (config) {
-        if (typeof config === 'string') {
-            config = {
-                type: config
-            };
-        }
-
-        var ret = config;
-
-        if (!config.isInstance) {
-            // The owner may be needed by plugin's initConfig so provide it:
-            config.cmp = this;
-
-            ret = Ext.factory(config, null, null, 'plugin');
-
-            // Cleanup the user's config object:
-            delete config.cmp;
-        }
-
-        if (ret.setCmp) {
-            ret.setCmp(this);
-        }
-
-        return ret;
     },
 
     updatePlugins: function(newPlugins, oldPlugins) {
@@ -1201,7 +1121,8 @@ Ext.define('Ext.Component', {
 
     applyScrollable: function(scrollable, oldScrollable) {
         var me = this,
-            bodyElement, touchScroll, x, y, scrollableCfg;
+            scrollerElement, scrollerInnerElement, extraWrap, supports, touchScroll, x, y,
+            scrollableCfg;
 
         if (scrollable) {
             if (scrollable === true || typeof scrollable === 'string') {
@@ -1220,11 +1141,14 @@ Ext.define('Ext.Component', {
                 oldScrollable.setConfig(scrollable);
                 scrollable = oldScrollable;
             } else {
-                touchScroll = Ext.supports.touchScroll;
+                supports = Ext.supports;
+                touchScroll = supports.touchScroll;
 
-                if (touchScroll && !scrollable.translatable) {
+                if (!scrollable.translatable) {
                     scrollable.translatable = {
-                        translationMethod: (touchScroll === 1) ? 'scrollparent' : 'csstransform'
+                        translationMethod: (supports.touchScroll === 1) ? 'scrollparent' :
+                            (Ext.browser.is.IE) ? 'scrollposition' :
+                                'csstransform'
                     };
                 }
 
@@ -1241,12 +1165,34 @@ Ext.define('Ext.Component', {
                 scrollable.component = me;
 
                 me.setUseBodyElement(true);
-                bodyElement = me.bodyElement;
 
                 if (touchScroll === 2) {
-                    scrollable.setInnerElement(me.innerElement);
-                    scrollable.setElement(bodyElement);
+                    // although there is no longer a Ext.scroll.View class, the x-scroll-view
+                    // CSS class is still used for styling purposes.
+                    me.bodyElement.addCls(Ext.baseCSSPrefix + 'scroll-view');
+
+                    scrollerInnerElement = me.innerElement;
+
+                    if (!supports.ProperHBoxStretching && scrollable.getX()) {
+                        extraWrap = scrollerInnerElement.wrap();
+                        extraWrap.addCls(Ext.baseCSSPrefix + 'translatable-hboxfix');
+                        if (!scrollable.getY()) {
+                            extraWrap.setStyle({height: '100%'});
+                        }
+                        scrollerElement = extraWrap.wrap();
+                        scrollable.FixedHBoxStretching = true;
+                    }
+
+                    if (!scrollerElement) {
+                        scrollerElement = scrollerInnerElement.wrap();
+                    }
+
+                    me.scrollerElement = scrollerElement;
+
+                    scrollable.setInnerElement(scrollerInnerElement);
+                    scrollable.setElement(scrollerElement);
                 } else {
+                    scrollerElement = me.bodyElement;
                     if (touchScroll === 1) {
                         // In browsers that use native browser overflow, but also have a
                         // touch screen 2 setup steps are required by the scroller:
@@ -1256,14 +1202,14 @@ Ext.define('Ext.Component', {
                         x = scrollable.getX();
                         y = scrollable.getY();
 
-                        bodyElement.setStyle({
+                        scrollerElement.setStyle({
                             overflowX: x === true ? 'auto' : !x ? 'hidden' : x,
                             overflowY: y === true ? 'auto' : !y ? 'hidden' : y
                         });
 
-                        bodyElement.disableTouchScroll();
+                        scrollerElement.disableTouchScroll();
                     }
-                    scrollable.setElement(bodyElement);
+                    scrollable.setElement(scrollerElement);
                 }
 
                 if (me.isPainted()) {
@@ -1280,7 +1226,7 @@ Ext.define('Ext.Component', {
     onPainted: function() {
         var scrollable = this.getScrollable();
 
-        if (scrollable && scrollable.isTouchScroller && scrollable.getAutoRefresh()) {
+        if (scrollable) {
             scrollable.refresh();
         }
     },
@@ -1719,23 +1665,29 @@ Ext.define('Ext.Component', {
     },
 
     setSizeFlags: function(flags) {
-        var me = this,
-            el = me.element,
-            hasWidth, hasHeight, stretched;
-
         if (flags !== this.sizeFlags) {
-            me.sizeFlags = flags;
+            this.sizeFlags = flags;
 
-            hasWidth = !!(flags & this.LAYOUT_WIDTH);
-            hasHeight = !!(flags & this.LAYOUT_HEIGHT);
-            stretched = !!(flags & this.LAYOUT_STRETCHED);
+            var hasWidth = !!(flags & this.LAYOUT_WIDTH),
+                hasHeight = !!(flags & this.LAYOUT_HEIGHT),
+                stretched = !!(flags & this.LAYOUT_STRETCHED);
 
+            if (hasWidth && !stretched && !hasHeight) {
+                this.element.addCls('x-has-width');
+            }
+            else {
+                this.element.removeCls('x-has-width');
+            }
 
-            el.toggleCls(Ext.baseCSSPrefix + 'has-width', hasWidth && !stretched && !hasHeight);
-            el.toggleCls(Ext.baseCSSPrefix + 'has-height', hasHeight && !stretched && !hasWidth);
+            if (hasHeight && !stretched && !hasWidth) {
+                this.element.addCls('x-has-height');
+            }
+            else {
+                this.element.removeCls('x-has-height');
+            }
 
-            if (me.initialized) {
-                me.fireEvent('sizeflagschange', me, flags);
+            if (this.initialized) {
+                this.fireEvent('sizeflagschange', this, flags);
             }
         }
     },
@@ -1935,7 +1887,7 @@ Ext.define('Ext.Component', {
     },
 
     updateDisabled: function(disabled) {
-        this.element.toggleCls(this.getDisabledCls(), disabled);
+        this.element[disabled ? 'addCls' : 'removeCls'](this.getDisabledCls());
     },
 
     updateDisabledCls: function(newDisabledCls, oldDisabledCls) {
@@ -2061,35 +2013,10 @@ Ext.define('Ext.Component', {
 
     /**
      * Returns `true` if this Component is currently hidden.
-     * @param {Boolean} [deep=false] `true` to check if this component
-     * is hidden because a parent container is hidden.
      * @return {Boolean} `true` if currently hidden.
      */
-    isHidden: function(deep) {
-        var hidden = !!this.getHidden(),
-            owner;
-
-        if (!hidden && deep) {
-            owner = this.getRefOwner();
-            while (owner) {
-                hidden = !!owner.getHidden();
-                if (hidden) {
-                    break;
-                }
-                owner = owner.getRefOwner();
-            }
-        }
-        return hidden;
-    },
-
-    /**
-     * Returns `true` if this Component is currently visible.
-     * @param {Boolean} [deep=false] `true` to check if this component
-     * is visible and all parents are also visible.
-     * @return {Boolean} `true` if currently visible.
-     */
-    isVisible: function(deep) {
-        return !this.isHidden(deep);
+    isHidden: function() {
+        return this.getHidden();
     },
 
     /**
@@ -2727,6 +2654,8 @@ Ext.define('Ext.Component', {
         }
     }
 }, function() {
+    Ext.isModern = true;
+
     //<debug>
     var metaTags = document.getElementsByTagName('head')[0].getElementsByTagName('meta'),
         len = metaTags.length,

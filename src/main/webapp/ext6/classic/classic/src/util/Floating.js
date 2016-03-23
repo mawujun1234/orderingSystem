@@ -182,42 +182,22 @@ Ext.define('Ext.util.Floating', {
         me.initHierarchyEvents();
     },
 
-    alignTo: function (alignTarget, position, offsets, animate) {
-        var me = this,
-            alignEl;
+    alignTo: function (element, position, offsets, animate) {
+        var me = this;
 
-        // Remove previous scroll listener. Harmless if not listening.
-        Ext.un('scroll', me.onAlignToScroll, me);
-
-        // Ensure we always have an Ext.Element as our alignEl.
-        // We may be aligned to a Component, an Ext.Element, or an HtmlElement
-        if (alignTarget.isComponent) {
-            alignEl = alignTarget.el;
-        } else if (alignTarget.nodeType) {
-            alignEl = Ext.fly(alignTarget);
-        } else {
-            alignEl = alignTarget;
-        }
-
-        // Since floaters May be rendered to the document.body, floaters could become marooned
-        // from its alignTarget if the alignTarget is inside an element that scrolls
-        // and then that element is scrolled.
-        //
-        // Do not need to do this the floater is rendered inside the element that they are aligned to.
-        // For example CellEditors within grid cells.
-        //
-        // We might be aligned to a Component.
-        // Both Component and Element have an "el" reference.
-        if (!alignEl.contains(me.el)) {
+        // Since floaters are rendered to the document.body, floaters could become marooned
+        // from its ownerRef if the ownerRef has been rendered into a container that overflows
+        // and then that container is scrolled.
+        if (!me._lastAlignToEl) {
             Ext.on('scroll', me.onAlignToScroll, me);
         }
 
         // Let's stash these on the component/element in case it's aligned to something else
         // in its little lifetime.
-        me._lastAlignTarget = alignTarget;
+        me._lastAlignToEl = element;
         me._lastAlignToPos = position;
 
-        me.mixins.positionable.alignTo.call(me, alignEl, position, offsets, animate);
+        me.mixins.positionable.alignTo.call(me, element, position, offsets, animate);
     },
 
     initFloatConstrain: function () {
@@ -286,7 +266,8 @@ Ext.define('Ext.util.Floating', {
             
             // Do not autofocus the Component (which delegates onto the getFocusEl() descendant)
             // for touch events.
-            preventFocus = e.pointerType === 'touch',
+            parentEvent = e.parentEvent,
+            preventFocus = parentEvent && parentEvent.type === 'touchstart',
             target, dom, skipFronting;
 
         if (me.floating &&
@@ -566,46 +547,25 @@ Ext.define('Ext.util.Floating', {
         clearAlignEl: function() {
             var me = this;
 
-            if (me._lastAlignTarget) {
+            if (me._lastAlignToEl) {
                 Ext.un('scroll', me.onAlignToScroll, me);
-                me._lastAlignPos = me._lastAlignTarget = null;
+                me._lastAlignPos = me._lastAlignToEl = null;
             }
         },
 
         onAlignToScroll: function (scroller) {
             var me = this,
-                alignEl = me._lastAlignTarget,
-                alignedToFloater = alignEl.isFloating,
-                destroyed,
+                el = me._lastAlignToEl,
                 dom;
 
-            if (alignEl) {
+            // Realign only if this element is not contained within the scrolling element.
+            if (el && !scroller.getElement().contains(me.el)) {
+                dom = el.isElement ? el.dom : el;
 
-                // Ensure we always have an Ext.Element as our alignEl.
-                // We may be aligned to a Component, an Ext.Element, or an raw HtmlElement
-                if (alignEl.isComponent) {
-                    destroyed = alignEl.destroyed;
-                    alignEl = alignEl.el;
+                if (dom && !Ext.isGarbage(dom)) {
+                    me.alignTo(el, me._lastAlignToPos);
                 } else {
-                    // Wrap a raw HtmlElement
-                    if (alignEl.nodeType) {
-                        alignEl = Ext.fly(alignEl);
-                    }
-                    dom = alignEl.dom;
-                    destroyed = !dom || Ext.isGarbage(dom);
-                }
-
-                // If the Component/Element we were aligning to is destroyed, clear our alignment.
-                if (destroyed) {
                     me.clearAlignEl();
-                }
-
-                // Realign only if
-                //      the element we are aligned to is within the scrolling element (it has scrolled with the content)
-                //      or the Component we are aligned to is floating, in which case it might have scrolled OR realigned itself.
-                // AND our element is NOT within the scrolled element (it would move with the scroll)
-                else if ((scroller.getElement().contains(alignEl) || alignedToFloater) && !scroller.getElement().contains(me.el)) {
-                    me.alignTo(alignEl, me._lastAlignToPos);
                 }
             }
         }

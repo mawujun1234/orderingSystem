@@ -44,7 +44,6 @@ describe("Ext.data.Store", function() {
     function createStore(cfg, withData) {
         cfg = cfg || {};
         store = new Ext.data.Store(Ext.applyIf(cfg, {
-            asynchronousLoad: false,
             model: User,
             data: withData ? [edRaw, abeRaw, aaronRaw, tommyRaw] : null
         }));
@@ -241,53 +240,40 @@ describe("Ext.data.Store", function() {
         
         describe("autoLoad", function() {
             it("should not auto load by default", function() {
-                spyOn(Ext.data.Store.prototype, 'flushLoad').andReturn();
-                createStore({
-                    asynchronousLoad: true
-                });
+                createStore();
+                spyOn(store, 'load').andReturn();
                 waits(50);
                 runs(function() {
-                    expect(store.flushLoad).not.toHaveBeenCalled();
+                    expect(store.load).not.toHaveBeenCalled();
                 });
             });
             
             describe("autoLoad: true", function() {
                 it("should load the store", function() {
-                    spyOn(Ext.data.Store.prototype, 'flushLoad').andCallThrough();
                     createStore({
-                        asynchronousLoad: true,
                         autoLoad: true
                     });
+                    spyOn(store, 'load').andReturn();
                     waitsFor(function() {
-                        return store.flushLoad.callCount > 0;
+                        return store.load.callCount > 0;
                     }, 'Load never called');
                     runs(function() {
-                        expect(store.flushLoad.callCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
                 
                 it("should pass the options if autoLoad is an object", function() {
-                    var p = {
-                            foo: 'bar'
-                        },
-                        o = {
-                            params: p
-                        },
-                        loadParams;
-
+                    var o = {};
                     createStore({
-                        autoLoad: o,
-                        asynchronousLoad: false,
-                        listeners: {
-                            beforeload: function(s, operation) {
-                                loadParams = operation.getParams();
-                            }
-                        }
+                        autoLoad: o
                     });
-
-                    // Capture parameter from load options to verify
+                    spyOn(store, 'load').andReturn();
                     waitsFor(function() {
-                        return loadParams.foo === 'bar';
+                        return store.load.callCount > 0;
+                    });
+                    runs(function() {
+                        expect(store.load).toHaveBeenCalledWith(o);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -1261,7 +1247,7 @@ describe("Ext.data.Store", function() {
         });
 
         describe("moving records", function() {
-            var spy, refreshMap;
+            var spy, removeMap, addMap;
 
             beforeEach(function() {
                 createStore();
@@ -1270,7 +1256,7 @@ describe("Ext.data.Store", function() {
             });
 
             afterEach(function() {
-                refreshMap = spy = null;
+                removeMap = addMap = spy = null;
             });
 
             function mapify(map, records) {
@@ -1281,11 +1267,15 @@ describe("Ext.data.Store", function() {
                 });
             }
 
-            function setupRefreshListener() {
-                refreshMap = {};
+            function setupAddRemove() {
+                removeMap = {};
+                addMap = {};
 
-                store.on('refresh', function(store) {
-                   refreshMap = Ext.clone(store.moveMap);
+                store.on('remove', function(store, records) {
+                    mapify(removeMap, records);
+                });
+                store.on('add', function(store, records) {
+                    mapify(addMap, records);
                 });
             }
 
@@ -1297,13 +1287,14 @@ describe("Ext.data.Store", function() {
                     });
 
                     it("should be moving during the add & remove event", function() {
-                        setupRefreshListener();
+                        setupAddRemove();
 
                         store.add(edRec);
                         var expected = {
-                            'ed@sencha.com': 1
+                            'ed@sencha.com': true
                         };
-                        expect(refreshMap).toEqual(expected);
+                        expect(removeMap).toEqual(expected);
+                        expect(addMap).toEqual(expected);
 
                         expect(store.isMoving([edRec])).toBe(0);
                         expect(store.isMoving()).toBe(0);
@@ -1320,15 +1311,16 @@ describe("Ext.data.Store", function() {
                             });
 
                             it("should be moving during the add & remove event", function() {
-                                setupRefreshListener();
+                                setupAddRemove();
 
                                 store.add([edRec, abeRec]);
                                 var expected = {
-                                    'ed@sencha.com': 1,
-                                    'abe@sencha.com': 1
+                                    'ed@sencha.com': true,
+                                    'abe@sencha.com': true
                                 };
 
-                                expect(refreshMap).toEqual(expected);
+                                expect(removeMap).toEqual(expected);
+                                expect(addMap).toEqual(expected);
 
                                 expect(store.isMoving([edRec, abeRec])).toBe(0);
                                 expect(store.isMoving()).toBe(0);
@@ -1357,16 +1349,17 @@ describe("Ext.data.Store", function() {
                             });
 
                             it("should be moving during the add & remove event", function() {
-                                setupRefreshListener();
+                                setupAddRemove();
 
                                 store.add([abeRec, tommyRec, barRec]);
                                 var expected = {
-                                    'abe@sencha.com': 1,
-                                    'tommy@sencha.com': 1,
-                                    'bar@sencha.com': 1
+                                    'abe@sencha.com': true,
+                                    'tommy@sencha.com': true,
+                                    'bar@sencha.com': true
                                 };
 
-                                expect(refreshMap).toEqual(expected);
+                                expect(removeMap).toEqual(expected);
+                                expect(addMap).toEqual(expected);
 
                                 expect(store.isMoving([abeRec, tommyRec, barRec])).toBe(0);
                                 expect(store.isMoving()).toBe(0);
@@ -1394,13 +1387,14 @@ describe("Ext.data.Store", function() {
                         });
 
                         it("should only mark existing records as moving", function() {
-                            setupRefreshListener();
+                            setupAddRemove();
 
                             store.add([fooRec, edRec]);
                             var expected = {
-                                'ed@sencha.com': 1
+                                'ed@sencha.com': true
                             };
-                            expect(refreshMap).toEqual(expected);
+                            expect(removeMap).toEqual(expected);
+                            expect(addMap).toEqual(expected);
 
                             expect(store.isMoving([fooRec, edRec])).toBe(0);
                             expect(store.isMoving()).toBe(0);
@@ -1417,13 +1411,14 @@ describe("Ext.data.Store", function() {
                     });
 
                     it("should be moving during the add & remove event", function() {
-                        setupRefreshListener();
+                        setupAddRemove();
 
                         store.insert(0, tommyRec);
                         var expected = {
-                            'tommy@sencha.com': 1
+                            'tommy@sencha.com': true
                         };
-                        expect(refreshMap).toEqual(expected);
+                        expect(removeMap).toEqual(expected);
+                        expect(addMap).toEqual(expected);
 
                         expect(store.isMoving(tommyRec)).toBe(0);
                         expect(store.isMoving()).toBe(0);
@@ -1440,15 +1435,16 @@ describe("Ext.data.Store", function() {
                             });
 
                             it("should be moving during the add & remove event", function() {
-                                setupRefreshListener();
+                                setupAddRemove();
 
                                 store.insert(0, [aaronRec, tommyRec]);
                                 var expected = {
-                                    'aaron@sencha.com': 1,
-                                    'tommy@sencha.com': 1
+                                    'aaron@sencha.com': true,
+                                    'tommy@sencha.com': true
                                 };
 
-                                expect(refreshMap).toEqual(expected);
+                                expect(removeMap).toEqual(expected);
+                                expect(addMap).toEqual(expected);
 
                                 expect(store.isMoving([aaronRec, tommyRec])).toBe(0);
                                 expect(store.isMoving()).toBe(0);
@@ -1477,16 +1473,17 @@ describe("Ext.data.Store", function() {
                             });
 
                             it("should be moving during the add & remove event", function() {
-                                setupRefreshListener();
+                                setupAddRemove();
 
                                 store.insert(0, [abeRec, tommyRec, barRec]);
                                 var expected = {
-                                    'abe@sencha.com': 1,
-                                    'tommy@sencha.com': 1,
-                                    'bar@sencha.com': 1
+                                    'abe@sencha.com': true,
+                                    'tommy@sencha.com': true,
+                                    'bar@sencha.com': true
                                 };
 
-                                expect(refreshMap).toEqual(expected);
+                                expect(removeMap).toEqual(expected);
+                                expect(addMap).toEqual(expected);
 
                                 expect(store.isMoving([abeRec, tommyRec, barRec])).toBe(0);
                                 expect(store.isMoving()).toBe(0);
@@ -1514,13 +1511,14 @@ describe("Ext.data.Store", function() {
                         });
 
                         it("should only mark existing records as moving", function() {
-                            setupRefreshListener();
+                            setupAddRemove();
 
                             store.insert(2, [fooRec, edRec]);
                             var expected = {
-                                'ed@sencha.com': 1
+                                'ed@sencha.com': true
                             };
-                            expect(refreshMap).toEqual(expected);
+                            expect(removeMap).toEqual(expected);
+                            expect(addMap).toEqual(expected);
 
                             expect(store.isMoving([fooRec, edRec])).toBe(0);
                             expect(store.isMoving()).toBe(0);
@@ -1543,13 +1541,14 @@ describe("Ext.data.Store", function() {
                 });
 
                 it("should be moving during the add & remove event", function() {
-                    setupRefreshListener();
+                    setupAddRemove();
                     tommyRec.set('name', 'cccc');
 
                     var expected = {
-                        'tommy@sencha.com': 1
+                        'tommy@sencha.com': true
                     };
-                    expect(refreshMap).toEqual(expected);
+                    expect(removeMap).toEqual(expected);
+                    expect(addMap).toEqual(expected);
 
                     expect(store.isMoving(tommyRec)).toBe(0);
                     expect(store.isMoving()).toBe(0);
@@ -1564,9 +1563,7 @@ describe("Ext.data.Store", function() {
 
                     it("should return 1 when a single record is moving", function() {
                         var moving;
-
-                        // Moving a record does not fire an add. It's a refresh operation
-                        store.on('refresh', function() {
+                        store.on('add', function() {
                             moving = store.isMoving();
                         });
                         store.add(edRec);
@@ -1575,9 +1572,7 @@ describe("Ext.data.Store", function() {
 
                     it("should return the amount of moving records", function() {
                         var moving;
-
-                        // Moving a record does not fire an add. It's a refresh operation
-                        store.on('refresh', function() {
+                        store.on('add', function() {
                             moving = store.isMoving();
                         });
                         store.add([edRec, abeRec]);
@@ -1592,9 +1587,7 @@ describe("Ext.data.Store", function() {
 
                     it("should return 1 when the record is moving", function() {
                         var moving;
-
-                        // Moving a record does not fire an add. It's a refresh operation
-                        store.on('refresh', function() {
+                        store.on('add', function() {
                             moving = store.isMoving(edRec);
                         });
                         store.add(edRec);
@@ -1609,9 +1602,7 @@ describe("Ext.data.Store", function() {
 
                     it("should return the number of moving records", function() {
                         var moving;
-
-                        // Moving a record does not fire an add. It's a refresh operation
-                        store.on('refresh', function() {
+                        store.on('add', function() {
                             moving = store.isMoving([edRec, abeRec, aaronRec, tommyRec]);
                         });
                         store.add([edRec, abeRec]);
@@ -3832,7 +3823,7 @@ describe("Ext.data.Store", function() {
         describe("remote", function() {
             describe("during construction", function() {
                 it("should not trigger a load when creating with sorters", function() {
-                    var spy = spyOn(Ext.data.ProxyStore.prototype, 'load');
+                    var spy = spyOn(Ext.data.Store.prototype, 'load');
                     createStore({
                         remoteSort: true,
                         sorters: [{
@@ -4162,79 +4153,6 @@ describe("Ext.data.Store", function() {
                         expect(spy).not.toHaveBeenCalled();
                     });
                 });
-            });
-        });
-    });
-
-    describe('remote sorting and filtering, and callbacks therein', function() {
-        var callSequence = 0,
-            sortOrdinal,
-            groupOrdinal,
-            allCorrect;
-            
-        beforeEach(function() {
-            // Create a store that kicks off an autoload request
-            createStore({
-                // Override the default in this test suite.
-                // We are testing asynchronousness.
-                asynchronousLoad: true,
-                remoteSort: true,
-                remoteFilter: true,
-                listeners: {
-                    sort: function() {
-                        sortOrdinal = ++callSequence;
-                    },
-                    groupchange: function() {
-                        groupOrdinal = ++callSequence;
-                    }
-                }
-            });
-            spyOn(store, 'load').andCallThrough();
-            spyOn(store, 'flushLoad').andCallThrough();
-        });
-
-        it('should not fire all the callbacks of superceded loads', function() {
-
-            // All these three operations will each kick off a load request
-            store.group('group');
-            store.sort('email');
-            store.filter({
-                property: 'old',
-                value: true
-            });
-
-            // There have been several load calls in this event handler.
-            // Adding a grouper requests a load with a callback scheduled to fire the groupchange event.
-            // Adding sorters requests a load with a callback scheduled to fire the sort event.
-            // Adding filters requests a load
-            expect(store.load.callCount).toBe(3);
-            expect(store.flushLoad.callCount).toBe(0);
-
-            // Now *we* ask for a load to fire another callback.
-            // If should be called last in the sequence:
-            // The groupchange should have fired first, and the sortchange should have fired second
-            // because that is the order they were requested in.
-            store.load(function() {
-                // The callbacks requested by the load requests from the group, and sorter adds should have been lost.
-                allCorrect = !groupOrdinal && !sortOrdinal;
-            });
-
-            // The store will flush its load call in the next tick, so satisfy the Ajax request then.
-            waits(100);
-            
-            runs(function() {
-                completeWithData([aaronRaw, tommyRaw]);
-            });
-
-            // Wait for the load to return correctly with all callbacks called in sequence, and the data in the store
-            waitsFor(function() {
-                return allCorrect && store.getCount() === 2;
-            }, 'the store to load');
-
-            // Whan all this is done, there should have been 5 load calls, but only 1 flushLoad
-            runs(function() {
-                expect(store.load.callCount).toBe(4);
-                expect(store.flushLoad.callCount).toBe(1);
             });
         });
     });
@@ -4807,19 +4725,14 @@ describe("Ext.data.Store", function() {
         describe("remote", function() {
             describe("during construction", function() {
                 it("should not trigger a load", function() {
-                    var loadSpy = spyOn(Ext.data.ProxyStore.prototype, 'load'),
-                        flushLoadSpy = spyOn(Ext.data.Store.prototype, 'flushLoad');
+                    var spy = spyOn(Ext.data.Store.prototype, 'load');
                     createStore({
                         remoteSort: true,
-                        asynchronousLoad: true,
                         grouper: {
                             property: 'group'
                         }
                     });
-
-                    // group() triggers a load, but being async, it does not get flushed
-                    expect(loadSpy).toHaveBeenCalled();
-                    expect(flushLoadSpy).not.toHaveBeenCalled();
+                    expect(spy).not.toHaveBeenCalled();
                 });
             });
             
@@ -5864,7 +5777,7 @@ describe("Ext.data.Store", function() {
 
             describe("during construction", function() {
                 it("should not trigger a load when applying initial filters", function() {
-                    var spy = spyOn(Ext.data.ProxyStore.prototype, 'load');
+                    var spy = spyOn(Ext.data.Store.prototype, 'load');
                     createStore({
                         remoteFilter: true,
                         filters: [{
@@ -6472,17 +6385,20 @@ describe("Ext.data.Store", function() {
                     expect(spy).not.toHaveBeenCalled();
                 });
 
-                it("should be moving in the refresh event if changing position", function() {
-                    var remove;
+                it("should be moving in the add/remove event if changing position", function() {
+                    var add, remove;
 
-                    store.sort('email');
-
-                    store.on('refresh', function() {
+                    store.on('remove', function() {
                         remove = store.isMoving(tommyRec);
                     });
 
+                    store.on('add', function() {
+                        add = store.isMoving(tommyRec);
+                    })
+                    store.sort('email');
                     tommyRec.set('email', 'aaa@sencha.com');
                     expect(remove).toBe(1);
+                    expect(add).toBe(1);
                 });
             });
             
@@ -7057,21 +6973,12 @@ describe("Ext.data.Store", function() {
     });
 
     describe("autoSync", function() {
-        var doSync;
-
         beforeEach(function() {
             createStore({
                 autoSync: true
             }, true);
             spyOn(store, 'sync').andCallFake(function() {
-
-                // If the doSync flag is set, make the call.
-                if (doSync) {
-                    store.self.prototype.sync.apply(store, arguments);
-                    doSync = false;
-                } else {
-                    store.needsSync = false;
-                }
+                store.needsSync = false;
             });
         });
         describe("adding", function() {
@@ -7151,36 +7058,6 @@ describe("Ext.data.Store", function() {
             it("should trigger a sync if the record is dirty", function() {
                 edRec.set('name', 'Foo');
                 expect(store.sync.callCount).toBe(1);
-            });
-        });
-
-        describe("removing with sync response", function() {
-            it("should trigger when removing a record", function() {
-                doSync = true;
-                store.remove(edRec);
-                expect(store.sync.callCount).toBe(1);
-
-                // Before the successful response, the removed queue is still filled
-                expect(store.getRemovedRecords().length).toBe(1);
-
-                completeWithData('"{"success":true,"records":[{"id":"ed@sencha.com"}]}"');
-
-                // Upon success response, the removed queue is drained
-                expect(store.getRemovedRecords().length).toBe(0);
-            });
-
-            it("should only trigger a single sync when removing multiple records", function() {
-                doSync = true;
-                store.remove([edRec, tommyRec]);
-                expect(store.sync.callCount).toBe(1);
-
-                // Before the successful response, the removed queue is still filled
-                expect(store.getRemovedRecords().length).toBe(2);
-
-                completeWithData('"{"success":true,"records":[{"id":"tommy@sencha.com"},{"id":"ed@sencha.com"}]}"');
-
-                // Upon success response, the removed queue is drained
-                expect(store.getRemovedRecords().length).toBe(0);
             });
         });
     });
@@ -7755,7 +7632,7 @@ describe("Ext.data.Store", function() {
                 // Check that new orders are synched in main collection and groups at the time the re-insertion of the record is broadcast
                 counter = 0;
                 store.on({
-                    refresh: checkNewGrouping,
+                    add: checkNewGrouping,
                     single: true
                 });
 
@@ -7821,7 +7698,7 @@ describe("Ext.data.Store", function() {
                 // Check that new orders are synched in main collection and groups at the time the re-insertion of the record is broadcast
                 counter = 0;
                 store.on({
-                    refresh: checkNewGrouping,
+                    add: checkNewGrouping,
                     single: true
                 });
 

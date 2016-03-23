@@ -31,7 +31,7 @@ import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 
 
 @Configuration
-@ComponentScan(basePackages="com.mawujun",
+@ComponentScan(basePackages="com.youngor",
 	includeFilters = @Filter(type = FilterType.ANNOTATION, value = {Controller.class}))
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc

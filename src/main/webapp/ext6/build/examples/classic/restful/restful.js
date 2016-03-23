@@ -117,9 +117,8 @@ Ext.onReady(function(){
                 iconCls: 'icon-add',
                 handler: function(){
                     // empty record
-                    var rec = new Person();
-                    store.insert(0, rec);
-                    rowEditing.startEdit(rec, 0);
+                    store.insert(0, new Person());
+                    rowEditing.startEdit(0, 0);
                 }
             }, '-', {
                 itemId: 'delete',

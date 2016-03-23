@@ -72,9 +72,7 @@
             @warn '$ui-label is deprecated.  Use $ui instead';
             $ui: $ui-label;
         } @else {
-            // No @error "$ui is required";
-            // See https://gist.github.com/MoOx/1671259
-            @warn "#{error("$ui is required")}";
+            @warn "#{error('$ui is required')}";
         }
     }
 

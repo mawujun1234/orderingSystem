@@ -271,7 +271,7 @@ Ext.define('Ext.form.field.Date', {
     
     ariaRole: 'combobox',
 
-    initComponent: function() {
+    initComponent : function(){
         var me = this,
             isString = Ext.isString,
             min, max;
@@ -586,8 +586,7 @@ Ext.define('Ext.form.field.Date', {
             ariaMaxText: format(me.ariaMaxText, me.formatDate(me.maxValue, me.ariaFormat)),
             listeners: {
                 scope: me,
-                select: me.onSelect,
-                tabout: me.onTabOut
+                select: me.onSelect
             },
             keyNavConfig: {
                 esc: function() {
@@ -610,12 +609,8 @@ Ext.define('Ext.form.field.Date', {
         // lead to unexpected results on Tab key presses.
         // Note that this focusing might happen synchronously during Tab
         // key handling in the picker, which is the way we want it.
-        me.onTabOut(m);
-    },
-    
-    onTabOut: function(picker) {
-        this.inputEl.focus();
-        this.collapse();
+        me.inputEl.focus();
+        me.collapse();
     },
 
     /**

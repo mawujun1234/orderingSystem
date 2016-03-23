@@ -186,6 +186,7 @@ Ext.define('Ext.window.Window', {
     draggable: true,
 
     /**
+     * @override
      * @cfg {Boolean} constrain
      * True to constrain the window within its containing element, false to allow it to fall outside of its containing
      * element. By default the window will be rendered to `document.body`. To render and constrain the window within
@@ -195,6 +196,7 @@ Ext.define('Ext.window.Window', {
     constrain: false,
 
     /**
+     * @override
      * @cfg {Boolean} constrainHeader
      * True to constrain the window header within its containing element (allowing the window body to fall outside of
      * its containing element) or false to allow the header to fall outside its containing element.
@@ -286,25 +288,8 @@ Ext.define('Ext.window.Window', {
      */
     hideMode: 'offsets',
 
-    /**
-     * @cfg {Boolean} [floating=true]
-     * @inheritdoc Ext.Component
-     */
+    // Windows are always floating.
     floating: true,
-
-    /**
-     * @cfg stateEvents
-     * @inheritdoc Ext.state.Stateful#cfg-stateEvents
-     * @localdoc By default the following stateEvents are added:
-     * 
-     *  - {@link #event-resize} - _(added by Ext.Component)_
-     *  - {@link #event-collapse} - _(added by Ext.panel.Panel)_
-     *  - {@link #event-expand} - _(added by Ext.panel.Panel)_
-     *  - {@link #event-maximize}
-     *  - {@link #event-restore}
-     *  - {@link #event-resize}
-     *  - {@link #event-dragend}
-     */
 
     itemCls: Ext.baseCSSPrefix + 'window-item',
 

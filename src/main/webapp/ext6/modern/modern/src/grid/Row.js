@@ -14,10 +14,6 @@ Ext.define('Ext.grid.Row', {
         'Ext.grid.cell.Cell'
     ],
 
-    mixins: [
-        'Ext.mixin.Queryable'
-    ],
-
     config: {
         baseCls: Ext.baseCSSPrefix + 'grid-row',
 
@@ -63,10 +59,6 @@ Ext.define('Ext.grid.Row', {
 
     addColumn: function(column) {
         this.insertColumn(this.cells.length, column);
-    },
-
-    getRefItems: function() {
-        return this.cells;
     },
 
     insertColumn: function(index, column) {
@@ -117,7 +109,7 @@ Ext.define('Ext.grid.Row', {
 
         var cells = this.cells,
             len = cells.length,
-            i, cell;
+            i, cell, vm;
 
         for (i = 0; i < len; ++i) {
             cell = cells[i];
@@ -126,6 +118,11 @@ Ext.define('Ext.grid.Row', {
             } else {
                 cell.setRecord(record);
             }
+        }
+
+        vm = this.getViewModel();
+        if (vm) {
+            vm.set('record', record);
         }
     },
 
@@ -153,9 +150,16 @@ Ext.define('Ext.grid.Row', {
     },
 
     destroy: function() {
-        var me = this;
+        var me = this,
+            cells = me.cells,
+            len = cells.length,
+            i;
 
-        me.cells = Ext.destroy(me.cells, me.getHeader());
+        for (i = 0; i < len; ++i) {
+            cells[i].destroy();
+        }
+
+        me.cells = null;
         me.setRecord(null);
         me.callParent();
     },
@@ -177,7 +181,7 @@ Ext.define('Ext.grid.Row', {
                 column: column,
                 record: this.getRecord(),
                 hidden: column.getHidden(),
-                width: column.getComputedWidth()
+                width: column.getWidth()
             }, column.getCell());
         },
 

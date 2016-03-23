@@ -122,9 +122,6 @@ Ext.define('Ext.field.Spinner', {
             disabled: true
         },
 
-        /**
-         * @cfg {Number}
-         */
         value: undefined
     },
 

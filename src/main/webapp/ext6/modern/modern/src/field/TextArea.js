@@ -85,12 +85,12 @@ Ext.define('Ext.field.TextArea', {
 
     updateHeight: function(height, oldHeight) {
         this.callParent([height, oldHeight]);
-        this.getComponent().input.setHeight(height);
+        this.getComponent().input.setHeight(newHeight);
     },
 
     updateWidth: function(width, oldWidth) {
         this.callParent([width, oldWidth]);
-        this.getComponent().input.setWidth(width);
+        this.getComponent().input.setWidth(newWidth);
     },
 
     /**

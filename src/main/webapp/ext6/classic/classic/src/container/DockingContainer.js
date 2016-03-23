@@ -306,7 +306,6 @@ Ext.define('Ext.container.DockingContainer', {
 
     // Placeholder empty functions
     /**
-     * @method
      * Invoked after a docked item is added to the Panel.
      * @param {Ext.Component} component
      * @template
@@ -314,7 +313,6 @@ Ext.define('Ext.container.DockingContainer', {
      */
     onDockedAdd : Ext.emptyFn,
     /**
-     * @method
      * Invoked after a docked item is removed from the Panel.
      * @param {Ext.Component} component
      * @template

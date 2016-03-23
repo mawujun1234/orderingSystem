@@ -14,7 +14,7 @@ Ext.define('Ext.field.Input', {
 
     /**
      * @event masktap
-     * @preventable
+     * @preventable doMaskTap
      * Fires whenever a mask is tapped.
      * @param {Ext.field.Input} this
      * @param {Ext.event.Event} e The event object.
@@ -22,14 +22,14 @@ Ext.define('Ext.field.Input', {
 
     /**
      * @event focus
-     * @preventable
+     * @preventable doFocus
      * Fires whenever the input get focus.
      * @param {Ext.event.Event} e The event object.
      */
 
     /**
      * @event blur
-     * @preventable
+     * @preventable doBlur
      * Fires whenever the input loses focus.
      * @param {Ext.event.Event} e The event object.
      */
@@ -450,10 +450,7 @@ Ext.define('Ext.field.Input', {
     updateValue: function(newValue) {
         var input = this.input;
 
-        // We need to check the values due to odd issues on mobile devices with autocomplete
-        // Even though the value is equal setting it causes autocomplete to insert text that is wrong
-        // https://sencha.jira.com/browse/EXTJS-18840
-        if (input && input.dom.value !== newValue) {
+        if (input) {
             input.dom.value = newValue;
         }
     },

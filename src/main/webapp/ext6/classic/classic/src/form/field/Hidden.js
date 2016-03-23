@@ -68,6 +68,9 @@ Ext.define('Ext.form.field.Hidden', {
         return this.isEqualAsString(value1, value2);
     },
 
+    /**
+     * @hide
+     */
     initEvents: Ext.emptyFn,
 
     /**

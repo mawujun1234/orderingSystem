@@ -57,14 +57,19 @@ Ext.define('Ext.grid.column.Action', {
     alternateClassName: 'Ext.grid.ActionColumn',
 
     /**
-     * @cfg {String} [icon=Ext#BLANK_IMAGE_URL]
-     * @inheritdoc Ext.panel.Header#icon
+     * @cfg {String} icon
+     * The URL of an image to display as the clickable element in the column.
+     *
+     * There are no default icons that come with Ext JS.
+     *
+     * Defaults to `{@link Ext#BLANK_IMAGE_URL}`.
      */
     /**
      * @cfg {String} iconCls
-     * @inheritdoc Ext.panel.Header#cfg-iconCls
-     * @localdoc **Note:** To determine the class dynamically, configure the Column with
+     * A CSS class to apply to the icon image. To determine the class dynamically, configure the Column with
      * a `{@link #getClass}` function.
+     *
+     * There are no default icon classes that come with Ext JS.
      */
     /**
      * @cfg {Function/String} handler
@@ -109,8 +114,6 @@ Ext.define('Ext.grid.column.Action', {
     /**
      * @cfg {Function} getClass
      * A function which returns the CSS class to apply to the icon image.
-     * 
-     * For information on using the icons provided in the SDK see {@link #iconCls}.
      * @cfg {Object} getClass.v The value of the column's configured field (if any).
      * @cfg {Object} getClass.metadata An object in which you may set the following attributes:
      * @cfg {String} getClass.metadata.css A CSS class name to add to the cell's TD element.
@@ -214,10 +217,8 @@ Ext.define('Ext.grid.column.Action', {
      *
      * @cfg {String} items.icon The url of an image to display as the clickable element in the column.
      *
-     * @cfg {String} items.iconCls A CSS class to apply to the icon element. To 
-     * determine the class dynamically, configure the item with a `getClass` function.
-     * 
-     * For information on using the icons provided in the SDK see {@link #iconCls}.
+     * @cfg {String} items.iconCls A CSS class to apply to the icon image. To determine the class dynamically,
+     * configure the item with a `getClass` function.
      *
      * @cfg {Function} items.getClass A function which returns the CSS class to apply to the icon image.
      * @cfg {Object} items.getClass.v The value of the column's configured field (if any).
@@ -290,6 +291,10 @@ Ext.define('Ext.grid.column.Action', {
      */
     menuText: '<i>Actions</i>',
 
+    /**
+     * @cfg {Boolean} ignoreExport
+     * @inheritdoc
+     */
     ignoreExport: true,
 
     sortable: false,
@@ -503,11 +508,6 @@ Ext.define('Ext.grid.column.Action', {
             // Override is here to prevent the default behaviour which tries to access
             // this.items.items, which will be null.
             return [];
-        },
-
-        // Overriden method to always return a bitwise value that will result in a call to this column's updater.
-        shouldUpdateCell: function() {
-            return 2;
         }
     }
 });

@@ -1,10 +1,7 @@
 describe("Ext.toolbar.Paging", function() {
     var keyEvent = Ext.supports.SpecialKeyDownRepeat ? 'keydown' : 'keypress',
         tb, store,
-        describeNotIE9_10 = Ext.isIE9 || Ext.isIE10 ? xdescribe : describe,
-        synchronousLoad = true,
-        proxyStoreLoad = Ext.data.ProxyStore.prototype.load,
-        loadStore;
+        describeNotIE9_10 = Ext.isIE9 || Ext.isIE10 ? xdescribe : describe;
     
     function makeToolbar(cfg, preventRender) {
         cfg = cfg || {};
@@ -63,15 +60,6 @@ describe("Ext.toolbar.Paging", function() {
     }
     
     beforeEach(function() {
-        // Override so that we can control asynchronous loading
-        loadStore = Ext.data.ProxyStore.prototype.load = function() {
-            proxyStoreLoad.apply(this, arguments);
-            if (synchronousLoad) {
-                this.flushLoad.apply(this, arguments);
-            }
-            return this;
-        };
-
         Ext.define('spec.PagingToolbarModel', {
             extend: 'Ext.data.Model',
             fields: ['name']
@@ -80,9 +68,6 @@ describe("Ext.toolbar.Paging", function() {
     });
     
     afterEach(function() {
-        // Undo the overrides.
-        Ext.data.ProxyStore.prototype.load = proxyStoreLoad;
-
         MockAjaxManager.removeMethods();
         Ext.destroy(tb);
         if (store) {
@@ -135,16 +120,6 @@ describe("Ext.toolbar.Paging", function() {
                 store: store
             });
             expect(tb.down('#inputItem').getValue()).toBe(2);
-        });
-
-        it("should display the correct number of total pages", function() {
-            store = makeStore();
-            store.loadPage(1);
-            mockComplete(makeData(20, 10));
-            makeToolbar({
-                store: store
-            });
-            expect(tb.down('#afterTextItem').el.dom.innerHTML).toBe('of 4');
         });
 
         it("should update the toolbar info when binding a new store", function() {

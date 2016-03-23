@@ -96,10 +96,6 @@ Ext.define('Ext.chart.interactions.Rotate', {
         );
     },
 
-    getRadius: function (e) {
-        return this.getChart().getRadius();
-    },
-
     getEventRadius: function(e) {
         var me = this,
             chart = me.getChart(),
@@ -113,7 +109,8 @@ Ext.define('Ext.chart.interactions.Rotate', {
 
     onGestureStart: function(e) {
         var me = this,
-            radius = me.getRadius(e),
+            chart = me.getChart(),
+            radius = chart.getRadius(),
             eventRadius = me.getEventRadius(e);
 
         if (radius >= eventRadius) {

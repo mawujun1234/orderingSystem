@@ -327,7 +327,7 @@ Ext.define('Ext.toolbar.Paging', {
         },{
             xtype: 'tbtext',
             itemId: 'afterTextItem',
-            html: Ext.String.format(me.afterPageText, 1)
+            text: Ext.String.format(me.afterPageText, 1)
         },
         '-',
         {
@@ -465,7 +465,7 @@ Ext.define('Ext.toolbar.Paging', {
         Ext.suspendLayouts();
         item = me.child('#afterTextItem');
         if (item) {
-            item.update(afterText);
+            item.setText(afterText);
         }
         item = me.getInputItem();
         if (item) {

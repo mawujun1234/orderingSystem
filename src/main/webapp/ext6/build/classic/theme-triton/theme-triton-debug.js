@@ -36,17 +36,18 @@ Ext.define('Ext.theme.triton.Component', {
     Ext.theme.name = 'Triton';
 });
 
-Ext.define('Ext.theme.triton.list.TreeItem', {
-    override: 'Ext.list.TreeItem',
-    compatibility: Ext.isIE8,
-    updateFloated: function(floated, wasFloated) {
-        this.callParent([
-            floated,
-            wasFloated
-        ]);
-        this.toolElement.syncRepaint();
-    }
-});
+if (Ext.isIE8) {
+    Ext.define('Ext.theme.triton.list.TreeItem', {
+        override: 'Ext.list.TreeItem',
+        updateFloated: function(floated, wasFloated) {
+            this.callParent([
+                floated,
+                wasFloated
+            ]);
+            this.toolElement.syncRepaint();
+        }
+    });
+}
 
 Ext.define('Ext.theme.neptune.resizer.Splitter', {
     override: 'Ext.resizer.Splitter',
@@ -362,42 +363,31 @@ Ext.define('Ext.theme.neptune.container.ButtonGroup', {
     usePlainButtons: false
 });
 
-Ext.define('Ext.theme.triton.form.field.Checkbox', {
-    override: 'Ext.form.field.Checkbox',
-    compatibility: Ext.isIE8,
-    initComponent: function() {
-        this.callParent();
-        Ext.on({
-            show: 'onGlobalShow',
-            scope: this
-        });
-    },
-    onFocus: function(e) {
-        var focusClsEl;
-        this.callParent([
-            e
-        ]);
-        focusClsEl = this.getFocusClsEl();
-        if (focusClsEl) {
-            focusClsEl.syncRepaint();
+if (Ext.isIE8) {
+    Ext.define('Ext.theme.triton.form.field.Checkbox', {
+        override: 'Ext.form.field.Checkbox',
+        onFocus: function(e) {
+            var focusClsEl;
+            this.callParent([
+                e
+            ]);
+            focusClsEl = this.getFocusClsEl();
+            if (focusClsEl) {
+                focusClsEl.syncRepaint();
+            }
+        },
+        onBlur: function(e) {
+            var focusClsEl;
+            this.callParent([
+                e
+            ]);
+            focusClsEl = this.getFocusClsEl();
+            if (focusClsEl) {
+                focusClsEl.syncRepaint();
+            }
         }
-    },
-    onBlur: function(e) {
-        var focusClsEl;
-        this.callParent([
-            e
-        ]);
-        focusClsEl = this.getFocusClsEl();
-        if (focusClsEl) {
-            focusClsEl.syncRepaint();
-        }
-    },
-    onGlobalShow: function(cmp) {
-        if (cmp.isAncestor(this)) {
-            this.getFocusClsEl().syncRepaint();
-        }
-    }
-});
+    });
+}
 
 Ext.define('Ext.theme.neptune.toolbar.Paging', {
     override: 'Ext.toolbar.Paging',
@@ -457,17 +447,18 @@ Ext.define('Ext.theme.neptune.grid.RowEditor', {
     buttonUI: 'default-toolbar'
 });
 
-Ext.define('Ext.theme.triton.grid.column.Column', {
-    override: 'Ext.grid.column.Column',
-    compatibility: Ext.isIE8,
-    onTitleMouseOver: function() {
-        var triggerEl = this.triggerEl;
-        this.callParent(arguments);
-        if (triggerEl) {
-            triggerEl.syncRepaint();
+if (Ext.isIE8) {
+    Ext.define('Ext.theme.triton.grid.column.Column', {
+        override: 'Ext.grid.column.Column',
+        onTitleMouseOver: function() {
+            var triggerEl = this.triggerEl;
+            this.callParent(arguments);
+            if (triggerEl) {
+                triggerEl.syncRepaint();
+            }
         }
-    }
-});
+    });
+}
 
 Ext.define('Ext.theme.neptune.grid.column.RowNumberer', {
     override: 'Ext.grid.column.RowNumberer',
@@ -479,38 +470,39 @@ Ext.define('Ext.theme.triton.grid.column.RowNumberer', {
     width: 32
 });
 
-Ext.define('Ext.theme.triton.menu.Item', {
-    override: 'Ext.menu.Item',
-    compatibility: Ext.isIE8,
-    onFocus: function(e) {
-        this.callParent([
-            e
-        ]);
-        this.repaintIcons();
-    },
-    onFocusLeave: function(e) {
-        this.callParent([
-            e
-        ]);
-        this.repaintIcons();
-    },
-    privates: {
-        repaintIcons: function() {
-            var iconEl = this.iconEl,
-                arrowEl = this.arrowEl,
-                checkEl = this.checkEl;
-            if (iconEl) {
-                iconEl.syncRepaint();
-            }
-            if (arrowEl) {
-                arrowEl.syncRepaint();
-            }
-            if (checkEl) {
-                checkEl.syncRepaint();
+if (Ext.isIE8) {
+    Ext.define('Ext.theme.triton.menu.Item', {
+        override: 'Ext.menu.Item',
+        onFocus: function(e) {
+            this.callParent([
+                e
+            ]);
+            this.repaintIcons();
+        },
+        onFocusLeave: function(e) {
+            this.callParent([
+                e
+            ]);
+            this.repaintIcons();
+        },
+        privates: {
+            repaintIcons: function() {
+                var iconEl = this.iconEl,
+                    arrowEl = this.arrowEl,
+                    checkEl = this.checkEl;
+                if (iconEl) {
+                    iconEl.syncRepaint();
+                }
+                if (arrowEl) {
+                    arrowEl.syncRepaint();
+                }
+                if (checkEl) {
+                    checkEl.syncRepaint();
+                }
             }
         }
-    }
-});
+    });
+}
 
 Ext.define('Ext.theme.neptune.menu.Separator', {
     override: 'Ext.menu.Separator',
@@ -522,23 +514,24 @@ Ext.define('Ext.theme.neptune.menu.Menu', {
     showSeparator: false
 });
 
-Ext.define('Ext.theme.triton.menu.Menu', {
-    override: 'Ext.menu.Menu',
-    compatibility: Ext.isIE8,
-    afterShow: function() {
-        var me = this,
-            items, item, i, len;
-        me.callParent(arguments);
-        items = me.items.getRange();
-        for (i = 0 , len = items.length; i < len; i++) {
-            item = items[i];
-            // Just in case if it happens to be a non-menu Item 
-            if (item && item.repaintIcons) {
-                item.repaintIcons();
+if (Ext.isIE8) {
+    Ext.define('Ext.theme.triton.menu.Menu', {
+        override: 'Ext.menu.Menu',
+        afterShow: function() {
+            var me = this,
+                items, item, i, len;
+            me.callParent(arguments);
+            items = me.items.getRange();
+            for (i = 0 , len = items.length; i < len; i++) {
+                item = items[i];
+                // Just in case if it happens to be a non-menu Item 
+                if (item && item.repaintIcons) {
+                    item.repaintIcons();
+                }
             }
         }
-    }
-});
+    });
+}
 
 Ext.define('Ext.theme.triton.grid.plugin.RowExpander', {
     override: 'Ext.grid.plugin.RowExpander',

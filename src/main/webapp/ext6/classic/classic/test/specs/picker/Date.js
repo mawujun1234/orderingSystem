@@ -287,43 +287,33 @@ describe("Ext.picker.Date", function() {
     });
     
     describe('showing month picker', function() {
-        var df, picker;
-        
-        beforeEach(function() {
-            df = new Ext.form.field.Date({
-                renderTo: Ext.getBody(),
-                disableAnim: true
-            });
-            
-            df.focus();
-            
-            jasmine.waitForFocus(df);
-        });
-        
-        afterEach(function() {
-            df.destroy();
-            df = picker = null;
-        });
-        
         it('should show the month picker on click of the button', function() {
-            runs(function() {
-                df.expand();
-                picker = df.getPicker();
-                
-                jasmine.fireMouseEvent(picker.monthBtn.el, 'click');
+            var df = new Ext.form.field.Date({
+                renderTo: document.body
             });
+            df.focus();
 
             waitsFor(function() {
-                return !!picker.monthPicker.isVisible();
-            }, 'for month picker to show', 1000);
+                return df.containsFocus;
+            });
+            runs(function() {
+                df.expand();
+                component = df.getPicker();
+                jasmine.fireMouseEvent(component.monthBtn.el.dom, 'click');
+            });
+
+            // It animates by default
+            waitsFor(function() {
+                return component.monthPicker.isVisible();
+            });
 
             // https://sencha.jira.com/browse/EXTJS-15968
             // MonthPicker AND DatePicker hid slightly after completing show animation
             waits(100);
-            
             runs(function() {
-                expect(picker.isVisible()).toBe(true);
-                expect(picker.monthPicker.isVisible()).toBe(true);
+                expect(component.isVisible()).toBe(true);
+                expect(component.monthPicker.isVisible()).toBe(true);
+                df.destroy();
             });
         });
     });

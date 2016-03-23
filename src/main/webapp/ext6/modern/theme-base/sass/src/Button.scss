@@ -10,7 +10,6 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    cursor: pointer;
 
     &.x-hasbadge {
         overflow: visible;
@@ -34,26 +33,13 @@
 
 // Button icon alignment
 .x-iconalign-left,
-.x-iconalign-right {
+.x-icon-align-right {
     @include st-box-orient(horizontal);
-
-    > .x-button-label {
-        @include st-box-flex(1);
-    }
 }
 
 .x-iconalign-top,
 .x-iconalign-bottom {
     @include st-box-orient(vertical);
-    @include st-box-pack(center);
-
-    > .x-button-label {
-        width: 100%;
-    }
-}
-
-.x-button-no-icon > .x-button-label {
-    width: 100%;
 }
 
 .x-iconalign-bottom,
@@ -67,19 +53,13 @@
 
 // Button labels
 .x-button-label {
-    text-align: center;
+    @include st-box-flex(1);
+    @include st-box-align(center);
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: center;
     display: block;
     overflow: hidden;
-}
-
-.x-text-align-left > .x-button-label {
-    text-align: left;
-}
-
-.x-text-align-right > .x-button-label {
-    text-align: right;
 }
 
 .x-badge {

@@ -9,22 +9,29 @@
     <link rel="stylesheet" type="text/css" href="./ext6/build/classic/theme-triton/resources/theme-triton-all.css">
     <script type="text/javascript" src="./ext6/build/classic/theme-neptune/theme-triton.js"></script>-->
     
+    
+    
      <link rel="stylesheet" type="text/css" href="./ext6/build/classic/theme-crisp/resources/theme-crisp-all.css">
-    <script type="text/javascript" src="./ext6/build/classic/theme-crisp/theme-crisp.js"></script>
-        <script type="text/javascript" src="./ext6/build/ext-all.js"></script>
+   
+        <script type="text/javascript" src="./ext6/build/ext-all-debug.js"></script>
+         <script type="text/javascript" src="./ext6/build/classic/theme-crisp/theme-crisp.js"></script>
         
-
-    <title>Admin Dashboard</title>
+<link type="text/css" rel="stylesheet" href="css/font-awesome.css">
+	<link type="text/css" rel="stylesheet" href="css/module.css">
+    <title>订货系统</title>
 
     <script type="text/javascript">
-        var Ext = Ext || {}; // Ext namespace won't be defined yet...
+        //var Ext = Ext || {}; // Ext namespace won't be defined yet...
+        
+        location.href="./main/index.jsp";
 
-      Ext.ns('Ems');
+        //Ext.ns('Y');
 		Ext.Loader.setConfig({
 			enabled: true,
 			paths:{
-				'Ems':'.'
-				//'Ext.ux':'<%=route%>'+'/ext-4.2.1/examples/ux'
+				'y':'.',
+				//'y':'.',
+				'Ext.ux':'./ext6/packages/ux/classic/src'
 				//'MyDesktop':'.'
 			}
 		});

@@ -69,9 +69,8 @@ Ext.define('Ext.view.DragZone', {
     onItemMouseDown: function(view, record, item, index, e) {
         var navModel;
 
-        // Only respond to longpress for touch dragging.
-        // Reject drag start if mousedown is on the actionable cell of a grid view
-        if ((e.pointerType === 'touch' && e.type !== 'longpress') || (e.position && e.position.isEqual(e.view.actionPosition))) {
+        // Only respond to longpress for touch dragging
+        if (e.pointerType === 'touch' && e.type !== 'longpress') {
             return;
         }
 

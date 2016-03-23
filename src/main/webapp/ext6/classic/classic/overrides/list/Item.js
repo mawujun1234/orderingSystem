@@ -27,9 +27,8 @@ Ext.define('Ext.overrides.list.TreeItem', {
         });
 
         floater.add(me);
-        floater.show();
         floater.el.alignTo(me.getToolElement(), 'tr?');
-        
+
         return floater;
     },
 

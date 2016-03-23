@@ -13,8 +13,7 @@ Ext.define('Ext.mixin.ComponentDelegation', {
         /**
          * @private
          * Adds a listeners with the "delegate" event option.  Users should not invoke this
-         * method directly.  Use the "delegate" event option of 
-         * {@link Ext.util.Observable#addListener addListener} instead.
+         * method directly.  Use the "delegate" event option of {@link #addListener} instead.
          */
         addDelegatedListener: function(eventName, fn, scope, options, order, caller, manager) {
             var me = this,
@@ -59,8 +58,7 @@ Ext.define('Ext.mixin.ComponentDelegation', {
          * @private
          * Clears all listeners that were attached using the "delegate" event option.
          * Users should not invoke this method directly.  It is called automatically as
-         * part of normal {@link Ext.util.Observable#clearListeners clearListeners} 
-         * processing.
+         * part of normal {@link #clearListeners} processing.
          */
         clearDelegatedListeners: function() {
             var me = this,
@@ -82,8 +80,7 @@ Ext.define('Ext.mixin.ComponentDelegation', {
          * @private
          * Fires a delegated event.  Users should not invoke this method directly.  It
          * is called automatically by the framework as needed (see the "delegate" event
-         * option of {@link Ext.util.Observable#addListener addListener} for more 
-         * details.
+         * option of {@link #addListener} for more details.
          */
         doFireDelegatedEvent: function(eventName, args) {
             var me = this,

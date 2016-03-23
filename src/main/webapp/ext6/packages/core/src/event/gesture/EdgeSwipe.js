@@ -14,11 +14,6 @@ Ext.define('Ext.event.gesture.EdgeSwipe', {
     ],
 
     inheritableStatics: {
-        /**
-         * @private
-         * @static
-         * @inheritable
-         */
         NOT_NEAR_EDGE: 'Not Near Edge'
     },
 

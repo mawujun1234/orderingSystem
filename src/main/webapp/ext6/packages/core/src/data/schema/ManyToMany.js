@@ -244,7 +244,17 @@ Ext.define('Ext.data.schema.ManyToMany', {
 
             return function (options, scope, leftRecords) {
                 // 'this' refers to the Model instance inside this function
-                return me.getAssociatedStore(this, options, scope, leftRecords, false);
+                var session = this.session,
+                    hadRecords;
+
+                if (session) {
+                    hadRecords = !!leftRecords;
+                    leftRecords = me.findRecords(session, this, leftRecords);
+                    if (!hadRecords && !leftRecords.length) {
+                        leftRecords = null;
+                    }
+                }
+                return me.getAssociatedStore(this, options, scope, leftRecords, hadRecords);
             };
         },
 

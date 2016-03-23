@@ -22,12 +22,14 @@ Ext.define('KitchenSink.view.binding.Simple', {
         }
     },
 
-    scrollable: true,
 
     items: [{
-        xtype: 'titlebar',
-        docked: 'top',
-        bind: '{title}'
+        flex: 1,
+        items: {
+            xtype: 'titlebar',
+            docked: 'top',
+            bind: '{title}'
+        }
     }, {
         xtype: 'component',
         bind: {

@@ -107,9 +107,10 @@ Ext.define('Ext.form.CheckboxGroup', {
     blankText : "You must select at least one item in this group",
     //</locale>
 
+    /**
+     * @private
+     */
     defaultType : 'checkboxfield',
-
-    defaultBindProperty: 'value',
 
     /**
      * @private
@@ -121,6 +122,9 @@ Ext.define('Ext.form.CheckboxGroup', {
      */
     extraFieldBodyCls: Ext.baseCSSPrefix + 'form-checkboxgroup-body',
 
+    /**
+     * @private
+     */
     layout: 'checkboxgroup',
 
     componentCls: Ext.baseCSSPrefix + 'form-checkboxgroup',

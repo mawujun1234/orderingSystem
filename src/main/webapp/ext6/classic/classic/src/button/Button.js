@@ -181,7 +181,7 @@ Ext.define('Ext.button.Button', {
 
     /* End Definitions */
 
-    /**
+    /*
      * @property {Boolean}
      * `true` in this class to identify an object as an instantiated Button, or subclass thereof.
      */
@@ -227,7 +227,9 @@ Ext.define('Ext.button.Button', {
 
     /**
      * @cfg {String} icon
-     * @inheritdoc Ext.panel.Header#icon
+     * The path to an image to display in the button.
+     *
+     * There are no default icons that come with Ext JS.
      */
 
     /**
@@ -341,12 +343,18 @@ Ext.define('Ext.button.Button', {
 
     /**
      * @cfg {String} iconCls
-     * @inheritdoc Ext.panel.Header#cfg-iconCls
+     * A css class which sets a background image to be used as the icon for this button.
+     *
+     * There are no default icon classes that come with Ext JS.
      */
 
     /**
      * @cfg {Number/String} glyph
-     * @inheritdoc Ext.panel.Header#glyph
+     * A numeric unicode character code to use as the icon for this button. The default
+     * font-family for glyphs can be set globally using
+     * {@link Ext#setGlyphFontFamily Ext.setGlyphFontFamily()}. Alternatively, this
+     * config option accepts a string with the charCode and font-family separated by the
+     * `@` symbol. For example '65@My Font Family'.
      */
 
     /**
@@ -703,14 +711,14 @@ Ext.define('Ext.button.Button', {
         // the handler/click listener, and only Down Arrow key would open the menu.
         // To avoid the ambiguity, we check if the button has both menu *and* handler
         // or click event listener, and warn the developer in that case.
-        // Note that this check does not apply to Split buttons because those now have
-        // two tab stops and can effectively combine both menu and toggling/href/handler.
         //<debug>
         // Don't check if we're under the slicer to avoid build failures
-        if (!me.isSplitButton && me.menu && Ext.enableAriaButtons && !Ext.slicer && Ext.enableAria) {
-            // ARIA compatibility is enabled by default but maybe it was disabled
+        if (me.menu && Ext.enableAriaButtons && !Ext.slicer) {
+            // When ARIA compatibility is enabled, force an error here.
+            var logFn = Ext.enableAria ? Ext.log.error : Ext.log.warn;
+            
             if (me.enableToggle || me.toggleGroup) {
-                Ext.log.warn(
+                logFn(
                     "According to WAI-ARIA 1.0 Authoring guide " +
                     "(http://www.w3.org/TR/wai-aria-practices/#menubutton), " +
                     "menu button '" + me.id + "' behavior will conflict with " +
@@ -719,15 +727,15 @@ Ext.define('Ext.button.Button', {
             }
             
             if (me.href) {
-                Ext.log.warn(
+                logFn(
                     "According to WAI-ARIA 1.0 Authoring guide " +
                     "(http://www.w3.org/TR/wai-aria-practices/#menubutton), " +
                     "menu button '" + me.id + "' cannot behave as a link."
                 );
             }
             
-            if (me.handler || me.hasListeners.hasOwnProperty('click')) {
-                Ext.log.warn(
+            if (me.handler || me.hasListeners.click) {
+                logFn(
                     "According to WAI-ARIA 1.0 Authoring guide " +
                     "(http://www.w3.org/TR/wai-aria-practices/#menubutton), " +
                     "menu button '" + me.id + "' should display the menu " +
@@ -1631,8 +1639,7 @@ Ext.define('Ext.button.Button', {
     },
 
     /**
-     * @private
-     * mouseover handler called when a mouseover event occurs anywhere within the encapsulating element.
+     * @private mouseover handler called when a mouseover event occurs anywhere within the encapsulating element.
      * The targets are interrogated to see what is being entered from where.
      * @param e
      */
@@ -1953,6 +1960,7 @@ Ext.define('Ext.button.Button', {
 
         /**
          * @private
+         * @override
          * Needed for when widget is rendered into a grid cell. The class to add to the cell element.
          * Override needed to add scale to the mix which is part of the ui name in the 
          * mixin and the CSS rule.

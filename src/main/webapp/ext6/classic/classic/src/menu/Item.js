@@ -93,18 +93,28 @@ Ext.define('Ext.menu.Item', {
     hideOnClick: true,
 
     /**
-     * @cfg {String} [icon=Ext#BLANK_IMAGE_URL]
-     * @inheritdoc Ext.panel.Header#icon
+     * @cfg {String} icon
+     * The path to an icon to display in this item.
+     *
+     * There are no default icons that come with Ext JS.
+     *
+     * Defaults to `Ext.BLANK_IMAGE_URL`.
      */
 
     /**
      * @cfg {String} iconCls
-     * @inheritdoc Ext.panel.Header#cfg-iconCls
+     * A CSS class that specifies a `background-image` to use as the icon for this item.
+     *
+     * There are no default icon classes that come with Ext JS.
      */
 
     /**
      * @cfg {Number/String} glyph
-     * @inheritdoc Ext.panel.Header#glyph
+     * A numeric unicode character code to use as the icon for this item. The default
+     * font-family for glyphs can be set globally using
+     * {@link Ext#setGlyphFontFamily Ext.setGlyphFontFamily()}. Alternatively, this
+     * config option accepts a string with the charCode and font-family separated by the
+     * `@` symbol. For example '65@My Font Family'.
      */
 
     /**
@@ -347,14 +357,22 @@ Ext.define('Ext.menu.Item', {
     /**
      * @private
      * Hides the entire floating menu tree that we are within.
-     * Walks up the refOwner axis hiding each Menu instance it find until it hits
-     * a non-floating ancestor.
+     * Walks up the refOwner axis to find topmost floating Menu and hides that.
      */
     deferHideParentMenus: function() {
-        for (var menu = this.getRefOwner(); menu && ((menu.isMenu && menu.floating) || menu.isMenuItem); menu = menu.getRefOwner()) {
-            if (menu.isMenu) {
-                menu.hide();
-            }
+        var topMenu = this.getRefOwner();
+
+        if (topMenu.floating) {
+            topMenu.bubble(function(parent) {
+                if (!parent.floating && !parent.isMenuItem) {
+                    return false;
+                }
+                if (parent.isMenu) {
+                    topMenu = parent;
+                }
+            });
+
+            topMenu.hide();
         }
     },
 

@@ -129,14 +129,9 @@
         See if there is an ./examples subfolder full of example applications.
         -->
         <if>
-            <and>
-                <not>
-                    <available file="${package.examples.dir}" type="dir"/>
-                </not>
-                <not>
-                    <isset property="package.example.path"/>
-                </not>
-            </and>
+            <not>
+                <available file="${package.examples.dir}" type="dir"/>
+            </not>
             <then>
                 <property name="skip.examples" value="1"/>
             </then>

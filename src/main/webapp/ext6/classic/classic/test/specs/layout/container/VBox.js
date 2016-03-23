@@ -53,8 +53,6 @@ describe("Ext.layout.container.VBox", function(){
                 title: 'Hello',
                 width: 400,
                 height: 300,
-                x: 10,
-                y: 10,
                 layout: 'fit',
                 items: [{
                     xtype: 'form',
@@ -76,43 +74,43 @@ describe("Ext.layout.container.VBox", function(){
                         boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 2'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 3'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 4'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 5'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 6'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 7'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 8'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 9'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 10'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'checkbox',
-                        boxLabel: 'Checkbox 11'
+                        boxLabel: 'Checkbox 1'
                     }, {
                         xtype: 'button',
                         text: 'Add'
                     }]
                 }]
             });
+            myWin.show();
             form = myWin.down('form');
             lastCheckbox = form.child('checkbox:last');
-            myWin.show();
             scroller = form.getScrollable();
         });
 
@@ -134,15 +132,7 @@ describe("Ext.layout.container.VBox", function(){
             }, 'last checkbox to gain focus');
 
             runs(function() {
-                var currentY = scroller.getPosition().y;
-                
-                // IE needs a bit of fuzziness
-                if (Ext.isIE) {
-                    expect(currentY).toBeWithin(1, scrollY);
-                }
-                else {
-                    expect(currentY).toBe(scrollY);
-                }
+                expect(scroller.getPosition().y).toBe(scrollY);
             });
         });
     });
@@ -2954,26 +2944,18 @@ describe("Ext.layout.container.VBox", function(){
                     scrollable: true,
                     items: [{
                         height: 300,
-                        width: 500
+                        width: 300
                     }, {
                         height: 300,
-                        width: 500
+                        width: 300
                     }]
                 });
-                
                 var scrollable = ct.getScrollable();
-                scrollable.scrollTo(50, 30);
-                
-                // Make sure that we're where we want to be
-                var position = scrollable.getPosition();
-                expect(position).toEqual({ x: 50, y: 30 });
-                
+                scrollable.setY(50);
+                scrollable.setX(30);
                 ct.setSize(401, 401);
-                
-                var position = scrollable.getPosition();
-
-                // There IS no x overflow, so the x scroll request cannot have had any effect
-                expect(position).toEqual({ x: 0, y: 30 });
+                expect(scrollable.getY()).toBe(50);
+                expect(scrollable.getX()).toBe(30);
             });
 
             it("should restore the horizontal/vertical scroll position with programmatic scrolling", function() {
@@ -2987,26 +2969,18 @@ describe("Ext.layout.container.VBox", function(){
                     },
                     items: [{
                         height: 300,
-                        width: 500
+                        width: 300
                     }, {
                         height: 300,
-                        width: 500
+                        width: 300
                     }]
                 });
-                
                 var scrollable = ct.getScrollable();
-                scrollable.scrollTo(50, 30);
-                
-                // Make sure that we're where we want to be
-                var position = scrollable.getPosition();
-                expect(position).toEqual({ x: 50, y: 30 });
-                
+                scrollable.setY(50);
+                scrollable.setX(30);
                 ct.setSize(401, 401);
-                
-                var position = scrollable.getPosition();
-
-                // There IS no x overflow, so the x scroll request cannot have had any effect
-                expect(position).toEqual({ x: 0, y: 30 });
+                expect(scrollable.getY()).toBe(50);
+                expect(scrollable.getX()).toBe(30);
             });
         });
     });

@@ -21,10 +21,7 @@ Ext.define('Ext.list.Tree', {
         reference: 'element',
         cls: Ext.baseCSSPrefix + 'treelist ' + Ext.baseCSSPrefix + 'unselectable',
         listeners: {
-            click: 'onClick',
-            mouseenter: 'onMouseEnter',
-            mouseleave: 'onMouseLeave',
-            mouseover: 'onMouseOver'
+            click: 'onClick'
         },
         children: [{
             reference: 'toolsElement',
@@ -73,8 +70,6 @@ Ext.define('Ext.list.Tree', {
         indent: null,
 
         micro: null,
-
-        overItem: null,
 
         /**
          * @cfg {Ext.data.TreeModel} selection
@@ -136,39 +131,6 @@ Ext.define('Ext.list.Tree', {
         me.setSelection(null);
         me.setStore(null);
         me.callParent();
-    },
-
-    updateOverItem: function (over, wasOver) {
-        var map = {},
-            state = 2,
-            c, node;
-
-        // Walk up the node hierarchy starting at the "over" item and set their "over"
-        // config appropriately (2 when over that row, 1 when over a descendant).
-        //
-        for (c = over; c; c = this.getItem(node.parentNode)) {
-            node = c.getNode();
-            map[node.internalId] = true;
-
-            c.setOver(state);
-
-            state = 1;
-        }
-
-        if (wasOver) {
-            // If we wasOver something else previously, walk up that node hierarchy and
-            // set their "over" to 0... until we encounter some node that we are still
-            // "over" (as determined in previous loop).
-            //
-            for (c = wasOver; c; c = this.getItem(node.parentNode)) {
-                node = c.getNode();
-                if (map[node.internalId]) {
-                    break;
-                }
-
-                c.setOver(0);
-            }
-        }
     },
 
     applySelection: function(selection, oldSelection) {
@@ -278,13 +240,11 @@ Ext.define('Ext.list.Tree', {
             el.addCls(uiPrefix + ui);
         }
 
-        // Ensure that the cached iconSize is read from the style.
-        delete this.iconSize;
         this.syncIconSize();
     },
 
     /**
-     * Get a child {@link Ext.list.AbstractTreeItem item} by node.
+     * Get a child {@link #Ext.list.AbstractTreeItem item} by node.
      * @param {Ext.data.TreeModel} node The node.
      * @return {Ext.list.AbstractTreeItem} The item. `null` if not found.
      */
@@ -421,21 +381,7 @@ Ext.define('Ext.list.Tree', {
             }
         },
 
-        onMouseEnter: function (e) {
-            this.onMouseOver(e);
-        },
-
-        onMouseLeave: function () {
-            this.setOverItem(null);
-        },
-
-        onMouseOver: function (e) {
-            var comp = Ext.Component.fromElement(e.getTarget());
-
-            this.setOverItem(comp && comp.isTreeListItem && comp);
-        },
-
-        checkForMouseLeave: function (e) {
+        checkForMouseLeave: function(e) {
             var floater = this.activeFloater,
                 relatedTarget = e.getRelatedTarget();
 
@@ -644,11 +590,8 @@ Ext.define('Ext.list.Tree', {
         },
 
         syncIconSize: function() {
-            var me = this,
-                size = me.iconSize ||
-                      (me.iconSize = parseInt(me.element.getStyle('background-position'), 10));
-
-            me.setIconSize(size);
+            var size = parseInt(this.element.getStyle('background-position-x'), 10);
+            this.setIconSize(size);
         },
 
         unfloatAll: function () {

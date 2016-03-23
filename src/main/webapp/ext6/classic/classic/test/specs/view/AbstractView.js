@@ -1,8 +1,5 @@
 describe("Ext.view.AbstractView", function(){
-    var store, view,
-        synchronousLoad = true,
-        proxyStoreLoad = Ext.data.ProxyStore.prototype.load,
-        loadStore;
+    var store, view;
     
     function makeView(cfg) {
         cfg = Ext.apply({
@@ -18,26 +15,14 @@ describe("Ext.view.AbstractView", function(){
         
         return view = new Ext.view.AbstractView(cfg);
     }
-
+    
     beforeEach(function() {
-        // Override so that we can control asynchronous loading
-        loadStore = Ext.data.ProxyStore.prototype.load = function() {
-            proxyStoreLoad.apply(this, arguments);
-            if (synchronousLoad) {
-                this.flushLoad.apply(this, arguments);
-            }
-            return this;
-        };
-
         store = new Ext.data.Store({
             fields: ['field']
         });
     });
-
+    
     afterEach(function() {
-        // Undo the overrides.
-        Ext.data.ProxyStore.prototype.load = proxyStoreLoad;
-
         if (view) {
             view.destroy();
         }

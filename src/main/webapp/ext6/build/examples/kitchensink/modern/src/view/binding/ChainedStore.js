@@ -16,7 +16,6 @@ Ext.define('KitchenSink.view.binding.ChainedStore', {
         type: 'vbox',
         align: 'stretch'
     },
-    scrollable: true,
 
     referenceHolder: true,
 
@@ -24,8 +23,7 @@ Ext.define('KitchenSink.view.binding.ChainedStore', {
 
     items: [{
         xtype: 'grid',
-        minHeight: 225,
-        flex: 3,
+        flex: 1,
         title: 'All People',
         bind: '{everyone}',
         columns: [{
@@ -43,8 +41,7 @@ Ext.define('KitchenSink.view.binding.ChainedStore', {
         }]
     }, {
         xtype: 'grid',
-        minHeight: 300,
-        flex: 4,
+        flex: 1,
         bind: '{ageFiltered}',
         titleBar: null,
         items: [{

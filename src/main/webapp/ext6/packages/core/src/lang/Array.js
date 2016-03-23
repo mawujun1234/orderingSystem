@@ -311,9 +311,7 @@ Ext.Array = (function() {
          *
          *     sum(1, 2, 3); // returns 6
          *
-         * The iteration can be stopped by returning `false` from the callback function.  
-         * Returning `undefined` (i.e `return;`) will only exit the callback function and 
-         * proceed with the next iteration of the loop.
+         * The iteration can be stopped by returning false in the function callback.
          *
          *     Ext.Array.each(countries, function(name, index, countriesItSelf) {
          *         if (name === 'Singapore') {
@@ -326,14 +324,12 @@ Ext.Array = (function() {
          * @param {Array/NodeList/Object} iterable The value to be iterated. If this
          * argument is not iterable, the callback function is called once.
          * @param {Function} fn The callback function. If it returns `false`, the iteration
-         * stops and this method returns the current `index`. Returning `undefined` (i.e 
-         * `return;`) will only exit the callback function and proceed with the next iteration 
-         * in the loop.
+         * stops and this method returns the current `index`.
          * @param {Object} fn.item The item at the current `index` in the passed `array`
          * @param {Number} fn.index The current `index` within the `array`
          * @param {Array} fn.allItems The `array` itself which was passed as the first argument
-         * @param {Boolean} fn.return Return `false` to stop iteration.
-         * @param {Object} [scope] The scope (`this` reference) in which the specified function is executed.
+         * @param {Boolean} fn.return Return false to stop iteration.
+         * @param {Object} scope (Optional) The scope (`this` reference) in which the specified function is executed.
          * @param {Boolean} [reverse=false] Reverse the iteration order (loop from the end to the beginning).
          * @return {Boolean} See description for the `fn` parameter.
          */
@@ -362,7 +358,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Iterates an array and invoke the given callback function for each item. Note that this will simply
          * delegate to the native `Array.prototype.forEach` method if supported. It doesn't support stopping the
          * iteration by returning `false` in the callback function like {@link Ext.Array#each}. However, performance
@@ -385,7 +380,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Get the index of the provided `item` in the given `array`, a supplement for the
          * missing arrayPrototype.indexOf in Internet Explorer.
          *
@@ -409,7 +403,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Checks whether or not the given `array` contains the specified `item`.
          *
          * @param {Array} array The array to check.
@@ -504,7 +497,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Creates a new array with the results of calling a provided function on every element in this array.
          *
          * @param {Array} array
@@ -540,7 +532,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Executes the specified function for each array element until the function returns a falsy value.
          * If such an item is found, the function will return `false` immediately.
          * Otherwise, it will return `true`.
@@ -579,7 +570,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Executes the specified function for each array element until the function returns a truthy value.
          * If such an item is found, the function will return `true` immediately. Otherwise, it will return `false`.
          *
@@ -694,7 +684,6 @@ Ext.Array = (function() {
         },
 
         /**
-         * @method
          * Creates a new array with all of the elements of this array for which
          * the provided filtering function returns a truthy value.
          *

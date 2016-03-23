@@ -106,7 +106,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         event.preventDefault();
     },
 
-    onKeyUp: function(e) {
+    onKeyUp: function() {
         var me = this,
             boundList = me.view,
             allItems = boundList.all,
@@ -115,9 +115,6 @@ Ext.define('Ext.view.BoundListKeyNav', {
             newItemIdx = oldItemIdx > 0 ? oldItemIdx - 1 : allItems.getCount() - 1; //wraps around
 
         me.setPosition(newItemIdx);
-
-        // Stop this from moving the cursor in the field
-        e.preventDefault();
     },
 
     onKeyDown: function(e) {
@@ -129,9 +126,6 @@ Ext.define('Ext.view.BoundListKeyNav', {
             newItemIdx = oldItemIdx < allItems.getCount() - 1 ? oldItemIdx + 1 : 0; //wraps around
 
         me.setPosition(newItemIdx);
-
-        // Stop this from moving the cursor in the field
-        e.preventDefault();
     },
 
     onKeyLeft: Ext.returnTrue,

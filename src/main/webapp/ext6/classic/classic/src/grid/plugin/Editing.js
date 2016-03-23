@@ -498,7 +498,6 @@ Ext.define('Ext.grid.plugin.Editing', {
     },
 
     /**
-     * @method
      * @private
      * @template
      * Template method called before editing begins.
@@ -563,11 +562,6 @@ Ext.define('Ext.grid.plugin.Editing', {
         view = columnHeader.getView();
         grid = view.ownerCt;
 
-        // Ensure the row we want to edit is in the rendered range if the view is buffer rendered
-        grid.ensureVisible(record, {
-            column : columnHeader
-        });
-        
         gridRow = view.getRow(record);
 
         // An intervening listener may have deleted the Record.
@@ -575,9 +569,7 @@ Ext.define('Ext.grid.plugin.Editing', {
             return;
         }
 
-        // Column index must be relative to the View the Context is using.
-        // It must be the real owning View, NOT the lockable pseudo view.
-        colIdx = view.getVisibleColumnManager().indexOf(columnHeader);
+        colIdx = colMgr.getHeaderIndex(columnHeader);
 
         if (Ext.isNumber(record)) {
             // look up record if numeric row index was passed

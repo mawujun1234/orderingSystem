@@ -1,7 +1,5 @@
 /**
- * @private
- * Adds hit testing methods to the Ext.draw.sprite.Path sprite.
- * Included by the Ext.draw.PathUtil.
+ * @class Ext.draw.overrides.sprite.Path
  */
 Ext.define('Ext.draw.overrides.sprite.Path', {
     override: 'Ext.draw.sprite.Path',
@@ -71,16 +69,19 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
         var me = this,
             attr = me.attr,
             path = attr.path,
+            bbox = me.getBBox(),
             matrix = attr.matrix,
             x = point[0],
             y = point[1],
-            parentResult = me.callParent([point, options]),
+            hasFill = attr.fillStyle !== Ext.draw.Color.NONE &&
+                attr.fillStyle !== Ext.draw.Color.RGBA_NONE,
+            bboxHit = bbox && x >= bbox.x && x <= (bbox.x + bbox.width) &&
+                              y >= bbox.y && y <= (bbox.y + bbox.height),
             result = null,
-            params, isFilled;
+            params;
 
 
-        if (!parentResult) {
-            // The sprite is not visible or bounding box wasn't hit.
+        if (!bboxHit) {
             return result;
         }
 
@@ -92,9 +93,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
         }
 
         if (options.fill && options.stroke) {
-            isFilled = attr.fillStyle !== Ext.draw.Color.NONE &&
-                       attr.fillStyle !== Ext.draw.Color.RGBA_NONE;
-            if (isFilled) {
+            if (hasFill) {
                 if (path.isPointInPath(x, y)) {
                     result = {
                         sprite: me

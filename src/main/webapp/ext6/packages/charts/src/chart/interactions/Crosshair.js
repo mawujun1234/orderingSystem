@@ -189,7 +189,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
 
     updateChart: function (chart) {
         if (chart && !chart.isCartesian) {
-            Ext.raise("Crosshair interaction can only be used on cartesian charts.");
+            throw 'Crosshair interaction can only be used on cartesian charts.';
         }
         this.callParent(arguments);
     },

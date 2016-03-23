@@ -260,8 +260,7 @@ Ext.define('Ext.grid.filters.Filters', {
     },
 
     /**
-     * @private
-     * Handle creation of the grid's header menu.
+     * @private Handle creation of the grid's header menu.
      */
     onMenuCreate: function (headerCt, menu) {
         menu.on({
@@ -271,8 +270,7 @@ Ext.define('Ext.grid.filters.Filters', {
     },
 
     /**
-     * @private
-     * Handle showing of the grid's header menu. Sets up the filter item and menu
+     * @private Handle showing of the grid's header menu. Sets up the filter item and menu
      * appropriate for the target column.
      */
     onMenuBeforeShow: function (menu) {
@@ -492,6 +490,8 @@ Ext.define('Ext.grid.filters.Filters', {
 
     /**
      * Turns all filters off. This does not clear the configuration information.
+     * @param {Boolean} autoFilter If true, don't fire the deactivate event in
+     * {@link Ext.grid.filters.filter.Base#setActive setActive}.
      */
     clearFilters: function () {
         var grid = this.grid,

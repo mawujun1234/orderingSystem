@@ -50,12 +50,7 @@ describe("Ext.toolbar.Toolbar", function(){
 
     describe('defaultButtonUI', function() {
         it("should use the defaultButtonUI for child buttons with no ui configured on the instance", function() {
-            // This test causes layout failure in IE8, but otherwise tests out fine.
-            // Since it's not about layout, silencing the error is OK.
-            spyOn(Ext.log, 'error');
-            
             createToolbar({
-                height: 30,
                 defaultButtonUI: 'foo',
                 items: [{
                     text: 'Bar'
@@ -66,11 +61,7 @@ describe("Ext.toolbar.Toolbar", function(){
         });
 
         it("should not use the defaultButtonUI for child buttons with ui configured on the instance", function() {
-            // See above
-            spyOn(Ext.log, 'error');
-            
             createToolbar({
-                height: 30,
                 defaultButtonUI: 'foo',
                 items: [{
                     text: 'Bar',

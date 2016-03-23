@@ -1,13 +1,13 @@
 Ext.define('KitchenSink.profile.Tablet', {
     extend: 'KitchenSink.profile.Base',
 
-    controllers: ['Main'],
+    config: {
+        controllers: ['Main'],
+        views: ['Main', 'TouchEvents'],
+        mainView: 'KitchenSink.view.tablet.Main'
+    },
 
-    views: ['Main', 'TouchEvents'],
-
-    mainView: 'KitchenSink.view.tablet.Main',
-
-    isActive: function () {
+    isActive: function() {
         return Ext.os.is.Tablet || Ext.os.is.Desktop;
     }
 });

@@ -372,70 +372,69 @@ Ext.define('KitchenSink.store.Demos', {
                 id: 'theme',
                 items: [{
                     text: 'Auto Detect',
+                    view: 'ThemeAuto',
                     leaf: true,
-                    id: 'autotheme',
-                    profileName: ''
+                    id: 'autotheme'
                 //}, {
                 //    text: 'BlackBerry 10',
+                //    view: 'ThemeBB',
                 //    leaf: true,
-                //    id: 'bbtheme',
-                //    profileName: 'blackberry'
+                //    id: 'bbtheme'
                 }, {
                     text: 'Cupertino',
                     view: 'ThemeCupertino',
                     leaf: true,
-                    id: 'cupertinotheme',
-                    profileName: 'cupertino'
+                    id: 'cupertinotheme'
                 }, {
                     text: 'Mountain View',
+                    view: 'ThemeMountainView',
                     leaf: true,
-                    id: 'mountainviewtheme',
-                    profileName: 'mountainview'
+                    id: 'mountainviewtheme'
                 }, {
                     text: 'Modern Neptune',
+                    view: 'ThemeModernNeptune',
                     leaf: true,
-                    id: 'modernneptunetheme',
-                    profileName: 'modern-neptune'
+                    id: 'modernneptunetheme'
                 }, {
                     text: 'Modern Triton',
+                    view: 'ThemeModernTriton',
                     leaf: true,
-                    id: 'moderntritontheme',
-                    profileName: 'modern-triton'
+                    id: 'moderntritontheme'
                 }, {
                     text: 'Windows',
+                    view: 'ThemeWindows',
                     leaf: true,
-                    id: 'windowstheme',
-                    profileName: 'windows'
+                    id: 'windowstheme'
                 }, {
                     text: 'Neptune',
+                    view: 'ThemeNeptune',
                     leaf: true,
-                    id: 'neptunetheme',
-                    profileName: 'neptune'
+                    id: 'neptunetheme'
                 }, {
                     text: 'Neptune Touch',
+                    view: 'ThemeNeptuneTouch',
                     leaf: true,
-                    id: 'neptunetouchtheme',
-                    profileName: 'neptune-touch'
+                    id: 'neptunetouchtheme'
                 }, {
                     text: 'Crisp',
+                    view: 'ThemeCrisp',
                     leaf: true,
-                    id: 'crisptheme',
-                    profileName: 'crisp'
+                    id: 'crisptheme'
                 }, {
                     text: 'Crisp Touch',
+                    view: 'ThemeCrispTouch',
                     leaf: true,
-                    id: 'crisptouchtheme',
-                    profileName: 'crisp-touch'
+                    id: 'crisptouchtheme'
                 }, {
                     text: 'Classic',
+                    view: 'ThemeClassic',
                     leaf: true,
-                    id: 'classictheme',
-                    profileName: 'classic'
+                    id: 'classictheme'
                 }, {
                     text: 'Gray',
+                    view: 'ThemeGray',
                     leaf: true,
-                    id: 'graytheme',
-                    profileName: 'gray'
+                    id: 'graytheme'
                 }]
             }, {
                 text: 'Graphics',

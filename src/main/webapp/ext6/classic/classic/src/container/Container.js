@@ -422,8 +422,7 @@ Ext.define('Ext.container.Container', {
     requires: [
         'Ext.util.MixedCollection',
         'Ext.layout.container.Auto',
-        'Ext.ZIndexManager',
-        'Ext.util.ItemCollection'
+        'Ext.ZIndexManager'
     ],
 
     mixins: [
@@ -847,7 +846,7 @@ Ext.define('Ext.container.Container', {
             delete item.instancedCmp;
             // Floating Components are not added into the items collection, but to a separate floatingItems collection
             if (item.floating) {
-                (me.floatingItems || (me.floatingItems = new Ext.util.ItemCollection())).add(item);
+                me.floatingItems.add(item);
                 item.onAdded(me, pos, instanced);
                 delete item.$initParent;
                 if (me.hasListeners.add) {
@@ -895,21 +894,17 @@ Ext.define('Ext.container.Container', {
     },
 
     afterComponentLayout: function() {
-        var floaters = this.floatingItems,
-            floaterCount,
+        var floaters = this.floatingItems.items,
+            floaterCount = floaters.length,
             i, floater;
 
         this.callParent(arguments);
 
         // Contained, unrendered, autoShow items must be shown upon next layout of the Container
-        if (floaters) {
-            floaters = floaters.items;
-            floaterCount = floaters.length;
-            for (i = 0; i < floaterCount; i++) {
-                floater = floaters[i];
-                if (!floater.rendered && floater.autoShow) {
-                    floater.show();
-                }
+        for (i = 0; i < floaterCount; i++) {
+            floater = floaters[i];
+            if (!floater.rendered && floater.autoShow) {
+                floater.show();
             }
         }
     },
@@ -1055,11 +1050,12 @@ Ext.define('Ext.container.Container', {
             });
             return result;
         } else {
-            return this.items.contains(comp) || (this.floatingItems && this.floatingItems.contains(comp));
+            return this.items.contains(comp) || this.floatingItems.contains(comp);
         }
     },
 
     /**
+     * @override
      * Disables all child input fields and buttons.
      */
     disable: function(silent, /* private */fromParent) {
@@ -1081,6 +1077,7 @@ Ext.define('Ext.container.Container', {
     },
 
     /**
+     * @override
      * Enables all child input fields and buttons.
      */
     enable: function(silent, /* private */fromParent) {
@@ -1148,12 +1145,11 @@ Ext.define('Ext.container.Container', {
             comp = comp.getItemId();
         }
 
-        var c = this.items.get(comp),
-            floaters = this.floatingItems;
+        var c = this.items.get(comp);
 
         // Only allow finding by index on the main items container
-        if (!c && floaters && typeof comp !== 'number') {
-            c = floaters.get(comp);
+        if (!c && typeof comp !== 'number') {
+            c = this.floatingItems.get(comp);
         }
 
         return c;
@@ -1228,15 +1224,13 @@ Ext.define('Ext.container.Container', {
         }
 
         // Append floating items to the list.
-        if (me.floatingItems) {
-            items = me.floatingItems.items;
-            len = items.length;
-            for (i = 0; i < len; i++) {
-                item = items[i];
-                result[result.length] = item;
-                if (deep && item.getRefItems) {
-                    result.push.apply(result, item.getRefItems(true));
-                }
+        items = me.floatingItems.items;
+        len = items.length;
+        for (i = 0; i < len; i++) {
+            item = items[i];
+            result[result.length] = item;
+            if (deep && item.getRefItems) {
+                result.push.apply(result, item.getRefItems(true));
             }
         }
 
@@ -1293,18 +1287,20 @@ Ext.define('Ext.container.Container', {
             // allow the items collection to be pre-initialized.
             // (used by Ext.draw.ComponentBase)
             /**
-             * The Collection containing all the child items of this container.
-             * @property {Ext.util.ItemCollection} items
+             * The MixedCollection containing all the child items of this container.
+             * @property items
+             * @type Ext.util.AbstractMixedCollection
              * @since 2.3.0
              */
             me.items = new Ext.util.ItemCollection();
 
             /**
              * The MixedCollection containing all the floating child items of this container.
-             * Will be `undefined` if there are no floating child items.
-             * @property {Ext.util.MixedCollection} floatingItems
+             * @property floatingItems
+             * @type Ext.util.MixedCollection
              * @since 4.1.0
             */
+            me.floatingItems = new Ext.util.ItemCollection();
 
             if (items) {
                 if (!Ext.isArray(items)) {
@@ -1385,16 +1381,7 @@ Ext.define('Ext.container.Container', {
     },
 
     /**
-     * @protected
-     * Called when a raw config object is added to this container either during initialization of the {@link #cfg-items} config,
-     * or when new items are {@link #method-add added), or {@link #method-insert inserted}.
-     *
-     * This method converts the passed object into an instanced child component.
-     *
-     * This may be overridden in subclasses when special processing needs to be applied to child creation. 
-     *
-     * @param {Object} item The config object being added.
-     * @return {Ext.Component} The component to be added.
+     * @private
      */
     lookupComponent: function(comp) {
         if (!comp.isComponent) {
@@ -1444,28 +1431,13 @@ Ext.define('Ext.container.Container', {
     },
 
     /**
-     * Moves the given `item(s)` into this container in front of `before`. This method 
-     * will account for layout-generated components like splitters and should be used 
-     * instead of index based `{@link #method-move}`. If `before` is `null` then the 
-     * `item` will be the last item in this container.
-     * 
-     *     var tb = Ext.create({
-     *         xtype: 'toolbar',
-     *         renderTo: Ext.getBody(),
-     *         items: [{
-     *             text: 'one'
-     *         }, {
-     *             text: 'two'
-     *         }]
-     *     });
-     *
-     *     // moves the 'two' button before the 'one' button
-     *     tb.moveBefore(tb.getComponent(1), tb.getComponent(0));
-     * 
-     * @param {Ext.Component/Ext.Component[]} item The item to move. May be a component, 
-     * component configuration object, or an array of either.
+     * Moves the given `item` into this container in front of `before`. This method will
+     * account for layout-generated components like splitters and should be used instead
+     * of index based `{@link #method-move}`. If `before` is `null` then the `item` will be the
+     * last item in this container.
+     * @param {Object/Ext.Component} item The item to move. May be a component configuration object.
      * @param {Ext.Component} before The reference component. May be `null`.
-     * @return {Ext.Component/Ext.Component[]} The moved item(s).
+     * @return {Ext.Component} The moved item.
      * @since 5.0.0
      */
     moveBefore: function (item, before) {
@@ -1476,28 +1448,13 @@ Ext.define('Ext.container.Container', {
     },
 
     /**
-     * Moves the given `item(s)` into this container following `after`. This method will
+     * Moves the given `item` into this container following `after`. This method will
      * account for layout-generated components like splitters and should be used instead
      * of index based `{@link #method-move}`. If `after` is `null` then the `item` will be the
      * first item in this container.
-     * 
-     *     var tb = Ext.create({
-     *         xtype: 'toolbar',
-     *         renderTo: Ext.getBody(),
-     *         items: [{
-     *             text: 'one'
-     *         }, {
-     *             text: 'two'
-     *         }]
-     *     });
-     *
-     *     // moves the 'one' button after the 'two' button
-     *     tb.moveAfter(tb.getComponent(0), tb.getComponent(1));
-     * 
-     * @param {Ext.Component/Ext.Component[]} item The item to move. May be a component, 
-     * component configuration object, or an array of either.
+     * @param {Ext.Component} item The item to move. May be a component configuration object.
      * @param {Ext.Component} after The reference component. May be `null`.
-     * @return {Ext.Component/Ext.Component[]} The moved item(s).
+     * @return {Ext.Component} The moved item.
      * @since 5.0.0
      */
     moveAfter: function (item, after) {
@@ -1539,12 +1496,15 @@ Ext.define('Ext.container.Container', {
             } else {
                 result = items.getAt(childIndex + 1);
             }
+
+            if (!result && me.ownerCt) {
+                result = me.ownerCt.nextChild(me, selector);
+            }
         }
-        return result || null;
+        return result;
     },
 
     /**
-     * @method
      * This method is invoked after a new Component has been added. It
      * is passed the Component which has been added. This method may
      * be used to update any internal structure which may depend upon
@@ -1580,7 +1540,6 @@ Ext.define('Ext.container.Container', {
     onMove: Ext.emptyFn,
 
     /**
-     * @method
      * This method is invoked after a new Component has been
      * removed. It is passed the Component which has been
      * removed. This method may be used to update any internal
@@ -1632,8 +1591,12 @@ Ext.define('Ext.container.Container', {
             } else {
                 result = items.getAt(childIndex - 1);
             }
+
+            if (!result && me.ownerCt) {
+                result = me.ownerCt.nextChild(me, selector);
+            }
         }
-        return result || null;
+        return result;
     },
 
     /**
@@ -1692,19 +1655,11 @@ Ext.define('Ext.container.Container', {
      */
     removeAll: function(autoDestroy) {
         var me = this,
-            removeItems,
-            floaters = me.floatingItems,
+            removeItems = me.items.items.slice().concat(me.floatingItems.items),
             items = [],
             i = 0,
-            len,
+            len = removeItems.length,
             item;
-
-        if (floaters) {
-            removeItems = me.items.items.concat(floaters.items);
-        } else {
-            removeItems = me.items.items.slice();
-        }
-        len = removeItems.length;
 
         // Suspend Layouts while we remove multiple items from the container
         Ext.suspendLayouts();
@@ -1991,19 +1946,15 @@ Ext.define('Ext.container.Container', {
         },
 
         repositionFloatingItems: function() {
-            var floaters = this.floatingItems,
-                floaterCount,
+            var floaters = this.floatingItems.items,
+                floaterCount = floaters.length,
                 i, floater;
 
             // Ensure correct positioning of floated children before calling superclass
-            if (floaters) {
-                floaters = floaters.items;
-                floaterCount = floaters.length;
-                for (i = 0; i < floaterCount; i++) {
-                    floater = floaters[i];
-                    if (floater.el && !floater.hidden) {
-                        floater.setPosition(floater.x, floater.y);
-                    }
+            for (i = 0; i < floaterCount; i++) {
+                floater = floaters[i];
+                if (floater.el && !floater.hidden) {
+                    floater.setPosition(floater.x, floater.y);
                 }
             }
         },

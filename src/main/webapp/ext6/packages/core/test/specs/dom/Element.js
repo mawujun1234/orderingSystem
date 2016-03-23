@@ -173,18 +173,6 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("synchronization", function() {
-                        it("should keep the classList/classMap up to date", function() {
-                            element.addCls(['foo', 'bar']);
-                            var data = element.getData();
-                            expect(data.classList).toEqual(['foo', 'bar']);
-                            expect(data.classMap).toEqual({
-                                foo: true,
-                                bar: true
-                            });
-                        });
-                    });
-
                     describe("argument types", function() {
                         describe("with a string", function() {
                             describe("without spaces", function() {
@@ -419,18 +407,6 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("synchronization", function() {
-                        it("should keep the classList/classMap up to date", function() {
-                            domEl.className = 'foo bar baz';
-                            element.removeCls(['foo', 'bar']);
-                            var data = element.getData();
-                            expect(data.classList).toEqual(['baz']);
-                            expect(data.classMap).toEqual({
-                                baz: true
-                            });
-                        });
-                    });
-
                     describe("argument types", function() {
                         describe("with a string", function() {
                             describe("without spaces", function() {
@@ -661,19 +637,6 @@ describe("Ext.dom.Element", function() {
                         domEl.className = 'some cls';
                     });
 
-                    describe("synchronization", function() {
-                        it("should keep the classList/classMap up to date", function() {
-                            domEl.className = 'foo bar baz';
-                            element.setCls(['some', 'stuff']);
-                            var data = element.getData();
-                            expect(data.classList).toEqual(['some', 'stuff']);
-                            expect(data.classMap).toEqual({
-                                some: true,
-                                stuff: true
-                            });
-                        });
-                    });
-
                     describe("argument types", function() {
                         describe("with a string", function() {
                             describe("without spaces", function() {
@@ -705,18 +668,6 @@ describe("Ext.dom.Element", function() {
                         element = addElement();
                         domEl = element.dom;
                         domEl.className = 'foo';
-                    });
-
-                    describe("synchronization", function() {
-                        it("should keep the classList/classMap up to date", function() {
-                            element.toggleCls('bar');
-                            var data = element.getData();
-                            expect(data.classList).toEqual(['foo', 'bar']);
-                            expect(data.classMap).toEqual({
-                                foo: true,
-                                bar: true
-                            });
-                        });
                     });
 
                     describe("without state flag", function() {
@@ -905,16 +856,14 @@ describe("Ext.dom.Element", function() {
                         expect(element.dom.focus).toHaveBeenCalled();
                     });
                 });
-                
-                if (Ext.isIE8) {
-                    it("should ignore any exception", function() {
-                        element.dom.focus = function() {
-                            throw "error";
-                        };
 
-                        expect(element.focus.bind(element)).not.toThrow("error");
-                    });
-                }
+                it("should ignore any exception", function() {
+                    element.dom.focus = function() {
+                        throw "error";
+                    };
+
+                    expect(element.focus.bind(element)).not.toThrow("error");
+                });
             });
 
             describe("blur", function() {
@@ -1281,48 +1230,11 @@ describe("Ext.dom.Element", function() {
                 it("should should remove the cache entry", function() {
                     expect(id in Ext.cache).toBe(false);
                 });
-                
-                // IE8 does element destruction differently, see below
-                if (!Ext.isIE8) {
-                    it("should remove the element from the dom", function() {
-                        expect(dom.parentNode).toBeNull();
-                    });
-                }
-            });
-            
-            if (Ext.isIE8) {
-                describe("destroy (IE8)", function() {
-                    var dom;
-                    
-                    beforeEach(function() {
-                        element = addElement('div');
-                        dom = element.dom;
-                    });
-                    
-                    it("should schedule element for garbage collection", function() {
-                        var queue = Ext.Element.destroyQueue,
-                            len = queue.length;
-                        
-                        element.destroy();
-                        
-                        expect(queue.length).toBe(len + 1);
-                        expect(queue[len]).toBe(dom);
-                    });
-                    
-                    it("should finally destroy the element after a timeout", function() {
-                        runs(function() {
-                            element.destroy();
-                        });
-                        
-                        // The timeout is hardcoded in Element override
-                        waits(32);
-                        
-                        runs(function() {
-                            expect(dom.parentNode).toBeFalsy();
-                        });
-                    });
+
+                it("should remove the element from the dom", function() {
+                    expect(dom.parentNode).toBeNull();
                 });
-            }
+            });
 
             describe("contains", function() {
                 /**
@@ -2560,46 +2472,11 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.el).toBeNull();
             expect(element.shim.disabled).toBe(true);
         });
-        
-        if (Ext.toolkit === 'classic') {
-            it("should mask all iframes when resizing an element with shim and unmask when done.", function() {
-                var iframe = Ext.getBody().createChild({
-                    tag : 'iframe',
-                    src: 'about:blank',
-                    style: 'position:absolute;left:0px;top:0px;width:200px;height:100px;'
-                });
-                
-                var win = Ext.create('Ext.window.Window',{
-                    width : 100,
-                    height: 100,
-                    title: 'Test',
-                    shim: true
-                }).show();
-                
-                jasmine.fireMouseEvent(win.resizer.south, 'mousedown');
-                
-                expect(Ext.fly(iframe.dom.parentNode).isMasked()).toBe(true);
-                
-                jasmine.fireMouseEvent(win.resizer.south, 'mouseup');
-                
-                expect(Ext.fly(iframe.dom.parentNode).isMasked()).toBe(false);
-                
-                iframe.destroy();
-                win.destroy();
-            });
-        }
     });
 
     describe("shadow", function() {
-        // offsets for the default 'drop' shadow
-        var offsets = Ext.isIE8
-            ? {
-                x: -2,
-                y: -2,
-                w: 6,
-                h: 6
-            }
-            : {
+        var offsets = {
+                // offsets for the default 'drop' shadow
                 x: 4,
                 y: 4,
                 w: -4,
@@ -4435,7 +4312,7 @@ describe("Ext.dom.Element", function() {
 
         describe('listener arguments', function() {
             it('should fire an event with the correct signature on every element in the bubble stack', function() {
-                // https://sencha.jira.com/browse/EXTJS-15735
+                https://sencha.jira.com/browse/EXTJS-15735
                 var c1 = Ext.getBody().appendChild({
                         id: 'c1',
                         cn: {

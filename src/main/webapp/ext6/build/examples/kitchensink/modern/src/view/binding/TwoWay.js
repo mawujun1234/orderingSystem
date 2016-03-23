@@ -13,6 +13,7 @@ Ext.define('KitchenSink.view.binding.TwoWay', {
     //</example>
 
     controller: 'binding-twoway',
+    scrollable: false,
 
     viewModel: {
         data: {

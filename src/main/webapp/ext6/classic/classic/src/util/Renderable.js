@@ -401,8 +401,7 @@ Ext.define('Ext.util.Renderable', {
         var me = this,
             floating = me.floating,
             layout = me.getComponentLayout(),
-            cls = me.userCls,
-            controller;
+            cls, controller;
 
         me._renderState = 1;
         
@@ -425,10 +424,6 @@ Ext.define('Ext.util.Renderable', {
             // viewmodel. This needs to happen after the beforeRenderConfig block is
             // processed because that is what creates the viewModel.
             me.publishState();
-        }
-
-        if (cls) {
-            me.addCls(cls);
         }
 
         if (floating) {

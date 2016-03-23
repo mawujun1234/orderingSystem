@@ -36,11 +36,6 @@ Ext.define('Ext.scroll.TouchScroller', {
     config: {
         /**
          * @cfg autoRefresh
-         * Accepted values:
-         *
-         * - `true`: monitors both element and innerElement for resize
-         * - `null`: only monitors element for resize
-         * - `false`: does not monitor resize of either element or innerElement
          * @private
          */
         autoRefresh: true,
@@ -159,7 +154,13 @@ Ext.define('Ext.scroll.TouchScroller', {
         translatable: {
             translationMethod: 'auto',
             useWrapper: false
-        }
+        },
+
+        /**
+         * @cfg refreshOnIdle
+         * @private
+         */
+        refreshOnIdle: true
     },
 
     cls: Ext.baseCSSPrefix + 'scroll-container',
@@ -206,6 +207,8 @@ Ext.define('Ext.scroll.TouchScroller', {
 
         me.startPosition = { x: 0, y: 0 };
 
+        me.position = { x: 0, y: 0 };
+
         me.velocity = { x: 0, y: 0 };
 
         me.isAxisEnabledFlags = { x: false, y: false };
@@ -221,15 +224,19 @@ Ext.define('Ext.scroll.TouchScroller', {
         me.callParent([config]);
 
         me.refreshAxes();
-        
-        me.scheduleRefresh = {
-            idle: me.doRefresh,
-            scope: me,
-            single: true,
-            destroyable: true
-        }
     },
-    
+
+    applyRefreshOnIdle: function(refreshOnIdle, oldRefreshOnIdle) {
+        var me = this;
+
+        if (refreshOnIdle) {
+            Ext.GlobalEvents.on('idle', me.onIdle, me);
+        } else if (oldRefreshOnIdle) {
+            Ext.GlobalEvents.un('idle', me.onIdle, me);
+        }
+        return refreshOnIdle;
+    },
+
     applyBounceEasing: function(easing) {
         var defaultClass = Ext.fx.easing.EaseOut;
 
@@ -355,40 +362,6 @@ Ext.define('Ext.scroll.TouchScroller', {
         return innerElement;
     },
 
-    applyMaxPosition: function(maxPosition, oldMaxPosition) {
-        // If a no-op (generated setter tests object identity), return undefined to abort set.
-        if (oldMaxPosition && maxPosition.x === oldMaxPosition.x && maxPosition.y === oldMaxPosition.y) {
-            return;
-        }
-        var translatable = this.getTranslatable(),
-            yEasing;
-
-        // If an animation is in flight...
-        if (translatable.isAnimating) {
-
-            // Find its Y dimension easing object
-            yEasing = translatable.activeEasingY;
-
-            // If it's animating in the -ve direction (scrolling up), and we are
-            // shortening the scroll range, ensure the easing's min point complies
-            // with the new end position.
-            if (yEasing && yEasing.getStartVelocity &&
-                yEasing.getStartVelocity() < 0 && maxPosition.y < oldMaxPosition.y) {
-                yEasing.setMinMomentumValue(-maxPosition.y);
-            }
-        }
-
-        return maxPosition;
-    },
-
-    applyMaxUserPosition: function(maxUserPosition, oldMaxUserPosition) {
-        // If a no-op (generated setter tests object identity), return undefined to abort set.
-        if (oldMaxUserPosition && maxUserPosition.x === oldMaxUserPosition.x && maxUserPosition.y === oldMaxUserPosition.y) {
-            return;
-        }
-        return maxUserPosition;
-    },
-
     applySize: function(size) {
         var el = this.getElement(),
             dom, scrollerDom, x, y;
@@ -482,28 +455,30 @@ Ext.define('Ext.scroll.TouchScroller', {
             }
 
             innerElement.destroy();
+            if (me.FixedHBoxStretching) {
+                innerElement.parent().destroy();
+            }
         }
 
         me.setElement(null);
         me.setInnerElement(null);
         me.setIndicators(null);
 
+        Ext.GlobalEvents.un('idle', me.onIdle, me);
+
         Ext.destroy(me.getTranslatable());
 
         me.callParent();
     },
 
-    refresh: function(immediate, /* private */ options) {
-        var me = this;
+    getPosition: function() {
+        return this.position;
+    },
 
-        ++me.refreshCounter;
+    refresh: function(immediate, /* private */ options) {
+        ++this.refreshCounter;
         if (immediate) {
-            me.doRefresh(options);
-        }
-        // Schedule a refresh at the next transition to idle.
-        else if (!me.refreshScheduled) {
-            me.scheduleRefresh.args = [options];
-            me.refreshScheduled = Ext.on(me.scheduleRefresh);
+            this.doRefresh(options);
         }
     },
 
@@ -538,13 +513,18 @@ Ext.define('Ext.scroll.TouchScroller', {
         var me = this,
             // first check if the user configured a innerElement
             innerElement = me.getInnerElement(),
-            listeners, autoRefresh;
+            fixedHBoxStretching = this.FixedHBoxStretching,
+            listeners;
 
         if (!innerElement) {
             // if no configured scroller element, check if the first child has the
             // scrollerCls, if so we can assume that the user already wrapped the content
             // in a scrollerEl (this is true of both Ext and Touch Components).
             innerElement = element.dom.firstChild;
+
+            if (fixedHBoxStretching && innerElement) {
+                innerElement = innerElement.dom.firstChild;
+            }
 
             if (!innerElement || innerElement.nodeType !== 1 ||
                     !Ext.fly(innerElement).hasCls(me.scrollerCls)) {
@@ -555,13 +535,12 @@ Ext.define('Ext.scroll.TouchScroller', {
             me.setInnerElement(innerElement);
         }
 
-        element.addCls(me.cls);
+        if (!fixedHBoxStretching) {
+            element.addCls(me.cls);
+        }
 
         if (me.isConfiguring) {
             if (!me.getTranslatable().isScrollParent) {
-                // Not using DOM scrolling, clear overflow styles.
-                element.dom.style.overflowX = element.dom.style.overflowY = '';
-
                 // If using full virtual scrolling attach a mousewheel listener for moving
                 // the scroll position.  Otherwise we use native scrolling when interacting
                 // using the mouse and so do not want to override the native behavior
@@ -582,19 +561,15 @@ Ext.define('Ext.scroll.TouchScroller', {
         if (!me.isConfiguring) {
             // setting element after initial construction of Scroller
             // sync up configs that depend on element
-            autoRefresh = me.getAutoRefresh();
-
-            if (autoRefresh !== false) {
-                me.toggleResizeListeners(autoRefresh);
-
-                if (autoRefresh) {
-                    me.refresh();
-                } else if (autoRefresh === null) {
-                    // setting elementSize to null will cause it to be updated from the dom
-                    me.setElementSize(null);
-                }
+            if (me.getAutoRefresh()) {
+                me.toggleResizeListeners(true);
             }
+            // setting null size and elementSize will cause them to be updated from the DOM
+            me.setSize(null);
+            me.setElementSize(null);
         }
+
+        me.callParent([element, oldElement]);
     },
 
     updateFps: function(fps) {
@@ -619,13 +594,8 @@ Ext.define('Ext.scroll.TouchScroller', {
         this.getTranslatable().setElement(innerElement);
     },
 
-    updateSize: function(size) {
+    updateSize: function() {
         if (!this.isConfiguring) {
-
-            // Base class keeps the spacer el sized to "stretch" a DOM scroll range.
-            if (Ext.supports.touchScroll === 1) {
-                this.callParent([size]);
-            }
             // to avoid multiple calls to refreshAxes() during initialization we will
             // call it once after initConfig has finished.
             this.refreshAxes();
@@ -634,19 +604,11 @@ Ext.define('Ext.scroll.TouchScroller', {
 
     updateTranslatable: function(translatable) {
         translatable.setElement(this.getInnerElement());
-
-        // We only need to process scroll in each frame, and scroll end on animation end
-        // if we are using CSS transform.
-        // 
-        // If we are using DOM scrollTop/scrollLeft, then
-        // Scroller#onDomScroll will perform these duties.
-        if (!translatable.isScrollParent) {
-            translatable.on({
-                animationframe: 'onAnimationFrame',
-                animationend: 'onAnimationEnd',
-                scope: this
-            });
-        }
+        translatable.on({
+            animationframe: 'onAnimationFrame',
+            animationend: 'onAnimationEnd',
+            scope: this
+        });
     },
 
     updateX: function() {
@@ -694,25 +656,31 @@ Ext.define('Ext.scroll.TouchScroller', {
             var me = this,
                 size, elementSize;
 
-            if (me.refreshScheduled) {
-                me.refreshScheduled = me.refreshScheduled.destroy();
-            }
-
             if (me.refreshCounter && me.getElement()) {
                 me.stopAnimation();
 
                 me.getTranslatable().refresh();
 
                 if (options) {
-                    // If either size or elementSize were provided in options, do not bother
-                    // to read the DOM to determine sizing info, just set the size given.
+                    // refresh called due to resize handler on element or innerElement.
+                    // Do not bother to read the DOM to determine sizing info, just set the size
+                    // given by the resize handler
                     size = options.size;
                     elementSize = options.elementSize;
-                }
 
-                // If size or elementSize are null, they will be read from the DOM
-                me.setSize(size);
-                me.setElementSize(elementSize);
+                    if (size) {
+                        me.setSize(size);
+                    }
+
+                    if (elementSize) {
+                        me.setElementSize(elementSize);
+                    }
+                } else {
+                    // calling doRefresh() without options will cause both size and
+                    // elementSize to be measured from the DOM.
+                    me.setSize(null);
+                    me.setElementSize(null);
+                }
 
                 me.fireEvent('refresh', me);
                 me.refreshCounter = 0;
@@ -722,22 +690,14 @@ Ext.define('Ext.scroll.TouchScroller', {
         doScrollTo: function(x, y, animation, /* private */ allowOverscroll) {
             var me = this,
                 isDragging = me.isDragging,
-                // We only call onScroll if we are programatically CSS translating the scrollable.
-                // If we are using DOM scrollTop/scrollLeft, then
-                // Scroller#onDomScroll will perform this duty.
-                DOMScrolling = me.getTranslatable().isScrollParent,
-                // We only fire scrollstart, and scrollend if we are not reflecting,
-                // (and not having this handled by Scroller#onDomScroll)
-                // If we are reflecting, then onPartnerScrollStart and onPartnerScrollEnd
-                // will perform these duties.
-                fireStartEnd = !me.isReflecting && !DOMScrolling;
+                fireScrollCallback;
 
             if (me.destroyed || !me.getElement()) {
                 return me;
             }
 
             // Normally the scroll position is constrained to the max scroll position, but
-            // during a drag operation or during reflection the scroller is allowed to overscroll.
+            // during a drag operation or during reflectio the scroller is allowed to overscroll.
             allowOverscroll = allowOverscroll || me.isDragging;
 
             var translatable = me.getTranslatable(),
@@ -781,30 +741,32 @@ Ext.define('Ext.scroll.TouchScroller', {
             }
 
             if (positionChanged) {
-                // If we are using scrollTop/scrollLeft, then DOM events will fire
-                // and Scroller#onDomScroll will perform scroll start processing
-                if (fireStartEnd) {
-                    // Invoke scroll start handlers.
-                    // If we are already scrolling, and this movement
-                    // is in response to a subsequent touchmove, the this.isScrolling
-                    // flag will already be set, and this will do nothing.
-                    me.onScrollStart();
-                }
                 if (animation) {
-                    // onAnimationEnd calls onScrollEnd
-                    translatable.translateAnimated(translationX, translationY, animation);
-                } else {
-                    // If we are using scrollTop/scrollLeft, then DOM events will fire
-                    // and Scroller#onDomScroll will perform scroll processing
-                    if (!DOMScrolling) {
+
+                    // We need a callback to fire it after the animation
+                    fireScrollCallback = function() {
                         me.onScroll();
+                    };
+
+                    // If they passed a boolean, create an object to hold the callback.
+                    if (animation === true) {
+                        animation = {
+                            callback: fireScrollCallback
+                        };
                     }
+                    // They want a callback, so we need to create a sequence on it.
+                    else if (animation.callback) {
+                        animation.callback = Ext.Function.createSequence(animation.callback, fireScrollCallback);
+                    }
+                    // We can just use the callback for our own purpose
+                    else {
+                        animation.callback = fireScrollCallback;
+                    }
+                    translatable.translateAnimated(translationX, translationY, animation);
+                }
+                else {
                     translatable.translate(translationX, translationY);
-                    // If we are using scrollTop/scrollLeft, then DOM events will fire
-                    // and Scroller#onDomScroll will schedule scroll end processing
-                    if (fireStartEnd) {
-                        me.onScrollEnd();
-                    }
+                    me.onScroll();
                 }
             } else if (animation && animation.callback) {
                 animation.callback();
@@ -865,6 +827,10 @@ Ext.define('Ext.scroll.TouchScroller', {
             }
             else if (velocity > maxAbsVelocity) {
                 velocity = maxAbsVelocity;
+            }
+
+            if (Ext.browser.is.IE) {
+                velocity *= 2;
             }
 
             easing = me.getMomentumEasing()[axis];
@@ -970,49 +936,49 @@ Ext.define('Ext.scroll.TouchScroller', {
         },
 
         onAxisDrag: function(axis, delta) {
-            // Nothing to do if no delta, or it's on a disabled axis
-            if (delta && this.isAxisEnabled(axis)) {
-                var me = this,
-                    flickStartPosition = me.flickStartPosition,
-                    flickStartTime = me.flickStartTime,
-                    lastDragPosition = me.lastDragPosition,
-                    dragDirection = me.dragDirection,
-                    old = me.position[axis],
-                    min = me.getMinUserPosition()[axis],
-                    max = me.getMaxUserPosition()[axis],
-                    start = me.startPosition[axis],
-                    last = lastDragPosition[axis],
-                    current = start - delta,
-                    lastDirection = dragDirection[axis],
-                    restrictFactor = me.getOutOfBoundRestrictFactor(),
-                    startMomentumResetTime = me.getStartMomentumResetTime(),
-                    now = Ext.Date.now(),
-                    distance;
-
-                if (current < min) {
-                    current *= restrictFactor;
-                }
-                else if (current > max) {
-                    distance = current - max;
-                    current = max + distance * restrictFactor;
-                }
-
-                if (current > last) {
-                    dragDirection[axis] = 1;
-                }
-                else if (current < last) {
-                    dragDirection[axis] = -1;
-                }
-
-                if ((lastDirection !== 0 && (dragDirection[axis] !== lastDirection)) ||
-                        (now - flickStartTime[axis]) > startMomentumResetTime) {
-                    flickStartPosition[axis] = old;
-                    flickStartTime[axis] = now;
-                }
-
-                lastDragPosition[axis] = current;
-                return true;
+            if (!this.isAxisEnabled(axis)) {
+                return;
             }
+
+            var me = this,
+                flickStartPosition = me.flickStartPosition,
+                flickStartTime = me.flickStartTime,
+                lastDragPosition = me.lastDragPosition,
+                dragDirection = me.dragDirection,
+                old = me.position[axis],
+                min = me.getMinUserPosition()[axis],
+                max = me.getMaxUserPosition()[axis],
+                start = me.startPosition[axis],
+                last = lastDragPosition[axis],
+                current = start - delta,
+                lastDirection = dragDirection[axis],
+                restrictFactor = me.getOutOfBoundRestrictFactor(),
+                startMomentumResetTime = me.getStartMomentumResetTime(),
+                now = Ext.Date.now(),
+                distance;
+
+            if (current < min) {
+                current *= restrictFactor;
+            }
+            else if (current > max) {
+                distance = current - max;
+                current = max + distance * restrictFactor;
+            }
+
+            if (current > last) {
+                dragDirection[axis] = 1;
+            }
+            else if (current < last) {
+                dragDirection[axis] = -1;
+            }
+
+            if ((lastDirection !== 0 && (dragDirection[axis] !== lastDirection)) ||
+                    (now - flickStartTime[axis]) > startMomentumResetTime) {
+                flickStartPosition[axis] = old;
+                flickStartTime[axis] = now;
+            }
+
+            lastDragPosition[axis] = current;
         },
 
         // In "hybrid" touch scroll mode where the TouchScroller is used to control the
@@ -1040,12 +1006,10 @@ Ext.define('Ext.scroll.TouchScroller', {
                 return;
             }
 
-            // If there's any moving to do, then move the content.
-            // Boolean or operator avoids shortcutting the second function call if
-            // first returns true.
-            if (me.onAxisDrag('x', me.convertX(e.deltaX)) | me.onAxisDrag('y', e.deltaY)) {
-                me.doScrollTo(lastDragPosition.x, lastDragPosition.y);
-            }
+            me.onAxisDrag('x', me.convertX(e.deltaX));
+            me.onAxisDrag('y', e.deltaY);
+
+            me.doScrollTo(lastDragPosition.x, lastDragPosition.y);
         },
 
         onDragEnd: function(e) {
@@ -1088,12 +1052,15 @@ Ext.define('Ext.scroll.TouchScroller', {
                 y = currentPosition.y,
                 now = Ext.Date.now();
 
+            me.isDragging = true;
+
             if (directionLock && direction !== 'both') {
                 if ((direction === 'horizontal' && absDeltaX > absDeltaY) ||
                     (direction === 'vertical' && absDeltaY > absDeltaX)) {
                     e.stopPropagation();
                 }
                 else {
+                    me.isDragging = false;
                     return;
                 }
             }
@@ -1117,21 +1084,15 @@ Ext.define('Ext.scroll.TouchScroller', {
 
             me.isDragging = true;
 
-            // Only signal a scroll start if we are not already scrolling.
-            // If the drag is just the user giving another impulse, it is NOT
-            // the start of a drag.
-            if (!me.isScrolling) {
-                me.onScrollStart();
-            }
+            me.onScrollStart();
         },
 
         onElementResize: function(element, info) {
             this.refresh(true, {
                 elementSize: {
-                    x: info.contentWidth,
-                    y: info.contentHeight
-                },
-                size: this.getAutoRefresh() ? null : this.getSize()
+                    x: info.width,
+                    y: info.height
+                }
             });
         },
 
@@ -1157,6 +1118,10 @@ Ext.define('Ext.scroll.TouchScroller', {
                         (me.getY() || me.getX())) {
                 me[me.listenerMap[e.type]](e);
             }
+        },
+
+        onIdle: function() {
+            this.doRefresh();
         },
 
         onInnerElementResize: function(element, info) {
@@ -1195,40 +1160,12 @@ Ext.define('Ext.scroll.TouchScroller', {
             me.onScrollEnd();
         },
 
-        onPartnerScrollEnd: function(x, y) {
-            var me = this;
-
-            // In "hybrid" touch scroll mode where the TouchScroller is used to control the
-            // scroll position of a naturally overflowing element, we do NOT need to call
-            // fireScrollEnd because we will have been recieving DOM scroll events and will
-            // begin and end scrolling in response to those events.
-            //
-            // If scrollers programatically animate the scroll, then we must take the correct
-            // scroll end action when our partner ends its scroll.
-            if (!me.getTranslatable().isScrollParent) {
-                me.fireScrollEnd(x, y);
-            }
-            me.callParent([x, y]);
-            me.isScrolling = false;
-            me.hideIndicators();
+        onPartnerScrollEnd: function() {
+            this.hideIndicators();
         },
 
-        onPartnerScrollStart: function(x, y) {
-            var me = this;
-
-            me.isScrolling = true;
-
-            // In "hybrid" touch scroll mode where the TouchScroller is used to control the
-            // scroll position of a naturally overflowing element, we do NOT need to call
-            // fireScrollStart because we will soon start recieving DOM scroll events and will
-            // begin and end scrolling in response to those events.
-            //
-            // If scrollers programatically animate the scroll, then we must take the correct
-            // scroll end action when our partner starts its scroll.
-            if (!me.getTranslatable().isScrollParent) {
-                me.fireScrollStart(x, y);
-            }
-            me.showIndicators();
+        onPartnerScrollStart: function() {
+            this.showIndicators();
         },
 
         onScroll: function() {
@@ -1261,9 +1198,9 @@ Ext.define('Ext.scroll.TouchScroller', {
             var me = this,
                 position = me.position;
 
-            if (me.isScrolling && !me.isTouching && !me.snapToSlot()) {
+            if (!me.isTouching && !me.snapToSlot()) {
                 me.hideIndicators();
-                me.isScrolling = Ext.isScrolling = false;
+                Ext.isScrolling = false;
                 me.fireScrollEnd(position.x, position.y);
             }
         },
@@ -1272,11 +1209,10 @@ Ext.define('Ext.scroll.TouchScroller', {
             var me = this,
                 position = me.position;
 
-            if (!me.isScrolling) {
-                me.showIndicators();
-                me.isScrolling = Ext.isScrolling = true;
-                me.fireScrollStart(position.x, position.y);
-            }
+            me.showIndicators();
+
+            Ext.isScrolling = true;
+            me.fireScrollStart(position.x, position.y);
         },
 
         onTouchEnd: function() {
@@ -1369,7 +1305,7 @@ Ext.define('Ext.scroll.TouchScroller', {
                 y: flags.y ? maxY : 0
             });
 
-            // If we are using regular DOM overflow scrolling, sync the element styles.
+            // If we are using regular DOM ovberflow scrolling, sync the element styles.
             if (Ext.supports.touchScroll === 1) {
                 me.initXStyle();
                 me.initYStyle();
@@ -1399,15 +1335,13 @@ Ext.define('Ext.scroll.TouchScroller', {
         },
 
         snapToBoundary: function() {
-            var me = this,
-                position = me.getPosition();
-
-            // If we haven't scrolled anywhere, we're done.
-            if (me.isConfiguring || !(position.x || position.y)) {
+            if (this.isConfiguring) {
                 return;
             }
 
-            var minPosition = me.getMinUserPosition(),
+            var me = this,
+                position = me.position,
+                minPosition = me.getMinUserPosition(),
                 maxPosition = me.getMaxUserPosition(),
                 minX = minPosition.x,
                 minY = minPosition.y,
@@ -1463,25 +1397,14 @@ Ext.define('Ext.scroll.TouchScroller', {
             this.getTranslatable().stopAnimation();
         },
 
-        toggleResizeListeners: function(autoRefresh) {
+        toggleResizeListeners: function(on) {
             var me = this,
                 element = me.getElement(),
-                method, innerMethod,
-                innerElement;
+                method = on ? 'on' : 'un';
 
             if (element) {
-                innerElement = me.getInnerElement();
-                if (autoRefresh) {
-                    method = innerMethod = 'on';
-                } else if (autoRefresh === null) {
-                    method = 'on';
-                    innerMethod = 'un';
-                } else {
-                    method = innerMethod = 'un';
-                }
-
                 element[method]('resize', 'onElementResize', me);
-                innerElement[innerMethod]('resize', 'onInnerElementResize', me);
+                me.getInnerElement()[method]('resize', 'onInnerElementResize', me);
             }
         },
 

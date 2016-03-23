@@ -48,9 +48,7 @@ Ext.onReady(function(){
                 '</tpl>',
                 '<div class="x-clear"></div>'
             ],
-            selectionModel: {
-                mode   : 'MULTI'
-            },
+            multiSelect: true,
             height: 310,
             trackOver: true,
             overItemCls: 'x-item-over',

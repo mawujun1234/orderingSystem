@@ -1,10 +1,7 @@
 describe("Ext.view.MultiSelector", function(){
     var Employee,
         panel,
-        multiSelector,
-        synchronousLoad = true,
-        proxyStoreLoad = Ext.data.ProxyStore.prototype.load,
-        loadStore;
+        multiSelector;
 
     var firstNames = ['Ben', 'Don', 'Evan', 'Kevin', 'Nige', 'Phil', 'Ross', 'Ryan'],
         lastNames = ['Toll', 'Griffin', 'Trimboli', 'Krohe', 'White', 'Guerrant', 'Gerbasi', 'Smith'],
@@ -39,15 +36,6 @@ describe("Ext.view.MultiSelector", function(){
     }
 
     beforeEach(function() {
-        // Override so that we can control asynchronous loading
-        loadStore = Ext.data.ProxyStore.prototype.load = function() {
-            proxyStoreLoad.apply(this, arguments);
-            if (synchronousLoad) {
-                this.flushLoad.apply(this, arguments);
-            }
-            return this;
-        };
-
         MockAjaxManager.addMethods();
         Employee = Ext.define('spec.Employee', {
             extend: 'Ext.data.Model',
@@ -67,9 +55,6 @@ describe("Ext.view.MultiSelector", function(){
     });
 
     afterEach(function() {
-        // Undo the overrides.
-        Ext.data.ProxyStore.prototype.load = proxyStoreLoad;
-
         MockAjaxManager.removeMethods();
         Ext.undefine('spec.Employee');
         Ext.data.Model.schema.clear();

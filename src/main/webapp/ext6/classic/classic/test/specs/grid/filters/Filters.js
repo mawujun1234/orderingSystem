@@ -2,10 +2,7 @@
 // TODO: Add specs for making sure that new filters replace existing filters with same dataIndex.
 // TODO: Add specs for addFilter(), making sure that only one filter store is ever created per dataIndex.
 describe('Ext.grid.filters.Filters', function () {
-    var grid, tree, store, filtersPlugin, data,
-        synchronousLoad = false,
-        storeFlushLoad,
-        storeLoad;
+    var grid, tree, store, filtersPlugin, data;
 
     function completeWithData(theData) {
         Ext.Ajax.mockComplete({
@@ -19,16 +16,13 @@ describe('Ext.grid.filters.Filters', function () {
     }
 
     function createGrid(storeCfg, gridCfg) {
-        // For the duration of this function, we do NOT want automatic flushing of loads.
-        synchronousLoad = false;
-
-        // We want the store to behave with remote semantics, ie: flush loads on a timer.
         store = new Ext.data.Store(Ext.apply({
-            asynchronousLoad: true,
             autoDestroy: true,
             fields: ['name', 'email', 'phone', 'age', 'dob'],
             data: data
         }, storeCfg));
+
+        spyOn(store, 'load').andCallThrough();
 
         // Note: lower the updateBuffer (defaults to 500ms) which is what determines the delay between onStateChange
         // being called and reload, which removes/adds store filters and sends a request for remote filtering.
@@ -57,10 +51,6 @@ describe('Ext.grid.filters.Filters', function () {
             width: 500,
             renderTo: Ext.getBody()
         }, gridCfg));
-        synchronousLoad = true;
-        if (store.hasPendingLoad()) {
-            store.flushLoad();
-        }
     }
 
     function createTree(storeCfg, treeCfg) {
@@ -107,25 +97,6 @@ describe('Ext.grid.filters.Filters', function () {
     }
 
     beforeEach(function() {
-        storeFlushLoad = Ext.data.Store.prototype.flushLoad;
-        storeLoad = Ext.data.Store.prototype.load;
-        Ext.data.Store.override({
-            load: function() {
-                this.callParent(arguments);
-                if (synchronousLoad) {
-                    this.flushLoad.apply(this, arguments);
-                }
-                return this;
-            },
-
-            flushLoad: function() {
-                if (!this.destroyed) {
-                    this.flushCallCount = (this.flushCallCount || 0) + 1;
-                    this.callParent();
-                }
-            }
-        });
-
         MockAjaxManager.addMethods();
         data = [
             { name: 'Jimmy Page', email: 'jimmy@page.com', phone: '555-111-1224', age: 69, dob: new Date('1/22/1944')},
@@ -140,13 +111,8 @@ describe('Ext.grid.filters.Filters', function () {
     });
 
     afterEach(function () {
-        // Undo the overrides.
-        Ext.data.Store.prototype.load = storeLoad;
-        Ext.data.Store.prototype.flushLoad = storeFlushLoad;
-
         MockAjaxManager.removeMethods();
-        grid = tree = filtersPlugin = Ext.destroy(grid, tree);
-        store = Ext.destroy(store);
+        grid = tree = store = filtersPlugin = Ext.destroy(grid, tree);
     });
 
     describe('initializing', function () {
@@ -579,7 +545,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     completeWithData();
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
 
                 it('should not send filter data in the params for any active filter', function () {
@@ -673,7 +639,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     completeWithData();
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
         });
@@ -723,13 +689,13 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     waitsFor(function() {
-                        return store.flushCallCount > 0;
+                        return store.load.callCount > 0;
                     })
 
                     runs(function () {
                         // Wait for autoLoad to trigger
                         completeWithData();
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
 
@@ -766,7 +732,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     waitsFor(function() {
-                        return store.flushCallCount > 0;
+                        return store.load.callCount > 0;
                     });
 
                     runs(function () {
@@ -804,7 +770,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     waitsFor(function() {
-                        return store.flushCallCount > 0;
+                        return store.load.callCount > 0;
                     });
 
                     runs(function () {
@@ -813,43 +779,9 @@ describe('Ext.grid.filters.Filters', function () {
                 });
             });
 
-            // See EXTJS-15348.
             describe("if false", function() {
-                it('should not cause the store to load', function () {
-                    var proto = Ext.data.ProxyStore.prototype;
+                it("should not cause the store to load", function() {
 
-                    spyOn(proto, 'flushLoad').andCallThrough;
-
-                    createGrid({
-                        remoteFilter: true,
-                        autoLoad: false,
-                        data: null,
-                        proxy: {
-                            type: 'ajax',
-                            url: '/grid/filters/Feature/remoteFiltering'
-                        }
-                    }, {
-                        columns: [
-                            { header: 'Name',  dataIndex: 'name', width: 100,
-                                filter: {
-                                    type: 'string',
-                                    value: 'stevie ray'
-                                }
-                            },
-                            { header: 'Email', dataIndex: 'email', width: 100 },
-                            { header: 'Phone', dataIndex: 'phone', width: 100,
-                                filter: {
-                                    type: 'string'
-                                }
-                            }
-                        ]
-                    });
-
-                    // Store must now have a pending load. It's going
-                    // to load at the next tick. The autoLoad, and the addition
-                    // of the filter both required a load be scheduled.
-                    expect(store.hasPendingLoad()).toBe(true);
-                    expect(proto.flushLoad).not.toHaveBeenCalled();
                 });
             });
 
@@ -888,7 +820,7 @@ describe('Ext.grid.filters.Filters', function () {
                 it('should not make more than one request when applying state', function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         remoteFilter: true,
@@ -918,7 +850,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     completeWithData();
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
 
@@ -957,7 +889,7 @@ describe('Ext.grid.filters.Filters', function () {
                 it('should not make more than one request when applying state', function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         remoteFilter: true,
@@ -987,7 +919,7 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     completeWithData();
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
 
                 it('should include all filters from locking partners in the request', function () {
@@ -1027,10 +959,10 @@ describe('Ext.grid.filters.Filters', function () {
                 });
 
                 waitsFor(function() {
-                    return store.flushCallCount > 0;
+                    return store.load.callCount > 0;
                 });
                 runs(function() {
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
 
@@ -1070,7 +1002,7 @@ describe('Ext.grid.filters.Filters', function () {
                 it('should not make more than one request when applying state', function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         remoteFilter: true,
@@ -1100,10 +1032,10 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount > 0;
+                        return store.load.callCount > 0;
                     });
                     runs(function() {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -1144,7 +1076,7 @@ describe('Ext.grid.filters.Filters', function () {
                 it('should not make more than one request when applying state', function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         remoteFilter: true,
@@ -1175,11 +1107,11 @@ describe('Ext.grid.filters.Filters', function () {
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount > 0;
+                        return store.load.callCount > 0;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -1295,7 +1227,6 @@ describe('Ext.grid.filters.Filters', function () {
                     // See EXTJS-13717.
                     var column = grid.columnManager.getColumns()[0];
 
-                    jasmine.fireMouseEvent(column[column.clickTargetName].dom, 'mouseover');
                     jasmine.fireMouseEvent(column.triggerEl.dom, 'click');
 
                     // Showing the menu will have the filters plugin create the column filter menu.
@@ -1356,11 +1287,11 @@ describe('Ext.grid.filters.Filters', function () {
                     filtersPlugin.addFilter({dataIndex: 'email', value: 'albuquerque@newmexico.com'});
 
                     waitsFor(function() {
-                        return store.flushCallCount === 2;
+                        return store.load.callCount === 2;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(2);
+                        expect(store.load.callCount).toBe(2);
                     });
                 });
 
@@ -1371,7 +1302,7 @@ describe('Ext.grid.filters.Filters', function () {
                     waits(10);
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
 
@@ -1382,7 +1313,7 @@ describe('Ext.grid.filters.Filters', function () {
                     waits(10);
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -1551,11 +1482,11 @@ describe('Ext.grid.filters.Filters', function () {
                     filtersPlugin.addFilters([{dataIndex: 'name'}, {dataIndex: 'email', value: 'jack'}, {dataIndex: 'phone'}]);
 
                     waitsFor(function() {
-                        return store.flushCallCount === 2;
+                        return store.load.callCount === 2;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(2);
+                        expect(store.load.callCount).toBe(2);
                     });
                 });
 
@@ -1563,11 +1494,11 @@ describe('Ext.grid.filters.Filters', function () {
                     filtersPlugin.addFilters([{dataIndex: 'name', value: 'ginger'}, {dataIndex: 'email', value: 'suzy'}, {dataIndex: 'phone', value: '717'}]);
 
                     waitsFor(function() {
-                        return store.flushCallCount === 2;
+                        return store.load.callCount === 2;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(2);
+                        expect(store.load.callCount).toBe(2);
                     });
                 });
 
@@ -1578,7 +1509,7 @@ describe('Ext.grid.filters.Filters', function () {
                     waits(10);
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -1826,8 +1757,6 @@ describe('Ext.grid.filters.Filters', function () {
 
                 describe('normalGrid', function () {
                     it('should not make a request when adding a column with an inactive filter', function () {
-                        var initialFlushCallCount = store.flushCallCount;
-
                         filtersPlugin.grid.normalGrid.headerCt.add({
                             dataIndex: 'age',
                             text: 'Age',
@@ -1836,12 +1765,10 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         });
 
-                        expect(store.flushCallCount).toBe(initialFlushCallCount);
+                        expect(store.load.callCount).toBe(1);
                     });
 
                     it('should make a request that includes the new filter when adding a column with an active filter', function () {
-                        var initialFlushCallCount = store.flushCallCount;
-
                         filtersPlugin.grid.normalGrid.headerCt.add({
                             dataIndex: 'age',
                             text: 'Age',
@@ -1853,14 +1780,12 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         });
 
-                        expect(store.flushCallCount).toBe(initialFlushCallCount + 1);
+                        expect(store.load.callCount).toBe(2);
                     });
                 });
 
                 describe('lockedGrid', function () {
                     it('should not make a request when adding a column with an inactive filter', function () {
-                        var initialFlushCallCount = store.flushCallCount;
-
                         filtersPlugin.grid.lockedGrid.headerCt.add({
                             dataIndex: 'age',
                             text: 'Age',
@@ -1870,7 +1795,7 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         });
 
-                        expect(store.flushCallCount).toBe(initialFlushCallCount);
+                        expect(store.load.callCount).toBe(1);
                     });
 
                     it('should make a request that includes the new filter when adding a column with an active filter', function () {
@@ -1886,7 +1811,7 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         });
 
-                        expect(store.flushCallCount).toBe(2);
+                        expect(store.load.callCount).toBe(2);
                     });
                 });
             });
@@ -1947,7 +1872,7 @@ describe('Ext.grid.filters.Filters', function () {
                     grid.columnManager.getHeaderByDataIndex('name').setActive(false);
                     completeWithData();
                     // Note that the load count would be 2 if setActive(false) had initiated another request.
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
 
@@ -1977,12 +1902,12 @@ describe('Ext.grid.filters.Filters', function () {
                     grid.columnManager.getHeaderByDataIndex('age').setActive(true);
 
                     waitsFor(function () {
-                        return store.flushCallCount === 1;
+                        return store.load.callCount === 1;
                     });
 
                     runs(function () {
                         // Note that the load count would be 2 if the newly-added filter would have made a request.
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -2362,7 +2287,7 @@ describe('Ext.grid.filters.Filters', function () {
                 waits(10);
 
                 runs(function () {
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
 
@@ -2399,12 +2324,12 @@ describe('Ext.grid.filters.Filters', function () {
                 });
 
                 waitsFor(function () {
-                    return store.flushCallCount === 1;
+                    return store.load.callCount === 1;
                 });
 
                 runs(function () {
                     expect(getFilters().length).toBe(2);
-                    expect(store.flushCallCount).toBe(1);
+                    expect(store.load.callCount).toBe(1);
                 });
             });
         });
@@ -2439,12 +2364,12 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-true-1'
+                        stateId: 'foo'
                     });
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         autoLoad: false,
@@ -2463,15 +2388,15 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-true-1'
+                        stateId: 'foo'
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount === 1;
+                        return store.load.callCount === 1;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
 
@@ -2492,12 +2417,12 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-true-2'
+                        stateId: 'foo'
                     });
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         remoteFilter: true,
@@ -2515,21 +2440,21 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-true-2'
+                        stateId: 'foo'
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount === 1;
+                        return store.load.callCount === 1;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
 
             describe('if `false`', function () {
-                it('should not make a network request if it has state information and autoLoad = false on the grid store', function () {
+                it('should still make a network request if it has state information and autoLoad = false on the grid store', function () {
                     // Note that the store config is ignored in favor of the panel config.
                     createGrid({
                         autoLoad: false,
@@ -2543,14 +2468,14 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-false-1'
+                        stateId: 'foo'
                     });
 
                     grid.columnManager.getHeaderByDataIndex('name').filter.setValue('pagey');
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         autoLoad: false,
@@ -2564,15 +2489,15 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-false-1'
+                        stateId: 'foo'
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount === 1;
+                        return store.load.callCount === 1;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
 
@@ -2580,8 +2505,7 @@ describe('Ext.grid.filters.Filters', function () {
                     // Note that the store config is ignored in favor of the panel config.
                     createGrid({
                         autoLoad: true,
-                        remoteFilter: false,
-                        asynchronousLoad: true
+                        remoteFilter: false
                     }, {
                         columns: [
                             { header: 'Name',  dataIndex: 'name', width: 100,
@@ -2591,14 +2515,14 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-false-2'
+                        stateId: 'foo'
                     });
 
                     grid.columnManager.getHeaderByDataIndex('name').filter.setValue('pagey');
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({
                         autoLoad: true,
@@ -2612,15 +2536,15 @@ describe('Ext.grid.filters.Filters', function () {
                             }
                         ],
                         stateful: true,
-                        stateId: 'remote-filter-false-2'
+                        stateId: 'foo'
                     });
 
                     waitsFor(function () {
-                        return store.flushCallCount === 1;
+                        return store.load.callCount === 1;
                     });
 
                     runs(function () {
-                        expect(store.flushCallCount).toBe(1);
+                        expect(store.load.callCount).toBe(1);
                     });
                 });
             });
@@ -2682,7 +2606,7 @@ describe('Ext.grid.filters.Filters', function () {
 
                 runs(function () {
                     grid.saveState();
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -2732,7 +2656,7 @@ describe('Ext.grid.filters.Filters', function () {
                 runs(function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -2776,7 +2700,7 @@ describe('Ext.grid.filters.Filters', function () {
                 runs(function () {
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -2822,7 +2746,7 @@ describe('Ext.grid.filters.Filters', function () {
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -2866,7 +2790,7 @@ describe('Ext.grid.filters.Filters', function () {
 
                     grid.saveState();
 
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -2910,7 +2834,7 @@ describe('Ext.grid.filters.Filters', function () {
 
                 runs(function () {
                     grid.saveState();
-                    Ext.destroy(grid, store);
+                    Ext.destroy(grid);
 
                     createGrid({}, {
                         columns: columns,
@@ -3330,4 +3254,3 @@ describe('Ext.grid.filters.Filters', function () {
         });
     });
 });
-

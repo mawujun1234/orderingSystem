@@ -34,9 +34,6 @@ Ext.define('KitchenSink.view.charts.line.Basic', {
             type: 'panzoom',
             zoomOnPanGesture: true
         },
-        animation: {
-            duration: 200
-        },
         store: {
             type: 'browsers'
         },
@@ -88,11 +85,10 @@ Ext.define('KitchenSink.view.charts.line.Basic', {
             xField: 'month',
             yField: 'data1',
             style: {
-                lineWidth: 2
+                lineWidth: 4
             },
             marker: {
-                radius: 4,
-                lineWidth: 2
+                radius: 4
             },
             label: {
                 field: 'data1',
@@ -111,10 +107,7 @@ Ext.define('KitchenSink.view.charts.line.Basic', {
                 hideDelay: 0,
                 renderer: 'onSeriesTooltipRender'
             }
-        }],
-        listeners: {
-            itemhighlightchange: 'onItemHighlightChange'
-        }
+        }]
     },
 
     tbar: ['->', {

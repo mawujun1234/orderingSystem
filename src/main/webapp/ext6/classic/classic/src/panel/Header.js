@@ -40,97 +40,39 @@ Ext.define('Ext.panel.Header', {
     beforeRenderConfig: {
         /**
          * @cfg {Number/String} glyph
-         * @accessor
-         * A numeric unicode character code to use as the icon.  The default font-family 
-         * for glyphs can be set globally using 
-         * {@link Ext.app.Application#glyphFontFamily glyphFontFamily} application 
-         * config or the {@link Ext#setGlyphFontFamily Ext.setGlyphFontFamily()} method.
-         * 
-         * The following shows how to set the glyph using the font icons provided in the 
-         * SDK (assuming the font-family has been configured globally):
-         * 
-         *     // assumes the glyphFontFamily is "FontAwesome"
-         *     glyph: 'xf005'     // the "home" icon
-         * 
-         *     // assumes the glyphFontFamily is "Pictos"
-         *     glyph: 'H'         // the "home" icon
-         * 
-         * Alternatively, this config option accepts a string with the charCode and 
-         * font-family separated by the `@` symbol.
-         * 
-         *     // using Font Awesome
-         *     glyph: 'xf005@FontAwesome'     // the "home" icon
-         * 
-         *     // using Pictos
-         *     glyph: 'H@Pictos'              // the "home" icon
-         * 
-         * Depending on the theme you're using, you may need include the font icon 
-         * packages in your application in order to use the icons included in the 
-         * SDK.  For more information see:
-         * 
-         *  - [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/cheatsheet/)
-         *  - [Pictos icons](http://docs.sencha.com/extjs/6.0/core_concepts/font_ext.html)
-         *  - [Theming Guide](http://docs.sencha.com/extjs/6.0/core_concepts/theming.html)
+         * A numeric unicode character code to use as the icon for the panel header. The
+         * default font-family for glyphs can be set globally using
+         * {@link Ext#setGlyphFontFamily Ext.setGlyphFontFamily()}. Alternatively, this
+         * config option accepts a string with the charCode and font-family separated by the
+         * `@` symbol. For example '65@My Font Family'.
          */
         glyph: null,
 
         /**
          * @cfg {String} icon
-         * Path to an image to use as an icon.
+         * Path to image for an icon.
          *
-         * For instructions on how you can use icon fonts including those distributed in 
-         * the SDK see {@link #iconCls}.
-         * @accessor
+         * There are no default icons that come with Ext JS.
          */
         icon: null,
 
         /**
          * @cfg {String} iconCls
-         * @accessor
-         * One or more space separated CSS classes to be applied to the icon element.  
-         * The CSS rule(s) applied should specify a background image to be used as the 
-         * icon.
+         * CSS class for an icon.
          *
-         * An example of specifying a custom icon class would be something like:
-         *
-         *     // specify the property in the config for the class:
-         *     iconCls: 'my-home-icon'
-         *
-         *     // css rule specifying the background image to be used as the icon image:
-         *     .my-home-icon {
-         *         background-image: url(../images/my-home-icon.gif) !important;
-         *     }
-         * 
-         * In addition to specifying your own classes, you can use the font icons 
-         * provided in the SDK using the following syntax:
-         * 
-         *     // using Font Awesome
-         *     iconCls: 'x-fa fa-home'
-         * 
-         *     // using Pictos
-         *     iconCls: 'pictos pictos-home'
-         * 
-         * Depending on the theme you're using, you may need include the font icon 
-         * packages in your application in order to use the icons included in the 
-         * SDK.  For more information see:
-         * 
-         *  - [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/cheatsheet/)
-         *  - [Pictos icons](http://docs.sencha.com/extjs/6.0/core_concepts/font_ext.html)
-         *  - [Theming Guide](http://docs.sencha.com/extjs/6.0/core_concepts/theming.html)
+         * There are no default icon classes that come with Ext JS.
          */
         iconCls: null,
 
         /**
          * @cfg {'top'/'right'/'bottom'/'left'} [iconAlign='left']
          * The side of the title to render the icon.
-         * @accessor
          */
         iconAlign: null,
 
         /**
          * @cfg {String/Ext.panel.Title}
          * The title text or config object for the {@link Ext.panel.Title Title} component.
-         * @accessor
          */
         title: {
             $value: {
@@ -149,10 +91,8 @@ Ext.define('Ext.panel.Header', {
         },
 
         /**
-         * @cfg {'left'/'center'/'right'} [titleAlign='left']
-         * The alignment of the title text within the available space between the
-         * icon and the tools.
-         * @accessor
+         * @cfg {String} [titleAlign='left']
+         * The alignment of the title text.
          */
         titleAlign: null,
 
@@ -165,13 +105,11 @@ Ext.define('Ext.panel.Header', {
          *
          * Note that if an {@link #icon} or {@link #iconCls} has been configured, then the icon component will be the
          * first item before all specified tools or {@link #cfg-items}. This configuration does not include the icon.
-         * @accessor
          */
         titlePosition: null,
         
         /**
          * @cfg {'default'/0/1/2} [titleRotation='default']
-         * @accessor
          * The rotation of the header's title text.  Can be one of the following values:
          *
          * - `'default'` - use the default rotation, depending on the dock position of the header

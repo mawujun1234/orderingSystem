@@ -21,51 +21,52 @@ Ext.define('Ext.panel.Title', {
 
     beforeRenderConfig: {
         /**
-         * @cfg [textAlign='left']
-         * @inheritdoc Ext.panel.Header#cfg-titleAlign
-         * @accessor
+         * @cfg {'left'/'center'/'right'} [textAlign='left']
+         * text alignment of the title
          */
         textAlign: null,
 
         /**
          * @cfg {String}
          * The title's text (can contain html tags/entities)
-         * @accessor
          */
         text: null,
 
         /**
-         * @cfg glyph
-         * @inheritdoc Ext.panel.Header#cfg-glyph
-         * @accessor
+         * @cfg {Number/String} glyph
+         * A numeric unicode character code to use as the icon. The
+         * default font-family for glyphs can be set globally using
+         * {@link Ext#setGlyphFontFamily Ext.setGlyphFontFamily()}. Alternatively, this
+         * config option accepts a string with the charCode and font-family separated by the
+         * `@` symbol. For example '65@My Font Family'.
          */
         glyph: null,
 
         /**
-         * @cfg icon
-         * @inheritdoc Ext.panel.Header#cfg-icon
-         * @accessor
+         * @cfg {String} icon
+         * Path to image for an icon.
          */
         icon: null,
 
         /**
          * @cfg {'top'/'right'/'bottom'/'left'} [iconAlign='left']
          * alignment of the icon
-         * @accessor
          */
         iconAlign: null,
 
         /**
-         * @cfg iconCls
-         * @inheritdoc Ext.panel.Header#cfg-iconCls
-         * @accessor
+         * @cfg {String} iconCls
+         * CSS class for an icon.
          */
         iconCls: null,
         
         /**
-         * @cfg rotation
-         * @inheritdoc Ext.panel.Header#cfg-titleRotation
-         * @accessor
+         * @cfg {0/1/2} [rotation=0]
+         * The rotation of the title's text.  Can be one of the following values:
+         *
+         * - `0` - no rotation
+         * - `1` - rotate 90deg clockwise
+         * - `2` - rotate 90deg counter-clockwise
          */
         rotation: null
     },

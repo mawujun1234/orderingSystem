@@ -97,10 +97,6 @@
             }
 
             Cmd.status.suiteFinished(suite.description);
-            
-            if (suite.cleanupResults) {
-                suite.cleanupResults();
-            }
         }
 
     };

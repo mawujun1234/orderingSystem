@@ -233,24 +233,38 @@ Ext.define('Ext.view.BoundList', {
     },
     
     onShow: function() {
-        var field = this.pickerField;
         this.callParent();
 
-        // If the input field is not focused, then focus it.
-        if (field && field.rendered && !field.hasFocus) {
-            field.focus();
+        // If the input field is not focused, then focus the picker.
+        if (Ext.Element.getActiveElement() !== this.pickerField.inputEl.dom) {
+            this.focus();
         }
     },
 
-    afterComponentLayout: function(width, height, oldWidth, oldHeight) {
-        var field = this.pickerField;
+    onHide: function() {
+        var inputEl = this.pickerField.inputEl.dom;
 
-        this.callParent([width, height, oldWidth, oldHeight]);
+        // If we're hiding a focused picker, focus must move to the input field unless the instigating
+        // browser event is a touch. In that case, the input only focuses when they touch it -
+        // we want to avoid an appearing keyboard.
+        if (Ext.Element.getActiveElement() !== inputEl && 
+            (!Ext.EventObject || Ext.EventObject.pointerType !== 'touch')) {
+            inputEl.focus();
+        }
+        // Call parent (hide the element) *after* focus has been moved out.
+        // Maintainer: Component#onHide takes parameters. 
+        this.callParent(arguments);
+    },
+
+    afterComponentLayout: function(width, height, oldWidth, oldHeight) {
+        var picker = this.pickerField;
+
+        this.callParent(arguments);
 
         // Bound list may change size, so realign on layout
         // **if the field is an Ext.form.field.Picker which has alignPicker!**
-        if (field && field.alignPicker) {
-            field.alignPicker();
+        if (picker && picker.alignPicker) {
+            picker.alignPicker();
         }
     },
 
@@ -258,30 +272,23 @@ Ext.define('Ext.view.BoundList', {
     onItemClick: function(record) {
         // The selection change events won't fire when clicking on the selected element. Detect it here.
         var me = this,
-            field = me.pickerField,
-            valueField, selected;
+            pickerField = me.pickerField,
+            valueField = pickerField.valueField,
+            selected = me.getSelectionModel().getSelection();
 
-        if (!field) {
-            return;
-        }
-
-        valueField = field.valueField;
-        selected = me.getSelectionModel().getSelection();
-
-        if (!field.multiSelect && selected.length) {
+        if (!pickerField.multiSelect && selected.length) {
             selected = selected[0];
             // Not all pickerField's have a collapse API, i.e. Ext.ux.form.MultiSelect.
-            if (selected && field.isEqual(record.get(valueField), selected.get(valueField)) && field.collapse) {
-                field.collapse();
+            if (selected && pickerField.isEqual(record.get(valueField), selected.get(valueField)) && pickerField.collapse) {
+                pickerField.collapse();
             }
         }
     },
 
     onContainerClick: function(e) {
-        var toolbar = this.pagingToolbar;
         // Ext.view.View template method
         // Do not continue to process the event as a container click if it is within the pagingToolbar
-        if (toolbar && toolbar.rendered && e.within(toolbar.el)) {
+        if (this.pagingToolbar && this.pagingToolbar.rendered && e.within(this.pagingToolbar.el)) {
             return false;
         }
     },

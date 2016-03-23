@@ -621,18 +621,12 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         inheritableStatics: {
-            /**
-             * @private
-             * @static
-             * @inheritable
-             */
             cache: Ext.cache = {},
 
             /**
              * @property
              * @static
              * @private
-             * @inheritable
              */
             editableSelector: 'input,textarea,[contenteditable="true"]',
 
@@ -645,7 +639,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * for an element even though it actually has a parent element that is hidden. For this
              * reason, and in most cases, using the {@link #OFFSETS} mode is a better choice.
              * @static
-             * @inheritable
              */
             VISIBILITY: 1,
 
@@ -654,7 +647,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * Visibility mode constant for use with {@link Ext.dom.Element#setVisibilityMode}.
              * Use the CSS 'display' property to hide the element.
              * @static
-             * @inheritable
              */
             DISPLAY: 2,
 
@@ -663,7 +655,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * Visibility mode constant for use with {@link Ext.dom.Element#setVisibilityMode}.
              * Use CSS absolute positioning and top/left offsets to hide the element.
              * @static
-             * @inheritable
              */
             OFFSETS: 3,
             
@@ -674,14 +665,12 @@ Ext.define('Ext.dom.Element', function(Element) {
              * making it hidden while not being truly invisible. This is useful when an element
              * needs to be published to the Assistive Technologies such as screen readers.
              * @static
-             * @inheritable
              */
             CLIP: 4,
 
             /**
              * @property
              * @static
-             * @inheritable
              * @private
              * This property indicates a minimum threshold of vertical resize movement for
              * virtual keyboard detection.
@@ -700,7 +689,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * @property {Boolean}
              * @private
              * @static
-             * @inheritable
              * True to globally disable the delegated event system.  The results of
              * setting this to false are unpredictable since the Gesture publisher relies
              * on delegated events in order to work correctly.  Disabling delegated events
@@ -713,7 +701,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * @property {Object}
              * @private
              * @static
-             * @inheritable
              * The list of valid nodeTypes that are allowed to be wrapped
              */
             validNodeTypes: {
@@ -728,7 +715,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * @return {String}
              * @private
              * @static
-             * @inheritable
              */
             addUnits: function(size, units) {
                 // Most common case first: Size is set to a number
@@ -776,9 +762,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * but should instead use DomHelper methods, or Element methods that use
              * DomHelper under the hood (e.g. createChild).
              * see https:*fiddle.sencha.com/#fiddle/tj
-             * 
-             * @static
-             * @inheritable
              */
             create: function(attributes, domNode) {
                 var me = this,
@@ -878,7 +861,6 @@ Ext.define('Ext.dom.Element', function(Element) {
 
             /**
              * @static
-             * @inheritable
              * @private
              */
             detach: function() {
@@ -893,7 +875,6 @@ Ext.define('Ext.dom.Element', function(Element) {
 
             /**
              * @inheritdoc Ext#fly
-             * @inheritable
              * @static
              */
             fly: function(dom, named) {
@@ -903,7 +884,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Returns the top Element that is located at the passed coordinates
              * @static
-             * @inheritable
              * @param {Number} x The x coordinate
              * @param {Number} y The y coordinate
              * @return {String} The found Element
@@ -930,7 +910,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * @param {String/HTMLElement/Ext.dom.Element} element The `id` of the node, a DOM Node or an existing Element.
              * @return {Ext.dom.Element} The Element object (or `null` if no matching element was found).
              * @static
-             * @inheritable
              */
             get: function(el) {
                 var me = this,
@@ -1060,15 +1039,10 @@ Ext.define('Ext.dom.Element', function(Element) {
              * on the document, this is returned. If not, the focus is tracked and the active
              * element is maintained internally.
              * @static
-             * @inheritable
-             *
-             * @param {Boolean} asElement Return Ext.Element instance instead of DOM node.
-             *
              * @return {HTMLElement} The active (focused) element in the document.
              */
-            getActiveElement: function(asElement) {
+            getActiveElement: function () {
                 var active = DOC.activeElement;
-                
                 // The activeElement can be null, however there also appears to be a very odd
                 // and inconsistent bug in IE where the activeElement is simply an empty object
                 // literal. Test if the returned active element has focus, if not, we've hit the bug
@@ -1076,14 +1050,12 @@ Ext.define('Ext.dom.Element', function(Element) {
                 if (!active || !active.focus) {
                     active = DOC.body;
                 }
-                
-                return asElement ? Ext.get(active) : active;
+                return active;
             },
 
             /**
              * Retrieves the document height
              * @static
-             * @inheritable
              * @return {Number} documentHeight
              */
             getDocumentHeight: function() {
@@ -1093,7 +1065,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Retrieves the document width
              * @static
-             * @inheritable
              * @return {Number} documentWidth
              */
             getDocumentWidth: function() {
@@ -1104,7 +1075,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * Retrieves the current orientation of the window. This is calculated by
              * determining if the height is greater than the width.
              * @static
-             * @inheritable
              * @return {String} Orientation of window: 'portrait' or 'landscape'
              */
             getOrientation: function() {
@@ -1118,7 +1088,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Retrieves the viewport height of the window.
              * @static
-             * @inheritable
              * @return {Number} viewportHeight
              */
             getViewportHeight: function() {
@@ -1136,7 +1105,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Retrieves the viewport width of the window.
              * @static
-             * @inheritable
              * @return {Number} viewportWidth
              */
             getViewportWidth: function() {
@@ -1154,7 +1122,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Retrieves the viewport size of the window.
              * @static
-             * @inheritable
              * @return {Object} object containing width and height properties
              */
             getViewSize: function() {
@@ -1172,7 +1139,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * - padding-top -> paddingTop
              *
              * @static
-             * @inheritable
              * @param {String} prop The property to normalize
              * @return {String} The normalized string
              */
@@ -1183,8 +1149,6 @@ Ext.define('Ext.dom.Element', function(Element) {
 
             /**
              * @private
-             * @static
-             * @inheritable
              */
             _onWindowFocusChange: function(e) {
                 // Tracks the timestamp of focus entering or leaving an editable element
@@ -1199,8 +1163,6 @@ Ext.define('Ext.dom.Element', function(Element) {
 
             /**
              * @private
-             * @static
-             * @inheritable
              */
             _onWindowResize: function() {
                 var windowWidth = window.innerWidth,
@@ -1253,7 +1215,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
              * (e.g. 10, "10", "10 10", "10 10 10" and "10 10 10 10" are all valid options and would return the same result)
              * @static
-             * @inheritable
              * @param {Number/String} box The encoded margins
              * @return {Object} An object with margin sizes for top, right, bottom and left containing the unit
              */
@@ -1306,7 +1267,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              *     console.log(Ext.dom.Element.parseStyles(css));
              *
              * @static
-             * @inheritable
              * @param {String} styles A CSS string
              * @return {Object} styles
              */
@@ -1333,7 +1293,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * elements in one statement through the returned
              * {@link Ext.dom.CompositeElementLite CompositeElementLite} object.
              * @static
-             * @inheritable
              * @param {String/HTMLElement[]} selector The CSS selector or an array of
              * elements
              * @param {Boolean} [composite=false] Return a CompositeElement as opposed to
@@ -1349,7 +1308,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Selects child nodes of a given root based on the passed CSS selector.
              * @static
-             * @inheritable
              * @param {String} selector The CSS selector.
              * @param {Boolean} [asDom=true] `false` to return an array of Ext.dom.Element
              * @param {HTMLElement/String} [root] The root element of the query or id of
@@ -1365,7 +1323,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
              * (e.g. 10, "10", "10 10", "10 10 10" and "10 10 10 10" are all valid options and would return the same result)
              * @static
-             * @inheritable
              * @param {Number/String/Object} box The encoded margins, or an object with top, right,
              * @param {String} units The type of units to add
              * @return {String} An string with unitized (px if units is not specified) metrics for top, right, bottom and left
@@ -1385,7 +1342,6 @@ Ext.define('Ext.dom.Element', function(Element) {
              * @param {Object} form The form
              * @return {String} The url encoded form
              * @static
-             * @inheritable
              */
             serializeForm: function(form) {
                 var fElements = form.elements || (DOC.forms[form] || Ext.getDom(form)).elements,
@@ -1426,7 +1382,6 @@ Ext.define('Ext.dom.Element', function(Element) {
             /**
              * Returns the common ancestor of the two passed elements.
              * @static
-             * @inheritable
              *
              * @param {Ext.dom.Element/HTMLElement} nodeA
              * @param {Ext.dom.Element/HTMLElement} nodeB
@@ -1647,30 +1602,6 @@ Ext.define('Ext.dom.Element', function(Element) {
 
         /**
          * More flexible version of {@link #setStyle} for setting style properties.
-         * 
-         * Styles in object form should be a valid DOM element style property.  
-         * [Valid style property names](http://www.w3schools.com/jsref/dom_obj_style.asp) 
-         * (_along with the supported CSS version for each_)
-         * 
-         *     // <div id="my-el">Phineas Flynn</div>
-         *     
-         *     var el = Ext.get('my-el');
-         *     
-         *     el.applyStyles('color: white;');
-         *     
-         *     el.applyStyles({
-         *         fontWeight: 'bold',
-         *         backgroundColor: 'gray',
-         *         padding: '10px'
-         *     });
-         *     
-         *     el.applyStyles(function () {
-         *         if (name.initialConfig.html === 'Phineas Flynn') {
-         *             return 'font-style: italic;';
-         *             // OR return { fontStyle: 'italic' };
-         *         }
-         *     });
-         * 
          * @param {String/Object/Function} styles A style specification string, e.g. "width:100px", or object in the form `{width:"100px"}`, or
          * a function which returns such a specification.
          * @return {Ext.dom.Element} this
@@ -1831,8 +1762,7 @@ Ext.define('Ext.dom.Element', function(Element) {
         /**
          * Returns `true` if this element is an ancestor of the passed element, or is
          * the element.
-         * @param {String/HTMLElement/Ext.dom.Element} element The dom element, 
-         * Ext.dom.Element, or id (string) of the dom element to check.
+         * @param {HTMLElement/String} element The element to check.
          * @return {Boolean} True if this element is an ancestor of el or the el itself, else false
          */
         contains: function(element) {
@@ -2153,26 +2083,23 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         /**
-         * Try to focus the element either immediately or after a timeout
-         * if `defer` argument is specified.
-         *
+         * Tries to focus the element. Any exceptions are caught and ignored.
          * @param {Number} [defer] Milliseconds to defer the focus
-         *
          * @return {Ext.dom.Element} this
          */
         focus: function(defer, /* private */ dom) {
             var me = this;
 
             dom = dom || me.dom;
-            
-            if (Number(defer)) {
-                Ext.defer(me.focus, defer, me, [null, dom]);
+            try {
+                if (Number(defer)) {
+                    Ext.defer(me.focus, defer, me, [null, dom]);
+                } else {
+                    Ext.GlobalEvents.fireEvent('beforefocus', dom);
+                    dom.focus();
+                }
+            } catch(e) {
             }
-            else {
-                Ext.GlobalEvents.fireEvent('beforefocus', dom);
-                dom.focus();
-            }
-            
             return me;
         },
 
@@ -2471,8 +2398,6 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         /**
-         * @method
-         *
          * Returns an object with properties top, left, right and bottom representing the margins of this element unless sides is passed,
          * then it returns the calculated width of the sides (see {@link #getPadding}).
          * @param {String} [sides] Any combination of 'l', 'r', 't', 'b' to get the sum of those sides.
@@ -2566,7 +2491,7 @@ Ext.define('Ext.dom.Element', function(Element) {
          * a given container.  These coordinates translate into the scrollLeft and scrollTop
          * positions that will need to be set on an ancestor of the element in order to make
          * this element visible within its container.
-         * @param {String/HTMLElement/Ext.Element} container The container
+         * @param {String/HTMLElement/Ext.Element} The container
          * @param {Number} scrollX The container's current scroll position on the x axis
          * @param {Number} scrollY The container's current scroll position on the y axis
          * @return {Object} An object with "x" and "y" properties
@@ -3178,24 +3103,10 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         /**
-        * Mask iframes when shim is true. See {@link Ext.util.Floating#shim}.
-        * @private
-        */
-        maskIframes: function() {
-            var iframes = document.getElementsByTagName('iframe');
-
-            Ext.each(iframes, function(iframe) {
-                var iframeParent = Ext.fly(iframe.parentNode),
-                    myMask = iframeParent.mask();
-                myMask.setStyle('background-color','transparent');
-            });
-
-        },
-
-        /**
          * @cfg listeners
          * @hide
          */
+
         matchNode: function(dir, start, selector, returnDom) {
             var dom = this.dom,
                 n;
@@ -3532,8 +3443,7 @@ Ext.define('Ext.dom.Element', function(Element) {
         replaceCls: function(oldName, newName, prefix, suffix) {
             var me = this,
                 dom, map, classList, i, ln, name,
-                elementData = me.getData(),
-                change;
+                elementData = me.getData();
 
             if (!oldName && !newName) {
                 return me;
@@ -3569,7 +3479,7 @@ Ext.define('Ext.dom.Element', function(Element) {
 
                 if (map[name]) {
                     delete map[name];
-                    change = true;
+                    Ext.Array.remove(classList, name);
                 }
             }
 
@@ -3578,14 +3488,11 @@ Ext.define('Ext.dom.Element', function(Element) {
 
                 if (!map[name]) {
                     map[name] = true;
-                    change = true;
+                    classList.push(name);
                 }
             }
 
-            if (change) {
-                elementData.classList = classList = Ext.Object.getKeys(map);
-                dom.className = classList.join(' ');
-            }
+            dom.className = classList.join(' ');
 
             return me;
         },
@@ -3881,53 +3788,9 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         /**
-         * Sets the passed attributes as attributes of this element (a `style` attribute 
-         * can be a string, object or function).
-         * 
-         * Example component (though any Ext.dom.Element would suffice):
-         * 
-         *     var cmp = Ext.create({
-         *         xtype: 'component',
-         *         html: 'test',
-         *         renderTo: Ext.getBody()
-         *     });
-         * 
-         * Once the component is rendered, you can fetch a reference to its outer 
-         * element to use `set`:
-         * 
-         *     cmp.el.set({
-         *         foo: 'bar'
-         *     });
-         * 
-         * This sets an attribute on the element of **foo="bar"**:
-         * 
-         *     <div class="x-component x-component-default x-border-box" id="component-1009" foo="bar">test</div>
-         * 
-         * To remove the attribute pass a value of **undefined**:
-         * 
-         *     cmp.el.set({
-         *         foo: undefined
-         *     });
-         * 
-         * **Note:**
-         * 
-         *  - You cannot remove an attribute by passing `undefined` when the 
-         * `expandos` param is set to **false**.
-         *  - Passing an attribute of `style` results in the request being handed off to 
-         * {@link #method-applyStyles}.
-         *  - Passing an attribute of `cls` results in the element's dom's 
-         * [className](http://www.w3schools.com/jsref/prop_html_classname.asp) property 
-         * being set directly.  For additional flexibility when setting / removing 
-         * classes see: 
-         *     - {@link #method-addCls}
-         *     - {@link #method-removeCls}
-         *     - {@link #method-replaceCls}
-         *     - {@link #method-setCls}
-         *     - {@link #method-toggleCls}
-         * 
+         * Sets the passed attributes as attributes of this element (a style attribute can be a string, object or function).
          * @param {Object} attributes The object with the attributes.
-         * @param {Boolean} [useSet=true] `false` to override the default `setAttribute` 
-         * to use [expandos](http://help.dottoro.com/ljvovanq.php).
+         * @param {Boolean} [useSet=true] `false` to override the default `setAttribute` to use expandos.
          * @return {Ext.dom.Element} this
          */
         set: function(attributes, useSet) {
@@ -3974,28 +3837,31 @@ Ext.define('Ext.dom.Element', function(Element) {
 
         /**
          * Sets the specified CSS class on this element's DOM node.
-         * @param {String/String[]} className The CSS class to set on this element.
+         * @param {String/Array} className The CSS class to set on this element.
          */
         setCls: function(className) {
             var me = this,
                 elementData = me.getData(),
-                i, ln, name, map, classList;
+                i, ln, name, map;
 
             if (!elementData.isSynchronized) {
                 me.synchronize();
             }
 
+            map = elementData.classMap;
             if (typeof className === 'string') {
                 className = className.split(spacesRe);
             }
 
-            elementData.classList = classList = className.slice();
-            elementData.classMap = map = {};
-
-            for (i = 0, ln = classList.length; i < ln; i++) {
-                map[classList[i]] = true;
+            for (i = 0, ln = className.length; i < ln; i++) {
+                name = className[i];
+                if (!map[name]) {
+                    map[name] = true;
+                }
             }
-            me.dom.className = classList.join(' ');
+
+            elementData.classList = className.slice();
+            me.dom.className = className.join(' ');
         },
 
         /**
@@ -4327,31 +4193,9 @@ Ext.define('Ext.dom.Element', function(Element) {
         },
 
         /**
-         * Wrapper for setting style properties, also takes single object parameter of 
-         * multiple styles.
-         * 
-         * Styles should be a valid DOM element style property.  
-         * [Valid style property names](http://www.w3schools.com/jsref/dom_obj_style.asp) 
-         * (_along with the supported CSS version for each_)
-         * 
-         *     // <div id="my-el">Phineas Flynn</div>
-         *     
-         *     var el = Ext.get('my-el');
-         *     
-         *     // two-param syntax
-         *     el.setStyle('color', 'white');
-         *     
-         *     // single-param syntax
-         *     el.setStyle({
-         *         fontWeight: 'bold',
-         *         backgroundColor: 'gray',
-         *         padding: '10px'
-         *     });
-         * 
-         * @param {String/Object} property The style property to be set, or an object of 
-         * multiple styles.
-         * @param {String} [value] The value to apply to the given property, or null if 
-         * an object was passed.
+         * Wrapper for setting style properties, also takes single object parameter of multiple styles.
+         * @param {String/Object} property The style property to be set, or an object of multiple styles.
+         * @param {String} [value] The value to apply to the given property, or null if an object was passed.
          * @return {Ext.dom.Element} this
          */
         setStyle: function(prop, value) {
@@ -4463,8 +4307,8 @@ Ext.define('Ext.dom.Element', function(Element) {
          * Use this to change the visibility mode between {@link #VISIBILITY}, 
          * {@link #DISPLAY}, {@link #OFFSETS}, or {@link #CLIP}.
          *
-         * @param {Ext.dom.Element.VISIBILITY/Ext.dom.Element.DISPLAY/Ext.dom.Element.OFFSETS/Ext.dom.Element.CLIP} mode
-         * The method by which the element will be {@link #hide hidden} (you can
+         * @param {Ext.dom.Element.VISIBILITY/Ext.dom.Element.DISPLAY/Ext.dom.Element.OFFSETS/Ext.dom.Element.CLIP} 
+         * mode The method by which the element will be {@link #hide hidden} (you can 
          * also use the {@link #setVisible} or {@link #toggle} method to toggle element 
          * visibility).
          *
@@ -4740,21 +4584,7 @@ Ext.define('Ext.dom.Element', function(Element) {
                 this.dom.style[transformStyleName] = 'translate3d(' + (x || 0) + 'px, ' + (y || 0) + 'px, ' + (z || 0) + 'px)';
             };
         }(),
-		
-        /**
-         * Unmask iframes when shim is true. See {@link Ext.util.Floating#shim}.
-         * @private
-         */
-        unmaskIframes: function() {
-            var iframes = document.getElementsByTagName('iframe');
 
-            Ext.each(iframes, function(iframe) {
-                var iframeParent = Ext.fly(iframe.parentNode);
-                iframeParent.unmask();
-            });
-
-        },
-        
         /**
          * @private
          */
@@ -4763,10 +4593,9 @@ Ext.define('Ext.dom.Element', function(Element) {
                 parentNode = dom.parentNode,
                 grandparentNode,
                 activeElement = Ext.fly(Ext.Element.getActiveElement()),
-                cached, resumeFocus, grannyFly, tabIndex;
+                cached, resumeFocus;
 
             cached = Ext.cache[activeElement.id];
-            
             // If the element is in the cache, we need to get the instance so
             // we can suspend events on it. If it's not in the cache, it can't
             // have any events so we don't need to suspend on it.
@@ -4776,25 +4605,13 @@ Ext.define('Ext.dom.Element', function(Element) {
 
             if (this.contains(activeElement)) {
                 if (cached) {
-                    cached.suspendFocusEvents();
+                    activeElement.suspendEvent('focus', 'blur');
                 }
-                
+                Ext.suspendFocus();
                 resumeFocus = true;
             }
-            
             if (parentNode) {
                 grandparentNode = parentNode.parentNode;
-                
-                // See wrap() for the explanation of this jiggery-trickery
-                if (resumeFocus) {
-                    tabIndex = grandparentNode.getAttribute('tabIndex');
-                    
-                    grannyFly = Ext.fly(grandparentNode);
-                    grannyFly.set({ tabIndex: -1 });
-                    grannyFly.suspendFocusEvents();
-                    grannyFly.focus();
-                }
-                
                 grandparentNode.insertBefore(dom, parentNode);
                 grandparentNode.removeChild(parentNode);
             }
@@ -4802,20 +4619,14 @@ Ext.define('Ext.dom.Element', function(Element) {
                 grandparentNode = document.createDocumentFragment();
                 grandparentNode.appendChild(dom);
             }
-            
             if (resumeFocus) {
                 if (cached) {
-                    cached.focus();
-                    cached.resumeFocusEvents();
-                }
-                else {
+                    activeElement.focus();
+                    activeElement.resumeEvent('focus', 'blur');
+                } else {
                     Ext.fly(activeElement).focus();
                 }
-                
-                if (grannyFly) {
-                    grannyFly.resumeFocusEvents();
-                    grannyFly.set({ tabIndex: tabIndex });
-                }
+                Ext.resumeFocus();
             }
 
             return this;
@@ -4858,10 +4669,9 @@ Ext.define('Ext.dom.Element', function(Element) {
                 newEl = Ext.DomHelper.insertBefore(dom, config || {tag: "div"}, !returnDom),
                 target = newEl,
                 activeElement = Ext.Element.getActiveElement(),
-                cached, resumeFocus, tabIndex;
+                cached, resumeFocus;
 
             cached = Ext.cache[activeElement.id];
-            
             // If the element is in the cache, we need to get the instance so
             // we can suspend events on it. If it's not in the cache, it can't
             // have any events so we don't need to suspend on it.
@@ -4874,51 +4684,22 @@ Ext.define('Ext.dom.Element', function(Element) {
             }
 
             if (me.contains(activeElement)) {
+                Ext.suspendFocus();
                 if (cached) {
-                    cached.suspendFocusEvents();
+                    activeElement.suspendEvent('focus', 'blur');
                 }
-                
-                // This is workaround for the nasty IE behavior w/r/t removing and adding
-                // DOM nodes that contain focus. When this happens, focus will fall back
-                // to the document body *after* the present code execution path finishes,
-                // with no way to control this. Instead of trying to refocus the element
-                // asynchronously in a callback, we're focusing the wrapper instead,
-                // adding the dom to the wrapper, and then refocusing the dom;
-                // all synchronous and dandy.
-                // The only side effect of all this focus juggling is that focus/blur
-                // events will fire asynchronously after this code path finishes (in IE),
-                // but we deal with that by ignoring these events *on particular elements*.
-                // Focus event publisher will look for focus suspension flag on the element,
-                // and since the flag is cleared asynchronously in the immediate callback,
-                // we have enough cycles to ignore unwanted events to get away with it
-                // but not too many to step on someone else's toes (hopefully).
-                tabIndex = newEl.dom.getAttribute('tabIndex');
-                newEl.set({ tabIndex: -1 });
-                
-                newEl.suspendFocusEvents();
-                newEl.focus();
-                
                 resumeFocus = true;
             }
-            
             target.appendChild(dom);
-            
             if (resumeFocus) {
                 if (cached) {
-                    cached.focus();
-                    cached.resumeFocusEvents();
-                }
-                else {
+                    activeElement.focus();
+                    activeElement.resumeEvent('focus', 'blur');
+                } else {
                     Ext.fly(activeElement).focus();
                 }
-                
-                newEl.resumeFocusEvents();
-                
-                // Most often tabIndex will be undefined, and we don't want to
-                // make the wrapper focusable by accident.
-                newEl.set({ tabIndex: tabIndex });
+                Ext.resumeFocus();
             }
-            
             return newEl;
         },
 
@@ -5052,45 +4833,6 @@ Ext.define('Ext.dom.Element', function(Element) {
                 }
 
                 return publisher;
-            },
-            
-            isFocusSuspended: function() {
-                return !!this.getData().suspendFocusEvents;
-            },
-            
-            suspendFocusEvents: function() {
-                if (!this.isFly) {
-                    this.suspendEvent('focus', 'blur');
-                }
-                
-                this.getData().suspendFocusEvents = true;
-            },
-            
-            resumeFocusEvents: function() {
-                function resumeFn() {
-                    var data;
-                    
-                    if (!this.destroyed) {
-                        data = this.getData();
-                        
-                        if (data) {
-                            data.suspendFocusEvents = false;
-                        }
-                        
-                        if (!this.isFly) {
-                            this.resumeEvent('focus', 'blur');
-                        }
-                    }
-                }
-                
-                if (!this.destroyed && this.getData().suspendFocusEvents) {
-                    if (Ext.isIE) {
-                        Ext.asap(resumeFn, this);
-                    }
-                    else {
-                        resumeFn.call(this);
-                    }
-                }
             }
         },
 
@@ -5485,8 +5227,7 @@ Ext.define('Ext.dom.Element', function(Element) {
                 return null;
             }
 
-            // We could be passed an Element whos dom has been nulled on destruction; use 'dom' in rather than truthiness.
-            return typeof el === 'string' ? Ext.getElementById(el) : 'dom' in el ? el.dom : el;
+            return el.dom || (typeof el === 'string' ? Ext.getElementById(el) : el);
         },
 
         /**

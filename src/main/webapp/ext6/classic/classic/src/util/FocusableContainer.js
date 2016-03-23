@@ -1,9 +1,9 @@
 /**
  * A mixin for groups of Focusable things (Components, Widgets, etc) that
  * should respond to arrow keys to navigate among the peers, but keep only
- * one of the peers tabbable by default (tabIndex=0)
+ * one of the peers focusable by default (tabIndex=0)
  *
- * Some examples: Toolbars, Radio groups, Tab bars, Panel headers, Menus
+ * Some examples: Toolbars, Radio groups, Tab bars
  */
 
 Ext.define('Ext.util.FocusableContainer', {
@@ -82,9 +82,13 @@ Ext.define('Ext.util.FocusableContainer', {
         
         doInitFocusableContainer: function(clearChildren) {
             var me = this,
-                el, child;
+                el;
             
             el = me.getFocusableContainerEl();
+            
+            // We set tabIndex on the focusable container el so that the user
+            // could tab into it; we catch its focus event and focus a child instead
+            me.activateFocusableContainerEl(el);
             
             // This flag allows post factum initialization of the focusable container,
             // i.e. when container was empty initially and then some tabbable children
@@ -96,25 +100,12 @@ Ext.define('Ext.util.FocusableContainer', {
                 me.clearFocusables();
             }
             
-            // If we have no potentially focusable children, or all potentially focusable
-            // children are presently disabled, don't init the container el tabIndex.
-            // There is no point in tabbing into container when it can't shift focus
-            // to a child.
-            child = me.findNextFocusableChild({ step: 1, beforeRender: true });
-            
-            if (child) {
-                // We set tabIndex on the focusable container el so that the user
-                // could tab into it; we catch its focus event and focus a child instead
-                me.activateFocusableContainerEl(el);
-            }
-            
             // Unsightly long names help to avoid possible clashing with class
             // or instance properties. We have to be extra careful in a mixin!
             me.focusableContainerMouseListener = me.mon(
                 el, 'mousedown', me.onFocusableContainerMousedown, me
             );
             
-            // Having keyNav doesn't hurt when container el is not focusable
             me.focusableKeyNav = me.createFocusableContainerKeyNav(el);
         },
         
@@ -180,7 +171,7 @@ Ext.define('Ext.util.FocusableContainer', {
             for (i = 0; i < len; i++) {
                 item = items[i];
 
-                if (item.focusable && !item.disabled) {
+                if (item.focusable) {
                     haveFocusable = true;
                     tabIdx = item.getTabIndex();
 
@@ -201,11 +192,7 @@ Ext.define('Ext.util.FocusableContainer', {
             // before rendering; we assume that an interactive child will become
             // focusable later and now activateFocusable() will just assign it
             // the respective tabIndex.
-            item = me.findNextFocusableChild({
-                beforeRender: beforeRender,
-                items: items,
-                step: true
-            });
+            item = me.findNextFocusableChild(null, true, items, beforeRender);
 
             if (item) {
                 me.activateFocusable(item);
@@ -223,7 +210,7 @@ Ext.define('Ext.util.FocusableContainer', {
             for (i = 0; i < len; i++) {
                 item = items[i];
 
-                if (item.focusable && !item.disabled) {
+                if (item.focusable) {
                     me.deactivateFocusable(item);
                 }
             }
@@ -254,30 +241,18 @@ Ext.define('Ext.util.FocusableContainer', {
         },
 
         onFocusableContainerUpKey: function(e) {
-            // Default action is to scroll the nearest vertically scrollable container
-            e.preventDefault();
-            
             return this.moveChildFocus(e, false);
         },
         
-        onFocusableContainerDownKey: function(e) {
-            // Ditto
-            e.preventDefault();
-            
-            return this.moveChildFocus(e, true);
-        },
-        
         onFocusableContainerLeftKey: function(e) {
-            // Default action is to scroll the nearest horizontally scrollable container
-            e.preventDefault();
-            
             return this.moveChildFocus(e, false);
         },
         
         onFocusableContainerRightKey: function(e) {
-            // Ditto
-            e.preventDefault();
-            
+            return this.moveChildFocus(e, true);
+        },
+        
+        onFocusableContainerDownKey: function(e) {
             return this.moveChildFocus(e, true);
         },
         
@@ -300,10 +275,7 @@ Ext.define('Ext.util.FocusableContainer', {
         },
     
         focusChild: function(child, forward) {
-            var nextChild = this.findNextFocusableChild({
-                child: child,
-                step: forward
-            });
+            var nextChild = this.findNextFocusableChild(child, forward);
         
             if (nextChild) {
                 nextChild.focus();
@@ -312,14 +284,10 @@ Ext.define('Ext.util.FocusableContainer', {
             return nextChild;
         },
         
-        findNextFocusableChild: function(options) {
-            // This method is private, so options should always be provided
-            var beforeRender = options.beforeRender,
-                items, item, child, step, idx, i, len;
+        findNextFocusableChild: function(child, step, items, beforeRender) {
+            var item, idx, i, len;
         
-            items = options.items || this.getFocusables();
-            step  = options.step != null ? options.step : 1;
-            child = options.child;
+            items = items || this.getFocusables();
             
             // If the child is null or undefined, idx will be -1.
             // The loop below will account for that, trying to find
@@ -358,7 +326,7 @@ Ext.define('Ext.util.FocusableContainer', {
                 
                 item = items[i];
                 
-                if (!item || !item.focusable || item.disabled) {
+                if (!item || !item.focusable) {
                     continue;
                 }
                 
@@ -390,41 +358,14 @@ Ext.define('Ext.util.FocusableContainer', {
         
         activateFocusableContainerEl: function(el) {
             el = el || this.getFocusableContainerEl();
-            
-            // Might not yet be rendered
-            if (el) {
-                el.set({ tabIndex: this.activeChildTabIndex });
-            }
+        
+            el.set({ tabIndex: this.activeChildTabIndex });
         },
         
         deactivateFocusableContainerEl: function(el) {
             el = el || this.getFocusableContainerEl();
-            
-            if (el) {
-                el.set({ tabIndex: undefined });
-            }
-        },
         
-        isFocusableContainerActive: function() {
-            var me = this,
-                isActive = false,
-                el, child, focusEl;
-            
-            el = me.getFocusableContainerEl();
-            
-            if (el && el.isTabbable && el.isTabbable()) {
-                isActive = true;
-            }
-            else {
-                child = me.lastFocusedChild;
-                focusEl = child && child.getFocusEl && child.getFocusEl();
-                
-                if (focusEl && focusEl.isTabbable && focusEl.isTabbable()) {
-                    isActive = true;
-                }
-            }
-            
-            return isActive;
+            el.set({ tabIndex: this.inactiveChildTabIndex });
         },
         
         doFocusableChildAdd: function(child) {
@@ -513,7 +454,7 @@ Ext.define('Ext.util.FocusableContainer', {
             if (!me.destroyed && !me.destroying) {
                 me.clearFocusables();
 
-                if (lastFocused && !lastFocused.disabled) {
+                if (lastFocused) {
                     me.activateFocusable(lastFocused);
                 }
                 else {
@@ -545,13 +486,13 @@ Ext.define('Ext.util.FocusableContainer', {
                 index = me.activeChildTabIndex,
                 guard;
             
-            guard = me.findNextFocusableChild({ child: child, step: -1 });
+            guard = me.findNextFocusableChild(child, -1);
             
             if (guard) {
                 guard.setTabIndex(index);
             }
             
-            guard = me.findNextFocusableChild({ child: child, step: 1 });
+            guard = me.findNextFocusableChild(child, 1);
             
             if (guard) {
                 guard.setTabIndex(index);
@@ -566,87 +507,11 @@ Ext.define('Ext.util.FocusableContainer', {
             this.lastFocusedChild = child;
         },
         
-        beforeFocusableChildEnable: Ext.privateFn,
-        
-        onFocusableChildEnable: function(child) {
-            var me = this;
-            
-            if (!me.enableFocusableContainer) {
-                return;
-            }
-            
-            // Some Components like Buttons do not render tabIndex attribute
-            // when they start their lifecycle disabled, or remove tabIndex
-            // if they get disabled later. Subsequently, such Components will
-            // reset their tabIndex to default configured value upon enabling.
-            // We don't want these children to be tabbable so we reset their
-            // tabIndex yet again, unless this child is the last focused one.
-            if (child !== me.lastFocusedChild) {
-                me.deactivateFocusable(child);
-                
-                if (!me.isFocusableContainerActive()) {
-                    me.activateFocusableContainerEl();
-                }
-            }
-        },
-        
-        beforeFocusableChildDisable: function(child) {
-            var me = this,
-                nextTarget;
-            
-            if (!me.enableFocusableContainer || me.destroying || me.destroyed) {
-                return;
-            }
-            
-            // When currently focused child is about to be disabled,
-            // it may lose the focus as well. For example, Buttons
-            // will remove tabIndex attribute upon disabling, which
-            // in turn will throw focus to the document body and cause
-            // onFocusLeave to fire on the FocusableContainer.
-            // We're focusing the next sibling to prevent that.
-            if (child.hasFocus) {
-                nextTarget = me.findNextFocusableChild({ child: child }) ||
-                             child.findFocusTarget();
-                
-                // Note that it is entirely possible not to find the nextTarget,
-                // e.g. when we're disabling the last button in a toolbar rendered
-                // directly into document body. We don't have a good way to handle
-                // such cases at present.
-                if (nextTarget) {
-                    nextTarget.focus();
-                }
-            }
-        },
-        
-        onFocusableChildDisable: function(child) {
-            var me = this,
-                lastFocused = me.lastFocusedChild,
-                firstFocusableChild;
-            
-            if (!me.enableFocusableContainer || me.destroying || me.destroyed) {
-                return;
-            }
-            
-            // If the disabled child was the last focused item of this
-            // FocusableContainer, we have to reset the tabbability of
-            // our container element.
-            if (child === lastFocused) {
-                me.activateFocusableContainerEl();
-            }
-            
-            // It is also possible that the disabled child was the last
-            // focusable child of this container, in which case we need
-            // to make the container untabbable.
-            firstFocusableChild = me.findNextFocusableChild({ step: 1 });
-            
-            if (!firstFocusableChild) {
-                me.deactivateFocusableContainerEl();
-            }
-        },
-        
         // TODO
         onFocusableChildShow: Ext.privateFn,
         onFocusableChildHide: Ext.privateFn,
+        onFocusableChildEnable: Ext.privateFn,
+        onFocusableChildDisable: Ext.privateFn,
         onFocusableChildMasked: Ext.privateFn,
         onFocusableChildDestroy: Ext.privateFn,
         onFocusableChildUpdate: Ext.privateFn

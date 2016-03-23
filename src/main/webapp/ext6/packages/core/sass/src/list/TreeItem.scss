@@ -126,7 +126,7 @@
             background-color: $row-selected-background-color;
         }
 
-        > .#{$prefix}treelist-row-over {
+        > .#{$prefix}treelist-row:hover {
             background-color: $row-selected-over-background-color;
         }
     }
@@ -154,8 +154,8 @@
         }
     }
 
-    .#{$prefix}treelist-item-icon:before,
-    .#{$prefix}treelist-item-tool:before, // only size the glyph pseudo-el on a tool
+    .#{$prefix}treelist-item-icon,
+    .#{$prefix}treelist-item-tool,
     .#{$prefix}treelist-item-expander {
         line-height: $item-line-height;
 
@@ -164,11 +164,6 @@
                 line-height: $item-line-height-big;
             }
         }
-    }
-
-    .#{$prefix}treelist-item-icon,
-    .#{$prefix}treelist-item-tool,
-    .#{$prefix}treelist-item-expander {
         text-align: center;
     }
 
@@ -246,7 +241,7 @@
     }
 
     @if $row-indicator-width != null {
-        .#{$prefix}treelist-row-over:before,
+        .#{$prefix}treelist-row:hover:before, 
         .#{$prefix}treelist-item-selected > .#{$prefix}treelist-row:before {
             content: " ";
             position: absolute;
@@ -257,11 +252,11 @@
             height: 100%;
         }
 
-        .#{$prefix}treelist-row-over:before {
+        .#{$prefix}treelist-row:hover:before {
             background-color: $row-indicator-over-color;
         }
 
-        .#{$prefix}treelist-item-selected > .#{$prefix}treelist-row-over:before {
+        .#{$prefix}treelist-item-selected > .#{$prefix}treelist-row:hover:before {
             background-color: $row-indicator-selected-over-color;
         }
 
@@ -299,7 +294,7 @@
             width: 0;
         }
 
-        > .#{$prefix}treelist-row-over {
+        > .#{$prefix}treelist-row:hover {
             background-color: $toolstrip-background-color;
 
             > * > .#{$prefix}treelist-item-text {
@@ -325,7 +320,7 @@
     }
 
     &.#{$prefix}treelist-highlight-path {
-        .#{$prefix}treelist-item-over > * {
+        .#{$prefix}treelist-item:hover > * {
             > .#{$prefix}treelist-item-icon {
                 color: $item-icon-over-color;
                 transition: color 0.5s;
@@ -341,7 +336,7 @@
         }
     }
 
-    .#{$prefix}treelist-row-over {
+    .#{$prefix}treelist-row:hover {
         background-color: $row-over-background-color;
 
         > * > .#{$prefix}treelist-item-icon {
@@ -460,11 +455,10 @@
     //
     .#{$prefix}treelist-#{$ui} {
         background-color: $background-color;
-        // Some browsers (FF, IE) don't support reading background-position-x
-        background-position: $item-icon-width 0%;
+        background-position-x: $item-icon-width;
         @if $enable-big {
             .x-big & {
-                background-position: $item-icon-width-big 0%;
+                background-position-x: $item-icon-width-big;
             }
         }
 
@@ -536,11 +530,10 @@
 //
 .#{$prefix}treelist {
     background-color: $treelist-background-color;
-    // Some browsers (FF, IE) don't support reading background-position-x
-    background-position: $treelist-item-icon-width 0%;
+    background-position-x: $treelist-item-icon-width;
     @if $enable-big {
         .x-big & {
-            background-position: $treelist-item-icon-width-big 0%;
+            background-position-x: $treelist-item-icon-width-big;
         }
     }
     overflow: hidden;

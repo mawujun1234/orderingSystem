@@ -1,9 +1,9 @@
 /**
  * Private record store class which takes the place of the view's data store to provide a grouped
  * view of the data when the Grouping feature is used.
- *
+ * 
  * Relays granular mutation events from the underlying store as refresh events to the view.
- *
+ * 
  * On mutation events from the underlying store, updates the summary rows by firing update events on the corresponding
  * summary records.
  * @private
@@ -23,16 +23,9 @@ Ext.define('Ext.grid.feature.GroupStore', {
     badGrouperKey: '[object Object]',
 
     constructor: function(groupingFeature, store) {
-        var me = this;
-
-        me.callParent();
-        me.groupingFeature = groupingFeature;
-        me.bindStore(store);
-
-        // We don't want to listen to store events in a locking assembly.
-        if (!groupingFeature.grid.isLocked) {
-            me.bindViewStoreListeners();
-        }
+        this.callParent();
+        this.groupingFeature = groupingFeature;
+        this.bindStore(store);
     },
 
     bindStore: function(store) {
@@ -42,7 +35,6 @@ Ext.define('Ext.grid.feature.GroupStore', {
             Ext.destroy(me.storeListeners);
             me.store = null;
         }
-
         if (store) {
             me.storeListeners = store.on({
                 groupchange: me.onGroupChange,
@@ -55,19 +47,9 @@ Ext.define('Ext.grid.feature.GroupStore', {
                 scope: me,
                 destroyable: true
             });
-
             me.store = store;
             me.processStore(store);
         }
-    },
-
-    bindViewStoreListeners: function () {
-        var view = this.groupingFeature.view,
-            listeners = view.getStoreListeners();
-
-        listeners.scope = view;
-
-        this.on(listeners);
     },
 
     processStore: function (store) {
@@ -91,11 +73,6 @@ Ext.define('Ext.grid.feature.GroupStore', {
         groupingFeature.invalidateCache();
         // Get a new cache since we invalidated the old one.
         metaGroupCache = groupingFeature.getCache();
-
-        // Persist what we can.
-        if (oldMetaGroupCache.map) {
-            metaGroupCache.map = oldMetaGroupCache.map;
-        }
 
         if (data) {
             data.clear();
@@ -137,7 +114,8 @@ Ext.define('Ext.grid.feature.GroupStore', {
                         return;
                     }
 
-                    // Persist what we can.
+                    // If there is a previous metaGroup then use it, otherwise, return a new metaGroup.
+                    // TODO: Create a method in Grouping to create new metaGroups?
                     metaGroup = metaGroupCache[key] = oldMetaGroupCache[key] || groupingFeature.getMetaGroup(key);
 
                     // Remove the group name from the list of all possible group names. This is how we'll know if any remaining groups
@@ -329,14 +307,9 @@ Ext.define('Ext.grid.feature.GroupStore', {
             modelData[store.getGroupField()] = key;
             groupPlaceholder = metaGroup.placeholder = new Model(modelData);
             groupPlaceholder.isNonData = groupPlaceholder.isCollapsedPlaceholder = true;
-
-            // Let's poke the groupKey onto the record instead of storing a reference to the group
-            // itself. The latter can cause problems if the store is reloaded and the referenced
-            // group is lost.
-            // See EXTJS-18655
-            groupPlaceholder.groupKey = key;
+            // TODO: do we need a ref to the group here?
+            groupPlaceholder.group = group;
         }
-
         return metaGroup.placeholder;
     },
 
@@ -348,10 +321,6 @@ Ext.define('Ext.grid.feature.GroupStore', {
             ret = this.data.indexOf(record);
         }
         return ret;
-    },
-
-    contains: function(record) {
-        return this.indexOf(record) > -1;
     },
 
     indexOfPlaceholder: function(record) {
@@ -382,14 +351,22 @@ Ext.define('Ext.grid.feature.GroupStore', {
         return this.store.indexOf(record);
     },
 
-    onAdd: function(store) {
+    onRefresh: function(store) {
+        this.processStore(this.store);
+        this.fireEvent('refresh', this);
+    },
+
+    onRemove: function(store, records, index, isMove) {
         var me = this;
+
+        // If we're moving, we'll soon come back around to add,
+        // so prevent doing it twice
+        if (store.isMoving()) {
+            return;
+        }
 
         me.processStore(me.store);
         me.fireEvent('refresh', me);
-
-        // Don't allow the event to propagate or another group will be added upstream by tableview!
-        return false;
     },
 
     onClear: function(store, records, startIndex) {
@@ -399,23 +376,18 @@ Ext.define('Ext.grid.feature.GroupStore', {
         me.fireEvent('clear', me);
     },
 
-    onIdChanged: function(store, rec, oldId, newId) {
-        this.data.updateKey(rec, oldId);
-    },
-
-    onRefresh: function() {
-        this.processStore(this.store);
-        this.fireEvent('refresh', this);
-    },
-
-    onRemove: function() {
+    onAdd: function(store, records, startIndex) {
         var me = this;
 
         me.processStore(me.store);
-        me.fireEvent('refresh', me);
 
-        // Don't allow the event to propagate or the view will not be fully updated.
-        return false;
+        // Use indexOf to find the index of the records added.
+        // It will be different in this store, and this store is what the View sees.
+        me.fireEvent('replace', me, me.indexOf(records[0]), [], records);
+    },
+
+    onIdChanged: function(store, rec, oldId, newId) {
+        this.data.updateKey(rec, oldId);
     },
 
     onUpdate: function(store, record, operation, modifiedFieldNames) {

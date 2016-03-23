@@ -1,9 +1,6 @@
 describe('Ext.selection.CheckboxModel', function() {
     var grid, view, store, checkboxModel, data,
-        donRec, evanRec, nigeRec,
-        synchronousLoad = true,
-        proxyStoreLoad = Ext.data.ProxyStore.prototype.load,
-        loadStore;
+        donRec, evanRec, nigeRec;
 
     function makeGrid(selectionCfg, cfg) {
         checkboxModel = new Ext.selection.CheckboxModel(selectionCfg);
@@ -26,15 +23,6 @@ describe('Ext.selection.CheckboxModel', function() {
     }
 
     beforeEach(function() {
-        // Override so that we can control asynchronous loading
-        loadStore = Ext.data.ProxyStore.prototype.load = function() {
-            proxyStoreLoad.apply(this, arguments);
-            if (synchronousLoad) {
-                this.flushLoad.apply(this, arguments);
-            }
-            return this;
-        };
-
         Ext.define('spec.CheckboxModel', {
             extend: 'Ext.data.Model',
             fields: [{
@@ -63,9 +51,6 @@ describe('Ext.selection.CheckboxModel', function() {
     });
 
     afterEach(function() {
-        // Undo the overrides.
-        Ext.data.ProxyStore.prototype.load = proxyStoreLoad;
-
         donRec = evanRec = nigeRec = data = null;
         grid.destroy();
         checkboxModel.destroy();
@@ -554,14 +539,6 @@ describe('Ext.selection.CheckboxModel', function() {
                     expect(checkboxModel.isSelected(donRec)).toBe(false);
                 });
 
-                it("should not select when calling selectByPosition on a cell other than the checkbox cell", function() {
-                    checkboxModel.selectByPosition({
-                        row: 0,
-                        column: 1
-                    });
-                    expect(checkboxModel.isSelected(donRec)).toBe(false);
-                });
-
                 it("should not select when navigating with keys", function() {
                     jasmine.fireMouseEvent(byPos(0, 1), 'click');
                     jasmine.fireKeyEvent(byPos(0, 1), 'keydown', Ext.event.Event.LEFT);
@@ -592,14 +569,6 @@ describe('Ext.selection.CheckboxModel', function() {
 
                 it("should select when clicking on the row", function() {
                     jasmine.fireMouseEvent(byPos(0, 1), 'click');
-                    expect(checkboxModel.isSelected(donRec)).toBe(true);
-                });
-
-                it("should select when calling selectByPosition on a cell other than the checkbox cell", function() {
-                    checkboxModel.selectByPosition({
-                        row: 0,
-                        column: 1
-                    });
                     expect(checkboxModel.isSelected(donRec)).toBe(true);
                 });
 

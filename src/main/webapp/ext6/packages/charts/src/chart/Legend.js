@@ -6,7 +6,6 @@ Ext.define('Ext.chart.Legend', {
     extend: 'Ext.chart.LegendBase',
     config: {
         baseCls: Ext.baseCSSPrefix + 'legend',
-        // TODO: not used.
         padding: 5,
 
         /**
@@ -15,7 +14,6 @@ Ext.define('Ext.chart.Legend', {
          */
         rect: null,
 
-        // TODO: not used.
         disableSelection: true,
 
         /**
@@ -49,7 +47,6 @@ Ext.define('Ext.chart.Legend', {
             if (record) {
                 disabled = record.get('disabled');
                 if (disabled || canToggle) {
-                    // This will trigger AbstractChart.onUpdateLegendStore.
                     record.set('disabled', !disabled);
                 }
             }

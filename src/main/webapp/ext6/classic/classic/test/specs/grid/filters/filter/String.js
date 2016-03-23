@@ -1,11 +1,7 @@
 describe('Ext.grid.filters.filter.String', function () {
-    var grid, store, plugin, columnFilter, menu,
-        synchronousLoad = true,
-        proxyStoreLoad = Ext.data.ProxyStore.prototype.load,
-        loadStore;
+    var grid, store, plugin, columnFilter, menu;
 
     function createGrid(listCfg, storeCfg, gridCfg) {
-        synchronousLoad = false;
         store = new Ext.data.Store(Ext.apply({
             fields:['name', 'email', 'phone'],
             data: [
@@ -50,8 +46,6 @@ describe('Ext.grid.filters.filter.String', function () {
 
         plugin = grid.filters;
         columnFilter = grid.headerCt.columnManager.getHeaderByDataIndex('name').filter;
-        synchronousLoad = true;
-        store.flushLoad();
     }
 
     function showFilterMenu() {
@@ -70,21 +64,7 @@ describe('Ext.grid.filters.filter.String', function () {
         menu = filtersCheckItem.menu;
     }
 
-    beforeEach(function() {
-        // Override so that we can control asynchronous loading
-        loadStore = Ext.data.ProxyStore.prototype.load = function() {
-            proxyStoreLoad.apply(this, arguments);
-            if (synchronousLoad) {
-                this.flushLoad.apply(this, arguments);
-            }
-            return this;
-        };
-    });
-
     function tearDown() {
-        // Undo the overrides.
-        Ext.data.ProxyStore.prototype.load = proxyStoreLoad;
-
         store.destroy();
         grid = store = plugin = columnFilter = menu = Ext.destroy(grid);
     }

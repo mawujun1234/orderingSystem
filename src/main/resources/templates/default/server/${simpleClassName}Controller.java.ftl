@@ -58,9 +58,9 @@ public class ${simpleClassName}Controller {
 		return ${simpleClassNameFirstLower}Service.queryPage(page);
 	}
 
-	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
+	@RequestMapping("/${simpleClassNameFirstLower}/queryAll.do")
 	@ResponseBody
-	public List<${simpleClassName}> query() {	
+	public List<${simpleClassName}> queryAll() {	
 		List<${simpleClassName}> ${simpleClassNameFirstLower}es=${simpleClassNameFirstLower}Service.queryAll();
 		return ${simpleClassNameFirstLower}es;
 	}

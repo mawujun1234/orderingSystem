@@ -220,7 +220,7 @@ Ext.define('Ext.dataview.DataView', {
 
     /**
      * @event select
-     * @preventable
+     * @preventable doItemSelect
      * Fires whenever an item is selected
      * @param {Ext.dataview.DataView} this
      * @param {Ext.data.Model} record The record associated to the item
@@ -228,7 +228,7 @@ Ext.define('Ext.dataview.DataView', {
 
     /**
      * @event deselect
-     * @preventable
+     * @preventable doItemDeselect
      * Fires whenever an item is deselected
      * @param {Ext.dataview.DataView} this
      * @param {Ext.data.Model} record The record associated to the item
@@ -237,7 +237,7 @@ Ext.define('Ext.dataview.DataView', {
 
     /**
      * @event refresh
-     * @preventable
+     * @preventable doRefresh
      * Fires whenever the DataView is refreshed
      * @param {Ext.dataview.DataView} this
      */
@@ -470,7 +470,6 @@ Ext.define('Ext.dataview.DataView', {
         refresh: 'refresh',
         add: 'onStoreAdd',
         remove: 'onStoreRemove',
-        clear: 'onStoreClear',
         update: 'onStoreUpdate'
     },
 
@@ -524,18 +523,17 @@ Ext.define('Ext.dataview.DataView', {
     },
 
     updateInline: function(newInline, oldInline) {
-        var me = this,
-            baseCls = me.getBaseCls();
-
+        var baseCls = this.getBaseCls();
         if (oldInline) {
-            me.removeCls([baseCls + '-inlineblock', baseCls + '-nowrap']);
+            this.removeCls([baseCls + '-inlineblock', baseCls + '-nowrap']);
         }
         if (newInline) {
-            me.addCls(baseCls + '-inlineblock');
+            this.addCls(baseCls + '-inlineblock');
             if (Ext.isObject(newInline) && newInline.wrap === false) {
-                me.addCls(baseCls + '-nowrap');
-            } else {
-                me.removeCls(baseCls + '-nowrap');
+                this.addCls(baseCls + '-nowrap');
+            }
+            else {
+                this.removeCls(baseCls + '-nowrap');
             }
         }
     },
@@ -834,17 +832,15 @@ Ext.define('Ext.dataview.DataView', {
     },
 
     onBeforeLoad: function() {
-        var me = this,
-            loadingText = me.getLoadingText();
-            
-        if (loadingText && me.isPainted()) {
-            me.setMasked({
+        var loadingText = this.getLoadingText();
+        if (loadingText && this.isPainted()) {
+            this.setMasked({
                 xtype: 'loadmask',
                 message: loadingText
             });
         }
 
-        me.hideEmptyText();
+        this.hideEmptyText();
     },
 
     updateEmptyText: function(newEmptyText, oldEmptyText) {
@@ -893,7 +889,7 @@ Ext.define('Ext.dataview.DataView', {
             }
             return;
         }
-        if (me.initialized && container) {
+        if (container) {
             me.fireAction('refresh', [me], 'doRefresh');
         }
     },
@@ -1024,7 +1020,6 @@ Ext.define('Ext.dataview.DataView', {
     },
 
     /**
-     * @method
      * @private
      * @param {Ext.data.Store} store
      * @param {Ext.util.Grouper} grouper
@@ -1032,7 +1027,6 @@ Ext.define('Ext.dataview.DataView', {
     onStoreGroupChange: Ext.emptyFn,
 
     /**
-     * @method
      * @private
      * @param {Ext.data.Store} store
      * @param {Array} records

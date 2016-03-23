@@ -644,21 +644,12 @@ describe('Ext.ZIndexManager', function() {
     });
 
     describe('focus restoration after window drag', function() {
-        var win;
-        
-        afterEach(function() {
-            win.destroy();
-            win = null;
-        });
-        
         it('should restore focus after showing', function() {
-            var xy, x, child, text;
-            
-            win = new Ext.window.Window({
+            var win = new Ext.window.Window({
                 title: 'Test Window',
                 width: 410,
                 height: 400
-            });
+            }), xy, x, child, text;
 
             win.show();
 
@@ -700,6 +691,11 @@ describe('Ext.ZIndexManager', function() {
             jasmine.waitForFocus(text);
             runs(function() {
                 expect(text.hasFocus).toBe(true);
+            });
+
+
+            runs(function() {
+                win.destroy();
             });
         });
     });

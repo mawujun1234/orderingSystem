@@ -185,19 +185,25 @@ Ext.define('Ext.layout.FlexBox', {
      * @param {Number} flex The flex to set on this method
      */
     setItemFlex: function(item, flex) {
-        var element = item.element,
-            style = element.dom.style;
+        var element = item.element;
 
-        element.toggleCls(Ext.baseCSSPrefix + 'flexed', !!flex);
+        element.toggleCls('x-flexed', !!flex);
 
-        flex = flex ? String(flex) : '';
+        if (!flex) {
+            flex = '';
+        }
+        else {
+            flex = String(flex);
+        }
 
         if (Ext.browser.is.WebKit) {
-            style.setProperty('-webkit-box-flex', flex, null);
-        } else if (Ext.browser.is.IE) {
-            style.setProperty('-ms-flex', flex + ' 0 0px', null);
-        } else {
-            style.setProperty('flex', flex + ' 0 0px', null);
+            element.dom.style.setProperty('-webkit-box-flex', flex, null);
+        }
+        else if (Ext.browser.is.IE) {
+            element.dom.style.setProperty('-ms-flex', flex + ' 0 0px', null);
+        }
+        else {
+            element.dom.style.setProperty('flex', flex + ' 0 0px', null);
         }
     },
 

@@ -2,8 +2,9 @@ package com.youngor.generator;
 
 import java.io.IOException;
 
+import com.mawujun.generator.ExtenConfig;
 import com.mawujun.generator.GeneratorService;
-import com.youngor.base.OrderMeet;
+import com.youngor.permission.Menu;
 
 import freemarker.template.TemplateException;
 /**
@@ -15,7 +16,12 @@ public class GeneratorCode {
 	static GeneratorService generatorService=new GeneratorService();
 
 	public static void main(String[] args) throws TemplateException, IOException, ClassNotFoundException {	
-		generatorService.generatorAllFile(OrderMeet.class);
+		ExtenConfig aa=new ExtenConfig();
+		aa.extjs_packagePrefix="y";
+		aa.extjs_form_layoutColumns=2;
+		generatorService.setExtenConfig(aa);
+		
+		generatorService.generatorAllFile(Menu.class);
 
 	}
 	

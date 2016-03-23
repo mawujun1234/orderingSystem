@@ -40,23 +40,8 @@ Ext.define('Ext.event.gesture.Swipe', {
      */
 
     inheritableStatics: {
-        /**
-         * @private
-         * @static
-         * @inheritable
-         */
         MAX_OFFSET_EXCEEDED: 'Max Offset Exceeded',
-        /**
-         * @private
-         * @static
-         * @inheritable
-         */
         MAX_DURATION_EXCEEDED: 'Max Duration Exceeded',
-        /**
-         * @private
-         * @static
-         * @inheritable
-         */
         DISTANCE_NOT_ENOUGH: 'Distance Not Enough'
     },
 

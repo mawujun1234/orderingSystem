@@ -251,6 +251,9 @@ Ext.define('Ext.slider.Multi', {
 
     horizontalProp: 'left',
 
+    /**
+     * @private
+     */
     initValue: function() {
         var me = this,
             extValueFrom = Ext.valueFrom,
@@ -268,7 +271,10 @@ Ext.define('Ext.slider.Multi', {
         }
     },
 
-    initComponent: function() {
+    /**
+     * @private
+     */
+    initComponent : function() {
         var me = this,
             tipPlug,
             hasTip,
@@ -362,6 +368,9 @@ Ext.define('Ext.slider.Multi', {
         }
     },
 
+    /**
+     * @private
+     */
     getSubTplData : function(fieldData) {
         var me = this,
             data, ariaAttr;
@@ -380,8 +389,8 @@ Ext.define('Ext.slider.Multi', {
         
         if (ariaAttr) {
             ariaAttr['aria-orientation'] = me.vertical ? 'vertical' : 'horizontal';
-            ariaAttr['aria-valuemin'] = me.minValue;
-            ariaAttr['aria-valuemax'] = me.maxValue;
+            ariaAttr['aria-minvalue'] = me.minValue;
+            ariaAttr['aria-maxvalue'] = me.maxValue;
             ariaAttr['aria-valuenow'] = me.value;
         }
         
@@ -539,10 +548,6 @@ Ext.define('Ext.slider.Multi', {
             dist  = Math.abs(value - clickValue);
 
             if (Math.abs(dist) <= nearestDistance) {
-                // this makes sure that thumbs will stay in order
-                if (nearest && nearest.value == value && value > clickValue && thumb.index > nearest.index) {
-                    continue;
-                }
                 nearest = thumb;
                 nearestDistance = dist;
             }
@@ -557,27 +562,23 @@ Ext.define('Ext.slider.Multi', {
      * @param {Ext.event.Event} e The Event object
      */
     onKeyDown: function(e) {
-        var me = this,
-            ariaDom = me.ariaEl.dom,
-            k, val;
-        
-        k = e.getKey();
-
         /*
          * The behaviour for keyboard handling with multiple thumbs is currently undefined.
          * There's no real sane default for it, so leave it like this until we come up
          * with a better way of doing it.
          */
+        var me = this,
+            ariaDom = me.ariaEl.dom,
+            k, val;
+
         if (me.disabled || me.thumbs.length !== 1) {
-            // Must not mingle with the Tab key!
-            if (k !== e.TAB) {
-                e.preventDefault();
-            }
-            
+            e.preventDefault();
             return;
         }
+        
+        k = e.getKey();
 
-        switch (k) {
+        switch(k) {
             case e.UP:
             case e.RIGHT:
                 val = e.ctrlKey ? me.maxValue : me.getValue(0) + me.keyIncrement;
@@ -639,7 +640,7 @@ Ext.define('Ext.slider.Multi', {
      * value will be changed.
      * @param {Number} val The new minimum value
      */
-    setMinValue: function(val) {
+    setMinValue : function(val) {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -656,7 +657,7 @@ Ext.define('Ext.slider.Multi', {
         }
         
         if (ariaDom) {
-            ariaDom.setAttribute('aria-valuemin', val);
+            ariaDom.setAttribute('aria-minvalue', val);
         }
         
         me.syncThumbs();
@@ -667,7 +668,7 @@ Ext.define('Ext.slider.Multi', {
      * value will be changed.
      * @param {Number} val The new maximum value
      */
-    setMaxValue: function(val) {
+    setMaxValue : function(val) {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -684,7 +685,7 @@ Ext.define('Ext.slider.Multi', {
         }
         
         if (ariaDom) {
-            ariaDom.setAttribute('aria-valuemax', val);
+            ariaDom.setAttribute('aria-maxvalue', val);
         }
         
         me.syncThumbs();
@@ -818,6 +819,9 @@ Ext.define('Ext.slider.Multi', {
         return this.minValue + this.getRange() * (pos / 100);
     },
 
+    /**
+     * @private
+     */
     onDisable: function() {
         var me = this,
             i = 0,
@@ -855,6 +859,9 @@ Ext.define('Ext.slider.Multi', {
         }
     },
 
+    /**
+     * @private
+     */
     onEnable: function() {
         var me = this,
             i = 0,
@@ -971,6 +978,9 @@ Ext.define('Ext.slider.Multi', {
 
     },
 
+    /**
+     * @private
+     */
     beforeDestroy: function() {
         var me     = this,
             thumbs = me.thumbs,

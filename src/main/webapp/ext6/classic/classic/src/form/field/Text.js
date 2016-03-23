@@ -172,15 +172,6 @@ Ext.define('Ext.form.field.Text', {
          */
         triggers: undefined
     },
-    
-    renderConfig: {
-        /**
-         * @cfg {Boolean} editable
-         * false to prevent the user from typing text directly into the field; the field can
-         * only have its value set programmatically or via an action invoked by a trigger.
-         */
-        editable: true
-    },
 
     /**
      * @cfg {String} vtypeText
@@ -341,7 +332,7 @@ Ext.define('Ext.form.field.Text', {
      *         }
      *     });
      *
-     * @param {Object} value The current field value
+     * @param {Object} validator.value The current field value
      * @return {Boolean/String} response
      *
      *  - True if the value is valid
@@ -378,8 +369,6 @@ Ext.define('Ext.form.field.Text', {
      * password input fields.
      */
 
-    emptyText : '',
-
     /**
      * @cfg {String} [emptyCls='x-form-empty-field']
      * The CSS class to apply to an empty field to style the **{@link #emptyText}**.
@@ -406,6 +395,13 @@ Ext.define('Ext.form.field.Text', {
     ariaRole: 'textbox',
 
     /**
+     * @cfg {Boolean} editable
+     * false to prevent the user from typing text directly into the field; the field can
+     * only have its value set programmatically or via an action invoked by a trigger.
+     */
+    editable: true,
+
+    /**
      * @cfg {Boolean} repeatTriggerClick
      * `true` to attach a {@link Ext.util.ClickRepeater click repeater} to the trigger(s).
      * Click repeating behavior can also be configured on the individual {@link #triggers
@@ -417,15 +413,6 @@ Ext.define('Ext.form.field.Text', {
     /**
      * @cfg {Boolean} readOnly
      * `true` to prevent the user from changing the field, and hide all triggers.
-     */
-
-    /**
-     * @cfg stateEvents
-     * @inheritdoc Ext.state.Stateful#cfg-stateEvents
-     * @localdoc By default the following stateEvents are added:
-     * 
-     *  - {@link #event-resize} - _(added by Ext.Component)_
-     *  - {@link #event-change}
      */
 
     /**
@@ -554,6 +541,9 @@ Ext.define('Ext.form.field.Text', {
         me.addStateEvents('change');
     },
 
+    /**
+     * @private
+     */
     initEvents: function(){
         var me = this,
             el = me.inputEl;
@@ -804,8 +794,18 @@ Ext.define('Ext.form.field.Text', {
         this.invokeTriggers(hideTrigger ? 'hide' : 'show');
     },
 
-    updateEditable: function(editable, oldEditable) {
-        this.setReadOnlyAttr(!editable || this.readOnly);
+    /**
+     * Sets the editable state of this field.
+     * @param {Boolean} editable True to allow the user to directly edit the field text.
+     * If false is passed, the user will only be able to modify the field using the trigger.
+     */
+    setEditable: function(editable) {
+        var me = this;
+
+        me.editable = editable;
+        if (me.rendered) {
+            me.setReadOnlyAttr(!editable || me.readOnly);
+        }
     },
 
     /**
@@ -875,18 +875,9 @@ Ext.define('Ext.form.field.Text', {
     processRawValue: function(value) {
         var me = this,
             stripRe = me.stripCharsRe,
-            mod, newValue;
+            newValue;
 
         if (stripRe) {
-            // This will force all instances that match stripRe to be removed
-            // in case the user tries to add it with copy and paste EXTJS-18621
-            if (!stripRe.global) {
-                mod = 'g';
-                mod += (stripRe.ignoreCase) ? 'i' : '';
-                mod += (stripRe.multiline) ? 'm' : '';
-                stripRe = new RegExp(stripRe.source, mod);
-            }
-
             newValue = value.replace(stripRe, '');
             if (newValue !== value) {
                 me.setRawValue(newValue);
@@ -896,6 +887,9 @@ Ext.define('Ext.form.field.Text', {
         return value;
     },
 
+    /**
+     * @private
+     */
     onDisable: function(){
         this.callParent();
         if (Ext.isIE) {
@@ -903,6 +897,9 @@ Ext.define('Ext.form.field.Text', {
         }
     },
 
+    /**
+     * @private
+     */
     onEnable: function(){
         this.callParent();
         if (Ext.isIE) {
@@ -958,46 +955,6 @@ Ext.define('Ext.form.field.Text', {
             me.autoSize();
         }
     },
-    /**
-     * Returns the value of this field's {@link #cfg-emptyText}
-     * @return {String} The value of this field's emptyText
-     */
-    getEmptyText : function () {
-        return this.emptyText;
-    },
-    
-    /**
-     * Sets the default text to place into an empty field
-     * @param {String} value The {@link #cfg-emptyText} value for this field
-     * @return {Ext.form.field.Text} this
-     */
-    setEmptyText: function(value) {
-        var me = this,
-            inputEl = me.inputEl,
-            inputDom = inputEl && inputEl.dom,
-            emptyText = value || '';
-
-        if (value) {
-            me.emptyText = emptyText;
-            me.applyEmptyText();
-        } else if (inputDom) {
-            if (Ext.supports.Placeholder) {
-                inputDom.removeAttribute('placeholder');
-            } else {
-                if (inputDom.value !== me.getRawValue()) {
-                    // only way these are !== is if emptyText is in the dom.value
-                    inputDom.value = '';
-                    inputEl.removeCls(me.emptyUICls);
-                }
-            }
-            // value is null so it cannot be the input value:
-            me.valueContainsPlaceholder = false;
-        }
-        // This has to be added at the end because getRawValue depends on
-        // the emptyText value to return an empty string or not in legacy browsers.
-        me.emptyText = emptyText;
-        return me;
-    },
 
     afterFirstLayout: function() {
         this.callParent();
@@ -1021,6 +978,9 @@ Ext.define('Ext.form.field.Text', {
         this.inputWrap[method](this.inputWrapInvalidCls);
     },
 
+    /**
+     * @private
+     */
     beforeFocus: function(){
         var me = this,
             inputEl = me.inputEl,

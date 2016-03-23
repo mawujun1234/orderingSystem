@@ -231,7 +231,7 @@
  *         links: {
  *             theUser: {
  *                 type: 'User',
- *                 id: 22
+ *                 type: 22
  *             }
  *         }
  *     });
@@ -756,10 +756,11 @@ Ext.define('Ext.app.ViewModel', {
      */
     linkTo: function (key, reference) {
         var me = this,
-            stub, create, id, modelType, linkStub, rec;
+            stub = me.getStub(key),
+            create, id, modelType, linkStub, rec;
 
         //<debug>
-        if (key.indexOf('.') > -1) {
+        if (stub.depth - me.getRoot().depth > 1) {
             Ext.raise('Links can only be at the top-level: "' + key + '"');
         }
         //</debug>
@@ -790,12 +791,8 @@ Ext.define('Ext.app.ViewModel', {
                 rec.commit();
                 rec.phantom = true;
             }
-            // Force creation at the root level. If an existing stub is there
-            // it will be grafted in place here.
-            stub = me.getRoot().createStubChild(key);
             stub.set(rec);
         } else {
-            stub = me.getStub(key);
             if (!stub.isLinkStub) {
                 // Pass parent=null since we will graft in this new stub to replace us:
                 linkStub = new Ext.app.bind.LinkStub(me, stub.name);
@@ -956,7 +953,8 @@ Ext.define('Ext.app.ViewModel', {
         getScheduler: function () {
             var me = this,
                 scheduler = me._scheduler,
-                parent;
+                parent,
+                session;
 
             if (!scheduler) {
                 if (!(parent = me.getParent())) {
@@ -1154,7 +1152,9 @@ Ext.define('Ext.app.ViewModel', {
                     delete proxy.writer;
                     store.getProxy().setConfig(proxy);
                 }
+                store.blockLoad();
                 store.setConfig(cfg);
+                store.unblockLoad(true);
             }
         },
 

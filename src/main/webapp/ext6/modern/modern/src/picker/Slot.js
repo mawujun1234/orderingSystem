@@ -288,7 +288,7 @@ Ext.define('Ext.picker.Slot', {
         }
 
         var element = this.element,
-            containerElement = this.container.element,
+            innerElement = this.innerElement,
             picker = this.getPicker(),
             bar = picker.bar,
             value = this.getValue(),
@@ -307,7 +307,7 @@ Ext.define('Ext.picker.Slot', {
         padding = Math.ceil((element.getHeight() - titleHeight - barHeight) / 2);
 
         if (this.getVerticallyCenterItems()) {
-            containerElement.setStyle({
+            innerElement.setStyle({
                 padding: padding + 'px 0 ' + padding + 'px'
             });
         }

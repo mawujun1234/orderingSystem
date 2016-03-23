@@ -8,6 +8,7 @@ Ext.define('KitchenSink.view.binding.ComponentState', {
     //</example>
 
     viewModel: true,
+    scrollable: false,
 
     items: {
         xtype: 'fieldset',

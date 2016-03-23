@@ -405,16 +405,14 @@ Ext.define('Ext.fx.runner.CssTransition', {
             }
         };
 
-        if (window.requestAnimationFrame) {
-            window.requestAnimationFrame(function() {
+        if (Ext.browser.is.IE) {
+            Ext.Function.requestAnimationFrame(function() {
                 window.addEventListener('message', doApplyTo, false);
                 window.postMessage(message, '*');
             });
-        }else {
-            Ext.defer(function() {
-                window.addEventListener('message', doApplyTo, false);
-                window.postMessage(message, '*');
-            }, 1)
+        } else {
+            window.addEventListener('message', doApplyTo, false);
+            window.postMessage(message, '*');
         }
     },
 

@@ -24,9 +24,6 @@ Ext.define('KitchenSink.view.grid.LockingGrid', {
     width: 600,
     title: 'Locking Grid',
 
-    // There is no asymmetric data, we do not need to go to the expense of synching row heights
-    syncRowHeight: false,
-
     //<example>
     otherContent: [{
         type: 'Store',

@@ -256,8 +256,7 @@ Ext.define('Ext.grid.selection.Columns', {
          */
         getContiguousSelection: function() {
             var selection = Ext.Array.sort(this.selectedColumns, function(c1, c2) {
-                    // Use index *in ownerGrid* so that a locking assembly can order columns correctly
-                    return c1.getView().ownerGrid.getVisibleColumnManager().indexOf(c1) - c2.getView().ownerGrid.getVisibleColumnManager().indexOf(c2);
+                    return c1.getVisibleIndex() - c2.getVisibleIndex();
                 }),
                 len = selection.length,
                 i;

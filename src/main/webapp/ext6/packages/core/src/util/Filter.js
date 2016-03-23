@@ -116,10 +116,9 @@ Ext.define('Ext.util.Filter', {
          *    * `>`
          *    * `!=`
          *    * `in`
-         *    * `notin`
          *    * `like`
          *
-         * The `in` and `notin` operator expects this filter's {@link #cfg-value} to be an array and matches
+         * The `in` operator expects this filter's {@link #cfg-value} to be an array and matches
          * values that are present in that array.
          * 
          * The `like` operator matches values that contain this filter's {@link #cfg-value} as a
@@ -137,6 +136,7 @@ Ext.define('Ext.util.Filter', {
         /**
          * @cfg {Function} [serializer]
          * A function to post-process any serialization.
+         * @param {Object} data The serialized data.
          * @private
          */
         serializer: null,
@@ -237,8 +237,7 @@ Ext.define('Ext.util.Filter', {
     },
 
     preventConvert: {
-        'in': 1,
-        notin: 1
+        'in': 1
     },
 
     filter: function (item) {
@@ -479,10 +478,6 @@ Ext.define('Ext.util.Filter', {
             "in": function (candidate) {
                 var v = this._filterValue;
                 return Ext.Array.contains(v, this.getCandidateValue(candidate, v));
-            },
-            notin: function(candidate) {
-                var v = this._filterValue;
-                return !Ext.Array.contains(v, this.getCandidateValue(candidate, v));
             },
             like: function (candidate) {
                 var v = this._filterValue;

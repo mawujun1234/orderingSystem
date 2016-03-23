@@ -108,6 +108,7 @@ Ext.define('Ext.form.field.TextArea', {
 
     extraFieldBodyCls: Ext.baseCSSPrefix + 'form-textarea-body',
     
+    // All TextArea fields share this trait
     ariaAttributes: {
         'aria-multiline': true
     },
@@ -125,6 +126,9 @@ Ext.define('Ext.form.field.TextArea', {
     },
     //</debug>
 
+    /**
+     * @private
+     */
     getSubTplData: function(fieldData) {
         var me = this,
             fieldStyle = me.getFieldStyle(),

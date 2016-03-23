@@ -97,15 +97,7 @@ Ext.define('Ext.plugin.Viewport', {
 
                 setupViewport : function() {
                     var me = this,
-                        el = document.body,
-                        DomScroller = Ext.scroll.DomScroller;
-
-                    // By default document.body is monitored by a special DomScroller singleton so that
-                    // the global scroll event fires when the document scrolls.
-                    // A Viewport's Scroller will take over from this one.
-                    if (DomScroller.document) {
-                        DomScroller.document = DomScroller.document.destroy();
-                    }
+                        el = document.body;
 
                     // Here in the (perhaps unlikely) case that the body dom el doesn't yet have an id,
                     // we want to give it the same id as the viewport component so getCmp lookups will
@@ -119,9 +111,9 @@ Ext.define('Ext.plugin.Viewport', {
                         el.id = me.id;
                     }
 
-                    // In addition, stamp on the data-componentid so lookups using Component's
+                    // In addition, let's stamp on the componentIdAttribute so lookups using Component's
                     // fromElement will work.
-                    el.setAttribute('data-componentid', me.id);
+                    el.setAttribute(Ext.Component.componentIdAttribute, me.id);
                     
                     if (!me.ariaStaticRoles[me.ariaRole]) {
                         el.setAttribute('role', me.ariaRole);
@@ -249,6 +241,10 @@ Ext.define('Ext.plugin.Viewport', {
                         if (el) {
                             el.restoreTabbableState(/* skipSelf = */ true);
                         }
+                    },
+
+                    getOverflowEl: function() {
+                        return Ext.get(document.documentElement);
                     }
                 }
             });

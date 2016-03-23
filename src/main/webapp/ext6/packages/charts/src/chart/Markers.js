@@ -25,12 +25,6 @@ Ext.define('Ext.chart.Markers', {
         this.revisions = {};
     },
 
-    destroy: function () {
-        this.categories = null;
-        this.revisions = null;
-        this.callParent();
-    },
-
     getMarkerFor: function (category, index) {
         if (category in this.categories) {
             var categoryInstances = this.categories[category];

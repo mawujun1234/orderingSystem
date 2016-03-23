@@ -29,7 +29,7 @@ Ext.define('KitchenSink.view.pivot.ChartIntegrationController', {
                 position: 'left',
                 adjustByMajorUnit: true,
                 fields: ['id'],
-                renderer: function(axis, v) {
+                renderer: function(v) {
                     return (v * 100).toFixed(0) + '%';
                 },
                 grid: true
@@ -51,7 +51,7 @@ Ext.define('KitchenSink.view.pivot.ChartIntegrationController', {
         });
     },
 
-    chartRenderer: function(axis, v){
+    chartRenderer: function(v){
         var matrix = this.getMatrix(),
             item = matrix.leftAxis.findTreeElement("key", v);
 

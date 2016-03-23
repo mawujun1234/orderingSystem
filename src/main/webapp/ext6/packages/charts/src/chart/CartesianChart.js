@@ -252,7 +252,7 @@ Ext.define('Ext.chart.CartesianChart', {
             axesCount = (axes && axes.length) || 0,
             axis, axisSurface, axisRect,
             floating, value, alongAxis, matrix,
-            size = me.getChartSize(),
+            size = me.innerElement.getSize(),
             inset = me.getInsetPadding(),
             inner = me.getInnerPadding(),
             width = size.width - inset.left - inset.right,

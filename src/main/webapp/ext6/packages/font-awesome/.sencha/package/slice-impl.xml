@@ -46,9 +46,9 @@
                     +vars
                     +rules
                     -variable=$image-search-path:'${image.search.path}'
-                    -variable=$theme-name: '${theme.name}' !default
+                    -variable=$theme-name: '${app.theme}' !default
                     -output=${package.example.scss.tmp}
-                    -forward=${package.sass.dynamic}
+                    -forward=${pacakge.sass.dynamic}
                 and
                 restore
                     package-${package.name}-all
@@ -257,10 +257,10 @@ Ext.Boot.loadSync([
         <if>
             <x-is-true value="${package.sass.fashion}"/>
             <then>
-                <x-ant-call target="-fashion-slice-images"/>
+                <x-ant-call target="-fashion-slice-images" directCall="true"/>
             </then>
             <else>
-                <x-ant-call target="-compass-slice-images"/>
+                <x-ant-call target="-compass-slice-images" directCall="true"/>
             </else>
         </if>
     </target>

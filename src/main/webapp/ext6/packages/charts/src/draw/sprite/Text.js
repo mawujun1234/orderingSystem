@@ -20,51 +20,7 @@
  *        }]
  *     });
  */
-Ext.define('Ext.draw.sprite.Text', function () {
-
-    var fontSizes = {
-        'xx-small': true,
-        'x-small': true,
-        'small': true,
-        'medium': true,
-        'large': true,
-        'x-large': true,
-        'xx-large': true
-    };
-    var fontWeights = {
-        normal: true,
-        bold: true,
-        bolder: true,
-        lighter: true,
-        100: true,
-        200: true,
-        300: true,
-        400: true,
-        500: true,
-        600: true,
-        700: true,
-        800: true,
-        900: true
-    };
-    var textAlignments = {
-        start: 'start',
-        left: 'start',
-        center: 'center',
-        middle: 'center',
-        end: 'end',
-        right: 'end'
-    };
-    var textBaselines = {
-        top: 'top',
-        hanging: 'hanging',
-        middle: 'middle',
-        center: 'middle',
-        alphabetic: 'alphabetic',
-        ideographic: 'ideographic',
-        bottom: 'bottom'
-    };
-
-return {
+Ext.define('Ext.draw.sprite.Text', {
     extend: 'Ext.draw.sprite.Sprite',
     requires: [
         'Ext.draw.TextMeasurer',
@@ -83,12 +39,7 @@ return {
          * }
          *
          */
-        debug: false,
-
-        fontSizes: fontSizes,
-        fontWeights: fontWeights,
-        textAlignments: textAlignments,
-        textBaselines: textBaselines
+        debug: false
     },
     //</debug>
     inheritableStatics: {
@@ -120,15 +71,25 @@ return {
                  * @cfg {String/Number} [fontSize='10px']
                  * The size of the font displayed.
                  */
-                fontSize: function (n) {
-                    if (Ext.isNumber(+n)) {
-                        return n + 'px';
-                    } else if (n.match(Ext.dom.Element.unitRe)) {
-                        return n;
-                    } else if (n in fontSizes) {
-                        return n;
-                    }
-                },
+                fontSize: (function (fontSizes) {
+                    return function (n) {
+                        if (Ext.isNumber(+n)) {
+                            return n + 'px';
+                        } else if (n.match(Ext.dom.Element.unitRe)) {
+                            return n;
+                        } else if (n in fontSizes) {
+                            return n;
+                        }
+                    };
+                })({
+                    'xx-small': 'fontSize',
+                    'x-small': 'fontSize',
+                    'small': 'fontSize',
+                    'medium': 'fontSize',
+                    'large': 'fontSize',
+                    'x-large': 'fontSize',
+                    'xx-large': 'fontSize'
+                }),
 
                 /**
                  * @cfg {String} [fontStyle='']
@@ -146,13 +107,29 @@ return {
                  * @cfg {String} [fontWeight='']
                  * The weight of the font displayed. {normal, bold, bolder, lighter}
                  */
-                fontWeight: function (n) {
-                    if (n in fontWeights) {
-                        return String(n);
-                    } else {
-                        return '';
-                    }
-                },
+                fontWeight: (function (fontWeights) {
+                    return function (n) {
+                        if (n in fontWeights) {
+                            return String(n);
+                        } else {
+                            return '';
+                        }
+                    };
+                })({
+                    normal: true,
+                    bold: true,
+                    bolder: true,
+                    lighter: true,
+                    100: true,
+                    200: true,
+                    300: true,
+                    400: true,
+                    500: true,
+                    600: true,
+                    700: true,
+                    800: true,
+                    900: true
+                }),
 
                 /**
                  * @cfg {String} [fontFamily='sans-serif']
@@ -165,18 +142,37 @@ return {
                  * The alignment of the text displayed.
                  * {left, right, center, start, end}
                  */
-                textAlign: function (n) {
-                    return textAlignments[n] || 'center';
-                },
+                textAlign: (function (textAligns) {
+                    return function (n) {
+                        return textAligns[n] || 'center';
+                    };
+                })({
+                    start: 'start',
+                    left: 'start',
+                    center: 'center',
+                    middle: 'center',
+                    end: 'end',
+                    right: 'end'
+                }),
 
                 /**
                  * @cfg {String} [textBaseline="alphabetic"]
                  * The baseline of the text displayed.
                  * {top, hanging, middle, alphabetic, ideographic, bottom}
                  */
-                textBaseline: function (n) {
-                    return textBaselines[n] || 'alphabetic';
-                },
+                textBaseline: (function (textBaselines) {
+                    return function (n) {
+                        return textBaselines[n] || 'alphabetic';
+                    };
+                })({
+                    top: 'top',
+                    hanging: 'hanging',
+                    middle: 'middle',
+                    center: 'middle',
+                    alphabetic: 'alphabetic',
+                    ideographic: 'ideographic',
+                    bottom: 'bottom'
+                }),
 
                 /**
                  * @cfg {String} [font='10px sans-serif']
@@ -533,6 +529,23 @@ return {
         this.setAttributes({text: text}, true);
     },
 
+    //<debug>
+    renderBBox: function (surface, ctx) {
+        var bbox = this.getBBox(true);
+
+        ctx.beginPath();
+        ctx.moveTo(bbox.x, bbox.y);
+        ctx.lineTo(bbox.x + bbox.width, bbox.y);
+        ctx.lineTo(bbox.x + bbox.width, bbox.y + bbox.height);
+        ctx.lineTo(bbox.x, bbox.y + bbox.height);
+        ctx.closePath();
+        ctx.strokeStyle = 'red';
+        ctx.strokeOpacity = 1;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+    },
+    //</debug>
+
     render: function (surface, ctx, rect) {
         var me = this,
             attr = me.attr,
@@ -570,16 +583,10 @@ return {
             }
         }
         //<debug>
-        var debug = attr.debug || this.statics().debug || Ext.draw.sprite.Sprite.debug;
+        var debug = me.statics().debug || attr.debug;
         if (debug) {
-            // This assumes no part of the sprite is rendered after this call.
-            // If it is, we need to re-apply transformations.
-            // But the bounding box should always be rendered as is, untransformed.
-            this.attr.inverseMatrix.toContext(ctx);
             debug.bbox && me.renderBBox(surface, ctx);
         }
         //</debug>
     }
-};
-
 });

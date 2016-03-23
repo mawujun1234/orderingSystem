@@ -874,7 +874,7 @@ Ext.define('Ext.data.AbstractStore', {
 
         if (arguments.length === 0) {
             if (me.getRemoteSort()) {
-                me.load();
+                me.attemptLoad();
             } else {
                 me.forceLocalSort();
             }
@@ -906,7 +906,7 @@ Ext.define('Ext.data.AbstractStore', {
         // Only load or sort if there are sorters
         if (sorters.length) {
             if (me.getRemoteSort()) {
-                me.load({
+                me.attemptLoad({
                     callback: function() {
                         me.fireEvent('sort', me, sorters);
                     }
@@ -936,7 +936,7 @@ Ext.define('Ext.data.AbstractStore', {
             //</debug>
             me.currentPage = 1;
             if (!suppressNext) {
-                me.load();
+                me.attemptLoad();
             }
         } else if (!suppressNext) {
             me.fireEvent('datachanged', me);
@@ -999,7 +999,7 @@ Ext.define('Ext.data.AbstractStore', {
 
         if (change) {
             if (me.getRemoteSort()) {
-                me.load({
+                me.attemptLoad({
                     scope: me,
                     callback: me.fireGroupChange
                 });

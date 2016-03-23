@@ -1,17 +1,22 @@
 /*
-This file is part of Ext JS 6.0.1.250
+This file is part of Ext JS 6.0.0.640
 
 Copyright (c) 2011-2015 Sencha Inc
 
 Contact:  http://www.sencha.com/contact
 
-This version of Sencha Ext JS is licensed commercially for a limited period for evaluation 
-purposes only. Production use or use beyond the applicable evaluation period is prohibited 
-under this license.
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as
+published by the Free Software Foundation and appearing in the file LICENSE included in the
+packaging of this file.
 
-If your trial has expired, please contact the sales department at http://www.sencha.com/contact.
+Please review the following information to ensure the GNU General Public License version 3.0
+requirements will be met: http://www.gnu.org/copyleft/gpl.html.
 
-Version: 6.0.1.250 Build date: 2015-09-02 18:01:51 (22ef9ff0ebf584ff525541be37e753a703cc044b)
+If you are unsure which license is appropriate for your use, please contact the sales department
+at http://www.sencha.com/contact.
+
+Version: 6.0.0.640 Build date: 2015-06-28 12:48:37 (134671ed5b6bf074e014e83502b615cd2e26a515)
 
 */
 
@@ -39,8 +44,6 @@ var Ext = Ext || {};
     "Ext.JSON": "../packages/core/src/JSON.js",
     "Ext.Mixin": "../packages/core/src/class/Mixin.js",
     "Ext.Msg": "../classic/classic/src/window/MessageBox.js",
-    "Ext.Progress": "../packages/core/src/Progress.js",
-    "Ext.ProgressBase": "../packages/core/src/ProgressBase.js",
     "Ext.Promise": "../packages/core/src/Promise.js",
     "Ext.String.format": "../packages/core/src/Template.js",
     "Ext.TaskQueue": "../packages/core/src/TaskQueue.js",
@@ -101,7 +104,7 @@ var Ext = Ext || {};
       "path": "../packages/core/src/util/DelayedTask.js",
       "requires": [],
       "uses": [
-        76
+        77
       ],
       "idx": 1
     },
@@ -127,7 +130,7 @@ var Ext = Ext || {};
         3
       ],
       "uses": [
-        51
+        52
       ],
       "idx": 4
     },
@@ -215,7 +218,7 @@ var Ext = Ext || {};
       "path": "../packages/core/src/data/flash/BinaryXhr.js",
       "requires": [],
       "uses": [
-        76
+        77
       ],
       "idx": 14
     },
@@ -226,7 +229,7 @@ var Ext = Ext || {};
         14
       ],
       "uses": [
-        76
+        77
       ],
       "idx": 15
     },
@@ -249,7 +252,7 @@ var Ext = Ext || {};
       ],
       "uses": [
         12,
-        49
+        50
       ],
       "idx": 17
     },
@@ -271,8 +274,7 @@ var Ext = Ext || {};
       "path": "../packages/core/src/ComponentManager.js",
       "requires": [],
       "uses": [
-        23,
-        49
+        50
       ],
       "idx": 20
     },
@@ -298,7 +300,7 @@ var Ext = Ext || {};
         22
       ],
       "uses": [
-        85
+        80
       ],
       "idx": 23
     },
@@ -315,7 +317,7 @@ var Ext = Ext || {};
       "requires": [],
       "uses": [
         33,
-        49
+        50
       ],
       "idx": 25
     },
@@ -323,7 +325,7 @@ var Ext = Ext || {};
       "path": "../packages/core/src/dom/UnderlayPool.js",
       "requires": [],
       "uses": [
-        49
+        50
       ],
       "idx": 26
     },
@@ -404,7 +406,7 @@ var Ext = Ext || {};
         35
       ],
       "uses": [
-        76
+        77
       ],
       "idx": 36
     },
@@ -417,7 +419,8 @@ var Ext = Ext || {};
       ],
       "uses": [
         35,
-        49,
+        50,
+        257,
         258,
         259,
         260,
@@ -428,8 +431,7 @@ var Ext = Ext || {};
         265,
         266,
         267,
-        268,
-        269
+        268
       ],
       "idx": 37
     },
@@ -439,7 +441,7 @@ var Ext = Ext || {};
         0
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 38
     },
@@ -461,17 +463,15 @@ var Ext = Ext || {};
       "idx": 40
     },
     {
-      "path": "../packages/core/src/util/sizemonitor/Scroll.js",
+      "path": "../packages/core/src/util/sizemonitor/Default.js",
       "requires": [
         40
       ],
-      "uses": [
-        39
-      ],
+      "uses": [],
       "idx": 41
     },
     {
-      "path": "../packages/core/src/util/sizemonitor/OverflowChange.js",
+      "path": "../packages/core/src/util/sizemonitor/Scroll.js",
       "requires": [
         40
       ],
@@ -481,43 +481,46 @@ var Ext = Ext || {};
       "idx": 42
     },
     {
+      "path": "../packages/core/src/util/sizemonitor/OverflowChange.js",
+      "requires": [
+        40
+      ],
+      "uses": [
+        39
+      ],
+      "idx": 43
+    },
+    {
       "path": "../packages/core/src/util/SizeMonitor.js",
       "requires": [
         41,
-        42
+        42,
+        43
       ],
       "uses": [],
-      "idx": 43
+      "idx": 44
     },
     {
       "path": "../packages/core/src/event/publisher/ElementSize.js",
       "requires": [
         31,
-        43
+        44
       ],
       "uses": [
         39
       ],
-      "idx": 44
+      "idx": 45
     },
     {
       "path": "../packages/core/src/util/paintmonitor/Abstract.js",
       "requires": [],
       "uses": [
-        49
+        50
       ],
-      "idx": 45
-    },
-    {
-      "path": "../packages/core/src/util/paintmonitor/CssAnimation.js",
-      "requires": [
-        45
-      ],
-      "uses": [],
       "idx": 46
     },
     {
-      "path": "../packages/core/src/util/PaintMonitor.js",
+      "path": "../packages/core/src/util/paintmonitor/CssAnimation.js",
       "requires": [
         46
       ],
@@ -525,14 +528,22 @@ var Ext = Ext || {};
       "idx": 47
     },
     {
-      "path": "../packages/core/src/event/publisher/ElementPaint.js",
+      "path": "../packages/core/src/util/PaintMonitor.js",
       "requires": [
-        31,
-        39,
         47
       ],
       "uses": [],
       "idx": 48
+    },
+    {
+      "path": "../packages/core/src/event/publisher/ElementPaint.js",
+      "requires": [
+        31,
+        39,
+        48
+      ],
+      "uses": [],
+      "idx": 49
     },
     {
       "path": "../packages/core/src/dom/Element.js",
@@ -544,29 +555,29 @@ var Ext = Ext || {};
         30,
         36,
         37,
-        44,
-        48
+        45,
+        49
       ],
       "uses": [
         31,
         33,
-        74,
         75,
         76,
-        85,
-        92,
-        230,
-        270,
-        280,
-        282
+        77,
+        80,
+        91,
+        229,
+        269,
+        279,
+        281
       ],
-      "idx": 49
+      "idx": 50
     },
     {
       "path": "../packages/core/src/util/Filter.js",
       "requires": [],
       "uses": [],
-      "idx": 50
+      "idx": 51
     },
     {
       "path": "../packages/core/src/util/Observable.js",
@@ -574,66 +585,58 @@ var Ext = Ext || {};
         4
       ],
       "uses": [],
-      "idx": 51
+      "idx": 52
     },
     {
       "path": "../packages/core/src/util/AbstractMixedCollection.js",
       "requires": [
-        50,
-        51
+        51,
+        52
       ],
       "uses": [],
-      "idx": 52
+      "idx": 53
     },
     {
       "path": "../packages/core/src/util/Sorter.js",
       "requires": [],
       "uses": [],
-      "idx": 53
+      "idx": 54
     },
     {
       "path": "../packages/core/src/util/Sortable.js",
       "requires": [
-        53
+        54
       ],
       "uses": [
-        55
+        56
       ],
-      "idx": 54
+      "idx": 55
     },
     {
       "path": "../packages/core/src/util/MixedCollection.js",
       "requires": [
-        52,
-        54
+        53,
+        55
       ],
       "uses": [],
-      "idx": 55
+      "idx": 56
     },
     {
       "path": "../packages/core/src/util/TaskRunner.js",
       "requires": [],
       "uses": [
-        76
+        77
       ],
-      "idx": 56
+      "idx": 57
     },
     {
       "path": "../classic/classic/src/fx/target/Target.js",
       "requires": [],
       "uses": [],
-      "idx": 57
-    },
-    {
-      "path": "../classic/classic/src/fx/target/Element.js",
-      "requires": [
-        57
-      ],
-      "uses": [],
       "idx": 58
     },
     {
-      "path": "../classic/classic/src/fx/target/ElementCSS.js",
+      "path": "../classic/classic/src/fx/target/Element.js",
       "requires": [
         58
       ],
@@ -641,47 +644,55 @@ var Ext = Ext || {};
       "idx": 59
     },
     {
-      "path": "../classic/classic/src/fx/target/CompositeElement.js",
+      "path": "../classic/classic/src/fx/target/ElementCSS.js",
       "requires": [
-        58
+        59
       ],
       "uses": [],
       "idx": 60
     },
     {
-      "path": "../classic/classic/src/fx/target/CompositeElementCSS.js",
+      "path": "../classic/classic/src/fx/target/CompositeElement.js",
       "requires": [
-        59,
-        60
+        59
       ],
       "uses": [],
       "idx": 61
     },
     {
-      "path": "../classic/classic/src/fx/target/Sprite.js",
+      "path": "../classic/classic/src/fx/target/CompositeElementCSS.js",
       "requires": [
-        57
+        60,
+        61
       ],
       "uses": [],
       "idx": 62
     },
     {
-      "path": "../classic/classic/src/fx/target/CompositeSprite.js",
+      "path": "../classic/classic/src/fx/target/Sprite.js",
       "requires": [
-        62
+        58
       ],
       "uses": [],
       "idx": 63
     },
     {
+      "path": "../classic/classic/src/fx/target/CompositeSprite.js",
+      "requires": [
+        63
+      ],
+      "uses": [],
+      "idx": 64
+    },
+    {
       "path": "../classic/classic/src/fx/target/Component.js",
       "requires": [
-        57
+        58
       ],
       "uses": [
-        76
+        77
       ],
-      "idx": 64
+      "idx": 65
     },
     {
       "path": "../classic/classic/src/fx/Queue.js",
@@ -689,118 +700,137 @@ var Ext = Ext || {};
         5
       ],
       "uses": [],
-      "idx": 65
+      "idx": 66
     },
     {
       "path": "../classic/classic/src/fx/Manager.js",
       "requires": [
-        55,
         56,
-        58,
+        57,
         59,
         60,
         61,
         62,
         63,
         64,
-        65
+        65,
+        66
       ],
       "uses": [],
-      "idx": 66
+      "idx": 67
     },
     {
       "path": "../classic/classic/src/fx/Animator.js",
       "requires": [
-        51,
-        66
+        52,
+        67
       ],
       "uses": [
-        72
+        73
       ],
-      "idx": 67
+      "idx": 68
     },
     {
       "path": "../classic/classic/src/fx/CubicBezier.js",
       "requires": [],
       "uses": [],
-      "idx": 68
+      "idx": 69
     },
     {
       "path": "../classic/classic/src/fx/Easing.js",
       "requires": [
-        68
+        69
       ],
       "uses": [],
-      "idx": 69
+      "idx": 70
     },
     {
       "path": "../classic/classic/src/fx/DrawPath.js",
       "requires": [],
       "uses": [],
-      "idx": 70
+      "idx": 71
     },
     {
       "path": "../classic/classic/src/fx/PropertyHandler.js",
       "requires": [
-        70
-      ],
-      "uses": [],
-      "idx": 71
-    },
-    {
-      "path": "../classic/classic/src/fx/Anim.js",
-      "requires": [
-        51,
-        66,
-        67,
-        68,
-        69,
         71
       ],
       "uses": [],
       "idx": 72
     },
     {
-      "path": "../classic/classic/src/util/Animate.js",
+      "path": "../classic/classic/src/fx/Anim.js",
       "requires": [
-        66,
+        52,
+        67,
+        68,
+        69,
+        70,
         72
       ],
       "uses": [],
       "idx": 73
     },
     {
-      "path": "../packages/core/src/dom/Fly.js",
+      "path": "../classic/classic/src/util/Animate.js",
       "requires": [
-        49
+        67,
+        73
       ],
       "uses": [],
       "idx": 74
     },
     {
+      "path": "../packages/core/src/dom/Fly.js",
+      "requires": [
+        50
+      ],
+      "uses": [],
+      "idx": 75
+    },
+    {
       "path": "../packages/core/src/dom/CompositeElementLite.js",
       "requires": [
-        74
+        75
       ],
       "uses": [
-        49
+        50
       ],
-      "idx": 75
+      "idx": 76
     },
     {
       "path": "../packages/core/src/GlobalEvents.js",
       "requires": [
         4,
-        49
+        50
       ],
       "uses": [],
-      "idx": 76
+      "idx": 77
     },
     {
       "path": "../packages/core/src/JSON.js",
       "requires": [],
       "uses": [],
-      "idx": 77
+      "idx": 78
+    },
+    {
+      "path": "../packages/core/src/util/Format.js",
+      "requires": [],
+      "uses": [
+        80,
+        229
+      ],
+      "idx": 79
+    },
+    {
+      "path": "../packages/core/src/Template.js",
+      "requires": [
+        79
+      ],
+      "uses": [
+        229
+      ],
+      "idx": 80
     },
     {
       "path": "../packages/core/src/mixin/Inheritable.js",
@@ -810,7 +840,7 @@ var Ext = Ext || {};
       "uses": [
         20
       ],
-      "idx": 78
+      "idx": 81
     },
     {
       "path": "../packages/core/src/mixin/Bindable.js",
@@ -818,7 +848,7 @@ var Ext = Ext || {};
       "uses": [
         12
       ],
-      "idx": 79
+      "idx": 82
     },
     {
       "path": "../packages/core/src/mixin/ComponentDelegation.js",
@@ -829,81 +859,45 @@ var Ext = Ext || {};
       "uses": [
         2
       ],
-      "idx": 80
+      "idx": 83
     },
     {
       "path": "../packages/core/src/Widget.js",
       "requires": [
         24,
-        49,
-        78,
-        79,
-        80
+        50,
+        81,
+        82,
+        83
       ],
       "uses": [
         20,
         23
       ],
-      "idx": 81
-    },
-    {
-      "path": "../packages/core/src/ProgressBase.js",
-      "requires": [],
-      "uses": [
-        88
-      ],
-      "idx": 82
-    },
-    {
-      "path": "../packages/core/src/Progress.js",
-      "requires": [
-        81,
-        82
-      ],
-      "uses": [],
-      "idx": 83
-    },
-    {
-      "path": "../packages/core/src/util/Format.js",
-      "requires": [],
-      "uses": [
-        85,
-        230
-      ],
       "idx": 84
-    },
-    {
-      "path": "../packages/core/src/Template.js",
-      "requires": [
-        84
-      ],
-      "uses": [
-        230
-      ],
-      "idx": 85
     },
     {
       "path": "../packages/core/src/util/XTemplateParser.js",
       "requires": [],
       "uses": [],
-      "idx": 86
+      "idx": 85
     },
     {
       "path": "../packages/core/src/util/XTemplateCompiler.js",
       "requires": [
-        86
+        85
       ],
       "uses": [],
-      "idx": 87
+      "idx": 86
     },
     {
       "path": "../packages/core/src/XTemplate.js",
       "requires": [
-        85,
-        87
+        80,
+        86
       ],
       "uses": [],
-      "idx": 88
+      "idx": 87
     },
     {
       "path": "../packages/core/src/app/EventDomain.js",
@@ -911,33 +905,33 @@ var Ext = Ext || {};
         2
       ],
       "uses": [],
-      "idx": 89
+      "idx": 88
     },
     {
       "path": "../packages/core/src/app/domain/Component.js",
       "requires": [
-        81,
-        89
+        84,
+        88
       ],
       "uses": [],
-      "idx": 90
+      "idx": 89
     },
     {
       "path": "../classic/classic/src/util/ProtoElement.js",
       "requires": [],
       "uses": [
-        49,
-        230
+        50,
+        229
       ],
-      "idx": 91
+      "idx": 90
     },
     {
       "path": "../packages/core/src/dom/CompositeElement.js",
       "requires": [
-        75
+        76
       ],
       "uses": [],
-      "idx": 92
+      "idx": 91
     },
     {
       "path": "../packages/core/src/scroll/Scroller.js",
@@ -946,73 +940,81 @@ var Ext = Ext || {};
         24
       ],
       "uses": [
-        76,
-        108,
-        109
+        77,
+        107,
+        108
       ],
-      "idx": 93
+      "idx": 92
     },
     {
       "path": "../packages/core/src/fx/easing/Abstract.js",
       "requires": [],
       "uses": [],
-      "idx": 94
+      "idx": 93
     },
     {
       "path": "../packages/core/src/fx/easing/Momentum.js",
       "requires": [
-        94
+        93
+      ],
+      "uses": [],
+      "idx": 94
+    },
+    {
+      "path": "../packages/core/src/fx/easing/Bounce.js",
+      "requires": [
+        93
       ],
       "uses": [],
       "idx": 95
     },
     {
-      "path": "../packages/core/src/fx/easing/Bounce.js",
+      "path": "../packages/core/src/fx/easing/BoundMomentum.js",
       "requires": [
-        94
+        93,
+        94,
+        95
       ],
       "uses": [],
       "idx": 96
     },
     {
-      "path": "../packages/core/src/fx/easing/BoundMomentum.js",
+      "path": "../packages/core/src/fx/easing/Linear.js",
       "requires": [
-        94,
-        95,
-        96
+        93
       ],
       "uses": [],
       "idx": 97
     },
     {
-      "path": "../packages/core/src/fx/easing/Linear.js",
+      "path": "../packages/core/src/fx/easing/EaseOut.js",
       "requires": [
-        94
+        97
       ],
       "uses": [],
       "idx": 98
     },
     {
-      "path": "../packages/core/src/fx/easing/EaseOut.js",
-      "requires": [
-        98
-      ],
-      "uses": [],
-      "idx": 99
-    },
-    {
       "path": "../packages/core/src/util/translatable/Abstract.js",
       "requires": [
         24,
-        98
+        97
       ],
       "uses": [
         19
       ],
-      "idx": 100
+      "idx": 99
     },
     {
       "path": "../packages/core/src/util/translatable/Dom.js",
+      "requires": [
+        99
+      ],
+      "uses": [],
+      "idx": 100
+    },
+    {
+      "path": "../packages/core/src/util/translatable/CssTransform.js",
       "requires": [
         100
       ],
@@ -1020,129 +1022,121 @@ var Ext = Ext || {};
       "idx": 101
     },
     {
-      "path": "../packages/core/src/util/translatable/CssTransform.js",
+      "path": "../packages/core/src/util/translatable/ScrollPosition.js",
       "requires": [
-        101
+        100
       ],
       "uses": [],
       "idx": 102
     },
     {
-      "path": "../packages/core/src/util/translatable/ScrollPosition.js",
+      "path": "../packages/core/src/util/translatable/ScrollParent.js",
       "requires": [
-        101
+        100
       ],
       "uses": [],
       "idx": 103
     },
     {
-      "path": "../packages/core/src/util/translatable/ScrollParent.js",
+      "path": "../packages/core/src/util/translatable/CssPosition.js",
       "requires": [
-        101
+        100
       ],
       "uses": [],
       "idx": 104
     },
     {
-      "path": "../packages/core/src/util/translatable/CssPosition.js",
+      "path": "../packages/core/src/util/Translatable.js",
       "requires": [
-        101
+        101,
+        102,
+        103,
+        104
       ],
       "uses": [],
       "idx": 105
     },
     {
-      "path": "../packages/core/src/util/Translatable.js",
+      "path": "../packages/core/src/scroll/Indicator.js",
       "requires": [
-        102,
-        103,
-        104,
-        105
+        84
       ],
       "uses": [],
       "idx": 106
     },
     {
-      "path": "../packages/core/src/scroll/Indicator.js",
+      "path": "../packages/core/src/scroll/TouchScroller.js",
       "requires": [
-        81
+        77,
+        92,
+        96,
+        98,
+        105,
+        106
       ],
       "uses": [],
       "idx": 107
     },
     {
-      "path": "../packages/core/src/scroll/TouchScroller.js",
+      "path": "../packages/core/src/scroll/DomScroller.js",
       "requires": [
-        76,
-        93,
-        97,
-        99,
-        106,
-        107
+        92
       ],
       "uses": [],
       "idx": 108
-    },
-    {
-      "path": "../packages/core/src/scroll/DomScroller.js",
-      "requires": [
-        93
-      ],
-      "uses": [],
-      "idx": 109
     },
     {
       "path": "../classic/classic/src/util/Floating.js",
       "requires": [],
       "uses": [
         20,
-        76,
-        333
+        77,
+        332
       ],
-      "idx": 110
+      "idx": 109
     },
     {
       "path": "../classic/classic/src/util/ElementContainer.js",
       "requires": [],
       "uses": [],
-      "idx": 111
+      "idx": 110
     },
     {
       "path": "../classic/classic/src/util/Renderable.js",
       "requires": [
-        49
+        50
       ],
       "uses": [
-        88,
-        119,
-        230
+        87,
+        118,
+        229
       ],
-      "idx": 112
+      "idx": 111
     },
     {
       "path": "../classic/classic/src/state/Provider.js",
       "requires": [
-        51
+        52
+      ],
+      "uses": [],
+      "idx": 112
+    },
+    {
+      "path": "../classic/classic/src/state/Manager.js",
+      "requires": [
+        112
       ],
       "uses": [],
       "idx": 113
     },
     {
-      "path": "../classic/classic/src/state/Manager.js",
+      "path": "../classic/classic/src/state/Stateful.js",
       "requires": [
+        57,
         113
       ],
       "uses": [],
       "idx": 114
-    },
-    {
-      "path": "../classic/classic/src/state/Stateful.js",
-      "requires": [
-        56,
-        114
-      ],
-      "uses": [],
-      "idx": 115
     },
     {
       "path": "../classic/classic/src/util/Focusable.js",
@@ -1152,9 +1146,10 @@ var Ext = Ext || {};
       "uses": [
         23,
         35,
-        49
+        50,
+        118
       ],
-      "idx": 116
+      "idx": 115
     },
     {
       "path": "../packages/core/src/mixin/Accessible.js",
@@ -1162,7 +1157,7 @@ var Ext = Ext || {};
         0
       ],
       "uses": [],
-      "idx": 117
+      "idx": 116
     },
     {
       "path": "../classic/classic/src/util/KeyboardInteractive.js",
@@ -1172,7 +1167,7 @@ var Ext = Ext || {};
       "uses": [
         35
       ],
-      "idx": 118
+      "idx": 117
     },
     {
       "path": "../classic/classic/src/Component.js",
@@ -1180,89 +1175,89 @@ var Ext = Ext || {};
         20,
         23,
         25,
-        51,
-        73,
-        76,
-        78,
-        79,
-        80,
+        52,
+        74,
+        77,
+        81,
+        82,
+        83,
+        90,
         91,
         92,
-        93,
+        107,
         108,
         109,
         110,
         111,
-        112,
+        114,
         115,
         116,
-        117,
-        118
+        117
       ],
       "uses": [
         1,
-        49,
-        66,
-        88,
-        195,
-        230,
+        50,
+        67,
+        87,
+        194,
+        229,
+        327,
         328,
         329,
-        330,
-        333,
-        340,
-        342,
+        332,
+        339,
+        341,
         411,
         554,
         568,
         572
       ],
-      "idx": 119
+      "idx": 118
     },
     {
       "path": "../classic/classic/src/layout/container/border/Region.js",
       "requires": [],
       "uses": [],
-      "idx": 120
+      "idx": 119
     },
     {
       "path": "../packages/core/src/app/EventBus.js",
       "requires": [
-        90
-      ],
-      "uses": [
         89
       ],
-      "idx": 121
+      "uses": [
+        88
+      ],
+      "idx": 120
     },
     {
       "path": "../packages/core/src/app/domain/Global.js",
       "requires": [
-        76,
-        89
+        77,
+        88
       ],
       "uses": [],
-      "idx": 122
+      "idx": 121
     },
     {
       "path": "../packages/core/src/app/BaseController.js",
       "requires": [
         4,
-        121,
-        122
+        120,
+        121
       ],
       "uses": [
+        178,
         179,
-        180,
-        209
+        208
       ],
-      "idx": 123
+      "idx": 122
     },
     {
       "path": "../packages/core/src/app/Util.js",
       "requires": [],
       "uses": [],
-      "idx": 124
+      "idx": 123
     },
     {
       "path": "../packages/core/src/util/CollectionKey.js",
@@ -1270,39 +1265,39 @@ var Ext = Ext || {};
         3
       ],
       "uses": [],
-      "idx": 125
+      "idx": 124
     },
     {
       "path": "../packages/core/src/util/Grouper.js",
       "requires": [
-        53
+        54
       ],
       "uses": [],
-      "idx": 126
+      "idx": 125
     },
     {
       "path": "../packages/core/src/util/Collection.js",
       "requires": [
         4,
-        50,
-        53,
-        125,
-        126
+        51,
+        54,
+        124,
+        125
       ],
       "uses": [
+        168,
         169,
-        170,
-        171
+        170
       ],
-      "idx": 127
+      "idx": 126
     },
     {
       "path": "../packages/core/src/util/ObjectTemplate.js",
       "requires": [
-        88
+        87
       ],
       "uses": [],
-      "idx": 128
+      "idx": 127
     },
     {
       "path": "../packages/core/src/data/schema/Role.js",
@@ -1310,10 +1305,18 @@ var Ext = Ext || {};
       "uses": [
         12
       ],
-      "idx": 129
+      "idx": 128
     },
     {
       "path": "../packages/core/src/data/schema/Association.js",
+      "requires": [
+        128
+      ],
+      "uses": [],
+      "idx": 129
+    },
+    {
+      "path": "../packages/core/src/data/schema/OneToOne.js",
       "requires": [
         129
       ],
@@ -1321,131 +1324,123 @@ var Ext = Ext || {};
       "idx": 130
     },
     {
-      "path": "../packages/core/src/data/schema/OneToOne.js",
+      "path": "../packages/core/src/data/schema/ManyToOne.js",
       "requires": [
-        130
+        129
       ],
       "uses": [],
       "idx": 131
     },
     {
-      "path": "../packages/core/src/data/schema/ManyToOne.js",
+      "path": "../packages/core/src/data/schema/ManyToMany.js",
       "requires": [
-        130
+        129
       ],
       "uses": [],
       "idx": 132
     },
     {
-      "path": "../packages/core/src/data/schema/ManyToMany.js",
-      "requires": [
-        130
-      ],
-      "uses": [],
-      "idx": 133
-    },
-    {
       "path": "../packages/core/src/util/Inflector.js",
       "requires": [],
       "uses": [],
-      "idx": 134
+      "idx": 133
     },
     {
       "path": "../packages/core/src/data/schema/Namer.js",
       "requires": [
         12,
+        133
+      ],
+      "uses": [],
+      "idx": 134
+    },
+    {
+      "path": "../packages/core/src/data/schema/Schema.js",
+      "requires": [
+        12,
+        127,
+        130,
+        131,
+        132,
         134
       ],
       "uses": [],
       "idx": 135
     },
     {
-      "path": "../packages/core/src/data/schema/Schema.js",
-      "requires": [
-        12,
-        128,
-        131,
-        132,
-        133,
-        135
-      ],
-      "uses": [],
-      "idx": 136
-    },
-    {
       "path": "../packages/core/src/data/AbstractStore.js",
       "requires": [
         4,
         12,
-        50,
-        127,
-        136
+        51,
+        126,
+        135
       ],
       "uses": [
-        175
+        174
       ],
-      "idx": 137
+      "idx": 136
     },
     {
       "path": "../packages/core/src/data/Error.js",
       "requires": [],
       "uses": [],
-      "idx": 138
+      "idx": 137
     },
     {
       "path": "../packages/core/src/data/ErrorCollection.js",
       "requires": [
-        55,
-        138
+        56,
+        137
       ],
       "uses": [
-        147
+        146
       ],
-      "idx": 139
+      "idx": 138
     },
     {
       "path": "../packages/core/src/data/operation/Operation.js",
       "requires": [],
       "uses": [],
-      "idx": 140
+      "idx": 139
     },
     {
       "path": "../packages/core/src/data/operation/Create.js",
       "requires": [
-        140
+        139
+      ],
+      "uses": [],
+      "idx": 140
+    },
+    {
+      "path": "../packages/core/src/data/operation/Destroy.js",
+      "requires": [
+        139
       ],
       "uses": [],
       "idx": 141
     },
     {
-      "path": "../packages/core/src/data/operation/Destroy.js",
+      "path": "../packages/core/src/data/operation/Read.js",
       "requires": [
-        140
+        139
       ],
       "uses": [],
       "idx": 142
     },
     {
-      "path": "../packages/core/src/data/operation/Read.js",
+      "path": "../packages/core/src/data/operation/Update.js",
       "requires": [
-        140
+        139
       ],
       "uses": [],
       "idx": 143
     },
     {
-      "path": "../packages/core/src/data/operation/Update.js",
-      "requires": [
-        140
-      ],
-      "uses": [],
-      "idx": 144
-    },
-    {
       "path": "../packages/core/src/data/SortTypes.js",
       "requires": [],
       "uses": [],
-      "idx": 145
+      "idx": 144
     },
     {
       "path": "../packages/core/src/data/validator/Validator.js",
@@ -1453,57 +1448,57 @@ var Ext = Ext || {};
         12
       ],
       "uses": [],
-      "idx": 146
+      "idx": 145
     },
     {
       "path": "../packages/core/src/data/field/Field.js",
       "requires": [
         12,
-        145,
+        144,
+        145
+      ],
+      "uses": [],
+      "idx": 146
+    },
+    {
+      "path": "../packages/core/src/data/field/Boolean.js",
+      "requires": [
         146
       ],
       "uses": [],
       "idx": 147
     },
     {
-      "path": "../packages/core/src/data/field/Boolean.js",
+      "path": "../packages/core/src/data/field/Date.js",
       "requires": [
-        147
+        146
       ],
       "uses": [],
       "idx": 148
     },
     {
-      "path": "../packages/core/src/data/field/Date.js",
+      "path": "../packages/core/src/data/field/Integer.js",
       "requires": [
-        147
+        146
       ],
       "uses": [],
       "idx": 149
     },
     {
-      "path": "../packages/core/src/data/field/Integer.js",
+      "path": "../packages/core/src/data/field/Number.js",
       "requires": [
-        147
+        149
       ],
       "uses": [],
       "idx": 150
     },
     {
-      "path": "../packages/core/src/data/field/Number.js",
+      "path": "../packages/core/src/data/field/String.js",
       "requires": [
-        150
+        146
       ],
       "uses": [],
       "idx": 151
-    },
-    {
-      "path": "../packages/core/src/data/field/String.js",
-      "requires": [
-        147
-      ],
-      "uses": [],
-      "idx": 152
     },
     {
       "path": "../packages/core/src/data/identifier/Generator.js",
@@ -1511,26 +1506,27 @@ var Ext = Ext || {};
         12
       ],
       "uses": [],
-      "idx": 153
+      "idx": 152
     },
     {
       "path": "../packages/core/src/data/identifier/Sequential.js",
       "requires": [
-        153
+        152
       ],
       "uses": [],
-      "idx": 154
+      "idx": 153
     },
     {
       "path": "../packages/core/src/data/Model.js",
       "requires": [
-        136,
+        135,
+        138,
         139,
         140,
         141,
         142,
         143,
-        144,
+        145,
         146,
         147,
         148,
@@ -1538,21 +1534,20 @@ var Ext = Ext || {};
         150,
         151,
         152,
-        153,
-        154
+        153
       ],
       "uses": [
         12,
-        157,
-        229
+        156,
+        228
       ],
-      "idx": 155
+      "idx": 154
     },
     {
       "path": "../packages/core/src/data/ResultSet.js",
       "requires": [],
       "uses": [],
-      "idx": 156
+      "idx": 155
     },
     {
       "path": "../packages/core/src/data/reader/Reader.js",
@@ -1560,13 +1555,13 @@ var Ext = Ext || {};
         4,
         12,
         22,
-        88,
-        156
+        87,
+        155
       ],
       "uses": [
-        136
+        135
       ],
-      "idx": 157
+      "idx": 156
     },
     {
       "path": "../packages/core/src/data/writer/Writer.js",
@@ -1574,64 +1569,65 @@ var Ext = Ext || {};
         12
       ],
       "uses": [],
-      "idx": 158
+      "idx": 157
     },
     {
       "path": "../packages/core/src/data/proxy/Proxy.js",
       "requires": [
         4,
         12,
-        136,
-        157,
-        158
+        135,
+        156,
+        157
       ],
       "uses": [
+        139,
         140,
         141,
         142,
         143,
-        144,
-        155,
-        188
+        154,
+        187
       ],
-      "idx": 159
+      "idx": 158
     },
     {
       "path": "../packages/core/src/data/proxy/Client.js",
       "requires": [
-        159
+        158
       ],
       "uses": [],
-      "idx": 160
+      "idx": 159
     },
     {
       "path": "../packages/core/src/data/proxy/Memory.js",
       "requires": [
-        160
+        159
       ],
       "uses": [
-        50,
-        54
+        51,
+        55
       ],
-      "idx": 161
+      "idx": 160
     },
     {
       "path": "../packages/core/src/data/ProxyStore.js",
       "requires": [
-        137,
+        136,
+        139,
         140,
         141,
         142,
         143,
-        144,
-        155,
-        159,
-        161
+        154,
+        158,
+        160
       ],
       "uses": [
-        136
+        1,
+        135
       ],
-      "idx": 162
+      "idx": 161
     },
     {
       "path": "../packages/core/src/data/LocalStore.js",
@@ -1639,209 +1635,209 @@ var Ext = Ext || {};
         0
       ],
       "uses": [
-        127
+        126
       ],
-      "idx": 163
+      "idx": 162
     },
     {
       "path": "../packages/core/src/data/proxy/Server.js",
       "requires": [
-        159
+        158
       ],
       "uses": [
-        85,
-        226
+        80,
+        225
       ],
-      "idx": 164
+      "idx": 163
     },
     {
       "path": "../packages/core/src/data/proxy/Ajax.js",
       "requires": [
         18,
-        164
+        163
+      ],
+      "uses": [],
+      "idx": 164
+    },
+    {
+      "path": "../packages/core/src/data/reader/Json.js",
+      "requires": [
+        78,
+        156
       ],
       "uses": [],
       "idx": 165
     },
     {
-      "path": "../packages/core/src/data/reader/Json.js",
+      "path": "../packages/core/src/data/writer/Json.js",
       "requires": [
-        77,
         157
       ],
       "uses": [],
       "idx": 166
     },
     {
-      "path": "../packages/core/src/data/writer/Json.js",
+      "path": "../packages/core/src/util/Group.js",
       "requires": [
-        158
+        126
       ],
       "uses": [],
       "idx": 167
     },
     {
-      "path": "../packages/core/src/util/Group.js",
+      "path": "../packages/core/src/util/SorterCollection.js",
       "requires": [
-        127
+        54,
+        126
       ],
       "uses": [],
       "idx": 168
     },
     {
-      "path": "../packages/core/src/util/SorterCollection.js",
+      "path": "../packages/core/src/util/FilterCollection.js",
       "requires": [
-        53,
-        127
+        51,
+        126
       ],
       "uses": [],
       "idx": 169
     },
     {
-      "path": "../packages/core/src/util/FilterCollection.js",
+      "path": "../packages/core/src/util/GroupCollection.js",
       "requires": [
-        50,
-        127
+        126,
+        167,
+        168,
+        169
       ],
       "uses": [],
       "idx": 170
     },
     {
-      "path": "../packages/core/src/util/GroupCollection.js",
-      "requires": [
-        127,
-        168,
-        169,
-        170
-      ],
-      "uses": [],
-      "idx": 171
-    },
-    {
       "path": "../packages/core/src/data/Store.js",
       "requires": [
         1,
-        155,
+        154,
+        161,
         162,
-        163,
+        164,
         165,
         166,
-        167,
-        171
+        170
       ],
       "uses": [
-        126,
-        175,
-        214
+        125,
+        174,
+        213
       ],
-      "idx": 172
+      "idx": 171
     },
     {
       "path": "../packages/core/src/data/reader/Array.js",
       "requires": [
-        166
+        165
+      ],
+      "uses": [],
+      "idx": 172
+    },
+    {
+      "path": "../packages/core/src/data/ArrayStore.js",
+      "requires": [
+        160,
+        171,
+        172
       ],
       "uses": [],
       "idx": 173
     },
     {
-      "path": "../packages/core/src/data/ArrayStore.js",
-      "requires": [
-        161,
-        172,
-        173
-      ],
-      "uses": [],
-      "idx": 174
-    },
-    {
       "path": "../packages/core/src/data/StoreManager.js",
       "requires": [
-        55,
-        174
+        56,
+        173
       ],
       "uses": [
         12,
-        161,
-        167,
-        172,
-        173
+        160,
+        166,
+        171,
+        172
       ],
-      "idx": 175
+      "idx": 174
     },
     {
       "path": "../packages/core/src/app/domain/Store.js",
       "requires": [
-        89,
-        137
+        88,
+        136
       ],
       "uses": [],
-      "idx": 176
+      "idx": 175
     },
     {
       "path": "../packages/core/src/app/route/Queue.js",
       "requires": [],
       "uses": [
-        55
+        56
       ],
-      "idx": 177
+      "idx": 176
     },
     {
       "path": "../packages/core/src/app/route/Route.js",
       "requires": [],
       "uses": [
-        85
+        80
       ],
-      "idx": 178
+      "idx": 177
     },
     {
       "path": "../packages/core/src/util/History.js",
       "requires": [
-        51
+        52
       ],
       "uses": [
-        323
+        322
       ],
-      "idx": 179
+      "idx": 178
     },
     {
       "path": "../packages/core/src/app/route/Router.js",
       "requires": [
+        176,
         177,
-        178,
-        179
+        178
       ],
       "uses": [],
-      "idx": 180
+      "idx": 179
     },
     {
       "path": "../packages/core/src/app/Controller.js",
       "requires": [
         20,
-        90,
+        89,
+        122,
         123,
-        124,
+        174,
         175,
-        176,
-        180
+        179
       ],
       "uses": [
         23,
-        136
+        135
       ],
-      "idx": 181
+      "idx": 180
     },
     {
       "path": "../packages/core/src/app/Application.js",
       "requires": [
-        55,
-        179,
-        181
-      ],
-      "uses": [
+        56,
+        178,
         180
       ],
-      "idx": 182
+      "uses": [
+        179
+      ],
+      "idx": 181
     },
     {
       "path": "../packages/core/src/app/Profile.js",
@@ -1849,44 +1845,44 @@ var Ext = Ext || {};
         4
       ],
       "uses": [
-        181
+        180
       ],
-      "idx": 183
+      "idx": 182
     },
     {
       "path": "../packages/core/src/app/domain/View.js",
       "requires": [
-        89
+        88
       ],
       "uses": [],
-      "idx": 184
+      "idx": 183
     },
     {
       "path": "../packages/core/src/app/ViewController.js",
       "requires": [
         12,
-        123,
-        184
+        122,
+        183
       ],
       "uses": [],
-      "idx": 185
+      "idx": 184
     },
     {
       "path": "../packages/core/src/util/Bag.js",
       "requires": [],
       "uses": [],
-      "idx": 186
+      "idx": 185
     },
     {
       "path": "../packages/core/src/util/Scheduler.js",
       "requires": [
         4,
-        186
+        185
       ],
       "uses": [
-        76
+        77
       ],
-      "idx": 187
+      "idx": 186
     },
     {
       "path": "../packages/core/src/data/Batch.js",
@@ -1894,16 +1890,24 @@ var Ext = Ext || {};
         4
       ],
       "uses": [],
-      "idx": 188
+      "idx": 187
     },
     {
       "path": "../packages/core/src/data/matrix/Slice.js",
       "requires": [],
       "uses": [],
-      "idx": 189
+      "idx": 188
     },
     {
       "path": "../packages/core/src/data/matrix/Side.js",
+      "requires": [
+        188
+      ],
+      "uses": [],
+      "idx": 189
+    },
+    {
+      "path": "../packages/core/src/data/matrix/Matrix.js",
       "requires": [
         189
       ],
@@ -1911,56 +1915,56 @@ var Ext = Ext || {};
       "idx": 190
     },
     {
-      "path": "../packages/core/src/data/matrix/Matrix.js",
-      "requires": [
-        190
-      ],
+      "path": "../packages/core/src/data/session/ChangesVisitor.js",
+      "requires": [],
       "uses": [],
       "idx": 191
     },
     {
-      "path": "../packages/core/src/data/session/ChangesVisitor.js",
-      "requires": [],
-      "uses": [],
-      "idx": 192
-    },
-    {
       "path": "../packages/core/src/data/session/ChildChangesVisitor.js",
       "requires": [
-        192
+        191
       ],
       "uses": [],
-      "idx": 193
+      "idx": 192
     },
     {
       "path": "../packages/core/src/data/session/BatchVisitor.js",
       "requires": [],
       "uses": [
-        188
+        187
       ],
-      "idx": 194
+      "idx": 193
     },
     {
       "path": "../packages/core/src/data/Session.js",
       "requires": [
-        136,
-        188,
+        135,
+        187,
+        190,
         191,
         192,
-        193,
-        194
+        193
       ],
       "uses": [],
-      "idx": 195
+      "idx": 194
     },
     {
       "path": "../packages/core/src/util/Schedulable.js",
       "requires": [],
       "uses": [],
-      "idx": 196
+      "idx": 195
     },
     {
       "path": "../packages/core/src/app/bind/BaseBinding.js",
+      "requires": [
+        195
+      ],
+      "uses": [],
+      "idx": 196
+    },
+    {
+      "path": "../packages/core/src/app/bind/Binding.js",
       "requires": [
         196
       ],
@@ -1968,157 +1972,149 @@ var Ext = Ext || {};
       "idx": 197
     },
     {
-      "path": "../packages/core/src/app/bind/Binding.js",
+      "path": "../packages/core/src/app/bind/AbstractStub.js",
       "requires": [
+        195,
         197
       ],
       "uses": [],
       "idx": 198
     },
     {
-      "path": "../packages/core/src/app/bind/AbstractStub.js",
-      "requires": [
-        196,
-        198
-      ],
-      "uses": [],
-      "idx": 199
-    },
-    {
       "path": "../packages/core/src/app/bind/Stub.js",
       "requires": [
-        198,
-        199
+        197,
+        198
       ],
       "uses": [
-        204
+        203
       ],
-      "idx": 200
+      "idx": 199
     },
     {
       "path": "../packages/core/src/app/bind/LinkStub.js",
       "requires": [
+        199
+      ],
+      "uses": [],
+      "idx": 200
+    },
+    {
+      "path": "../packages/core/src/app/bind/RootStub.js",
+      "requires": [
+        198,
+        199,
         200
       ],
       "uses": [],
       "idx": 201
     },
     {
-      "path": "../packages/core/src/app/bind/RootStub.js",
+      "path": "../packages/core/src/app/bind/Multi.js",
       "requires": [
-        199,
-        200,
-        201
+        196
       ],
       "uses": [],
       "idx": 202
     },
     {
-      "path": "../packages/core/src/app/bind/Multi.js",
+      "path": "../packages/core/src/app/bind/Formula.js",
       "requires": [
-        197
+        22,
+        195
       ],
       "uses": [],
       "idx": 203
     },
     {
-      "path": "../packages/core/src/app/bind/Formula.js",
+      "path": "../packages/core/src/app/bind/Template.js",
       "requires": [
-        22,
-        196
+        79
       ],
       "uses": [],
       "idx": 204
     },
     {
-      "path": "../packages/core/src/app/bind/Template.js",
+      "path": "../packages/core/src/app/bind/TemplateBinding.js",
       "requires": [
-        84
+        196,
+        202,
+        204
       ],
       "uses": [],
       "idx": 205
     },
     {
-      "path": "../packages/core/src/app/bind/TemplateBinding.js",
-      "requires": [
-        197,
-        203,
-        205
-      ],
-      "uses": [],
-      "idx": 206
-    },
-    {
       "path": "../packages/core/src/data/ChainedStore.js",
       "requires": [
-        137,
-        163
+        136,
+        162
       ],
       "uses": [
-        85,
-        175
+        80,
+        174
       ],
-      "idx": 207
+      "idx": 206
     },
     {
       "path": "../packages/core/src/app/ViewModel.js",
       "requires": [
         3,
         12,
-        187,
-        195,
+        186,
+        194,
+        200,
         201,
         202,
         203,
-        204,
-        206,
-        207
+        205,
+        206
       ],
       "uses": [
         1,
-        136
+        135
       ],
-      "idx": 208
+      "idx": 207
     },
     {
       "path": "../packages/core/src/app/domain/Controller.js",
       "requires": [
-        89,
-        181
+        88,
+        180
       ],
       "uses": [
-        123
+        122
       ],
-      "idx": 209
+      "idx": 208
     },
     {
       "path": "../packages/core/src/direct/Manager.js",
       "requires": [
         4,
-        55
+        56
       ],
       "uses": [
-        85
+        80
       ],
-      "idx": 210
+      "idx": 209
     },
     {
       "path": "../packages/core/src/direct/Provider.js",
       "requires": [
         4,
-        210
+        209
       ],
       "uses": [],
-      "idx": 211
+      "idx": 210
     },
     {
       "path": "../packages/core/src/app/domain/Direct.js",
       "requires": [
-        89,
-        211
+        88,
+        210
       ],
       "uses": [],
-      "idx": 212
+      "idx": 211
     },
     {
       "path": "../packages/core/src/data/PageMap.js",
@@ -2126,103 +2122,103 @@ var Ext = Ext || {};
         22
       ],
       "uses": [],
-      "idx": 213
+      "idx": 212
     },
     {
       "path": "../packages/core/src/data/BufferedStore.js",
       "requires": [
-        50,
-        53,
-        126,
-        162,
-        213
+        51,
+        54,
+        125,
+        161,
+        212
       ],
       "uses": [
+        168,
         169,
-        170,
-        171
+        170
       ],
-      "idx": 214
+      "idx": 213
     },
     {
       "path": "../packages/core/src/data/proxy/Direct.js",
       "requires": [
-        164,
-        210
+        163,
+        209
+      ],
+      "uses": [],
+      "idx": 214
+    },
+    {
+      "path": "../packages/core/src/data/DirectStore.js",
+      "requires": [
+        171,
+        214
       ],
       "uses": [],
       "idx": 215
     },
     {
-      "path": "../packages/core/src/data/DirectStore.js",
-      "requires": [
-        172,
-        215
-      ],
-      "uses": [],
-      "idx": 216
-    },
-    {
       "path": "../packages/core/src/data/JsonP.js",
       "requires": [],
       "uses": [
-        76
+        77
       ],
-      "idx": 217
+      "idx": 216
     },
     {
       "path": "../packages/core/src/data/proxy/JsonP.js",
       "requires": [
-        164,
+        163,
+        216
+      ],
+      "uses": [],
+      "idx": 217
+    },
+    {
+      "path": "../packages/core/src/data/JsonPStore.js",
+      "requires": [
+        165,
+        171,
         217
       ],
       "uses": [],
       "idx": 218
     },
     {
-      "path": "../packages/core/src/data/JsonPStore.js",
+      "path": "../packages/core/src/data/JsonStore.js",
       "requires": [
+        164,
+        165,
         166,
-        172,
-        218
+        171
       ],
       "uses": [],
       "idx": 219
     },
     {
-      "path": "../packages/core/src/data/JsonStore.js",
-      "requires": [
-        165,
-        166,
-        167,
-        172
-      ],
-      "uses": [],
-      "idx": 220
-    },
-    {
       "path": "../packages/core/src/data/ModelManager.js",
       "requires": [
-        136
+        135
       ],
       "uses": [
-        155
+        154
       ],
-      "idx": 221
+      "idx": 220
     },
     {
       "path": "../packages/core/src/data/NodeInterface.js",
       "requires": [
         4,
-        148,
-        150,
-        152,
-        167
+        147,
+        149,
+        151,
+        166
       ],
       "uses": [
-        136
+        135
       ],
-      "idx": 222
+      "idx": 221
     },
     {
       "path": "../packages/core/src/mixin/Queryable.js",
@@ -2230,324 +2226,324 @@ var Ext = Ext || {};
       "uses": [
         23
       ],
-      "idx": 223
+      "idx": 222
     },
     {
       "path": "../packages/core/src/data/TreeModel.js",
       "requires": [
-        155,
-        222,
-        223
+        154,
+        221,
+        222
       ],
       "uses": [],
-      "idx": 224
+      "idx": 223
     },
     {
       "path": "../packages/core/src/data/NodeStore.js",
       "requires": [
-        172,
-        222,
-        224
+        171,
+        221,
+        223
       ],
       "uses": [
-        155
+        154
       ],
-      "idx": 225
+      "idx": 224
     },
     {
       "path": "../packages/core/src/data/Request.js",
       "requires": [],
       "uses": [],
-      "idx": 226
+      "idx": 225
     },
     {
       "path": "../packages/core/src/data/TreeStore.js",
       "requires": [
-        53,
-        172,
-        222,
-        224
+        54,
+        171,
+        221,
+        223
       ],
       "uses": [
-        155
+        154
       ],
-      "idx": 227
+      "idx": 226
     },
     {
       "path": "../packages/core/src/data/Types.js",
       "requires": [
-        145
+        144
+      ],
+      "uses": [],
+      "idx": 227
+    },
+    {
+      "path": "../packages/core/src/data/Validation.js",
+      "requires": [
+        154
       ],
       "uses": [],
       "idx": 228
     },
     {
-      "path": "../packages/core/src/data/Validation.js",
-      "requires": [
-        155
-      ],
-      "uses": [],
-      "idx": 229
-    },
-    {
       "path": "../packages/core/src/dom/Helper.js",
       "requires": [],
       "uses": [
-        85
+        80
       ],
-      "idx": 230
+      "idx": 229
     },
     {
       "path": "../packages/core/src/dom/Query.js",
       "requires": [
         21,
-        230
+        229
       ],
       "uses": [
         22
       ],
-      "idx": 231
+      "idx": 230
     },
     {
       "path": "../packages/core/src/data/reader/Xml.js",
       "requires": [
-        157,
-        231
+        156,
+        230
+      ],
+      "uses": [],
+      "idx": 231
+    },
+    {
+      "path": "../packages/core/src/data/writer/Xml.js",
+      "requires": [
+        157
       ],
       "uses": [],
       "idx": 232
     },
     {
-      "path": "../packages/core/src/data/writer/Xml.js",
+      "path": "../packages/core/src/data/XmlStore.js",
       "requires": [
-        158
+        164,
+        171,
+        231,
+        232
       ],
       "uses": [],
       "idx": 233
     },
     {
-      "path": "../packages/core/src/data/XmlStore.js",
+      "path": "../packages/core/src/data/identifier/Negative.js",
       "requires": [
-        165,
-        172,
-        232,
-        233
+        153
       ],
       "uses": [],
       "idx": 234
     },
     {
-      "path": "../packages/core/src/data/identifier/Negative.js",
+      "path": "../packages/core/src/data/identifier/Uuid.js",
       "requires": [
-        154
+        152
       ],
       "uses": [],
       "idx": 235
     },
     {
-      "path": "../packages/core/src/data/identifier/Uuid.js",
-      "requires": [
-        153
-      ],
-      "uses": [],
-      "idx": 236
-    },
-    {
       "path": "../packages/core/src/data/proxy/WebStorage.js",
       "requires": [
-        154,
-        160
+        153,
+        159
       ],
       "uses": [
-        53,
-        85,
-        156
+        54,
+        80,
+        155
       ],
-      "idx": 237
+      "idx": 236
     },
     {
       "path": "../packages/core/src/data/proxy/LocalStorage.js",
       "requires": [
-        237
+        236
+      ],
+      "uses": [],
+      "idx": 237
+    },
+    {
+      "path": "../packages/core/src/data/proxy/Rest.js",
+      "requires": [
+        164
       ],
       "uses": [],
       "idx": 238
     },
     {
-      "path": "../packages/core/src/data/proxy/Rest.js",
+      "path": "../packages/core/src/data/proxy/SessionStorage.js",
       "requires": [
-        165
+        236
       ],
       "uses": [],
       "idx": 239
     },
     {
-      "path": "../packages/core/src/data/proxy/SessionStorage.js",
-      "requires": [
-        237
-      ],
-      "uses": [],
-      "idx": 240
-    },
-    {
       "path": "../packages/core/src/data/validator/Bound.js",
       "requires": [
-        146
+        145
       ],
       "uses": [
-        85
+        80
       ],
-      "idx": 241
+      "idx": 240
     },
     {
       "path": "../packages/core/src/data/validator/Format.js",
       "requires": [
-        146
+        145
+      ],
+      "uses": [],
+      "idx": 241
+    },
+    {
+      "path": "../packages/core/src/data/validator/Email.js",
+      "requires": [
+        241
       ],
       "uses": [],
       "idx": 242
     },
     {
-      "path": "../packages/core/src/data/validator/Email.js",
+      "path": "../packages/core/src/data/validator/List.js",
       "requires": [
-        242
+        145
       ],
       "uses": [],
       "idx": 243
     },
     {
-      "path": "../packages/core/src/data/validator/List.js",
+      "path": "../packages/core/src/data/validator/Exclusion.js",
       "requires": [
-        146
+        243
       ],
       "uses": [],
       "idx": 244
     },
     {
-      "path": "../packages/core/src/data/validator/Exclusion.js",
+      "path": "../packages/core/src/data/validator/Inclusion.js",
       "requires": [
-        244
+        243
       ],
       "uses": [],
       "idx": 245
     },
     {
-      "path": "../packages/core/src/data/validator/Inclusion.js",
+      "path": "../packages/core/src/data/validator/Length.js",
       "requires": [
-        244
+        240
       ],
       "uses": [],
       "idx": 246
     },
     {
-      "path": "../packages/core/src/data/validator/Length.js",
+      "path": "../packages/core/src/data/validator/Presence.js",
       "requires": [
-        241
+        145
       ],
       "uses": [],
       "idx": 247
     },
     {
-      "path": "../packages/core/src/data/validator/Presence.js",
+      "path": "../packages/core/src/data/validator/Range.js",
       "requires": [
-        146
+        240
       ],
       "uses": [],
       "idx": 248
     },
     {
-      "path": "../packages/core/src/data/validator/Range.js",
-      "requires": [
-        241
-      ],
+      "path": "../packages/core/src/direct/Event.js",
+      "requires": [],
       "uses": [],
       "idx": 249
     },
     {
-      "path": "../packages/core/src/direct/Event.js",
-      "requires": [],
-      "uses": [],
-      "idx": 250
-    },
-    {
       "path": "../packages/core/src/direct/RemotingEvent.js",
       "requires": [
-        250
+        249
       ],
       "uses": [
-        210
+        209
       ],
-      "idx": 251
+      "idx": 250
     },
     {
       "path": "../packages/core/src/direct/ExceptionEvent.js",
       "requires": [
-        251
+        250
       ],
       "uses": [],
-      "idx": 252
+      "idx": 251
     },
     {
       "path": "../packages/core/src/direct/JsonProvider.js",
       "requires": [
-        211
+        210
       ],
       "uses": [
-        210,
-        252
+        209,
+        251
       ],
-      "idx": 253
+      "idx": 252
     },
     {
       "path": "../packages/core/src/direct/PollingProvider.js",
       "requires": [
         18,
-        56,
-        252,
-        253
+        57,
+        251,
+        252
       ],
       "uses": [
-        210,
-        323
+        209,
+        322
       ],
-      "idx": 254
+      "idx": 253
     },
     {
       "path": "../packages/core/src/direct/RemotingMethod.js",
       "requires": [],
       "uses": [],
-      "idx": 255
+      "idx": 254
     },
     {
       "path": "../packages/core/src/direct/Transaction.js",
       "requires": [],
       "uses": [],
-      "idx": 256
+      "idx": 255
     },
     {
       "path": "../packages/core/src/direct/RemotingProvider.js",
       "requires": [
         1,
-        55,
-        210,
-        253,
-        255,
-        256
+        56,
+        209,
+        252,
+        254,
+        255
       ],
       "uses": [
         18,
-        77,
-        252
+        78,
+        251
       ],
-      "idx": 257
+      "idx": 256
     },
     {
       "path": "../packages/core/src/dom/GarbageCollector.js",
       "requires": [],
       "uses": [
-        49
+        50
       ],
-      "idx": 258
+      "idx": 257
     },
     {
       "path": "../packages/core/src/event/gesture/Recognizer.js",
@@ -2556,10 +2552,18 @@ var Ext = Ext || {};
         37
       ],
       "uses": [],
-      "idx": 259
+      "idx": 258
     },
     {
       "path": "../packages/core/src/event/gesture/SingleTouch.js",
+      "requires": [
+        258
+      ],
+      "uses": [],
+      "idx": 259
+    },
+    {
+      "path": "../packages/core/src/event/gesture/DoubleTap.js",
       "requires": [
         259
       ],
@@ -2567,108 +2571,108 @@ var Ext = Ext || {};
       "idx": 260
     },
     {
-      "path": "../packages/core/src/event/gesture/DoubleTap.js",
+      "path": "../packages/core/src/event/gesture/Drag.js",
       "requires": [
-        260
+        259
       ],
       "uses": [],
       "idx": 261
     },
     {
-      "path": "../packages/core/src/event/gesture/Drag.js",
+      "path": "../packages/core/src/event/gesture/Swipe.js",
       "requires": [
-        260
+        259
       ],
       "uses": [],
       "idx": 262
     },
     {
-      "path": "../packages/core/src/event/gesture/Swipe.js",
-      "requires": [
-        260
-      ],
-      "uses": [],
-      "idx": 263
-    },
-    {
       "path": "../packages/core/src/event/gesture/EdgeSwipe.js",
       "requires": [
-        263
+        262
       ],
       "uses": [
-        49
+        50
       ],
-      "idx": 264
+      "idx": 263
     },
     {
       "path": "../packages/core/src/event/gesture/LongPress.js",
       "requires": [
-        260
+        259
+      ],
+      "uses": [],
+      "idx": 264
+    },
+    {
+      "path": "../packages/core/src/event/gesture/MultiTouch.js",
+      "requires": [
+        258
       ],
       "uses": [],
       "idx": 265
     },
     {
-      "path": "../packages/core/src/event/gesture/MultiTouch.js",
+      "path": "../packages/core/src/event/gesture/Pinch.js",
       "requires": [
-        259
+        265
       ],
       "uses": [],
       "idx": 266
     },
     {
-      "path": "../packages/core/src/event/gesture/Pinch.js",
+      "path": "../packages/core/src/event/gesture/Rotate.js",
       "requires": [
-        266
+        265
       ],
       "uses": [],
       "idx": 267
     },
     {
-      "path": "../packages/core/src/event/gesture/Rotate.js",
+      "path": "../packages/core/src/event/gesture/Tap.js",
       "requires": [
-        266
+        259
       ],
       "uses": [],
       "idx": 268
     },
     {
-      "path": "../packages/core/src/event/gesture/Tap.js",
-      "requires": [
-        260
-      ],
-      "uses": [],
-      "idx": 269
-    },
-    {
       "path": "../packages/core/src/event/publisher/Focus.js",
       "requires": [
         36,
-        49,
-        76
+        50,
+        77
       ],
       "uses": [
         35
       ],
-      "idx": 270
+      "idx": 269
     },
     {
       "path": "../packages/core/src/fx/State.js",
       "requires": [],
       "uses": [],
-      "idx": 271
+      "idx": 270
     },
     {
       "path": "../packages/core/src/fx/animation/Abstract.js",
       "requires": [
         24,
+        270
+      ],
+      "uses": [],
+      "idx": 271
+    },
+    {
+      "path": "../packages/core/src/fx/animation/Slide.js",
+      "requires": [
         271
       ],
       "uses": [],
       "idx": 272
     },
     {
-      "path": "../packages/core/src/fx/animation/Slide.js",
+      "path": "../packages/core/src/fx/animation/SlideOut.js",
       "requires": [
         272
       ],
@@ -2676,136 +2680,128 @@ var Ext = Ext || {};
       "idx": 273
     },
     {
-      "path": "../packages/core/src/fx/animation/SlideOut.js",
+      "path": "../packages/core/src/fx/animation/Fade.js",
       "requires": [
-        273
+        271
       ],
       "uses": [],
       "idx": 274
     },
     {
-      "path": "../packages/core/src/fx/animation/Fade.js",
+      "path": "../packages/core/src/fx/animation/FadeOut.js",
       "requires": [
-        272
+        274
       ],
       "uses": [],
       "idx": 275
     },
     {
-      "path": "../packages/core/src/fx/animation/FadeOut.js",
+      "path": "../packages/core/src/fx/animation/Flip.js",
       "requires": [
-        275
+        271
       ],
       "uses": [],
       "idx": 276
     },
     {
-      "path": "../packages/core/src/fx/animation/Flip.js",
+      "path": "../packages/core/src/fx/animation/Pop.js",
       "requires": [
-        272
+        271
       ],
       "uses": [],
       "idx": 277
     },
     {
-      "path": "../packages/core/src/fx/animation/Pop.js",
+      "path": "../packages/core/src/fx/animation/PopOut.js",
       "requires": [
-        272
+        277
       ],
       "uses": [],
       "idx": 278
     },
     {
-      "path": "../packages/core/src/fx/animation/PopOut.js",
-      "requires": [
-        278
-      ],
-      "uses": [],
-      "idx": 279
-    },
-    {
       "path": "../packages/core/src/fx/Animation.js",
       "requires": [
+        272,
         273,
         274,
         275,
         276,
         277,
-        278,
-        279
+        278
       ],
       "uses": [
-        272
+        271
       ],
-      "idx": 280
+      "idx": 279
     },
     {
       "path": "../packages/core/src/fx/runner/Css.js",
       "requires": [
         24,
-        280
+        279
       ],
       "uses": [],
-      "idx": 281
+      "idx": 280
     },
     {
       "path": "../packages/core/src/fx/runner/CssTransition.js",
       "requires": [
         19,
-        281
-      ],
-      "uses": [
         280
       ],
-      "idx": 282
+      "uses": [
+        279
+      ],
+      "idx": 281
     },
     {
       "path": "../packages/core/src/fx/Runner.js",
       "requires": [
-        282
+        281
+      ],
+      "uses": [],
+      "idx": 282
+    },
+    {
+      "path": "../packages/core/src/fx/animation/Cube.js",
+      "requires": [
+        271
       ],
       "uses": [],
       "idx": 283
     },
     {
-      "path": "../packages/core/src/fx/animation/Cube.js",
+      "path": "../packages/core/src/fx/animation/Wipe.js",
       "requires": [
-        272
+        279
       ],
       "uses": [],
       "idx": 284
     },
     {
-      "path": "../packages/core/src/fx/animation/Wipe.js",
+      "path": "../packages/core/src/fx/animation/WipeOut.js",
       "requires": [
-        280
+        284
       ],
       "uses": [],
       "idx": 285
     },
     {
-      "path": "../packages/core/src/fx/animation/WipeOut.js",
+      "path": "../packages/core/src/fx/easing/EaseIn.js",
       "requires": [
-        285
+        97
       ],
       "uses": [],
       "idx": 286
     },
     {
-      "path": "../packages/core/src/fx/easing/EaseIn.js",
+      "path": "../packages/core/src/fx/easing/Easing.js",
       "requires": [
-        98
+        97
       ],
       "uses": [],
       "idx": 287
-    },
-    {
-      "path": "../packages/core/src/fx/easing/Easing.js",
-      "requires": [
-        98
-      ],
-      "uses": [],
-      "idx": 288
     },
     {
       "path": "../packages/core/src/fx/layout/card/Abstract.js",
@@ -2813,164 +2809,164 @@ var Ext = Ext || {};
         24
       ],
       "uses": [],
-      "idx": 289
+      "idx": 288
     },
     {
       "path": "../packages/core/src/fx/layout/card/Style.js",
       "requires": [
-        280,
-        289
+        279,
+        288
       ],
       "uses": [
-        282
+        281
       ],
-      "idx": 290
+      "idx": 289
     },
     {
       "path": "../packages/core/src/fx/layout/card/Slide.js",
       "requires": [
-        290
+        289
+      ],
+      "uses": [],
+      "idx": 290
+    },
+    {
+      "path": "../packages/core/src/fx/layout/card/Cover.js",
+      "requires": [
+        289
       ],
       "uses": [],
       "idx": 291
     },
     {
-      "path": "../packages/core/src/fx/layout/card/Cover.js",
+      "path": "../packages/core/src/fx/layout/card/Reveal.js",
       "requires": [
-        290
+        289
       ],
       "uses": [],
       "idx": 292
     },
     {
-      "path": "../packages/core/src/fx/layout/card/Reveal.js",
+      "path": "../packages/core/src/fx/layout/card/Fade.js",
       "requires": [
-        290
+        289
       ],
       "uses": [],
       "idx": 293
     },
     {
-      "path": "../packages/core/src/fx/layout/card/Fade.js",
+      "path": "../packages/core/src/fx/layout/card/Flip.js",
       "requires": [
-        290
+        289
       ],
       "uses": [],
       "idx": 294
     },
     {
-      "path": "../packages/core/src/fx/layout/card/Flip.js",
+      "path": "../packages/core/src/fx/layout/card/Pop.js",
       "requires": [
-        290
+        289
       ],
       "uses": [],
       "idx": 295
     },
     {
-      "path": "../packages/core/src/fx/layout/card/Pop.js",
-      "requires": [
-        290
-      ],
-      "uses": [],
-      "idx": 296
-    },
-    {
       "path": "../packages/core/src/fx/layout/card/Scroll.js",
       "requires": [
-        98,
-        289
+        97,
+        288
       ],
       "uses": [
         19
       ],
-      "idx": 297
+      "idx": 296
     },
     {
       "path": "../packages/core/src/fx/layout/Card.js",
       "requires": [
+        290,
         291,
         292,
         293,
         294,
         295,
-        296,
-        297
+        296
       ],
       "uses": [
-        289
+        288
       ],
-      "idx": 298
+      "idx": 297
     },
     {
       "path": "../packages/core/src/fx/layout/card/Cube.js",
       "requires": [
-        290
+        289
+      ],
+      "uses": [],
+      "idx": 298
+    },
+    {
+      "path": "../packages/core/src/fx/layout/card/ScrollCover.js",
+      "requires": [
+        296
       ],
       "uses": [],
       "idx": 299
     },
     {
-      "path": "../packages/core/src/fx/layout/card/ScrollCover.js",
+      "path": "../packages/core/src/fx/layout/card/ScrollReveal.js",
       "requires": [
-        297
+        296
       ],
       "uses": [],
       "idx": 300
     },
     {
-      "path": "../packages/core/src/fx/layout/card/ScrollReveal.js",
-      "requires": [
-        297
-      ],
-      "uses": [],
-      "idx": 301
-    },
-    {
       "path": "../packages/core/src/fx/runner/CssAnimation.js",
       "requires": [
-        281
-      ],
-      "uses": [
         280
       ],
-      "idx": 302
+      "uses": [
+        279
+      ],
+      "idx": 301
     },
     {
       "path": "../packages/core/src/list/AbstractTreeItem.js",
       "requires": [
-        81
+        84
+      ],
+      "uses": [],
+      "idx": 302
+    },
+    {
+      "path": "../packages/core/src/list/RootTreeItem.js",
+      "requires": [
+        302
       ],
       "uses": [],
       "idx": 303
     },
     {
-      "path": "../packages/core/src/list/RootTreeItem.js",
+      "path": "../packages/core/src/list/TreeItem.js",
       "requires": [
-        303
+        302
       ],
       "uses": [],
       "idx": 304
     },
     {
-      "path": "../packages/core/src/list/TreeItem.js",
-      "requires": [
-        303
-      ],
-      "uses": [],
-      "idx": 305
-    },
-    {
       "path": "../packages/core/src/list/Tree.js",
       "requires": [
-        81,
-        195,
-        304,
-        305
+        84,
+        194,
+        303,
+        304
       ],
       "uses": [
-        175
+        174
       ],
-      "idx": 306
+      "idx": 305
     },
     {
       "path": "../packages/core/src/mixin/Container.js",
@@ -2980,7 +2976,7 @@ var Ext = Ext || {};
       "uses": [
         20
       ],
-      "idx": 307
+      "idx": 306
     },
     {
       "path": "../packages/core/src/mixin/Hookable.js",
@@ -2988,7 +2984,7 @@ var Ext = Ext || {};
         0
       ],
       "uses": [],
-      "idx": 308
+      "idx": 307
     },
     {
       "path": "../packages/core/src/mixin/Mashup.js",
@@ -2996,18 +2992,18 @@ var Ext = Ext || {};
         0
       ],
       "uses": [],
-      "idx": 309
+      "idx": 308
     },
     {
       "path": "../packages/core/src/mixin/Responsive.js",
       "requires": [
         0,
-        76
+        77
       ],
       "uses": [
-        49
+        50
       ],
-      "idx": 310
+      "idx": 309
     },
     {
       "path": "../packages/core/src/mixin/Selectable.js",
@@ -3015,9 +3011,9 @@ var Ext = Ext || {};
         0
       ],
       "uses": [
-        55
+        56
       ],
-      "idx": 311
+      "idx": 310
     },
     {
       "path": "../packages/core/src/mixin/Traversable.js",
@@ -3025,267 +3021,274 @@ var Ext = Ext || {};
         0
       ],
       "uses": [],
-      "idx": 312
+      "idx": 311
     },
     {
       "path": "../packages/core/src/perf/Accumulator.js",
       "requires": [
-        88
+        87
+      ],
+      "uses": [],
+      "idx": 312
+    },
+    {
+      "path": "../packages/core/src/perf/Monitor.js",
+      "requires": [
+        312
       ],
       "uses": [],
       "idx": 313
     },
     {
-      "path": "../packages/core/src/perf/Monitor.js",
-      "requires": [
-        313
-      ],
+      "path": "../packages/core/src/plugin/Abstract.js",
+      "requires": [],
       "uses": [],
       "idx": 314
     },
     {
-      "path": "../packages/core/src/plugin/Abstract.js",
-      "requires": [],
-      "uses": [],
-      "idx": 315
-    },
-    {
       "path": "../packages/core/src/plugin/LazyItems.js",
       "requires": [
-        315
+        314
       ],
       "uses": [],
-      "idx": 316
+      "idx": 315
     },
     {
       "path": "../packages/core/src/util/Base64.js",
       "requires": [],
       "uses": [],
-      "idx": 317
+      "idx": 316
     },
     {
       "path": "../packages/core/src/util/DelimitedValue.js",
       "requires": [],
       "uses": [],
-      "idx": 318
+      "idx": 317
     },
     {
       "path": "../packages/core/src/util/CSV.js",
       "requires": [
-        318
+        317
+      ],
+      "uses": [],
+      "idx": 318
+    },
+    {
+      "path": "../packages/core/src/util/ItemCollection.js",
+      "requires": [
+        56
       ],
       "uses": [],
       "idx": 319
     },
     {
-      "path": "../packages/core/src/util/ItemCollection.js",
-      "requires": [
-        55
-      ],
+      "path": "../packages/core/src/util/LocalStorage.js",
+      "requires": [],
       "uses": [],
       "idx": 320
     },
     {
-      "path": "../packages/core/src/util/LocalStorage.js",
-      "requires": [],
+      "path": "../packages/core/src/util/TSV.js",
+      "requires": [
+        317
+      ],
       "uses": [],
       "idx": 321
     },
     {
-      "path": "../packages/core/src/util/TSV.js",
+      "path": "../packages/core/src/util/TaskManager.js",
       "requires": [
-        318
+        57
       ],
       "uses": [],
       "idx": 322
     },
     {
-      "path": "../packages/core/src/util/TaskManager.js",
+      "path": "../packages/core/src/util/TextMetrics.js",
       "requires": [
-        56
+        50
       ],
       "uses": [],
       "idx": 323
     },
     {
-      "path": "../packages/core/src/util/TextMetrics.js",
+      "path": "../packages/core/src/util/paintmonitor/OverflowChange.js",
       "requires": [
-        49
+        46
       ],
       "uses": [],
       "idx": 324
     },
     {
-      "path": "../packages/core/src/util/paintmonitor/OverflowChange.js",
-      "requires": [
-        45
-      ],
+      "path": "../classic/classic/src/Action.js",
+      "requires": [],
       "uses": [],
       "idx": 325
     },
     {
-      "path": "../classic/classic/src/Action.js",
-      "requires": [],
-      "uses": [],
-      "idx": 326
-    },
-    {
       "path": "../classic/classic/src/ElementLoader.js",
       "requires": [
-        51
+        52
       ],
       "uses": [
         17,
         18
       ],
-      "idx": 327
+      "idx": 326
     },
     {
       "path": "../classic/classic/src/ComponentLoader.js",
       "requires": [
-        327
+        326
       ],
       "uses": [],
-      "idx": 328
+      "idx": 327
     },
     {
       "path": "../classic/classic/src/layout/SizeModel.js",
       "requires": [],
       "uses": [],
-      "idx": 329
+      "idx": 328
     },
     {
       "path": "../classic/classic/src/layout/Layout.js",
       "requires": [
         12,
-        88,
-        329
+        87,
+        328
       ],
       "uses": [
         554
       ],
-      "idx": 330
+      "idx": 329
     },
     {
       "path": "../classic/classic/src/layout/container/Container.js",
       "requires": [
-        88,
-        111,
-        330
+        87,
+        110,
+        329
       ],
       "uses": [
-        230
+        229
       ],
-      "idx": 331
+      "idx": 330
     },
     {
       "path": "../classic/classic/src/layout/container/Auto.js",
       "requires": [
-        331
+        330
       ],
       "uses": [
-        88
+        87
       ],
-      "idx": 332
+      "idx": 331
     },
     {
       "path": "../classic/classic/src/ZIndexManager.js",
       "requires": [
-        76,
-        169,
-        170
+        77,
+        168,
+        169
       ],
       "uses": [
-        49,
-        127
+        50,
+        126
       ],
-      "idx": 333
+      "idx": 332
     },
     {
       "path": "../classic/classic/src/container/Container.js",
       "requires": [
-        55,
-        119,
-        223,
-        307,
-        320,
-        332,
-        333
+        56,
+        118,
+        222,
+        306,
+        331,
+        332
       ],
       "uses": [
         12,
         20,
-        23
+        23,
+        319
       ],
-      "idx": 334
+      "idx": 333
     },
     {
       "path": "../classic/classic/src/layout/container/Editor.js",
       "requires": [
-        331
+        330
       ],
       "uses": [],
-      "idx": 335
+      "idx": 334
     },
     {
       "path": "../classic/classic/src/Editor.js",
       "requires": [
-        334,
-        335
+        333,
+        334
       ],
       "uses": [
         1,
         20
       ],
-      "idx": 336
+      "idx": 335
     },
     {
       "path": "../classic/classic/src/EventManager.js",
       "requires": [],
       "uses": [
-        76
+        77
       ],
-      "idx": 337
+      "idx": 336
     },
     {
       "path": "../classic/classic/src/Img.js",
       "requires": [
-        119
+        118
+      ],
+      "uses": [],
+      "idx": 337
+    },
+    {
+      "path": "../classic/classic/src/util/StoreHolder.js",
+      "requires": [
+        174
       ],
       "uses": [],
       "idx": 338
     },
     {
-      "path": "../classic/classic/src/util/StoreHolder.js",
-      "requires": [
-        175
-      ],
-      "uses": [],
-      "idx": 339
-    },
-    {
       "path": "../classic/classic/src/LoadMask.js",
       "requires": [
-        119,
-        339
+        118,
+        338
       ],
       "uses": [
-        49,
-        76,
-        175
+        77,
+        174
       ],
-      "idx": 340
+      "idx": 339
     },
     {
       "path": "../classic/classic/src/layout/component/Component.js",
       "requires": [
-        330
+        329
+      ],
+      "uses": [],
+      "idx": 340
+    },
+    {
+      "path": "../classic/classic/src/layout/component/Auto.js",
+      "requires": [
+        340
       ],
       "uses": [],
       "idx": 341
     },
     {
-      "path": "../classic/classic/src/layout/component/Auto.js",
+      "path": "../classic/classic/src/layout/component/ProgressBar.js",
       "requires": [
         341
       ],
@@ -3293,32 +3296,35 @@ var Ext = Ext || {};
       "idx": 342
     },
     {
-      "path": "../classic/classic/src/layout/component/ProgressBar.js",
+      "path": "../classic/classic/src/ProgressBar.js",
       "requires": [
+        80,
+        91,
+        118,
+        322,
         342
       ],
-      "uses": [],
+      "uses": [
+        73,
+        87
+      ],
       "idx": 343
     },
     {
-      "path": "../classic/classic/src/ProgressBar.js",
+      "path": "../classic/classic/src/ProgressBarWidget.js",
       "requires": [
-        82,
-        85,
-        92,
-        119,
-        323,
+        84,
         343
       ],
       "uses": [
-        72
+        87
       ],
       "idx": 344
     },
     {
       "path": "../classic/classic/src/dom/ButtonElement.js",
       "requires": [
-        49
+        50
       ],
       "uses": [],
       "idx": 345
@@ -3334,7 +3340,7 @@ var Ext = Ext || {};
       "requires": [],
       "uses": [
         20,
-        119,
+        118,
         519
       ],
       "idx": 347
@@ -3342,7 +3348,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/util/ClickRepeater.js",
       "requires": [
-        51
+        52
       ],
       "uses": [],
       "idx": 348
@@ -3350,10 +3356,10 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/button/Button.js",
       "requires": [
+        117,
         118,
-        119,
-        223,
-        324,
+        222,
+        323,
         345,
         346,
         347,
@@ -3370,7 +3376,8 @@ var Ext = Ext || {};
         349
       ],
       "uses": [
-        49
+        50,
+        118
       ],
       "idx": 350
     },
@@ -3385,7 +3392,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/SegmentedButton.js",
       "requires": [
-        331
+        330
       ],
       "uses": [],
       "idx": 352
@@ -3393,7 +3400,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/button/Segmented.js",
       "requires": [
-        334,
+        333,
         349,
         352
       ],
@@ -3403,7 +3410,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/panel/Bar.js",
       "requires": [
-        334
+        333
       ],
       "uses": [],
       "idx": 354
@@ -3411,7 +3418,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/panel/Title.js",
       "requires": [
-        119
+        118
       ],
       "uses": [],
       "idx": 355
@@ -3419,7 +3426,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/panel/Tool.js",
       "requires": [
-        119
+        118
       ],
       "uses": [
         467
@@ -3447,15 +3454,15 @@ var Ext = Ext || {};
         358
       ],
       "uses": [
-        119
+        118
       ],
       "idx": 359
     },
     {
       "path": "../classic/classic/src/panel/Header.js",
       "requires": [
-        195,
-        342,
+        194,
+        341,
         354,
         355,
         356,
@@ -3463,7 +3470,7 @@ var Ext = Ext || {};
       ],
       "uses": [
         20,
-        119
+        118
       ],
       "idx": 360
     },
@@ -3479,7 +3486,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/layout/container/boxOverflow/Scroller.js",
       "requires": [
         4,
-        49,
+        50,
         348,
         361
       ],
@@ -3500,8 +3507,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/resizer/Splitter.js",
       "requires": [
-        88,
-        119
+        87,
+        118
       ],
       "uses": [
         391
@@ -3511,8 +3518,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Box.js",
       "requires": [
-        84,
-        331,
+        79,
+        330,
         361,
         362,
         363,
@@ -3520,9 +3527,9 @@ var Ext = Ext || {};
       ],
       "uses": [
         12,
-        195,
-        329,
-        342
+        194,
+        328,
+        341
       ],
       "idx": 365
     },
@@ -3545,9 +3552,9 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/toolbar/Toolbar.js",
       "requires": [
-        195,
-        334,
-        342,
+        194,
+        333,
+        341,
         359,
         366,
         367
@@ -3565,7 +3572,7 @@ var Ext = Ext || {};
         363
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 369
     },
@@ -3576,7 +3583,7 @@ var Ext = Ext || {};
         369
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 370
     },
@@ -3593,7 +3600,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/dd/StatusProxy.js",
       "requires": [
-        119
+        118
       ],
       "uses": [],
       "idx": 372
@@ -3606,8 +3613,8 @@ var Ext = Ext || {};
         372
       ],
       "uses": [
-        195,
-        342
+        194,
+        341
       ],
       "idx": 373
     },
@@ -3615,7 +3622,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/panel/Proxy.js",
       "requires": [],
       "uses": [
-        49
+        50
       ],
       "idx": 374
     },
@@ -3631,12 +3638,12 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/component/Dock.js",
       "requires": [
-        341
+        340
       ],
       "uses": [
         23,
-        49,
-        329
+        50,
+        328
       ],
       "idx": 376
     },
@@ -3649,24 +3656,24 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/container/DockingContainer.js",
       "requires": [
-        49,
-        55
+        50,
+        56
       ],
       "uses": [
         23,
-        230,
-        320
+        229,
+        319
       ],
       "idx": 378
     },
     {
       "path": "../classic/classic/src/panel/Panel.js",
       "requires": [
-        49,
-        55,
-        72,
-        88,
-        334,
+        50,
+        56,
+        73,
+        87,
+        333,
         357,
         360,
         368,
@@ -3678,14 +3685,13 @@ var Ext = Ext || {};
       "uses": [
         1,
         20,
-        84,
+        90,
         91,
-        92,
-        119,
-        195,
-        230,
-        332,
-        342,
+        118,
+        194,
+        229,
+        331,
+        341,
         356,
         358,
         411,
@@ -3696,7 +3702,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Table.js",
       "requires": [
-        331
+        330
       ],
       "uses": [],
       "idx": 380
@@ -3715,14 +3721,14 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/container/Monitor.js",
       "requires": [],
       "uses": [
-        55
+        56
       ],
       "idx": 382
     },
     {
       "path": "../classic/classic/src/plugin/Responsive.js",
       "requires": [
-        310
+        309
       ],
       "uses": [],
       "idx": 383
@@ -3733,17 +3739,17 @@ var Ext = Ext || {};
         383
       ],
       "uses": [
-        49,
-        109,
-        329
+        50,
+        118,
+        328
       ],
       "idx": 384
     },
     {
       "path": "../classic/classic/src/container/Viewport.js",
       "requires": [
-        310,
-        334,
+        309,
+        333,
         384
       ],
       "uses": [],
@@ -3752,7 +3758,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Anchor.js",
       "requires": [
-        332
+        331
       ],
       "uses": [],
       "idx": 386
@@ -3770,7 +3776,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/dashboard/Column.js",
       "requires": [
-        334,
+        333,
         386,
         387
       ],
@@ -3780,7 +3786,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Column.js",
       "requires": [
-        332
+        331
       ],
       "uses": [],
       "idx": 389
@@ -3788,7 +3794,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/dd/DragTracker.js",
       "requires": [
-        51
+        52
       ],
       "uses": [
         33,
@@ -3803,8 +3809,8 @@ var Ext = Ext || {};
         390
       ],
       "uses": [
-        49,
-        98
+        50,
+        97
       ],
       "idx": 391
     },
@@ -3832,8 +3838,8 @@ var Ext = Ext || {};
         393
       ],
       "uses": [
-        195,
-        342
+        194,
+        341
       ],
       "idx": 394
     },
@@ -3875,7 +3881,7 @@ var Ext = Ext || {};
       "requires": [
         3,
         12,
-        128
+        127
       ],
       "uses": [],
       "idx": 399
@@ -3891,8 +3897,8 @@ var Ext = Ext || {};
       ],
       "uses": [
         12,
-        114,
-        127
+        113,
+        126
       ],
       "idx": 400
     },
@@ -3927,10 +3933,10 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/dom/Layer.js",
       "requires": [
-        49
+        50
       ],
       "uses": [
-        230
+        229
       ],
       "idx": 404
     },
@@ -3951,7 +3957,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/flash/Component.js",
       "requires": [
-        119
+        118
       ],
       "uses": [],
       "idx": 407
@@ -3980,7 +3986,7 @@ var Ext = Ext || {};
       ],
       "uses": [
         18,
-        230
+        229
       ],
       "idx": 410
     },
@@ -3991,7 +3997,7 @@ var Ext = Ext || {};
       ],
       "uses": [
         33,
-        49
+        50
       ],
       "idx": 411
     },
@@ -4018,10 +4024,10 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/form/Labelable.js",
       "requires": [
         0,
-        88
+        87
       ],
       "uses": [
-        49,
+        50,
         466
       ],
       "idx": 414
@@ -4036,13 +4042,13 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/form/field/Base.js",
       "requires": [
         1,
-        88,
-        119,
+        87,
+        118,
         414,
         415
       ],
       "uses": [
-        230
+        229
       ],
       "idx": 416
     },
@@ -4059,23 +4065,23 @@ var Ext = Ext || {};
         348
       ],
       "uses": [
-        49,
-        88
+        50,
+        87
       ],
       "idx": 418
     },
     {
       "path": "../classic/classic/src/form/field/Text.js",
       "requires": [
-        324,
+        323,
         416,
         417,
         418
       ],
       "uses": [
-        84,
-        85,
-        92
+        79,
+        80,
+        91
       ],
       "idx": 419
     },
@@ -4083,19 +4089,19 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/form/field/TextArea.js",
       "requires": [
         1,
-        88,
+        87,
         419
       ],
       "uses": [
-        84,
-        324
+        79,
+        323
       ],
       "idx": 420
     },
     {
       "path": "../classic/classic/src/window/MessageBox.js",
       "requires": [
-        344,
+        343,
         349,
         366,
         368,
@@ -4105,11 +4111,11 @@ var Ext = Ext || {};
         420
       ],
       "uses": [
-        119,
-        195,
-        334,
+        118,
+        194,
+        333,
+        341,
         342,
-        343,
         471
       ],
       "idx": 421
@@ -4118,9 +4124,9 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/form/Basic.js",
       "requires": [
         1,
-        51,
-        55,
-        139,
+        52,
+        56,
+        138,
         409,
         410,
         421
@@ -4142,7 +4148,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/component/field/FieldContainer.js",
       "requires": [
-        342
+        341
       ],
       "uses": [],
       "idx": 424
@@ -4150,7 +4156,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/FieldContainer.js",
       "requires": [
-        334,
+        333,
         414,
         423,
         424
@@ -4161,17 +4167,17 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/CheckboxGroup.js",
       "requires": [
-        331
+        330
       ],
       "uses": [
-        230
+        229
       ],
       "idx": 426
     },
     {
       "path": "../classic/classic/src/form/CheckboxManager.js",
       "requires": [
-        55
+        56
       ],
       "uses": [],
       "idx": 427
@@ -4179,7 +4185,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/field/Checkbox.js",
       "requires": [
-        88,
+        87,
         416,
         427
       ],
@@ -4201,16 +4207,16 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/FieldSet.js",
       "requires": [
-        334,
+        333,
         423
       ],
       "uses": [
-        49,
-        91,
-        119,
-        195,
-        230,
-        342,
+        50,
+        90,
+        118,
+        194,
+        229,
+        341,
         356,
         386,
         428,
@@ -4221,8 +4227,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/Label.js",
       "requires": [
-        84,
-        119
+        79,
+        118
       ],
       "uses": [],
       "idx": 431
@@ -4230,7 +4236,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/Panel.js",
       "requires": [
-        56,
+        57,
         379,
         422,
         423
@@ -4241,7 +4247,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/RadioManager.js",
       "requires": [
-        55
+        56
       ],
       "uses": [],
       "idx": 433
@@ -4273,14 +4279,14 @@ var Ext = Ext || {};
         0
       ],
       "uses": [
-        210
+        209
       ],
       "idx": 436
     },
     {
       "path": "../classic/classic/src/form/action/DirectLoad.js",
       "requires": [
-        210,
+        209,
         409,
         436
       ],
@@ -4290,7 +4296,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/action/DirectSubmit.js",
       "requires": [
-        210,
+        209,
         410,
         436
       ],
@@ -4319,10 +4325,10 @@ var Ext = Ext || {};
       "requires": [
         4,
         12,
-        339
+        338
       ],
       "uses": [
-        127
+        126
       ],
       "idx": 441
     },
@@ -4339,10 +4345,11 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/view/NavigationModel.js",
       "requires": [
         12,
-        51,
-        339
+        52,
+        338
       ],
       "uses": [
+        50,
         358
       ],
       "idx": 443
@@ -4350,22 +4357,21 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/view/AbstractView.js",
       "requires": [
-        75,
-        119,
+        76,
+        118,
+        338,
         339,
-        340,
         442,
         443
       ],
       "uses": [
         12,
         19,
-        49,
-        85,
-        88,
-        175,
-        230,
-        323
+        80,
+        87,
+        174,
+        229,
+        322
       ],
       "idx": 444
     },
@@ -4391,7 +4397,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/component/BoundList.js",
       "requires": [
-        342
+        341
       ],
       "uses": [],
       "idx": 447
@@ -4399,7 +4405,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/toolbar/Item.js",
       "requires": [
-        119,
+        118,
         368
       ],
       "uses": [],
@@ -4408,7 +4414,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/toolbar/TextItem.js",
       "requires": [
-        88,
+        87,
         368,
         448
       ],
@@ -4439,23 +4445,23 @@ var Ext = Ext || {};
         451
       ],
       "uses": [
-        84,
-        85
+        79,
+        80
       ],
       "idx": 452
     },
     {
       "path": "../classic/classic/src/toolbar/Paging.js",
       "requires": [
-        339,
+        338,
         368,
         449,
         452
       ],
       "uses": [
-        85,
-        195,
-        342,
+        80,
+        194,
+        341,
         450
       ],
       "idx": 453
@@ -4463,17 +4469,17 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/view/BoundList.js",
       "requires": [
-        49,
-        223,
+        50,
+        222,
         445,
         446,
         447,
         453
       ],
       "uses": [
-        88,
-        195,
-        342,
+        87,
+        194,
+        341,
         471
       ],
       "idx": 454
@@ -4482,21 +4488,21 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/form/field/ComboBox.js",
       "requires": [
         1,
-        175,
-        339,
+        174,
+        338,
         440,
         454
       ],
       "uses": [
         35,
-        49,
         50,
-        88,
-        127,
-        155,
-        170,
-        195,
-        230,
+        51,
+        87,
+        126,
+        154,
+        169,
+        194,
+        229,
         442,
         446,
         447
@@ -4506,23 +4512,23 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/picker/Month.js",
       "requires": [
-        88,
-        119,
+        87,
+        118,
         348,
         349
       ],
       "uses": [
-        195,
-        342
+        194,
+        341
       ],
       "idx": 456
     },
     {
       "path": "../classic/classic/src/picker/Date.js",
       "requires": [
-        66,
-        88,
-        119,
+        67,
+        87,
+        118,
         348,
         349,
         350,
@@ -4530,10 +4536,10 @@ var Ext = Ext || {};
         456
       ],
       "uses": [
-        85,
-        195,
-        230,
-        342
+        80,
+        194,
+        229,
+        341
       ],
       "idx": 457
     },
@@ -4544,17 +4550,17 @@ var Ext = Ext || {};
         457
       ],
       "uses": [
-        85,
-        195,
-        342
+        80,
+        194,
+        341
       ],
       "idx": 458
     },
     {
       "path": "../classic/classic/src/form/field/Display.js",
       "requires": [
-        84,
-        88,
+        79,
+        87,
         416
       ],
       "uses": [],
@@ -4565,7 +4571,9 @@ var Ext = Ext || {};
       "requires": [
         349
       ],
-      "uses": [],
+      "uses": [
+        118
+      ],
       "idx": 460
     },
     {
@@ -4584,8 +4592,8 @@ var Ext = Ext || {};
         461
       ],
       "uses": [
-        195,
-        342
+        194,
+        341
       ],
       "idx": 462
     },
@@ -4603,7 +4611,7 @@ var Ext = Ext || {};
         379
       ],
       "uses": [
-        119
+        118
       ],
       "idx": 464
     },
@@ -4613,7 +4621,7 @@ var Ext = Ext || {};
         464
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 465
     },
@@ -4636,8 +4644,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/picker/Color.js",
       "requires": [
-        88,
-        119
+        87,
+        118
       ],
       "uses": [],
       "idx": 468
@@ -4667,8 +4675,8 @@ var Ext = Ext || {};
         470
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         362,
         367,
         376,
@@ -4680,8 +4688,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/field/HtmlEditor.js",
       "requires": [
-        84,
-        323,
+        79,
+        322,
         367,
         368,
         415,
@@ -4694,11 +4702,11 @@ var Ext = Ext || {};
       ],
       "uses": [
         1,
-        85,
-        119,
-        195,
-        230,
-        342,
+        80,
+        118,
+        194,
+        229,
+        341,
         362,
         376,
         519
@@ -4708,25 +4716,25 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/field/Tag.js",
       "requires": [
-        172,
-        207,
+        171,
+        206,
         441,
         455
       ],
       "uses": [
-        50,
-        88
+        51,
+        87
       ],
       "idx": 473
     },
     {
       "path": "../classic/classic/src/picker/Time.js",
       "requires": [
-        172,
+        171,
         454
       ],
       "uses": [
-        50
+        51
       ],
       "idx": 474
     },
@@ -4739,9 +4747,9 @@ var Ext = Ext || {};
         474
       ],
       "uses": [
-        85,
-        88,
-        195,
+        80,
+        87,
+        194,
         442,
         447
       ],
@@ -4750,7 +4758,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/form/field/Trigger.js",
       "requires": [
-        230,
+        229,
         348,
         419
       ],
@@ -4766,7 +4774,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/CellEditor.js",
       "requires": [
-        336
+        335
       ],
       "uses": [],
       "idx": 478
@@ -4774,7 +4782,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/ColumnComponentLayout.js",
       "requires": [
-        342
+        341
       ],
       "uses": [],
       "idx": 479
@@ -4782,7 +4790,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Fit.js",
       "requires": [
-        331
+        330
       ],
       "uses": [],
       "idx": 480
@@ -4795,8 +4803,8 @@ var Ext = Ext || {};
       ],
       "uses": [
         1,
-        175,
-        230,
+        174,
+        229,
         484,
         499,
         531,
@@ -4830,8 +4838,9 @@ var Ext = Ext || {};
       "uses": [
         20,
         35,
-        74,
-        119,
+        50,
+        75,
+        118,
         358,
         477
       ],
@@ -4840,7 +4849,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/view/TableLayout.js",
       "requires": [
-        342
+        341
       ],
       "uses": [],
       "idx": 485
@@ -4854,11 +4863,11 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/view/NodeCache.js",
       "requires": [
-        75
+        76
       ],
       "uses": [
-        49,
-        74
+        50,
+        75
       ],
       "idx": 487
     },
@@ -4866,7 +4875,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/view/Table.js",
       "requires": [
         1,
-        55,
+        56,
         445,
         477,
         485,
@@ -4875,11 +4884,11 @@ var Ext = Ext || {};
       ],
       "uses": [
         12,
-        49,
-        74,
-        88,
-        119,
-        155,
+        50,
+        75,
+        87,
+        118,
+        154,
         499
       ],
       "idx": 488
@@ -4896,11 +4905,11 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/RowEditorButtons.js",
       "requires": [
-        334
+        333
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         349,
         379
       ],
@@ -4915,12 +4924,11 @@ var Ext = Ext || {};
         490
       ],
       "uses": [
-        49,
-        76,
-        195,
-        332,
-        334,
-        342,
+        77,
+        194,
+        331,
+        333,
+        341,
         376,
         459,
         477
@@ -4939,9 +4947,9 @@ var Ext = Ext || {};
         403
       ],
       "uses": [
-        119,
-        195,
-        342
+        118,
+        194,
+        341
       ],
       "idx": 493
     },
@@ -4957,7 +4965,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/grid/plugin/HeaderResizer.js",
       "requires": [
         33,
-        315,
+        314,
         390
       ],
       "uses": [
@@ -4986,7 +4994,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/plugin/HeaderReorderer.js",
       "requires": [
-        315,
+        314,
         496,
         497
       ],
@@ -4996,7 +5004,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/header/Container.js",
       "requires": [
-        334,
+        333,
         358,
         359,
         482,
@@ -5005,9 +5013,9 @@ var Ext = Ext || {};
       ],
       "uses": [
         1,
-        119,
-        195,
-        342,
+        118,
+        194,
+        341,
         362,
         367,
         376,
@@ -5022,13 +5030,13 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/column/Column.js",
       "requires": [
-        205,
+        204,
         479,
         482,
         499
       ],
       "uses": [
-        84,
+        79,
         495
       ],
       "idx": 500
@@ -5039,7 +5047,7 @@ var Ext = Ext || {};
         500
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 501
     },
@@ -5065,14 +5073,14 @@ var Ext = Ext || {};
         500
       ],
       "uses": [
-        84
+        79
       ],
       "idx": 504
     },
     {
       "path": "../classic/classic/src/grid/column/Number.js",
       "requires": [
-        84,
+        79,
         500
       ],
       "uses": [],
@@ -5089,7 +5097,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/column/Template.js",
       "requires": [
-        88,
+        87,
         500
       ],
       "uses": [
@@ -5108,7 +5116,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/feature/Feature.js",
       "requires": [
-        51
+        52
       ],
       "uses": [],
       "idx": 509
@@ -5124,10 +5132,10 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/feature/GroupStore.js",
       "requires": [
-        51
+        52
       ],
       "uses": [
-        127
+        126
       ],
       "idx": 511
     },
@@ -5139,8 +5147,8 @@ var Ext = Ext || {};
         511
       ],
       "uses": [
-        88,
-        155,
+        87,
+        154,
         499
       ],
       "idx": 512
@@ -5159,7 +5167,7 @@ var Ext = Ext || {};
         509
       ],
       "uses": [
-        88
+        87
       ],
       "idx": 514
     },
@@ -5169,19 +5177,19 @@ var Ext = Ext || {};
         510
       ],
       "uses": [
-        88,
-        119,
-        155,
-        195,
-        342
+        87,
+        118,
+        154,
+        194,
+        341
       ],
       "idx": 515
     },
     {
       "path": "../classic/classic/src/menu/Item.js",
       "requires": [
-        119,
-        223
+        118,
+        222
       ],
       "uses": [
         347,
@@ -5220,11 +5228,9 @@ var Ext = Ext || {};
       ],
       "uses": [
         20,
-        35,
-        49,
-        195,
-        342,
-        358
+        50,
+        194,
+        341
       ],
       "idx": 519
     },
@@ -5232,7 +5238,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/grid/filters/filter/Base.js",
       "requires": [
         12,
-        195,
+        194,
         362,
         367,
         376,
@@ -5240,7 +5246,7 @@ var Ext = Ext || {};
       ],
       "uses": [
         1,
-        50
+        51
       ],
       "idx": 520
     },
@@ -5271,17 +5277,14 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/filters/filter/Date.js",
       "requires": [
-        195,
-        342,
+        194,
+        341,
         517,
         523
       ],
       "uses": [
-        362,
-        367,
-        376,
         457,
-        566
+        519
       ],
       "idx": 524
     },
@@ -5291,16 +5294,16 @@ var Ext = Ext || {};
         521
       ],
       "uses": [
-        172,
-        175
+        171,
+        174
       ],
       "idx": 525
     },
     {
       "path": "../classic/classic/src/grid/filters/filter/Number.js",
       "requires": [
-        195,
-        342,
+        194,
+        341,
         450,
         523
       ],
@@ -5312,8 +5315,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/filters/filter/String.js",
       "requires": [
-        195,
-        342,
+        194,
+        341,
         419,
         521
       ],
@@ -5323,8 +5326,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/filters/Filters.js",
       "requires": [
-        315,
-        339,
+        314,
+        338,
         520,
         521,
         522,
@@ -5351,15 +5354,15 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/locking/View.js",
       "requires": [
-        51,
-        116,
-        119,
-        339,
+        52,
+        115,
+        118,
+        338,
         444,
         488
       ],
       "uses": [
-        340,
+        339,
         477
       ],
       "idx": 530
@@ -5367,7 +5370,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/locking/Lockable.js",
       "requires": [
-        119,
+        118,
         488,
         499,
         529,
@@ -5375,10 +5378,10 @@ var Ext = Ext || {};
       ],
       "uses": [
         1,
-        175,
-        195,
-        332,
-        342,
+        174,
+        194,
+        331,
+        341,
         364,
         365
       ],
@@ -5387,11 +5390,11 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/plugin/BufferedRenderer.js",
       "requires": [
-        315
+        314
       ],
       "uses": [
         1,
-        49,
+        50,
         486
       ],
       "idx": 532
@@ -5400,7 +5403,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/grid/plugin/Editing.js",
       "requires": [
         4,
-        315,
+        314,
         358,
         416,
         488,
@@ -5408,8 +5411,8 @@ var Ext = Ext || {};
       ],
       "uses": [
         20,
-        195,
-        342,
+        194,
+        341,
         477
       ],
       "idx": 533
@@ -5422,10 +5425,10 @@ var Ext = Ext || {};
         533
       ],
       "uses": [
-        55,
-        195,
-        335,
-        342,
+        56,
+        194,
+        334,
+        341,
         477
       ],
       "idx": 534
@@ -5433,19 +5436,19 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/plugin/AbstractClipboard.js",
       "requires": [
-        315,
+        314,
         357
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 535
     },
     {
       "path": "../classic/classic/src/grid/plugin/Clipboard.js",
       "requires": [
-        84,
-        322,
+        79,
+        321,
         535
       ],
       "uses": [
@@ -5456,7 +5459,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/plugin/DragDrop.js",
       "requires": [
-        315
+        314
       ],
       "uses": [
         494,
@@ -5476,11 +5479,11 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/plugin/RowExpander.js",
       "requires": [
-        315,
+        314,
         514
       ],
       "uses": [
-        88,
+        87,
         500
       ],
       "idx": 539
@@ -5492,11 +5495,11 @@ var Ext = Ext || {};
       ],
       "uses": [
         20,
-        88,
-        155,
-        195,
-        335,
-        342,
+        87,
+        154,
+        194,
+        334,
+        341,
         416,
         419,
         450,
@@ -5514,7 +5517,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/property/HeaderContainer.js",
       "requires": [
-        84,
+        79,
         499
       ],
       "uses": [],
@@ -5523,7 +5526,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/property/Property.js",
       "requires": [
-        155
+        154
       ],
       "uses": [],
       "idx": 542
@@ -5531,23 +5534,23 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/property/Reader.js",
       "requires": [
-        157
+        156
       ],
       "uses": [
-        156
+        155
       ],
       "idx": 543
     },
     {
       "path": "../classic/classic/src/grid/property/Store.js",
       "requires": [
-        161,
-        172,
+        160,
+        171,
         542,
         543
       ],
       "uses": [
-        167
+        166
       ],
       "idx": 544
     },
@@ -5580,7 +5583,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/selection/Replicator.js",
       "requires": [
-        315
+        314
       ],
       "uses": [],
       "idx": 548
@@ -5588,7 +5591,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/grid/selection/Rows.js",
       "requires": [
-        127,
+        126,
         545
       ],
       "uses": [
@@ -5602,8 +5605,8 @@ var Ext = Ext || {};
         390
       ],
       "uses": [
-        49,
-        323
+        50,
+        322
       ],
       "idx": 550
     },
@@ -5619,8 +5622,8 @@ var Ext = Ext || {};
         550
       ],
       "uses": [
-        195,
-        332,
+        194,
+        331,
         396,
         477,
         479
@@ -5637,20 +5640,20 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/layout/ContextItem.js",
       "requires": [],
       "uses": [
-        55,
-        66,
-        72,
-        329
+        56,
+        67,
+        73,
+        328
       ],
       "idx": 553
     },
     {
       "path": "../classic/classic/src/layout/Context.js",
       "requires": [
-        66,
-        72,
-        314,
-        330,
+        67,
+        73,
+        313,
+        329,
         552,
         553
       ],
@@ -5666,7 +5669,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/component/Body.js",
       "requires": [
-        342
+        341
       ],
       "uses": [],
       "idx": 556
@@ -5708,15 +5711,15 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Border.js",
       "requires": [
-        72,
-        120,
-        331,
+        73,
+        119,
+        330,
         560
       ],
       "uses": [
-        84,
-        195,
-        342
+        79,
+        194,
+        341
       ],
       "idx": 561
     },
@@ -5726,7 +5729,7 @@ var Ext = Ext || {};
         480
       ],
       "uses": [
-        49
+        50
       ],
       "idx": 562
     },
@@ -5741,7 +5744,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/layout/container/Form.js",
       "requires": [
-        332
+        331
       ],
       "uses": [],
       "idx": 564
@@ -5753,8 +5756,8 @@ var Ext = Ext || {};
         519
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         347
       ],
       "idx": 565
@@ -5766,8 +5769,8 @@ var Ext = Ext || {};
         519
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         347
       ],
       "idx": 566
@@ -5778,8 +5781,8 @@ var Ext = Ext || {};
         0
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         356
       ],
       "idx": 567
@@ -5802,7 +5805,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/resizer/Handle.js",
       "requires": [
-        119
+        118
       ],
       "uses": [],
       "idx": 570
@@ -5818,13 +5821,13 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/resizer/Resizer.js",
       "requires": [
-        51
+        52
       ],
       "uses": [
-        49,
-        85,
-        119,
-        230,
+        50,
+        80,
+        118,
+        229,
         571
       ],
       "idx": 572
@@ -5853,8 +5856,8 @@ var Ext = Ext || {};
         574
       ],
       "uses": [
-        195,
-        332,
+        194,
+        331,
         477,
         479,
         500
@@ -5872,11 +5875,11 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/slider/Thumb.js",
       "requires": [
-        84,
+        79,
         390
       ],
       "uses": [
-        72
+        73
       ],
       "idx": 577
     },
@@ -5891,14 +5894,14 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/slider/Multi.js",
       "requires": [
-        84,
-        85,
+        79,
+        80,
         416,
         577,
         578
       ],
       "uses": [
-        230
+        229
       ],
       "idx": 579
     },
@@ -5913,12 +5916,12 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/slider/Widget.js",
       "requires": [
-        81,
+        84,
         579
       ],
       "uses": [
-        72,
-        84
+        73,
+        79
       ],
       "idx": 581
     },
@@ -5955,10 +5958,10 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Base.js",
       "requires": [
-        81,
-        88,
-        195,
-        332,
+        84,
+        87,
+        194,
+        331,
         376,
         465,
         584,
@@ -5984,7 +5987,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Bar.js",
       "requires": [
-        88,
+        87,
         587,
         588
       ],
@@ -5994,7 +5997,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Box.js",
       "requires": [
-        88,
+        87,
         586
       ],
       "uses": [],
@@ -6003,7 +6006,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Bullet.js",
       "requires": [
-        88,
+        87,
         586
       ],
       "uses": [],
@@ -6012,7 +6015,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Discrete.js",
       "requires": [
-        88,
+        87,
         587
       ],
       "uses": [],
@@ -6021,7 +6024,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Line.js",
       "requires": [
-        88,
+        87,
         586,
         588
       ],
@@ -6031,7 +6034,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/Pie.js",
       "requires": [
-        88,
+        87,
         586
       ],
       "uses": [],
@@ -6040,7 +6043,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/sparkline/TriState.js",
       "requires": [
-        88,
+        87,
         587,
         588
       ],
@@ -6050,7 +6053,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/state/CookieProvider.js",
       "requires": [
-        113
+        112
       ],
       "uses": [],
       "idx": 596
@@ -6058,8 +6061,8 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/state/LocalStorageProvider.js",
       "requires": [
-        113,
-        321
+        112,
+        320
       ],
       "uses": [],
       "idx": 597
@@ -6094,8 +6097,8 @@ var Ext = Ext || {};
         599
       ],
       "uses": [
-        195,
-        342,
+        194,
+        341,
         598
       ],
       "idx": 600
@@ -6103,20 +6106,20 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/toolbar/Breadcrumb.js",
       "requires": [
-        227,
-        334,
+        226,
+        333,
         350,
         359
       ],
       "uses": [
-        175
+        174
       ],
       "idx": 601
     },
     {
       "path": "../classic/classic/src/toolbar/Fill.js",
       "requires": [
-        119,
+        118,
         368
       ],
       "uses": [],
@@ -6125,7 +6128,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/toolbar/Spacer.js",
       "requires": [
-        119,
+        118,
         368
       ],
       "uses": [],
@@ -6155,15 +6158,15 @@ var Ext = Ext || {};
         488
       ],
       "uses": [
-        49,
-        88
+        50,
+        87
       ],
       "idx": 606
     },
     {
       "path": "../classic/classic/src/tree/Panel.js",
       "requires": [
-        227,
+        226,
         481,
         576,
         604,
@@ -6171,9 +6174,9 @@ var Ext = Ext || {};
         606
       ],
       "uses": [
-        175,
-        195,
-        332,
+        174,
+        194,
+        331,
         479
       ],
       "idx": 607
@@ -6184,7 +6187,7 @@ var Ext = Ext || {};
         401
       ],
       "uses": [
-        85
+        80
       ],
       "idx": 608
     },
@@ -6194,7 +6197,7 @@ var Ext = Ext || {};
         608
       ],
       "uses": [
-        85
+        80
       ],
       "idx": 609
     },
@@ -6209,7 +6212,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/tree/plugin/TreeViewDragDrop.js",
       "requires": [
-        315
+        314
       ],
       "uses": [
         609,
@@ -6221,7 +6224,7 @@ var Ext = Ext || {};
       "path": "../classic/classic/src/util/CSS.js",
       "requires": [],
       "uses": [
-        49
+        50
       ],
       "idx": 612
     },
@@ -6237,10 +6240,10 @@ var Ext = Ext || {};
         379
       ],
       "uses": [
-        50,
-        175,
-        195,
-        342,
+        51,
+        174,
+        194,
+        341,
         376,
         419,
         480,
@@ -6251,7 +6254,7 @@ var Ext = Ext || {};
     {
       "path": "../classic/classic/src/view/MultiSelector.js",
       "requires": [
-        195,
+        194,
         376,
         480,
         489,
@@ -6278,7 +6281,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.Action": {
-      "idx": 326,
+      "idx": 325,
       "alias": [],
       "alternates": []
     },
@@ -6293,7 +6296,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.Component": {
-      "idx": 119,
+      "idx": 118,
       "alias": [
         "widget.box",
         "widget.component"
@@ -6303,7 +6306,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.ComponentLoader": {
-      "idx": 328,
+      "idx": 327,
       "alias": [],
       "alternates": []
     },
@@ -6325,19 +6328,19 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.Editor": {
-      "idx": 336,
+      "idx": 335,
       "alias": [
         "widget.editor"
       ],
       "alternates": []
     },
     "Ext.ElementLoader": {
-      "idx": 327,
+      "idx": 326,
       "alias": [],
       "alternates": []
     },
     "Ext.EventManager": {
-      "idx": 337,
+      "idx": 336,
       "alias": [],
       "alternates": []
     },
@@ -6349,14 +6352,14 @@ var Ext = Ext || {};
       ]
     },
     "Ext.GlobalEvents": {
-      "idx": 76,
+      "idx": 77,
       "alias": [],
       "alternates": [
         "Ext.globalEvents"
       ]
     },
     "Ext.Img": {
-      "idx": 338,
+      "idx": 337,
       "alias": [
         "widget.image",
         "widget.imagecomponent"
@@ -6364,7 +6367,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.LoadMask": {
-      "idx": 340,
+      "idx": 339,
       "alias": [
         "widget.loadmask"
       ],
@@ -6375,26 +6378,18 @@ var Ext = Ext || {};
       "alias": [],
       "alternates": []
     },
-    "Ext.Progress": {
-      "idx": 83,
-      "alias": [
-        "widget.progress",
-        "widget.progressbarwidget"
-      ],
-      "alternates": [
-        "Ext.ProgressBarWidget"
-      ]
-    },
     "Ext.ProgressBar": {
-      "idx": 344,
+      "idx": 343,
       "alias": [
         "widget.progressbar"
       ],
       "alternates": []
     },
-    "Ext.ProgressBase": {
-      "idx": 82,
-      "alias": [],
+    "Ext.ProgressBarWidget": {
+      "idx": 344,
+      "alias": [
+        "widget.progressbarwidget"
+      ],
       "alternates": []
     },
     "Ext.Promise": {
@@ -6408,168 +6403,168 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.Template": {
-      "idx": 85,
+      "idx": 80,
       "alias": [],
       "alternates": []
     },
     "Ext.Widget": {
-      "idx": 81,
+      "idx": 84,
       "alias": [
         "widget.widget"
       ],
       "alternates": []
     },
     "Ext.XTemplate": {
-      "idx": 88,
+      "idx": 87,
       "alias": [],
       "alternates": []
     },
     "Ext.ZIndexManager": {
-      "idx": 333,
+      "idx": 332,
       "alias": [],
       "alternates": [
         "Ext.WindowGroup"
       ]
     },
     "Ext.app.Application": {
-      "idx": 182,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.BaseController": {
-      "idx": 123,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.Controller": {
       "idx": 181,
       "alias": [],
       "alternates": []
     },
+    "Ext.app.BaseController": {
+      "idx": 122,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.app.Controller": {
+      "idx": 180,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.app.EventBus": {
-      "idx": 121,
+      "idx": 120,
       "alias": [],
       "alternates": []
     },
     "Ext.app.EventDomain": {
-      "idx": 89,
+      "idx": 88,
       "alias": [],
       "alternates": []
     },
     "Ext.app.Profile": {
-      "idx": 183,
+      "idx": 182,
       "alias": [],
       "alternates": []
     },
     "Ext.app.Util": {
-      "idx": 124,
+      "idx": 123,
       "alias": [],
       "alternates": []
     },
     "Ext.app.ViewController": {
-      "idx": 185,
+      "idx": 184,
       "alias": [],
       "alternates": []
     },
     "Ext.app.ViewModel": {
-      "idx": 208,
+      "idx": 207,
       "alias": [
         "viewmodel.default"
       ],
       "alternates": []
     },
     "Ext.app.bind.AbstractStub": {
-      "idx": 199,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.bind.BaseBinding": {
-      "idx": 197,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.bind.Binding": {
       "idx": 198,
       "alias": [],
       "alternates": []
     },
+    "Ext.app.bind.BaseBinding": {
+      "idx": 196,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.app.bind.Binding": {
+      "idx": 197,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.app.bind.Formula": {
-      "idx": 204,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.bind.LinkStub": {
-      "idx": 201,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.bind.Multi": {
       "idx": 203,
       "alias": [],
       "alternates": []
     },
-    "Ext.app.bind.RootStub": {
-      "idx": 202,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.app.bind.Stub": {
+    "Ext.app.bind.LinkStub": {
       "idx": 200,
       "alias": [],
       "alternates": []
     },
+    "Ext.app.bind.Multi": {
+      "idx": 202,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.app.bind.RootStub": {
+      "idx": 201,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.app.bind.Stub": {
+      "idx": 199,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.app.bind.Template": {
-      "idx": 205,
+      "idx": 204,
       "alias": [],
       "alternates": []
     },
     "Ext.app.bind.TemplateBinding": {
-      "idx": 206,
+      "idx": 205,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.Component": {
-      "idx": 90,
+      "idx": 89,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.Controller": {
-      "idx": 209,
+      "idx": 208,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.Direct": {
-      "idx": 212,
+      "idx": 211,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.Global": {
-      "idx": 122,
+      "idx": 121,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.Store": {
-      "idx": 176,
+      "idx": 175,
       "alias": [],
       "alternates": []
     },
     "Ext.app.domain.View": {
-      "idx": 184,
+      "idx": 183,
       "alias": [],
       "alternates": []
     },
     "Ext.app.route.Queue": {
-      "idx": 177,
+      "idx": 176,
       "alias": [],
       "alternates": []
     },
     "Ext.app.route.Route": {
-      "idx": 178,
+      "idx": 177,
       "alias": [],
       "alternates": []
     },
     "Ext.app.route.Router": {
-      "idx": 180,
+      "idx": 179,
       "alias": [],
       "alternates": []
     },
@@ -6624,7 +6619,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.container.Container": {
-      "idx": 334,
+      "idx": 333,
       "alias": [
         "widget.container"
       ],
@@ -6686,12 +6681,12 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.AbstractStore": {
-      "idx": 137,
+      "idx": 136,
       "alias": [],
       "alternates": []
     },
     "Ext.data.ArrayStore": {
-      "idx": 174,
+      "idx": 173,
       "alias": [
         "store.array"
       ],
@@ -6700,19 +6695,19 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.Batch": {
-      "idx": 188,
+      "idx": 187,
       "alias": [],
       "alternates": []
     },
     "Ext.data.BufferedStore": {
-      "idx": 214,
+      "idx": 213,
       "alias": [
         "store.buffered"
       ],
       "alternates": []
     },
     "Ext.data.ChainedStore": {
-      "idx": 207,
+      "idx": 206,
       "alias": [
         "store.chained"
       ],
@@ -6724,113 +6719,113 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.DirectStore": {
-      "idx": 216,
+      "idx": 215,
       "alias": [
         "store.direct"
       ],
       "alternates": []
     },
     "Ext.data.Error": {
-      "idx": 138,
+      "idx": 137,
       "alias": [],
       "alternates": []
     },
     "Ext.data.ErrorCollection": {
-      "idx": 139,
+      "idx": 138,
       "alias": [],
       "alternates": [
         "Ext.data.Errors"
       ]
     },
     "Ext.data.JsonP": {
-      "idx": 217,
+      "idx": 216,
       "alias": [],
       "alternates": []
     },
     "Ext.data.JsonPStore": {
-      "idx": 219,
+      "idx": 218,
       "alias": [
         "store.jsonp"
       ],
       "alternates": []
     },
     "Ext.data.JsonStore": {
-      "idx": 220,
+      "idx": 219,
       "alias": [
         "store.json"
       ],
       "alternates": []
     },
     "Ext.data.LocalStore": {
-      "idx": 163,
+      "idx": 162,
       "alias": [],
       "alternates": []
     },
     "Ext.data.Model": {
-      "idx": 155,
+      "idx": 154,
       "alias": [],
       "alternates": [
         "Ext.data.Record"
       ]
     },
     "Ext.data.ModelManager": {
-      "idx": 221,
+      "idx": 220,
       "alias": [],
       "alternates": [
         "Ext.ModelMgr"
       ]
     },
     "Ext.data.NodeInterface": {
-      "idx": 222,
+      "idx": 221,
       "alias": [],
       "alternates": []
     },
     "Ext.data.NodeStore": {
-      "idx": 225,
+      "idx": 224,
       "alias": [
         "store.node"
       ],
       "alternates": []
     },
     "Ext.data.PageMap": {
-      "idx": 213,
+      "idx": 212,
       "alias": [],
       "alternates": []
     },
     "Ext.data.ProxyStore": {
-      "idx": 162,
+      "idx": 161,
       "alias": [],
       "alternates": []
     },
     "Ext.data.Request": {
-      "idx": 226,
+      "idx": 225,
       "alias": [],
       "alternates": []
     },
     "Ext.data.ResultSet": {
-      "idx": 156,
+      "idx": 155,
       "alias": [],
       "alternates": []
     },
     "Ext.data.Session": {
-      "idx": 195,
+      "idx": 194,
       "alias": [],
       "alternates": []
     },
     "Ext.data.SortTypes": {
-      "idx": 145,
+      "idx": 144,
       "alias": [],
       "alternates": []
     },
     "Ext.data.Store": {
-      "idx": 172,
+      "idx": 171,
       "alias": [
         "store.store"
       ],
       "alternates": []
     },
     "Ext.data.StoreManager": {
-      "idx": 175,
+      "idx": 174,
       "alias": [],
       "alternates": [
         "Ext.StoreMgr",
@@ -6839,36 +6834,36 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.TreeModel": {
-      "idx": 224,
+      "idx": 223,
       "alias": [],
       "alternates": []
     },
     "Ext.data.TreeStore": {
-      "idx": 227,
+      "idx": 226,
       "alias": [
         "store.tree"
       ],
       "alternates": []
     },
     "Ext.data.Types": {
-      "idx": 228,
+      "idx": 227,
       "alias": [],
       "alternates": []
     },
     "Ext.data.Validation": {
-      "idx": 229,
+      "idx": 228,
       "alias": [],
       "alternates": []
     },
     "Ext.data.XmlStore": {
-      "idx": 234,
+      "idx": 233,
       "alias": [
         "store.xml"
       ],
       "alternates": []
     },
     "Ext.data.field.Boolean": {
-      "idx": 148,
+      "idx": 147,
       "alias": [
         "data.field.bool",
         "data.field.boolean"
@@ -6876,14 +6871,14 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.field.Date": {
-      "idx": 149,
+      "idx": 148,
       "alias": [
         "data.field.date"
       ],
       "alternates": []
     },
     "Ext.data.field.Field": {
-      "idx": 147,
+      "idx": 146,
       "alias": [
         "data.field.auto"
       ],
@@ -6892,7 +6887,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.field.Integer": {
-      "idx": 150,
+      "idx": 149,
       "alias": [
         "data.field.int",
         "data.field.integer"
@@ -6900,7 +6895,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.field.Number": {
-      "idx": 151,
+      "idx": 150,
       "alias": [
         "data.field.float",
         "data.field.number"
@@ -6908,7 +6903,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.field.String": {
-      "idx": 152,
+      "idx": 151,
       "alias": [
         "data.field.string"
       ],
@@ -6920,85 +6915,85 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.identifier.Generator": {
-      "idx": 153,
+      "idx": 152,
       "alias": [
         "data.identifier.default"
       ],
       "alternates": []
     },
     "Ext.data.identifier.Negative": {
-      "idx": 235,
+      "idx": 234,
       "alias": [
         "data.identifier.negative"
       ],
       "alternates": []
     },
     "Ext.data.identifier.Sequential": {
-      "idx": 154,
+      "idx": 153,
       "alias": [
         "data.identifier.sequential"
       ],
       "alternates": []
     },
     "Ext.data.identifier.Uuid": {
-      "idx": 236,
+      "idx": 235,
       "alias": [
         "data.identifier.uuid"
       ],
       "alternates": []
     },
     "Ext.data.matrix.Matrix": {
-      "idx": 191,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.data.matrix.Side": {
       "idx": 190,
       "alias": [],
       "alternates": []
     },
-    "Ext.data.matrix.Slice": {
+    "Ext.data.matrix.Side": {
       "idx": 189,
       "alias": [],
       "alternates": []
     },
+    "Ext.data.matrix.Slice": {
+      "idx": 188,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.data.operation.Create": {
-      "idx": 141,
+      "idx": 140,
       "alias": [
         "data.operation.create"
       ],
       "alternates": []
     },
     "Ext.data.operation.Destroy": {
-      "idx": 142,
+      "idx": 141,
       "alias": [
         "data.operation.destroy"
       ],
       "alternates": []
     },
     "Ext.data.operation.Operation": {
-      "idx": 140,
+      "idx": 139,
       "alias": [],
       "alternates": [
         "Ext.data.Operation"
       ]
     },
     "Ext.data.operation.Read": {
-      "idx": 143,
+      "idx": 142,
       "alias": [
         "data.operation.read"
       ],
       "alternates": []
     },
     "Ext.data.operation.Update": {
-      "idx": 144,
+      "idx": 143,
       "alias": [
         "data.operation.update"
       ],
       "alternates": []
     },
     "Ext.data.proxy.Ajax": {
-      "idx": 165,
+      "idx": 164,
       "alias": [
         "proxy.ajax"
       ],
@@ -7008,14 +7003,14 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.Client": {
-      "idx": 160,
+      "idx": 159,
       "alias": [],
       "alternates": [
         "Ext.data.ClientProxy"
       ]
     },
     "Ext.data.proxy.Direct": {
-      "idx": 215,
+      "idx": 214,
       "alias": [
         "proxy.direct"
       ],
@@ -7024,7 +7019,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.JsonP": {
-      "idx": 218,
+      "idx": 217,
       "alias": [
         "proxy.jsonp",
         "proxy.scripttag"
@@ -7034,7 +7029,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.LocalStorage": {
-      "idx": 238,
+      "idx": 237,
       "alias": [
         "proxy.localstorage"
       ],
@@ -7043,7 +7038,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.Memory": {
-      "idx": 161,
+      "idx": 160,
       "alias": [
         "proxy.memory"
       ],
@@ -7052,7 +7047,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.Proxy": {
-      "idx": 159,
+      "idx": 158,
       "alias": [
         "proxy.proxy"
       ],
@@ -7062,7 +7057,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.Rest": {
-      "idx": 239,
+      "idx": 238,
       "alias": [
         "proxy.rest"
       ],
@@ -7071,7 +7066,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.Server": {
-      "idx": 164,
+      "idx": 163,
       "alias": [
         "proxy.server"
       ],
@@ -7080,7 +7075,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.SessionStorage": {
-      "idx": 240,
+      "idx": 239,
       "alias": [
         "proxy.sessionstorage"
       ],
@@ -7089,14 +7084,14 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.proxy.WebStorage": {
-      "idx": 237,
+      "idx": 236,
       "alias": [],
       "alternates": [
         "Ext.data.WebStorageProxy"
       ]
     },
     "Ext.data.reader.Array": {
-      "idx": 173,
+      "idx": 172,
       "alias": [
         "reader.array"
       ],
@@ -7105,7 +7100,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.reader.Json": {
-      "idx": 166,
+      "idx": 165,
       "alias": [
         "reader.json"
       ],
@@ -7114,7 +7109,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.reader.Reader": {
-      "idx": 157,
+      "idx": 156,
       "alias": [
         "reader.base"
       ],
@@ -7124,7 +7119,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.reader.Xml": {
-      "idx": 232,
+      "idx": 231,
       "alias": [
         "reader.xml"
       ],
@@ -7152,131 +7147,131 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.data.schema.Association": {
-      "idx": 130,
+      "idx": 129,
       "alias": [],
       "alternates": []
     },
     "Ext.data.schema.ManyToMany": {
-      "idx": 133,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.data.schema.ManyToOne": {
       "idx": 132,
       "alias": [],
       "alternates": []
     },
+    "Ext.data.schema.ManyToOne": {
+      "idx": 131,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.data.schema.Namer": {
-      "idx": 135,
+      "idx": 134,
       "alias": [
         "namer.default"
       ],
       "alternates": []
     },
     "Ext.data.schema.OneToOne": {
-      "idx": 131,
+      "idx": 130,
       "alias": [],
       "alternates": []
     },
     "Ext.data.schema.Role": {
-      "idx": 129,
+      "idx": 128,
       "alias": [],
       "alternates": []
     },
     "Ext.data.schema.Schema": {
-      "idx": 136,
+      "idx": 135,
       "alias": [
         "schema.default"
       ],
       "alternates": []
     },
     "Ext.data.session.BatchVisitor": {
-      "idx": 194,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.data.session.ChangesVisitor": {
-      "idx": 192,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.data.session.ChildChangesVisitor": {
       "idx": 193,
       "alias": [],
       "alternates": []
     },
+    "Ext.data.session.ChangesVisitor": {
+      "idx": 191,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.data.session.ChildChangesVisitor": {
+      "idx": 192,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.data.validator.Bound": {
-      "idx": 241,
+      "idx": 240,
       "alias": [
         "data.validator.bound"
       ],
       "alternates": []
     },
     "Ext.data.validator.Email": {
-      "idx": 243,
+      "idx": 242,
       "alias": [
         "data.validator.email"
       ],
       "alternates": []
     },
     "Ext.data.validator.Exclusion": {
-      "idx": 245,
+      "idx": 244,
       "alias": [
         "data.validator.exclusion"
       ],
       "alternates": []
     },
     "Ext.data.validator.Format": {
-      "idx": 242,
+      "idx": 241,
       "alias": [
         "data.validator.format"
       ],
       "alternates": []
     },
     "Ext.data.validator.Inclusion": {
-      "idx": 246,
+      "idx": 245,
       "alias": [
         "data.validator.inclusion"
       ],
       "alternates": []
     },
     "Ext.data.validator.Length": {
-      "idx": 247,
+      "idx": 246,
       "alias": [
         "data.validator.length"
       ],
       "alternates": []
     },
     "Ext.data.validator.List": {
-      "idx": 244,
+      "idx": 243,
       "alias": [
         "data.validator.list"
       ],
       "alternates": []
     },
     "Ext.data.validator.Presence": {
-      "idx": 248,
+      "idx": 247,
       "alias": [
         "data.validator.presence"
       ],
       "alternates": []
     },
     "Ext.data.validator.Range": {
-      "idx": 249,
+      "idx": 248,
       "alias": [
         "data.validator.range"
       ],
       "alternates": []
     },
     "Ext.data.validator.Validator": {
-      "idx": 146,
+      "idx": 145,
       "alias": [
         "data.validator.base"
       ],
       "alternates": []
     },
     "Ext.data.writer.Json": {
-      "idx": 167,
+      "idx": 166,
       "alias": [
         "writer.json"
       ],
@@ -7285,7 +7280,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.writer.Writer": {
-      "idx": 158,
+      "idx": 157,
       "alias": [
         "writer.base"
       ],
@@ -7295,7 +7290,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.data.writer.Xml": {
-      "idx": 233,
+      "idx": 232,
       "alias": [
         "writer.xml"
       ],
@@ -7372,70 +7367,72 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.direct.Event": {
-      "idx": 250,
+      "idx": 249,
       "alias": [
         "direct.event"
       ],
       "alternates": []
     },
     "Ext.direct.ExceptionEvent": {
-      "idx": 252,
+      "idx": 251,
       "alias": [
         "direct.exception"
       ],
       "alternates": []
     },
     "Ext.direct.JsonProvider": {
-      "idx": 253,
+      "idx": 252,
       "alias": [
         "direct.jsonprovider"
       ],
       "alternates": []
     },
     "Ext.direct.Manager": {
-      "idx": 210,
+      "idx": 209,
       "alias": [],
       "alternates": []
     },
     "Ext.direct.PollingProvider": {
-      "idx": 254,
+      "idx": 253,
       "alias": [
         "direct.pollingprovider"
       ],
       "alternates": []
     },
     "Ext.direct.Provider": {
-      "idx": 211,
+      "idx": 210,
       "alias": [
         "direct.provider"
       ],
       "alternates": []
     },
     "Ext.direct.RemotingEvent": {
-      "idx": 251,
+      "idx": 250,
       "alias": [
         "direct.rpc"
       ],
       "alternates": []
     },
     "Ext.direct.RemotingMethod": {
-      "idx": 255,
+      "idx": 254,
       "alias": [],
       "alternates": []
     },
     "Ext.direct.RemotingProvider": {
-      "idx": 257,
+      "idx": 256,
       "alias": [
         "direct.remotingprovider"
       ],
       "alternates": []
     },
     "Ext.direct.Transaction": {
-      "idx": 256,
+      "idx": 255,
       "alias": [
         "direct.transaction"
       ],
-      "alternates": []
+      "alternates": [
+        "Ext.Direct.Transaction"
+      ]
     },
     "Ext.dom.ButtonElement": {
       "idx": 345,
@@ -7443,21 +7440,21 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.dom.CompositeElement": {
-      "idx": 92,
+      "idx": 91,
       "alias": [],
       "alternates": [
         "Ext.CompositeElement"
       ]
     },
     "Ext.dom.CompositeElementLite": {
-      "idx": 75,
+      "idx": 76,
       "alias": [],
       "alternates": [
         "Ext.CompositeElementLite"
       ]
     },
     "Ext.dom.Element": {
-      "idx": 49,
+      "idx": 50,
       "alias": [],
       "alternates": [
         "Ext.Element"
@@ -7469,19 +7466,19 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.dom.Fly": {
-      "idx": 74,
+      "idx": 75,
       "alias": [],
       "alternates": [
         "Ext.dom.Element.Fly"
       ]
     },
     "Ext.dom.GarbageCollector": {
-      "idx": 258,
+      "idx": 257,
       "alias": [],
       "alternates": []
     },
     "Ext.dom.Helper": {
-      "idx": 230,
+      "idx": 229,
       "alias": [],
       "alternates": [
         "Ext.DomHelper",
@@ -7496,7 +7493,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.dom.Query": {
-      "idx": 231,
+      "idx": 230,
       "alias": [],
       "alternates": [
         "Ext.core.DomQuery",
@@ -7533,57 +7530,57 @@ var Ext = Ext || {};
       ]
     },
     "Ext.event.gesture.DoubleTap": {
-      "idx": 261,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.Drag": {
-      "idx": 262,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.EdgeSwipe": {
-      "idx": 264,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.LongPress": {
-      "idx": 265,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.MultiTouch": {
-      "idx": 266,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.Pinch": {
-      "idx": 267,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.Recognizer": {
-      "idx": 259,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.Rotate": {
-      "idx": 268,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.event.gesture.SingleTouch": {
       "idx": 260,
       "alias": [],
       "alternates": []
     },
-    "Ext.event.gesture.Swipe": {
+    "Ext.event.gesture.Drag": {
+      "idx": 261,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.EdgeSwipe": {
       "idx": 263,
       "alias": [],
       "alternates": []
     },
+    "Ext.event.gesture.LongPress": {
+      "idx": 264,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.MultiTouch": {
+      "idx": 265,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.Pinch": {
+      "idx": 266,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.Recognizer": {
+      "idx": 258,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.Rotate": {
+      "idx": 267,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.SingleTouch": {
+      "idx": 259,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.event.gesture.Swipe": {
+      "idx": 262,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.event.gesture.Tap": {
-      "idx": 269,
+      "idx": 268,
       "alias": [],
       "alternates": []
     },
@@ -7593,17 +7590,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.event.publisher.ElementPaint": {
-      "idx": 48,
+      "idx": 49,
       "alias": [],
       "alternates": []
     },
     "Ext.event.publisher.ElementSize": {
-      "idx": 44,
+      "idx": 45,
       "alias": [],
       "alternates": []
     },
     "Ext.event.publisher.Focus": {
-      "idx": 270,
+      "idx": 269,
       "alias": [],
       "alternates": []
     },
@@ -7967,74 +7964,74 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.fx.Anim": {
-      "idx": 72,
+      "idx": 73,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.Animation": {
-      "idx": 280,
+      "idx": 279,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.Animator": {
-      "idx": 67,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.CubicBezier": {
       "idx": 68,
       "alias": [],
       "alternates": []
     },
-    "Ext.fx.DrawPath": {
-      "idx": 70,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.Easing": {
+    "Ext.fx.CubicBezier": {
       "idx": 69,
       "alias": [],
       "alternates": []
     },
-    "Ext.fx.Manager": {
-      "idx": 66,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.PropertyHandler": {
+    "Ext.fx.DrawPath": {
       "idx": 71,
       "alias": [],
       "alternates": []
     },
+    "Ext.fx.Easing": {
+      "idx": 70,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.fx.Manager": {
+      "idx": 67,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.fx.PropertyHandler": {
+      "idx": 72,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.fx.Queue": {
-      "idx": 65,
+      "idx": 66,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.Runner": {
-      "idx": 283,
+      "idx": 282,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.State": {
-      "idx": 271,
+      "idx": 270,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.animation.Abstract": {
-      "idx": 272,
+      "idx": 271,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.animation.Cube": {
-      "idx": 284,
+      "idx": 283,
       "alias": [
         "animation.cube"
       ],
       "alternates": []
     },
     "Ext.fx.animation.Fade": {
-      "idx": 275,
+      "idx": 274,
       "alias": [
         "animation.fade",
         "animation.fadeIn"
@@ -8044,21 +8041,21 @@ var Ext = Ext || {};
       ]
     },
     "Ext.fx.animation.FadeOut": {
-      "idx": 276,
+      "idx": 275,
       "alias": [
         "animation.fadeOut"
       ],
       "alternates": []
     },
     "Ext.fx.animation.Flip": {
-      "idx": 277,
+      "idx": 276,
       "alias": [
         "animation.flip"
       ],
       "alternates": []
     },
     "Ext.fx.animation.Pop": {
-      "idx": 278,
+      "idx": 277,
       "alias": [
         "animation.pop",
         "animation.popIn"
@@ -8068,14 +8065,14 @@ var Ext = Ext || {};
       ]
     },
     "Ext.fx.animation.PopOut": {
-      "idx": 279,
+      "idx": 278,
       "alias": [
         "animation.popOut"
       ],
       "alternates": []
     },
     "Ext.fx.animation.Slide": {
-      "idx": 273,
+      "idx": 272,
       "alias": [
         "animation.slide",
         "animation.slideIn"
@@ -8085,209 +8082,209 @@ var Ext = Ext || {};
       ]
     },
     "Ext.fx.animation.SlideOut": {
-      "idx": 274,
+      "idx": 273,
       "alias": [
         "animation.slideOut"
       ],
       "alternates": []
     },
     "Ext.fx.animation.Wipe": {
-      "idx": 285,
+      "idx": 284,
       "alias": [],
       "alternates": [
         "Ext.fx.animation.WipeIn"
       ]
     },
     "Ext.fx.animation.WipeOut": {
-      "idx": 286,
+      "idx": 285,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.easing.Abstract": {
-      "idx": 94,
+      "idx": 93,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.easing.Bounce": {
-      "idx": 96,
+      "idx": 95,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.easing.BoundMomentum": {
-      "idx": 97,
+      "idx": 96,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.easing.EaseIn": {
-      "idx": 287,
+      "idx": 286,
       "alias": [
         "easing.ease-in"
       ],
       "alternates": []
     },
     "Ext.fx.easing.EaseOut": {
-      "idx": 99,
+      "idx": 98,
       "alias": [
         "easing.ease-out"
       ],
       "alternates": []
     },
     "Ext.fx.easing.Easing": {
-      "idx": 288,
+      "idx": 287,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.easing.Linear": {
-      "idx": 98,
+      "idx": 97,
       "alias": [
         "easing.linear"
       ],
       "alternates": []
     },
     "Ext.fx.easing.Momentum": {
-      "idx": 95,
+      "idx": 94,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.layout.Card": {
-      "idx": 298,
+      "idx": 297,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.layout.card.Abstract": {
-      "idx": 289,
+      "idx": 288,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.layout.card.Cover": {
-      "idx": 292,
+      "idx": 291,
       "alias": [
         "fx.layout.card.cover"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Cube": {
-      "idx": 299,
+      "idx": 298,
       "alias": [
         "fx.layout.card.cube"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Fade": {
-      "idx": 294,
+      "idx": 293,
       "alias": [
         "fx.layout.card.fade"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Flip": {
-      "idx": 295,
+      "idx": 294,
       "alias": [
         "fx.layout.card.flip"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Pop": {
-      "idx": 296,
+      "idx": 295,
       "alias": [
         "fx.layout.card.pop"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Reveal": {
-      "idx": 293,
+      "idx": 292,
       "alias": [
         "fx.layout.card.reveal"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Scroll": {
-      "idx": 297,
+      "idx": 296,
       "alias": [
         "fx.layout.card.scroll"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.ScrollCover": {
-      "idx": 300,
+      "idx": 299,
       "alias": [
         "fx.layout.card.scrollcover"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.ScrollReveal": {
-      "idx": 301,
+      "idx": 300,
       "alias": [
         "fx.layout.card.scrollreveal"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Slide": {
-      "idx": 291,
+      "idx": 290,
       "alias": [
         "fx.layout.card.slide"
       ],
       "alternates": []
     },
     "Ext.fx.layout.card.Style": {
-      "idx": 290,
+      "idx": 289,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.runner.Css": {
-      "idx": 281,
+      "idx": 280,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.runner.CssAnimation": {
-      "idx": 302,
+      "idx": 301,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.runner.CssTransition": {
-      "idx": 282,
+      "idx": 281,
       "alias": [],
       "alternates": [
         "Ext.Animator"
       ]
     },
     "Ext.fx.target.Component": {
-      "idx": 64,
+      "idx": 65,
       "alias": [],
       "alternates": []
     },
     "Ext.fx.target.CompositeElement": {
-      "idx": 60,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.target.CompositeElementCSS": {
       "idx": 61,
       "alias": [],
       "alternates": []
     },
-    "Ext.fx.target.CompositeSprite": {
-      "idx": 63,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.target.Element": {
-      "idx": 58,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.target.ElementCSS": {
-      "idx": 59,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.fx.target.Sprite": {
+    "Ext.fx.target.CompositeElementCSS": {
       "idx": 62,
       "alias": [],
       "alternates": []
     },
+    "Ext.fx.target.CompositeSprite": {
+      "idx": 64,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.fx.target.Element": {
+      "idx": 59,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.fx.target.ElementCSS": {
+      "idx": 60,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.fx.target.Sprite": {
+      "idx": 63,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.fx.target.Target": {
-      "idx": 57,
+      "idx": 58,
       "alias": [],
       "alternates": []
     },
@@ -8739,17 +8736,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.layout.Layout": {
-      "idx": 330,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.layout.SizeModel": {
       "idx": 329,
       "alias": [],
       "alternates": []
     },
+    "Ext.layout.SizeModel": {
+      "idx": 328,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.layout.component.Auto": {
-      "idx": 342,
+      "idx": 341,
       "alias": [
         "layout.autocomponent"
       ],
@@ -8770,7 +8767,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.layout.component.Component": {
-      "idx": 341,
+      "idx": 340,
       "alias": [],
       "alternates": []
     },
@@ -8791,7 +8788,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.layout.component.ProgressBar": {
-      "idx": 343,
+      "idx": 342,
       "alias": [
         "layout.progressbar"
       ],
@@ -8839,7 +8836,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.layout.container.Auto": {
-      "idx": 332,
+      "idx": 331,
       "alias": [
         "layout.auto",
         "layout.autocontainer"
@@ -8912,7 +8909,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.layout.container.Container": {
-      "idx": 331,
+      "idx": 330,
       "alias": [
         "layout.container"
       ],
@@ -8928,7 +8925,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.layout.container.Editor": {
-      "idx": 335,
+      "idx": 334,
       "alias": [
         "layout.editor"
       ],
@@ -8987,7 +8984,7 @@ var Ext = Ext || {};
       ]
     },
     "Ext.layout.container.border.Region": {
-      "idx": 120,
+      "idx": 119,
       "alias": [],
       "alternates": []
     },
@@ -9022,24 +9019,24 @@ var Ext = Ext || {};
       ]
     },
     "Ext.list.AbstractTreeItem": {
-      "idx": 303,
+      "idx": 302,
       "alias": [],
       "alternates": []
     },
     "Ext.list.RootTreeItem": {
-      "idx": 304,
+      "idx": 303,
       "alias": [],
       "alternates": []
     },
     "Ext.list.Tree": {
-      "idx": 306,
+      "idx": 305,
       "alias": [
         "widget.treelist"
       ],
       "alternates": []
     },
     "Ext.list.TreeItem": {
-      "idx": 305,
+      "idx": 304,
       "alias": [
         "widget.treelistitem"
       ],
@@ -9097,22 +9094,22 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.mixin.Accessible": {
-      "idx": 117,
+      "idx": 116,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.Bindable": {
-      "idx": 79,
+      "idx": 82,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.ComponentDelegation": {
-      "idx": 80,
+      "idx": 83,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.Container": {
-      "idx": 307,
+      "idx": 306,
       "alias": [],
       "alternates": []
     },
@@ -9122,7 +9119,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.mixin.Hookable": {
-      "idx": 308,
+      "idx": 307,
       "alias": [],
       "alternates": []
     },
@@ -9132,12 +9129,12 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.mixin.Inheritable": {
-      "idx": 78,
+      "idx": 81,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.Mashup": {
-      "idx": 309,
+      "idx": 308,
       "alias": [],
       "alternates": []
     },
@@ -9147,17 +9144,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.mixin.Queryable": {
-      "idx": 223,
+      "idx": 222,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.Responsive": {
-      "idx": 310,
+      "idx": 309,
       "alias": [],
       "alternates": []
     },
     "Ext.mixin.Selectable": {
-      "idx": 311,
+      "idx": 310,
       "alias": [],
       "alternates": []
     },
@@ -9167,7 +9164,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.mixin.Traversable": {
-      "idx": 312,
+      "idx": 311,
       "alias": [],
       "alternates": []
     },
@@ -9231,12 +9228,12 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.perf.Accumulator": {
-      "idx": 313,
+      "idx": 312,
       "alias": [],
       "alternates": []
     },
     "Ext.perf.Monitor": {
-      "idx": 314,
+      "idx": 313,
       "alias": [],
       "alternates": [
         "Ext.Perf"
@@ -9277,7 +9274,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.plugin.Abstract": {
-      "idx": 315,
+      "idx": 314,
       "alias": [],
       "alternates": [
         "Ext.AbstractPlugin"
@@ -9289,7 +9286,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.plugin.LazyItems": {
-      "idx": 316,
+      "idx": 315,
       "alias": [
         "plugin.lazyitems"
       ],
@@ -9374,28 +9371,28 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.scroll.DomScroller": {
-      "idx": 109,
+      "idx": 108,
       "alias": [
         "scroller.dom"
       ],
       "alternates": []
     },
     "Ext.scroll.Indicator": {
-      "idx": 107,
+      "idx": 106,
       "alias": [
         "widget.scrollindicator"
       ],
       "alternates": []
     },
     "Ext.scroll.Scroller": {
-      "idx": 93,
+      "idx": 92,
       "alias": [
         "scroller.scroller"
       ],
       "alternates": []
     },
     "Ext.scroll.TouchScroller": {
-      "idx": 108,
+      "idx": 107,
       "alias": [
         "scroller.touch"
       ],
@@ -9583,17 +9580,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.state.Manager": {
-      "idx": 114,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.state.Provider": {
       "idx": 113,
       "alias": [],
       "alternates": []
     },
+    "Ext.state.Provider": {
+      "idx": 112,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.state.Stateful": {
-      "idx": 115,
+      "idx": 114,
       "alias": [],
       "alternates": []
     },
@@ -9773,22 +9770,22 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.AbstractMixedCollection": {
-      "idx": 52,
+      "idx": 53,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Animate": {
-      "idx": 73,
+      "idx": 74,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Bag": {
-      "idx": 186,
+      "idx": 185,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Base64": {
-      "idx": 317,
+      "idx": 316,
       "alias": [],
       "alternates": []
     },
@@ -9798,7 +9795,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.CSV": {
-      "idx": 319,
+      "idx": 318,
       "alias": [],
       "alternates": []
     },
@@ -9808,12 +9805,12 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.Collection": {
-      "idx": 127,
+      "idx": 126,
       "alias": [],
       "alternates": []
     },
     "Ext.util.CollectionKey": {
-      "idx": 125,
+      "idx": 124,
       "alias": [],
       "alternates": []
     },
@@ -9828,12 +9825,12 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.DelimitedValue": {
-      "idx": 318,
+      "idx": 317,
       "alias": [],
       "alternates": []
     },
     "Ext.util.ElementContainer": {
-      "idx": 111,
+      "idx": 110,
       "alias": [],
       "alternates": []
     },
@@ -9843,17 +9840,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.Filter": {
-      "idx": 50,
+      "idx": 51,
       "alias": [],
       "alternates": []
     },
     "Ext.util.FilterCollection": {
-      "idx": 170,
+      "idx": 169,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Floating": {
-      "idx": 110,
+      "idx": 109,
       "alias": [],
       "alternates": []
     },
@@ -9863,7 +9860,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.Focusable": {
-      "idx": 116,
+      "idx": 115,
       "alias": [],
       "alternates": []
     },
@@ -9873,22 +9870,22 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.Format": {
-      "idx": 84,
+      "idx": 79,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Group": {
-      "idx": 168,
+      "idx": 167,
       "alias": [],
       "alternates": []
     },
     "Ext.util.GroupCollection": {
-      "idx": 171,
+      "idx": 170,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Grouper": {
-      "idx": 126,
+      "idx": 125,
       "alias": [],
       "alternates": []
     },
@@ -9898,19 +9895,19 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.History": {
-      "idx": 179,
+      "idx": 178,
       "alias": [],
       "alternates": [
         "Ext.History"
       ]
     },
     "Ext.util.Inflector": {
-      "idx": 134,
+      "idx": 133,
       "alias": [],
       "alternates": []
     },
     "Ext.util.ItemCollection": {
-      "idx": 320,
+      "idx": 319,
       "alias": [],
       "alternates": [
         "Ext.ItemCollection"
@@ -9931,12 +9928,12 @@ var Ext = Ext || {};
       ]
     },
     "Ext.util.KeyboardInteractive": {
-      "idx": 118,
+      "idx": 117,
       "alias": [],
       "alternates": []
     },
     "Ext.util.LocalStorage": {
-      "idx": 321,
+      "idx": 320,
       "alias": [],
       "alternates": []
     },
@@ -9951,17 +9948,17 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.MixedCollection": {
-      "idx": 55,
+      "idx": 56,
       "alias": [],
       "alternates": []
     },
     "Ext.util.ObjectTemplate": {
-      "idx": 128,
+      "idx": 127,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Observable": {
-      "idx": 51,
+      "idx": 52,
       "alias": [],
       "alternates": []
     },
@@ -9971,7 +9968,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.PaintMonitor": {
-      "idx": 47,
+      "idx": 48,
       "alias": [],
       "alternates": []
     },
@@ -9986,7 +9983,7 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.ProtoElement": {
-      "idx": 91,
+      "idx": 90,
       "alias": [],
       "alternates": []
     },
@@ -10001,94 +9998,94 @@ var Ext = Ext || {};
       "alternates": []
     },
     "Ext.util.Renderable": {
-      "idx": 112,
+      "idx": 111,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Schedulable": {
-      "idx": 196,
+      "idx": 195,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Scheduler": {
-      "idx": 187,
+      "idx": 186,
       "alias": [],
       "alternates": []
     },
     "Ext.util.SizeMonitor": {
-      "idx": 43,
+      "idx": 44,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Sortable": {
-      "idx": 54,
+      "idx": 55,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Sorter": {
-      "idx": 53,
+      "idx": 54,
       "alias": [],
       "alternates": []
     },
     "Ext.util.SorterCollection": {
-      "idx": 169,
+      "idx": 168,
       "alias": [],
       "alternates": []
     },
     "Ext.util.StoreHolder": {
-      "idx": 339,
+      "idx": 338,
       "alias": [],
       "alternates": []
     },
     "Ext.util.TSV": {
-      "idx": 322,
+      "idx": 321,
       "alias": [],
       "alternates": []
     },
     "Ext.util.TaskManager": {
-      "idx": 323,
+      "idx": 322,
       "alias": [],
       "alternates": [
         "Ext.TaskManager"
       ]
     },
     "Ext.util.TaskRunner": {
-      "idx": 56,
+      "idx": 57,
       "alias": [],
       "alternates": []
     },
     "Ext.util.TextMetrics": {
-      "idx": 324,
+      "idx": 323,
       "alias": [],
       "alternates": []
     },
     "Ext.util.Translatable": {
-      "idx": 106,
+      "idx": 105,
       "alias": [],
       "alternates": []
     },
     "Ext.util.XTemplateCompiler": {
-      "idx": 87,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.util.XTemplateParser": {
       "idx": 86,
       "alias": [],
       "alternates": []
     },
-    "Ext.util.paintmonitor.Abstract": {
-      "idx": 45,
+    "Ext.util.XTemplateParser": {
+      "idx": 85,
       "alias": [],
       "alternates": []
     },
-    "Ext.util.paintmonitor.CssAnimation": {
+    "Ext.util.paintmonitor.Abstract": {
       "idx": 46,
       "alias": [],
       "alternates": []
     },
+    "Ext.util.paintmonitor.CssAnimation": {
+      "idx": 47,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.util.paintmonitor.OverflowChange": {
-      "idx": 325,
+      "idx": 324,
       "alias": [],
       "alternates": []
     },
@@ -10097,43 +10094,48 @@ var Ext = Ext || {};
       "alias": [],
       "alternates": []
     },
-    "Ext.util.sizemonitor.OverflowChange": {
-      "idx": 42,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.util.sizemonitor.Scroll": {
+    "Ext.util.sizemonitor.Default": {
       "idx": 41,
       "alias": [],
       "alternates": []
     },
+    "Ext.util.sizemonitor.OverflowChange": {
+      "idx": 43,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.util.sizemonitor.Scroll": {
+      "idx": 42,
+      "alias": [],
+      "alternates": []
+    },
     "Ext.util.translatable.Abstract": {
-      "idx": 100,
+      "idx": 99,
       "alias": [],
       "alternates": []
     },
     "Ext.util.translatable.CssPosition": {
-      "idx": 105,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.util.translatable.CssTransform": {
-      "idx": 102,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.util.translatable.Dom": {
-      "idx": 101,
-      "alias": [],
-      "alternates": []
-    },
-    "Ext.util.translatable.ScrollParent": {
       "idx": 104,
       "alias": [],
       "alternates": []
     },
-    "Ext.util.translatable.ScrollPosition": {
+    "Ext.util.translatable.CssTransform": {
+      "idx": 101,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.util.translatable.Dom": {
+      "idx": 100,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.util.translatable.ScrollParent": {
       "idx": 103,
+      "alias": [],
+      "alternates": []
+    },
+    "Ext.util.translatable.ScrollPosition": {
+      "idx": 102,
       "alias": [],
       "alternates": []
     },
@@ -10250,44 +10252,71 @@ var Ext = Ext || {};
         "dir": "${package.output}"
       },
       "creator": "Sencha",
-      "namespace": "Ext",
+      "output": "${framework.dir}/build",
       "requires": [
         "ext",
         "core",
         "classic"
       ],
       "type": "toolkit",
-      "version": "6.0.1.250"
-    },
-    "cmd": {
-      "version": "6.0.1.75"
+      "version": "6.0.0.640"
     },
     "core": {
       "alternateName": [
         "sencha-core"
       ],
       "creator": "Sencha",
+      "output": "${package.dir}/build",
       "requires": [
         "ext"
       ],
+      "slicer": {
+        "js": []
+      },
       "type": "code",
-      "version": "6.0.1.250"
+      "version": "6.0.0.640"
     },
     "ext": {
       "build": {
         "dir": "${package.output.base}"
       },
       "creator": "Sencha",
-      "license": "trial",
-      "namespace": "Ext",
-      "requires": [],
-      "resource": {
-        "paths": [
-          "resources"
+      "example": {
+        "path": [
+          "examples",
+          "templates"
+        ],
+        "apps": [
+          "admin-dashboard",
+          "executive-dashboard",
+          "kitchensink",
+          "classic/charts-kitchensink",
+          "classic/desktop",
+          "classic/ticket-app",
+          "classic/portal",
+          "classic/simple-tasks",
+          "classic/responsive-app",
+          "classic/aria",
+          "modern/addressbook",
+          "modern/energy",
+          "modern/stockapp",
+          "modern/states",
+          "modern/geocongress",
+          "modern/oreilly"
         ]
       },
+      "output": "${package.dir}/build",
+      "requires": [],
+      "subpkgs": [
+        "classic/classic",
+        "modern/modern",
+        "packages/charts",
+        "packages/amf",
+        "packages/soap",
+        "packages/ux"
+      ],
       "type": "framework",
-      "version": "6.0.1.250"
+      "version": "6.0.0.640"
     }
   },
   "bootRelative": true
@@ -10330,12 +10359,11 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
              */
             preserveScripts: true,
             /*
-             * @cfg {String} [charset=UTF-8]
+             * @cfg {String} charset
              * Optional charset to specify encoding of dynamic content.
              */
-            charset: 'UTF-8'
+            charset: undefined
         },
-        _assetConfig = {},
         cssRe = /\.css(?:\?|$)/i,
         resolverEl = doc.createElement('a'),
         isBrowser = typeof window !== 'undefined',
@@ -10358,41 +10386,8 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
             }
             return object;
         },
-        _merge = function() {
-            var lowerCase = false,
-                obj = Array.prototype.shift.call(arguments),
-                index, i, len, value;
-            if (typeof arguments[arguments.length - 1] === 'boolean') {
-                lowerCase = Array.prototype.pop.call(arguments);
-            }
-            len = arguments.length;
-            for (index = 0; index < len; index++) {
-                value = arguments[index];
-                if (typeof value === 'object') {
-                    for (i in value) {
-                        obj[lowerCase ? i.toLowerCase() : i] = value[i];
-                    }
-                }
-            }
-            return obj;
-        },
-        _getKeys = (typeof Object.keys == 'function') ? function(object) {
-            if (!object) {
-                return [];
-            }
-            return Object.keys(object);
-        } : function(object) {
-            var keys = [],
-                property;
-            for (property in object) {
-                if (object.hasOwnProperty(property)) {
-                    keys.push(property);
-                }
-            }
-            return keys;
-        },
         /*
-     * The Boot loader class manages Request objects that contain one or
+     * The Boot loader class manages Request objects that contain one or 
      * more individual urls that need to be loaded.  Requests can be performed
      * synchronously or asynchronously, but will always evaluate urls in the
      * order specified on the request object.
@@ -10403,16 +10398,11 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
             apply: _apply,
             env: _environment,
             config: _config,
-            /**
-             * @cfg {Object} assetConfig
-             * A map (url->assetConfig) that contains information about assets loaded by the Microlaoder.
-             */
-            assetConfig: _assetConfig,
             // Keyed by absolute URL this object holds "true" if that URL is already loaded
             // or an array of callbacks to call once it loads.
             scripts: {},
             /*
-                 Entry objects
+                 Entry objects 
 
                  'http://foo.com/bar/baz/Thing.js': {
                  done: true,
@@ -10443,98 +10433,34 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
             listeners: [],
             Request: Request,
             Entry: Entry,
-            allowMultipleBrowsers: false,
-            browserNames: {
-                ie: 'IE',
-                firefox: 'Firefox',
-                safari: 'Safari',
-                chrome: 'Chrome',
-                opera: 'Opera',
-                dolfin: 'Dolfin',
-                edge: 'Edge',
-                webosbrowser: 'webOSBrowser',
-                chromeMobile: 'ChromeMobile',
-                chromeiOS: 'ChromeiOS',
-                silk: 'Silk',
-                other: 'Other'
-            },
-            osNames: {
-                ios: 'iOS',
-                android: 'Android',
-                windowsPhone: 'WindowsPhone',
-                webos: 'webOS',
-                blackberry: 'BlackBerry',
-                rimTablet: 'RIMTablet',
-                mac: 'MacOS',
-                win: 'Windows',
-                tizen: 'Tizen',
-                linux: 'Linux',
-                bada: 'Bada',
-                chromeOS: 'ChromeOS',
-                other: 'Other'
-            },
-            browserPrefixes: {
-                ie: 'MSIE ',
-                edge: 'Edge/',
-                firefox: 'Firefox/',
-                chrome: 'Chrome/',
-                safari: 'Version/',
-                opera: 'OPR/',
-                dolfin: 'Dolfin/',
-                webosbrowser: 'wOSBrowser/',
-                chromeMobile: 'CrMo/',
-                chromeiOS: 'CriOS/',
-                silk: 'Silk/'
-            },
-            // When a UA reports multiple browsers this list is used to prioritize the 'real' browser
-            // lower index number will win
-            browserPriority: [
-                'edge',
-                'opera',
-                'dolfin',
-                'webosbrowser',
-                'silk',
-                'chromeiOS',
-                'chromeMobile',
-                'ie',
-                'firefox',
-                'safari',
-                'chrome'
-            ],
-            osPrefixes: {
-                tizen: '(Tizen )',
-                ios: 'i(?:Pad|Phone|Pod)(?:.*)CPU(?: iPhone)? OS ',
-                android: '(Android |HTC_|Silk/)',
-                // Some HTC devices ship with an OSX userAgent by default,
-                // so we need to add a direct check for HTC_
-                windowsPhone: 'Windows Phone ',
-                blackberry: '(?:BlackBerry|BB)(?:.*)Version/',
-                rimTablet: 'RIM Tablet OS ',
-                webos: '(?:webOS|hpwOS)/',
-                bada: 'Bada/',
-                chromeOS: 'CrOS '
-            },
-            fallbackOSPrefixes: {
-                windows: 'win',
-                mac: 'mac',
-                linux: 'linux'
-            },
-            devicePrefixes: {
-                iPhone: 'iPhone',
-                iPod: 'iPod',
-                iPad: 'iPad'
-            },
-            maxIEVersion: 12,
             /**
-             * The default function that detects various platforms and sets tags
-             * in the platform map accordingly.  Examples are iOS, android, tablet, etc.
+             * The defult function that detects various platforms and sets tags
+             * in the platform map accrodingly.  Examples are iOS, android, tablet, etc.
              * @param tags the set of tags to populate
              */
             detectPlatformTags: function() {
-                var me = this,
-                    ua = navigator.userAgent,
-                    isMobile = /Mobile(\/|\s)/.test(ua),
+                var ua = navigator.userAgent,
+                    isMobile = _tags.isMobile = /Mobile(\/|\s)/.test(ua),
+                    isPhone, isDesktop, isTablet, touchSupported, isIE10, isBlackberry,
                     element = document.createElement('div'),
+                    uaTagChecks = [
+                        'iPhone',
+                        'iPod',
+                        'Android',
+                        'Silk',
+                        'Android 2',
+                        'BlackBerry',
+                        'BB',
+                        'iPad',
+                        'RIM Tablet OS',
+                        'MSIE 10',
+                        'Trident',
+                        'Chrome',
+                        'Tizen',
+                        'Firefox',
+                        'Safari',
+                        'Windows Phone'
+                    ],
                     isEventSupported = function(name, tag) {
                         if (tag === undefined) {
                             tag = window;
@@ -10553,122 +10479,40 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                         }
                         return isSupported;
                     },
-                    // Browser Detection
-                    getBrowsers = function() {
-                        var browsers = {},
-                            maxIEVersion, prefix, value, key, index, len, match, version, matched;
-                        // MS Edge browser (and possibly others) can report multiple browsers in the UserAgent
-                        // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
-                        // we use this to prioritize the actual browser in this situation
-                        len = me.browserPriority.length;
-                        for (index = 0; index < len; index++) {
-                            key = me.browserPriority[index];
-                            if (!matched) {
-                                value = me.browserPrefixes[key];
-                                match = ua.match(new RegExp('(' + value + ')([\\w\\._]+)'));
-                                version = match && match.length > 1 ? parseInt(match[2]) : 0;
-                                if (version) {
-                                    matched = true;
-                                }
-                            } else {
-                                version = 0;
-                            }
-                            browsers[key] = version;
-                        }
-                        //Deal with IE document mode
-                        if (browsers.ie) {
-                            var mode = document.documentMode;
-                            if (mode >= 8) {
-                                browsers.ie = mode;
-                            }
-                        }
-                        // Fancy IE greater than and less then quick tags
-                        version = browsers.ie || false;
-                        maxIEVersion = Math.max(version, me.maxIEVersion);
-                        for (index = 8; index <= maxIEVersion; ++index) {
-                            prefix = 'ie' + index;
-                            browsers[prefix + 'm'] = version ? version <= index : 0;
-                            browsers[prefix] = version ? version === index : 0;
-                            browsers[prefix + 'p'] = version ? version >= index : 0;
-                        }
-                        return browsers;
-                    },
-                    //OS Detection
-                    getOperatingSystems = function() {
-                        var systems = {},
-                            value, key, keys, index, len, match, matched, version, activeCount;
-                        keys = _getKeys(me.osPrefixes);
-                        len = keys.length;
-                        for (index = 0 , activeCount = 0; index < len; index++) {
-                            key = keys[index];
-                            value = me.osPrefixes[key];
-                            match = ua.match(new RegExp('(' + value + ')([^\\s;]+)'));
-                            matched = match ? match[1] : null;
-                            // This is here because some HTC android devices show an OSX Snow Leopard userAgent by default.
-                            // And the Kindle Fire doesn't have any indicator of Android as the OS in its User Agent
-                            if (matched && (matched === 'HTC_' || matched === 'Silk/')) {
-                                version = 2.3;
-                            } else {
-                                version = match && match.length > 1 ? parseFloat(match[match.length - 1]) : 0;
-                            }
-                            if (version) {
-                                activeCount++;
-                            }
-                            systems[key] = version;
-                        }
-                        keys = _getKeys(me.fallbackOSPrefixes);
-                        // If no OS could be found we resort to the fallbacks, otherwise we just
-                        // falsify the fallbacks
-                        len = keys.length;
-                        for (index = 0; index < len; index++) {
-                            key = keys[index];
-                            // No OS was detected from osPrefixes
-                            if (activeCount === 0) {
-                                value = me.fallbackOSPrefixes[key];
-                                match = ua.toLowerCase().match(new RegExp(value));
-                                systems[key] = match ? true : 0;
-                            } else {
-                                systems[key] = 0;
-                            }
-                        }
-                        return systems;
-                    },
-                    // Device Detection
-                    getDevices = function() {
-                        var devices = {},
-                            value, key, keys, index, len, match;
-                        keys = _getKeys(me.devicePrefixes);
-                        len = keys.length;
-                        for (index = 0; index < len; index++) {
-                            key = keys[index];
-                            value = me.devicePrefixes[key];
-                            match = ua.match(new RegExp(value));
-                            devices[key] = match ? true : 0;
-                        }
-                        return devices;
-                    },
-                    browsers = getBrowsers(),
-                    systems = getOperatingSystems(),
-                    devices = getDevices(),
-                    platformParams = Boot.loadPlatformsParam();
-                // We apply platformParams from the query here first to allow for forced user valued
-                // to be used in calculation of generated tags
-                _merge(_tags, browsers, systems, devices, platformParams, true);
-                _tags.phone = (_tags.iphone || _tags.ipod) || (!_tags.silk && (_tags.android && (_tags.android < 3 || isMobile))) || (_tags.blackberry && isMobile) || (_tags.windowsphone);
-                _tags.tablet = !_tags.phone && (_tags.ipad || _tags.android || _tags.silk || _tags.rimtablet || (_tags.ie10 && /; Touch/.test(ua)));
-                _tags.touch = // if the browser has touch events we can be reasonably sure the device has
+                    uaTags = {},
+                    len = uaTagChecks.length,
+                    check, c;
+                for (c = 0; c < len; c++) {
+                    check = uaTagChecks[c];
+                    uaTags[check] = new RegExp(check).test(ua);
+                }
+                isPhone = (uaTags.iPhone || uaTags.iPod) || (!uaTags.Silk && (uaTags.Android && (uaTags['Android 2'] || isMobile))) || ((uaTags.BlackBerry || uaTags.BB) && uaTags.isMobile) || (uaTags['Windows Phone']);
+                isTablet = (!_tags.isPhone) && (uaTags.iPad || uaTags.Android || uaTags.Silk || uaTags['RIM Tablet OS'] || (uaTags['MSIE 10'] && /; Touch/.test(ua)));
+                touchSupported = // if the browser has touch events we can be reasonably sure the device has
                 // a touch screen
                 isEventSupported('touchend') || // browsers that use pointer event have maxTouchPoints > 0 if the
                 // device supports touch input
                 // http://www.w3.org/TR/pointerevents/#widl-Navigator-maxTouchPoints
                 navigator.maxTouchPoints || // IE10 uses a vendor-prefixed maxTouchPoints property
                 navigator.msMaxTouchPoints;
-                _tags.desktop = !_tags.phone && !_tags.tablet;
-                _tags.cordova = _tags.phonegap = !!(window.PhoneGap || window.Cordova || window.cordova);
-                _tags.webview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)(?!.*FBAN)/i.test(ua);
-                _tags.androidstock = (_tags.android <= 4.3) && (_tags.safari || _tags.silk);
-                // Re-apply any query params here to allow for user override of generated tags (desktop, touch, tablet, etc)
-                _merge(_tags, platformParams, true);
+                isDesktop = !isPhone && !isTablet;
+                isIE10 = uaTags['MSIE 10'];
+                isBlackberry = uaTags.Blackberry || uaTags.BB;
+                _apply(_tags, Boot.loadPlatformsParam(), {
+                    phone: isPhone,
+                    tablet: isTablet,
+                    desktop: isDesktop,
+                    touch: touchSupported,
+                    ios: (uaTags.iPad || uaTags.iPhone || uaTags.iPod),
+                    android: uaTags.Android || uaTags.Silk,
+                    blackberry: isBlackberry,
+                    safari: uaTags.Safari && !isBlackberry,
+                    chrome: uaTags.Chrome,
+                    ie10: isIE10,
+                    windows: isIE10 || uaTags.Trident,
+                    tizen: uaTags.Tizen,
+                    firefox: uaTags.Firefox
+                });
             },
             /**
              * Extracts user supplied platform tags from the "platformTags" query parameter
@@ -11047,7 +10891,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
             stop = false;
             while (!stop) {
                 added = false;
-                // iterate the requirements for each index and
+                // iterate the requirements for each index and 
                 // accumulate in the index map
                 for (idx in indexMap) {
                     if (indexMap.hasOwnProperty(idx)) {
@@ -11065,9 +10909,9 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                             }
                             for (len = reqs.length , i = 0; i < len; i++) {
                                 ridx = reqs[i];
-                                // if we find a requirement that wasn't
-                                // already in the index map,
-                                // set the added flag to indicate we need to
+                                // if we find a requirement that wasn't 
+                                // already in the index map, 
+                                // set the added flag to indicate we need to 
                                 // reprocess
                                 if (!indexMap[ridx]) {
                                     indexMap[ridx] = true;
@@ -11351,12 +11195,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
         isCss: function() {
             var me = this;
             if (me.css === undefined) {
-                if (me.url) {
-                    var assetConfig = Boot.assetConfig[me.url];
-                    me.css = assetConfig ? assetConfig.type === "css" : cssRe.test(me.url);
-                } else {
-                    me.css = false;
-                }
+                me.css = me.url && cssRe.test(me.url);
             }
             return this.css;
         },
@@ -11380,9 +11219,6 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                     el = doc.createElement(tag);
                     el.type = 'text/javascript';
                     me.prop = 'src';
-                    if (me.charset) {
-                        el.charset = me.charset;
-                    }
                     if (Boot.hasAsync) {
                         el.async = false;
                     }
@@ -11487,7 +11323,7 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                 }
                 head.removeChild(base);
             } else {
-                // Debugger friendly, file names are still shown even though they're
+                // Debugger friendly, file names are still shown even though they're 
                 // eval'ed code. Breakpoints work on both Firebug and Chrome's Web
                 // Inspector.
                 if (url) {
@@ -11503,14 +11339,21 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                     me.loaded = me.evaluated = me.done = true;
                     me.notifyRequests();
                 };
-            me.createLoadElement(function() {
+            if (me.isCss()) {
+                me.createLoadElement();
+                me.evaluateLoadElement();
                 complete();
-            });
-            me.evaluateLoadElement();
-            // at this point, we need sequential evaluation,
-            // which means we can't advance the load until
-            // this entry has fully completed
-            return false;
+            } else {
+                me.createLoadElement(function() {
+                    complete();
+                });
+                me.evaluateLoadElement();
+                // at this point, we need sequential evaluation, 
+                // which means we can't advance the load until
+                // this entry has fully completed
+                return false;
+            }
+            return true;
         },
         loadElement: function() {
             var me = this,
@@ -11518,10 +11361,14 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                     me.loaded = me.evaluated = me.done = true;
                     me.notifyRequests();
                 };
-            me.createLoadElement(function() {
-                complete();
-            });
-            me.evaluateLoadElement();
+            if (me.isCss()) {
+                return me.loadCrossDomain();
+            } else {
+                me.createLoadElement(function() {
+                    complete();
+                });
+                me.evaluateLoadElement();
+            }
             return true;
         },
         loadSync: function() {
@@ -11539,17 +11386,17 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
             var me = this;
             if (!me.loaded) {
                 if (me.loading) {
-                    // if we're calling back through load and we're loading but haven't
-                    // yet loaded, then we should be in a sequential, cross domain
-                    // load scenario which means we can't continue the load on the
+                    // if we're calling back through load and we're loading but haven't 
+                    // yet loaded, then we should be in a sequential, cross domain 
+                    // load scenario which means we can't continue the load on the 
                     // request until this entry has fully evaluated, which will mean
                     // loaded = evaluated = done = true in one step.  For css files, this
-                    // will happen immediately upon <link> element creation / insertion,
+                    // will happen immediately upon <link> element creation / insertion, 
                     // but <script> elements will set this upon load notification
                     return false;
                 }
                 me.loading = true;
-                // for async modes, we have some options
+                // for async modes, we have some options 
                 if (!sync) {
                     // if cross domain, just inject the script tag and let the onload
                     // events drive the progression
@@ -11557,15 +11404,14 @@ Ext.Boot = Ext.Boot || (function(emptyFn) {
                         return me.loadCrossDomain();
                     }
                     // for IE, use the readyStateChange allows us to load scripts in parallel
-                    // but serialize the evaluation by appending the script node to the
+                    // but serialize the evaluation by appending the script node to the 
                     // document
                     else if (!me.isCss() && Boot.hasReadyState) {
                         me.createLoadElement(function() {
                             me.loaded = true;
                             me.notifyRequests();
                         });
-                    } else if (Boot.useElements && // older webkit, phantomjs included, won't fire load for link elements
-                    !(me.isCss() && _environment.phantom)) {
+                    } else if (Boot.useElements) {
                         return me.loadElement();
                     } else // for other browsers, just ajax the content down in parallel, and use
                     // globalEval to serialize evaluation
@@ -11737,43 +11583,6 @@ if (!Function.prototype.bind) {
 }
 // to detect this polyfill if one want to improve it
 //</editor-fold>
-Ext.setResourcePath = function(poolName, path) {
-    var manifest = Ext.manifest || (Ext.manifest = {}),
-        paths = manifest.resources || (manifest.resources = {});
-    if (manifest) {
-        if (typeof poolName !== 'string') {
-            Ext.apply(paths, poolName);
-        } else {
-            paths[poolName] = path;
-        }
-        manifest.resources = paths;
-    }
-};
-Ext.getResourcePath = function(path, poolName, packageName) {
-    if (typeof path !== 'string') {
-        poolName = path.pool;
-        packageName = path.packageName;
-        path = path.path;
-    }
-    var manifest = Ext.manifest,
-        paths = manifest && manifest.resources,
-        poolPath = paths[poolName],
-        output = [];
-    if (poolPath == null) {
-        poolPath = paths.path;
-        if (poolPath == null) {
-            poolPath = 'resources';
-        }
-    }
-    if (poolPath) {
-        output.push(poolPath);
-    }
-    if (packageName) {
-        output.push(packageName);
-    }
-    output.push(path);
-    return output.join('/');
-};
 
 // @tag core
 /**
@@ -11819,6 +11628,7 @@ Ext.getResourcePath = function(path, poolName, packageName) {
 var Ext = Ext || {};
 // jshint ignore:line
 // @define Ext
+Ext._startTime = Date.now ? Date.now() : (+new Date());
 (function() {
     var global = this,
         objectPrototype = Object.prototype,
@@ -11847,27 +11657,6 @@ var Ext = Ext || {};
         iterableRe = /\[object\s*(?:Array|Arguments|\w*Collection|\w*List|HTML\s+document\.all\s+class)\]/,
         MSDateRe = /^\\?\/Date\(([-+])?(\d+)(?:[+-]\d{4})?\)\\?\/$/;
     Ext.global = global;
-    /**
-     * Returns the current timestamp.
-     * @return {Number} Milliseconds since UNIX epoch.
-     * @method now
-     * @member Ext
-     */
-    Ext.now = Date.now || (Date.now = function() {
-        return +new Date();
-    });
-    /**
-     * Returns the current high-resolution timestamp.
-     * @return {Number} Milliseconds ellapsed since arbitrary epoch.
-     * @method ticks
-     * @member Ext
-     * @since 6.0.1
-     */
-    Ext.ticks = (global.performance && global.performance.now) ? function() {
-        return performance.now();
-    } : // jshint ignore:line
-    Ext.now;
-    Ext._startTime = Ext.ticks();
     // Mark these special fn's for easy identification:
     emptyFn.$nullFn = identityFn.$nullFn = emptyFn.$emptyFn = identityFn.$identityFn = privateFn.$nullFn = true;
     privateFn.$privacy = 'framework';
@@ -11923,26 +11712,6 @@ var Ext = Ext || {};
         }
         return object;
     };
-    // Used by Ext.override
-    function addInstanceOverrides(target, owner, overrides) {
-        var name, value;
-        for (name in overrides) {
-            if (overrides.hasOwnProperty(name)) {
-                value = overrides[name];
-                if (typeof value === 'function') {
-                    if (owner.$className) {
-                        value.name = owner.$className + '#' + name;
-                    }
-                    value.$name = name;
-                    value.$owner = owner;
-                    value.$previous = target.hasOwnProperty(name) ? target[name] : // already hooked, so call previous hook
-                    callOverrideParent;
-                }
-                // calls by name on prototype
-                target[name] = value;
-            }
-        }
-    }
     Ext.buildSettings = Ext.apply({
         baseCSSPrefix: 'x-'
     }, Ext.buildSettings || {});
@@ -12008,7 +11777,7 @@ var Ext = Ext || {};
          * It is only reliable during dom-event-initiated cycles and
          * {@link Ext.draw.Animator} initiated cycles.
          */
-        frameStartTime: Ext.now(),
+        frameStartTime: +new Date(),
         /**
          * This object is initialized prior to loading the framework (Ext JS or Sencha
          * Touch) and contains settings and other information describing the application.
@@ -12224,6 +11993,17 @@ var Ext = Ext || {};
             return object;
         },
         /**
+         * Returns the current timestamp.
+         * @return {Number} Milliseconds since UNIX epoch.
+         * @method
+         */
+        now: (global.performance && global.performance.now) ? function() {
+            return performance.now();
+        } : // jshint ignore:line
+        (Date.now || (Date.now = function() {
+            return +new Date();
+        })),
+        /**
          * Destroys all of the given objects. If arrays are passed, the elements of these
          * are destroyed recursively.
          *
@@ -12308,16 +12088,25 @@ var Ext = Ext || {};
                 Ext.apply(target.prototype, overrides);
             } else {
                 var owner = target.self,
-                    privates;
+                    name, value;
                 if (owner && owner.$isClass) {
                     // if (instance of Ext.define'd class)
-                    privates = overrides.privates;
-                    if (privates) {
-                        overrides = Ext.apply({}, overrides);
-                        delete overrides.privates;
-                        addInstanceOverrides(target, owner, privates);
+                    for (name in overrides) {
+                        if (overrides.hasOwnProperty(name)) {
+                            value = overrides[name];
+                            if (typeof value === 'function') {
+                                if (owner.$className) {
+                                    value.name = owner.$className + '#' + name;
+                                }
+                                value.$name = name;
+                                value.$owner = owner;
+                                value.$previous = target.hasOwnProperty(name) ? target[name] : // already hooked, so call previous hook
+                                callOverrideParent;
+                            }
+                            // calls by name on prototype
+                            target[name] = value;
+                        }
                     }
-                    addInstanceOverrides(target, owner, overrides);
                 } else {
                     Ext.apply(target, overrides);
                 }
@@ -12723,12 +12512,6 @@ var Ext = Ext || {};
     // Ext.apply(Ext
     Ext.returnTrue.$nullFn = Ext.returnId.$nullFn = true;
 }());
-
-// @override Ext
-// This file is order extremely early (typically right after Ext.js) due to the
-// above Cmd directive. This ensures that the "modern" and "classic" platform tags
-// are properly set up as soon as possible.
-Ext.platformTags.modern = !(Ext.platformTags.classic = Ext.isClassic = true);
 
 /**
  * A helper class for the native JavaScript Error object that adds a few useful capabilities for handling
@@ -13291,9 +13074,7 @@ Ext.Array = (function() {
          *
          *     sum(1, 2, 3); // returns 6
          *
-         * The iteration can be stopped by returning `false` from the callback function.  
-         * Returning `undefined` (i.e `return;`) will only exit the callback function and 
-         * proceed with the next iteration of the loop.
+         * The iteration can be stopped by returning false in the function callback.
          *
          *     Ext.Array.each(countries, function(name, index, countriesItSelf) {
          *         if (name === 'Singapore') {
@@ -13306,14 +13087,12 @@ Ext.Array = (function() {
          * @param {Array/NodeList/Object} iterable The value to be iterated. If this
          * argument is not iterable, the callback function is called once.
          * @param {Function} fn The callback function. If it returns `false`, the iteration
-         * stops and this method returns the current `index`. Returning `undefined` (i.e 
-         * `return;`) will only exit the callback function and proceed with the next iteration 
-         * in the loop.
+         * stops and this method returns the current `index`.
          * @param {Object} fn.item The item at the current `index` in the passed `array`
          * @param {Number} fn.index The current `index` within the `array`
          * @param {Array} fn.allItems The `array` itself which was passed as the first argument
-         * @param {Boolean} fn.return Return `false` to stop iteration.
-         * @param {Object} [scope] The scope (`this` reference) in which the specified function is executed.
+         * @param {Boolean} fn.return Return false to stop iteration.
+         * @param {Object} scope (Optional) The scope (`this` reference) in which the specified function is executed.
          * @param {Boolean} [reverse=false] Reverse the iteration order (loop from the end to the beginning).
          * @return {Boolean} See description for the `fn` parameter.
          */
@@ -13337,7 +13116,6 @@ Ext.Array = (function() {
                 return true;
             },
             /**
-         * @method
          * Iterates an array and invoke the given callback function for each item. Note that this will simply
          * delegate to the native `Array.prototype.forEach` method if supported. It doesn't support stopping the
          * iteration by returning `false` in the callback function like {@link Ext.Array#each}. However, performance
@@ -13360,7 +13138,6 @@ Ext.Array = (function() {
                 }
             },
             /**
-         * @method
          * Get the index of the provided `item` in the given `array`, a supplement for the
          * missing arrayPrototype.indexOf in Internet Explorer.
          *
@@ -13382,7 +13159,6 @@ Ext.Array = (function() {
                 return -1;
             },
             /**
-         * @method
          * Checks whether or not the given `array` contains the specified `item`.
          *
          * @param {Array} array The array to check.
@@ -13463,7 +13239,6 @@ Ext.Array = (function() {
                 return ret;
             },
             /**
-         * @method
          * Creates a new array with the results of calling a provided function on every element in this array.
          *
          * @param {Array} array
@@ -13488,7 +13263,6 @@ Ext.Array = (function() {
                 return results;
             },
             /**
-         * @method
          * Executes the specified function for each array element until the function returns a falsy value.
          * If such an item is found, the function will return `false` immediately.
          * Otherwise, it will return `true`.
@@ -13516,7 +13290,6 @@ Ext.Array = (function() {
                 return true;
             },
             /**
-         * @method
          * Executes the specified function for each array element until the function returns a truthy value.
          * If such an item is found, the function will return `true` immediately. Otherwise, it will return `false`.
          *
@@ -13607,7 +13380,6 @@ Ext.Array = (function() {
                 return clone;
             },
             /**
-         * @method
          * Creates a new array with all of the elements of this array for which
          * the provided filtering function returns a truthy value.
          *
@@ -16456,10 +16228,6 @@ Ext.Date = (function() {
      * @return {Date} this or the clone.
      */
         clearTime: function(date, clone) {
-            // handles invalid dates preventing the browser from crashing.
-            if (isNaN(date.getTime())) {
-                return date;
-            }
             if (clone) {
                 return utilDate.clearTime(utilDate.clone(date));
             }
@@ -17558,11 +17326,7 @@ Ext.Function = (function() {
      *
      * @param {Number} id The id returned by `{@link Ext#asap}`.
      */
-    Ext.asapCancel = hasImmediate ? function(id) {
-        clearImmediate(id);
-    } : function(id) {
-        clearTimeout(id);
-    };
+    Ext.asapCancel = hasImmediate ? clearImmediate : clearTimeout;
     /**
      * @method
      * @member Ext
@@ -17826,7 +17590,6 @@ Ext.Number = (new function() {
             return (x > 0) ? 1 : -1;
         },
         /**
-         * @method
          * Formats a number using fixed-point notation
          * @param {Number} value The number to format
          * @param {Number} precision The number of digits to show after the decimal point
@@ -17867,7 +17630,7 @@ Ext.Number = (new function() {
         /**
          * Corrects floating point numbers that overflow to a non-precise
          * value because of their floating nature, for example `0.1 + 0.2`
-         * @param {Number} n The number
+         * @param {Number} The number
          * @return {Number} The correctly rounded number
          */
         correctFloat: function(n) {
@@ -17908,7 +17671,6 @@ Ext.Number = (new function() {
             // @require Ext
             // @require Ext.lang.Date
             /**
-     * @method
      * Returns a new object with the given object as the prototype chain. This method is
      * designed to mimic the ECMA standard `Object.create` method and is assigned to that
      * function when it is available.
@@ -17991,7 +17753,7 @@ Ext.Number = (new function() {
      * @param {String} name
      * @param {Object/Array} value
      * @param {Boolean} [recursive=false] True to traverse object recursively
-     * @return {Object[]}
+     * @return {Array}
      */
             toQueryObjects: function(name, value, recursive) {
                 var self = ExtObject.toQueryObjects,
@@ -18484,7 +18246,6 @@ Ext.Number = (new function() {
                 return true;
             },
             /**
-     * @method
      * Shallow compares the contents of 2 objects using strict equality. Objects are
      * considered equal if they both have the same set of properties and the
      * value for those properties equals the other in the corresponding object.
@@ -18783,9 +18544,6 @@ Ext.apply(Ext, {
      * @param {Boolean} [usePrototypeKeys=false] Pass `true` to copy keys off of the
      * prototype as well as the instance.
      * @return {Object} The `dest` object.
-     * @deprecated 6.0.1 Use {@link Ext#copy Ext.copy} instead. This old method
-     * would copy the named preoperties even if they did not exist in the source which
-     * could produce `undefined` values in the destination.
      */
     copyTo: function(dest, source, names, usePrototypeKeys) {
         if (typeof names === 'string') {
@@ -18796,45 +18554,6 @@ Ext.apply(Ext, {
             n = names ? names.length : 0; i < n; i++) {
             name = names[i];
             if (usePrototypeKeys || source.hasOwnProperty(name)) {
-                dest[name] = source[name];
-            }
-        }
-        return dest;
-    },
-    /**
-     * @method copy
-     * @member Ext
-     * Copies a set of named properties fom the source object to the destination object.
-     *
-     * Example:
-     *
-     *     var foo = { a: 1, b: 2, c: 3 };
-     *
-     *     var bar = Ext.copy({}, foo, 'a,c');
-     *     // bar = { a: 1, c: 3 };
-     *
-     * Important note: To borrow class prototype methods, use {@link Ext.Base#borrow} instead.
-     *
-     * @param {Object} dest The destination object.
-     * @param {Object} source The source object.
-     * @param {String/String[]} names Either an Array of property names, or a comma-delimited list
-     * of property names to copy.
-     * @param {Boolean} [usePrototypeKeys=false] Pass `true` to copy keys off of the
-     * prototype as well as the instance.
-     * @return {Object} The `dest` object.
-     */
-    copy: function(dest, source, names, usePrototypeKeys) {
-        if (typeof names === 'string') {
-            names = names.split(Ext.propertyNameSplitRe);
-        }
-        for (var name,
-            i = 0,
-            n = names ? names.length : 0; i < n; i++) {
-            name = names[i];
-            // Only copy a property if the source actually *has* that property.
-            // If we are including prototype properties, then ensure that a property of
-            // that name can be found *somewhere* in the prototype chain (otherwise we'd be copying undefined in which may break things)
-            if (source.hasOwnProperty(name) || (usePrototypeKeys && name in source)) {
                 dest[name] = source[name];
             }
         }
@@ -18859,9 +18578,6 @@ Ext.apply(Ext, {
      * @param {String/String[]} names Either an Array of property names, or a single string
      * with a list of property names separated by ",", ";" or spaces.
      * @return {Object} The `dest` object.
-     * @deprecated 6.0.1 Use {@link Ext#copyIf Ext.copyIf} instead. This old method
-     * would copy the named preoperties even if they did not exist in the source which
-     * could produce `undefined` values in the destination.
      */
     copyToIf: function(destination, source, names) {
         if (typeof names === 'string') {
@@ -18872,40 +18588,6 @@ Ext.apply(Ext, {
             n = names ? names.length : 0; i < n; i++) {
             name = names[i];
             if (destination[name] === undefined) {
-                destination[name] = source[name];
-            }
-        }
-        return destination;
-    },
-    /**
-     * @method copyIf
-     * @member Ext
-     * Copies a set of named properties fom the source object to the destination object
-     * if the destination object does not already have them.
-     *
-     * Example:
-     *
-     *     var foo = { a: 1, b: 2, c: 3 };
-     *
-     *     var bar = Ext.copyIf({ a:42 }, foo, 'a,c');
-     *     // bar = { a: 42, c: 3 };
-     *
-     * @param {Object} destination The destination object.
-     * @param {Object} source The source object.
-     * @param {String/String[]} names Either an Array of property names, or a single string
-     * with a list of property names separated by ",", ";" or spaces.
-     * @return {Object} The `dest` object.
-     */
-    copyIf: function(destination, source, names) {
-        if (typeof names === 'string') {
-            names = names.split(Ext.propertyNameSplitRe);
-        }
-        for (var name,
-            i = 0,
-            n = names ? names.length : 0; i < n; i++) {
-            name = names[i];
-            // Only copy a property if the destination has no property by that name
-            if (!(name in destination) && (name in source)) {
                 destination[name] = source[name];
             }
         }
@@ -18996,47 +18678,6 @@ Ext.apply(Ext, {
         } else {
             Ext.Object.each.call(Ext.Object, object, fn, scope);
         }
-    },
-    _resourcePoolRe: /^[<]([^<>@:]*)(?:[@]([^<>@:]+))?[>](.+)$/,
-    /**
-     * Resolves a resource URL that may contain a resource pool identifier token at the
-     * front. The tokens are formatted as HTML tags "&lt;poolName@packageName&gt;" followed
-     * by a normal relative path. This token is only processed if present at the first
-     * character of the given string.
-     *
-     * These tokens are parsed and the pieces are then passed to the
-     * {@link Ext#getResourcePath} method.
-     *
-     * For example:
-     *
-     *      [{
-     *          xtype: 'image',
-     *          src: '<shared>images/foo.png'
-     *      },{
-     *          xtype: 'image',
-     *          src: '<@package>images/foo.png'
-     *      },{
-     *          xtype: 'image',
-     *          src: '<shared@package>images/foo.png'
-     *      }]
-     *
-     * In the above example, "shared" is the name of a Sencha Cmd resource pool and
-     * "package" is the name of a Sencha Cmd package.
-     *
-     * @param {String} url The URL that may contain a resource pool token at the front.
-     * @return {String}
-     * @since 6.0.1
-     */
-    resolveResource: function(url) {
-        var ret = url,
-            m;
-        if (url && url.charAt(0) === '<') {
-            m = Ext._resourcePoolRe.exec(url);
-            if (m) {
-                ret = Ext.getResourcePath(m[3], m[1], m[2]);
-            }
-        }
-        return ret;
     },
     /**
      *
@@ -19185,7 +18826,7 @@ Ext.apply(Ext, {
      *     button = Ext.factory({ text: 'Updated Button' }, 'Ext.Button', button); // Button updated
      *
      * @param {Object} config  The config object to instantiate or update an instance with.
-     * @param {String} [classReference]  The class to instantiate from (if there is a default).
+     * @param {String} classReference  The class to instantiate from.
      * @param {Object} [instance]  The instance to update.
      * @param [aliasNamespace]
      * @member Ext
@@ -19212,13 +18853,10 @@ Ext.apply(Ext, {
             }
         }
         if (config === true) {
-            if (!instance && !classReference) {
-                Ext.raise('[Ext.factory] Cannot determine type of class to create');
-            }
             return instance || Ext.create(classReference);
         }
         if (!Ext.isObject(config)) {
-            Ext.raise("Invalid config, must be a valid config object");
+            Ext.Logger.error("Invalid config, must be a valid config object");
         }
         if ('xtype' in config) {
             newInstance = manager.instantiateByAlias('widget.' + config.xtype, config);
@@ -20290,8 +19928,8 @@ Ext.apply(Ext, {
         }
     }
     if (!packages.ext && !packages.touch) {
-        Ext.setVersion('ext', '6.0.1.250');
-        Ext.setVersion('core', '6.0.1.250');
+        Ext.setVersion('ext', '6.0.0.640');
+        Ext.setVersion('core', '6.0.0.640');
     }
 })(Ext.manifest);
 
@@ -20917,10 +20555,8 @@ Ext.Config.prototype = {
                 values = me.values,
                 remaining = 0,
                 firstInstance = !initList,
-                cachedInitList, cfg, getter, needsInit, i, internalName, ln, names, name, value, isCached, valuesKey, field;
+                cachedInitList, cfg, getter, needsInit, i, internalName, ln, names, name, value, isCached, valuesKey;
             values = me.needsFork ? ExtObject.fork(values) : ExtObject.chain(values);
-            // Let apply/update methods know that the initConfig is currently running.
-            instance.isConfiguring = true;
             if (firstInstance) {
                 // When called to configure the first instance of the class to which we are
                 // bound we take a bit to plan for instance 2+.
@@ -20962,9 +20598,6 @@ Ext.Config.prototype = {
                     }
                 }
             }
-            // TODO - we need to combine the cached loop with the instanceConfig loop to
-            // avoid duplication of init getter setups (for correctness if a cached cfg
-            // calls on a non-cached cfg)
             ln = cachedInitList && cachedInitList.length;
             if (ln) {
                 // This is only ever done on the first instance we configure. Any config in
@@ -21007,6 +20640,8 @@ Ext.Config.prototype = {
                     instance.afterCachedConfig(instanceConfig);
                 }
             }
+            // Let apply/update methods know that the initConfig is currently running.
+            instance.isConfiguring = true;
             // Now that the cachedConfigs have been processed we can apply the instanceConfig
             // and hide the "configs" on the prototype. This will serve as the source for any
             // configs that need to initialize from their initial getter call.
@@ -21061,10 +20696,9 @@ Ext.Config.prototype = {
                         }
                     }
                     if (!cfg) {
-                        field = instance.self.prototype[name];
-                        if (instance.$configStrict && (typeof field === 'function') && !field.$nullFn) {
+                        if (instance.$configStrict && typeof instance.self.prototype[name] === 'function') {
                             // In strict mode you cannot override functions
-                            Ext.raise('Cannot override method ' + name + ' on ' + instance.$className + ' instance.');
+                            Ext.raise("Cannot override method " + name + " on " + instance.$className + " instance.");
                         }
                         // Not all "configs" use the config system so in this case simply put
                         // the value on the instance:
@@ -21192,10 +20826,11 @@ Ext.Config.prototype = {
         reconfigure: function(instance, instanceConfig, options) {
             var currentConfig = instance.config,
                 configList = [],
-                strict = instance.$configStrict && !(options && options.strict === false),
+                strict = instance.$configStrict,
                 configs = this.configs,
                 defaults = options && options.defaults,
-                cfg, getter, i, len, name, names, prop;
+                applyProps = options && options.strict === false,
+                cfg, getter, i, len, name, names, setter;
             for (name in instanceConfig) {
                 if (defaults && instance.hasOwnProperty(name)) {
                     
@@ -21215,26 +20850,12 @@ Ext.Config.prototype = {
                     // To ensure that configs being set here get processed in the proper order
                     // we must give them init getters just in case they depend upon each other
                     instance[cfg.names.get] = cfg.initGetter || cfg.getInitGetter();
-                } else {
-                    // Check for existence of the property on the prototype before proceeding.
-                    // If present on the prototype, and if the property is a function we
-                    // do not allow it to be overridden by a property in the config object
-                    // in strict mode (unless the function on the prototype is a emptyFn or
-                    // identityFn).  Note that we always check the prototype, not the instance
-                    // because calling setConfig a second time should have the same results -
-                    // the first call may have set a function on the instance.
-                    prop = instance.self.prototype[name];
-                    if (strict) {
-                        if ((typeof prop === 'function') && !prop.$nullFn) {
-                            Ext.Error.raise("Cannot override method " + name + " on " + instance.$className + " instance.");
-                            
-                            continue;
-                        } else {
-                            if (name !== 'type') {
-                                Ext.log.warn('No such config "' + name + '" for class ' + instance.$className);
-                            }
-                        }
+                } else if (strict) {
+                    if (name !== 'type') {
+                        Ext.log.error('No such config "' + name + '" for class ' + instance.$className);
                     }
+                    
+                    continue;
                 }
                 configList.push(name);
             }
@@ -21257,9 +20878,15 @@ Ext.Config.prototype = {
                     names = cfg.names;
                     if (instance[names.set]) {
                         instance[names.set](instanceConfig[name]);
-                    } else {
-                        // apply non-config props directly to the instance
+                    } else if (applyProps) {
+                        if (instance.$configStrict && typeof instance.self.prototype[name] === 'function') {
+                            // In strict mode you cannot override functions
+                            Ext.raise("Cannot override method " + name + " on " + instance.$className + " instance.");
+                        }
+                        // apply non-config props directly to the instance if specified in options
                         instance[name] = instanceConfig[name];
+                    } else if (name !== 'type') {
+                        Ext.raise('Config "' + name + '" has no setter on class ' + instance.$className);
                     }
                 }
             }
@@ -22327,12 +21954,11 @@ Ext.Base = (function(flexSetter) {
          *
          *      alert(obj.x);  // now alerts 42
          *
-         * This also works with static and private methods.
+         * This also works with static methods.
          *
          *      Ext.define('My.Derived2', {
          *          extend: 'My.Base',
          *
-         *          // privates: {
          *          statics: {
          *              method: function (x) {
          *                  return this.callParent([x*2]); // calls My.Base.method
@@ -22348,7 +21974,6 @@ Ext.Base = (function(flexSetter) {
          *      Ext.define('My.Derived2Override', {
          *          override: 'My.Derived2',
          *
-         *          // privates: {
          *          statics: {
          *              method: function (x) {
          *                  return this.callParent([x*2]); // calls My.Derived2.method
@@ -22359,7 +21984,7 @@ Ext.Base = (function(flexSetter) {
          *      alert(My.Derived2.method(10); // now alerts 40
          *
          * To override a method and replace it and also call the superclass method, use
-         * {@link #method-callSuper}. This is often done to patch a method to fix a bug.
+         * {@link #callSuper}. This is often done to patch a method to fix a bug.
          *
          * @protected
          * @param {Array/Arguments} args The arguments, either an array or the `arguments` object
@@ -22391,9 +22016,9 @@ Ext.Base = (function(flexSetter) {
             return superMethod.apply(this, args || noArgs);
         },
         /**
-         * This method is used by an **override** to call the superclass method but 
-         * bypass any overridden method. This is often done to "patch" a method that 
-         * contains a bug but for whatever reason cannot be fixed directly.
+         * This method is used by an override to call the superclass method but bypass any
+         * overridden method. This is often done to "patch" a method that contains a bug
+         * but for whatever reason cannot be fixed directly.
          * 
          * Consider:
          * 
@@ -22430,11 +22055,10 @@ Ext.Base = (function(flexSetter) {
          *          }
          *      });
          * 
-         * The patch method cannot use {@link #method-callParent} to call the superclass 
-         * `method` since that would call the overridden method containing the bug. In 
-         * other words, the above patch would only produce "Fixed" then "Good" in the 
-         * console log, whereas, using `callParent` would produce "Fixed" then "Bad" 
-         * then "Good".
+         * The patch method cannot use `callParent` to call the superclass `method` since
+         * that would call the overridden method containing the bug. In other words, the
+         * above patch would only produce "Fixed" then "Good" in the console log, whereas,
+         * using `callParent` would produce "Fixed" then "Bad" then "Good".
          *
          * @protected
          * @param {Array/Arguments} args The arguments, either an array or the `arguments` object
@@ -22596,34 +22220,8 @@ Ext.Base = (function(flexSetter) {
             return name in this.defaultConfig;
         },
         /**
-         * Returns the initial configuration passed to the constructor when 
-         * instantiating this class.
-         * 
-         * Given this example Ext.button.Button definition and instance:
-         * 
-         *     Ext.define('MyApp.view.Button', {
-         *         extend: 'Ext.button.Button',
-         *         xtype: 'mybutton',
-         *     
-         *         scale: 'large',
-         *         enableToggle: true
-         *     });
-         *     
-         *     var btn = Ext.create({
-         *         xtype: 'mybutton',
-         *         renderTo: Ext.getBody(),
-         *         text: 'Test Button'
-         *     });
-         * 
-         * Calling `btn.getInitialConfig()` would return an object including the config 
-         * options passed to the `create` method:
-         * 
-         *     xtype: 'mybutton',
-         *     renderTo: // The document body itself
-         *     text: 'Test Button'
-         * 
-         * Calling `btn.getInitialConfig('text')`returns **'Test Button'**.
-         * 
+         * Returns the initial configuration passed to constructor when instantiating
+         * this class.
          * @param {String} [name] Name of the config option to return.
          * @return {Object/Mixed} The full config object or a single config value
          * when `name` parameter specified.
@@ -22681,6 +22279,7 @@ Ext.Base = (function(flexSetter) {
         /**
          * This method is called to cleanup an object and its resources. After calling
          * this method, the object should not be used any further.
+         * @protected
          */
         destroy: function() {
             var me = this,
@@ -23768,13 +23367,13 @@ Ext.Inventory.prototype = {
     prefixes: null,
     dotRe: /\./g,
     wildcardRe: /\*/g,
-    addAlias: function(className, alias, update) {
-        return this.addMapping(className, alias, this.aliasToName, this.nameToAliases, update);
+    addAlias: function(className, alias) {
+        return this.addMapping(className, alias, this.aliasToName, this.nameToAliases);
     },
     addAlternate: function(className, alternate) {
         return this.addMapping(className, alternate, this.alternateToName, this.nameToAlternates);
     },
-    addMapping: function(className, alternate, toName, nameTo, update) {
+    addMapping: function(className, alternate, toName, nameTo) {
         var name = className.$className || className,
             mappings = name,
             array = this._array1,
@@ -23797,7 +23396,7 @@ Ext.Inventory.prototype = {
                     continue;
                 }
                 if (toName[a] !== cls) {
-                    if (!update && toName[a]) {
+                    if (toName[a]) {
                         Ext.log.warn("Overriding existing mapping: '" + a + "' From '" + toName[a] + "' to '" + cls + "'. Is this intentional?");
                     }
                     toName[a] = cls;
@@ -24567,31 +24166,6 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
                 return value;
             },
             /**
-         * Changes the mapping of an `xtype` to map to the specified component class.
-         * @param {String/Ext.Class} cls The class or class name to which `xtype` is mapped.
-         * @param {String} xtype The `xtype` to map or redefine as `cls`.
-         * @since 6.0.1
-         * @private
-         */
-            setXType: function(cls, xtype) {
-                var className = cls.$className,
-                    C = className ? cls : Manager.get(className = cls),
-                    proto = C.prototype,
-                    xtypes = proto.xtypes,
-                    xtypesChain = proto.xtypesChain,
-                    xtypesMap = proto.xtypesMap;
-                if (!proto.hasOwnProperty('xtypes')) {
-                    proto.xtypes = xtypes = [];
-                    proto.xtypesChain = xtypesChain = xtypesChain ? xtypesChain.slice(0) : [];
-                    proto.xtypesMap = xtypesMap = Ext.apply({}, xtypesMap);
-                }
-                Manager.addAlias(className, 'widget.' + xtype, true);
-                xtypes.push(xtype);
-                xtypesChain.push(xtype);
-                xtypesMap[xtype] = true;
-            },
-            //TODO consider updating derived class xtypesChain / xtypesMap
-            /**
          * Sets a name reference to a class.
          *
          * @param {String} name
@@ -24639,31 +24213,6 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          */
             getByAlias: function(alias) {
                 return Manager.get(Manager.getNameByAlias(alias));
-            },
-            /**
-         * Get a component class name from a config object.
-         * @param {Object} config The config object.
-         * @param {String} [aliasPrefix] A prefix to use when getting
-         * a class name by alias.
-         * @return {Ext.Class} The class.
-         *
-         * @private
-         */
-            getByConfig: function(config, aliasPrefix) {
-                var xclass = config.xclass,
-                    name;
-                if (xclass) {
-                    name = xclass;
-                } else {
-                    name = config.xtype;
-                    if (name) {
-                        aliasPrefix = 'widget.';
-                    } else {
-                        name = config.type;
-                    }
-                    name = Manager.getNameByAlias(aliasPrefix + name);
-                }
-                return Manager.get(name);
             },
             /**
          * Get the name of the class by its reference or its instance. This is
@@ -24772,8 +24321,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
                     uses = data.uses,
                     mixins = data.mixins,
                     mixinsIsArray,
-                    compat = 1,
-                    // default if 'compatibility' is not specified
+                    compat = data.compatibility,
                     depedenciesLoaded,
                     classReady = function() {
                         var cls, dependencies, i, key, temp;
@@ -24845,13 +24393,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
                     };
                 // last but not least!
                 Manager.overrideMap[className] = true;
-                // If specified, parse strings as versions, but otherwise treat as a
-                // boolean (maybe "compatibility: Ext.isIE8" or something).
-                //
-                if ('compatibility' in data && Ext.isString(compat = data.compatibility)) {
-                    compat = Ext.checkVersion(compat);
-                }
-                if (compat) {
+                if (!compat || Ext.checkVersion(compat)) {
                     // Override the target class right after it's created
                     me.onCreated(classReady, me, overriddenClassName);
                 }
@@ -25009,7 +24551,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
      * Overrides members of the specified `target` class.
      * 
      * **NOTE:** the overridden class must have been defined using 
-     * {@link Ext#define Ext.define} in order to use the `override` config.
+     * {@link #define Ext.define} in order to use the `override` config.
      * 
      * Methods defined on the overriding class will not automatically call the methods of 
      * the same name in the ancestor class chain.  To call the parent's method of the 
@@ -25701,7 +25243,8 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
          */
         undefine: function(className) {
             Ext.classSystemMonitor && Ext.classSystemMonitor(className, 'Ext.ClassManager#undefine', arguments);
-            var classes = Manager.classes;
+            var classes = Manager.classes,
+                parts, partCount, namespace, i;
             delete classes[className];
             delete Manager.existCache[className];
             delete Manager.classState[className];
@@ -25950,13 +25493,13 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
     // @require Ext.Object
     // @require Ext.Version
     var me = this,
-        browserPrefixes = Ext.Boot.browserPrefixes,
-        browserNames = Ext.Boot.browserNames,
+        browserPrefixes = me.browserPrefixes,
         enginePrefixes = me.enginePrefixes,
-        engineNames = me.engineNames,
         browserMatch = userAgent.match(new RegExp('((?:' + Ext.Object.getValues(browserPrefixes).join(')|(?:') + '))([\\w\\._]+)')),
         engineMatch = userAgent.match(new RegExp('((?:' + Ext.Object.getValues(enginePrefixes).join(')|(?:') + '))([\\w\\._]+)')),
+        browserNames = me.browserNames,
         browserName = browserNames.other,
+        engineNames = me.engineNames,
         engineName = engineNames.other,
         browserVersion = '',
         engineVersion = '',
@@ -25968,11 +25511,6 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
      * Browser User Agent string.
      */
     me.userAgent = userAgent;
-    // Edge has a userAgent with All browsers so we manage it separately
-    // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
-    if (/Edge\//.test(userAgent)) {
-        browserMatch = userAgent.match(/(Edge\/)([\w.]+)/);
-    }
     if (browserMatch) {
         browserName = browserNames[Ext.Object.getKey(browserPrefixes, browserMatch[1])];
         if (browserName === 'Safari' && /^Opera/.test(userAgent)) {
@@ -26233,7 +25771,7 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
             } else if (mode === 11 || (majorVer === 11 && mode !== 7 && mode !== 8 && mode !== 9 && mode !== 10)) {
                 majorVer = 11;
             }
-            maxIEVersion = Math.max(majorVer, Ext.Boot.maxIEVersion);
+            maxIEVersion = Math.max(majorVer, 11);
             for (i = 7; i <= maxIEVersion; ++i) {
                 prefix = 'isIE' + i;
                 if (majorVer <= i) {
@@ -26284,6 +25822,12 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
         isWebView = true;
         this.setFlag('PhoneGap');
         this.setFlag('Cordova');
+    } else if (!!window.isNK) {
+        isWebView = true;
+        this.setFlag('Sencha');
+    }
+    if (/(Glass)/i.test(userAgent)) {
+        this.setFlag('GoogleGlass');
     }
     // Check if running in UIWebView
     if (/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)(?!.*FBAN)/i.test(userAgent)) {
@@ -26306,6 +25850,19 @@ Ext.ClassManager = (function(Class, alias, arraySlice, arrayFrom, global) {
 };
 Ext.env.Browser.prototype = {
     constructor: Ext.env.Browser,
+    browserNames: {
+        ie: 'IE',
+        firefox: 'Firefox',
+        safari: 'Safari',
+        chrome: 'Chrome',
+        opera: 'Opera',
+        dolfin: 'Dolfin',
+        webosbrowser: 'webOSBrowser',
+        chromeMobile: 'ChromeMobile',
+        chromeiOS: 'ChromeiOS',
+        silk: 'Silk',
+        other: 'Other'
+    },
     engineNames: {
         webkit: 'WebKit',
         gecko: 'Gecko',
@@ -26318,6 +25875,18 @@ Ext.env.Browser.prototype = {
         gecko: 'Gecko/',
         presto: 'Presto/',
         trident: 'Trident/'
+    },
+    browserPrefixes: {
+        ie: 'MSIE ',
+        firefox: 'Firefox/',
+        chrome: 'Chrome/',
+        safari: 'Version/',
+        opera: 'OPR/',
+        dolfin: 'Dolfin/',
+        webosbrowser: 'wOSBrowser/',
+        chromeMobile: 'CrMo/',
+        chromeiOS: 'CriOS/',
+        silk: 'Silk/'
     },
     styleDashPrefixes: {
         WebKit: '-webkit-',
@@ -26502,8 +26071,8 @@ Ext.env.OS = function(userAgent, platform, browserScope) {
     // @require Ext.Version
     // @require Ext.env.Browser
     var me = this,
-        names = Ext.Boot.osNames,
-        prefixes = Ext.Boot.osPrefixes,
+        names = me.names,
+        prefixes = me.prefixes,
         name,
         version = '',
         is = me.is,
@@ -26570,6 +26139,34 @@ Ext.env.OS = function(userAgent, platform, browserScope) {
 };
 Ext.env.OS.prototype = {
     constructor: Ext.env.OS,
+    names: {
+        ios: 'iOS',
+        android: 'Android',
+        windowsPhone: 'WindowsPhone',
+        webos: 'webOS',
+        blackberry: 'BlackBerry',
+        rimTablet: 'RIMTablet',
+        mac: 'MacOS',
+        win: 'Windows',
+        tizen: 'Tizen',
+        linux: 'Linux',
+        bada: 'Bada',
+        chrome: 'ChromeOS',
+        other: 'Other'
+    },
+    prefixes: {
+        tizen: '(Tizen )',
+        ios: 'i(?:Pad|Phone|Pod)(?:.*)CPU(?: iPhone)? OS ',
+        android: '(Android |HTC_|Silk/)',
+        // Some HTC devices ship with an OSX userAgent by default,
+        // so we need to add a direct check for HTC_
+        windowsPhone: 'Windows Phone ',
+        blackberry: '(?:BlackBerry|BB)(?:.*)Version/',
+        rimTablet: 'RIM Tablet OS ',
+        webos: '(?:webOS|hpwOS)/',
+        bada: 'Bada/',
+        chrome: 'CrOS '
+    },
     /**
      * A "hybrid" property, can be either accessed as a method call, i.e:
      *
@@ -27053,10 +26650,11 @@ Ext.feature = {
          */
             name: 'touchScroll',
             fn: function() {
-                var touchScroll = 0;
-                if (Ext.os.is.Desktop && (navigator.maxTouchPoints || navigator.msMaxTouchPoints)) {
+                var supports = Ext.supports,
+                    touchScroll = 0;
+                if (navigator.msMaxTouchPoints || (Ext.isWebKit && supports.TouchEvents && Ext.os.is.Desktop)) {
                     touchScroll = 1;
-                } else if (Ext.supports.Touch) {
+                } else if (supports.Touch) {
                     touchScroll = 2;
                 }
                 return touchScroll;
@@ -27373,6 +26971,24 @@ Ext.feature = {
                 return !(Ext.browser.is.AndroidStock4 && Ext.os.version.getMinor() < 2);
             }
         },
+        {
+            name: 'ProperHBoxStretching',
+            ready: true,
+            fn: function() {
+                // IE10 currently has a bug in their flexbox row layout. We feature detect the issue here.
+                var bodyElement = document.createElement('div'),
+                    innerElement = bodyElement.appendChild(document.createElement('div')),
+                    contentElement = innerElement.appendChild(document.createElement('div')),
+                    innerWidth;
+                bodyElement.setAttribute('style', 'width: 100px; height: 100px; position: relative;');
+                innerElement.setAttribute('style', 'position: absolute; display: -ms-flexbox; display: -webkit-flex; display: -moz-flexbox; display: flex; -ms-flex-direction: row; -webkit-flex-direction: row; -moz-flex-direction: row; flex-direction: row; min-width: 100%;');
+                contentElement.setAttribute('style', 'width: 200px; height: 50px;');
+                document.body.appendChild(bodyElement);
+                innerWidth = innerElement.offsetWidth;
+                document.body.removeChild(bodyElement);
+                return (innerWidth > 100);
+            }
+        },
         /**
      * @property {String} matchesSelector
      * The method name which matches an element against a selector if implemented in this environment.
@@ -27645,14 +27261,9 @@ Ext.feature = {
             fn: function(doc) {
                 var body = doc.body,
                     supports = false,
-                    el = doc.createElement('div'),
+                    el = this.getTestElement(),
                     style = el.style;
                 if (el.getBoundingClientRect) {
-                    // If the document body already has child nodes (text nodes etc) we can end
-                    // up with subpixel rounding errors in IE11 when measuring the height.
-                    // Absolute positioning prevents this.
-                    style.position = 'absolute';
-                    style.top = "0";
                     style.WebkitTransform = style.MozTransform = style.msTransform = style.OTransform = style.transform = 'rotate(90deg)';
                     style.width = '100px';
                     style.height = '30px';
@@ -27893,7 +27504,7 @@ Ext.feature = {
                 return false;
             }
         },
-        /**
+        /*
      * @property {Boolean} SpecialKeyDownRepeat
      * True if the browser fires the keydown event on specialkey autorepeat
      * 
@@ -27991,22 +27602,6 @@ Ext.feature = {
                 // and in Firefox (where it is not supported); adding an element and trying to
                 // focus it will fail when the browser window itself is not focused.
                 return !Ext.isGecko;
-            }
-        },
-        /**
-     * @property {Boolean} AsyncFocusEvents
-     * `true` if the browser fires focus events (focus, blur, focusin, focusout)
-     * asynchronously, i.e. in a separate event loop invocation. This is only true
-     * for all versions Internet Explorer; Microsoft Edge and other browsers fire
-     * focus events synchronously.
-     */
-        {
-            name: 'AsyncFocusEvents',
-            fn: function() {
-                // The sad part is that we can't feature detect this because the focus
-                // event won't be fired when the browser window itself is not focused.
-                // Private shortcut for brevity
-                return Ext.asyncFocus = !!Ext.isIE;
             }
         },
         /**
@@ -28283,7 +27878,7 @@ Ext.env.Ready = {
     fireReady: function() {
         var me = Ext.env.Ready;
         if (!me.state) {
-            Ext._readyTime = Ext.ticks();
+            Ext._readyTime = Ext.now();
             Ext.isDomReady = true;
             me.state = 1;
             // As soon as we transition to domready, complete the feature detection:
@@ -28313,9 +27908,9 @@ Ext.env.Ready = {
         var me = this;
         if (me.state === 1) {
             me.state = 2;
-            Ext._beforeReadyTime = Ext.ticks();
+            Ext._beforeReadyTime = Ext.now();
             me.invokeAll();
-            Ext._afterReadyTime = Ext.ticks();
+            Ext._afterReadytime = Ext.now();
         }
     },
     /**
@@ -29492,18 +29087,6 @@ Ext.Loader = (new function() {
             } else if (!isLoading && wasLoading) {
                 Loader.triggerReady();
             }
-            if (!Loader.scriptsLoading && Loader.missingCount) {
-                // Things look bad, but since load requests may come later, defer this
-                // for a bit then check if things are still stuck.
-                Ext.defer(function() {
-                    if (!Loader.scriptsLoading && Loader.missingCount) {
-                        Ext.log.error('[Loader] The following classes failed to load:');
-                        for (var name in Loader.missingQueue) {
-                            Ext.log.error('[Loader] ' + name + ' from ' + Loader.missingQueue[name]);
-                        }
-                    }
-                }, 1000);
-            }
         }
     });
     /**
@@ -29728,8 +29311,7 @@ Ext.Loader = (new function() {
     Loader.init();
 }());
 //-----------------------------------------------------------------------------
-// Use performance.now when available to keep timestamps consistent.
-Ext._endTime = Ext.ticks();
+Ext._endTime = new Date().getTime();
 // This hook is to allow tools like DynaTrace to deterministically detect the availability
 // of Ext.onReady. Since Loader takes over Ext.onReady this must be done here and not in
 // Ext.env.Ready.
@@ -29872,7 +29454,7 @@ Ext.define('Ext.overrides.util.Positionable', {
 /**
      * @method setX
      * Sets the X position of the DOM element based on page coordinates.
-     * @param {Number} x The X position
+     * @param {Number} The X position
      * @param {Boolean/Object} [animate] True for the default animation, or a standard
      * Element animation config object
      * @return {Ext.util.Positionable} this
@@ -29889,7 +29471,7 @@ Ext.define('Ext.overrides.util.Positionable', {
 /**
      * @method setY
      * Sets the Y position of the DOM element based on page coordinates.
-     * @param {Number} y The Y position
+     * @param {Number} The Y position
      * @param {Boolean/Object} [animate] True for the default animation, or a standard
      * Element animation config object
      * @return {Ext.util.Positionable} this
@@ -30339,8 +29921,7 @@ Ext.define('Ext.overrides.event.publisher.Dom', {
     override: 'Ext.event.publisher.Dom'
 }, function(DomPublisher) {
     if (Ext.isIE9m) {
-        var docElement = document.documentElement,
-            docBody = document.body,
+        var docBody = document.body,
             prototype = DomPublisher.prototype,
             onDirectEvent, onDirectCaptureEvent;
         prototype.target = document;
@@ -30406,10 +29987,9 @@ Ext.define('Ext.overrides.event.publisher.Dom', {
             doDelegatedEvent: function(e, invokeAfter) {
                 e.target = e.srcElement || window;
                 if (e.type === 'focusin') {
-                    // IE8 sometimes happen to focus <html> element instead of the body
-                    e.relatedTarget = e.fromElement === docBody || e.fromElement === docElement ? null : e.fromElement;
+                    e.relatedTarget = e.fromElement === docBody ? null : e.fromElement;
                 } else if (e.type === 'focusout') {
-                    e.relatedTarget = e.toElement === docBody || e.toElement === docElement ? null : e.toElement;
+                    e.relatedTarget = e.toElement === docBody ? null : e.toElement;
                 }
                 return this.callParent([
                     e,
@@ -30420,12 +30000,6 @@ Ext.define('Ext.overrides.event.publisher.Dom', {
         // can't capture any events without addEventListener.  Have to have direct
         // listeners for every event that does not bubble.
         Ext.apply(prototype.directEvents, prototype.captureEvents);
-        // These do not bubble in IE9m so have to attach direct listeners as well.
-        Ext.apply(prototype.directEvents, {
-            change: 1,
-            input: 1,
-            paste: 1
-        });
         prototype.captureEvents = {};
     }
 });
@@ -30532,7 +30106,9 @@ Ext.define('Ext.overrides.dom.Element', (function() {
             TEXTAREA: true
         };
     if (Ext.isIE8) {
-        var garbageBin = DOC.createElement('div'),
+        var removeNode = Ext.removeNode,
+            // save a reference to the removeNode function defined in sencha-core
+            garbageBin = DOC.createElement('div'),
             destroyQueue = [],
             // prevent memory leaks in IE8
             // see http://social.msdn.microsoft.com/Forums/ie/en-US/c76967f0-dcf8-47d0-8984-8fe1282a94f5/ie-appendchildremovechild-memory-problem?forum=iewebdevelopment
@@ -30547,6 +30123,14 @@ Ext.define('Ext.overrides.dom.Element', (function() {
                 garbageBin.innerHTML = '';
                 destroyQueue.length = 0;
             }, 10);
+        Ext.removeNode = function(node) {
+            node = node.dom || node;
+            removeNode(node);
+            destroyQueue[destroyQueue.length] = node;
+            // Will perform extra IE8 cleanup in 10 milliseconds
+            // see http://social.msdn.microsoft.com/Forums/ie/en-US/c76967f0-dcf8-47d0-8984-8fe1282a94f5/ie-appendchildremovechild-memory-problem?forum=iewebdevelopment
+            clearGarbage();
+        };
     }
     return {
         override: 'Ext.dom.Element',
@@ -30564,10 +30148,6 @@ Ext.define('Ext.overrides.dom.Element', (function() {
         _init: function(E) {
             Element = E;
             // now we can poke this into closure scope
-            // We want to expose destroyQueue on the prototype for testing purposes
-            if (WIN.__UNIT_TESTING__) {
-                E.destroyQueue = destroyQueue;
-            }
             // Allow overriding the attribute name and/or selector; this is
             // done only once for performance reasons
             E.tabbableSelector += ',[' + E.tabbableSavedCounterAttribute + ']';
@@ -31998,17 +31578,11 @@ Ext.define('Ext.overrides.dom.Element', (function() {
         /**
          * Updates the innerHTML of this element, optionally searching for and processing scripts.
          * @param {String} html The new HTML
-         * @param {Boolean} [loadScripts] Pass `true` to look for and process scripts.
-         * @param {Function} [callback] For async script loading you can be notified when the update completes.
-         * @param {Object} [scope=`this`] The scope (`this` reference) in which to execute the callback.
-         * 
-         * Also used as the scope for any *inline* script source if the `loadScripts` parameter is `true`.
-         * Scripts with a `src` attribute cannot be executed in this scope.
-         *
-         * Defaults to this Element.
+         * @param {Boolean} [loadScripts] True to look for and process scripts (defaults to false)
+         * @param {Function} [callback] For async script loading you can be notified when the update completes
          * @return {Ext.dom.Element} this
          */
-        setHtml: function(html, loadScripts, callback, scope) {
+        setHtml: function(html, loadScripts, callback) {
             var me = this,
                 id, dom, interval;
             if (!me.dom) {
@@ -32043,14 +31617,11 @@ Ext.define('Ext.overrides.dom.Element', (function() {
                         }
                         hd.appendChild(s);
                     } else if (match[2] && match[2].length > 0) {
-                        if (scope) {
-                            Ext.functionFactory(match[2]).call(scope);
-                        } else {
-                            Ext.globalEval(match[2]);
-                        }
+                        (WIN.execScript || WIN.eval)(match[2]);
                     }
                 }
-                Ext.callback(callback, scope || me);
+                // jshint ignore:line
+                Ext.callback(callback, me);
             }, 20);
             dom.innerHTML = html.replace(replaceScriptTagRe, '');
             return me;
@@ -33578,67 +33149,6 @@ Ext.define('Ext.overrides.dom.Element', (function() {
             this.removeCls(syncRepaintCls);
         };
     }
-    if (Ext.isIE10m) {
-        Ext.override(Element, {
-            focus: function(defer, dom) {
-                var me = this,
-                    ex;
-                dom = dom || me.dom;
-                if (Number(defer)) {
-                    Ext.defer(me.focus, defer, me, [
-                        null,
-                        dom
-                    ]);
-                } else {
-                    Ext.GlobalEvents.fireEvent('beforefocus', dom);
-                    // IE10m has an acute problem with focusing input elements;
-                    // when the element was just shown and did not have enough
-                    // time to initialize, focusing it might fail. The problem
-                    // is somewhat random in nature; most of the time focusing
-                    // an input element will succeed, failing only occasionally.
-                    // When it fails, the focus will be thrown to the document
-                    // body element, with subsequent focusout/focusin event pair
-                    // on the body, which throws off our focusenter/focusleave
-                    // processing.
-                    // Fortunately for us, when this focus failure happens, the
-                    // resulting focusout event will happen *synchronously*
-                    // unlike the normal focusing events which IE will fire
-                    // asynchronously. Also fortunately for us, in most cases
-                    // trying to focus the given element the second time
-                    // immediately after it failed to focus the first time
-                    // seems to do the trick; however when second focus attempt
-                    // succeeds, it will result in focusout on the body and
-                    // focusin on the given element, which again wreaks havoc
-                    // on our focusenter/focusleave handling.
-                    // The only workable solution we have is to pretend that
-                    // focus never went to the document body and ignore the
-                    // focusout and focusin caused by failed first focus attempt.
-                    // To this end, we fudge the event stream in Focus publisher
-                    // override.
-                    if (dom && (dom.tagName === 'INPUT' || dom.tagname === 'TEXTAREA')) {
-                        Ext.synchronouslyFocusing = document.activeElement;
-                    }
-                    // Also note that trying to focus an unfocusable element
-                    // might throw an exception in IE8. What a cute idea, MS. :(
-                    try {
-                        dom.focus();
-                    } catch (xcpt) {
-                        ex = xcpt;
-                    }
-                    
-                    // Ok so now we have this situation when we tried to focus
-                    // the first time but did not succeed. Let's try again but
-                    // not if there was an exception the first time - when the
-                    // "focus failure" happens it does so silently. :(
-                    if (Ext.synchronouslyFocusing && document.activeElement !== dom && !ex) {
-                        dom.focus();
-                    }
-                    Ext.synchronouslyFocusing = null;
-                }
-                return me;
-            }
-        });
-    }
     Ext.apply(Ext, {
         /**
          * `true` to automatically uncache orphaned Ext.Elements periodically. If set to
@@ -34446,13 +33956,6 @@ Ext.define('Ext.overrides.Widget', {
     }
 });
 
-Ext.define('Ext.overrides.Progress', {
-    override: 'Ext.Progress',
-    config: {
-        ui: 'default'
-    }
-});
-
 Ext.define('Ext.overrides.app.domain.Component', {
     override: 'Ext.app.domain.Component',
     requires: [
@@ -34536,14 +34039,10 @@ Ext.define('Ext.overrides.app.Application', {
          */
         enableQuickTips: true
     },
-    applyMainView: function(mainView) {
-        var view, proto, config, plugins;
-        if (typeof mainView === 'string') {
-            view = this.getView(mainView);
-        } else {
-            view = Ext.ClassManager.getByConfig(mainView);
-        }
-        proto = view.prototype;
+    applyMainView: function(value) {
+        var view = this.getView(value),
+            proto = view.prototype,
+            config, plugins;
         if (!proto.isViewport) {
             plugins = proto.plugins;
             // Need to copy over any plugins defined on the prototype.
@@ -34715,7 +34214,6 @@ Ext.define('Ext.overrides.list.TreeItem', {
             }
         });
         floater.add(me);
-        floater.show();
         floater.el.alignTo(me.getToolElement(), 'tr?');
         return floater;
     },
@@ -34808,104 +34306,4 @@ Ext.define('Ext.overrides.plugin.Abstract', {
  * @param {Ext.Component} component The owner component attached to the 
  * ViewController
  */
-
-Ext.define(null, {
-    override: 'Ext.event.publisher.Focus',
-    compatibility: Ext.isIE10m,
-    doDelegatedEvent: function(e, invokeAfter) {
-        var body = document.body,
-            el = Ext.synchronouslyFocusing;
-        // This horrid hack is necessary to work around the issue with input elements
-        // in IE10m that can fail to focus under certain conditions. See comment in
-        // Ext.dom.Element override.
-        if (el && ((e.type === 'focusout' && e.srcElement === el && e.toElement === body) || (e.type === 'focusin' && e.srcElement === body && e.fromElement === el && e.toElement === null))) {
-            return;
-        }
-        
-        return this.callParent([
-            e,
-            invokeAfter
-        ]);
-    }
-});
-
-Ext.define(null, {
-    override: 'Ext.scroll.DomScroller',
-    compatibility: Ext.isIE8,
-    privates: {
-        // Important note: this code had to be copied as a whole
-        // because the scrollLeft assignment trickery only works
-        // reliably when it is done within the same function context.
-        doScrollTo: function(x, y, animate) {
-            var me = this,
-                element = me.getElement(),
-                maxPosition, dom, to, xInf, yInf;
-            if (element && !element.destroyed) {
-                dom = this.getElement().dom;
-                xInf = (x === Infinity);
-                yInf = (y === Infinity);
-                if (xInf || yInf) {
-                    maxPosition = me.getMaxPosition();
-                    if (xInf) {
-                        x = maxPosition.x;
-                    }
-                    if (yInf) {
-                        y = maxPosition.y;
-                    }
-                }
-                x = me.convertX(x);
-                if (animate) {
-                    to = {};
-                    if (y != null) {
-                        to.scrollTop = y;
-                    }
-                    if (x != null) {
-                        to.scrollLeft = x;
-                    }
-                    element.animate(Ext.mergeIf({
-                        to: {
-                            scrollTop: y,
-                            scrollLeft: x
-                        }
-                    }, animate));
-                } else {
-                    // When we need to assign both scrollTop and scrollLeft,
-                    // IE8 might fire scroll event on the first assignment
-                    // but not on the second; that behavior is unlike the other
-                    // browsers which will wait for the second assignment
-                    // to happen before firing the event. This leads to our
-                    // scrollstart event firing prematurely, when the scrolling
-                    // has not actually finished yet.
-                    // To work around that, we ignore the first event and then
-                    // force another one by assigning scrollLeft the second time.
-                    if (x != null && y != null) {
-                        me.deferDomScroll = true;
-                    }
-                    if (y != null) {
-                        dom.scrollTop = y;
-                    }
-                    if (x != null) {
-                        dom.scrollLeft = x;
-                    }
-                    if (me.deferDomScroll) {
-                        me.deferDomScroll = false;
-                        // Reading the DOM makes sure the second assignment
-                        // will fire the event.
-                        +dom.scrollLeft;
-                        dom.scrollLeft = x;
-                    }
-                }
-                // Our position object will need refreshing before returning.
-                me.positionDirty = true;
-            }
-        },
-        onDomScroll: function() {
-            var me = this;
-            if (me.deferDomScroll) {
-                return;
-            }
-            me.callParent();
-        }
-    }
-});
 

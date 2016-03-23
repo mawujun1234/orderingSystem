@@ -10,25 +10,14 @@ Ext.define('Ext.grid.HeaderContainer', {
     config: {
         baseCls: Ext.baseCSSPrefix + 'grid-header-container',
         docked: 'top',
+        translationMethod: 'auto',
         defaultType: 'column',
-        layout: {
-            type: 'hbox',
-            align: 'stretch'
-        },
 
         /**
          * @private
          * Set this to `false` to disable sorting via tap on all column headers
          */
-        sortable: true,
-
-        scrollable: {
-            autoRefresh: null,
-            x: false,
-            y: false
-        },
-
-        grid: null
+        sortable: true
     },
 
     initialize: function() {
@@ -64,14 +53,10 @@ Ext.define('Ext.grid.HeaderContainer', {
             remove: 'onColumnRemove',
             scope: me
         });
-    },
 
-    factoryItem: function (item) {
-        // If the columns contains a columns config, then create a HeaderGroup
-        if (item.columns) {
-            return Ext.factory(item, Ext.grid.HeaderGroup);
+        if (Ext.browser.getPreferredTranslationMethod({translationMethod: this.getTranslationMethod()}) == 'scrollposition') {
+            me.innerElement.setLeft(500000);
         }
-        return this.callParent([item]);
     },
 
     getColumns: function() {
@@ -130,7 +115,7 @@ Ext.define('Ext.grid.HeaderContainer', {
             columns = me.columns,
             columnIndex = me.getAbsoluteColumnIndex(column),
             groupColumns, ln, i, groupColumn,
-            after, oldIndex, fromIdx, toIdx;
+            after, fromIdx, toIdx;
 
         if (column.isHeaderGroup) {
             groupColumns = column.getItems().items;
@@ -233,8 +218,8 @@ Ext.define('Ext.grid.HeaderContainer', {
         }
     },
 
-    onColumnResize: function(column, width, oldWidth) {
-        this.fireEvent('columnresize', this, column, width, oldWidth);
+    onColumnResize: function(column, width) {
+        this.fireEvent('columnresize', this, column, width);
     },
 
     onColumnSort: function(column, direction, newDirection) {
@@ -244,52 +229,13 @@ Ext.define('Ext.grid.HeaderContainer', {
     },
 
     scrollTo: function(x) {
-        this.getScrollable().scrollTo(x);
-    },
-
-    setTotalWidth: function(totalWidth) {
-        var scrollable = this.getScrollable(),
-            innerElement;
-
-        if (scrollable && scrollable.isTouchScroller) {
-            innerElement = scrollable.getInnerElement();
-            if (innerElement) {
-                innerElement.setWidth(totalWidth);
-
-                scrollable.setSize({
-                    x: totalWidth,
-                    y: scrollable.getSize().y
-                });
-            }
-        }
-    },
-
-    destroy: function() {
-        var me = this,
-            task = me.spacerTask;
-
-        if (task) {
-            task.cancel();
-            me.spacerTask = null;
-        }
-        me.setGrid(null);
-        me.callParent();
-    },
-
-    privates: {
-        updateSpacer: function() {
-            var me = this,
-                task = me.spacerTask;
-
-            if (!task) {
-                me.spacerTask = task = new Ext.util.DelayedTask(me.doUpdateSpacer, me);
-            }
-            task.delay(1);
-        },
-
-        doUpdateSpacer: function() {
-            var scrollable = this.getGrid().getScrollable();
-            this.element.setStyle('padding-right', scrollable.getScrollbarSize().width + 'px');
+        switch (Ext.browser.getPreferredTranslationMethod({translationMethod: this.getTranslationMethod()})) {
+            case 'scrollposition':
+                this.renderElement.dom.scrollLeft = 500000 + x;
+                break;
+            case 'csstransform':
+                this.innerElement.translate(-x, 0);
+                break;
         }
     }
 });

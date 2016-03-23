@@ -233,6 +233,7 @@ describe("Ext.form.field.Time", function() {
                 component.setValue(d);
                 expect(component.isValid()).toBe(true);
             });
+
             it("should update the expanded dropdown's selection - multi select", function() {
                 makeComponent({
                     renderTo: Ext.getBody(),
@@ -247,26 +248,8 @@ describe("Ext.form.field.Time", function() {
                 });
             });
 
-            describe("selecting a value", function() {
-                it("should be able to select a value when the current value is not in the store", function() {
-                    makeComponent({
-                        increment: 15,
-                        format: 'H:i',
-                        increment: 15,
-                        allowBlank: false,
-                        value: '15:03',
-                        renderTo: document.body
-                    });
-
-                    component.expand();
-                    jasmine.fireMouseEvent(component.getPicker().getNode(component.store.getAt(0)), 'click');
-                    expect(component.getValue()).toEqualTime(0, 0);
-                    
-                });
-            });
-
-            describe("inputEl", function () {
-                it("should accept a model", function(){
+            describe('inputEl', function () {
+                it('should accept a model', function(){
                     makeComponent({
                         minValue: '6:00 AM',
                         maxValue: '8:00 PM',
@@ -276,7 +259,7 @@ describe("Ext.form.field.Time", function() {
                     expect(component.inputEl.getValue()).toBe('6:00 AM');
                 });
 
-                it("should parse a string value to lookup a record in the store", function(){
+                it('should parse a string value to lookup a record in the store', function(){
                     makeComponent({
                         minValue: '6:00 AM',
                         maxValue: '8:00 PM',
@@ -286,7 +269,7 @@ describe("Ext.form.field.Time", function() {
                     expect(component.inputEl.getValue()).toBe('3:00 PM');
                 });
 
-                it("should display same value given to setValue when no lookups in the store", function(){
+                it('should display same value given to setValue when no lookups in the store', function(){
                     makeComponent({
                         minValue: '6:00 AM',
                         maxValue: '8:00 PM',
@@ -297,7 +280,7 @@ describe("Ext.form.field.Time", function() {
                 });
             });
 
-            describe("change event", function () {
+            describe('change event', function () {
                 it("should not fire the change event when the value stays the same - single value", function() {
                     var spy = jasmine.createSpy();
                     makeComponent({
@@ -615,27 +598,24 @@ describe("Ext.form.field.Time", function() {
         });
     });
 
-    describe('onBlur', function() {
-        beforeEach(function() {
+    describe('onBlur', function () {
+        it('should format the raw value', function () {
             makeComponent({
                 renderTo: Ext.getBody()
             });
-        });
-        
-        it('should format the raw value', function () {
-            jasmine.focusAndWait(component);
-            
+            component.focus();
+            waitsFor(function() {
+                return component.hasFocus;
+            }, 'the TimeField to focus');
             runs(function() {
                 component.setRawValue('123');
 
-                // Programmatic blur fails on IEs. Focus then remove a button
-                Ext.getBody().createChild({ tag: 'button' }).focus().remove();
+                // Programmatic blur fails on IEs. Focus then remove an input field
+                Ext.getBody().createChild({tag: 'input', type: 'text'}).focus().remove();
             });
-            
             waitsFor(function() {
                 return !component.hasFocus;
-            }, 'the TimeField to blur', 1000);
-            
+            }, 'the TimeField to blur');
             runs(function() {
                 expect(component.getRawValue()).toEqual('1:23 AM');
             });
@@ -643,21 +623,25 @@ describe("Ext.form.field.Time", function() {
 
         it('should not reset the hours, minutes or seconds', function () {
             var parts, d;
-            
+
+            makeComponent({
+                renderTo: Ext.getBody()
+            });
+
             parts = component.initDateParts;
             d = new Date(parts[0], parts[1], parts[2], 13, 22, 42);
 
-            jasmine.focusAndWait(component);
-            
+            component.focus();
+            waitsFor(function() {
+                return component.hasFocus;
+            }, 'the TimeField to focus');
             runs(function() {
                 component.setValue(d);
                 component.blur();
             });
-            
             waitsFor(function() {
                 return !component.hasFocus;
-            }, 'the TimeField to blur', 1000);
-            
+            }, 'the TimeField to blur');
             runs(function() {
                 expect(component.getValue()).toEqual(d);
             });

@@ -254,7 +254,6 @@ Ext.Number = (new function() { // jshint ignore:line
         },
 
         /**
-         * @method
          * Formats a number using fixed-point notation
          * @param {Number} value The number to format
          * @param {Number} precision The number of digits to show after the decimal point
@@ -299,7 +298,7 @@ Ext.Number = (new function() { // jshint ignore:line
         /**
          * Corrects floating point numbers that overflow to a non-precise
          * value because of their floating nature, for example `0.1 + 0.2`
-         * @param {Number} n The number
+         * @param {Number} The number
          * @return {Number} The correctly rounded number
          */
         correctFloat: function(n) {

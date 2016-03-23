@@ -102,9 +102,8 @@ Ext.define('Ext.ux.statusbar.StatusBar', {
      */
     /**
      * @cfg {String} [iconCls='']
-     * @inheritdoc Ext.panel.Header#cfg-iconCls
-     * @localdoc **Note:** This CSS class will be **initially** set as the status bar 
-     * icon.  See also {@link #defaultIconCls} and {@link #busyIconCls}.
+     * A CSS class that will be **initially** set as the status bar icon and is
+     * expected to provide a background image.
      *
      * Example usage:
      *
@@ -169,7 +168,10 @@ Ext.define('Ext.ux.statusbar.StatusBar', {
      */
     activeThreadId : 0,
 
-    initComponent: function() {
+    /**
+     * @private
+     */
+    initComponent : function(){
         var right = this.statusAlign === 'right';
 
         this.callParent(arguments);

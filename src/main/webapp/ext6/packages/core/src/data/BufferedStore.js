@@ -119,7 +119,7 @@ Ext.define('Ext.data.BufferedStore', {
         /**
          * @inheritdoc
          */
-        trackRemoved: false
+        trackRemoved: false     
     },
 
     /**
@@ -182,7 +182,14 @@ Ext.define('Ext.data.BufferedStore', {
     //</debug>
 
     updateGroupField: function(field) {
-        this.group(field);
+        var me = this;
+        if (me.isInitializing) {
+            me.blockLoad();
+        }
+        me.group(field);
+        if (me.isInitializing) {
+            me.unblockLoad();
+        }
     },
 
     getGrouper: function() {
@@ -239,15 +246,13 @@ Ext.define('Ext.data.BufferedStore', {
         }            
     },
 
-    flushLoad: function() {
-        var me = this,
-            options = me.pendingLoadOptions;
-
-        // If it gets called programatically, the listener will need cancelling
-        me.clearLoadTask();
-        if (!options) {
+    load: function(options) {
+        var me = this;
+        
+        if (me.loading) {
             return;
         }
+        options = options || {};
 
         // Buffered stores, a load operation means kick off a clean load from page 1
         me.getData().clear();
@@ -258,9 +263,7 @@ Ext.define('Ext.data.BufferedStore', {
         // If we're prefetching, the arguments on the callback for getting the range is different
         // So we indicate that we need to fire a special "load" style callback
         options.loadCallback = options.callback;
-
-        // options might be chained, with callback on a prototype; delete won't clear it.
-        options.callback = null;
+        delete options.callback;
         return me.loadToPrefetch(options);
     },
 
@@ -372,9 +375,7 @@ Ext.define('Ext.data.BufferedStore', {
         options.start = (page - 1) * me.getPageSize();
         options.limit = me.getViewSize() || me.getDefaultViewSize();
         options.loadCallback = options.callback;
-
-        // options might be chained, with callback on a prototype; delete won't clear it.
-        options.callback = null;
+        delete options.callback;
         return me.loadToPrefetch(options);
     },
 
@@ -389,6 +390,7 @@ Ext.define('Ext.data.BufferedStore', {
 
     /**
      * @private
+     * @override
      * A BufferedStore always reports that it contains the full dataset.
      * The number of records that happen to be cached at any one time is never useful.
      */
@@ -502,11 +504,6 @@ Ext.define('Ext.data.BufferedStore', {
         return this.data.getByInternalId(internalId);
     },
 
-    // Inherit docs
-    contains: function(record) {
-        return this.indexOf(record) > -1;
-    },
-
     /**
      * Get the index of the record within the store.
      *
@@ -553,6 +550,9 @@ Ext.define('Ext.data.BufferedStore', {
             me.grouper = grouper ? me.getSorters().decodeSorter(grouper, 'Ext.util.Grouper') : null;
         }
 
+        if (me.isLoadBlocked()) {
+            return;
+        }
         me.getData().clear();
         me.loadPage(1, {
             callback: function() {
@@ -1087,7 +1087,6 @@ Ext.define('Ext.data.BufferedStore', {
 
         // Only load or sort if there are sorters
         if (sorters.length) {
-            me.fireEvent('beforesort', me, sorters);
             me.clearAndLoad({
                 callback: function() {
                     me.fireEvent('sort', me, sorters);
@@ -1100,6 +1099,10 @@ Ext.define('Ext.data.BufferedStore', {
     },
 
     clearAndLoad: function (options) {
+        if (this.isLoadBlocked()) {
+            return;
+        }
+
         this.getData().clear();
         this.loadPage(1, options);
     },
@@ -1108,7 +1111,7 @@ Ext.define('Ext.data.BufferedStore', {
         isLast: function(record) {
             return this.indexOf(record) === this.getTotalCount() - 1;
         },
-
+        
         isMoving: function () {
             return false;
         }
