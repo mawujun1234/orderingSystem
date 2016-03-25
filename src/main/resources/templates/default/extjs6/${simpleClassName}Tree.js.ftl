@@ -48,7 +48,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
 		    	me.onUpdate();
 				
 		    },
-		    iconCls: 'icon-pencil'
+		    iconCls: 'icon-edit'
 		});
 		actions.push(update);
 		
@@ -58,7 +58,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
 		    handler: function(){
 		    	me.onDelete();    
 		    },
-		    iconCls: 'icon-remove'
+		    iconCls: 'icon-trash'
 		});
 		//me.addAction(destroy);
 		actions.push(destroy)

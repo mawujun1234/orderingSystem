@@ -26,6 +26,7 @@ public class GeneratorCode {
 		
 		aa.extjs_grid_store_userModel=false;
 		aa.extjs_grid_createDelUpd_button=true;
+		aa.extjs_grid_enable_cellEditing=true;
 		generatorService.setExtenConfig(aa);
 		
 		generatorService.generatorAllFile(Menu.class);

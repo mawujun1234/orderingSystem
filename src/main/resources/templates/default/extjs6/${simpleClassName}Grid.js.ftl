@@ -12,19 +12,152 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	initComponent: function () {
       var me = this;
      <#-----------------------------------------生成列--------------------------------- ----->
+     <#-----------------------------------------在使用单元格编辑的时候，如果具有cobobox的话，就得先在这里生成store，然后再在列中进行应用--------------------------------- ----->
+     <#if extenConfig.extjs_grid_enable_cellEditing==true>
+     <#list propertyColumns as propertyColumn>	
+     	<#if propertyColumn.showType=='combobox'>
+     	<#if propertyColumn.isEnum=='true'>
+     var store_${propertyColumn.property}=Ext.create('Ext.data.Store',{
+     	storeId:'store_${propertyColumn.property}',
+		fields: ['key', 'name'],
+		data : [
+		<#assign  keys=propertyColumn.showType_values?keys/>
+		<#list keys as key>
+			{"key":"${key}", "name":"${propertyColumn.showType_values["${key}"]}"}<#if key_has_next>,</#if>
+		</#list>
+		]
+	});
+		<#else>
+	var store_${propertyColumn.property} =Ext.create('Ext.data.Store',{
+		fields: ['key', 'name'],
+		proxy: {
+			autoLoad:true,
+			type: 'ajax',
+			url: Ext.ContextPath+'/${propertyColumn.property}/query.do',
+			reader: {
+				type: 'json',
+				rootProperty: '${propertyColumn.property}'
+			}
+		}
+	})
+		</#if>
+     	</#if>
+     </#list>
+     </#if><#---------    <#if extenConfig.extjs_grid_enable_cellEditing==true>       ------->
       me.columns=[
+      	{xtype: 'rownumberer'},
       <#list propertyColumns as propertyColumn>	
       	<#if propertyColumn.hidden==false>
 		<#if propertyColumn.jsType=='date'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn',   format:'Y-m-d'}<#if propertyColumn_has_next>,</#if>
+		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn',   format:'Y-m-d'
+			<#if extenConfig.extjs_grid_enable_cellEditing==true>
+			,editor: {
+                xtype: 'datefield',
+                <#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                format : 'Y-m-d',
+                editable : false
+            }
+            </#if>
+		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='bool'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'checkcolumn'}<#if propertyColumn_has_next>,</#if>
+		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'checkcolumn',
+			stopSelection :false,
+			processEvent : function(type) {  
+            	if (type == 'click')  
+                   return false;  
+            }
+            <#if extenConfig.extjs_grid_enable_cellEditing==true>
+            ,editor: {
+                xtype: 'checkbox',
+                cls: 'x-grid-checkheader-editor'
+            }
+            </#if>
+		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='int' >
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0',align : 'right',}<#if propertyColumn_has_next>,</#if>
+		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0',align : 'right'
+			<#if extenConfig.extjs_grid_enable_cellEditing==true>
+			,editor: {
+                xtype: 'numberfield',
+                <#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                allowDecimals:false,
+                selectOnFocus:true 
+            }
+            </#if>
+		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='float'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0.00',align : 'right',}<#if propertyColumn_has_next>,</#if>
+		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0.00',align : 'right'
+			<#if extenConfig.extjs_grid_enable_cellEditing==true>
+			,editor: {
+                xtype: 'numberfield',
+                <#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                selectOnFocus:true 
+            }
+            </#if>
+		}<#if propertyColumn_has_next>,</#if>
 		<#else>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}'}<#if propertyColumn_has_next>,</#if>
+		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}'
+			<#if extenConfig.extjs_grid_enable_cellEditing==true>
+			<#if propertyColumn.showType=='combobox'>
+			<#if propertyColumn.isEnum=='true'>
+			,editor: {
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'key',
+			    store: store_${propertyColumn.property},
+				<#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                xtype:'combobox'
+			},renderer: function(val,metaData,record ,rowIndex ,colIndex ,store,view ){
+				var combobox_store=Ext.data.StoreManager.lookup('store_${propertyColumn.property}');
+	            var record = combobox_store.findRecord('key',val); 
+	            if (record != null){
+	                return record.get("name"); 
+	            } else {
+	                return val;
+	            }
+	        }
+			<#else><#------------------ 如果是从后台获取数据的combobox----->
+			,editor: {
+				queryMode: 'remote',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'key',
+			    store: store_${propertyColumn.property},
+				<#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                xtype:'combobox'
+			},renderer: function(val,metaData,record ,rowIndex ,colIndex ,store,view ){
+				var combobox_store=Ext.data.StoreManager.lookup('store_${propertyColumn.property}');
+	            var record = combobox_store.findRecord('key',val); 
+	            if (record != null){
+	                return record.get("name"); 
+	            } else {
+	                return val;
+	            }
+	        }
+			</#if><#-------------------<#if propertyColumn.isEnum=='true'>-->
+            <#else>
+            ,editor: {
+                xtype: 'textfield',
+                <#if propertyColumn.nullable=='false'>
+                allowBlank: false,
+                </#if>
+                selectOnFocus:true 
+            }
+            </#if>
+            </#if><#-------        <#if extenConfig.extjs_grid_enable_cellEditing==true>   --->
+        }<#if propertyColumn_has_next>,</#if>
 		</#if>
 		</#if><#-- <#if propertyColumn.hidden==false> -->
 	  </#list>
@@ -84,14 +217,14 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 		    	me.onUpdate();
 				
 		    },
-		    iconCls: 'icon-pencil'
+		    iconCls: 'icon-edit'
 		},{
 		    text: '删除',
 		    itemId:'destroy',
 		    handler: function(){
 		    	me.onDelete();    
 		    },
-		    iconCls: 'icon-remove'
+		    iconCls: 'icon-trash'
 		},{
 			text: '刷新',
 			itemId:'reload',
@@ -102,6 +235,20 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 			},
 			iconCls: 'icon-refresh'
 		}]
+	  </#if>
+	  <#if extenConfig.extjs_grid_enable_cellEditing==true>
+	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	  //this.selType = 'cellmodel';//'rowmodel';
+	  this.on('edit', function(editor, e) {
+		e.record.save({
+	  		success:function(){
+	  			e.record.commit();
+	  		}
+	  	});
+	  });
 	  </#if>
        
       me.callParent();

@@ -46,7 +46,7 @@ Ext.define('y.permission.MenuTree', {
 		    	me.onUpdate();
 				
 		    },
-		    iconCls: 'icon-pencil'
+		    iconCls: 'icon-edit'
 		});
 		actions.push(update);
 		
@@ -56,7 +56,7 @@ Ext.define('y.permission.MenuTree', {
 		    handler: function(){
 		    	me.onDelete();    
 		    },
-		    iconCls: 'icon-remove'
+		    iconCls: 'icon-trash'
 		});
 		//me.addAction(destroy);
 		actions.push(destroy)

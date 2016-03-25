@@ -60,8 +60,8 @@ public class MenuController {
 	@ResponseBody
 	public List<Menu> query(String id) {	
 		
-		List<Menu> menues=menuService.query(Cnd.where().andEquals(M.Menu.parent_id, id));
-		//List<Menu> menues=menuService.queryAll();
+		//List<Menu> menues=menuService.query(Cnd.where().andEquals(M.Menu.parent_id, id));
+		List<Menu> menues=menuService.queryAll();
 		return menues;
 	}
 	

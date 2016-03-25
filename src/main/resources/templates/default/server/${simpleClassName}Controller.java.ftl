@@ -26,23 +26,23 @@ public class ${simpleClassName}Controller {
 	@Resource
 	private ${simpleClassName}Service ${simpleClassNameFirstLower}Service;
 
-
+	<#if extenConfig.extjs_treeForm_model==true>
 	/**
 	 * 请按自己的需求修改
 	 * @author mawujun email:16064988@163.com qq:16064988
 	 * @param id 是父节点的id
 	 * @return
 	 */
-	/**@RequestMapping("/${simpleClassNameFirstLower}/query.do")
+	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
 	public List<${simpleClassName}> query(String id) {
 		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.id, "root".equals(id)?null:id);
 		List<${simpleClassName}> ${simpleClassNameFirstLower}es=${simpleClassNameFirstLower}Service.query(cnd);
-		//JsonConfigHolder.setFilterPropertys(${simpleClassName}.class,M.${simpleClassName}.parent.name());
 		return ${simpleClassNameFirstLower}es;
 	}
-	**/
+	</#if>
 
+	<#if extenConfig.extjs_treeForm_model==false>
 	/**
 	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
 	 * @author mawujun email:16064988@163.com qq:16064988
@@ -57,6 +57,7 @@ public class ${simpleClassName}Controller {
 		PageParam page=PageParam.getInstance(start,limit);//.addParam(M.${simpleClassName}.sampleName, "%"+sampleName+"%");
 		return ${simpleClassNameFirstLower}Service.queryPage(page);
 	}
+	</#if>
 
 	@RequestMapping("/${simpleClassNameFirstLower}/queryAll.do")
 	@ResponseBody

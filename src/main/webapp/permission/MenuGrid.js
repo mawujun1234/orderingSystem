@@ -8,10 +8,55 @@ Ext.define('y.permission.MenuGrid',{
 
 	initComponent: function () {
       var me = this;
+     	var store_menuType=Ext.create('Ext.data.Store',{
+     		storeId:'store_menuType',
+			fields: ['key', 'name'],
+			data : [
+				{"key":"menu", "name":"菜单"},
+				{"key":"element", "name":"界面元素"}
+			]
+		});
       me.columns=[
-		{dataIndex:'name',text:'菜单名称'},
-		{dataIndex:'url',text:'地址'},
-		{dataIndex:'remark',text:'备注'},
+      	{xtype: 'rownumberer'},
+		{dataIndex:'name',text:'菜单名称'
+            ,editor: {
+                xtype: 'textfield',
+                allowBlank: false,
+                selectOnFocus:true 
+            }
+        },
+		{dataIndex:'menuType',text:'菜单类型'
+			,editor: {
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'key',
+			    store: store_menuType,
+                allowBlank: false,
+                xtype:'combobox'
+			},renderer: function(val,metaData,record ,rowIndex ,colIndex ,store,view ){
+				var combobox_store=Ext.data.StoreManager.lookup('store_menuType');
+	            var record = combobox_store.findRecord('key',val); 
+	            if (record != null){
+	                return record.get("name"); 
+	            } else {
+	                return val;
+	            }
+	        }
+        },
+		{dataIndex:'url',text:'地址'
+            ,editor: {
+                xtype: 'textfield',
+                selectOnFocus:true 
+            }
+        },
+		{dataIndex:'remark',text:'备注'
+            ,editor: {
+                xtype: 'textfield',
+                selectOnFocus:true 
+            }
+        },
       ];
       
 	  me.store=Ext.create('Ext.data.Store',{
@@ -33,7 +78,13 @@ Ext.define('y.permission.MenuGrid',{
 				}
 			}
 	  });
-
+	  
+      me.dockedItems= [{
+	        xtype: 'pagingtoolbar',
+	        store: me.store,  
+	        dock: 'bottom',
+	        displayInfo: true
+	  }];
 	  
 	  me.tbar=	[{
 			text: '新增',
@@ -49,14 +100,14 @@ Ext.define('y.permission.MenuGrid',{
 		    	me.onUpdate();
 				
 		    },
-		    iconCls: 'icon-pencil'
+		    iconCls: 'icon-edit'
 		},{
 		    text: '删除',
 		    itemId:'destroy',
 		    handler: function(){
 		    	me.onDelete();    
 		    },
-		    iconCls: 'icon-remove'
+		    iconCls: 'icon-trash'
 		},{
 			text: '刷新',
 			itemId:'reload',
@@ -67,6 +118,18 @@ Ext.define('y.permission.MenuGrid',{
 			},
 			iconCls: 'icon-refresh'
 		}]
+	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	  //this.selType = 'cellmodel';//'rowmodel';
+	  this.on('edit', function(editor, e) {
+		e.record.save({
+	  		success:function(){
+	  			e.record.commit();
+	  		}
+	  	});
+	  });
        
       me.callParent();
 	},
@@ -76,7 +139,7 @@ Ext.define('y.permission.MenuGrid',{
     	var form=Ext.create('y.permission.MenuForm',{});
 
 		var child=Ext.create('y.permission.Menu',{
-			menuType:'element'
+
 		});
 		child.set("id",null);
 		form.loadRecord(child);

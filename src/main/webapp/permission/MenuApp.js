@@ -19,6 +19,10 @@ Ext.onReady(function(){
 		layout:'border',
 		items:[tree,grid]
 	});
+	
+	tree.on("",function(){
+	
+	});
 
 
 

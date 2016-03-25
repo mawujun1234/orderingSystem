@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.generator.model.ShowType;
 
 @Entity(name="t_menu")
 public class Menu {
@@ -30,7 +31,7 @@ public class Menu {
 	private String url;
 	
 	@Column(length=15,nullable=false)
-	@FieldDefine(title="菜单类型",sort=5,hidden=true)
+	@FieldDefine(title="菜单类型",sort=5,showType=ShowType.combobox)//,hidden=true
 	private MenuType menuType=MenuType.menu;
 	
 	@FieldDefine(title="父id",hidden=true)
