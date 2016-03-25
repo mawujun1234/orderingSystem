@@ -10,15 +10,11 @@ Ext.define('y.permission.MenuForm',{
     bodyPadding: '5 5 0',
 
 
-    layout: {
-        type: 'table',
-        columns: 2
-    },
     defaults: {
-    	msgTarget: 'under',
+        msgTarget: 'under',
         labelWidth: 75,
         labelAlign:'right',
-        width: '90%'
+        anchor: '90%'
     },
 	initComponent: function () {
        var me = this;
@@ -27,43 +23,44 @@ Ext.define('y.permission.MenuForm',{
 	        fieldLabel: '菜单名称',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'name',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"菜单名称不允许为空",
 	        xtype:'textfield'
-	       
 	    },
-
 		{
 	        fieldLabel: '地址',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'url',
 	        xtype:'textfield'
-	       
 	    },
-
-		{
-	        fieldLabel: '菜单类型',
-	        //afterLabelTextTpl: Ext.required,
-	        name: 'menuType',
-	        xtype:'textfield'
-	       
-	    },
-
 		{
 	        fieldLabel: '备注',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'remark',
 	        xtype:'textfield'
-	       
 	    },
-
+		{
+	        fieldLabel: '菜单类型',
+	        //afterLabelTextTpl: Ext.required,
+	        name: 'menuType',
+            hidden:true,
+	        xtype:'textfield'
+	    },
 		{
 	        fieldLabel: 'id',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'id',
             hidden:true,
 	        xtype:'textfield'
-	       
+	    },
+		{
+	        fieldLabel: '父id',
+	        //afterLabelTextTpl: Ext.required,
+	        name: 'parent_id',
+            hidden:true,
+	        xtype:'textfield'
 	    }
-
 	  ];   
 	  
 	  
@@ -76,19 +73,14 @@ Ext.define('y.permission.MenuForm',{
 			glyph : 0xf0c7,
 			handler : function(button){
 				var formpanel = button.up('form');
-				//button.up('form').updateRecord();
-				//button.up('form').getForm().getRecord().save();
-				var form = formpanel.getForm();
-	            if (form.isValid()) {
-	                form.submit({
-	                    success: function(form, action) {
-	                       Ext.Msg.alert('Success', action.result.msg);
-	                    },
-	                    failure: function(form, action) {
-	                        Ext.Msg.alert('Failed', action.result.msg);
-	                    }
-	                });
-	            }				
+				button.up('form').updateRecord();
+				button.up('form').getForm().getRecord().save({
+					failure: function(record, operation) {
+				    },
+				    success: function(record, operation) {
+						button.up('window').close();
+				    }
+				});			
 				
 				}
 			},{
@@ -96,7 +88,7 @@ Ext.define('y.permission.MenuForm',{
 				itemId : 'close',
 				glyph : 0xf00d,
 				handler : function(button){
-					button.up('window').hide();
+					button.up('window').close();
 				}
 	    });
       me.callParent();

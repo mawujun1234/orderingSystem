@@ -5,12 +5,12 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
-import com.mawujun.utils.page.PageParam;
-import com.mawujun.utils.page.PageResult;
 import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -59,7 +59,9 @@ public class MenuController {
 	@RequestMapping("/menu/query.do")
 	@ResponseBody
 	public List<Menu> query(String id) {	
-		List<Menu> menues=menuService.query(Cnd.where().andEquals(M.Menu.id, id));
+		
+		List<Menu> menues=menuService.query(Cnd.where().andEquals(M.Menu.parent_id, id));
+		//List<Menu> menues=menuService.queryAll();
 		return menues;
 	}
 	
@@ -71,14 +73,14 @@ public class MenuController {
 	
 	@RequestMapping("/menu/create.do")
 	//@ResponseBody
-	public Menu create(Menu menu) {
+	public Menu create(@RequestBody Menu menu) {
 		menuService.create(menu);
 		return menu;
 	}
 	
 	@RequestMapping("/menu/update.do")
 	//@ResponseBody
-	public  Menu update(Menu menu) {
+	public  Menu update(@RequestBody Menu menu) {
 		menuService.update(menu);
 		return menu;
 	}
@@ -92,8 +94,11 @@ public class MenuController {
 	
 	@RequestMapping("/menu/destroy.do")
 	//@ResponseBody
-	public Menu destroy(Menu menu) {
+	public Menu destroy(@RequestBody Menu menu) {
+		
+		
 		menuService.delete(menu);
+		
 		return menu;
 	}
 	

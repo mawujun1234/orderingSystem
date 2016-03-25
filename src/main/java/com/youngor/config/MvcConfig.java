@@ -13,6 +13,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -89,18 +90,30 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Bean(name="exceptionResolver")  
     public SimpleMappingExceptionResolver simpleMappingExceptionResolver(){  
 		MappingExceptionResolver simpleMappingExceptionResolver= new MappingExceptionResolver();  
-        simpleMappingExceptionResolver.setDefaultErrorView("common_error"); //默认的视图，如果是json这个设不设都没关�?
-        simpleMappingExceptionResolver.setDefaultStatusCode(503);//当发生异常的时�?�，默认的服务器响应代码
+        simpleMappingExceptionResolver.setDefaultErrorView("common_error"); 
+        simpleMappingExceptionResolver.setDefaultStatusCode(503);
         simpleMappingExceptionResolver.setWarnLogCategory("WARN");
-        //simpleMappingExceptionResolver.setExceptionAttribute("exception"); //默认就是exception 属�?�名�?
+        //simpleMappingExceptionResolver.setExceptionAttribute("exception"); 
         
         Properties properties = new Properties();  
         
-        //指定�?么异常返回什么界面，后面只要逐步加进去就可以�?
-        String viewname="common_error";
-        properties.setProperty(Exception.class.getName(), viewname);//指定异常和jsp页面的对应关�?  
-        simpleMappingExceptionResolver.addStatusCode(viewname, 503);//指定返回页面的时候，返回的错误状态码
+
+
+        
+        String  viewname="400_error";
+        properties.setProperty(HttpMessageNotReadableException.class.getName(), viewname);
+        simpleMappingExceptionResolver.addStatusCode(viewname, 400);
+        simpleMappingExceptionResolver.addErrorMsg(viewname, "请求参数有问题，请检查输入的数据!");
+        
+        viewname="404_error";
+        simpleMappingExceptionResolver.addStatusCode(viewname, 404);
+        simpleMappingExceptionResolver.addErrorMsg(viewname, "找不到指定页面");
+        
+        viewname="common_error";
+        properties.setProperty(Exception.class.getName(), viewname);
+        simpleMappingExceptionResolver.addStatusCode(viewname, 503);
         simpleMappingExceptionResolver.addErrorMsg(viewname, "系统发生异常");
+        
         simpleMappingExceptionResolver.setExceptionMappings(properties);  
 
         return simpleMappingExceptionResolver;  

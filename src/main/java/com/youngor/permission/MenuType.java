@@ -9,4 +9,9 @@ public enum MenuType {
 		this.name=name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+
 }

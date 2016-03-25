@@ -17,16 +17,10 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 		actionMethods: { read: 'POST' },
 		timeout :600000,
 		headers:{ 'Accept':'application/json;'},
-//				reader:{
-//						type:'json',
-//						root:'root',
-//						successProperty:'success',
-//						totalProperty:'total'
-//						
-//				}
-//				,writer:{
-//					type:'json'
-//				},
+		writer:{
+			type:'json',
+			writeAllFields:true
+		},
 		api:{
 			read:Ext.ContextPath+'/${simpleClassNameFirstLower}/query.do',
 			load : Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',

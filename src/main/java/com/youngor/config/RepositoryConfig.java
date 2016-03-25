@@ -131,10 +131,8 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 		localSessionFactoryBean.setPackagesToScan(jdbc_packagesToScan);
 
 		Properties hibernateProperties = new Properties();
-		hibernateProperties.put("hibernate.hbm2ddl.auto",
-				hibernate_hbm2ddl_auto);
-		hibernateProperties.put("hibernate.dialect",
-				DialectEnum.valueOf(jdbc_db_type).get_hibernate_dialect());
+		hibernateProperties.put("hibernate.hbm2ddl.auto",hibernate_hbm2ddl_auto);
+		hibernateProperties.put("hibernate.dialect",DialectEnum.valueOf(jdbc_db_type).get_hibernate_dialect());
 
 		hibernateProperties.put("hibernate.show_sql", false);
 		hibernateProperties.put("hibernate.format_sql", false);

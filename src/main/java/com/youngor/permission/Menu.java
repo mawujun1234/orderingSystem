@@ -1,30 +1,41 @@
 package com.youngor.permission;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
 
 @Entity(name="t_menu")
 public class Menu {
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(
+	        name = "uuid",
+	        strategy = "org.hibernate.id.UUIDGenerator"
+	    )
 	@FieldDefine(title="id",hidden=true)
-	private UUID id;
+	@Column(length=36)
+	private String id;
 	
-	@Column(length=30)
-	@FieldDefine(title="菜单名称")
+	@Column(length=30,nullable=false)
+	@FieldDefine(title="菜单名称",sort=5)
 	private String name;
 	
 	@Column(length=80)
-	@FieldDefine(title="地址")
+	@FieldDefine(title="地址",sort=4)
 	private String url;
 	
-	@Column(length=15)
-	@FieldDefine(title="菜单类型")
+	@Column(length=15,nullable=false)
+	@FieldDefine(title="菜单类型",sort=5,hidden=true)
 	private MenuType menuType=MenuType.menu;
+	
+	@FieldDefine(title="父id",hidden=true)
+	@Column(length=36)
+	private String parent_id;//上级rolegroup的id
 	
 	public MenuType getMenuType() {
 		return menuType;
@@ -38,11 +49,11 @@ public class Menu {
 	@FieldDefine(title="备注")
 	private String remark;
 
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -68,5 +79,13 @@ public class Menu {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getParent_id() {
+		return parent_id;
+	}
+
+	public void setParent_id(String parent_id) {
+		this.parent_id = parent_id;
 	}
 }

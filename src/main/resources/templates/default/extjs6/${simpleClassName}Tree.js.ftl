@@ -1,19 +1,21 @@
+<#assign simpleClassNameFirstLower = simpleClassName?uncap_first> 
+<#-- //所在模块-->
+<#assign module = basepackage?substring(basepackage?last_index_of(".")+1)> 
 /**
  * 功能的扩展，添加自定义的怎，删，改
  * 添加右键菜单，增，删，改，并且增加工具栏，增，删，改。
  * 后台的类最好继承TreeNode类，这样就可以少写很多代码
  */
-Ext.define('y.permission.MenuTree', {
+Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree', {
     extend: 'Ext.tree.Panel',
-    requires:['y.permission.Menu'],
-    displayField:'name',
+    requires:['${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}'],
     initComponent: function () {
 		var me = this;
 
         me.store = Ext.create('Ext.data.TreeStore', {
 	       	autoLoad:true,
 	       	nodeParam :'id',//传递到后台的数据，默认是node
-	       	model:'y.permission.Menu',
+	       	model:'${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',
 			root: {
 			    expanded: true,
 			    text:"根节点" 
@@ -86,13 +88,12 @@ Ext.define('y.permission.MenuTree', {
     onCreate:function(){
     	var me=this;
 		
-    	var form=Ext.create('y.permission.MenuForm',{});
+    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
     	
     	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
 
 		var child=Ext.create(parent.self.getName(),{
 		    'parent_id':parent.get("id"),
-		    menuType:'menu',
 		    text:''
 		});
 		child.set("id",null);
@@ -117,7 +118,7 @@ Ext.define('y.permission.MenuTree', {
      onUpdate:function(){
     	var me=this;
 		
-    	var form=Ext.create('y.permission.MenuForm',{});
+    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
     	
     	var node=me.getSelectionModel( ).getLastSelected();
     	if(node==null || node.isRoot()){

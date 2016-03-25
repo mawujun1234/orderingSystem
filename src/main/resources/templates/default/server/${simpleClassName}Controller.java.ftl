@@ -73,14 +73,14 @@ public class ${simpleClassName}Controller {
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/create.do")
 	//@ResponseBody
-	public ${simpleClassName} create(${simpleClassName} ${simpleClassNameFirstLower}) {
+	public ${simpleClassName} create(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.create(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/update.do")
 	//@ResponseBody
-	public  ${simpleClassName} update(${simpleClassName} ${simpleClassNameFirstLower}) {
+	public  ${simpleClassName} update(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.update(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
@@ -94,7 +94,7 @@ public class ${simpleClassName}Controller {
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/destroy.do")
 	//@ResponseBody
-	public ${simpleClassName} destroy(${simpleClassName} ${simpleClassNameFirstLower}) {
+	public ${simpleClassName} destroy(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.delete(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}

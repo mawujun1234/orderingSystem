@@ -3,9 +3,10 @@ Ext.define("y.permission.Menu",{
 	fields:[
 		{name:'name',type:'string'},
 		{name:'url',type:'string'},
-		{name:'menuType',type:'string'},
 		{name:'remark',type:'string'},
-		{name:'id',type:'string'}
+		{name:'menuType',type:'string'},
+		{name:'id',type:'string'},
+		{name:'parent_id',type:'string'}
 	],
 	proxy:{
 		type:'ajax',
@@ -19,9 +20,10 @@ Ext.define("y.permission.Menu",{
 //						totalProperty:'total'
 //						
 //				}
-//				,writer:{
-//					type:'json'
-//				},
+				writer:{
+					type:'json',
+					writeAllFields:true
+				},
 		api:{
 			read:Ext.ContextPath+'/menu/query.do',
 			load : Ext.ContextPath+'/menu/load.do',

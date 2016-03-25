@@ -2,18 +2,26 @@
 <#-- //所在模块-->
 <#assign module = basepackage?substring(basepackage?last_index_of(".")+1)> 
 Ext.require("y.${module}.${simpleClassName}");
+<#if extenConfig.extjs_treeForm_model==false>
 Ext.require("y.${module}.${simpleClassName}Grid");
+</#if>
+<#if extenConfig.extjs_treeForm_model==true>
 Ext.require("y.${module}.${simpleClassName}Tree");
+</#if>
 Ext.require("y.${module}.${simpleClassName}Form");
 Ext.onReady(function(){
+<#if extenConfig.extjs_treeForm_model==false>
 	var grid=Ext.create('y.${module}.${simpleClassName}Grid',{
-		region:'west',
-		split: true,
-		collapsible: true,
-		title:'XXX表格',
-		width:400
+		region:'center',
+		title:'XXX表格'
 	});
-
+	
+	var viewPort=Ext.create('Ext.container.Viewport',{
+		layout:'border',
+		items:[grid]
+	});
+</#if>
+<#if extenConfig.extjs_treeForm_model==true>
 	var tree=Ext.create('y.${module}.${simpleClassName}Tree',{
 		title:'树',
 		width:400,
@@ -21,28 +29,12 @@ Ext.onReady(function(){
 		collapsible : true,
 		region:'west'
 	});
-
-	var form=Ext.create('y.${module}.${simpleClassName}Form',{
-		region:'center',
-		split: true,
-		//collapsible: true,
-		title:'表单',
-		listeners:{
-			saved:function(){
-				grid.getStore().reload();
-			}
-		}
-	});
-	grid.form=form;
-	form.grid=grid;
-	grid.on('itemclick',function(view,record,item,index){
-		//var basicForm=form.getForm();
-		form.loadRecord(record);
-	});
-	
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'border',
-		items:[grid,tree,form]
+		items:[tree,{region:'center',html:"请填写对应的内容!"}]
 	});
+</#if>
+
+
 
 });

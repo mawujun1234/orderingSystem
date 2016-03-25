@@ -2385,3 +2385,216 @@
 14:17:44.490 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
 14:17:44.490 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
 14:17:44.490 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:57:37.153 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+14:57:37.175 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+14:57:37.175 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:57:37.175 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:05:45.474 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:05:45.474 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:05:45.475 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:05:45.475 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:16:00.667 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:16:00.667 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:16:00.667 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:16:00.667 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:16:36.425 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:16:36.425 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:16:36.425 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:16:36.425 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:17:08.814 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:17:08.814 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:17:08.814 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:17:08.815 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:17:38.315 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:17:38.315 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:17:38.315 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:17:38.315 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:29:34.484 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.id.IdentifierGenerationException: ids for this class must be manually assigned before calling save(): com.youngor.permission.Menu
+15:29:34.484 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.id.IdentifierGenerationException], based on exception mapping [java.lang.Exception]
+15:29:34.484 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:29:34.485 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:32:44.441 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7adf9ed8
+15:39:34.432 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:39:34.432 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:39:34.432 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:39:34.433 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:39:41.153 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@2eb47fcc
+15:39:41.224 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+15:39:41.224 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:39:41.224 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:39:41.224 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:40:47.880 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:40:47.880 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:40:47.881 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:40:47.881 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:02:53.816 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+16:02:53.817 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+16:02:53.817 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:02:53.817 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:44:32.262 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+16:44:32.262 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+16:44:32.262 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:44:32.262 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:00:37.627 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@273372fa
+17:12:43.322 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@24cbdc84
+17:13:52.609 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@31f281ac
+17:19:40.301 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@756dd314
+17:22:58.842 [main] INFO  com.mawujun.utils.file.FileUtils - file类型的扫描
+17:22:58.853 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+17:22:58.864 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+17:22:58.881 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+17:22:58.882 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+17:22:58.882 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+17:22:58.884 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Menu
+17:22:58.884 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+17:22:58.885 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+17:22:58.888 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+17:22:58.893 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+17:22:58.894 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+17:22:58.894 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Role
+17:22:58.894 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+17:22:58.895 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+17:22:58.895 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleVO
+17:22:58.895 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+17:22:58.896 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrderMeet
+17:22:58.896 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+17:22:58.897 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+17:22:58.901 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+17:22:58.902 [main] INFO  com.mawujun.utils.file.FileUtils - id
+17:22:58.903 [main] INFO  com.mawujun.utils.file.FileUtils - name
+17:22:58.903 [main] INFO  com.mawujun.utils.file.FileUtils - url
+17:22:58.903 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+17:22:58.903 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+17:22:58.903 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - id
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - name
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+17:22:58.904 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+17:39:57.560 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.update(com.youngor.permission.Menu)]: org.hibernate.TransientObjectException: The given object has a null identifier: com.youngor.permission.Menu
+17:39:57.560 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.TransientObjectException], based on exception mapping [java.lang.Exception]
+17:39:57.560 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:39:57.560 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:49:07.205 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.update(com.youngor.permission.Menu)]: org.hibernate.TransientObjectException: The given object has a null identifier: com.youngor.permission.Menu
+17:49:07.206 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.TransientObjectException], based on exception mapping [java.lang.Exception]
+17:49:07.206 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:49:07.206 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:50:32.659 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.update(com.youngor.permission.Menu)]: org.hibernate.TransientObjectException: The given object has a null identifier: com.youngor.permission.Menu
+17:50:32.660 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.TransientObjectException], based on exception mapping [java.lang.Exception]
+17:50:32.660 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:50:32.660 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:52:53.503 [main] INFO  com.mawujun.utils.file.FileUtils - file类型的扫描
+17:52:53.508 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+17:52:53.524 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+17:52:53.537 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+17:52:53.537 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+17:52:53.537 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+17:52:53.539 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Menu
+17:52:53.539 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+17:52:53.541 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+17:52:53.545 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+17:52:53.552 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+17:52:53.552 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+17:52:53.553 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Role
+17:52:53.553 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+17:52:53.553 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+17:52:53.554 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleVO
+17:52:53.555 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+17:52:53.556 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+17:52:53.556 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+17:52:53.557 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - id
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - name
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - url
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+17:52:53.558 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - id
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - name
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+17:52:53.559 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+17:59:51.930 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@775ae5b4
+18:00:14.468 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@3dc5f696
+18:01:11.442 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7a0e2a06
+18:06:57.214 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.util.UUID)]: org.springframework.beans.BeanInstantiationException: Failed to instantiate [java.util.UUID]: No default constructor found; nested exception is java.lang.NoSuchMethodException: java.util.UUID.<init>()
+18:06:57.214 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.beans.BeanInstantiationException], based on exception mapping [java.lang.Exception]
+18:06:57.214 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:06:57.215 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:09:24.579 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String)]: java.lang.RuntimeException: ��֧�ֵ�ֵ���ͣ�java.util.UUID
+18:09:24.580 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.RuntimeException], based on exception mapping [java.lang.Exception]
+18:09:24.580 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:09:24.580 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:19:16.822 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@6f4077c4
+18:19:16.898 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: org.hibernate.exception.GenericJDBCException: could not execute batch
+18:19:16.898 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.GenericJDBCException], based on exception mapping [java.lang.Exception]
+18:19:16.899 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:19:16.899 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:28:05.861 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@76aafb32
+18:29:14.899 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@76d7f3fb
+18:30:39.009 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@5d6a1e86
+18:59:41.849 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@529102a0
+19:07:22.541 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@27f11226
+19:10:34.544 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@23cb11e9
+19:12:32.836 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@2cc14ab7
+19:16:50.845 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@6147702e
+19:16:50.878 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.destroy(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:16:50.878 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:16:50.878 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:16:50.879 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:20:47.102 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@205f480e
+19:20:47.104 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.destroy(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:20:47.104 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:20:47.104 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:20:47.104 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:22:10.334 [http-bio-8086-exec-15] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@17b2d53b
+19:22:10.357 [http-bio-8086-exec-15] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.destroy(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:22:10.357 [http-bio-8086-exec-15] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:22:10.357 [http-bio-8086-exec-15] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:22:10.357 [http-bio-8086-exec-15] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:22:48.946 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@1717860f
+19:22:53.191 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.destroy(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:22:53.191 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:22:53.191 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:22:53.191 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:25:30.449 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:25:30.449 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:25:30.449 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:25:30.449 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:26:12.845 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:26:12.845 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:26:12.845 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:26:12.845 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:28:03.395 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:28:03.395 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:28:03.395 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:28:03.395 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:30:26.429 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:30:26.429 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:30:26.429 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:30:26.429 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:30:56.223 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:30:56.223 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:30:56.223 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:30:56.223 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:31:20.460 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:31:20.460 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:31:20.461 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:31:20.461 [http-bio-8086-exec-16] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:32:33.101 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.permission.Menu com.youngor.permission.MenuController.create(com.youngor.permission.Menu)]: com.mawujun.exception.BusinessException: 111
+19:32:33.102 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+19:32:33.102 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+19:32:33.102 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+19:33:53.305 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@497ff549
+19:37:37.387 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@298df166
+19:37:47.453 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@590056ea
+19:55:45.816 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@1fe41a20
+19:59:20.587 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@10e1e51f
+19:59:39.304 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@147300e8
+10:43:10.756 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@213992e4
+10:45:14.667 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@707d6d50
+14:40:34.108 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@e90d83
+14:41:12.711 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@5a4b3ca9
+14:46:08.433 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@c1fb99a
