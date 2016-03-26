@@ -1,5 +1,7 @@
 package com.youngor.permission;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Menu {
 	private String id;
 	
 	@Column(length=30,nullable=false)
-	@FieldDefine(title="菜单名称",sort=5)
+	@FieldDefine(title="菜单名称",sort=5,genQuery=true)
 	private String name;
 	
 	@Column(length=80)
@@ -31,12 +33,17 @@ public class Menu {
 	private String url;
 	
 	@Column(length=15,nullable=false)
-	@FieldDefine(title="菜单类型",sort=5,showType=ShowType.combobox)//,hidden=true
+	@FieldDefine(title="菜单类型",sort=5,showType=ShowType.combobox,genQuery=true)//,hidden=true
 	private MenuType menuType=MenuType.menu;
 	
 	@FieldDefine(title="父id",hidden=true)
 	@Column(length=36)
 	private String parent_id;//上级rolegroup的id
+	
+	@FieldDefine(title="叶子节点",sort=5,genQuery=true)
+	private Boolean leaf;
+	@FieldDefine(title="创建时间",sort=5,genQuery=true)
+	private Date createDate;
 	
 	public MenuType getMenuType() {
 		return menuType;
@@ -88,5 +95,21 @@ public class Menu {
 
 	public void setParent_id(String parent_id) {
 		this.parent_id = parent_id;
+	}
+
+	public Boolean getLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(Boolean leaf) {
+		this.leaf = leaf;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 }

@@ -29,6 +29,38 @@ Ext.define('y.permission.MenuForm',{
 	        xtype:'textfield'
 	    },
 		{
+			fieldLabel: '菜单类型',
+			name: 'menuType',
+			queryMode: 'local',
+			editable:false,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'key',
+		    store: {
+			    fields: ['key', 'name'],
+			    data : [
+			    	{"key":"menu", "name":"菜单"},
+			    	{"key":"element", "name":"界面元素"}
+			    ]
+			},
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"菜单类型不允许为空",
+			xtype:'combobox'
+		},
+        {
+        	fieldLabel: '叶子节点',
+            name:'leaf',
+            xtype: 'checkbox',
+            cls: 'x-grid-checkheader-editor'
+        },
+		{
+            fieldLabel: '创建时间',
+            name: 'createDate',
+            xtype: 'datefield',
+            format: 'Y-m-d'   
+        },
+		{
 	        fieldLabel: '地址',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'url',
@@ -38,13 +70,6 @@ Ext.define('y.permission.MenuForm',{
 	        fieldLabel: '备注',
 	        //afterLabelTextTpl: Ext.required,
 	        name: 'remark',
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '菜单类型',
-	        //afterLabelTextTpl: Ext.required,
-	        name: 'menuType',
-            hidden:true,
 	        xtype:'textfield'
 	    },
 		{

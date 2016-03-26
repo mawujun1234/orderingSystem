@@ -2,9 +2,11 @@ Ext.define("y.permission.Menu",{
 	extend:"Ext.data.Model",
 	fields:[
 		{name:'name',type:'string'},
+		{name:'menuType',type:'string'},
+		{name:'leaf',type:'bool'},
+		{name:'createDate',type:'date', dateFormat: 'Y-m-d'},
 		{name:'url',type:'string'},
 		{name:'remark',type:'string'},
-		{name:'menuType',type:'string'},
 		{name:'id',type:'string'},
 		{name:'parent_id',type:'string'}
 	],
@@ -13,17 +15,10 @@ Ext.define("y.permission.Menu",{
 		actionMethods: { read: 'POST' },
 		timeout :600000,
 		headers:{ 'Accept':'application/json;'},
-//				reader:{
-//						type:'json',
-//						root:'root',
-//						successProperty:'success',
-//						totalProperty:'total'
-//						
-//				}
-				writer:{
-					type:'json',
-					writeAllFields:true
-				},
+		writer:{
+			type:'json',
+			writeAllFields:true
+		},
 		api:{
 			read:Ext.ContextPath+'/menu/query.do',
 			load : Ext.ContextPath+'/menu/load.do',

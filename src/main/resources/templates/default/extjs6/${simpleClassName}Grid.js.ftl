@@ -49,7 +49,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
       <#list propertyColumns as propertyColumn>	
       	<#if propertyColumn.hidden==false>
 		<#if propertyColumn.jsType=='date'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn',   format:'Y-m-d'
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn',   format:'Y-m-d'
 			<#if extenConfig.extjs_grid_enable_cellEditing==true>
 			,editor: {
                 xtype: 'datefield',
@@ -62,21 +62,22 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
             </#if>
 		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='bool'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'checkcolumn',
-			stopSelection :false,
-			processEvent : function(type) {  
-            	if (type == 'click')  
-                   return false;  
-            }
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'checkcolumn'	
             <#if extenConfig.extjs_grid_enable_cellEditing==true>
             ,editor: {
                 xtype: 'checkbox',
                 cls: 'x-grid-checkheader-editor'
             }
+            <#else>
+            ,stopSelection :false,
+			processEvent : function(type) {  
+            	if (type == 'click')  
+                   return false;  
+            }
             </#if>
 		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='int' >
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0',align : 'right'
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0',align : 'right'
 			<#if extenConfig.extjs_grid_enable_cellEditing==true>
 			,editor: {
                 xtype: 'numberfield',
@@ -89,7 +90,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
             </#if>
 		}<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='float'>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0.00',align : 'right'
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'numbercolumn', format:'0.00',align : 'right'
 			<#if extenConfig.extjs_grid_enable_cellEditing==true>
 			,editor: {
                 xtype: 'numberfield',
@@ -101,7 +102,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
             </#if>
 		}<#if propertyColumn_has_next>,</#if>
 		<#else>
-		{dataIndex:'${propertyColumn.property}',text:'${propertyColumn.property_label!propertyColumn.property}'
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}'
 			<#if extenConfig.extjs_grid_enable_cellEditing==true>
 			<#if propertyColumn.showType=='combobox'>
 			<#if propertyColumn.isEnum=='true'>
@@ -192,50 +193,107 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 			}
 	  });
 	  </#if>
-	  
+	  me.dockedItems=[];
 	  <#-----------------------------------------是否启用page--------------------------------- ----->
-      me.dockedItems= [{
+      me.dockedItems.push({
 	        xtype: 'pagingtoolbar',
 	        store: me.store,  
 	        dock: 'bottom',
 	        displayInfo: true
-	  }];
+	  });
 	  
 	  <#-----------------------------------------生成工具栏--------------------------------- ----->
 	  <#if extenConfig.extjs_grid_createDelUpd_button=true>
-	  me.tbar=	[{
-			text: '新增',
-			itemId:'create',
-			handler: function(btn){
-				me.onCreate();
-			},
-			iconCls: 'icon-plus'
-		},{
-		    text: '更新',
-		    itemId:'update',
-		    handler: function(){
-		    	me.onUpdate();
-				
-		    },
-		    iconCls: 'icon-edit'
-		},{
-		    text: '删除',
-		    itemId:'destroy',
-		    handler: function(){
-		    	me.onDelete();    
-		    },
-		    iconCls: 'icon-trash'
-		},{
-			text: '刷新',
-			itemId:'reload',
-			disabled:me.disabledAction,
-			handler: function(btn){
-				var grid=btn.up("grid");
-				grid.getStore().reload();
-			},
-			iconCls: 'icon-refresh'
-		}]
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+				text: '新增',
+				itemId:'create',
+				handler: function(btn){
+					me.onCreate();
+				},
+				iconCls: 'icon-plus'
+			},{
+			    text: '更新',
+			    itemId:'update',
+			    handler: function(){
+			    	me.onUpdate();
+					
+			    },
+			    iconCls: 'icon-edit'
+			},{
+			    text: '删除',
+			    itemId:'destroy',
+			    handler: function(){
+			    	me.onDelete();    
+			    },
+			    iconCls: 'icon-trash'
+			},{
+				text: '刷新',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			}]
+		});
 	  </#if>
+	  
+	  <#-------------------------生成查询条件得体toolbar ---------------------------------->
+	  <#if (queryProperties?size>0) >
+	  me.dockedItems.push({
+	  	xtype: 'toolbar',
+	  	dock:'top',
+		items:[
+	    <#list queryProperties as propertyColumn>
+	    <#if propertyColumn.jsType=='date'>
+	    	{
+                xtype: 'datefield',
+                itemId:'query_${propertyColumn.property}_start',
+                fieldLabel: '开始时间',//${propertyColumn.property_label!propertyColumn.property}
+	  			labelWidth:60,
+	  			width:160,
+                format : 'Y-m-d',
+                editable : false
+            },{
+                xtype: 'datefield',
+                itemId:'query_${propertyColumn.property}_end',
+                fieldLabel: '结束时间',//${propertyColumn.property_label!propertyColumn.property}
+	  			labelWidth:60,
+	  			width:160,
+                format : 'Y-m-d',
+                editable : false
+            }<#if propertyColumn_has_next>,</#if>
+		<#elseif propertyColumn.jsType=='bool'>
+			{
+                xtype: 'checkbox',
+                itemId:'query_${propertyColumn.property}',
+                fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+                labelWidth:60,
+                width:150,
+                cls: 'x-grid-checkheader-editor'
+            }<#if propertyColumn_has_next>,</#if>
+		<#elseif propertyColumn.jsType=='int' >
+		<#elseif propertyColumn.jsType=='float'>
+		<#else>
+			{
+                xtype: 'textfield',
+				itemId:'query_${propertyColumn.property}',
+                fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+                labelWidth:60,
+                width:150,
+                selectOnFocus:true 
+            }<#if propertyColumn_has_next>,</#if>
+		</#if>
+	    </#list>
+	  	]
+	  });
+	  </#if>
+
+	  <#-------------------------生成可编辑的grid ---------------------------------->
 	  <#if extenConfig.extjs_grid_enable_cellEditing==true>
 	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
             clicksToEdit : 1  

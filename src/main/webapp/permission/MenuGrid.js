@@ -8,14 +8,14 @@ Ext.define('y.permission.MenuGrid',{
 
 	initComponent: function () {
       var me = this;
-     	var store_menuType=Ext.create('Ext.data.Store',{
-     		storeId:'store_menuType',
-			fields: ['key', 'name'],
-			data : [
-				{"key":"menu", "name":"菜单"},
-				{"key":"element", "name":"界面元素"}
-			]
-		});
+     var store_menuType=Ext.create('Ext.data.Store',{
+     	storeId:'store_menuType',
+		fields: ['key', 'name'],
+		data : [
+			{"key":"menu", "name":"菜单"},
+			{"key":"element", "name":"界面元素"}
+		]
+	});
       me.columns=[
       	{xtype: 'rownumberer'},
 		{dataIndex:'name',text:'菜单名称'
@@ -45,6 +45,24 @@ Ext.define('y.permission.MenuGrid',{
 	            }
 	        }
         },
+		{dataIndex:'leaf',header:'叶子节点',xtype: 'checkcolumn'
+//			stopSelection :false,
+//			processEvent : function(type) {  
+//            	if (type == 'click')  
+//                   return false;  
+//            },
+//            editor: {
+//                xtype: 'checkbox',
+//                cls: 'x-grid-checkheader-editor'
+//            }
+		},
+		{dataIndex:'createDate',text:'创建时间',xtype: 'datecolumn',   format:'Y-m-d'
+			,editor: {
+                xtype: 'datefield',
+                format : 'Y-m-d',
+                editable : false
+            }
+		},
 		{dataIndex:'url',text:'地址'
             ,editor: {
                 xtype: 'textfield',
@@ -56,7 +74,7 @@ Ext.define('y.permission.MenuGrid',{
                 xtype: 'textfield',
                 selectOnFocus:true 
             }
-        },
+        }
       ];
       
 	  me.store=Ext.create('Ext.data.Store',{
@@ -78,46 +96,99 @@ Ext.define('y.permission.MenuGrid',{
 				}
 			}
 	  });
-	  
-      me.dockedItems= [{
+	  me.dockedItems=[];
+      me.dockedItems.push({
 	        xtype: 'pagingtoolbar',
 	        store: me.store,  
 	        dock: 'bottom',
 	        displayInfo: true
-	  }];
+	  });
 	  
-	  me.tbar=	[{
-			text: '新增',
-			itemId:'create',
-			handler: function(btn){
-				me.onCreate();
-			},
-			iconCls: 'icon-plus'
-		},{
-		    text: '更新',
-		    itemId:'update',
-		    handler: function(){
-		    	me.onUpdate();
-				
-		    },
-		    iconCls: 'icon-edit'
-		},{
-		    text: '删除',
-		    itemId:'destroy',
-		    handler: function(){
-		    	me.onDelete();    
-		    },
-		    iconCls: 'icon-trash'
-		},{
-			text: '刷新',
-			itemId:'reload',
-			disabled:me.disabledAction,
-			handler: function(btn){
-				var grid=btn.up("grid");
-				grid.getStore().reload();
-			},
-			iconCls: 'icon-refresh'
-		}]
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+				text: '新增',
+				itemId:'create',
+				handler: function(btn){
+					me.onCreate();
+				},
+				iconCls: 'icon-plus'
+			},{
+			    text: '更新',
+			    itemId:'update',
+			    handler: function(){
+			    	me.onUpdate();
+					
+			    },
+			    iconCls: 'icon-edit'
+			},{
+			    text: '删除',
+			    itemId:'destroy',
+			    handler: function(){
+			    	me.onDelete();    
+			    },
+			    iconCls: 'icon-trash'
+			},{
+				text: '刷新',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			}]
+		});
+	  
+	  me.dockedItems.push({
+	  	xtype: 'toolbar',
+	  	dock:'top',
+		items:[
+			{
+                xtype: 'textfield',
+				itemId:'query_name',
+                fieldLabel: '菜单名称',
+                labelWidth:60,
+                width:150,
+                selectOnFocus:true 
+            },
+			{
+                xtype: 'textfield',
+				itemId:'query_menuType',
+                fieldLabel: '菜单类型',
+                labelWidth:60,
+                width:150,
+                selectOnFocus:true 
+            },
+			{
+                xtype: 'checkbox',
+                itemId:'query_leaf',
+                fieldLabel: '叶子节点',
+                labelWidth:60,
+                width:100,
+                cls: 'x-grid-checkheader-editor'
+            },
+	    	{
+                xtype: 'datefield',
+                itemId:'query_createDate_start',
+                fieldLabel: '开始时间',//创建时间
+	  			labelWidth:60,
+	  			width:160,
+                format : 'Y-m-d',
+                editable : false
+            },{
+                xtype: 'datefield',
+                itemId:'query_createDate_end',
+                fieldLabel: '结束时间',//创建时间
+	  			labelWidth:60,
+	  			width:160,
+                format : 'Y-m-d',
+                editable : false
+            }
+	  	]
+	  });
+
 	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
             clicksToEdit : 1  
       });  

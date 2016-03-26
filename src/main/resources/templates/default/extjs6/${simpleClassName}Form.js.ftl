@@ -52,7 +52,33 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             xtype: 'datefield',
             format: 'Y-m-d'   
         }<#if propertyColumn_has_next>,</#if>
-		<#elseif propertyColumn.jsType=='int' || propertyColumn.jsType=='float'>
+        <#elseif propertyColumn.jsType=='bool'>
+        {
+        	fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+            name:'${propertyColumn.property}',
+            <#if propertyColumn.hidden==true>
+            hidden:${propertyColumn.hidden?string("true","false")},
+            </#if>
+            xtype: 'checkbox',
+            cls: 'x-grid-checkheader-editor'
+        }<#if propertyColumn_has_next>,</#if>
+		<#elseif propertyColumn.jsType=='int'>
+		{
+	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+	        //afterLabelTextTpl: Ext.required,
+	        name: '${propertyColumn.property}',
+	        <#if propertyColumn.hidden==true>
+            hidden:${propertyColumn.hidden?string("true","false")},
+            </#if>
+             <#if propertyColumn.nullable=='false' && propertyColumn.hidden==false>
+            allowBlank: ${propertyColumn.nullable},
+            afterLabelTextTpl: Ext.required,
+            blankText:"${propertyColumn.property_label}不允许为空",
+            </#if>
+            allowDecimals:false,
+	        xtype:'numberfield'   
+	    }<#if propertyColumn_has_next>,</#if>
+	    <#elseif propertyColumn.jsType=='float'>
 		{
 	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
 	        //afterLabelTextTpl: Ext.required,

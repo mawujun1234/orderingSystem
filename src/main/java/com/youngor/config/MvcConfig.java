@@ -37,7 +37,8 @@ import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
 public class MvcConfig extends WebMvcConfigurerAdapter {
-	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	
 	@Bean
 	public ObjectMapper getObjectMapper(){
