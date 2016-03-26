@@ -299,7 +299,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
-	  //this.selType = 'cellmodel';//'rowmodel';
+	  //this.selType = 'cellmodel';//'rowmodel','checkboxmodel';
 	  this.on('edit', function(editor, e) {
 		e.record.save({
 	  		success:function(){

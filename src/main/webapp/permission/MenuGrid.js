@@ -51,10 +51,10 @@ Ext.define('y.permission.MenuGrid',{
 //            	if (type == 'click')  
 //                   return false;  
 //            },
-//            editor: {
-//                xtype: 'checkbox',
-//                cls: 'x-grid-checkheader-editor'
-//            }
+            ,editor: {
+                xtype: 'checkbox',
+                cls: 'x-grid-checkheader-editor'
+            }
 		},
 		{dataIndex:'createDate',text:'创建时间',xtype: 'datecolumn',   format:'Y-m-d'
 			,editor: {
@@ -193,7 +193,7 @@ Ext.define('y.permission.MenuGrid',{
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
-	  //this.selType = 'cellmodel';//'rowmodel';
+	  //this.selType = 'checkboxmodel';//'rowmodel';
 	  this.on('edit', function(editor, e) {
 		e.record.save({
 	  		success:function(){
