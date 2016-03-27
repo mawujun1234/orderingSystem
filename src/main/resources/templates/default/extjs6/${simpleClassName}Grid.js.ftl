@@ -64,10 +64,14 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 		<#elseif propertyColumn.jsType=='bool'>
 		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'checkcolumn'	
             <#if extenConfig.extjs_grid_enable_cellEditing==true>
-            ,editor: {
-                xtype: 'checkbox',
-                cls: 'x-grid-checkheader-editor'
-            }
+            ,listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+					var grid=checkcolumn.up("grid");
+					var record=grid.getStore().getAt(rowIndex);
+					record.set('${propertyColumn.property}',checked);
+					record.save();
+				}
+			}
             <#else>
             ,stopSelection :false,
 			processEvent : function(type) {  

@@ -7,7 +7,7 @@ Ext.define('y.permission.MenuGrid',{
 	stripeRows:true,
 
 	initComponent: function () {
-      var me = this;
+     var me = this;
      var store_menuType=Ext.create('Ext.data.Store',{
      	storeId:'store_menuType',
 		fields: ['key', 'name'],
@@ -46,15 +46,21 @@ Ext.define('y.permission.MenuGrid',{
 	        }
         },
 		{dataIndex:'leaf',header:'叶子节点',xtype: 'checkcolumn'
+			,listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+					var grid=checkcolumn.up("grid");
+					console.log(grid);
+					var record=grid.getStore().getAt(rowIndex);
+					record.set('leaf',checked);
+					record.save();
+				}
+			}
+			
 //			stopSelection :false,
 //			processEvent : function(type) {  
 //            	if (type == 'click')  
 //                   return false;  
 //            },
-            ,editor: {
-                xtype: 'checkbox',
-                cls: 'x-grid-checkheader-editor'
-            }
 		},
 		{dataIndex:'createDate',text:'创建时间',xtype: 'datecolumn',   format:'Y-m-d'
 			,editor: {
