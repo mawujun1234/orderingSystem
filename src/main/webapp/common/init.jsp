@@ -25,7 +25,10 @@ String extjscontextPath=request.getContextPath();
          <script type="text/javascript" src="<%=request.getContextPath()%>/ext6/build/classic/theme-crisp/theme-crisp.js"></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/common/common.js"></script>
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.css">
-
+	<!--
+<script type="text/javascript" src="<%=request.getContextPath()%>/common/DatetimePicker.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/common/DatetimeField.js"></script>
+-->
     
 <style>
 

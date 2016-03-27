@@ -7,7 +7,7 @@ Ext.define('y.permission.MenuGrid',{
 	stripeRows:true,
 
 	initComponent: function () {
-     var me = this;
+      var me = this;
      var store_menuType=Ext.create('Ext.data.Store',{
      	storeId:'store_menuType',
 		fields: ['key', 'name'],
@@ -18,14 +18,14 @@ Ext.define('y.permission.MenuGrid',{
 	});
       me.columns=[
       	{xtype: 'rownumberer'},
-		{dataIndex:'name',text:'菜单名称'
+		{dataIndex:'name',header:'菜单名称'
             ,editor: {
                 xtype: 'textfield',
                 allowBlank: false,
                 selectOnFocus:true 
             }
         },
-		{dataIndex:'menuType',text:'菜单类型'
+		{dataIndex:'menuType',header:'菜单类型'
 			,editor: {
 				queryMode: 'local',
 				editable:false,
@@ -45,37 +45,30 @@ Ext.define('y.permission.MenuGrid',{
 	            }
 	        }
         },
-		{dataIndex:'leaf',header:'叶子节点',xtype: 'checkcolumn'
-			,listeners:{
+		{dataIndex:'leaf',header:'叶子节点',xtype: 'checkcolumn'	
+            ,listeners:{
 				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
 					var grid=checkcolumn.up("grid");
-					console.log(grid);
 					var record=grid.getStore().getAt(rowIndex);
 					record.set('leaf',checked);
 					record.save();
 				}
 			}
-			
-//			stopSelection :false,
-//			processEvent : function(type) {  
-//            	if (type == 'click')  
-//                   return false;  
-//            },
 		},
-		{dataIndex:'createDate',text:'创建时间',xtype: 'datecolumn',   format:'Y-m-d'
+		{dataIndex:'createDate',header:'创建时间',xtype: 'datecolumn', format:'Y-m-d H:i:s',width:150
 			,editor: {
                 xtype: 'datefield',
-                format : 'Y-m-d',
+                format : 'Y-m-d H:i:s',
                 editable : false
             }
 		},
-		{dataIndex:'url',text:'地址'
+		{dataIndex:'url',header:'地址'
             ,editor: {
                 xtype: 'textfield',
                 selectOnFocus:true 
             }
         },
-		{dataIndex:'remark',text:'备注'
+		{dataIndex:'remark',header:'备注'
             ,editor: {
                 xtype: 'textfield',
                 selectOnFocus:true 
@@ -150,10 +143,11 @@ Ext.define('y.permission.MenuGrid',{
 	  me.dockedItems.push({
 	  	xtype: 'toolbar',
 	  	dock:'top',
+	  	enableOverflow:true,
 		items:[
 			{
                 xtype: 'textfield',
-				itemId:'query_name',
+				itemId:'name',
                 fieldLabel: '菜单名称',
                 labelWidth:60,
                 width:150,
@@ -161,7 +155,7 @@ Ext.define('y.permission.MenuGrid',{
             },
 			{
                 xtype: 'textfield',
-				itemId:'query_menuType',
+				itemId:'menuType',
                 fieldLabel: '菜单类型',
                 labelWidth:60,
                 width:150,
@@ -169,7 +163,7 @@ Ext.define('y.permission.MenuGrid',{
             },
 			{
                 xtype: 'checkbox',
-                itemId:'query_leaf',
+                itemId:'leaf',
                 fieldLabel: '叶子节点',
                 labelWidth:60,
                 width:100,
@@ -177,20 +171,35 @@ Ext.define('y.permission.MenuGrid',{
             },
 	    	{
                 xtype: 'datefield',
-                itemId:'query_createDate_start',
+                itemId:'createDate_start',
                 fieldLabel: '开始时间',//创建时间
 	  			labelWidth:60,
-	  			width:160,
+	  			width:170,
                 format : 'Y-m-d',
                 editable : false
             },{
                 xtype: 'datefield',
-                itemId:'query_createDate_end',
+                itemId:'createDate_end',
                 fieldLabel: '结束时间',//创建时间
 	  			labelWidth:60,
-	  			width:160,
+	  			width:170,
                 format : 'Y-m-d',
                 editable : false
+            },
+	    	{
+            	text:'查询',
+            	iconCls:'icon-search',
+            	handler:function(btn){
+            		var grid=btn.up("grid");
+	            	grid.getStore().getProxy().extraParams={
+						'name':grid.down("#name").getValue(),
+						'menuType':grid.down("#menuType").getValue(),
+						'leaf':grid.down("#leaf").getValue(),
+	            		'createDate_start': Ext.Date.format(grid.down("#createDate_start").getValue(),'Y-m-d H:i:s'),
+	            		'createDate_end': Ext.Date.format(grid.down("#createDate_end").getValue(),'Y-m-d H:i:s')
+	                };
+            		grid.getStore().reload();
+            	}
             }
 	  	]
 	  });
@@ -199,7 +208,7 @@ Ext.define('y.permission.MenuGrid',{
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
-	  //this.selType = 'checkboxmodel';//'rowmodel';
+	  //this.selType = 'cellmodel';//'rowmodel','checkboxmodel';
 	  this.on('edit', function(editor, e) {
 		e.record.save({
 	  		success:function(){
@@ -227,6 +236,7 @@ Ext.define('y.permission.MenuGrid',{
     		modal:true,
     		width:400,
     		height:300,
+    		closeAction:'hide',
     		items:[form],
     		listeners:{
     			close:function(){
@@ -254,6 +264,7 @@ Ext.define('y.permission.MenuGrid',{
     		layout:'fit',
     		title:'更新',
     		modal:true,
+    		closeAction:'hide',
     		width:400,
     		height:300,
     		items:[form]

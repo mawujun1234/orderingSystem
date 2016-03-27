@@ -49,7 +49,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
       <#list propertyColumns as propertyColumn>	
       	<#if propertyColumn.hidden==false>
 		<#if propertyColumn.jsType=='date'>
-		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn',   format:'Y-m-d'
+		{dataIndex:'${propertyColumn.property}',header:'${propertyColumn.property_label!propertyColumn.property}',xtype: 'datecolumn', format:'Y-m-d H:i:s',width:150
 			<#if extenConfig.extjs_grid_enable_cellEditing==true>
 			,editor: {
                 xtype: 'datefield',
@@ -251,48 +251,73 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	  me.dockedItems.push({
 	  	xtype: 'toolbar',
 	  	dock:'top',
+	  	//enableOverflow:true,
 		items:[
 	    <#list queryProperties as propertyColumn>
 	    <#if propertyColumn.jsType=='date'>
 	    	{
                 xtype: 'datefield',
-                itemId:'query_${propertyColumn.property}_start',
+                itemId:'${propertyColumn.property}_start',
                 fieldLabel: '开始时间',//${propertyColumn.property_label!propertyColumn.property}
 	  			labelWidth:60,
-	  			width:160,
+	  			width:170,
                 format : 'Y-m-d',
                 editable : false
             },{
                 xtype: 'datefield',
-                itemId:'query_${propertyColumn.property}_end',
+                itemId:'${propertyColumn.property}_end',
                 fieldLabel: '结束时间',//${propertyColumn.property_label!propertyColumn.property}
 	  			labelWidth:60,
-	  			width:160,
+	  			width:170,
                 format : 'Y-m-d',
                 editable : false
-            }<#if propertyColumn_has_next>,</#if>
+            },
 		<#elseif propertyColumn.jsType=='bool'>
 			{
                 xtype: 'checkbox',
-                itemId:'query_${propertyColumn.property}',
+                itemId:'${propertyColumn.property}',
                 fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
                 labelWidth:60,
-                width:150,
+                width:100,
                 cls: 'x-grid-checkheader-editor'
-            }<#if propertyColumn_has_next>,</#if>
+            },
 		<#elseif propertyColumn.jsType=='int' >
 		<#elseif propertyColumn.jsType=='float'>
 		<#else>
 			{
                 xtype: 'textfield',
-				itemId:'query_${propertyColumn.property}',
+				itemId:'${propertyColumn.property}',
                 fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
                 labelWidth:60,
                 width:150,
                 selectOnFocus:true 
-            }<#if propertyColumn_has_next>,</#if>
+            },
 		</#if>
 	    </#list>
+	    	{
+            	text:'查询',
+            	iconCls:'icon-search',
+            	handler:function(btn){
+            		var grid=btn.up("grid");
+	            	grid.getStore().getProxy().extraParams={
+	            		<#list queryProperties as propertyColumn>
+	            		<#if propertyColumn.jsType=='date'>
+	            		'${propertyColumn.property}_start': Ext.Date.format(grid.down("#${propertyColumn.property}_start").getValue(),'Y-m-d H:i:s'),
+	            		'${propertyColumn.property}_end': Ext.Date.format(grid.down("#${propertyColumn.property}_end").getValue(),'Y-m-d H:i:s')<#if propertyColumn_has_next>,</#if>
+						<#elseif propertyColumn.jsType=='bool'>
+						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						<#elseif propertyColumn.jsType=='int' >
+						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						<#elseif propertyColumn.jsType=='float'>
+						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						<#else>
+						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						</#if>
+		                </#list>
+	                };
+            		grid.getStore().reload();
+            	}
+            }
 	  	]
 	  });
 	  </#if>
@@ -332,6 +357,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
     		modal:true,
     		width:400,
     		height:300,
+    		closeAction:'hide',
     		items:[form],
     		listeners:{
     			close:function(){
@@ -361,6 +387,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
     		modal:true,
     		width:400,
     		height:300,
+    		closeAction:'hide',
     		items:[form]
     	});
     	win.show();

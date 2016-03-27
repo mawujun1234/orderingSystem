@@ -2600,3 +2600,10 @@
 14:46:08.433 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@c1fb99a
 08:12:35.893 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@199bfa5
 08:22:08.329 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@5b9bf8
+18:58:38.027 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@1bfcd34
+19:04:49.239 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@18fed33
+19:25:18.708 [http-bio-8086-exec-15] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@e3386f
+20:36:49.229 [http-bio-8086-exec-29] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@1c54f34
+20:36:53.332 [http-bio-8086-exec-29] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@731930
+20:36:58.095 [http-bio-8086-exec-29] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@19b4898
+20:37:07.286 [http-bio-8086-exec-29] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@84b85f

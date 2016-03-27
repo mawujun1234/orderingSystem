@@ -105,6 +105,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     		modal:true,
     		width:400,
     		height:300,
+    		closeAction:'hide',
     		items:[form],
     		listeners:{
     			close:function(){
@@ -134,6 +135,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     		modal:true,
     		width:400,
     		height:300,
+    		closeAction:'hide',
     		items:[form]
     	});
     	win.show();

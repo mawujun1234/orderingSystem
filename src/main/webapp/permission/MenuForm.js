@@ -58,7 +58,7 @@ Ext.define('y.permission.MenuForm',{
             fieldLabel: '创建时间',
             name: 'createDate',
             xtype: 'datefield',
-            format: 'Y-m-d'   
+            format: 'Y-m-d H:i:s'   
         },
 		{
 	        fieldLabel: '地址',

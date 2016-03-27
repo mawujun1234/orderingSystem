@@ -12,8 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
 
-	
+
 	<%@include file="../common/init.jsp" %>
+	
 	<script type="text/javascript" src="MenuApp.js"></script>
   </head>
   
