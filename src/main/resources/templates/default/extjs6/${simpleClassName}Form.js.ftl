@@ -50,7 +50,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             blankText:"${propertyColumn.property_label}不允许为空",
             </#if>
             xtype: 'datefield',
-            format: 'Y-m-d'   
+            format: 'Y-m-d H:i:s'   
         }<#if propertyColumn_has_next>,</#if>
         <#elseif propertyColumn.jsType=='bool'>
         {

@@ -56,7 +56,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
                 <#if propertyColumn.nullable=='false'>
                 allowBlank: false,
                 </#if>
-                format : 'Y-m-d',
+                format : 'Y-m-d H:i:s',
                 editable : false
             }
             </#if>
