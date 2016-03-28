@@ -14,7 +14,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
 
         me.store = Ext.create('Ext.data.TreeStore', {
 	       	autoLoad:true,
-	       	nodeParam :'id',//传递到后台的数据，默认是node
+	       	nodeParam :'parent_id',//传递到后台的数据，默认是node
 	       	model:'${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',
 			root: {
 			    expanded: true,
@@ -87,17 +87,17 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     },
     onCreate:function(){
     	var me=this;
-		
-    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
-    	
-    	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
 
+    	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
+		
 		var child=Ext.create(parent.self.getName(),{
 		    'parent_id':parent.get("id"),
 		    text:''
 		});
 		child.set("id",null);
-		form.loadRecord(child);
+		
+		var formpanel=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
+		formpanel.loadRecord(child);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -106,7 +106,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[form],
+    		items:[formpanel],
     		listeners:{
     			close:function(){
     				me.onReload(parent);
@@ -118,16 +118,15 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     
      onUpdate:function(){
     	var me=this;
-		
-    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
-    	
+
     	var node=me.getSelectionModel( ).getLastSelected();
     	if(node==null || node.isRoot()){
     		Ext.Msg.alert("提醒","请选择一个不是根节点的节点!");
     		return;
     	}
 
-		form.loadRecord(node);
+		var formpanel=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
+		formpanel.loadRecord(node);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -136,7 +135,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[form]
+    		items:[formpanel]
     	});
     	win.show();
     },

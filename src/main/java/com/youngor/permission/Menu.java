@@ -1,18 +1,21 @@
 package com.youngor.permission;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
 
-@Entity(name="t_menu")
+@Entity
+@Table(name="t_menu")
 public class Menu {
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -24,26 +27,27 @@ public class Menu {
 	@Column(length=36)
 	private String id;
 	
+	@Column(length=30,nullable=true,unique=true)
+	@FieldDefine(title="编码",sort=3)
+	private String code;
+	
 	@Column(length=30,nullable=false)
-	@FieldDefine(title="菜单名称",sort=5,genQuery=true)
+	@FieldDefine(title="菜单名称",sort=5)
 	private String name;
 	
-	@Column(length=80)
+	@Column(length=80,nullable=false)
 	@FieldDefine(title="地址",sort=4)
 	private String url;
 	
 	@Column(length=15,nullable=false)
-	@FieldDefine(title="菜单类型",sort=5,showType=ShowType.combobox,genQuery=true)//,hidden=true
+	@Enumerated(EnumType.STRING)
+	@FieldDefine(title="菜单类型",sort=5,showType=ShowType.combobox,hidden=true)//
 	private MenuType menuType=MenuType.menu;
 	
 	@FieldDefine(title="父id",hidden=true)
-	@Column(length=36)
+	@Column(length=36) 
 	private String parent_id;//上级rolegroup的id
 	
-	@FieldDefine(title="叶子节点",sort=5,genQuery=true)
-	private Boolean leaf;
-	@FieldDefine(title="创建时间",sort=5,genQuery=true)
-	private Date createDate;
 	
 	public MenuType getMenuType() {
 		return menuType;
@@ -97,19 +101,12 @@ public class Menu {
 		this.parent_id = parent_id;
 	}
 
-	public Boolean getLeaf() {
-		return leaf;
+	public String getCode() {
+		return code;
 	}
 
-	public void setLeaf(Boolean leaf) {
-		this.leaf = leaf;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
 }

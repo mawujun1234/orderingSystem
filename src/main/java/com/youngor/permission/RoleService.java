@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mawujun.service.AbstractService;
 
 
-import com.youngor.permission.Menu;
-import com.youngor.permission.MenuRepository;
+import com.youngor.permission.Role;
+import com.youngor.permission.RoleRepository;
 
 
 /**
@@ -20,14 +20,14 @@ import com.youngor.permission.MenuRepository;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public class MenuService extends AbstractService<Menu, String>{
+public class RoleService extends AbstractService<Role, String>{
 
 	@Autowired
-	private MenuRepository menuRepository;
+	private RoleRepository roleRepository;
 	
 	@Override
-	public MenuRepository getRepository() {
-		return menuRepository;
+	public RoleRepository getRepository() {
+		return roleRepository;
 	}
 
 }

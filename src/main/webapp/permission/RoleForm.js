@@ -1,7 +1,7 @@
-Ext.define('y.permission.MenuForm',{
+Ext.define('y.permission.RoleForm',{
 	extend:'Ext.form.Panel',
 	requires: [
-	     'y.permission.Menu'
+	     'y.permission.Role'
 	],
 	
     frame: true,
@@ -20,24 +20,32 @@ Ext.define('y.permission.MenuForm',{
        var me = this;
        me.items= [
 		{
-	        fieldLabel: '菜单名称',
+			fieldLabel: '角色类型',
+			name: 'roleType',
+			queryMode: 'local',
+			editable:false,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'key',
+		    store: {
+			    fields: ['key', 'name'],
+			    data : [
+			    	{"key":"rolegroup", "name":"角色组"},
+			    	{"key":"role", "name":"角色"}
+			    ]
+			},
+			value:'rolegroup',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"菜单类型不允许为空",
+			xtype:'combobox'
+		},
+		{
+	        fieldLabel: '角色名称',
 	        name: 'name',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
-            blankText:"菜单名称不允许为空",
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '编码',
-	        name: 'code',
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '地址',
-	        name: 'url',
-	        allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"地址不允许为空",
+            blankText:"角色名称不允许为空",
 	        xtype:'textfield'
 	    },
 		{
@@ -51,14 +59,8 @@ Ext.define('y.permission.MenuForm',{
             hidden:true,
 	        xtype:'textfield'
 	    },
-	    {
-	        fieldLabel: '菜单类型',
-	        name: 'menuType',
-            hidden:true,
-	        xtype:'textfield'
-	    },
 		{
-	        fieldLabel: '父id',
+	        fieldLabel: '角色组id',
 	        name: 'parent_id',
             hidden:true,
 	        xtype:'textfield'
@@ -76,6 +78,7 @@ Ext.define('y.permission.MenuForm',{
 			handler : function(button){
 				var formpanel = button.up('form');
 				button.up('form').updateRecord();
+				
 				button.up('form').getForm().getRecord().save({
 					failure: function(record, operation) {
 				    },

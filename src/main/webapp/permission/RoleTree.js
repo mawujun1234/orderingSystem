@@ -3,20 +3,20 @@
  * 添加右键菜单，增，删，改，并且增加工具栏，增，删，改。
  * 后台的类最好继承TreeNode类，这样就可以少写很多代码
  */
-Ext.define('y.permission.MenuTree', {
+Ext.define('y.permission.RoleTree', {
     extend: 'Ext.tree.Panel',
-    requires:['y.permission.Menu'],
-    displayField:"name",
+    requires:['y.permission.Role'],
+    displayField:'name',
     initComponent: function () {
 		var me = this;
 
         me.store = Ext.create('Ext.data.TreeStore', {
 	       	autoLoad:true,
 	       	nodeParam :'parent_id',//传递到后台的数据，默认是node
-	       	model:'y.permission.Menu',
+	       	model:'y.permission.Role',
 			root: {
 			    expanded: true,
-			    name:"根节点" 
+			    name:"角色管理" 
 			}
 		});
 		me.initAction();
@@ -86,13 +86,18 @@ Ext.define('y.permission.MenuTree', {
     onCreate:function(){
     	var me=this;
 		
-    	var form=Ext.create('y.permission.MenuForm',{});
+    	
     	
     	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
+    	if(parent.get("roleType")=='role'){
+    		alert("角色不能新建下一级!");
+    		return;
+    	}
+    	
+    	var form=Ext.create('y.permission.RoleForm',{});
 
 		var child=Ext.create(parent.self.getName(),{
 		    'parent_id':parent.get("id"),
-		    menuType:'menu',
 		    text:''
 		});
 		child.set("id",null);
@@ -118,7 +123,7 @@ Ext.define('y.permission.MenuTree', {
      onUpdate:function(){
     	var me=this;
 		
-    	var form=Ext.create('y.permission.MenuForm',{});
+    	var form=Ext.create('y.permission.RoleForm',{});
     	
     	var node=me.getSelectionModel( ).getLastSelected();
     	if(node==null || node.isRoot()){

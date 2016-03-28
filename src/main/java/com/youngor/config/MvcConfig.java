@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
@@ -97,23 +98,30 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         //simpleMappingExceptionResolver.setExceptionAttribute("exception"); 
         
         Properties properties = new Properties();  
-        
 
-
-        
         String  viewname="400_error";
         properties.setProperty(HttpMessageNotReadableException.class.getName(), viewname);
         simpleMappingExceptionResolver.addStatusCode(viewname, 400);
-        simpleMappingExceptionResolver.addErrorMsg(viewname, "请求参数有问题，请检查输入的数据!");
+        simpleMappingExceptionResolver.addErrorMsg(HttpMessageNotReadableException.class, "请求参数有问题，请检查输入的数据!");
         
-        viewname="404_error";
-        simpleMappingExceptionResolver.addStatusCode(viewname, 404);
-        simpleMappingExceptionResolver.addErrorMsg(viewname, "找不到指定页面");
+//        viewname="404_error";
+//        simpleMappingExceptionResolver.addStatusCode(viewname, 404);
+//        simpleMappingExceptionResolver.addErrorMsg(viewname, "找不到指定页面"); 
+        
+        viewname="common_error";
+        properties.setProperty(ConstraintViolationException.class.getName(), viewname);
+        simpleMappingExceptionResolver.addStatusCode(viewname, 503);
+        simpleMappingExceptionResolver.addErrorMsg(ConstraintViolationException.class, "违反数据库约束，某些数据可能重复了");
+        
+        viewname="common_error";
+        properties.setProperty(IllegalArgumentException.class.getName(), viewname);
+        simpleMappingExceptionResolver.addStatusCode(viewname, 503);
+        simpleMappingExceptionResolver.addErrorMsg(IllegalArgumentException.class, "非法的参数，请注意!");
         
         viewname="common_error";
         properties.setProperty(Exception.class.getName(), viewname);
         simpleMappingExceptionResolver.addStatusCode(viewname, 503);
-        simpleMappingExceptionResolver.addErrorMsg(viewname, "系统发生异常");
+        simpleMappingExceptionResolver.addErrorMsg(Exception.class, "系统发生异常");
         
         simpleMappingExceptionResolver.setExceptionMappings(properties);  
 

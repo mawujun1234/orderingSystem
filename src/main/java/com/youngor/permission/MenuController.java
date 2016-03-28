@@ -1,6 +1,5 @@
 package com.youngor.permission;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
 /**
@@ -24,56 +22,42 @@ public class MenuController {
 	@Resource
 	private MenuService menuService;
 
-
 	/**
 	 * 请按自己的需求修改
 	 * @author mawujun email:16064988@163.com qq:16064988
 	 * @param id 是父节点的id
 	 * @return
 	 */
-	/**@RequestMapping("/menu/query.do")
-	@ResponseBody
-	public List<Menu> query(String id) {
-		Cnd cnd=Cnd.select().andEquals(M.Menu.id, "root".equals(id)?null:id);
-		List<Menu> menues=menuService.query(cnd);
-		//JsonConfigHolder.setFilterPropertys(Menu.class,M.Menu.parent.name());
-		return menues;
-	}
-	**/
-
-//	/**
-//	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
-//	 * @author mawujun email:16064988@163.com qq:16064988
-//	 * @param start
-//	 * @param limit
-//	 * @param userName
-//	 * @return
-//	 */
-//	@RequestMapping("/menu/query.do")
-//	@ResponseBody
-//	public PageResult<Menu> query(Integer start,Integer limit,String sampleName){
-//		//PageParam page=PageParam.getInstance(start,limit);//.addParam(M.Menu.sampleName, "%"+sampleName+"%");
-//		return menuService.queryPage(page);
-//	}
-
 	@RequestMapping("/menu/query.do")
 	@ResponseBody
-	public List<Menu> query(String id) {	
-		
-		//List<Menu> menues=menuService.query(Cnd.where().andEquals(M.Menu.parent_id, id));
+	public List<Menu> query(String parent_id,MenuType menuType) {
+		//System.out.println(MenuType.menu);
+		Cnd cnd=Cnd.select().andEquals(M.Menu.parent_id, "root".equals(parent_id)?null:parent_id)
+				.andEquals(M.Menu.menuType, menuType==null?MenuType.menu:menuType);
+		List<Menu> menues=menuService.query(cnd);
+		return menues;
+	}
+
+
+	@RequestMapping("/menu/queryAll.do")
+	@ResponseBody
+	public List<Menu> queryAll() {	
 		List<Menu> menues=menuService.queryAll();
 		return menues;
 	}
 	
 
 	@RequestMapping("/menu/load.do")
-	public Menu load(UUID id) {
+	public Menu load(String id) {
 		return menuService.get(id);
 	}
 	
 	@RequestMapping("/menu/create.do")
 	//@ResponseBody
 	public Menu create(@RequestBody Menu menu) {
+		if("root".equals(menu.getParent_id())){
+			menu.setParent_id(null);
+		}
 		menuService.create(menu);
 		return menu;
 	}
@@ -87,7 +71,7 @@ public class MenuController {
 	
 	@RequestMapping("/menu/deleteById.do")
 	//@ResponseBody
-	public UUID deleteById(UUID id) {
+	public String deleteById(String id) {
 		menuService.deleteById(id);
 		return id;
 	}
@@ -95,10 +79,7 @@ public class MenuController {
 	@RequestMapping("/menu/destroy.do")
 	//@ResponseBody
 	public Menu destroy(@RequestBody Menu menu) {
-		
-		
 		menuService.delete(menu);
-		
 		return menu;
 	}
 	

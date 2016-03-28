@@ -2,6 +2,7 @@ package com.youngor.utils;
 public final class M {
 public static final class Menu {
 	public static final String id="id";
+	public static final String code="code";
 	public static final String name="name";
 	public static final String url="url";
 	public static final String menuType="menuType";

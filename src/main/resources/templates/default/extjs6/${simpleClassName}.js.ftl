@@ -19,6 +19,7 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 		headers:{ 'Accept':'application/json;'},
 		writer:{
 			type:'json',
+			writeRecordId:false,
 			writeAllFields:true
 		},
 		api:{

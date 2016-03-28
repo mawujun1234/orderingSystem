@@ -205,47 +205,6 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	        dock: 'bottom',
 	        displayInfo: true
 	  });
-	  
-	  <#-----------------------------------------生成工具栏--------------------------------- ----->
-	  <#if extenConfig.extjs_grid_createDelUpd_button=true>
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
-				text: '新增',
-				itemId:'create',
-				handler: function(btn){
-					me.onCreate();
-				},
-				iconCls: 'icon-plus'
-			},{
-			    text: '更新',
-			    itemId:'update',
-			    handler: function(){
-			    	me.onUpdate();
-					
-			    },
-			    iconCls: 'icon-edit'
-			},{
-			    text: '删除',
-			    itemId:'destroy',
-			    handler: function(){
-			    	me.onDelete();    
-			    },
-			    iconCls: 'icon-trash'
-			},{
-				text: '刷新',
-				itemId:'reload',
-				disabled:me.disabledAction,
-				handler: function(btn){
-					var grid=btn.up("grid");
-					grid.getStore().reload();
-				},
-				iconCls: 'icon-refresh'
-			}]
-		});
-	  </#if>
-	  
 	  <#-------------------------生成查询条件得体toolbar ---------------------------------->
 	  <#if (queryProperties?size>0) >
 	  me.dockedItems.push({
@@ -282,7 +241,96 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
                 cls: 'x-grid-checkheader-editor'
             },
 		<#elseif propertyColumn.jsType=='int' >
+		{
+	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+	        itemId: '${propertyColumn.property}',
+            allowDecimals:false,
+            labelWidth:60,
+            //width:100,
+	        xtype:'numberfield'   
+	    }<#if propertyColumn_has_next>,</#if>
 		<#elseif propertyColumn.jsType=='float'>
+		{
+	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+	        itemId: '${propertyColumn.property}',
+            labelWidth:60,
+            //width:100,
+	        xtype:'numberfield'   
+	    }<#if propertyColumn_has_next>,</#if>
+	    <#elseif propertyColumn.showType=='combobox'>
+	    <#if propertyColumn.isEnum=='true'>
+		{
+			fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+			itemId: '${propertyColumn.property}',
+			queryMode: 'local',
+			editable:false,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'key',
+		    labelWidth:60,
+            width:150,
+		    store: {
+			    fields: ['key', 'name'],
+			    data : [
+			    <#assign  keys=propertyColumn.showType_values?keys/>
+			    <#list keys as key>
+			    	{"key":"${key}", "name":"${propertyColumn.showType_values["${key}"]}"}<#if key_has_next>,</#if>
+				</#list>
+			    ]
+			},
+			xtype:'combobox'
+		}<#if propertyColumn_has_next>,</#if>
+		<#else>
+		{
+			fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
+			itemId: '${propertyColumn.property}',
+			queryMode: 'remote',
+			editable:false,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'key',
+		    labelWidth:60,
+            width:150,
+		    store: {
+			    fields: ['key', 'name'],
+			    proxy: {
+			    	autoLoad:true,
+			        type: 'ajax',
+			        url: Ext.ContextPath+'/${propertyColumn.property}/query.do',
+			        reader: {
+			            type: 'json',
+			            rootProperty: '${propertyColumn.property}'
+			        }
+			    }
+			},
+			xtype:'combobox'
+		}<#if propertyColumn_has_next>,</#if>
+		</#if><#-- <#if propertyColumn.isEnum=='true'> -->
+		<#elseif propertyColumn.showType=='radio'>
+		<#if propertyColumn.isEnum=='true'>
+		{
+            xtype      : 'fieldcontainer',
+            fieldLabel : '${propertyColumn.property_label!propertyColumn.property}',
+            defaultType: 'radiofield',
+            itemId:'${propertyColumn.property}',
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+            <#assign  keys=propertyColumn.showType_values?keys/>
+			<#list keys as key>
+				{
+                    boxLabel  : '${propertyColumn.showType_values["${key}"]}',
+                    name: '${propertyColumn.property}',
+                    inputValue: '${key}'
+                }<#if key_has_next>,</#if>
+			</#list>
+            ]
+        }<#if propertyColumn_has_next>,</#if>
+		<#else>
+			这个radio自动生成还没有做，请不要设置为radio
+		</#if>
 		<#else>
 			{
                 xtype: 'textfield',
@@ -321,6 +369,46 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	  	]
 	  });
 	  </#if>
+	  
+	   <#-----------------------------------------生成工具栏--------------------------------- ----->
+	  <#if extenConfig.extjs_grid_createDelUpd_button=true>
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+				text: '新增',
+				itemId:'create',
+				handler: function(btn){
+					me.onCreate();
+				},
+				iconCls: 'icon-plus'
+			},{
+			    text: '更新',
+			    itemId:'update',
+			    handler: function(){
+			    	me.onUpdate();
+					
+			    },
+			    iconCls: 'icon-edit'
+			},{
+			    text: '删除',
+			    itemId:'destroy',
+			    handler: function(){
+			    	me.onDelete();    
+			    },
+			    iconCls: 'icon-trash'
+			},{
+				text: '刷新',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			}]
+		});
+	  </#if>
 
 	  <#-------------------------生成可编辑的grid ---------------------------------->
 	  <#if extenConfig.extjs_grid_enable_cellEditing==true>
@@ -340,16 +428,16 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
        
       me.callParent();
 	},
+	<#if extenConfig.extjs_grid_createDelUpd_button=true>
 	onCreate:function(){
     	var me=this;
-		
-    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
-
 		var child=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',{
 
 		});
 		child.set("id",null);
-		form.loadRecord(child);
+		
+		var formpanel=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
+		formpanel.loadRecord(child);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -358,7 +446,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[form],
+    		items:[formpanel],
     		listeners:{
     			close:function(){
     				me.getStore().reload();
@@ -370,16 +458,15 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
     
      onUpdate:function(){
     	var me=this;
-		
-    	var form=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
-    	
+
     	var node=me.getSelectionModel( ).getLastSelected();
     	if(node==null){
     		Ext.Msg.alert("提醒","请选择一行数据!");
     		return;
     	}
 
-		form.loadRecord(node);
+		var formpanel=Ext.create('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form',{});
+		formpanel.loadRecord(node);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -388,7 +475,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[form]
+    		items:[formpanel]
     	});
     	win.show();
     },
@@ -415,4 +502,5 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 			}
 		});
     }
+    </#if>
 });

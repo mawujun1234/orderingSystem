@@ -2,6 +2,7 @@ Ext.define("y.permission.Menu",{
 	extend:"Ext.data.Model",
 	fields:[
 		{name:'name',type:'string'},
+		{name:'code',type:'string'},
 		{name:'menuType',type:'string'},
 		{name:'leaf',type:'bool'},
 		{name:'createDate',type:'date', dateFormat: 'Y-m-d H:i:s'},

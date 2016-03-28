@@ -20,8 +20,13 @@ Ext.onReady(function(){
 		items:[tree,grid]
 	});
 	
-	tree.on("",function(){
-	
+	tree.on("itemclick",function(view, record, item, index, e, eOpts ){
+		grid.parent_id=record.get("id");
+		grid.getStore().getProxy().extraParams={
+			menuType:'element',
+			parent_id:record.get("id")
+		}
+		grid.getStore().reload();
 	});
 
 

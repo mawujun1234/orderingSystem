@@ -1,7 +1,7 @@
-Ext.define('y.permission.MenuForm',{
+Ext.define('y.permission.UserForm',{
 	extend:'Ext.form.Panel',
 	requires: [
-	     'y.permission.Menu'
+	     'y.permission.User'
 	],
 	
     frame: true,
@@ -20,24 +20,27 @@ Ext.define('y.permission.MenuForm',{
        var me = this;
        me.items= [
 		{
-	        fieldLabel: '菜单名称',
+	        fieldLabel: '姓名',
 	        name: 'name',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"菜单名称不允许为空",
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '编码',
-	        name: 'code',
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '地址',
-	        name: 'url',
 	        allowBlank: false,
             afterLabelTextTpl: Ext.required,
-            blankText:"地址不允许为空",
+            blankText:"不允许为空",
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '登录名',
+	        name: 'loginName',
+	        allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"不允许为空",
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '密码',
+	        name: 'pwd',
+	         allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"不允许为空",
 	        xtype:'textfield'
 	    },
 		{
@@ -48,18 +51,6 @@ Ext.define('y.permission.MenuForm',{
 		{
 	        fieldLabel: 'id',
 	        name: 'id',
-            hidden:true,
-	        xtype:'textfield'
-	    },
-	    {
-	        fieldLabel: '菜单类型',
-	        name: 'menuType',
-            hidden:true,
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '父id',
-	        name: 'parent_id',
             hidden:true,
 	        xtype:'textfield'
 	    }
@@ -76,6 +67,7 @@ Ext.define('y.permission.MenuForm',{
 			handler : function(button){
 				var formpanel = button.up('form');
 				button.up('form').updateRecord();
+				
 				button.up('form').getForm().getRecord().save({
 					failure: function(record, operation) {
 				    },

@@ -9,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.mawujun.controller.spring.mvc.json.JsonConfigHolder;
 import com.mawujun.repository.cnd.Cnd;
-import com.mawujun.utils.M;
-import com.mawujun.utils.page.PageParam;
-import com.mawujun.utils.page.PageResult;
+import com.youngor.utils.M;
+import com.mawujun.utils.page.Pager;
 
 import ${basepackage}.${simpleClassName};
 import ${basepackage}.${simpleClassName}Service;
@@ -35,8 +33,8 @@ public class ${simpleClassName}Controller {
 	 */
 	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
-	public List<${simpleClassName}> query(String id) {
-		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.id, "root".equals(id)?null:id);
+	public List<${simpleClassName}> query(String parent_id) {
+		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.parent_id, "root".equals(parent_id)?null:parent_id);
 		List<${simpleClassName}> ${simpleClassNameFirstLower}es=${simpleClassNameFirstLower}Service.query(cnd);
 		return ${simpleClassNameFirstLower}es;
 	}
@@ -53,10 +51,32 @@ public class ${simpleClassName}Controller {
 	 */
 	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
-	public PageResult<${simpleClassName}> query(Integer start,Integer limit,String sampleName){
-		PageParam page=PageParam.getInstance(start,limit);//.addParam(M.${simpleClassName}.sampleName, "%"+sampleName+"%");
-		return ${simpleClassNameFirstLower}Service.queryPage(page);
+	<#if (queryProperties?size>0) >
+	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager
+	<#list queryProperties as propertyColumn>
+		<#if propertyColumn.jsType=='date'>
+		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}_start
+		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}_end
+		<#else>
+		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}
+		</#if>
+	</#list>
+		){
+		<#list queryProperties as propertyColumn>
+		<#if propertyColumn.jsType=='date'>
+		pager.addParam("${propertyColumn.property}_start",  ${propertyColumn.property}_start);
+		pager.addParam("${propertyColumn.property}_end",  ${propertyColumn.property}_end);
+		<#else>
+		pager.addParam("${propertyColumn.property}",  ${propertyColumn.property});
+		</#if>
+	</#list>
+		return ${simpleClassNameFirstLower}Service.queryPage(pager);
 	}
+	<#else>
+	public Pager<${simpleClassName}> query(Pager<Menu> pager){
+		return ${simpleClassNameFirstLower}Service.queryPage(pager);
+	}
+	</#if>	
 	</#if>
 
 	@RequestMapping("/${simpleClassNameFirstLower}/queryAll.do")
@@ -75,6 +95,11 @@ public class ${simpleClassName}Controller {
 	@RequestMapping("/${simpleClassNameFirstLower}/create.do")
 	//@ResponseBody
 	public ${simpleClassName} create(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
+		<#if extenConfig.extjs_treeForm_model==true>
+		if("root".equals(${simpleClassNameFirstLower}.getParent_id())){
+			${simpleClassNameFirstLower}.setParent_id(null);
+		}
+		</#if>
 		${simpleClassNameFirstLower}Service.create(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}

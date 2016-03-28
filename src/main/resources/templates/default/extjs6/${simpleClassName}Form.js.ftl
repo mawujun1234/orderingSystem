@@ -65,7 +65,6 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
 		<#elseif propertyColumn.jsType=='int'>
 		{
 	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
-	        //afterLabelTextTpl: Ext.required,
 	        name: '${propertyColumn.property}',
 	        <#if propertyColumn.hidden==true>
             hidden:${propertyColumn.hidden?string("true","false")},
@@ -81,7 +80,6 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
 	    <#elseif propertyColumn.jsType=='float'>
 		{
 	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
-	        //afterLabelTextTpl: Ext.required,
 	        name: '${propertyColumn.property}',
 	        <#if propertyColumn.hidden==true>
             hidden:${propertyColumn.hidden?string("true","false")},
@@ -96,7 +94,6 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
 		<#else>
 		{
 	        fieldLabel: '${propertyColumn.property_label!propertyColumn.property}',
-	        //afterLabelTextTpl: Ext.required,
 	        name: '${propertyColumn.property}',
 	       <#if propertyColumn.hidden==true>
             hidden:${propertyColumn.hidden?string("true","false")},

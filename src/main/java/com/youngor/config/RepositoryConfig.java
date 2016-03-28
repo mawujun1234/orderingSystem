@@ -21,6 +21,8 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
@@ -85,8 +87,10 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 		DatabaseIdProviderCustom provider = new DatabaseIdProviderCustom();
 		provider.setDatabaseId(jdbc_db_type);
 		sqlSessionFactoryBean.setDatabaseIdProvider(provider);
+		
 
-		// sqlSessionFactoryBean.setMapperLocations(mapperLocations);
+//		Resource resource=new ClassPathResource("classpath:/**/*_common_Mapper.xml");
+//		sqlSessionFactoryBean.setMapperLocations(new Resource[]{resource});
 
 		return sqlSessionFactoryBean.getObject();
 	}
