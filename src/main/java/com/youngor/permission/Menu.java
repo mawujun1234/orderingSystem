@@ -48,11 +48,11 @@ public class Menu {
 	@Column(length=36) 
 	private String parent_id;//上级rolegroup的id
 	
-	
 	public MenuType getMenuType() {
 		return menuType;
 	}
-
+	
+	
 	public void setMenuType(MenuType menuType) {
 		this.menuType = menuType;
 	}
