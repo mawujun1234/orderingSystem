@@ -1,5 +1,7 @@
 package com.youngor.permission;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,6 +39,33 @@ public class MenuController {
 		List<Menu> menues=menuService.query(cnd);
 		return menues;
 	}
+	
+	
+	@RequestMapping("/menu/query_checkbox.do")
+	@ResponseBody
+	public List<MenuVO> query_checkbox(String parent_id) {
+		//System.out.println(MenuType.menu);
+		//Cnd cnd=Cnd.select().andEquals(M.Menu.parent_id, "root".equals(parent_id)?null:parent_id));
+		if("root".equals(parent_id)){
+			parent_id=null;
+		}
+		List<MenuVO> menues=menuService.query_checkbox(null);
+		return menues;
+	}
+	
+	@RequestMapping("/menu/query_checked_node.do")
+	@ResponseBody
+	public Map<String,Boolean> query_checked_node(String role_id) {
+		//List<String> result=new ArrayList<String>();
+		Map<String,Boolean> result=new HashMap<String,Boolean>();
+		List<RoleMenu> list=menuService.query_checked_node(role_id);
+		for(RoleMenu roleMenu:list){
+			//result.add(roleMenu.getMenu().getId());
+			result.put(roleMenu.getMenu().getId(), true);
+		}
+		return result;
+	}
+
 
 
 	@RequestMapping("/menu/queryAll.do")

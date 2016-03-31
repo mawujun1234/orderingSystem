@@ -1,4 +1,8 @@
 package com.youngor.permission;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,7 +25,7 @@ public class UserService extends AbstractService<User, String>{
 	@Autowired
 	private RoleRepository roleRepository;
 	@Autowired
-	private UserRoleRepository userRoleRepository;
+	private RoleUserRepository userRoleRepository;
 	
 	@Override
 	public UserRepository getRepository() {
@@ -30,13 +34,25 @@ public class UserService extends AbstractService<User, String>{
 	
 	public void create(User user,String role_id){
 		super.create(user);
-		UserRole userRole=new UserRole(user,roleRepository.get(role_id));
+		RoleUser userRole=new RoleUser(user,roleRepository.get(role_id));
 		userRoleRepository.create(userRole);
 	}
 
 	public void delete(User user,String role_id){
-		userRoleRepository.delete(new UserRole(user,roleRepository.get(role_id)));
+		userRoleRepository.delete(new RoleUser(user,roleRepository.get(role_id)));
 		
 		super.delete(user);
 	}
+	
+	public UserVO getByLoginName(String loginName){
+		UserVO user=userRepository.getByLoginName(loginName);
+		return user;
+	}
+	
+	 public Set<String> findPermissions(String username){
+		 List<String> list= userRepository.findPermissions(username);
+		 Set<String> set=new HashSet<String>();
+		 set.addAll(list);
+		 return set;
+	 }
 }

@@ -1,16 +1,10 @@
 package com.youngor.permission;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.permission.Role;
-import com.youngor.permission.RoleRepository;
 
 
 /**
@@ -24,10 +18,28 @@ public class RoleService extends AbstractService<Role, String>{
 
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	private MenuRepository menuRepository;
+	
+	@Autowired
+	private RoleMenuRepository roleMenuRepository;
 	
 	@Override
 	public RoleRepository getRepository() {
 		return roleRepository;
+	}
+	
+	public void checkNodes(String role_id,String ids[],Boolean checked) {
+		Role role=roleRepository.load(role_id);
+		for(String id:ids){
+			RoleMenu roleMenu=new RoleMenu(menuRepository.load(id),role);
+			if(checked){
+				roleMenuRepository.create(roleMenu);
+			} else {
+				roleMenuRepository.delete(roleMenu);
+			}
+			
+		}
 	}
 
 }

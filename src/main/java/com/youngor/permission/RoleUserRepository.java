@@ -1,8 +1,5 @@
 package com.youngor.permission;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
@@ -12,7 +9,7 @@ import com.mawujun.repository.IRepository;
  * @since 1.0
  */
 @Repository
-public interface MenuRepository extends IRepository<Menu, String>{
+public interface RoleUserRepository extends IRepository<RoleUser, RoleUser>{
 
-	public List<MenuVO> query_checkbox(@Param("parent_id")String parent_id);
+
 }

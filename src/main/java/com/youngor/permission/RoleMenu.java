@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 
 import com.mawujun.utils.Assert;
 
-@Entity(name = "t_user_role")
-public class UserRole implements Serializable {
+@Entity(name = "t_role_menu")
+public class RoleMenu implements Serializable {
 	/**
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 */
@@ -17,29 +17,21 @@ public class UserRole implements Serializable {
 
 	@Id
 	@ManyToOne
-	private User user;
+	private Menu menu;
 
 	@Id
 	@ManyToOne
 	private Role role;
 
-	public UserRole() {
+	public RoleMenu() {
 
 	}
 
-	public UserRole(User user, Role role) {
-		Assert.notNull(user);
+	public RoleMenu(Menu menu, Role role) {
+		Assert.notNull(menu);
 		Assert.notNull(role);
-		this.user = user;
+		this.menu = menu;
 		this.role = role;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public Role getRole() {
@@ -55,7 +47,7 @@ public class UserRole implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((menu == null) ? 0 : menu.hashCode());
 		return result;
 	}
 
@@ -67,18 +59,26 @@ public class UserRole implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserRole other = (UserRole) obj;
+		RoleMenu other = (RoleMenu) obj;
 		if (role == null) {
 			if (other.role != null)
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (menu == null) {
+			if (other.menu != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!menu.equals(other.menu))
 			return false;
 		return true;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 }

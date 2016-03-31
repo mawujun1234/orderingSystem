@@ -85,4 +85,24 @@ public class RoleController {
 	}
 	
 	
+	/**
+	 * 角色选择菜单的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param parent_id
+	 * @return
+	 */
+	@RequestMapping("/role/checkMenuNodes.do")
+	@ResponseBody
+	public void checkNodes(String role_id,String ids[],Boolean checked) {
+//		//System.out.println(MenuType.menu);
+//		//Cnd cnd=Cnd.select().andEquals(M.Menu.parent_id, "root".equals(parent_id)?null:parent_id));
+//		if("root".equals(parent_id)){
+//			parent_id=null;
+//		}
+//		List<MenuVO> menues=menuService.query_checkbox(null);
+//		return menues;
+		roleService.checkNodes(role_id, ids, checked);
+		return;
+	}
+	
 }

@@ -20,6 +20,7 @@ import javax.servlet.Filter;
 import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -51,6 +52,9 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 		CharacterEncodingFilter filter=new CharacterEncodingFilter();
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
+		
+		
+		
         return new Filter[] { filter };
     }
 

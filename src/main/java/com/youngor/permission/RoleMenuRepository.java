@@ -9,7 +9,7 @@ import com.mawujun.repository.IRepository;
  * @since 1.0
  */
 @Repository
-public interface UserRoleRepository extends IRepository<UserRole, UserRole>{
+public interface RoleMenuRepository extends IRepository<RoleMenu, RoleMenu>{
 
 
 }

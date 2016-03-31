@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -37,6 +38,7 @@ import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 	includeFilters = @Filter(type = FilterType.ANNOTATION, value = {Controller.class}))
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
+@Import(ShiroConfig.class)
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	//private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");

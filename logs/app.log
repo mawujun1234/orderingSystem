@@ -2927,3 +2927,196 @@
 17:52:50.184 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalArgumentException], based on exception mapping [java.lang.IllegalArgumentException]
 17:52:50.184 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
 17:52:50.184 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:10:41.245 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [null]: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'menuController' method 
+public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)
+to {[/menu/query.do]}: There is already 'menuController' bean method
+public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String,com.youngor.permission.MenuType) mapped.
+12:10:41.247 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [null]: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'menuController' method 
+public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)
+to {[/menu/query.do]}: There is already 'menuController' bean method
+public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuController.query(java.lang.String,com.youngor.permission.MenuType) mapped.
+12:10:41.266 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalStateException], based on exception mapping [java.lang.Exception]
+12:10:41.266 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:10:41.266 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:10:41.265 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalStateException], based on exception mapping [java.lang.Exception]
+12:10:41.277 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:10:41.277 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:14:37.871 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: ��Ч��������: 1111
+12:14:37.873 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+12:14:37.873 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:14:37.873 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:18:16.168 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'parent_id' in 'class java.lang.String'
+12:18:16.169 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+12:18:16.170 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:18:16.170 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:59:59.435 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@3fb2487c
+14:00:01.199 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.checkNodes(java.lang.String,java.lang.String[],java.lang.Boolean)]: org.hibernate.NonUniqueObjectException: A different object with the same identifier value was already associated with the session : [com.youngor.permission.RoleMenu#com.youngor.permission.RoleMenu@3fb2487c]
+14:00:01.200 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.NonUniqueObjectException], based on exception mapping [java.lang.Exception]
+14:00:01.200 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:00:01.200 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:07:20.520 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@92fd90c9
+14:07:20.549 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@66a7f028
+14:16:43.978 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'role_id' not found. Available parameters are [parent_id, param1]
+14:16:43.979 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:16:43.979 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:16:43.979 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:17:05.792 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'role_id' not found. Available parameters are [parent_id, param1]
+14:17:05.792 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:17:05.792 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:17:05.792 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:22:24.598 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.query_checkbox(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: ȱʧ����ʽ
+
+### The error may exist in com/youngor/permission/MenuRepository.xml
+### The error may involve com.youngor.permission.MenuRepository.query_checkbox-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,,decode(b.role_id,null,0,1) as checked from t_menu a left join t_role_menu b on a.id=b.menu_id and b.role_id=?      where              parent_id is null
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: ȱʧ����ʽ
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: ȱʧ����ʽ
+
+14:22:24.598 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+14:22:24.598 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:22:24.598 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:28:12.206 [main] INFO  com.mawujun.utils.file.FileUtils - file类型的扫描
+14:28:12.239 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+14:28:12.252 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+14:28:12.267 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+14:28:12.269 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+14:28:12.269 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+14:28:12.275 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Menu
+14:28:12.275 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+14:28:12.277 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+14:28:12.279 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+14:28:12.286 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+14:28:12.287 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+14:28:12.287 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+14:28:12.288 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Role
+14:28:12.288 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+14:28:12.288 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+14:28:12.289 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.RoleMenu
+14:28:12.289 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+14:28:12.289 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+14:28:12.290 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+14:28:12.290 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+14:28:12.291 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+14:28:12.291 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.RoleUser
+14:28:12.291 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+14:28:12.292 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+14:28:12.293 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.User
+14:28:12.293 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+14:28:12.294 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+14:28:12.294 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+14:28:12.296 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+14:28:12.297 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+14:28:12.297 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+14:28:12.298 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+14:28:12.299 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+14:28:12.299 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:28:12.299 [main] INFO  com.mawujun.utils.file.FileUtils - code
+14:28:12.299 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - url
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:28:12.300 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+14:28:12.301 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:28:12.301 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:28:12.301 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+14:28:12.301 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+14:28:12.307 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:28:12.307 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - user
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:28:12.308 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+14:28:12.309 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+14:28:12.309 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:45:40.675 [main] INFO  com.mawujun.utils.file.FileUtils - file类型的扫描
+14:45:40.683 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+14:45:40.706 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+14:45:40.730 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+14:45:40.734 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+14:45:40.734 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+14:45:40.738 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Menu
+14:45:40.739 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+14:45:40.741 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+14:45:40.745 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+14:45:40.772 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+14:45:40.773 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+14:45:40.775 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+14:45:40.776 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.Role
+14:45:40.776 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+14:45:40.776 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+14:45:40.777 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.RoleMenu
+14:45:40.777 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+14:45:40.778 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+14:45:40.778 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+14:45:40.785 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+14:45:40.786 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+14:45:40.787 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.RoleUser
+14:45:40.787 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+14:45:40.788 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+14:45:40.789 [main] INFO  com.mawujun.utils.file.FileUtils - ============================找到实体类:com.youngor.permission.User
+14:45:40.790 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+14:45:40.790 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+14:45:40.791 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+14:45:40.791 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+14:45:40.792 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+14:45:40.793 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+14:45:40.793 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+14:45:40.794 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+14:45:40.795 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+14:45:40.795 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+14:45:40.798 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+14:45:40.798 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+14:45:40.799 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+14:45:40.799 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+14:45:40.800 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+14:45:40.800 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:45:40.801 [main] INFO  com.mawujun.utils.file.FileUtils - code
+14:45:40.801 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:45:40.801 [main] INFO  com.mawujun.utils.file.FileUtils - url
+14:45:40.801 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+14:45:40.802 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:45:40.802 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:45:40.802 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:45:40.803 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+14:45:40.804 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+14:45:40.808 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:45:40.808 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - user
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:45:40.809 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+14:45:40.810 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+14:45:40.811 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:51:18.458 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@21aa5746
+14:51:18.522 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@fbb64b48
+14:52:29.240 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@5cf7f481
+14:52:29.271 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@fd03058e
+14:52:37.667 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@dd66b76c
+14:52:38.080 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.checkNodes(java.lang.String,java.lang.String[],java.lang.Boolean)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:52:38.081 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:52:38.081 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:52:38.081 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:53:36.882 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@f22cf6e2
+14:53:36.892 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@b7f10db6
+14:53:42.873 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@729c8a46
+14:53:42.878 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@7a2d6425
+14:53:50.638 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@6f56c530
+14:53:50.643 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@59329ea1
+14:53:56.316 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@3592045c
+14:53:56.322 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@9c0f7ef

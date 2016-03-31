@@ -14,5 +14,30 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select count(a.id)
 		from t_menu a
     </select>
+    
+    <!--
+    <select id="query_checkbox" resultType="com.youngor.permission.MenuVO" parameterType="map">
+    	select a.*,decode(b.role_id,null,0,1) as checked from t_menu a left join t_role_menu b on a.id=b.menu_id and b.role_id=#{role_id}
+    	where
+    	<if test="parent_id==null">
+    		parent_id is null
+    	</if>
+    	<if test="parent_id!=null">
+    		parent_id=#{parent_id}
+    	</if>
+    	
+    </select> 
+     -->
+     <select id="query_checkbox" resultType="com.youngor.permission.MenuVO" parameterType="map">
+    	select a.*,0 as checked from t_menu a 
+    	where
+    	<if test="parent_id==null">
+    		parent_id is null
+    	</if>
+    	<if test="parent_id!=null">
+    		parent_id=#{parent_id}
+    	</if>
+    	
+    </select> 
 </mapper>
 

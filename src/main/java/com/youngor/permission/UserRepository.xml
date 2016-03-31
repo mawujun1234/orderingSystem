@@ -7,13 +7,24 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.permission.UserRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPage" resultType="com.youngor.permission.User" parameterType="map">
-    	select * from t_user a,t_user_role b
+    	select * from t_user a,t_role_user b
     	where a.id=b.user_id and b.role_id=#{role_id}
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">
-    	select count(b.user_id) from t_user_role b
+    	select count(b.user_id) from t_role_user b
     	where b.role_id=#{role_id}
     </select>
+    
+    
+    <select id="getByLoginName" resultType="com.youngor.permission.UserVO" parameterType="map">
+    	select * from t_user a
+    	where a.loginName=#{loginName}
+    </select> 
+    
+    
+    <select id="findPermissions" parameterType="string" resultType="string">
+		
+	</select>
 </mapper>
 

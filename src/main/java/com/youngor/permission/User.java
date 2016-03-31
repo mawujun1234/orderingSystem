@@ -24,7 +24,7 @@ public class User {
 	@Column(length=10,nullable=false)
 	private String name;
 	@FieldDefine(title="登录名",hidden=false,genQuery=true,sort=5)
-	@Column(length=30,nullable=false)
+	@Column(length=30,nullable=false,unique=true)
 	private String loginName;
 	@FieldDefine(title="密码",hidden=false,genQuery=false,sort=5)
 	@Column(length=30,nullable=false)
