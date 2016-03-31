@@ -56,19 +56,20 @@ public class ShiroConfig{
 		
 		//http://blog.csdn.net/catoop/article/details/50520958
 		Map<String,String> filterChainDefinitionMap=new HashMap<String,String>();
-		filterChainDefinitionMap.put("/", "anon");
-		filterChainDefinitionMap.put("/login.jsp*", "anon");
-		filterChainDefinitionMap.put("/unauthorized.jsp*", "anon");
-		filterChainDefinitionMap.put("/login.do*", "anon");
-		filterChainDefinitionMap.put("/logout.do*", "anon");
-		filterChainDefinitionMap.put("/**/*.css", "anon");
-		filterChainDefinitionMap.put("/**/*.js", "anon");
-		filterChainDefinitionMap.put("/**/*.gif", "anon");
-		filterChainDefinitionMap.put("/**/*.jpg", "anon");
-		filterChainDefinitionMap.put("/**/*.png	", "anon");
-	
-		filterChainDefinitionMap.put("/**/*.jsp", "authc,perms");
-		filterChainDefinitionMap.put("/**", "authc");
+		filterChainDefinitionMap.put("/**", "anon");//这个是临时的
+//		filterChainDefinitionMap.put("/", "anon");
+//		filterChainDefinitionMap.put("/login.jsp*", "anon");
+//		filterChainDefinitionMap.put("/unauthorized.jsp*", "anon");
+//		filterChainDefinitionMap.put("/login.do*", "anon");
+//		filterChainDefinitionMap.put("/logout.do*", "anon");
+//		filterChainDefinitionMap.put("/**/*.css", "anon");
+//		filterChainDefinitionMap.put("/**/*.js", "anon");
+//		filterChainDefinitionMap.put("/**/*.gif", "anon");
+//		filterChainDefinitionMap.put("/**/*.jpg", "anon");
+//		filterChainDefinitionMap.put("/**/*.png	", "anon");
+//	
+//		filterChainDefinitionMap.put("/**/*.jsp", "authc,perms");
+//		filterChainDefinitionMap.put("/**", "authc");
 		//filterChainDefinitionMap.put("", "");
 		shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		
