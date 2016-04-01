@@ -7,22 +7,22 @@ Ext.define('y.main.MainViewModel', {
 			alias : 'viewmodel.main',
 
 			constructor : function() {
-				Ext.log('MainModel constructor');
+				//Ext.log('MainModel constructor');
 				var me = this;
 				// 这一句是关键，如果没有的话，this还没有初始化完成,下面的Ext.apply(me.data,....)这句就会出错
 				this.callParent(arguments);
-//				// 同步调用取得系统参数
-//				Ext.Ajax.request({
-//							url : 'applicationinfo.do',
-//							async : false, // 同步
-//							success : function(response) {
-//								var text = response.responseText;
-//								// 将字段串转换成本地变量
-//								var applicationInfo = Ext.decode(text, true);
-//								// 把从后台传过来的参数加入到data中去
-//								Ext.apply(me.data, applicationInfo);
-//							}
-//						});
+				// 同步调用取得系统参数
+				Ext.Ajax.request({
+					url : Ext.ContextPath+'/menu/queryByUser.do',
+					async : false, // 同步
+					success : function(response) {
+						var text = response.responseText;
+								// 将字段串转换成本地变量
+						var applicationInfo = Ext.decode(text, true);
+								// 把从后台传过来的参数加入到data中去
+						Ext.apply(me.data.systemMenu, applicationInfo);
+					}
+				});
 			},
 
 			data : {
@@ -70,75 +70,7 @@ Ext.define('y.main.MainViewModel', {
 				}, // 菜单的位置，'button' , 'toolbar' , 'tree'
 
 				// 系统菜单的定义，这个菜单可以是从后台通过ajax传过来的
-				systemMenu : [{
-							text : '工程管理', // 菜单项的名称
-							icon : '', // 菜单顶的图标地址
-							glyph : 0,// 菜单项的图标字体的数值
-							expanded : true, // 在树形菜单中是否展开
-							description : '', // 菜单项的描述
-							items : [{
-								text : '工程项目', // 菜单条的名称
-								module : 'Global', // 对应模块的名称
-								icon : '', // 菜单条的图标地址
-								glyph : 0xf0f7
-									// 菜单条的图标字体
-								}, {
-								text : '工程标段',
-								module : 'Project',
-								icon : '',
-								glyph : 0xf02e
-							}]
-
-						}, {
-							text : '合同管理',
-							expanded : true,
-							items : [{
-										text : '项目合同',
-										module : 'Agreement',
-										glyph : 0xf02d
-									}, {
-										text : '合同付款计划',
-										module : 'AgreementPlan',
-										glyph : 0xf03a
-									}, {
-										text : '合同请款单',
-										module : 'Payment',
-										glyph : 0xf022
-									}, {
-										text : '合同付款单',
-										module : 'Payout',
-										glyph : 0xf0d6
-									}, {
-										text : '合同发票',
-										module : 'Invoice',
-										glyph : 0xf0a0
-									}]
-						}, {
-							text : '综合查询',
-							glyph : 0xf0ce,
-							expanded : true,
-							items : [{
-										text : '项目合同台帐',
-										module : 'Agreement',
-										glyph : 0xf02d
-									}, {
-										text : '合同付款计划台帐',
-										module : 'AgreementPlan',
-										glyph : 0xf03a
-									}, {
-										text : '合同请款单台帐',
-										module : 'Payment',
-										glyph : 0xf022
-									}, {
-										text : '合同付款单台帐',
-										module : 'Payout',
-										glyph : 0xf0d6
-									}, {
-										text : '合同发票台帐',
-										module : 'Invoice',
-										glyph : 0xf0a0
-									}]
-						}]
+				systemMenu : []
 			},
 
 			formulas : {

@@ -59,8 +59,8 @@ Ext.define('y.main.MainController', {
 
 				maincenter.setActiveTab(maincenter.add({
 					xtype : 'modulepanel',
-					itemId:menuitem.get("id"),
-					title:menuitem.get("text"),
+					menu_id:menuitem.get("id"),
+					title:menuitem.get("name"),
 					url:menuitem.get("url"),
 					closable : true,
 					reorderable : true

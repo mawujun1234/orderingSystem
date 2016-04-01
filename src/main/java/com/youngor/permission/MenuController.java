@@ -66,7 +66,12 @@ public class MenuController {
 		return result;
 	}
 
-
+	@RequestMapping("/menu/queryByUser.do")
+	@ResponseBody
+	public List<MenuVO> queryByUser() {	
+		List<MenuVO> menues=menuService.queryByUser(null);
+		return menues;
+	}
 
 	@RequestMapping("/menu/queryAll.do")
 	@ResponseBody

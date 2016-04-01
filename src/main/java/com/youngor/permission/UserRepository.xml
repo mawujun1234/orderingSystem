@@ -24,7 +24,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     
     <select id="findPermissions" parameterType="string" resultType="string">
-		
+		select c.url from t_role_user a,t_role_menu b,t_menu c
+		where a.role_id=b.role_id and and b.menu_id=c.id a.user_id=#{user_id}
 	</select>
 </mapper>
 

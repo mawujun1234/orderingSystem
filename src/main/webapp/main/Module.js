@@ -25,7 +25,7 @@ Ext.define('y.main.Module', {
 			layout : 'fit', // 模块采用border布局
 
 			initComponent : function() {
-				this.html="<iframe scrolling='no' id='iframe_" + this.itemId + "' width='100%' height='100%'  frameborder='0' src='" + this.url + "'></iframe>",
+				this.html="<iframe scrolling='no' id='iframe_" + this.menu_id + "' width='100%' height='100%'  frameborder='0' src='" + this.url + "'></iframe>",
 
 				this.callParent();
 			}

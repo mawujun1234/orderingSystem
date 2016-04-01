@@ -39,5 +39,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	</if>
     	
     </select> 
+    
+    <select id="queryByUser" resultType="com.youngor.permission.MenuVO" parameterType="map">
+    	select a.* from t_menu a 
+    	where a.menuType='menu'
+    	<if test="parent_id==null">
+    		and parent_id is null
+    	</if>
+    	<if test="parent_id!=null">
+    		and parent_id=#{parent_id}
+    	</if>
+    	
+    </select> 
 </mapper>
 

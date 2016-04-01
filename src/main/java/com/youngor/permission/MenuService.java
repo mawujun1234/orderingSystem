@@ -47,5 +47,21 @@ public class MenuService extends AbstractService<Menu, String>{
 	public List<RoleMenu> query_checked_node(String role_id) {
 		return roleMenuRepository.query(Cnd.select().andEquals(M.RoleMenu.role.id, role_id));
 	}
+	/**
+	 * 获取某个用户的菜单,只获取菜单元素，不获取界面元素
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param parent_id
+	 * @return
+	 */
+	public List<MenuVO> queryByUser(String parent_id) {
+		List<MenuVO> parent_list= menuRepository.queryByUser(parent_id);
+		for(MenuVO parent:parent_list){
+			//parent.setChecked(null);
+			parent.setExpanded(true);
+			List<MenuVO> children_list= menuRepository.queryByUser(parent.getId());
+			parent.setChildren(children_list);
+		}
+		return parent_list;
+	}
 
 }

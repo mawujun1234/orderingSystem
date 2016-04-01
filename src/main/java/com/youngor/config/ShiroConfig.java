@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.youngor.permission.ShiroAuthorizingRealm;
+import com.youngor.permission.ShiroFormAjaxAuthenticationFilter;
+import com.youngor.permission.ShiroURLPermissionsFilter;
 import com.youngor.permission.UserService;
 
 @Configuration
@@ -43,9 +45,15 @@ public class ShiroConfig{
 	public Filter getShiroFilter() throws Exception{
 		ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(getSecurityManager());
-		shiroFilter.setLoginUrl("/login.jsp");
-		shiroFilter.setSuccessUrl("/index.jsp");
-		shiroFilter.setUnauthorizedUrl("/unauthorized.jsp");
+		shiroFilter.setLoginUrl("/main/login.jsp");
+		shiroFilter.setSuccessUrl("/main/index.jsp");
+		shiroFilter.setUnauthorizedUrl("/main/unauthorized.jsp");
+		
+		
+		Map<String,Filter> filters=new HashMap<String,Filter>();
+		filters.put("authc", getShiroFormAjaxAuthenticationFilter());
+		filters.put("perms", getShiroURLPermissionsFilter());
+		//shiroFilter.setFilters(filters);
 		
 //		<property name="filters">
 //		<util:map>
@@ -56,25 +64,37 @@ public class ShiroConfig{
 		
 		//http://blog.csdn.net/catoop/article/details/50520958
 		Map<String,String> filterChainDefinitionMap=new HashMap<String,String>();
-		filterChainDefinitionMap.put("/**", "anon");//这个是临时的
-//		filterChainDefinitionMap.put("/", "anon");
-//		filterChainDefinitionMap.put("/login.jsp*", "anon");
-//		filterChainDefinitionMap.put("/unauthorized.jsp*", "anon");
-//		filterChainDefinitionMap.put("/login.do*", "anon");
-//		filterChainDefinitionMap.put("/logout.do*", "anon");
-//		filterChainDefinitionMap.put("/**/*.css", "anon");
-//		filterChainDefinitionMap.put("/**/*.js", "anon");
-//		filterChainDefinitionMap.put("/**/*.gif", "anon");
-//		filterChainDefinitionMap.put("/**/*.jpg", "anon");
-//		filterChainDefinitionMap.put("/**/*.png	", "anon");
-//	
-//		filterChainDefinitionMap.put("/**/*.jsp", "authc,perms");
-//		filterChainDefinitionMap.put("/**", "authc");
+		//filterChainDefinitionMap.put("/**", "anon");//这个是临时的
+		filterChainDefinitionMap.put("/", "anon");
+		filterChainDefinitionMap.put("/main/login.jsp*", "anon");
+		filterChainDefinitionMap.put("/main/unauthorized.jsp*", "anon");
+		filterChainDefinitionMap.put("/user/login.do*", "anon");
+		filterChainDefinitionMap.put("/user/logout.do*", "anon");
+		filterChainDefinitionMap.put("/**/*.css", "anon");
+		filterChainDefinitionMap.put("/**/*.js", "anon");
+		filterChainDefinitionMap.put("/**/*.gif", "anon");
+		filterChainDefinitionMap.put("/**/*.jpg", "anon");
+		filterChainDefinitionMap.put("/**/*.png	", "anon");
+	
+		filterChainDefinitionMap.put("/**/*.jsp", "authc,perms");
+		filterChainDefinitionMap.put("/**", "authc");
 		//filterChainDefinitionMap.put("", "");
 		shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		
 		return (Filter)shiroFilter.getObject();
 		
+	}
+	
+	@Bean
+	public ShiroFormAjaxAuthenticationFilter getShiroFormAjaxAuthenticationFilter(){
+		ShiroFormAjaxAuthenticationFilter formAjaxAuthenticationFilter=new ShiroFormAjaxAuthenticationFilter();
+		return formAjaxAuthenticationFilter;
+	}
+	
+	@Bean
+	public ShiroURLPermissionsFilter getShiroURLPermissionsFilter(){
+		ShiroURLPermissionsFilter shiroURLPermissionsFilter=new ShiroURLPermissionsFilter();
+		return shiroURLPermissionsFilter;
 	}
 	
 	@Bean

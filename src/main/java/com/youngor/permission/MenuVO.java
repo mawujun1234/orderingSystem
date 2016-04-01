@@ -3,7 +3,7 @@ package com.youngor.permission;
 import java.util.List;
 
 public class MenuVO extends Menu{
-	private Boolean checked=false;
+	private Boolean checked=null;
 	private Boolean expanded=false;
 	
 	private List<MenuVO> children;

@@ -15,6 +15,6 @@ import com.mawujun.repository.IRepository;
 public interface UserRepository extends IRepository<User, String>{
 	public UserVO getByLoginName(@Param("loginName")String loginName);
 	
-	 public List<String> findPermissions(@Param("loginName")String loginName); 
+	 public List<String> findPermissions(@Param("user_id")String user_id); 
 
 }
