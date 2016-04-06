@@ -100,7 +100,10 @@ Ext.define('y.main.region.Top', {
 					{
 
 						text : '注销',
-						glyph : 0xf011
+						glyph : 0xf011,
+						handler:function(){
+							window.location.href=Ext.ContextPath+"/user/logout.do"
+						}
 					}, {
 						glyph : 0xf102,
 						handler : 'hiddenTopBottom',

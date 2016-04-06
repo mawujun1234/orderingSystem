@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.org.OrgRepository">
+	<!-- -->
+    <select id="query" resultType="com.youngor.org.NodeVO" parameterType="map">
+    	select a.orgno as id,orgnm as name,0 leaf,a.orgno,'' as remark,'org' as type from t_org a,t_org_org b
+    	where a.orgno=b.child_no  
+    	and b.parent_no=#{parent_id}
+    	and b.dim=#{dim}
+    	union
+    	select id,name,1 as leaf,orgno,remark,'position' as type
+    	from t_position where orgno=#{parent_id}
+    </select> 
+
+
+</mapper>
+

@@ -1,0 +1,2 @@
+insert into T_ORG (ORGNO, CHANCL, ORGNM, ORGSN, ORGST, ORGTY)
+values ('root', 'OTH', '雅戈尔', '雅戈尔', 'KQ', 'OTH');

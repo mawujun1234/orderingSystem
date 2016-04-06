@@ -51,7 +51,7 @@ Ext.define('y.main.MainController', {
 	    		
 	    		for(var i=0;i<tabs.length;i++){
 	    			var tab=tabs.items[i];
-	    			if(tab.itemId==menuitem.get('id')){
+	    			if(tab.menu_id==menuitem.get('id')){
 	    				maincenter.setActiveTab(tab);
 	    				return;
 	    			}

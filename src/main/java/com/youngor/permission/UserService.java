@@ -9,7 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.mawujun.utils.page.Pager;
+import com.youngor.org.OrgRepository;
+import com.youngor.org.PositionOrgUser;
+import com.youngor.org.PositionOrgUserRepository;
+import com.youngor.org.PositionRepository;
+import com.youngor.utils.M;
 
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com
@@ -25,6 +32,12 @@ public class UserService extends AbstractService<User, String> {
 	@Autowired
 	private RoleRepository roleRepository;
 	@Autowired
+	private PositionRepository positionRepository;
+	@Autowired
+	private OrgRepository orgRepository;
+	@Autowired
+	private PositionOrgUserRepository positionOrgUserRepository;
+	@Autowired
 	private RoleUserRepository userRoleRepository;
 
 	@Override
@@ -32,16 +45,22 @@ public class UserService extends AbstractService<User, String> {
 		return userRepository;
 	}
 
-	public void create(User user, String role_id) {
+//	public void create(User user, String role_id) {
+//		super.create(user);
+//		RoleUser userRole = new RoleUser(user, roleRepository.get(role_id));
+//		userRoleRepository.create(userRole);
+//	}
+	
+	public void create(User user,String position_id,String orgno) {
 		super.create(user);
-		RoleUser userRole = new RoleUser(user, roleRepository.get(role_id));
-		userRoleRepository.create(userRole);
+		PositionOrgUser positionOrgUser = new PositionOrgUser(positionRepository.load(position_id),orgRepository.get(orgno),user);
+		positionOrgUserRepository.create(positionOrgUser);
 	}
 
-	public void delete(User user, String role_id) {
+	public void deleteByRole(User user, String role_id) {
 		userRoleRepository.delete(new RoleUser(user, roleRepository.get(role_id)));
 
-		super.delete(user);
+		//super.delete(user);
 	}
 
 	public UserVO getByLoginName(String loginName) {
@@ -61,5 +80,15 @@ public class UserService extends AbstractService<User, String> {
 		Set<String> set = new HashSet<String>();
 		set.addAll(list);
 		return set;
+	}
+	
+	public Pager<User> queryByPosition(Pager<User> pager){
+		return userRepository.queryByPosition(pager);
+	}
+	@Override
+	public void delete(User user) {
+		userRoleRepository.deleteBatch(Cnd.delete().andEquals(M.RoleUser.user.id, user.getId()));
+		positionOrgUserRepository.deleteBatch(Cnd.delete().andEquals(M.PositionOrgUser.user.id, user.getId()));
+		this.getRepository().delete(user);
 	}
 }

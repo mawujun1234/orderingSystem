@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.mawujun.generator.ExtenConfig;
 import com.mawujun.generator.GeneratorService;
-import com.youngor.permission.User;
+import com.youngor.org.Position;
 
 import freemarker.template.TemplateException;
 /**
@@ -20,7 +20,7 @@ public class GeneratorCode {
 		
 		//这里弄成更加好用的方式，弄成级联的方式，例如getExtjsConfig.set。。。
 		ExtenConfig aa=new ExtenConfig();
-		aa.extjs_treeForm_model=false;
+		aa.extjs_treeForm_model=true;
 		aa.extjs_packagePrefix="y";
 		aa.extjs_form_layoutColumns=-1;
 		
@@ -29,7 +29,7 @@ public class GeneratorCode {
 		aa.extjs_grid_enable_cellEditing=false;
 		generatorService.setExtenConfig(aa);
 		
-		generatorService.generatorAllFile(User.class);
+		generatorService.generatorAllFile(Position.class);
 
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mawujun.controller.spring.SpringContextHolder;
 import com.mawujun.controller.spring.mvc.DateConverter;
 import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 
@@ -38,7 +40,6 @@ import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
 	includeFilters = @Filter(type = FilterType.ANNOTATION, value = {Controller.class}))
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
-@Import(ShiroConfig.class)
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	//private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
@@ -76,10 +77,15 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean(name="mappingJackson2JsonView")  
-	public MappingJackson2JsonView getMappingJackson2JsonView(){
+	public MappingJackson2JsonView mappingJackson2JsonView(){
 		MappingJackson2JsonView mappingJackson2JsonView=new MappingJackson2JsonView();
 		mappingJackson2JsonView.setObjectMapper(getObjectMapper());
 		return mappingJackson2JsonView;
+	}
+	
+	@Bean
+	public SpringContextHolder springContextHolder(){
+		return new SpringContextHolder();
 	}
 
 	/**
@@ -88,8 +94,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		//默认使用jackson作为视图解析�?
-		registry.enableContentNegotiation(getMappingJackson2JsonView());
-		registry.jsp();
+		registry.enableContentNegotiation(mappingJackson2JsonView());
+		registry.jsp("/", ".jsp");
 	}
 	
 	@Bean(name="exceptionResolver")  

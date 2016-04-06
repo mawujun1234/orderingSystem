@@ -41,8 +41,10 @@ Ext.define('y.main.LoginWindow', {
 					handler : function(button){
 						var formpanel = button.up('form');
 						formpanel.submit({ 
+							headers:{ 'Accept':'application/json;'},
 				            waitMsg : '正在登录......', 
 				            url : Ext.ContextPath+'/user/login.do', 
+				            
 				            success : function(form, action) {
 				            	if(action.result.success){
 				            		 //window.location.href = Ext.ContextPath+action.result.root;//'index.jsp';
@@ -54,18 +56,17 @@ Ext.define('y.main.LoginWindow', {
 								switch (action.failureType) {
 									case Ext.form.Action.CLIENT_INVALID:
 												    //客户端数据验证失败的情况下，例如客户端验证邮件格式不正确的情况下提交表单  
-									ShowMessage('提示','数据错误，非法提交');  
+										Ext.Msg.alert('提示','数据错误，非法提交');  
 									    break;
 									case Ext.form.Action.CONNECT_FAILURE:
 												    //服务器指定的路径链接不上时  
-										ShowMessage('连接错误','指定路径连接错误!'); 
-									                break;
+										Ext.Msg.alert('连接错误','认证失败!'); 
+									    break;
 									case Ext.form.Action.SERVER_INVALID:
 									            	//服务器端你自己返回success为false时  
-										ShowMessage('友情提示', action.result.root);	
+										Ext.Msg.alert('友情提示', action.result.msg);	
 										break;
-									default:
-													 //其它类型的错误  
+									default:			 //其它类型的错误  
 						                ShowMessage('警告', '服务器数据传输失败：'+action.response.responseText); 
 										break;
 									}

@@ -16,6 +16,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	where b.role_id=#{role_id}
     </select>
     
+    <!--根据职位 获取用户 -->
+    <select id="queryByPosition" resultType="com.youngor.permission.User" parameterType="map">
+    	select a.* from t_user a,t_position_org_user b
+    	where a.id=b.user_id and b.position_id=#{position_id}
+    	<if test="loginName!=null">
+    		and a.loginName like #{loginName}
+    	</if>
+    	<if test="loginName!=null">
+    		and a.name like #{name}
+    	</if>
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryByPosition_count" resultType="int" parameterType="map">
+    	select count(a.id) from t_user a,t_position_org_user b
+    	where a.id=b.user_id and b.position_id=#{position_id}
+    	<if test="loginName!=null">
+    		and a.loginName like #{loginName}
+    	</if>
+    	<if test="loginName!=null">
+    		and a.name like #{name}
+    	</if>
+    </select>
+    
     
     <select id="getByLoginName" resultType="com.youngor.permission.UserVO" parameterType="map">
     	select * from t_user a

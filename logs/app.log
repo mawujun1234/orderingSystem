@@ -3134,3 +3134,498 @@ public java.util.List<com.youngor.permission.Menu> com.youngor.permission.MenuCo
 15:09:49.975 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
 15:09:49.975 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
 15:09:49.975 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:50:20.074 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+11:51:13.770 [rebel-change-detector-thread] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 11:49:58 CST 2016]; root of context hierarchy
+11:51:19.408 [rebel-change-detector-thread] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:21:08.957 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:23:31.814 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:26:54.561 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:30:50.857 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:36:21.665 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:44:15.189 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:48:34.555 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:50:12.892 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:51:07.854 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:54:39.797 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:59:08.309 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:04:02.165 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:06:23.752 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:12:18.221 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:13:25.912 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:12:07 CST 2016]; root of context hierarchy
+15:13:26.114 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:14:20.094 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:17:07.086 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:44:24.146 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:44:25.230 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:44:13 CST 2016]; root of context hierarchy
+15:45:39.379 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:45:40.328 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:45:29 CST 2016]; root of context hierarchy
+15:46:23.901 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:46:24.767 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:46:13 CST 2016]; root of context hierarchy
+15:55:22.022 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:55:22.468 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:55:15 CST 2016]; root of context hierarchy
+15:57:10.423 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:57:10.708 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 15:57:03 CST 2016]; root of context hierarchy
+16:00:54.975 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:00:55.518 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 16:00:45 CST 2016]; root of context hierarchy
+16:04:14.127 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:04:14.272 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - «Â≥˝SpringContextHolder÷–µƒApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Apr 05 16:04:07 CST 2016]; root of context hierarchy
+16:06:15.111 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:27:10.827 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:29:22.686 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:34:40.920 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:38:52.979 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:50:21.495 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:53:46.601 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:55:54.788 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:00:56.890 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:05:53.145 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:11:16.932 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:15:29.650 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+08:36:43.962 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+09:01:07.574 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+10:37:39.822 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+10:52:00.038 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+10:52:00.054 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+10:52:00.065 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+10:52:00.075 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+10:52:00.076 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+10:52:00.076 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+10:52:00.077 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+10:52:00.077 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+10:52:00.078 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+10:52:00.078 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+10:52:00.081 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+10:52:00.082 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+10:52:00.082 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+10:52:00.082 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+10:52:00.083 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+10:52:00.083 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+10:52:00.085 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+10:52:00.085 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+10:52:00.088 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+10:52:00.091 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+10:52:00.096 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+10:52:00.097 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+10:52:00.098 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+10:52:00.099 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+10:52:00.099 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+10:52:00.100 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+10:52:00.101 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+10:52:00.101 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+10:52:00.102 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+10:52:00.103 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+10:52:00.103 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+10:52:00.103 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+10:52:00.104 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+10:52:00.104 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+10:52:00.104 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+10:52:00.108 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+10:52:00.113 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroFormAjaxAuthenticationFilter
+10:52:00.114 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroKickoutSessionControlFilter
+10:52:00.115 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroURLPermissionsFilter
+10:52:00.115 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+10:52:00.116 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+10:52:00.116 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+10:52:00.117 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+10:52:00.117 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+10:52:00.117 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+10:52:00.118 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+10:52:00.118 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+10:52:00.119 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+10:52:00.119 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+10:52:00.119 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+10:52:00.120 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+10:52:00.120 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+10:52:00.120 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+10:52:00.121 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+10:52:00.121 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+10:52:00.121 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+10:52:00.122 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+10:52:00.122 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+10:52:00.123 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+10:52:00.123 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+10:52:00.123 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+10:52:00.123 [main] INFO  com.mawujun.utils.file.FileUtils - chancl
+10:52:00.124 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+10:52:00.124 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+10:52:00.124 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - child
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - id
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - code
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - name
+10:52:00.131 [main] INFO  com.mawujun.utils.file.FileUtils - url
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - id
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - name
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+10:52:00.132 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+10:52:00.133 [main] INFO  com.mawujun.utils.file.FileUtils - role
+10:52:00.133 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+10:52:00.133 [main] INFO  com.mawujun.utils.file.FileUtils - user
+10:52:00.133 [main] INFO  com.mawujun.utils.file.FileUtils - role
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - id
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - name
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+10:52:00.134 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+11:59:46.182 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:03:04.367 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@66e338c4
+13:25:35.613 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:49:21.135 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.Org> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_no', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+13:49:21.136 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+13:49:21.137 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:49:21.137 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:04:28.107 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:32:25.476 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+14:32:25.497 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+14:32:25.508 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+14:32:25.519 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+14:32:25.520 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+14:32:25.520 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+14:32:25.521 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+14:32:25.521 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+14:32:25.522 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+14:32:25.522 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+14:32:25.523 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.NodeVO
+14:32:25.526 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+14:32:25.526 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+14:32:25.527 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgController
+14:32:25.528 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+14:32:25.528 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+14:32:25.533 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgRepository
+14:32:25.541 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgService
+14:32:25.541 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+14:32:25.542 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+14:32:25.542 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Position
+14:32:25.543 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Position
+14:32:25.543 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionController
+14:32:25.543 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionRepository
+14:32:25.544 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionService
+14:32:25.545 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+14:32:25.545 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+14:32:25.546 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+14:32:25.546 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+14:32:25.547 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+14:32:25.547 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+14:32:25.547 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+14:32:25.548 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+14:32:25.548 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+14:32:25.548 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+14:32:25.549 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+14:32:25.549 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+14:32:25.550 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+14:32:25.550 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+14:32:25.551 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+14:32:25.551 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+14:32:25.552 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+14:32:25.552 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+14:32:25.552 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+14:32:25.557 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+14:32:25.560 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroFormAjaxAuthenticationFilter
+14:32:25.560 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroKickoutSessionControlFilter
+14:32:25.561 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroURLPermissionsFilter
+14:32:25.562 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+14:32:25.563 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+14:32:25.563 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+14:32:25.564 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+14:32:25.564 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+14:32:25.565 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+14:32:25.565 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+14:32:25.565 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+14:32:25.566 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Org
+14:32:25.566 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$child
+14:32:25.566 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$parent
+14:32:25.567 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg
+14:32:25.567 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+14:32:25.567 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+14:32:25.568 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+14:32:25.568 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+14:32:25.568 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+14:32:25.569 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+14:32:25.569 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+14:32:25.569 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+14:32:25.570 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+14:32:25.571 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+14:32:25.571 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+14:32:25.571 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+14:32:25.571 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+14:32:25.571 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+14:32:25.572 [main] INFO  com.mawujun.utils.file.FileUtils - chancl
+14:32:25.572 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+14:32:25.572 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+14:32:25.572 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+14:32:25.579 [main] INFO  com.mawujun.utils.file.FileUtils - child
+14:32:25.579 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+14:32:25.579 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Position
+14:32:25.579 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:32:25.579 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - code
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - url
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+14:32:25.580 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+14:32:25.581 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+14:32:25.582 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:32:25.582 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+14:32:25.582 [main] INFO  com.mawujun.utils.file.FileUtils - user
+14:32:25.582 [main] INFO  com.mawujun.utils.file.FileUtils - role
+14:32:25.582 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+14:32:25.583 [main] INFO  com.mawujun.utils.file.FileUtils - id
+14:32:25.583 [main] INFO  com.mawujun.utils.file.FileUtils - name
+14:32:25.583 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+14:32:25.583 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+14:32:25.583 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+14:38:23.175 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:38:56.430 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "ROOT": ±Í ∂∑˚Œﬁ–ß
+
+### The error may exist in com/youngor/org/OrgRepository.xml
+### The error may involve com.youngor.org.OrgRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.orgno as id,orgnm as name,decode(a.orgty,'SHOP',1,0) leaf from t_org a,t_org_org b      where a.orgno=b.child_no        and b.parent_no=?      and b.dim=?      union      select id,name,1 as leaf      from t_position where orgno=root
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "ROOT": ±Í ∂∑˚Œﬁ–ß
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "ROOT": ±Í ∂∑˚Œﬁ–ß
+
+14:38:56.431 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+14:38:56.431 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:38:56.431 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:41:07.979 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@2fd8ed9
+14:41:08.683 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@bd32a20
+14:41:42.246 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@5c609f13
+14:41:54.792 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:41:54.792 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:41:54.792 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:41:54.792 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:42:44.312 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:42:44.312 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:42:44.312 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:42:44.312 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:50:24.682 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:50:24.683 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:50:24.683 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:50:24.683 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:51:36.428 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:51:36.428 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:51:36.428 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:51:36.428 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:55:24.823 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:57:26.193 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:57:26.194 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:57:26.194 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:57:26.194 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:57:36.003 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.query(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:57:36.003 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:57:36.003 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:57:36.003 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:07:33.386 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.org.Position@583a3046
+15:07:37.962 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.org.Position@14b176e7
+15:10:33.037 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:24:32.159 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.query(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='role_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+15:24:32.164 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+15:24:32.164 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:24:32.164 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:41:06.607 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:44:47.852 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@51fd3751
+15:44:48.322 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@b076817
+15:48:28.197 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='position_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+15:48:28.198 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+15:48:28.198 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:48:28.198 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:52:48.110 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."NAME": ±Í ∂∑˚Œﬁ–ß
+
+### The error may exist in com/youngor/permission/UserRepository.xml
+### The error may involve com.youngor.permission.UserRepository.queryByPosition_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(b.user_id) from t_position_org_user b      where b.position_id=?              and a.loginName like '%2%'                     and a.name like '%orderingSystem Maven Webapp%'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."NAME": ±Í ∂∑˚Œﬁ–ß
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."NAME": ±Í ∂∑˚Œﬁ–ß
+
+15:52:48.111 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:52:48.111 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:52:48.111 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:19.999 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+15:53:19.999 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+15:53:19.999 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:19.999 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:24.037 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+15:53:24.038 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+15:53:24.038 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:24.038 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:43.927 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+15:53:43.927 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+15:53:43.927 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:43.927 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:46.422 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+15:53:46.422 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+15:53:46.422 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:46.422 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:02:46.118 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:10:59.080 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:14:54.365 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:20:18.980 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:22:58.671 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:25:18.543 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:29:59.504 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:31:26.121 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+16:31:26.122 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+16:31:26.122 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:31:26.122 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:32:56.928 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+16:32:56.935 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+16:32:56.950 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+16:32:56.960 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+16:32:56.961 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+16:32:56.962 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+16:32:56.963 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+16:32:56.963 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+16:32:56.964 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+16:32:56.965 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+16:32:56.965 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.NodeVO
+16:32:56.969 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+16:32:56.969 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+16:32:56.970 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgController
+16:32:56.971 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+16:32:56.971 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+16:32:56.974 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgRepository
+16:32:56.981 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgService
+16:32:56.982 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+16:32:56.982 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+16:32:56.983 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Position
+16:32:56.983 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Position
+16:32:56.983 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionController
+16:32:56.984 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionOrgUser
+16:32:56.984 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUser
+16:32:56.984 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUserRepository
+16:32:56.985 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionRepository
+16:32:56.985 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionService
+16:32:56.987 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+16:32:56.987 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+16:32:56.988 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+16:32:56.988 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+16:32:56.990 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+16:32:56.990 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+16:32:56.991 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+16:32:56.991 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+16:32:56.992 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+16:32:56.993 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+16:32:56.993 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+16:32:56.993 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+16:32:56.994 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+16:32:56.995 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+16:32:56.995 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+16:32:56.996 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+16:32:56.996 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+16:32:56.996 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+16:32:56.997 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+16:32:57.003 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+16:32:57.008 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroFormAjaxAuthenticationFilter
+16:32:57.008 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroKickoutSessionControlFilter
+16:32:57.009 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroURLPermissionsFilter
+16:32:57.010 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+16:32:57.010 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+16:32:57.010 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+16:32:57.011 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+16:32:57.011 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+16:32:57.012 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+16:32:57.012 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+16:32:57.013 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+16:32:57.013 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Org
+16:32:57.013 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$child
+16:32:57.014 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$parent
+16:32:57.014 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg
+16:32:57.014 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Position
+16:32:57.015 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+16:32:57.015 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+16:32:57.015 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+16:32:57.016 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+16:32:57.016 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+16:32:57.016 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+16:32:57.017 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+16:32:57.017 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+16:32:57.017 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+16:32:57.019 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+16:32:57.019 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+16:32:57.019 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+16:32:57.019 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+16:32:57.020 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+16:32:57.020 [main] INFO  com.mawujun.utils.file.FileUtils - chancl
+16:32:57.020 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+16:32:57.020 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+16:32:57.020 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+16:32:57.029 [main] INFO  com.mawujun.utils.file.FileUtils - child
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Position
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - id
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - name
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+16:32:57.031 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+16:32:57.033 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionOrgUser
+16:32:57.033 [main] INFO  com.mawujun.utils.file.FileUtils - position
+16:32:57.033 [main] INFO  com.mawujun.utils.file.FileUtils - org
+16:32:57.034 [main] INFO  com.mawujun.utils.file.FileUtils - user
+16:32:57.034 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - id
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - code
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - name
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - url
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+16:32:57.035 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - id
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - name
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+16:32:57.036 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+16:32:57.037 [main] INFO  com.mawujun.utils.file.FileUtils - role
+16:32:57.037 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+16:32:57.037 [main] INFO  com.mawujun.utils.file.FileUtils - user
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - role
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - id
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - name
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+16:32:57.038 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+16:34:45.027 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+16:34:45.028 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+16:34:45.028 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:34:45.028 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:34:48.057 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.permission.User> com.youngor.permission.UserController.queryByPosition(com.mawujun.utils.page.Pager<com.youngor.permission.User>,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'ID' from result set.  Cause: java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ; nested exception is java.sql.SQLException: Œﬁ∑®◊™ªªŒ™ƒ⁄≤ø±Ì æ
+16:34:48.057 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.UncategorizedSQLException], based on exception mapping [java.lang.Exception]
+16:34:48.057 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:34:48.057 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:40:48.888 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.User@65c3ef9d

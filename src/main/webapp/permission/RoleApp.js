@@ -1,7 +1,7 @@
 Ext.require("y.permission.Role");
 Ext.require("y.permission.RoleTree");
 Ext.require("y.permission.RoleForm");
-Ext.require('y.permission.UserGrid');
+Ext.require('y.permission.RoleUserGrid');
 Ext.require('y.permission.MenuTreeCheckbox');
 Ext.onReady(function(){
 	var tree=Ext.create('y.permission.RoleTree',{
@@ -12,9 +12,9 @@ Ext.onReady(function(){
 		region:'west'
 	});
 	
-	var userGrid=Ext.create('y.permission.UserGrid',{
+	var userGrid=Ext.create('y.permission.RoleUserGrid',{
 		
-		title:'用户管理'
+		title:'用户选择'
 	});
 	
 	
@@ -47,7 +47,7 @@ Ext.onReady(function(){
 		});
 		userGrid.getStore().reload();
 		
-		menuTreeCheckbox.getStore().getProxy().extraParams=Ext.apply(userGrid.getStore().getProxy().extraParams,{
+		menuTreeCheckbox.getStore().getProxy().extraParams=Ext.apply(menuTreeCheckbox.getStore().getProxy().extraParams,{
 			role_id:record.get("id")
 		});
 		menuTreeCheckbox.query_checked_node();

@@ -1,4 +1,4 @@
-Ext.define('y.permission.UserGrid',{
+Ext.define('y.org.UserGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
 	     'y.permission.User',
@@ -28,7 +28,7 @@ Ext.define('y.permission.UserGrid',{
 			model: 'y.permission.User',
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/user/query.do',
+			    url : Ext.ContextPath+'/user/queryByPosition.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
@@ -74,10 +74,10 @@ Ext.define('y.permission.UserGrid',{
             	iconCls:'icon-search',
             	handler:function(btn){
             		var grid=btn.up("grid");
-	            	grid.getStore().getProxy().extraParams={
+	            	grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,{
 						'name':grid.down("#name").getValue(),
 						'loginName':grid.down("#loginName").getValue()
-	                };
+	                });
             		grid.getStore().reload();
             	}
             }
@@ -136,7 +136,8 @@ Ext.define('y.permission.UserGrid',{
 		formpanel.loadRecord(child);
 		
 		formpanel.getForm().getRecord().getProxy( ).extraParams={
-			role_id:window.selected_role.get("id")
+			position_id:window.selected_position.get("id"),
+			orgno:window.selected_position.get("orgno")
 		}
 		
     	var win=Ext.create('Ext.window.Window',{
@@ -191,7 +192,8 @@ Ext.define('y.permission.UserGrid',{
 		}
 		
 		node.getProxy( ).extraParams={
-			role_id:window.selected_role.get("id")
+			position_id:window.selected_position.get("id"),
+			orgno:window.selected_position.get("orgno")
 		}
 		
 		var parent=node.parentNode;
