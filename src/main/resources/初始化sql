@@ -1,2 +1,33 @@
 insert into T_ORG (ORGNO, CHANCL, ORGNM, ORGSN, ORGST, ORGTY)
 values ('root', 'OTH', '雅戈尔', '雅戈尔', 'KQ', 'OTH');
+insert into t_user (ID, LOGINNAME, NAME, PWD, REMARK)
+values ('admin', 'admin', 'admin', 'admin', 'admin');
+
+-------------角色
+insert into T_ROLE (ID, NAME, PARENT_ID, REMARK, ROLETYPE)
+values ('admin', '管理员', null, '管理员', 'role');
+
+-----------------------------------------------------菜单
+insert into T_MENU (ID, NAME, PARENT_ID, REMARK, URL, CODE, MENUTYPE)
+values ('1a6a75a5-0720-4388-8d67-345393bba3a2', '菜单管理', null, null, '/permission/MenuApp.jsp', null, 'menu');
+
+insert into T_MENU (ID, NAME, PARENT_ID, REMARK, URL, CODE, MENUTYPE)
+values ('a49cf606-5dbb-4804-bd0c-63da6f2a03e7', '角色管理', null, '22', '/permission/RoleApp.jsp', null, 'menu');
+
+insert into T_MENU (ID, NAME, PARENT_ID, REMARK, URL, CODE, MENUTYPE)
+values ('feadcca4-275e-4ffd-80e6-6e559e6ec2f9', '组织管理', null, null, '/org/OrgApp.jsp', null, 'menu');
+
+
+-----------------------------------各种关系
+insert into T_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('admin', '1a6a75a5-0720-4388-8d67-345393bba3a2');
+
+insert into T_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('admin', 'a49cf606-5dbb-4804-bd0c-63da6f2a03e7');
+
+insert into T_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('admin', 'feadcca4-275e-4ffd-80e6-6e559e6ec2f9');
+
+
+insert into T_ROLE_USER (USER_ID, ROLE_ID)
+values ('admin', 'admin');

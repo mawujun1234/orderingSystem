@@ -53,12 +53,12 @@ public class MenuService extends AbstractService<Menu, String>{
 	 * @param parent_id
 	 * @return
 	 */
-	public List<MenuVO> queryByUser(String parent_id) {
-		List<MenuVO> parent_list= menuRepository.queryByUser(parent_id);
+	public List<MenuVO> queryByUser(String parent_id,String user_id) {
+		List<MenuVO> parent_list= menuRepository.queryByUser(parent_id,user_id);
 		for(MenuVO parent:parent_list){
 			//parent.setChecked(null);
 			parent.setExpanded(true);
-			List<MenuVO> children_list= menuRepository.queryByUser(parent.getId());
+			List<MenuVO> children_list= this.queryByUser(parent.getId(),user_id);
 			parent.setChildren(children_list);
 		}
 		return parent_list;

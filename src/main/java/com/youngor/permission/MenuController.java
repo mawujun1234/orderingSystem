@@ -66,10 +66,15 @@ public class MenuController {
 		return result;
 	}
 
+	/**
+	 * 用户登录的时候获取可访问的菜单
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
 	@RequestMapping("/menu/queryByUser.do")
 	@ResponseBody
 	public List<MenuVO> queryByUser() {	
-		List<MenuVO> menues=menuService.queryByUser(null);
+		List<MenuVO> menues=menuService.queryByUser(null,ShiroUtils.getUserId());
 		return menues;
 	}
 

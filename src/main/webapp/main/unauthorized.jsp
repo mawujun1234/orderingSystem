@@ -1,10 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-
-%>
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,16 +6,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
 
-
-	<%@include file="../common/init.jsp" %>
-	
-	<script type="text/javascript" src="login.js"></script>
-	<script>
-
-	</script>
   </head>
   
   <body>
-   
+   你没有权限访问该页面
   </body>
 </html>

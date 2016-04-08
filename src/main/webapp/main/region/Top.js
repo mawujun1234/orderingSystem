@@ -99,6 +99,15 @@ Ext.define('y.main.region.Top', {
 //					}, 
 					{
 
+						text : '修改密码',
+						glyph : 0xf044,
+						handler:function(){
+							var win=Ext.create('y.main.UpdatePwdWindow',{});
+							win.show();	
+						}
+					}, 
+					{
+
 						text : '注销',
 						glyph : 0xf011,
 						handler:function(){

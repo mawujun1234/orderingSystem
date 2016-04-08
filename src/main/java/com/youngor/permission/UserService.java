@@ -53,12 +53,15 @@ public class UserService extends AbstractService<User, String> {
 	
 	public void create(User user,String position_id,String orgno) {
 		super.create(user);
-		PositionOrgUser positionOrgUser = new PositionOrgUser(positionRepository.load(position_id),orgRepository.get(orgno),user);
+		PositionOrgUser positionOrgUser = new PositionOrgUser(positionRepository.load(position_id),orgRepository.load(orgno),user);
 		positionOrgUserRepository.create(positionOrgUser);
 	}
-
-	public void deleteByRole(User user, String role_id) {
-		userRoleRepository.delete(new RoleUser(user, roleRepository.get(role_id)));
+	public void addRole(String user_id,String role_id) {
+		RoleUser userRole = new RoleUser(userRepository.load(user_id), roleRepository.load(role_id));
+		userRoleRepository.create(userRole);
+	}
+	public void deleteByRole(String user_id,String role_id) {
+		userRoleRepository.delete(new RoleUser(userRepository.load(user_id), roleRepository.load(role_id)));
 
 		//super.delete(user);
 	}

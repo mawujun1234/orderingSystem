@@ -32,6 +32,16 @@ public class User {
 	@FieldDefine(title="备注")
 	@Column(length=150)
 	private String remark;
+//	@FieldDefine(title="备注")
+//	@Column(length=150)
+//	private Boolean isAdmin;
+	
+	public boolean isAdmin(){
+		if("admin".equals(this.getLoginName())){
+			return true;
+		}
+		return false;
+	}
 
 	public String getId() {
 		return id;

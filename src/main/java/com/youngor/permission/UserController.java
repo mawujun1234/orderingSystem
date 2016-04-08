@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
 import com.youngor.utils.M;
 /**
@@ -73,6 +74,10 @@ public class UserController {
              }
              model.addAttribute("success", true);
             //ShiroUtils.getAuthenticationInfo().setIpAddr(getIpAddr(request));
+             
+             
+             //显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
+             SecurityUtils.getSubject().hasRole("XXX") ;
              return successUrl;
         }  
        // return model;
@@ -166,6 +171,13 @@ public class UserController {
 		return userService.get(id);
 	}
 	
+	@RequestMapping("/user/addRole.do")
+	//@ResponseBody
+	public String addRole(String user_id,String role_id) {
+		userService.addRole(user_id,role_id);
+		return user_id;
+	}
+	
 	@RequestMapping("/user/create.do")
 	//@ResponseBody
 	public User create(@RequestBody User user,String position_id,String orgno) {
@@ -178,6 +190,13 @@ public class UserController {
 	public  User update(@RequestBody User user) {
 		userService.update(user);
 		return user;
+	}
+	
+	@RequestMapping("/user/updatePwd.do")
+	//@ResponseBody
+	public String updatePwd(String password,String password_new) {
+		userService.update(Cnd.update().set(M.User.pwd, password_new).andEquals(M.User.id, ShiroUtils.getUserId()).andEquals(M.User.pwd, password));
+		return ShiroUtils.getUserId();
 	}
 	
 	@RequestMapping("/user/deleteById.do")
@@ -196,9 +215,9 @@ public class UserController {
 	
 	@RequestMapping("/user/deleteByRole.do")
 	//@ResponseBody
-	public User deleteByRole(@RequestBody User user,String role_id) {
-		userService.deleteByRole(user,role_id);
-		return user;
+	public String deleteByRole(String user_id,String role_id) {
+		userService.deleteByRole(user_id,role_id);
+		return user_id;
 	}
 	
 	

@@ -1,11 +1,8 @@
-/**
- * 功能的扩展，添加自定义的怎，删，改
- * 添加右键菜单，增，删，改，并且增加工具栏，增，删，改。
- * 后台的类最好继承TreeNode类，这样就可以少写很多代码
- */
-Ext.define('y.main.LoginWindow', {
+
+Ext.define('y.main.UpdatePwdWindow', {
     extend: 'Ext.window.Window',
-    title:'登录',
+    title:'修改密码',
+    modal:true,
     initComponent: function () {
 		var me = this;
 		var formpanel=Ext.create('Ext.form.Panel',{
@@ -17,62 +14,46 @@ Ext.define('y.main.LoginWindow', {
 		    },
 			items: [
 				{
-			        fieldLabel: '用户名',
-			        name: 'username',
+			        fieldLabel: '密码',
+			        name: 'password',
 		            allowBlank: false,
 		            afterLabelTextTpl: Ext.required,
-		            blankText:"登录名不允许为空",
+		            blankText:"密码不允许为空",
+		            inputType: 'password',
 			        xtype:'textfield'
 			    },
 				{
-			        fieldLabel: '编码',
-			        name: 'password',
+			        fieldLabel: '新密码',
+			        name: 'password_new',
+			        allowBlank: false,
 			        afterLabelTextTpl: Ext.required,
-		            blankText:"密码不允许为空",
+		            blankText:"新密码不允许为空",
 		            inputType: 'password',
 			        xtype:'textfield'
 			    }],
 			 buttons:[{
-					text : '登录',
+					text : '保存',
 					itemId : 'save',
 					formBind: true, //only enabled once the form is valid
 		       		disabled: true,
 					glyph : 0xf0c7,
 					handler : function(button){
 						var formpanel = button.up('form');
-						formpanel.submit({ 
+						
+						Ext.Ajax.request({
+							url:Ext.ContextPath+'/user/updatePwd.do',
+//							params:{
+//								password:,
+//								password_new:
+//							},
+							params:formpanel.getForm().getValues(),
 							headers:{ 'Accept':'application/json;'},
-				            waitMsg : '正在登录......', 
-				            url : Ext.ContextPath+'/user/login.do', 
-				            
-				            success : function(form, action) {
-				            	if(action.result.success){
-				            		 //window.location.href = Ext.ContextPath+action.result.root;//'index.jsp';
-				            		top.window.location.href = Ext.ContextPath+'/main/index.jsp';
-				            	}
-				            }, 
-				            failure : function(form, action) {
-					            form.reset();
-								switch (action.failureType) {
-									case Ext.form.Action.CLIENT_INVALID:
-												    //客户端数据验证失败的情况下，例如客户端验证邮件格式不正确的情况下提交表单  
-										Ext.Msg.alert('提示','数据错误，非法提交');  
-									    break;
-									case Ext.form.Action.CONNECT_FAILURE:
-												    //服务器指定的路径链接不上时  
-										Ext.Msg.alert('连接错误','认证失败!'); 
-									    break;
-									case Ext.form.Action.SERVER_INVALID:
-									            	//服务器端你自己返回success为false时  
-										Ext.Msg.alert('友情提示', action.result.msg);	
-										break;
-									default:			 //其它类型的错误  
-						                ShowMessage('警告', '服务器数据传输失败：'+action.response.responseText); 
-										break;
-									}
-				            	}
-				            		  
-				           });		
+							success:function(){
+								//button.up('window').close();
+								//me.onReload(parent);
+								button.up('window').close();
+							}
+						 });	
 						
 						}
 					},{
