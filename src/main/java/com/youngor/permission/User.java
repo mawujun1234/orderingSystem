@@ -4,12 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
 
-@Entity(name="t_user")
+@Entity
+@Table(name="t_user",schema="od")
 public class User {
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -36,12 +38,12 @@ public class User {
 //	@Column(length=150)
 //	private Boolean isAdmin;
 	
-	public boolean isAdmin(){
-		if("admin".equals(this.getLoginName())){
-			return true;
-		}
-		return false;
-	}
+//	public boolean isAdmin(){
+//		if("admin".equals(this.getLoginName())){
+//			return true;
+//		}
+//		return false;
+//	}
 
 	public String getId() {
 		return id;

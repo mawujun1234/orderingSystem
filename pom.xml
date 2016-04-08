@@ -46,20 +46,37 @@
 				<profiles.active>dev</profiles.active>
 				<log4j2.level>debug</log4j2.level>
 				<finalName>ROOT</finalName>
-				<oracle.host>127.0.0.1</oracle.host>
+				<jdbc.dbType>oracle</jdbc.dbType>
+				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+				<jdbc.url>jdbc:oracle:thin:@192.168.188.129:1521:xxb</jdbc.url>
+				<jdbc.username>OD</jdbc.username>
+				<jdbc.password>OrD007YK</jdbc.password>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
-
+		<profile>
+			<id>dev_host</id>
+			<properties>
+				<profiles.active>dev_host</profiles.active>
+				<log4j2.level>debug</log4j2.level>
+				<finalName>ROOT</finalName>
+				<jdbc.dbType>oracle</jdbc.dbType>
+				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+				<jdbc.url>jdbc:oracle:thin:@127.0.0.1:1521:ems</jdbc.url>
+				<jdbc.username>ordersys</jdbc.username>
+				<jdbc.password>ordersys</jdbc.password>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+			</properties>
+		</profile>
 		<profile>
 			<id>dev_home</id>
 			<properties>
 				<profiles.active>dev_home</profiles.active>
 				<log4j2.level>debug</log4j2.level>
 				<finalName>ROOT</finalName>
-				<oracle.host>127.0.0.2</oracle.host>
 			</properties>
 		</profile>
 
@@ -69,7 +86,12 @@
 				<profiles.active>prod</profiles.active>
 				<log4j2.level>warn</log4j2.level>
 				<finalName>ROOT</finalName>
-				<oracle.host>127.0.0.3</oracle.host>
+				<jdbc.dbType>oracle</jdbc.dbType>
+				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+				<jdbc.url>jdbc:oracle:thin:@192.168.188.129:1521:xxb</jdbc.url>
+				<jdbc.username>OD</jdbc.username>
+				<jdbc.password>OrD007YK</jdbc.password>
+				<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
 			</properties>
 		</profile>
 

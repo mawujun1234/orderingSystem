@@ -1,18 +1,25 @@
 package com.youngor.ordmt;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.validation.constraints.NotNull;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.youngor.ordmt.OrdmtScde.PK;
 
 @Entity(name="ord_ordmt_scde")
+@IdClass(PK.class)
 public class OrdmtScde {
+	@Id
 	@FieldDefine(title="订货会批号",sort=50,hidden=true)
 	@Column(length=30,nullable=false,updatable=false)
 	private String ormtno;
+	@Id
 	@FieldDefine(title="订货单位类型",sort=50,hidden=true)
 	@Column(length=30,nullable=false,updatable=false)
 	private String orgty;
@@ -35,6 +42,34 @@ public class OrdmtScde {
 	private String mtlmsp;
 	@FieldDefine(title="修改日期",sort=40)
 	private Date mtlmdt;
+	
+	public static class PK implements Serializable {
+		private static final long serialVersionUID = 1L;
+
+		private String ormtno;
+
+        private String orgty;
+
+		public String getOrmtno() {
+			return ormtno;
+		}
+
+		public void setOrmtno(String ormtno) {
+			this.ormtno = ormtno;
+		}
+
+		public String getOrgty() {
+			return orgty;
+		}
+
+		public void setOrgty(String orgty) {
+			this.orgty = orgty;
+		}
+
+
+        
+    }
+	
 	public String getOrmtno() {
 		return ormtno;
 	}

@@ -188,6 +188,27 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
 			</#list>
             ]
         }<#if propertyColumn_has_next>,</#if>
+        <#elseif propertyColumn.jsType=='bool'>
+        {
+            xtype      : 'fieldcontainer',
+            fieldLabel : '${propertyColumn.property_label!propertyColumn.property}',
+            defaultType: 'radiofield',
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+           		{
+                    boxLabel  : 'true',
+                    name: '${propertyColumn.property}',
+                    inputValue: 'true'
+                },{
+                    boxLabel  : 'false',
+                    name: '${propertyColumn.property}',
+                    inputValue: 'false'
+                }
+            ]
+        }<#if propertyColumn_has_next>,</#if>
 		<#else>
 			这个radio自动生成还没有做，请不要设置为radio
 		</#if>

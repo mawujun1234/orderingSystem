@@ -92,7 +92,7 @@ public class ShiroURLPermissionsFilter extends AuthorizationFilter {//Permission
              // If the path does match, then pass on to the subclass implementation for specific checks
              //(first match 'wins'):
              if (pathsMatch(path, current_path)) {
-                 log.info("当前路径匹配 '{}'. 所以不进行权限验证", path);
+                 log.info("当前路径{}匹配 '{}'. 所以不进行权限验证", current_path,path);
                  //Object config = this.appliedPaths.get(path);
                 // return isFilterChainContinued(request, response, path, config);
                  return true;

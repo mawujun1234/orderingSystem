@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.youngor.permission.ShiroApplicationListener;
 import com.youngor.permission.ShiroAuthorizingRealm;
+import com.youngor.permission.ShiroFormAuthenticationFilter;
 import com.youngor.permission.ShiroKickoutSessionControlFilter;
 import com.youngor.permission.ShiroURLPermissionsFilter;
 
@@ -75,6 +76,13 @@ public class ShiroConfig {
 		return shiroURLPermissionsFilter;
 	}
 	
+	@Bean
+	public ShiroFormAuthenticationFilter shiroFormAjaxAuthenticationFilter(){
+		ShiroFormAuthenticationFilter formAjaxAuthenticationFilter=new ShiroFormAuthenticationFilter();
+		return formAjaxAuthenticationFilter;
+	}
+	
+	
 	@Bean//(name = "shiroFilter")
 	public Filter shiroFilter() throws Exception{
 		ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
@@ -128,12 +136,7 @@ public class ShiroConfig {
 		
 	}
 	
-//	@Bean
-//	public ShiroFormAjaxAuthenticationFilter shiroFormAjaxAuthenticationFilter(){
-//		ShiroFormAjaxAuthenticationFilter formAjaxAuthenticationFilter=new ShiroFormAjaxAuthenticationFilter();
-//		return formAjaxAuthenticationFilter;
-//	}
-//	
+
 
 	
 

@@ -1,5 +1,36 @@
 package com.youngor.utils;
 public final class M {
+public static final class Ordmt {
+	public static final String ormtno="ormtno";
+	public static final String ormtnm="ormtnm";
+	public static final String ormtsn="ormtsn";
+	public static final String pryear="pryear";
+	public static final String mtstdt="mtstdt";
+	public static final String mtfidt="mtfidt";
+	public static final String ormtst="ormtst";
+	public static final String ormtfg="ormtfg";
+	public static final String ormtmk="ormtmk";
+	public static final String mtrgsp="mtrgsp";
+	public static final String mtrgdt="mtrgdt";
+	public static final String mtlmsp="mtlmsp";
+	public static final String mtlmdt="mtlmdt";
+}
+public static final class OrdmtScde {
+	public static final String ormtno="ormtno";
+	public static final String orgty="orgty";
+	public static final String mtstdt="mtstdt";
+	public static final String mtfidt="mtfidt";
+	public static final String mtsttm="mtsttm";
+	public static final String mtfitm="mtfitm";
+	public static final String mtlmsp="mtlmsp";
+	public static final String mtlmdt="mtlmdt";
+}
+public static final class OrdmtSeason {
+	public static final String ormtno="ormtno";
+	public static final String seasno="seasno";
+	public static final String mtlmsp="mtlmsp";
+	public static final String mtlmdt="mtlmdt";
+}
 public static final class Org {
 	public static final String orgno="orgno";
 	public static final String orgnm="orgnm";
@@ -202,5 +233,32 @@ public static final class User {
 	public static final String loginName="loginName";
 	public static final String pwd="pwd";
 	public static final String remark="remark";
+}
+public static final class PubCode {
+	public static final String itno="itno";
+	public static final String tyno="tyno";
+	public static final String fitno="fitno";
+	public static final String itnm="itnm";
+	public static final String itms="itms";
+	public static final String itmk="itmk";
+	public static final String itso="itso";
+	public static final String itst="itst";
+	public static final String stat="stat";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class PubCodeType {
+	public static final String tyno="tyno";
+	public static final String tynm="tynm";
+	public static final String ftyno="ftyno";
+	public static final String tyms="tyms";
+	public static final String tymk="tymk";
+	public static final String tyst="tyst";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
 }
 }
