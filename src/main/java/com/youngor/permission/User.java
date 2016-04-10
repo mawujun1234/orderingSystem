@@ -8,11 +8,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.mawujun.controller.shiro.IShiroUser;
 import com.mawujun.generator.model.FieldDefine;
 
 @Entity
 @Table(name="t_user",schema="od")
-public class User {
+public class User implements IShiroUser{
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(

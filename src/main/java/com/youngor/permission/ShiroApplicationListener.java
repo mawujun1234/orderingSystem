@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+
+import com.mawujun.controller.shiro.ShiroURLPermissionsFilter;
 /**
  * 监听spring的事件，当spring启动后，为shiro准备数据,
  * @author mawujun qq:16064988 mawujun1234@163.com

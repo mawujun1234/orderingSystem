@@ -3895,3 +3895,9 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 16:13:09.322 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
 16:13:09.322 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
 16:13:09.322 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+18:45:48.028 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:34:55.045 [localhost-startStop-2] DEBUG com.mawujun.controller.spring.SpringContextHolder - 清除SpringContextHolder中的ApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Apr 10 18:45:22 CST 2016]; root of context hierarchy
+20:05:35.731 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+20:05:46.742 [localhost-startStop-2] DEBUG com.mawujun.controller.spring.SpringContextHolder - 清除SpringContextHolder中的ApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Apr 10 20:05:15 CST 2016]; root of context hierarchy
+20:06:51.488 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+20:06:54.175 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 清除SpringContextHolder中的ApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Sun Apr 10 20:06:44 CST 2016]; root of context hierarchy

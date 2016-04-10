@@ -18,11 +18,11 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.mawujun.controller.shiro.ShiroFormAuthenticationFilter;
+import com.mawujun.controller.shiro.ShiroKickoutSessionControlFilter;
+import com.mawujun.controller.shiro.ShiroURLPermissionsFilter;
 import com.youngor.permission.ShiroApplicationListener;
 import com.youngor.permission.ShiroAuthorizingRealm;
-import com.youngor.permission.ShiroFormAuthenticationFilter;
-import com.youngor.permission.ShiroKickoutSessionControlFilter;
-import com.youngor.permission.ShiroURLPermissionsFilter;
 
 /**
  * http://blog.aquariuslt.com/2015/10/25/apache-shiro-spring-integration/

@@ -36,7 +36,7 @@
 		<druid.version>1.0.17</druid.version>
 		<oracle.version>11.2</oracle.version>
 		
-		<shiro.version>1.2.4</shiro.version>
+		
 	</properties>
 
 	<profiles>
@@ -58,27 +58,20 @@
 			</activation>
 		</profile>
 		<profile>
-			<id>dev_host</id>
+			<id>dev_home</id>
 			<properties>
 				<profiles.active>dev_host</profiles.active>
 				<log4j2.level>debug</log4j2.level>
 				<finalName>ROOT</finalName>
 				<jdbc.dbType>oracle</jdbc.dbType>
 				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
-				<jdbc.url>jdbc:oracle:thin:@127.0.0.1:1521:ems</jdbc.url>
-				<jdbc.username>ordersys</jdbc.username>
-				<jdbc.password>ordersys</jdbc.password>
+				<jdbc.url>jdbc:oracle:thin:@10.211.55.6:1521:knpcrm</jdbc.url>
+				<jdbc.username>OD</jdbc.username>
+				<jdbc.password>OrD007YK</jdbc.password>
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 			</properties>
 		</profile>
-		<profile>
-			<id>dev_home</id>
-			<properties>
-				<profiles.active>dev_home</profiles.active>
-				<log4j2.level>debug</log4j2.level>
-				<finalName>ROOT</finalName>
-			</properties>
-		</profile>
+		
 
 		<profile>
 			<id>prod</id>
@@ -104,26 +97,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-web</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-ehcache</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
+		
 		
 		
 		
