@@ -22,6 +22,12 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 			writeRecordId:false,
 			writeAllFields:true
 		},
+		reader:{
+			type:'json',
+			root:'root',
+			successProperty:'success',
+			totalProperty:'total'		
+		},
 		api:{
 			read:Ext.ContextPath+'/${simpleClassNameFirstLower}/query.do',
 			load : Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',

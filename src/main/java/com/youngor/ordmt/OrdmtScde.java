@@ -10,6 +10,7 @@ import javax.persistence.IdClass;
 import javax.validation.constraints.NotNull;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.generator.model.ShowType;
 import com.youngor.ordmt.OrdmtScde.PK;
 
 @Entity(name="ord_ordmt_scde")
@@ -20,7 +21,7 @@ public class OrdmtScde {
 	@Column(length=30,nullable=false,updatable=false)
 	private String ormtno;
 	@Id
-	@FieldDefine(title="订货单位类型",sort=50,hidden=true)
+	@FieldDefine(title="订货单位类型",sort=50,hidden=true,showType=ShowType.combobox)
 	@Column(length=30,nullable=false,updatable=false)
 	private String orgty;
 	
@@ -42,6 +43,14 @@ public class OrdmtScde {
 	private String mtlmsp;
 	@FieldDefine(title="修改日期",sort=40)
 	private Date mtlmdt;
+	
+	public String getOrgty_name(){
+		if("ZY".equals(orgty)){
+			return "自营";
+		} else {
+			return "特许";
+		}
+	}
 	
 	public static class PK implements Serializable {
 		private static final long serialVersionUID = 1L;

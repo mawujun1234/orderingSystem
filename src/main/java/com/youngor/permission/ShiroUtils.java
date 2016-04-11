@@ -8,7 +8,7 @@ public class ShiroUtils {
 	 * @return
 	 */
 	public static String getLoginName(){
-		return SecurityUtils.getSubject().getPrincipal().toString();
+		return ((UserVO)SecurityUtils.getSubject().getPrincipal()).getLoginName();
 	}
 	/**
 	 * 获取用户的姓名

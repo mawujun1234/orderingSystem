@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
 
@@ -24,7 +25,9 @@ public class Ordmt {
 	@FieldDefine(title="产品年份",sort=50)
 	private Integer pryear;
 	@FieldDefine(title="开始日期",sort=50)
+	//@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	private Date mtstdt;
+	//@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
 	@FieldDefine(title="结束日期",sort=50)
 	private Date mtfidt;
 	@FieldDefine(title="状态",sort=50,showType=ShowType.radio)
@@ -35,7 +38,7 @@ public class Ordmt {
 	@Column(length=100,nullable=true)
 	private String ormtmk;
 	@FieldDefine(title="创建人",sort=40)
-	@Column(length=30,nullable=true)
+	@Column(length=30,nullable=true,updatable=false)
 	private String mtrgsp;
 	@FieldDefine(title="创建日期",sort=40)
 	@Column(updatable=false)
@@ -45,6 +48,24 @@ public class Ordmt {
 	private String mtlmsp;
 	@FieldDefine(title="修改日期",sort=40)
 	private Date mtlmdt;
+	
+	public String getOrmtst_name(){
+		if(this.getOrmtst()){
+			return "完成";
+		} else {
+			return "进行中";
+		}
+	}
+	
+	public String getOrmtfg_name(){
+		if(this.getOrmtst()){
+			return "跟踪";
+		} else {
+			return "未跟踪";
+		}
+	}
+	
+
 	
 	public String getOrmtno() {
 		return ormtno;

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.mawujun.generator.ExtenConfig;
 import com.mawujun.generator.GeneratorService;
-import com.youngor.pubcode.PubCodeType;
+import com.youngor.ordmt.OrdmtSeason;
 
 import freemarker.template.TemplateException;
 /**
@@ -20,16 +20,16 @@ public class GeneratorCode {
 		
 		//这里弄成更加好用的方式，弄成级联的方式，例如getExtjsConfig.set。。。
 		ExtenConfig aa=new ExtenConfig();
-		aa.extjs_treeForm_model=true;
+		aa.extjs_treeForm_model=false;
 		aa.extjs_packagePrefix="y";
 		aa.extjs_form_layoutColumns=-1;
 		
-		aa.extjs_grid_store_userModel=false;
+		aa.extjs_grid_store_userModel=true;
 		aa.extjs_grid_createDelUpd_button=true;
 		aa.extjs_grid_enable_cellEditing=false;
 		generatorService.setExtenConfig(aa);
 		
-		generatorService.generatorAllFile(PubCodeType.class);
+		generatorService.generatorAllFile(OrdmtSeason.class);
 
 	}
 	

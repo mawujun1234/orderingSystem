@@ -73,7 +73,7 @@ public class ${simpleClassName}Controller {
 		return ${simpleClassNameFirstLower}Service.queryPage(pager);
 	}
 	<#else>
-	public Pager<${simpleClassName}> query(Pager<Menu> pager){
+	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager){
 		return ${simpleClassNameFirstLower}Service.queryPage(pager);
 	}
 	</#if>	
