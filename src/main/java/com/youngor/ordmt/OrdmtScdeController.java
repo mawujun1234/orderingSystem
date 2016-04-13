@@ -53,8 +53,8 @@ public class OrdmtScdeController {
 	@RequestMapping("/ordmtScde/create.do")
 	//@ResponseBody
 	public OrdmtScde create(@RequestBody OrdmtScde ordmtScde) {
-		ordmtScde.setMtlmsp(ShiroUtils.getLoginName());
-		ordmtScde.setMtlmdt(new Date());
+		ordmtScde.setLmsp(ShiroUtils.getLoginName());
+		ordmtScde.setLmdt(new Date());
 		ordmtScdeService.create(ordmtScde);
 		return ordmtScde;
 	}

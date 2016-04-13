@@ -12,10 +12,11 @@ import javax.validation.constraints.NotNull;
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
 import com.youngor.ordmt.OrdmtScde.PK;
+import com.youngor.utils.BaseObject;
 
 @Entity(name="ord_ordmt_scde")
 @IdClass(PK.class)
-public class OrdmtScde {
+public class OrdmtScde extends BaseObject{
 	@Id
 	@FieldDefine(title="订货会批号",sort=50,hidden=true)
 	@Column(length=30,nullable=false,updatable=false)
@@ -40,9 +41,9 @@ public class OrdmtScde {
 	
 	@FieldDefine(title="修改人",sort=40)
 	@Column(length=30,nullable=true)
-	private String mtlmsp;
+	private String lmsp;
 	@FieldDefine(title="修改日期",sort=40)
-	private Date mtlmdt;
+	private Date lmdt;
 	
 	public String getOrgty_name(){
 		if("ZY".equals(orgty)){
@@ -115,17 +116,17 @@ public class OrdmtScde {
 	public void setMtfitm(String mtfitm) {
 		this.mtfitm = mtfitm;
 	}
-	public String getMtlmsp() {
-		return mtlmsp;
+	public String getLmsp() {
+		return lmsp;
 	}
-	public void setMtlmsp(String mtlmsp) {
-		this.mtlmsp = mtlmsp;
+	public void setLmsp(String lmsp) {
+		this.lmsp = lmsp;
 	}
-	public Date getMtlmdt() {
-		return mtlmdt;
+	public Date getLmdt() {
+		return lmdt;
 	}
-	public void setMtlmdt(Date mtlmdt) {
-		this.mtlmdt = mtlmdt;
+	public void setLmdt(Date lmdt) {
+		this.lmdt = lmdt;
 	}
-
+	
 }

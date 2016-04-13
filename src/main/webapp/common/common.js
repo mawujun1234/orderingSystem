@@ -46,3 +46,126 @@ Ext.Ajax.on({
 		}
 	}
 });
+
+//创建读取公共属性的combobox
+Ext.define('y.common.PubCode',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'pubcodecombo',
+	//fieldLabel: '角色类型',
+	//		name: 'roleType',
+	//value:'rolegroup',
+	tyno:'',
+	selFirst:false,
+	//fitno:'',
+	autoLoad:true,
+	
+	
+	
+	queryMode: 'local',
+	editable:false,
+	forceSelection:true,
+	displayField: 'itnm',
+	valueField: 'itno',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	initComponent: function () {
+		var me=this;
+
+		if(!me.tyno){
+			alert("设置tyno属性！");
+			return;
+		}
+//		if(!me.allowBlank){
+//			me.afterLabelTextTpl=Ext.required;
+//			me.blankText=me.fieldLabel+"不允许为空";
+//		}
+		
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['itno', 'itnm'],
+			autoLoad:me.autoLoad,
+			proxy: {
+			    
+			    type: 'ajax',
+			    extraParams:{
+			    	tyno:me.tyno
+					//fitno:me.fitno
+			    },
+			    url: Ext.ContextPath+'/pubCodeType/query4Combo.do',
+			    reader: {
+			        type: 'json'
+			        //rootProperty: '${propertyColumn.property}'
+			    }
+			}
+			
+		});
+		
+		if(!me.value && me.selFirst){
+			me.store.on("load",function(myStore){
+				if(myStore.getCount( ) >0){
+			 		var r=myStore.getAt(0);
+			 		me.select( r );
+			 	}
+			})
+		}
+		me.callParent();
+	},
+	reload:function(fitno){
+		if(!fitno){
+			alert("请输入fitno参数!");
+			return;
+		}
+		var me=this;
+		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+	        			fitno:fitno
+	    })
+	    me.getStore().reload();
+	}
+	
+	
+});
+
+
+Ext.define('y.common.OrdmtCombo',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'ordmtcombo',
+	//fieldLabel: '角色类型',
+	emptyText:'请选择订货会',
+	//		name: 'roleType',
+	autoLoad:true,
+	queryMode: 'local',
+	editable:false,
+	forceSelection:true,
+	displayField: 'ormtnm',
+	valueField: 'ormtno',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	initComponent: function () {
+		var me=this;
+
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['ormtno', 'ormtnm'],
+			autoLoad:me.autoLoad,
+			proxy: {
+			    
+			    type: 'ajax',
+			    url: Ext.ContextPath+'/ordmt/query4Combo.do',
+			    reader: {
+			        type: 'json'
+			        //rootProperty: '${propertyColumn.property}'
+			    }
+			},
+			listeners:{
+				load:function(myStore){
+					if(myStore.getCount( ) >0){
+			 			var r=myStore.getAt(0);
+			 			me.select( r );
+			 		}
+				}
+			}
+			
+		});
+		me.callParent();
+	}
+});

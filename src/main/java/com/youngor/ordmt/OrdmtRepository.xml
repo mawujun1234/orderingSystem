@@ -16,20 +16,21 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	<result property="ormtst" column="ormtst"/>
      	<result property="ormtfg" column="ormtfg"/>
      	<result property="ormtmk" column="ormtmk"/>
-     	<result property="mtrgsp" column="mtrgsp"/>
-     	<result property="mtrgdt" column="mtrgdt"/>
-     	<result property="mtlmsp" column="mtlmsp"/>
-     	<result property="mtlmdt" column="mtlmdt"/>
+     	<result property="rgsp" column="rgsp"/>
+     	<result property="rgdt" column="rgdt"/>
+     	<result property="lmsp" column="lmsp"/>
+     	<result property="lmdt" column="lmdt"/>
     	<collection property="seasnos" ofType="com.youngor.ordmt.OrdmtSeason">  
     		<id property="ormtno" column="season_ormtno"/>
     		<id property="seasno" column="season_seasno"/>
-		    <result property="mtlmsp" column="mtlmsp"/>
-		   <result property="mtlmdt" column="mtlmdt"/>
+		    <result property="lmsp" column="lmsp"/>
+		   <result property="lmdt" column="lmdt"/>
        </collection>  
     </resultMap>
 	<!-- 查询语句，会自动分页-->
     <select id="queryPageVO" resultMap="ordmtVO" parameterType="map">
     	select a.*,b.seasno as season_seasno,b.ormtno as season_ormtno from ord_ordmt a left join ord_ordmt_season b on a.ormtno=b.ormtno
+    	order by a.ormtno
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPageVO_count" resultType="int" parameterType="map">

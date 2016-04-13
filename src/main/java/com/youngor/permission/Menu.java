@@ -35,7 +35,7 @@ public class Menu {
 	@FieldDefine(title="菜单名称",sort=5)
 	private String name;
 	
-	@Column(length=80,nullable=false)
+	@Column(length=80,nullable=true)
 	@FieldDefine(title="地址",sort=4)
 	private String url;
 	

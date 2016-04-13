@@ -21,6 +21,8 @@ public class PubCodeTypeController {
 
 	@Resource
 	private PubCodeTypeService pubCodeTypeService;
+	
+	
 
 	/**
 	 * 请按自己的需求修改

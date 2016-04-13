@@ -35,9 +35,9 @@ Ext.define('y.permission.MenuForm',{
 		{
 	        fieldLabel: '地址',
 	        name: 'url',
-	        allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"地址不允许为空",
+//	        allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"地址不允许为空",
 	        xtype:'textfield'
 	    },
 		{

@@ -1,17 +1,15 @@
 package com.youngor.pubcode;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
+import com.youngor.utils.BaseObject;
 
-@Entity(name="ord_pubcode")
-public class PubCode {
+@Entity(name="ord_pub_code")
+public class PubCode extends BaseObject{
 	@Id
 	@FieldDefine(title="代码",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=false)
@@ -42,16 +40,7 @@ public class PubCode {
 	@FieldDefine(title="当季状态",sort=40,hidden=false,showType=ShowType.radio)
 	private Boolean stat=true;//1：当季；0：非当季
 	
-	@FieldDefine(title="创建人",sort=40,hidden=false)
-	@Column(length=20,nullable=true)
-	private String rgsp;
-	@FieldDefine(title="创建日期",sort=40)
-	private Date rgdt;
-	@FieldDefine(title="修改人",sort=40,hidden=false)
-	@Column(length=20,nullable=true)
-	private String lmsp;
-	@FieldDefine(title="修改日期",sort=40)
-	private Date lmdt;
+	
 	public String getItno() {
 		return itno;
 	}
@@ -106,31 +95,5 @@ public class PubCode {
 	public void setStat(Boolean stat) {
 		this.stat = stat;
 	}
-	public String getRgsp() {
-		return rgsp;
-	}
-	public void setRgsp(String rgsp) {
-		this.rgsp = rgsp;
-	}
-	public Date getRgdt() {
-		return rgdt;
-	}
-	public void setRgdt(Date rgdt) {
-		this.rgdt = rgdt;
-	}
-	public String getLmsp() {
-		return lmsp;
-	}
-	public void setLmsp(String lmsp) {
-		this.lmsp = lmsp;
-	}
-	public Date getLmdt() {
-		return lmdt;
-	}
-	public void setLmdt(Date lmdt) {
-		this.lmdt = lmdt;
-	}
 	
-
-
 }

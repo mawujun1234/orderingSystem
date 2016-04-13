@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -41,10 +43,10 @@ public class OrdmtController {
 		
 	}
 
-	@RequestMapping("/ordmt/queryAll.do")
+	@RequestMapping("/ordmt/query4Combo.do")
 	@ResponseBody
-	public List<Ordmt> queryAll() {	
-		List<Ordmt> ordmtes=ordmtService.queryAll();
+	public List<Ordmt> query4Combo() {	
+		List<Ordmt> ordmtes=ordmtService.query(Cnd.select().asc(M.Ordmt.ormtno));
 		return ordmtes;
 	}
 	
@@ -57,8 +59,8 @@ public class OrdmtController {
 	@RequestMapping("/ordmt/create.do")
 	//@ResponseBody
 	public Ordmt create(@RequestBody Ordmt ordmt,String[] seasnos) {
-		ordmt.setMtrgdt(new Date());
-		ordmt.setMtrgsp(ShiroUtils.getLoginName());
+		ordmt.setRgdt(new Date());
+		ordmt.setRgsp(ShiroUtils.getLoginName());
 		ordmtService.create(ordmt,seasnos);
 		return ordmt;
 	}
@@ -66,8 +68,8 @@ public class OrdmtController {
 	@RequestMapping("/ordmt/update.do")
 	//@ResponseBody
 	public  Ordmt update(@RequestBody Ordmt ordmt,String[] seasnos) {
-		ordmt.setMtlmdt(new Date());
-		ordmt.setMtlmsp(ShiroUtils.getLoginName());
+		ordmt.setLmdt(new Date());
+		ordmt.setLmsp(ShiroUtils.getLoginName());
 		ordmtService.update(ordmt,seasnos);
 		return ordmt;
 	}

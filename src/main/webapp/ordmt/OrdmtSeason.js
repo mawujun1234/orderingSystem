@@ -1,8 +1,8 @@
 Ext.define("y.ordmt.OrdmtSeason",{
 	extend:"Ext.data.Model",
 	fields:[
-		{name:'mtlmsp',type:'string'},
-		{name:'mtlmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
+		{name:'lmsp',type:'string'},
+		{name:'lmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
 		{name:'ormtno',type:'string'},
 		{name:'seasno',type:'string'}
 	],

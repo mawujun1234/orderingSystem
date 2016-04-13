@@ -10,10 +10,10 @@ Ext.define("y.ordmt.Ordmt",{
 		{name:'ormtst',type:'string'},
 		{name:'ormtfg',type:'string'},
 		{name:'ormtmk',type:'string'},
-		{name:'mtrgsp',type:'string'},
-		{name:'mtrgdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
-		{name:'mtlmsp',type:'string'},
-		{name:'mtlmdt',type:'date', dateFormat: 'Y-m-d H:i:s'}
+		{name:'rgsp',type:'string'},
+		{name:'rgdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
+		{name:'lmsp',type:'string'},
+		{name:'lmdt',type:'date', dateFormat: 'Y-m-d H:i:s'}
 	],
 	proxy:{
 		type:'ajax',

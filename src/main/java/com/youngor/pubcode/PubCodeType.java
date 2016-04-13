@@ -8,9 +8,10 @@ import javax.persistence.Id;
 
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
+import com.youngor.utils.BaseObject;
 
-@Entity(name="ord_pubcodetype")
-public class PubCodeType {
+@Entity(name="ord_pub_code_type")
+public class PubCodeType extends BaseObject{
 	@Id
 	@FieldDefine(title="类型代码",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=false)
@@ -30,16 +31,7 @@ public class PubCodeType {
 	@FieldDefine(title="状态",sort=50,showType=ShowType.radio)
 	private Boolean tyst=true;
 	
-	@FieldDefine(title="创建人",sort=40,hidden=false)
-	@Column(length=20,nullable=true)
-	private String rgsp;
-	@FieldDefine(title="创建日期",sort=40)
-	private Date rgdt;
-	@FieldDefine(title="修改人",sort=40,hidden=false)
-	@Column(length=20,nullable=true)
-	private String lmsp;
-	@FieldDefine(title="修改日期",sort=40)
-	private Date lmdt;
+
 	public String getTyno() {
 		return tyno;
 	}
@@ -76,30 +68,5 @@ public class PubCodeType {
 	public void setTyst(Boolean tyst) {
 		this.tyst = tyst;
 	}
-	public String getRgsp() {
-		return rgsp;
-	}
-	public void setRgsp(String rgsp) {
-		this.rgsp = rgsp;
-	}
-	public Date getRgdt() {
-		return rgdt;
-	}
-	public void setRgdt(Date rgdt) {
-		this.rgdt = rgdt;
-	}
-	public String getLmsp() {
-		return lmsp;
-	}
-	public void setLmsp(String lmsp) {
-		this.lmsp = lmsp;
-	}
-	public Date getLmdt() {
-		return lmdt;
-	}
-	public void setLmdt(Date lmdt) {
-		this.lmdt = lmdt;
-	}
-
-
+	
 }

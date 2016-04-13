@@ -49,6 +49,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             afterLabelTextTpl: Ext.required,
             blankText:"${propertyColumn.property_label}不允许为空",
             </#if>
+            editable:false,
             xtype: 'datefield',
             format: 'Y-m-d'   
         }<#if propertyColumn_has_next>,</#if>
@@ -75,6 +76,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             blankText:"${propertyColumn.property_label}不允许为空",
             </#if>
             allowDecimals:false,
+            selectOnFocus:true,
 	        xtype:'numberfield'   
 	    }<#if propertyColumn_has_next>,</#if>
 	    <#elseif propertyColumn.jsType=='float'>
@@ -89,6 +91,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             afterLabelTextTpl: Ext.required,
             blankText:"${propertyColumn.property_label}不允许为空",
             </#if>
+            selectOnFocus:true,
 	        xtype:'numberfield'   
 	    }<#if propertyColumn_has_next>,</#if>
 		<#else>
@@ -103,6 +106,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
             afterLabelTextTpl: Ext.required,
             blankText:"${propertyColumn.property_label}不允许为空",
             </#if>
+            selectOnFocus:true,
 	        xtype:'textfield'
 	    }<#if propertyColumn_has_next>,</#if>
 		</#if>

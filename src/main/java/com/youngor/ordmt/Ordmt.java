@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
+import com.youngor.utils.BaseObject;
 
 @Entity(name="ord_ordmt")
-public class Ordmt {
+public class Ordmt extends BaseObject{
 	@Id
 	@FieldDefine(title="订货会批号",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=false)
@@ -37,17 +38,8 @@ public class Ordmt {
 	@FieldDefine(title="备注",sort=40)
 	@Column(length=100,nullable=true)
 	private String ormtmk;
-	@FieldDefine(title="创建人",sort=40)
-	@Column(length=30,nullable=true,updatable=false)
-	private String mtrgsp;
-	@FieldDefine(title="创建日期",sort=40)
-	@Column(updatable=false)
-	private Date mtrgdt;
-	@FieldDefine(title="修改人",sort=40)
-	@Column(length=30,nullable=true)
-	private String mtlmsp;
-	@FieldDefine(title="修改日期",sort=40)
-	private Date mtlmdt;
+	
+	
 	
 	public String getOrmtst_name(){
 		if(this.getOrmtst()){
@@ -121,30 +113,7 @@ public class Ordmt {
 	public void setOrmtmk(String ormtmk) {
 		this.ormtmk = ormtmk;
 	}
-	public String getMtrgsp() {
-		return mtrgsp;
-	}
-	public void setMtrgsp(String mtrgsp) {
-		this.mtrgsp = mtrgsp;
-	}
-	public Date getMtrgdt() {
-		return mtrgdt;
-	}
-	public void setMtrgdt(Date mtrgdt) {
-		this.mtrgdt = mtrgdt;
-	}
-	public String getMtlmsp() {
-		return mtlmsp;
-	}
-	public void setMtlmsp(String mtlmsp) {
-		this.mtlmsp = mtlmsp;
-	}
-	public Date getMtlmdt() {
-		return mtlmdt;
-	}
-	public void setMtlmdt(Date mtlmdt) {
-		this.mtlmdt = mtlmdt;
-	}
 
-
+	
+	
 }

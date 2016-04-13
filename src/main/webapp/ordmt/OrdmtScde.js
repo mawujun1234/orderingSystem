@@ -5,8 +5,8 @@ Ext.define("y.ordmt.OrdmtScde",{
 		{name:'mtfidt',type:'date', dateFormat: 'Y-m-d H:i:s'},
 		{name:'mtsttm',type:'date',dateFormat: 'H:i'},
 		{name:'mtfitm',type:'date',dateFormat: 'H:i'},
-		{name:'mtlmsp',type:'string'},
-		{name:'mtlmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
+		{name:'lmsp',type:'string'},
+		{name:'lmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
 		{name:'ormtno',type:'string'},
 		{name:'orgty',type:'string'}
 	],

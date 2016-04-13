@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.mawujun.controller.shiro.ShiroURLPermissionsFilter;
+import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.M;
 /**
  * 监听spring的事件，当spring启动后，为shiro准备数据,
  * @author mawujun qq:16064988 mawujun1234@163.com
@@ -25,7 +27,7 @@ public class ShiroApplicationListener  implements ApplicationListener<ContextRef
 	
 	public void initShiroURLPermissionsFilter() {
 		// 获取所有菜单
-		List<Menu> menus = menuService.queryAll();
+		List<Menu> menus = menuService.query(Cnd.select().andIsNotNull(M.Menu.url));
 		for (Menu menu : menus) {
 			if (menu.getUrl() != null) {
 				shiroURLPermissionsFilter.addControllerUrl(menu.getUrl());

@@ -55,8 +55,8 @@ public class OrdmtService extends AbstractService<Ordmt, String>{
 			OrdmtSeason a=new OrdmtSeason();
 			a.setSeasno(seasno);
 			a.setOrmtno(ordmt.getOrmtno());
-			a.setMtlmdt(new Date());
-			a.setMtlmsp(ShiroUtils.getLoginName());
+			a.setLmdt(new Date());
+			a.setLmsp(ShiroUtils.getLoginName());
 			ordmtSeasonRepository.create(a);
 		}
 		}
@@ -70,8 +70,8 @@ public class OrdmtService extends AbstractService<Ordmt, String>{
 			OrdmtSeason a=new OrdmtSeason();
 			a.setSeasno(seasno);
 			a.setOrmtno(ordmt.getOrmtno());
-			a.setMtlmdt(new Date());
-			a.setMtlmsp(ShiroUtils.getLoginName());
+			a.setLmdt(new Date());
+			a.setLmsp(ShiroUtils.getLoginName());
 			ordmtSeasonRepository.create(a);
 		}
 		}
