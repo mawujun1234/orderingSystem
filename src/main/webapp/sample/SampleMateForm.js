@@ -1,0 +1,202 @@
+Ext.define('y.sample.SampleMateForm',{
+	extend:'Ext.form.Panel',
+	requires: [
+	     'y.sample.SampleMate'
+	],
+	
+    frame: true,
+    autoScroll : true,
+	buttonAlign : 'center',
+    bodyPadding: '5 5 0',
+
+
+    defaults: {
+        msgTarget: 'under',
+        labelWidth: 75,
+        labelAlign:'right',
+        anchor: '90%'
+    },
+	initComponent: function () {
+       var me = this;
+       
+       
+       me.items= [
+		{
+	        fieldLabel: '设计样衣id',
+	        name: 'sampno',
+			hidden:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '设计样衣代码',
+	        name: 'sampnm',
+            allowBlank: false,
+            readOnly:true,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"设计样衣代码不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '面料编号',
+	        name: 'mateso',
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"面料编号不允许为空",
+//            allowDecimals:false,
+//            selectOnFocus:true,
+	        hidden:true,
+	        xtype:'numberfield'   
+	    },
+		{
+	        fieldLabel: '供应商',
+	        name: 'mtsuno',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"供应商不允许为空",
+            xtype:'pubsunocombo'
+	    },
+		{
+	        fieldLabel: '供应商面料货号',
+	        name: 'mateno',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"供应商面料货号不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '面料品牌',
+	        name: 'mtbrad',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"面料品牌不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+
+	    {
+            xtype      : 'fieldcontainer',
+            fieldLabel : '进口/国产',
+            defaultType: 'radiofield',
+           //  allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            //blankText:"进口/国产不允许为空",
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+            	{
+                    boxLabel  : '国产',
+                    name: 'mttype',
+                    checked:true,
+                    inputValue: 'gc'
+                },
+           		{
+                    boxLabel  : '进口',
+                    name: 'mttype',
+                    inputValue: 'jk'
+                }
+            ]
+        },
+		{
+	        fieldLabel: '面料成分',
+	        name: 'mtcomp',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"面料成分不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '纱支规格',
+	        name: 'yarmct',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"纱支规格不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '克重/密度',
+	        name: 'gramwt',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"克重/密度不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '后整理',
+	        name: 'aftrmt',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"后整理不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '门幅',
+	        name: 'width',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"门幅不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '面料单价',
+	        name: 'mtpupr',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"面料单价不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '单件用料',
+	        name: 'mtcnqt',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"单件用料不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
+		{
+	        fieldLabel: '锁定状态',
+	        name: 'matest',
+            hidden:true,
+            allowDecimals:false,
+            selectOnFocus:true,
+	        xtype:'numberfield'   
+	    }
+	  ];   
+	  
+	  
+	  this.buttons = [];
+		this.buttons.push({
+			text : '保存',
+			itemId : 'save',
+			formBind: true, //only enabled once the form is valid
+       		disabled: true,
+			glyph : 0xf0c7,
+			handler : function(button){
+				
+				var formpanel = button.up('form');
+				formpanel.updateRecord();
+				formpanel.getForm().getRecord().save({
+					failure: function(record, operation) {
+				    },
+				    success: function(record, operation) {
+				    	Ext.Msg.alert("消息","保存成功!");
+						//button.up('window').close();
+				    	me.previousSibling("grid#sampleMateGrid").getStore().reload();
+				    }
+				});			
+				
+				}
+			});
+      me.callParent();
+	}
+});

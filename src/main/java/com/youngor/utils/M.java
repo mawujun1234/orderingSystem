@@ -10,10 +10,10 @@ public static final class Ordmt {
 	public static final String ormtst="ormtst";
 	public static final String ormtfg="ormtfg";
 	public static final String ormtmk="ormtmk";
-	public static final String mtrgsp="mtrgsp";
-	public static final String mtrgdt="mtrgdt";
-	public static final String mtlmsp="mtlmsp";
-	public static final String mtlmdt="mtlmdt";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
 }
 public static final class OrdmtScde {
 	public static final String ormtno="ormtno";
@@ -22,14 +22,18 @@ public static final class OrdmtScde {
 	public static final String mtfidt="mtfidt";
 	public static final String mtsttm="mtsttm";
 	public static final String mtfitm="mtfitm";
-	public static final String mtlmsp="mtlmsp";
-	public static final String mtlmdt="mtlmdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
 }
 public static final class OrdmtSeason {
 	public static final String ormtno="ormtno";
 	public static final String seasno="seasno";
-	public static final String mtlmsp="mtlmsp";
-	public static final String mtlmdt="mtlmdt";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
 }
 public static final class Org {
 	public static final String orgno="orgno";
@@ -260,5 +264,136 @@ public static final class PubCodeType {
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+}
+public static final class SampleColth {
+	public static final String sampno="sampno";
+	public static final String spcotn="spcotn";
+	public static final String spsuno="spsuno";
+	public static final String prsuno="prsuno";
+	public static final String sptapa="sptapa";
+	public static final String spacry="spacry";
+	public static final String spclbd="spclbd";
+	public static final String spnwpr="spnwpr";
+	public static final String contqt="contqt";
+	public static final String contam="contam";
+	public static final String contpr="contpr";
+	public static final String ctdwdt="ctdwdt";
+	public static final String acsyam="acsyam";
+	public static final String spctpr="spctpr";
+	public static final String sprmk="sprmk";
+	public static final String spctst="spctst";
+}
+public static final class SampleDesign {
+	public static final String sampno="sampno";
+	public static final String sampnm="sampnm";
+	public static final String plspno="plspno";
+	public static final String versno="versno";
+	public static final String photno="photno";
+	public static final String stseno="stseno";
+	public static final String desgno="desgno";
+	public static final String buspno="buspno";
+	public static final String spmtno="spmtno";
+	public static final String gustno="gustno";
+	public static final String colrno="colrno";
+	public static final String pattno="pattno";
+	public static final String stylno="stylno";
+	public static final String stylgp="stylgp";
+	public static final String sexno="sexno";
+	public static final String slveno="slveno";
+	public static final String suitty="suitty";
+	public static final String desp="desp";
+	public static final String sizegp="sizegp";
+	public static final String packqt="packqt";
+	public static final String spltmk="spltmk";
+	public static final String print="print";
+	public static final String sampst="sampst";
+	public static final String spstat="spstat";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class SampleMate {
+	public static final String sampno="sampno";
+	public static final String mateso="mateso";
+	public static final String mtsuno="mtsuno";
+	public static final String mateno="mateno";
+	public static final String mtbrad="mtbrad";
+	public static final String mttype="mttype";
+	public static final String mtcomp="mtcomp";
+	public static final String yarmct="yarmct";
+	public static final String gramwt="gramwt";
+	public static final String aftrmt="aftrmt";
+	public static final String width="width";
+	public static final String mtpupr="mtpupr";
+	public static final String mtcnqt="mtcnqt";
+	public static final String matest="matest";
+}
+public static final class SamplePhoto {
+	public static final String id="id";
+	public static final String sampno="sampno";
+	public static final String photnm="photnm";
+	public static final String photms="photms";
+	public static final String imgnm="imgnm";
+	public static final String photst="photst";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class SamplePlan {
+	public static final String plspno="plspno";
+	public static final String plspnm="plspnm";
+	public static final String ormtno="ormtno";
+	public static final String bradno="bradno";
+	public static final String spyear="spyear";
+	public static final String spsean="spsean";
+	public static final String spbseno="spbseno";
+	public static final String sprseno="sprseno";
+	public static final String spclno="spclno";
+	public static final String sptyno="sptyno";
+	public static final String spseno="spseno";
+	public static final String splcno="splcno";
+	public static final String spbano="spbano";
+	public static final String spftpr="spftpr";
+	public static final String sprtpr="sprtpr";
+	public static final String spplrd="spplrd";
+	public static final String plctpr="plctpr";
+	public static final String pldate="pldate";
+	public static final String mldate="mldate";
+	public static final String plstat="plstat";
+	public static final String plspst="plspst";
+	/**
+	* 这里一般是集合属性，返回的是samplePlanStpres
+	*/
+	public static final String samplePlanStpres="samplePlanStpres";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class SamplePlanStpr {
+	public static final String plspno="plspno";
+	public static final String suitno="suitno";
+	public static final String spftpr="spftpr";
+	public static final String sprtpr="sprtpr";
+	public static final String spplrd="spplrd";
+	public static final String plctpr="plctpr";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class PubSuno {
+	public static final String idsuno="idsuno";
+	public static final String idsunm="idsunm";
+	public static final String idalsu="idalsu";
+	public static final String iisucl="iisucl";
+	public static final String iiclnm="iiclnm";
+	public static final String iiorty="iiorty";
+	public static final String iiornm="iiornm";
+	public static final String iicucd="iicucd";
+	public static final String iicdnm="iicdnm";
+	public static final String idstat="idstat";
 }
 }

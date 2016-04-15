@@ -9,7 +9,8 @@ Ext.define('y.ordmt.OrdmtForm',{
 	buttonAlign : 'center',
     bodyPadding: '5 5 0',
 
-
+	width:530,
+    height:500,
     defaults: {
         msgTarget: 'under',
         labelWidth: 75,
@@ -18,6 +19,31 @@ Ext.define('y.ordmt.OrdmtForm',{
     },
 	initComponent: function () {
        var me = this;
+       var seasnos_items=[];
+       //me.mask("正在刷新....");
+      
+       Ext.Ajax.request({
+       		url:Ext.ContextPath+'/pubCodeType/query4Combo.do',
+       		params:{
+       			tyno:8
+       		},
+       		async:false,
+       		success:function(response){
+       			 console.log(2);
+       			var obj=Ext.decode(response.responseText);
+       			//console.log(response.responseText);
+       			for(var i=0;i<obj.length;i++){
+       				seasnos_items.push({
+	                    boxLabel  : obj[i].itnm,
+	                    name: 'seasno',
+	                    inputValue: obj[i].itno
+	                });
+       			}
+       		}
+       	
+       });
+        console.log(1);
+       //me.unmask();
        me.items= [
 		{
 	        fieldLabel: '订货会批号',
@@ -107,7 +133,7 @@ Ext.define('y.ordmt.OrdmtForm',{
         },
 		{
             xtype      : 'checkboxgroup',
-             columns: 3,
+             columns: 4,
         	vertical: true,
             fieldLabel : '季节',
             itemId:"seasnos",
@@ -120,28 +146,7 @@ Ext.define('y.ordmt.OrdmtForm',{
 //            	type: 'checkboxgroup',
 //            	columns:3
 //            },
-            items: [
-            	{
-                    boxLabel  : '季节1',
-                    name: 'seasno',
-                    inputValue: '11'
-                },
-           		{
-                    boxLabel  : '季节2',
-                    name: 'seasno',
-                    inputValue: '22'
-                },
-                {
-                    boxLabel  : '季节3',
-                    name: 'seasno',
-                    inputValue: '33'
-                },
-                {
-                    boxLabel  : '季节4',
-                    name: 'seasno',
-                    inputValue: '44'
-                }
-            ]
+            items: seasnos_items
         },
 		{
 	        fieldLabel: '备注',

@@ -175,4 +175,22 @@ public class PubCodeCache {
 			return pubCode.getItnm();
 		}
 	}
+	
+	/**
+	 * 获取套件
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getSuitno(String itno){
+		return cache.get("3").get(itno);
+	}
+	public static String getSuitno_name(String itno){
+		PubCode pubCode=getSuitno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
 }

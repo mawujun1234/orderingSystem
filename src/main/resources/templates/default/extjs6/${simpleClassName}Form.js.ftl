@@ -231,8 +231,8 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Form'
 			glyph : 0xf0c7,
 			handler : function(button){
 				var formpanel = button.up('form');
-				button.up('form').updateRecord();
-				button.up('form').getForm().getRecord().save({
+				formpanel.updateRecord();
+				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
 				    },
 				    success: function(record, operation) {

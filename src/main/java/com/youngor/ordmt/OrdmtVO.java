@@ -2,6 +2,8 @@ package com.youngor.ordmt;
 
 import java.util.List;
 
+import com.youngor.pubcode.PubCodeCache;
+
 public class OrdmtVO extends Ordmt {
 	
 	private List<OrdmtSeason> seasnos;
@@ -10,7 +12,7 @@ public class OrdmtVO extends Ordmt {
 		if(this.seasnos!=null){
 			StringBuilder builder=new StringBuilder();
 			for(OrdmtSeason season :seasnos){
-				builder.append(season.getSeasno());
+				builder.append(PubCodeCache.getSpsean_name(season.getSeasno()));
 				builder.append(",");
 			}
 			return builder.substring(0, builder.length()-1);

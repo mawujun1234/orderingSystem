@@ -5,14 +5,133 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SamplePlanRepository">
-	<!-- 查询语句，会自动分页-->
+	<!-- 查询语句，会自动分页
+	<resultMap type="com.youngor.sample.SamplePlanVO" id="samplePlan">
+     	<id property="plspno" column="plspno"/>
+     	<result property="plspnm" column="plspnm"/>
+     	<result property="ormtno" column="ormtno"/>
+     	<result property="bradno" column="bradno"/>
+     	<result property="spyear" column="spyear"/>
+     	<result property="spsean" column="spsean"/>
+     	<result property="spbseno" column="spbseno"/>
+     	<result property="sprseno" column="sprseno"/>
+     	<result property="spclno" column="spclno"/>
+     	<result property="sptyno" column="sptyno"/>
+     	<result property="spseno" column="spseno"/>
+     	<result property="splcno" column="splcno"/>
+     	<result property="spbano" column="spbano"/>
+     	<result property="spftpr" column="spftpr"/>
+     	<result property="sprtpr" column="sprtpr"/>
+     	<result property="spplrd" column="spplrd"/>
+     	<result property="plctpr" column="plctpr"/>
+     	<result property="pldate" column="pldate"/>
+     	<result property="mldate" column="mldate"/>
+     	<result property="plstat" column="plstat"/>
+		<result property="plspst" column="plspst"/>
+
+     	<result property="rgsp" column="rgsp"/>
+     	<result property="rgdt" column="rgdt"/>
+     	<result property="lmsp" column="lmsp"/>
+     	<result property="lmdt" column="lmdt"/>
+    	<collection property="samplePlanStpres" ofType="com.youngor.sample.SamplePlanStpr">  
+    		<id property="plspno" column="stpr_plspno"/>
+    		<id property="suitno" column="stpr_suitno"/>
+		    <result property="spftpr" column="stpr_spftpr"/>
+		    <result property="sprtpr" column="stpr_sprtpr"/>
+		    
+		    <result property="spplrd" column="stpr_spplrd"/>
+		    <result property="plctpr" column="stpr_plctpr"/>
+       </collection>  
+    </resultMap>
+    <select id="queryPage" resultMap="samplePlan" parameterType="map">
+    	select a.*,
+    	b.plspno as stpr_plspno,
+    	b.suitno as stpr_suitno,
+    	b.spftpr as stpr_spftpr,
+    	b.sprtpr as stpr_sprtpr,
+    	b.spplrd as stpr_spplrd,
+    	b.plctpr as stpr_plctpr
+    	from ord_sample_plan a left join ORD_SAMPLE_PLAN_STPR b on a.plspno=b.plspno
+    	
+    </select> -->
     <select id="queryPage" resultType="com.youngor.sample.SamplePlanVO" parameterType="map">
-    	select * from ord_sample_plan
+    	select a.*
+    	from ord_sample_plan a
+    	
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">
     	select count(a.plspno)
 		from ord_sample_plan a
     </select>
+    
+    <!-- 在设计资料管理的时候，获取样衣资料内容的时候
+    <resultMap type="com.youngor.sample.SamplePlanDesignVO" id="samplePlanDesignVO">
+     	<id property="plspno" column="plspno"/>
+     	<result property="plspnm" column="plspnm"/>
+     	<result property="ormtno" column="ormtno"/>
+     	<result property="bradno" column="bradno"/>
+     	<result property="spyear" column="spyear"/>
+     	<result property="spsean" column="spsean"/>
+     	<result property="spbseno" column="spbseno"/>
+     	<result property="sprseno" column="sprseno"/>
+     	<result property="spclno" column="spclno"/>
+     	<result property="sptyno" column="sptyno"/>
+     	<result property="spseno" column="spseno"/>
+     	<result property="splcno" column="splcno"/>
+     	<result property="spbano" column="spbano"/>
+     	<result property="spftpr" column="spftpr"/>
+     	<result property="sprtpr" column="sprtpr"/>
+     	<result property="spplrd" column="spplrd"/>
+     	<result property="plctpr" column="plctpr"/>
+     	<result property="pldate" column="pldate"/>
+     	<result property="mldate" column="mldate"/>
+     	<result property="plstat" column="plstat"/>
+		<result property="plspst" column="plspst"/>
+		
+		<result property="sampno" column="sampno"/>
+		<result property="sampnm" column="sampnm"/>
+
+     	<result property="rgsp" column="rgsp"/>
+     	<result property="rgdt" column="rgdt"/>
+     	<result property="lmsp" column="lmsp"/>
+     	<result property="lmdt" column="lmdt"/>
+    	<collection property="samplePlanStpres" ofType="com.youngor.sample.SamplePlanStpr">  
+    		<id property="plspno" column="stpr_plspno"/>
+    		<id property="suitno" column="stpr_suitno"/>
+		    <result property="spftpr" column="stpr_spftpr"/>
+		    <result property="sprtpr" column="stpr_sprtpr"/>
+		    
+		    <result property="spplrd" column="stpr_spplrd"/>
+		    <result property="plctpr" column="stpr_plctpr"/>
+       </collection>  
+    </resultMap>
+    <select id="queryPlanDesign" resultMap="samplePlanDesignVO" parameterType="map">
+    	select a.*,
+    	b.plspno as stpr_plspno,
+    	b.suitno as stpr_suitno,
+    	b.spftpr as stpr_spftpr,
+    	b.sprtpr as stpr_sprtpr,
+    	b.spplrd as stpr_spplrd,
+    	b.plctpr as stpr_plctpr
+    	from (select a.*,b.sampno,b.sampnm from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno ) a 
+    	left join ORD_SAMPLE_PLAN_STPR b on a.plspno=b.plspno	
+    </select> 
+    -->
+    <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
+    	select b.sampno,b.sampnm,a.* from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPlanDesign_count" resultType="int" parameterType="map">
+    	select count(a.sampno)
+		from ord_sample_design a
+    </select>
+    
+    
+     <!-- 获取订货会批号 -->
+    <select id="queryOrmtno" resultType="string" parameterType="string">
+    	select distinct a.ormtno from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    	and b.sampno=#{sampno}
+    </select> 
 </mapper>
 

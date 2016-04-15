@@ -4,15 +4,8 @@ import com.youngor.pubcode.PubCodeCache;
 
 public class SamplePlanVO extends SamplePlan {
 	
-//	private String bradno_name;
-//	private String spsean_name;
-//	private String spbseno_name;
-//	private String sprseno_name;
-//	private String spclno_name;
-//	private String sptyno_name;
-//	private String spseno_name;
-//	private String splcno_name;
-//	private String spbano_name;
+	
+
 	public String getBradno_name() {
 		return PubCodeCache.getBradno_name(this.getBradno());
 	}

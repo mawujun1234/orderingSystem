@@ -111,15 +111,18 @@ Ext.define('y.common.PubCode',{
 		me.callParent();
 	},
 	reload:function(fitno){
+		var me=this;
+		me.reloaded=false;
 		if(!fitno){
 			alert("请输入fitno参数!");
 			return;
 		}
-		var me=this;
+		
 		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
 	        			fitno:fitno
 	    })
 	    me.getStore().reload();
+	    me.reloaded=true;
 	}
 	
 	
@@ -151,6 +154,51 @@ Ext.define('y.common.OrdmtCombo',{
 			    
 			    type: 'ajax',
 			    url: Ext.ContextPath+'/ordmt/query4Combo.do',
+			    reader: {
+			        type: 'json'
+			        //rootProperty: '${propertyColumn.property}'
+			    }
+			},
+			listeners:{
+				load:function(myStore){
+					if(myStore.getCount( ) >0){
+			 			var r=myStore.getAt(0);
+			 			me.select( r );
+			 		}
+				}
+			}
+			
+		});
+		me.callParent();
+	}
+});
+
+
+Ext.define('y.common.PubSunoCombo',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'pubsunocombo',
+	//fieldLabel: '角色类型',
+	emptyText:'可输入关键字过滤',
+	//		name: 'roleType',
+	autoLoad:true,
+	queryMode: 'local',
+	editable:true,
+	forceSelection:true,
+	displayField: 'idsunm',
+	valueField: 'idsuno',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	initComponent: function () {
+		var me=this;
+
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['idsuno', 'idsunm'],
+			autoLoad:me.autoLoad,
+			proxy: {
+			    
+			    type: 'ajax',
+			    url: Ext.ContextPath+'/pubSuno/query4Combo.do',
 			    reader: {
 			        type: 'json'
 			        //rootProperty: '${propertyColumn.property}'

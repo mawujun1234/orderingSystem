@@ -1,12 +1,14 @@
 package com.youngor.sample;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,7 +25,7 @@ public class SamplePlan extends BaseObject{
 	        strategy = "org.hibernate.id.UUIDGenerator"
 	    )
 	@FieldDefine(title="企划样衣代码",sort=50,hidden=true)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=36,nullable=false,updatable=false)
 	private String plspno;
 	@FieldDefine(title="企划样衣编号",sort=50)
 	@Column(length=100,nullable=false,updatable=false)
@@ -87,6 +89,9 @@ public class SamplePlan extends BaseObject{
 	private Integer plstat=1;//1：有效；0：无效
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer plspst=0;//1：锁定；0：未锁定
+	
+	@Transient
+	private List<SamplePlanStpr> samplePlanStpres;//用于前台网后台传递数据的时候，比如新建，更新
 	
 	public String getPlspno() {
 		return plspno;
@@ -213,6 +218,12 @@ public class SamplePlan extends BaseObject{
 	}
 	public void setPlspst(Integer plspst) {
 		this.plspst = plspst;
+	}
+	public List<SamplePlanStpr> getSamplePlanStpres() {
+		return samplePlanStpres;
+	}
+	public void setSamplePlanStpres(List<SamplePlanStpr> samplePlanStpres) {
+		this.samplePlanStpres = samplePlanStpres;
 	}
 	
 	

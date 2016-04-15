@@ -246,6 +246,21 @@ Ext.define('y.sample.SamplePlanForm',{
 	    }
 	  ];   
 	  
+	  var samplePlanStprGrid=Ext.create('y.sample.SamplePlanStprGrid',{
+		itemId:'samplePlanStprGrid'
+	  });
+	  var fieldset={
+        // Fieldset in Column 1 - collapsible via toggle button
+        xtype:'fieldset',
+        //columnWidth: 0.5,
+        title: '套件价格',
+        collapsible: true,
+        //defaultType: 'textfield',
+        defaults: {anchor: '100%'},
+        layout: 'anchor',
+        items :[samplePlanStprGrid]
+    }
+	  me.items.push(fieldset);
 	  
 	  this.buttons = [];
 		this.buttons.push({
@@ -257,16 +272,32 @@ Ext.define('y.sample.SamplePlanForm',{
 			handler : function(button){
 				var formpanel = button.up('form');
 				button.up('form').updateRecord();
-				button.up('form').getForm().getRecord().save({
+				var record=button.up('form').getForm().getRecord();
+				var samplePlanStpres=samplePlanStprGrid.getStore().getRange();
+				
+				var aa=[];
+				for(var i=0;i<samplePlanStpres.length;i++){
+					aa.push({
+						plspno:samplePlanStpres[i].get("plspno"),
+						suitno:samplePlanStpres[i].get("suitno"),
+						spftpr:samplePlanStpres[i].get("spftpr"),
+						sprtpr:samplePlanStpres[i].get("sprtpr")
+					
+					});
+				}
+				record.set("samplePlanStpres",aa);
+				
+				record.save({
 					failure: function(record, operation) {
 				    },
 				    success: function(record, operation) {
-				    	formpanel.reset();
-				    	
+				    	//formpanel.reset();
+				    	samplePlanStprGrid.getStore().removeAll();
 				    	var tabpanel=formpanel.up("tabpanel");
 						//tabpanel.unmask();
-						var samplePlanGrid=tabpanel.prevSibling("gridpanel#samplePlanGrid") ;
+						var samplePlanGrid=tabpanel.previousSibling("gridpanel#samplePlanGrid") ;
 						samplePlanGrid.getStore().reload();
+						Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
 				    }
 				});			
@@ -274,5 +305,30 @@ Ext.define('y.sample.SamplePlanForm',{
 				}
 			});
       me.callParent();
+	},
+	loadRecord:function(record){
+		var me=this;
+		var sptyno=this.down("pubcodecombo[name=sptyno]")
+		sptyno.reload(record.get("spclno"));
+		var spseno=this.down("pubcodecombo[name=spseno]")
+		spseno.reload(record.get("spclno"));
+//		Ext.Ajax.request({
+//			url:Ext.ContextPath+"",
+//			params:{
+//			
+//			},
+//			success:function(response){
+//				var objes=Ext.decode(response.responseText);
+//				me.down("grid#samplePlanStprGrid").getStore().loadData(objes);
+//			}
+//		});
+		var samplePlanStprGrid_store=me.down("grid#samplePlanStprGrid").getStore();
+		samplePlanStprGrid_store.getProxy().extraParams={
+			plspno:record.get("plspno")
+		};
+		samplePlanStprGrid_store.reload();
+		
+		//this.loadRecord(record);
+		this.getForm().loadRecord(record);
 	}
 });

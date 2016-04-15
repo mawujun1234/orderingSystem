@@ -56,6 +56,7 @@ public class UserController {
         } catch (AuthenticationException e) {  
             //其他错误，比如锁定，如果想单独处理请单独catch处理  
             error = "认证失败，账号不存在!";  
+            e.printStackTrace();
         }  
         if(error != null) {//出错了，返回登录页面  
         	model.addAttribute("msg", error);

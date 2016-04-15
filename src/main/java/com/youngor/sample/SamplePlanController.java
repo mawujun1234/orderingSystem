@@ -38,13 +38,13 @@ public class SamplePlanController {
 		return samplePlanService.queryPage(pager);
 	}
 
-	@RequestMapping("/samplePlan/queryAll.do")
-	@ResponseBody
-	public List<SamplePlan> queryAll() {	
-		List<SamplePlan> samplePlanes=samplePlanService.queryAll();
-		return samplePlanes;
-	}
-	
+//	@RequestMapping("/samplePlan/queryAll.do")
+//	@ResponseBody
+//	public List<SamplePlan> queryAll() {	
+//		List<SamplePlan> samplePlanes=samplePlanService.queryAll();
+//		return samplePlanes;
+//	}
+//	
 
 	@RequestMapping("/samplePlan/load.do")
 	public SamplePlan load(String id) {
@@ -54,7 +54,7 @@ public class SamplePlanController {
 	@RequestMapping("/samplePlan/create.do")
 	//@ResponseBody
 	public SamplePlan create(@RequestBody SamplePlan samplePlan) {
-		samplePlan.setPlspno("222");
+		//samplePlan.setPlspno("222");
 		//samplePlan.setOrmtno("201604");
 		
 		samplePlan.setRgdt(new Date());
@@ -87,5 +87,16 @@ public class SamplePlanController {
 		return samplePlan;
 	}
 	
+	/**
+	 * 设计师输入设计资料的时候用的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping("/samplePlan/queryPlanDesign.do")
+	@ResponseBody
+	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
+		return samplePlanService.queryPlanDesign(pager);
+	}
 	
 }

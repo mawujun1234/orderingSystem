@@ -8,6 +8,11 @@
 
 	<web>
 		<link target="/">
+			<dir name="E:/eclipse/aaa/orderingSystem/target/m2e-wtp/web-resources">
+				<exclude name="/"/>
+			</dir>
+		</link>
+		<link target="/">
 			<dir name="E:/eclipse/aaa/orderingSystem/src/main/webapp">
 			</dir>
 		</link>

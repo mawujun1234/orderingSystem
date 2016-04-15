@@ -124,8 +124,7 @@ Ext.define('y.ordmt.OrdmtGrid',{
     		layout:'fit',
     		title:'新增',
     		modal:true,
-    		width:400,
-    		height:500,
+    		
     		closeAction:'hide',
     		items:[formpanel],
     		listeners:{
@@ -162,8 +161,7 @@ Ext.define('y.ordmt.OrdmtGrid',{
     		layout:'fit',
     		title:'更新',
     		modal:true,
-    		width:400,
-    		height:500,
+
     		closeAction:'hide',
     		items:[formpanel],
     		listeners:{
