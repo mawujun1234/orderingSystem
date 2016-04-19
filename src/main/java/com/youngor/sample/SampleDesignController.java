@@ -1,18 +1,14 @@
 package com.youngor.sample;
 import java.util.List;
-import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.mawujun.repository.cnd.Cnd;
-import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
 
-import com.youngor.sample.SampleDesign;
-import com.youngor.sample.SampleDesignService;
+import com.mawujun.utils.page.Pager;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0

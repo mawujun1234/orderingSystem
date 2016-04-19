@@ -16,6 +16,15 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Tree'
 	       	autoLoad:true,
 	       	nodeParam :'parent_id',//传递到后台的数据，默认是node
 	       	model:'${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',
+	       	proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/${simpleClassNameFirstLower}/query.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    reader:{
+					type:'json'		
+				}
+			},
 			root: {
 			    expanded: true,
 			    text:"根节点" 

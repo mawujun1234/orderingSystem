@@ -51,33 +51,9 @@ public class ${simpleClassName}Controller {
 	 */
 	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
-	<#if (queryProperties?size>0) >
-	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager
-	<#list queryProperties as propertyColumn>
-		<#if propertyColumn.jsType=='date'>
-		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}_start
-		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}_end
-		<#else>
-		,${propertyColumn.javaTypeClassName} ${propertyColumn.property}
-		</#if>
-	</#list>
-		){
-		<#list queryProperties as propertyColumn>
-		<#if propertyColumn.jsType=='date'>
-		pager.addParam("${propertyColumn.property}_start",  ${propertyColumn.property}_start);
-		pager.addParam("${propertyColumn.property}_end",  ${propertyColumn.property}_end);
-		<#else>
-		pager.addParam("${propertyColumn.property}",  ${propertyColumn.property});
-		</#if>
-	</#list>
-		return ${simpleClassNameFirstLower}Service.queryPage(pager);
-	}
-	<#else>
 	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager){
 		return ${simpleClassNameFirstLower}Service.queryPage(pager);
 	}
-	</#if>	
-	</#if>
 
 	@RequestMapping("/${simpleClassNameFirstLower}/queryAll.do")
 	@ResponseBody

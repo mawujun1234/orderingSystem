@@ -19,7 +19,7 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 		headers:{ 'Accept':'application/json;'},
 		writer:{
 			type:'json',
-			writeRecordId:false,
+			writeRecordId:true,
 			writeAllFields:true
 		},
 		reader:{
@@ -29,8 +29,8 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 			totalProperty:'total'		
 		},
 		api:{
-			read:Ext.ContextPath+'/${simpleClassNameFirstLower}/query.do',
-			load : Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',
+			read:Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',
+			//load : Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',
 			create:Ext.ContextPath+'/${simpleClassNameFirstLower}/create.do',
 			update:Ext.ContextPath+'/${simpleClassNameFirstLower}/update.do',
 			destroy:Ext.ContextPath+'/${simpleClassNameFirstLower}/destroy.do'

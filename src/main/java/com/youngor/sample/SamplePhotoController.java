@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
+
+import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -43,8 +46,8 @@ public class SamplePhotoController {
 
 	@RequestMapping("/samplePhoto/query.do")
 	@ResponseBody
-	public List<SamplePhoto> query() {	
-		List<SamplePhoto> samplePhotoes=samplePhotoService.queryAll();
+	public List<SamplePhoto> query(String sampno) {	
+		List<SamplePhoto> samplePhotoes=samplePhotoService.query(Cnd.select().andEquals(M.SamplePhoto.sampno, sampno));
 		return samplePhotoes;
 	}
 	

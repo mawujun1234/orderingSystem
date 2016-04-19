@@ -5,6 +5,18 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SamplePlanRepository">
+	<sql id="queryPage_where">  
+        where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+    	<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="spbseno!=null and spbseno!=''">
+    		and a.spbseno=#{spbseno}
+    	</if>
+ 	</sql> 
 	<!-- 查询语句，会自动分页
 	<resultMap type="com.youngor.sample.SamplePlanVO" id="samplePlan">
      	<id property="plspno" column="plspno"/>
@@ -57,12 +69,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPage" resultType="com.youngor.sample.SamplePlanVO" parameterType="map">
     	select a.*
     	from ord_sample_plan a
-    	
+    	<include refid="queryPage_where"></include>  
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">
     	select count(a.plspno)
 		from ord_sample_plan a
+		<include refid="queryPage_where"></include> 
     </select>
     
     <!-- 在设计资料管理的时候，获取样衣资料内容的时候

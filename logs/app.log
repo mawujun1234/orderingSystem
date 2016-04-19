@@ -6410,3 +6410,861 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 17:18:35.265 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
 17:18:53.905 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
 17:19:44.149 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@68356060
+13:20:58.627 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:25:57.449 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:30:40.528 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:35:57.902 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:36:35.533 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:38:37.440 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:49:04.910 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:53:20.273 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:54:43.735 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:57:53.191 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:07:18.693 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:07:53.747 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:08:23.687 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:08:30.258 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:10:22.222 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:10:32.748 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:13:16.272 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:20:07.295 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:30:49.426 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:31:18.084 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:31:59.147 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:37:42.452 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:39:34.425 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:41:38.295 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:42:11.260 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:42:34.464 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:44:48.326 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:47:52.465 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:49:20.320 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:49:58.712 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:50:28.301 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:56:04.059 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:58:51.502 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@3ccf12c3
+14:58:58.147 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:15:41.147 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:18:08.809 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:18:42.014 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:26:50.432 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:27:22.833 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:28:38.779 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:29:57.508 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:30:20.558 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@7d0d5a95
+15:30:54.260 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:31:12.948 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@445718a7
+15:31:16.012 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6922b482
+15:31:18.828 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6b176be0
+15:31:21.914 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@5bb3b0e2
+15:31:24.781 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@62c3795e
+15:31:27.439 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@10eaf60
+15:31:30.173 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@79dc6b3c
+15:31:32.675 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@3ff46c4e
+15:31:35.999 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@62521b4f
+15:32:05.763 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@b41fd69
+15:33:26.955 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@50337d26
+15:36:11.054 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@4ccc86fa
+15:36:40.027 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@1d3c770d
+15:36:42.836 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@20f5146
+15:36:45.409 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@4a8d58c
+15:36:49.158 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@5cdaed16
+15:36:52.333 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@ba35d0d
+15:36:55.340 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@50a2c293
+15:36:58.280 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@2952fe71
+15:37:00.969 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@69fd68bc
+13:04:11.050 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:07:38.971 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:08:37.073 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:11:44.403 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:32:07.440 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:32:35.083 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:50:00.019 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:50:11.288 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:50:29.952 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@665d48de
+13:50:31.512 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@c548e0d6
+13:50:59.372 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@eae468b0
+13:51:00.036 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@53bbe4ca
+13:51:08.410 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@9cc4da87
+13:52:06.751 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:52:36.139 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:52:45.161 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@b126d203
+13:52:45.681 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@4898600f
+13:52:46.115 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@91d1d191
+13:52:53.976 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleClass@3e84b371
+13:55:08.733 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+13:55:08.737 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+13:55:08.748 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+13:55:08.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+13:55:08.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+13:55:08.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+13:55:08.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+13:55:08.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+13:55:08.760 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.Ordmt
+13:55:08.761 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.Ordmt
+13:55:08.762 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtController
+13:55:08.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtRepository
+13:55:08.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde$PK
+13:55:08.767 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtScde
+13:55:08.767 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde
+13:55:08.768 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeController
+13:55:08.769 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeRepository
+13:55:08.774 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeService
+13:55:08.775 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason$PK
+13:55:08.775 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtSeason
+13:55:08.775 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason
+13:55:08.776 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeasonRepository
+13:55:08.776 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtService
+13:55:08.777 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtVO
+13:55:08.777 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+13:55:08.778 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+13:55:08.778 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.NodeVO
+13:55:08.781 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+13:55:08.781 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+13:55:08.782 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgController
+13:55:08.782 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+13:55:08.782 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+13:55:08.783 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgRepository
+13:55:08.783 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgService
+13:55:08.783 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+13:55:08.784 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+13:55:08.784 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Position
+13:55:08.784 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Position
+13:55:08.785 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionController
+13:55:08.785 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionOrgUser
+13:55:08.785 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUser
+13:55:08.786 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUserRepository
+13:55:08.786 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionRepository
+13:55:08.786 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionService
+13:55:08.787 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+13:55:08.788 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+13:55:08.788 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+13:55:08.788 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+13:55:08.789 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+13:55:08.789 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+13:55:08.789 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+13:55:08.790 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+13:55:08.790 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+13:55:08.791 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleBrand
+13:55:08.791 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrand
+13:55:08.791 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrandRepository
+13:55:08.792 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleClass
+13:55:08.792 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClass
+13:55:08.792 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClassRepository
+13:55:08.793 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+13:55:08.793 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+13:55:08.793 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+13:55:08.794 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+13:55:08.794 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+13:55:08.794 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+13:55:08.795 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+13:55:08.795 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+13:55:08.795 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+13:55:08.796 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+13:55:08.796 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroApplicationListener
+13:55:08.801 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+13:55:08.801 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+13:55:08.802 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+13:55:08.802 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+13:55:08.803 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+13:55:08.803 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+13:55:08.804 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+13:55:08.804 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+13:55:08.805 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCode
+13:55:08.805 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCode
+13:55:08.805 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeCache
+13:55:08.805 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeController
+13:55:08.806 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeRepository
+13:55:08.806 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeService
+13:55:08.807 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCodeType
+13:55:08.807 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeType
+13:55:08.807 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeController
+13:55:08.808 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeRepository
+13:55:08.808 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeService
+13:55:08.810 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleColth
+13:55:08.810 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColth
+13:55:08.810 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthController
+13:55:08.811 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthRepository
+13:55:08.811 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthService
+13:55:08.812 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesign
+13:55:08.812 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesign
+13:55:08.813 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignController
+13:55:08.813 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignRepository
+13:55:08.813 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignService
+13:55:08.814 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate$PK
+13:55:08.814 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleMate
+13:55:08.814 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate
+13:55:08.815 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateController
+13:55:08.815 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateRepository
+13:55:08.816 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateService
+13:55:08.816 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateVO
+13:55:08.817 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePhoto
+13:55:08.817 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhoto
+13:55:08.817 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoController
+13:55:08.818 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoRepository
+13:55:08.818 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoService
+13:55:08.819 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlan
+13:55:08.819 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlan
+13:55:08.819 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanController
+13:55:08.820 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanDesignVO
+13:55:08.820 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanRepository
+13:55:08.820 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanService
+13:55:08.821 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr$PK
+13:55:08.822 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlanStpr
+13:55:08.822 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr
+13:55:08.822 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprController
+13:55:08.822 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprRepository
+13:55:08.823 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprService
+13:55:08.823 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanVO
+13:55:08.824 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.suno.PubSuno
+13:55:08.824 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSuno
+13:55:08.825 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoController
+13:55:08.825 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoRepository
+13:55:08.826 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoService
+13:55:08.827 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.BaseObject
+13:55:08.827 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+13:55:08.827 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordmt
+13:55:08.828 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtScde
+13:55:08.828 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtSeason
+13:55:08.828 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Org
+13:55:08.829 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$child
+13:55:08.829 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$parent
+13:55:08.829 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg
+13:55:08.829 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Position
+13:55:08.830 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$org
+13:55:08.830 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$position
+13:55:08.831 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$user
+13:55:08.831 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser
+13:55:08.831 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCode
+13:55:08.832 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCodeType
+13:55:08.832 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSuno
+13:55:08.832 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+13:55:08.832 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+13:55:08.833 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+13:55:08.833 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+13:55:08.833 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+13:55:08.834 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+13:55:08.834 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+13:55:08.834 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleColth
+13:55:08.835 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesign
+13:55:08.835 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleMate
+13:55:08.835 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePhoto
+13:55:08.835 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlan
+13:55:08.836 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlanStpr
+13:55:08.836 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+13:55:08.837 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+13:55:08.837 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.Ordmt
+13:55:08.838 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+13:55:08.838 [main] INFO  com.mawujun.utils.file.FileUtils - ormtnm
+13:55:08.838 [main] INFO  com.mawujun.utils.file.FileUtils - ormtsn
+13:55:08.838 [main] INFO  com.mawujun.utils.file.FileUtils - pryear
+13:55:08.838 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - ormtst
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - ormtfg
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - ormtmk
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtScde
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+13:55:08.839 [main] INFO  com.mawujun.utils.file.FileUtils - mtsttm
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - mtfitm
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtSeason
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - seasno
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+13:55:08.840 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - chancl
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+13:55:08.841 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+13:55:08.849 [main] INFO  com.mawujun.utils.file.FileUtils - child
+13:55:08.849 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+13:55:08.849 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Position
+13:55:08.849 [main] INFO  com.mawujun.utils.file.FileUtils - id
+13:55:08.849 [main] INFO  com.mawujun.utils.file.FileUtils - name
+13:55:08.850 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+13:55:08.850 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+13:55:08.850 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionOrgUser
+13:55:08.850 [main] INFO  com.mawujun.utils.file.FileUtils - position
+13:55:08.850 [main] INFO  com.mawujun.utils.file.FileUtils - org
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - user
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - id
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - code
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - name
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - url
+13:55:08.851 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - id
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - name
+13:55:08.852 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+13:55:08.853 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+13:55:08.853 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+13:55:08.853 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleBrand
+13:55:08.853 [main] INFO  com.mawujun.utils.file.FileUtils - pubCode
+13:55:08.853 [main] INFO  com.mawujun.utils.file.FileUtils - role
+13:55:08.854 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleClass
+13:55:08.854 [main] INFO  com.mawujun.utils.file.FileUtils - pubCode
+13:55:08.855 [main] INFO  com.mawujun.utils.file.FileUtils - role
+13:55:08.855 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+13:55:08.855 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+13:55:08.855 [main] INFO  com.mawujun.utils.file.FileUtils - role
+13:55:08.855 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - user
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - role
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - id
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - name
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCode
+13:55:08.856 [main] INFO  com.mawujun.utils.file.FileUtils - itno
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - fitno
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - itnm
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - itms
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - itmk
+13:55:08.857 [main] INFO  com.mawujun.utils.file.FileUtils - itso
+13:55:08.860 [main] INFO  com.mawujun.utils.file.FileUtils - itst
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - stat
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.861 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCodeType
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - tynm
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - ftyno
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - tyms
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - tymk
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - tyst
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleColth
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+13:55:08.862 [main] INFO  com.mawujun.utils.file.FileUtils - spcotn
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spsuno
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - prsuno
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - sptapa
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spacry
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spclbd
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spnwpr
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - contqt
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - contam
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - contpr
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - ctdwdt
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - acsyam
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spctpr
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - sprmk
+13:55:08.863 [main] INFO  com.mawujun.utils.file.FileUtils - spctst
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesign
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - sampnm
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - versno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - photno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - stseno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - desgno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - buspno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - spmtno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - gustno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - colrno
+13:55:08.864 [main] INFO  com.mawujun.utils.file.FileUtils - pattno
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - stylno
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - stylgp
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - sexno
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - slveno
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - suitty
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - desp
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - sizegp
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - packqt
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - spltmk
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - print
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - sampst
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - spstat
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.865 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleMate
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - mateso
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - mtsuno
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - mateno
+13:55:08.866 [main] INFO  com.mawujun.utils.file.FileUtils - mtbrad
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - mttype
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - mtcomp
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - yarmct
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - gramwt
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - aftrmt
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - width
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - mtpupr
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - mtcnqt
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - matest
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePhoto
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - id
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - photnm
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - photms
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - imgnm
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - photst
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.867 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlan
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - plspnm
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spyear
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spsean
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spbseno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - sprseno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - sptyno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spseno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - splcno
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spbano
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+13:55:08.868 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - pldate
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - mldate
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - plstat
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - plspst
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - samplePlanStpres
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlanStpr
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+13:55:08.869 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.suno.PubSuno
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - idsuno
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - idsunm
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - idalsu
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iisucl
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iiclnm
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iiorty
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iiornm
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iicucd
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - iicdnm
+13:55:08.870 [main] INFO  com.mawujun.utils.file.FileUtils - idstat
+14:13:19.465 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:13:35.185 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:14:33.381 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:15:32.082 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:15:41.942 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@c1cedf42
+14:15:41.943 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@e7068add
+14:15:41.994 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@cae836c7
+14:15:42.021 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@3014f440
+14:15:42.023 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@c9fdd58c
+14:15:42.038 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@ce352bb5
+14:15:42.092 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@826b61f5
+14:15:42.103 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleClass@91bfe2b5
+14:15:42.152 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.selBrand(java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.152 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.selBrand(java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.163 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:15:42.164 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:15:42.164 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:15:42.164 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.166 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:15:42.166 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:15:42.166 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:15:42.166 [http-bio-8086-exec-12] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.178 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.selClass(java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.178 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:15:42.178 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:15:42.179 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:15:42.179 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.180 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.selBrand(java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.180 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:15:42.180 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:15:42.180 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:15:42.180 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.237 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.permission.RoleController.selClass(java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:15:42.237 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:15:42.237 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:15:42.237 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:15:42.237 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:17:40.234 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:18:06.824 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@7770e624
+14:18:13.875 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@8e2e248f
+14:18:13.881 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@1449f0be
+14:18:13.890 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleClass@83e9ef6e
+14:19:25.523 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@efeaa793
+14:19:26.243 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@2ac393fb
+14:19:26.965 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@105dcebc
+14:19:28.991 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@3fa976a6
+14:19:29.414 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@65749d81
+14:19:29.806 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@8e683633
+14:19:58.532 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@25fa94bc
+14:28:09.276 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:31:14.814 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:38:38.219 [http-bio-8086-exec-11] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:18:41.546 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:19:04.888 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+15:19:24.857 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:24.859 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:24.859 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:24.859 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:24.859 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:27.643 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:27.643 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:27.643 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:27.643 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:27.643 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:28.743 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:28.744 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:28.744 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:28.744 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:28.744 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:28.979 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:28.980 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:28.980 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:28.980 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:28.980 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.145 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.146 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:29.146 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:29.146 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:29.146 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.303 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.303 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:29.303 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:29.303 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:29.303 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.455 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:29.456 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:29.456 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:29.456 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:29.456 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:36.934 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?              and a.fitno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:36.934 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:36.934 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:36.934 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:36.934 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?              and a.fitno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:36.971 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?              and a.fitno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:19:36.971 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:19:36.971 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:19:36.971 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:19:36.971 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from ord_pub_code a,ord_pub_codebrad b      where tyno=? and b.bradno=?              and a.fitno=?             and b.stat=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+15:22:46.048 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+15:23:00.303 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:10:10.672 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:18:44.172 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:19:43.027 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@76b17b64
+16:19:43.187 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@521f7ce4
+16:19:43.188 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@576f40b0
+16:19:43.362 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@3891d756
+16:19:47.902 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@321ffd43
+16:19:48.608 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@70e3e0a5
+16:19:48.615 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@cd60c3fa
+16:19:48.628 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@a4da2578
+16:19:49.849 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@80838a50
+16:19:50.600 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@eb77d46a
+16:20:03.419 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@df6648bf
+16:20:04.260 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@5bbad53f
+16:20:04.939 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@edb9883d
+16:20:05.610 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@f315b0d6
+16:20:05.617 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@cb7c7b2b
+16:20:05.638 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@7b1a53c5
+16:20:05.648 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@5cc71835
+16:20:05.676 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@44412e85
+16:20:08.776 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@f66aad72
+16:20:08.791 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@972522ff
+16:20:10.034 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@edef134e
+16:20:10.035 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@112457aa
+16:20:10.876 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@e9fb8467
+16:20:10.880 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@e7baf382
+16:20:11.622 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@9b303e8f
+16:20:11.626 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@8bab72ad
+16:20:13.071 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@8df1a6a5
+16:20:13.073 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@6f04f5e3
+16:21:44.591 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:22:27.740 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@8e8b4788
+16:22:27.743 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@8546bb95
+16:22:28.621 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@294d2403
+16:22:28.626 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@9790299b
+16:22:29.458 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@66df931b
+16:22:29.470 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@b1b1527a
+16:22:30.092 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@3010aa8
+16:22:30.093 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@2805453
+16:22:50.170 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:23:27.557 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@c2f54922
+16:23:27.561 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@fd1dfa4a
+16:23:28.301 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@79333963
+16:23:28.304 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@8cd6f7e6
+16:23:28.907 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@36608f01
+16:23:28.913 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@23d3f328
+16:23:29.747 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleBrand@fb86822a
+16:23:29.748 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@6de5a2a9
+16:23:51.960 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:24:05.721 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@8a73e41a
+16:24:06.425 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@9cbde463
+16:24:06.955 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@9f466ae0
+16:24:07.608 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@be51da55
+16:24:08.209 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@a5aa902a
+16:24:10.962 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@4b2d32c7
+16:24:11.602 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@f9bc153e
+16:26:01.935 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:26:46.368 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:27:16.113 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:27:44.546 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:29:06.743 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:29:30.298 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:30:25.841 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:31:16.884 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:32:44.171 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:34:34.119 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:38:19.837 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:43:48.525 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:08:44.062 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:11:51.096 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:13:33.553 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:14:59.012 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:16:48.055 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:20:13.561 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:26:29.238 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:27:13.859 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:28:02.892 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:43:18.251 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:44:48.258 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:45:08.385 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlan> com.youngor.sample.SamplePlanController.query(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlan>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+
+### The error may exist in com/youngor/sample/SamplePlanRepository.xml
+### The error may involve com.youngor.sample.SamplePlanRepository.queryPage-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.*      from ord_sample_plan a                  where a.ordmt=? and a.bradno=? and a.spclno=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+
+17:45:08.387 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+17:45:08.387 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:45:08.387 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:45:08.387 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+
+### The error may exist in com/youngor/sample/SamplePlanRepository.xml
+### The error may involve com.youngor.sample.SamplePlanRepository.queryPage-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.*      from ord_sample_plan a                  where a.ordmt=? and a.bradno=? and a.spclno=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORDMT": invalid identifier
+

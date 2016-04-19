@@ -1,6 +1,6 @@
 package com.youngor.sample;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -35,6 +35,7 @@ public class SamplePlanController {
 	@RequestMapping("/samplePlan/query.do")
 	@ResponseBody
 	public Pager<SamplePlan> query(Pager<SamplePlan> pager){
+		
 		return samplePlanService.queryPage(pager);
 	}
 
@@ -72,13 +73,13 @@ public class SamplePlanController {
 		return samplePlan;
 	}
 	
-	@RequestMapping("/samplePlan/deleteById.do")
-	//@ResponseBody
-	public String deleteById(String id) {
-		
-		samplePlanService.deleteById(id);
-		return id;
-	}
+//	@RequestMapping("/samplePlan/deleteById.do")
+//	//@ResponseBody
+//	public String deleteById(String id) {
+//		
+//		samplePlanService.deleteById(id);
+//		return id;
+//	}
 	
 	@RequestMapping("/samplePlan/destroy.do")
 	//@ResponseBody

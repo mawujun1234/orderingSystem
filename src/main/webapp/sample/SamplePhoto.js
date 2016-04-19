@@ -19,7 +19,7 @@ Ext.define("y.sample.SamplePhoto",{
 		headers:{ 'Accept':'application/json;'},
 		writer:{
 			type:'json',
-			writeRecordId:false,
+			writeRecordId:true,
 			writeAllFields:true
 		},
 		reader:{

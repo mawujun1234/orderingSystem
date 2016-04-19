@@ -1,4 +1,5 @@
 package com.youngor.pubcode;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,7 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 		return pubCodeRepository;
 	}
 
+	public List<PubCode> query(String tyno,String fitno,String bradno) {
+		return pubCodeRepository.query(tyno,fitno, bradno);
+	}
 }

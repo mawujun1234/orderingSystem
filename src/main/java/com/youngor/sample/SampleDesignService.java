@@ -1,16 +1,10 @@
 package com.youngor.sample;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.sample.SampleDesign;
-import com.youngor.sample.SampleDesignRepository;
 
 
 /**
@@ -28,6 +22,13 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	@Override
 	public SampleDesignRepository getRepository() {
 		return sampleDesignRepository;
+	}
+	
+	@Override
+	public void deleteById(String sampno) {
+		SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
+		sampleDesign.setSampst(0);
+		sampleDesignRepository.update(sampleDesign);
 	}
 
 }

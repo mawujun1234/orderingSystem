@@ -14,5 +14,23 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select count(a.id)
 		from t_role a
     </select>
+    
+    <!--在为角色陪权限的时候用的-->
+    <select id="querySelBrand" resultType="string" parameterType="string">
+    	select itno from t_role_brand where role_id=#{role_id}
+    </select> 
+    <select id="querySelClass" resultType="string" parameterType="string">
+    	select itno from t_role_class where role_id=#{role_id}
+    </select> 
+    
+    <!--在用户登录的时候，获取用户可访问的品牌和大类-->
+    <select id="queryUserSelBrand" resultType="string" parameterType="string">
+    	select distinct a.itno from t_role_brand a,t_role_user b
+		where a.role_id=b.role_id and b.user_id=#{user_id}
+    </select> 
+    <select id="queryUserSelClass" resultType="string" parameterType="string">
+    	select distinct a.itno from t_role_class a,t_role_user b
+		where a.role_id=b.role_id and b.user_id=#{user_id}
+    </select> 
 </mapper>
 

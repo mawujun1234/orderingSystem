@@ -1,18 +1,17 @@
 package com.youngor.permission;
+import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
-
-import com.youngor.permission.Role;
-import com.youngor.permission.RoleService;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -104,5 +103,54 @@ public class RoleController {
 		roleService.checkNodes(role_id, ids, checked);
 		return;
 	}
+	/**
+	 * 查询有权限的品牌和大类
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param role_id
+	 * @return
+	 */
+	@RequestMapping("/role/querySelBrandAndClass.do")
+	@ResponseBody
+	public Map<String,List<String>> querySelBrandAndClass(String role_id ) {
+		List<String> brands= roleService.querySelBrand(role_id);
+		List<String> classes=roleService.querySelClass(role_id);
+		Map<String,List<String>> result=new HashMap<String,List<String>>();
+		result.put("brands", brands);
+		result.put("classes", classes);
+		
+		return result;
+	}
 	
+	@RequestMapping("/role/querySelBrand.do")
+	@ResponseBody
+	public List<String> querySelBrand(String role_id ) {
+		return roleService.querySelBrand(role_id);
+	}
+	
+	@RequestMapping("/role/selBrand.do")
+	@ResponseBody
+	public void selBrand(String role_id,String itno) {
+		roleService.selBrand(role_id, itno);
+	}
+	@RequestMapping("/role/deselBrand.do")
+	@ResponseBody
+	public void deselBrand(String role_id,String itno) {
+		roleService.deselBrand(role_id, itno);
+	}
+	
+	@RequestMapping("/role/querySelClass.do")
+	@ResponseBody
+	public List<String> querySelClass(String role_id ) {
+		return roleService.querySelClass(role_id);
+	}
+	@RequestMapping("/role/selClass.do")
+	@ResponseBody
+	public void selClass(String role_id,String itno) {
+		roleService.selClass(role_id, itno);
+	}
+	@RequestMapping("/role/deselClass.do")
+	@ResponseBody
+	public void deselClass(String role_id,String itno) {
+		roleService.deselClass(role_id, itno);
+	}
 }

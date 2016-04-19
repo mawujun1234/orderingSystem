@@ -117,6 +117,13 @@ Ext.onReady(function(){
 		    }
 		});
 		
+		//产品图片
+		samplePhotoShow.getStore().getProxy().extraParams={
+			sampno:window.sampno.sampno
+		};
+		//samplePhotoShow.down("#samplePhotoView").refresh( );
+		samplePhotoShow.getStore().reload();
+		
 	});
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{

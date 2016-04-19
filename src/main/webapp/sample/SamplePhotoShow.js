@@ -1,5 +1,5 @@
 Ext.define('y.sample.SamplePhotoShow', {
-	extend : 'Ext.Panel',
+	extend : 'Ext.panel.Panel',
 	requires : ['y.sample.SamplePhoto'],
 
 	frame : true,
@@ -12,28 +12,43 @@ Ext.define('y.sample.SamplePhotoShow', {
 	initComponent : function() {
 		var me = this;
 		me.store = Ext.create('Ext.data.Store', {
+			autoLoad:false,
 	        model: 'y.sample.SamplePhoto',
 	        proxy: {
 	            type: 'ajax',
-	            url: 'get-images.php',
+	            url: Ext.ContextPath+'/samplePhoto/query.do',
 	            reader: {
-	                type: 'json',
-	                rootProperty: 'images'
+	                type: 'json'
+	                //rootProperty: 'images'
 	            }
+	        },
+
+	        listeners:{
+//	        	load:function(store){
+//	        		me.down("#samplePhotoView").render();
+//	        	}
 	        }
 	    });
 	    //store.load();
     
 		me.items = Ext.create('Ext.view.View', {
 			store : me.store,
-			tpl : [
-					'<tpl for=".">',
-					'<div class="thumb-wrap" id="{name:stripTags}">',
-					'<div class="thumb"><img src="{url}" title="{name:htmlEncode}"></div>',
-					'<span class="x-editable">{shortName:htmlEncode}</span>',
-					'</div>', '</tpl>', '<div class="x-clear"></div>'],
-			multiSelect : true,
-			height : 310,
+			//itemId:'samplePhotoView',
+			//height:500,
+//			tpl : [
+//					'<tpl for=".">',
+//					'<div class="thumb-wrap" id="{id}">',
+//					'<div class="thumb"><img src="{imgnm}" title="{photms}"></div>',
+//					'<span class="x-editable">{photnm}</span>',
+//					'</div>', '</tpl>', '<div class="x-clear"></div>'],
+			tpl:['<tpl for=".">',
+			        '<div style="margin-bottom: 10px;" class="thumb-wrap">',
+			          '<img src="{imgnm}" width="100%" />',
+			          '<br/><span>{photnm}</span>',
+			        '</div>',
+			    '</tpl>'],
+			multiSelect : false,
+			//height : 310,
 			trackOver : true,
 			overItemCls : 'x-item-over',
 			itemSelector : 'div.thumb-wrap',
@@ -43,25 +58,26 @@ Ext.define('y.sample.SamplePhotoShow', {
 //								dataIndex : 'name'
 //							})],
 			prepareData : function(data) {
-				Ext.apply(data, {
-							shortName : Ext.util.Format.ellipsis(data.name, 15),
-							sizeString : Ext.util.Format.fileSize(data.size),
-							dateString : Ext.util.Format.date(data.lastmod,
-									"m/d/Y g:i a")
-						});
+//				Ext.apply(data, {
+//							shortName : Ext.util.Format.ellipsis(data.name, 15),
+//							sizeString : Ext.util.Format.fileSize(data.size),
+//							dateString : Ext.util.Format.date(data.lastmod,
+//									"m/d/Y g:i a")
+//						});
 				return data;
 			},
 			listeners : {
 				selectionchange : function(dv, nodes) {
-					var l = nodes.length, s = l !== 1 ? 's' : '';
-					this.up('panel').setTitle('Simple DataView (' + l + ' item' + s
-							+ ' selected)');
+//					var l = nodes.length, s = l !== 1 ? 's' : '';
+//					this.up('panel').setTitle('Simple DataView (' + l + ' item' + s
+//							+ ' selected)');
+					me.dv_nodes=nodes;
 				}
 			}
 		});
 		
 		
-		me.dockedItems=[];
+	   me.dockedItems=[];
 
 	  
 	   me.dockedItems.push({
@@ -127,5 +143,22 @@ Ext.define('y.sample.SamplePhotoShow', {
     		}
     	});
     	win.show();
+	},
+	onDelete:function(){
+		if(this.dv_nodes){
+			this.dv_nodes[0].erase({
+				success:function(){
+					Ext.Msg.alert("消息","删除成功!");
+				}
+			});
+//			Ext.Ajax.request({
+//				url:Ext.ContextPath+'/samplePhoto/destroy.do',
+//				
+//				
+//			});
+		}
+	},
+	getStore:function(){
+		return this.store;
 	}
 });

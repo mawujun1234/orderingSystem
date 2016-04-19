@@ -157,6 +157,94 @@ public static final class Role {
 	public static final String remark="remark";
 	public static final String parent_id="parent_id";
 }
+public static final class RoleBrand {
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class pubCode {
+		public static final String itno="pubCode.itno";
+		public static final String tyno="pubCode.tyno";
+		public static final String fitno="pubCode.fitno";
+		public static final String itnm="pubCode.itnm";
+		public static final String itms="pubCode.itms";
+		public static final String itmk="pubCode.itmk";
+		public static final String itso="pubCode.itso";
+		public static final String itst="pubCode.itst";
+		public static final String stat="pubCode.stat";
+		public static final String rgsp="pubCode.rgsp";
+		public static final String rgdt="pubCode.rgdt";
+		public static final String lmsp="pubCode.lmsp";
+		public static final String lmdt="pubCode.lmdt";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "pubCode";
+	    }
+	}
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class role {
+		public static final String id="role.id";
+		public static final String name="role.name";
+		public static final String roleType="role.roleType";
+		public static final String remark="role.remark";
+		public static final String parent_id="role.parent_id";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "role";
+	    }
+	}
+}
+public static final class RoleClass {
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class pubCode {
+		public static final String itno="pubCode.itno";
+		public static final String tyno="pubCode.tyno";
+		public static final String fitno="pubCode.fitno";
+		public static final String itnm="pubCode.itnm";
+		public static final String itms="pubCode.itms";
+		public static final String itmk="pubCode.itmk";
+		public static final String itso="pubCode.itso";
+		public static final String itst="pubCode.itst";
+		public static final String stat="pubCode.stat";
+		public static final String rgsp="pubCode.rgsp";
+		public static final String rgdt="pubCode.rgdt";
+		public static final String lmsp="pubCode.lmsp";
+		public static final String lmdt="pubCode.lmdt";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "pubCode";
+	    }
+	}
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class role {
+		public static final String id="role.id";
+		public static final String name="role.name";
+		public static final String roleType="role.roleType";
+		public static final String remark="role.remark";
+		public static final String parent_id="role.parent_id";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "role";
+	    }
+	}
+}
 public static final class RoleMenu {
 	 /**
 	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了

@@ -1,9 +1,9 @@
 package com.youngor.sample;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mawujun.repository.idEntity.UUIDGenerator;
 import com.mawujun.service.AbstractService;
+import com.youngor.permission.ShiroUtils;
 
 
 /**
@@ -38,6 +39,8 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		String id=UUIDGenerator.generate();
 		samplePhoto.setId(id);
 		samplePhoto.setPhotnm(imageFile.getOriginalFilename());
+		samplePhoto.setRgdt(new Date());
+		samplePhoto.setRgsp(ShiroUtils.getLoginName());
 				
 		InputStream stream = imageFile.getInputStream();
 		String[] aa=samplePhoto.getPhotnm().split("\\.");

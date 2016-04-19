@@ -1,16 +1,12 @@
 package com.youngor.sample;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
-import com.youngor.sample.SamplePlan;
-import com.youngor.sample.SamplePlanRepository;
 import com.youngor.utils.M;
 
 
@@ -53,6 +49,13 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 				samplePlanStprRepository.create(samplePlanStpr);
 			}
 		}
+	}
+	
+	@Override
+	public  void delete(SamplePlan samplePlan) {
+		samplePlan=samplePlanRepository.get(samplePlan.getPlspno());
+		samplePlan.setPlspst(0);
+		samplePlanRepository.update(samplePlan);
 	}
 	
 	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {

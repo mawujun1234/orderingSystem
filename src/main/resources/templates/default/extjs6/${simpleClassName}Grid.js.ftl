@@ -169,14 +169,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
       ];
       
       <#-----------------------------------------生成store--------------------------------- ----->
-      <#if extenConfig.extjs_grid_store_userModel==true>
-	  me.store=Ext.create('Ext.data.Store',{
-			autoSync:false,
-			pageSize:50,
-			model: '${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',
-			autoLoad:true
-	  });
-	  <#else>
+
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
@@ -189,14 +182,14 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
 			    reader:{
-					type:'json',
+					type:'json',//如果没有分页，那么可以把后面三行去掉，而且后台只需要返回一个数组就行了
 					rootProperty:'root',
 					successProperty:'success',
 					totalProperty:'total'		
 				}
 			}
 	  });
-	  </#if>
+
 	  me.dockedItems=[];
 	  <#-----------------------------------------是否启用page--------------------------------- ----->
       me.dockedItems.push({
@@ -350,16 +343,16 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	            	grid.getStore().getProxy().extraParams={
 	            		<#list queryProperties as propertyColumn>
 	            		<#if propertyColumn.jsType=='date'>
-	            		'${propertyColumn.property}_start': Ext.Date.format(grid.down("#${propertyColumn.property}_start").getValue(),'Y-m-d H:i:s'),
-	            		'${propertyColumn.property}_end': Ext.Date.format(grid.down("#${propertyColumn.property}_end").getValue(),'Y-m-d H:i:s')<#if propertyColumn_has_next>,</#if>
+	            		"params['${propertyColumn.property}_start']": Ext.Date.format(grid.down("#${propertyColumn.property}_start").getValue(),'Y-m-d H:i:s'),
+	            		"params['${propertyColumn.property}_end']": Ext.Date.format(grid.down("#${propertyColumn.property}_end").getValue(),'Y-m-d H:i:s')<#if propertyColumn_has_next>,</#if>
 						<#elseif propertyColumn.jsType=='bool'>
-						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						"params['${propertyColumn.property}']":grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
 						<#elseif propertyColumn.jsType=='int' >
-						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						"params['${propertyColumn.property}']":grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
 						<#elseif propertyColumn.jsType=='float'>
-						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						"params['${propertyColumn.property}']":grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
 						<#else>
-						'${propertyColumn.property}':grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
+						"params['${propertyColumn.property}']":grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
 						</#if>
 		                </#list>
 	                };

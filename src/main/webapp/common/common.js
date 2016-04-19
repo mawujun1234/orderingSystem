@@ -62,7 +62,7 @@ Ext.define('y.common.PubCode',{
 	
 	
 	queryMode: 'local',
-	editable:false,
+	editable:true,
 	forceSelection:true,
 	displayField: 'itnm',
 	valueField: 'itno',
@@ -105,6 +105,7 @@ Ext.define('y.common.PubCode',{
 				if(myStore.getCount( ) >0){
 			 		var r=myStore.getAt(0);
 			 		me.select( r );
+			 		me.fireEvent("select", me, r);
 			 	}
 			})
 		}

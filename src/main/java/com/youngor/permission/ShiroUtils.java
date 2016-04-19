@@ -2,6 +2,8 @@ package com.youngor.permission;
 
 import org.apache.shiro.SecurityUtils;
 
+import com.mawujun.exception.BusinessException;
+
 public class ShiroUtils {
 	/**
 	 * 获取用户的登陆名
@@ -32,6 +34,20 @@ public class ShiroUtils {
 	 */
 	public static UserVO getAuthenticationInfo(){
 		return (UserVO)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+	}
+	/**
+	 * 获取可访问品牌中的第一个品牌
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public static String getFirstBradno(){
+		UserVO userVO=getAuthenticationInfo();
+		if(userVO.getBrandes()==null || userVO.getBrandes().size()==0){
+			throw new BusinessException("请先为用户授予可访问的品牌!");
+		} else {
+			return userVO.getBrandes().get(0);
+		}
+		
 	}
 
 }
