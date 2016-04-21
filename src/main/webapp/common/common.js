@@ -207,10 +207,12 @@ Ext.define('y.common.PubSunoCombo',{
 			},
 			listeners:{
 				load:function(myStore){
+					if(!me.value && me.selFirst){
 					if(myStore.getCount( ) >0){
 			 			var r=myStore.getAt(0);
 			 			me.select( r );
 			 		}
+					}
 				}
 			}
 			

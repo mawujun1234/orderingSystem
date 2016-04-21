@@ -45,6 +45,7 @@ public class SampleDesignController {
 	
 
 	@RequestMapping("/sampleDesign/load.do")
+	@ResponseBody
 	public SampleDesign load(String id) {
 		return sampleDesignService.get(id);
 	}

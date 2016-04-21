@@ -165,9 +165,21 @@ public class UserController {
 		List<User> useres=userService.queryAll();
 		return useres;
 	}
+	/**
+	 * 查询所有设计师
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/user/querySjs.do")
+	@ResponseBody
+	public List<User> querySjs(String positionType_id) {	
+		List<User> useres=userService.querySjs(positionType_id);
+		return useres;
+	}
 	
 
 	@RequestMapping("/user/load.do")
+	@ResponseBody
 	public User load(String id) {
 		return userService.get(id);
 	}

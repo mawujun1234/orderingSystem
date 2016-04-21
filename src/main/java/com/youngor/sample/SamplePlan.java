@@ -36,47 +36,47 @@ public class SamplePlan extends BaseObject{
 	private String ormtno;
 	
 	@FieldDefine(title="品牌",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String bradno;//
 	@FieldDefine(title="年份",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spyear;
 	@FieldDefine(title="季节",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spsean;
 	@FieldDefine(title="大系列",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spbseno;
 	@FieldDefine(title="品牌系列",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String sprseno;
 	@FieldDefine(title="大类",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spclno;
 	@FieldDefine(title="小类",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String sptyno;
 	@FieldDefine(title="系列",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spseno;
 	@FieldDefine(title="定位",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String splcno;
 	@FieldDefine(title="上市批次",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private String spbano;
 	
 	@FieldDefine(title="出厂价",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private Double spftpr;
 	@FieldDefine(title="零售价",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private Double sprtpr;
 	@FieldDefine(title="企划倍率",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private Double spplrd;
 	@FieldDefine(title="企划成本价",sort=50,hidden=false)
-	@Column(length=30,nullable=false,updatable=false)
+	@Column(length=30,nullable=false,updatable=true)
 	private Double plctpr;
 	
 	@FieldDefine(title="计划交货期",sort=50,hidden=false)
@@ -90,8 +90,8 @@ public class SamplePlan extends BaseObject{
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer plspst=0;//1：锁定；0：未锁定
 	
-	@Transient
-	private List<SamplePlanStpr> samplePlanStpres;//用于前台网后台传递数据的时候，比如新建，更新
+	//@Transient
+	//private List<SamplePlanStpr> samplePlanStpres;//用于前台网后台传递数据的时候，比如新建，更新
 	
 	public String getPlspno() {
 		return plspno;
@@ -219,17 +219,5 @@ public class SamplePlan extends BaseObject{
 	public void setPlspst(Integer plspst) {
 		this.plspst = plspst;
 	}
-	public List<SamplePlanStpr> getSamplePlanStpres() {
-		return samplePlanStpres;
-	}
-	public void setSamplePlanStpres(List<SamplePlanStpr> samplePlanStpres) {
-		this.samplePlanStpres = samplePlanStpres;
-	}
-	
-	
-	
-	
-
-
 
 }

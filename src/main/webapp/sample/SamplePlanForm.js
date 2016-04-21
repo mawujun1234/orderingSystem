@@ -155,14 +155,29 @@ Ext.define('y.sample.SamplePlanForm',{
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"企划倍率不允许为空",
-	        xtype:'numberfield'   
+	        xtype:'numberfield',
+	        listeners:{
+	        	change:function( spplrdField, newValue, oldValue, eOpts ) {
+	        		//alert(newValue);
+	        		//console.log(newValue);
+	        		if(!spplrdField.getValue()){
+	        			return;
+	        		}
+	        		
+	        		var sprtprField=spplrdField.previousSibling("numberfield[name=sprtpr]");//出厂价
+	        		//console.log(sprtprField.getValue()+"=======");
+	        		var plctprField=spplrdField.nextSibling("numberfield[name=plctpr]");
+	        		plctprField.setValue(sprtprField.getValue()/newValue);
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '企划成本价',
 	        name: 'plctpr',
-	        selectOnFocus:true,
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
+	        //editable:false,
+//	        selectOnFocus:true,
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
             blankText:"企划成本价不允许为空",
 	        xtype:'numberfield'   
 	    },
@@ -246,21 +261,21 @@ Ext.define('y.sample.SamplePlanForm',{
 	    }
 	  ];   
 	  
-	  var samplePlanStprGrid=Ext.create('y.sample.SamplePlanStprGrid',{
-		itemId:'samplePlanStprGrid'
-	  });
-	  var fieldset={
-        // Fieldset in Column 1 - collapsible via toggle button
-        xtype:'fieldset',
-        //columnWidth: 0.5,
-        title: '套件价格',
-        collapsible: true,
-        //defaultType: 'textfield',
-        defaults: {anchor: '100%'},
-        layout: 'anchor',
-        items :[samplePlanStprGrid]
-    }
-	  me.items.push(fieldset);
+//	  var samplePlanStprGrid=Ext.create('y.sample.SamplePlanStprGrid',{
+//		itemId:'samplePlanStprGrid'
+//	  });
+//	  var fieldset={
+//        // Fieldset in Column 1 - collapsible via toggle button
+//        xtype:'fieldset',
+//        //columnWidth: 0.5,
+//        title: '套件价格',
+//        collapsible: true,
+//        //defaultType: 'textfield',
+//        defaults: {anchor: '100%'},
+//        layout: 'anchor',
+//        items :[samplePlanStprGrid]
+//    }
+//	  me.items.push(fieldset);
 	  
 	  this.buttons = [];
 		this.buttons.push({
@@ -273,19 +288,19 @@ Ext.define('y.sample.SamplePlanForm',{
 				var formpanel = button.up('form');
 				button.up('form').updateRecord();
 				var record=button.up('form').getForm().getRecord();
-				var samplePlanStpres=samplePlanStprGrid.getStore().getRange();
-				
-				var aa=[];
-				for(var i=0;i<samplePlanStpres.length;i++){
-					aa.push({
-						plspno:samplePlanStpres[i].get("plspno"),
-						suitno:samplePlanStpres[i].get("suitno"),
-						spftpr:samplePlanStpres[i].get("spftpr"),
-						sprtpr:samplePlanStpres[i].get("sprtpr")
-					
-					});
-				}
-				record.set("samplePlanStpres",aa);
+//				var samplePlanStpres=samplePlanStprGrid.getStore().getRange();
+//				
+//				var aa=[];
+//				for(var i=0;i<samplePlanStpres.length;i++){
+//					aa.push({
+//						plspno:samplePlanStpres[i].get("plspno"),
+//						suitno:samplePlanStpres[i].get("suitno"),
+//						spftpr:samplePlanStpres[i].get("spftpr"),
+//						sprtpr:samplePlanStpres[i].get("sprtpr")
+//					
+//					});
+//				}
+//				record.set("samplePlanStpres",aa);
 				
 				record.save({
 					failure: function(record, operation) {
@@ -312,21 +327,21 @@ Ext.define('y.sample.SamplePlanForm',{
 		sptyno.reload(record.get("spclno"));
 		var spseno=this.down("pubcodecombo[name=spseno]")
 		spseno.reload(record.get("spclno"));
-//		Ext.Ajax.request({
-//			url:Ext.ContextPath+"",
-//			params:{
-//			
-//			},
-//			success:function(response){
-//				var objes=Ext.decode(response.responseText);
-//				me.down("grid#samplePlanStprGrid").getStore().loadData(objes);
-//			}
-//		});
-		var samplePlanStprGrid_store=me.down("grid#samplePlanStprGrid").getStore();
-		samplePlanStprGrid_store.getProxy().extraParams={
-			plspno:record.get("plspno")
-		};
-		samplePlanStprGrid_store.reload();
+////		Ext.Ajax.request({
+////			url:Ext.ContextPath+"",
+////			params:{
+////			
+////			},
+////			success:function(response){
+////				var objes=Ext.decode(response.responseText);
+////				me.down("grid#samplePlanStprGrid").getStore().loadData(objes);
+////			}
+////		});
+//		var samplePlanStprGrid_store=me.down("grid#samplePlanStprGrid").getStore();
+//		samplePlanStprGrid_store.getProxy().extraParams={
+//			plspno:record.get("plspno")
+//		};
+//		samplePlanStprGrid_store.reload();
 		
 		//this.loadRecord(record);
 		this.getForm().loadRecord(record);

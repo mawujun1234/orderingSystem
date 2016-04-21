@@ -4,7 +4,8 @@ Ext.define("y.org.Position",{
 		{name:'name',type:'string'},
 		{name:'remark',type:'string'},
 		{name:'id',type:'string'},
-		{name:'orgno',type:'string'}
+		{name:'orgno',type:'string'},
+		{name:'positionType_id',type:'string'}
 	],
 	proxy:{
 		type:'ajax',
@@ -13,12 +14,12 @@ Ext.define("y.org.Position",{
 		headers:{ 'Accept':'application/json;'},
 		writer:{
 			type:'json',
-			writeRecordId:false,
+			writeRecordId:true,
 			writeAllFields:true
 		},
 		api:{
-			read:Ext.ContextPath+'/position/query.do',
-			load : Ext.ContextPath+'/position/load.do',
+			read:Ext.ContextPath+'/position/load.do',
+			//load : Ext.ContextPath+'/position/load.do',
 			create:Ext.ContextPath+'/position/create.do',
 			update:Ext.ContextPath+'/position/update.do',
 			destroy:Ext.ContextPath+'/position/destroy.do'

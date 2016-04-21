@@ -112,9 +112,6 @@ Ext.define('y.sample.SamplePlanGrid',{
 		        itemId: 'sptyno',
 		        labelWidth:40,
 		        width:140,
-//	            allowBlank: false,
-//	            afterLabelTextTpl: Ext.required,
-//	            blankText:"小类不允许为空",
 	            autoLoad:false,
 		        xtype:'pubcodecombo',
 		        tyno:'2'
@@ -124,9 +121,6 @@ Ext.define('y.sample.SamplePlanGrid',{
 		        itemId: 'spseno',
 		        labelWidth:40,
 		        width:160,
-//	            allowBlank: false,
-//	            afterLabelTextTpl: Ext.required,
-//	            blankText:"系列不允许为空",
 	            autoLoad:false,
 		        xtype:'pubcodecombo',
 		        tyno:'5'

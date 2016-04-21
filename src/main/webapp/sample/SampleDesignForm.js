@@ -7,7 +7,7 @@ Ext.define('y.sample.SampleDesignForm',{
     frame: true,
     autoScroll : true,
 	buttonAlign : 'center',
-    bodyPadding: '5 5 0',
+    bodyPadding: '5 0 0',
 
 
     defaults: {
@@ -20,15 +20,6 @@ Ext.define('y.sample.SampleDesignForm',{
        var me = this;
        me.items= [
 		{
-	        fieldLabel: '设计样衣编号',
-	        name: 'sampnm',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"设计样衣编号不允许为空",
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
-		{
 	        fieldLabel: '企划样衣id',
 	        name: 'plspno',
 	        hidden:true,
@@ -37,8 +28,7 @@ Ext.define('y.sample.SampleDesignForm',{
 //            blankText:"企划样衣编号不允许为空",
 //            selectOnFocus:true,
 	        xtype:'textfield'
-	    },
-	    {
+	    },{
 	        fieldLabel: '企划样衣编号',
 	        name: 'plspnm',
             allowBlank: false,
@@ -47,7 +37,17 @@ Ext.define('y.sample.SampleDesignForm',{
             blankText:"企划样衣编号不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
+	    },{
+	        fieldLabel: '设计样衣编号',
+	        name: 'sampnm',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"设计样衣编号不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
 	    },
+		
+	    
 		{
 	        fieldLabel: '版型',
 	        name: 'versno',
@@ -60,7 +60,7 @@ Ext.define('y.sample.SampleDesignForm',{
 		{
 	        fieldLabel: '照片编号',
 	        name: 'photno',
-            allowBlank: false,
+            allowBlank: true,
             hidden:true,
 	        xtype:'textfield'
 	    },
@@ -74,15 +74,32 @@ Ext.define('y.sample.SampleDesignForm',{
 	        xtype:'pubcodecombo',
 	        tyno:'21'
 	    },
-		{
-	        fieldLabel: '设计师',
-	        name: 'desgno',
-            allowBlank: false,
+	    {
+			fieldLabel: '设计师',
+			name: 'desgno',
+			queryMode: 'local',
+			editable:true,
+			allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"设计师不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
-	    },
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'id',
+		    store: {
+		    	autoLoad:true,
+			    fields: ['id', 'name'],
+			    proxy:{
+			    	type:'ajax',
+			    	extraParams:{positionType_id:'sjs'},
+			    	url:Ext.ContextPath+'/user/querySjs.do'
+			    }
+			},
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"职位类型不允许为空",
+			xtype:'combobox'
+		},
 		{
 	        fieldLabel: '外买样衣编号',
 	        name: 'buspno',
@@ -99,7 +116,47 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"生产类型不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'pubcodecombo',
+	        tyno:'29',
+	        listeners:{
+	       		change:function(field, newValue, oldValue){
+	       			var gustnoField=field.nextSibling("textfield[name='gustno']");
+	       			var form=field.up("form");
+	       			if(newValue=='WG'){
+	       				var aa=Ext.create('Ext.form.field.Text',{
+					        fieldLabel: '客供编号',
+					        name: 'gustno',
+				            allowBlank: false,
+				            afterLabelTextTpl: Ext.required,
+				            blankText:"客供编号不允许为空",
+				            selectOnFocus:true,
+					        xtype:'textfield'
+					    });
+	       				form.remove(gustnoField,true);
+	       				//form.add(aa);
+	       				form.moveAfter( aa, field );
+	       				
+	       				var tabpanel=field.up("tabpanel");
+	       				tabpanel.items.getAt(2).disable();//面料信息
+	       			} else if(newValue=='ZC') {
+	       				form.remove(gustnoField,true);
+	       				
+//	       				var aa=Ext.create('Ext.form.field.Text',{
+//					        fieldLabel: '客供编号',
+//					        name: 'gustno',
+//				            selectOnFocus:true,
+//					        xtype:'textfield'
+//					    });
+//	       				
+//	       				//form.add(aa);
+//	       				form.moveAfter( aa, field )
+	       				
+	       				var tabpanel=field.up("tabpanel");
+	       				tabpanel.items.getAt(2).enable();
+	       			}
+	       		}
+	        
+	        }
 	    },
 		{
 	        fieldLabel: '客供编号',
@@ -171,7 +228,19 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"套装种类不允许为空",
             xtype:'pubcodecombo',
-	        tyno:'20'
+	        tyno:'20',
+	        listeners:{
+	        	select:function(combo, record){
+	        		var form=combo.up("form");
+	        		var sampleDesignStprGrid_store=form.down("grid#sampleDesignStprGrid").getStore();
+	        		sampleDesignStprGrid_store.removeAll();
+					sampleDesignStprGrid_store.getProxy().extraParams={
+						suitty:record.get("itno"),
+						sampno:window.sampno.sampno
+					};
+					sampleDesignStprGrid_store.reload();
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '规格版型说明',
@@ -180,7 +249,8 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"规格版型说明不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'textareafield',
+	        grow      : true
 	    },
 		{
 	        fieldLabel: '规格系列',
@@ -189,15 +259,25 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"规格系列不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'combobox',
+	        queryMode: 'local',
+			editable:true,
+	        selectOnFocus:true,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'id',
+		    store: {
+		    	autoLoad:false,
+			    fields: ['id', 'name'],
+			    proxy:{
+			    	type:'ajax',
+			    	//extraParams:{szbrad:'sjs'},
+			    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY.do'
+			    }
+			}
+	        
 	    },
-//		{
-//	        fieldLabel: '包装要求',
-//	        name: 'packqt',
-//            allowDecimals:false,
-//            selectOnFocus:true,
-//	        xtype:'numberfield'   
-//	    },
+
 	    {
             xtype      : 'fieldcontainer',
             fieldLabel : '包装要求',
@@ -220,13 +300,7 @@ Ext.define('y.sample.SampleDesignForm',{
                 }
             ]
         },
-//		{
-//	        fieldLabel: '是否拆套',
-//	        name: 'spltmk',
-//            allowDecimals:false,
-//            selectOnFocus:true,
-//	        xtype:'numberfield'   
-//	    },
+
         {
             xtype      : 'fieldcontainer',
             fieldLabel : '是否拆套',
@@ -311,53 +385,141 @@ Ext.define('y.sample.SampleDesignForm',{
         }
 	  ];   
 	  
+	  var sampleDesignStprGrid=Ext.create('y.sample.SampleDesignStprGrid',{
+	  	itemId:'sampleDesignStprGrid'
+	  });
+	  var fieldset={
+        // Fieldset in Column 1 - collapsible via toggle button
+        xtype:'fieldset',
+        //columnWidth: 0.5,
+        title: '套件价格',
+        collapsible: true,
+        //defaultType: 'textfield',
+        defaults: {anchor: '100%'},
+        layout: 'anchor',
+        items :[sampleDesignStprGrid]
+      }
+	  me.items.push(fieldset);
+	  
 	  
 	  this.buttons = [];
 		this.buttons.push({
 			text : '保存',
 			itemId : 'save',
 			formBind: true, //only enabled once the form is valid
-       		disabled: true,
+       		//disabled: true,
 			glyph : 0xf0c7,
 			handler : function(button){
 				var formpanel = button.up('form');
+//				if(!formpanel.isValid()){
+//					alert("请先填写必填项!");
+//					return;
+//				}
 				formpanel.updateRecord();
-				formpanel.getForm().getRecord().save({
-					failure: function(record, operation) {
-				    },
-				    success: function(record, operation) {
-				    	Ext.Msg.alert("消息","保存成功!");
+				//var record=button.up('form').getForm().getRecord();
+				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();
+				
+				var aa=[];
+				for(var i=0;i<sampleDesignStpres.length;i++){
+					aa.push({
+						//sampno:sampleDesignStpres[i].get("getSampno"),
+						suitno:sampleDesignStpres[i].get("suitno"),
+						spftpr:sampleDesignStpres[i].get("spftpr"),
+						sprtpr:sampleDesignStpres[i].get("sprtpr"),
+						plctpr:sampleDesignStpres[i].get("plctpr")
+					});
+				}
+				//record.set("sampleDesignStpres",aa);
+				var jsonData=formpanel.getForm().getFieldValues();
+				jsonData.sampleDesignStpres=aa;
+				
+				//console.log(aa);
+				Ext.Ajax.request({
+					url:Ext.ContextPath+"/sampleDesign/create.do",
+					actionMethods: { read: 'POST' },
+					timeout :600000,
+					headers:{ 'Accept':'application/json;'},
+					jsonData:jsonData,
+					success:function(response){
+						Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
 				    	//formpanel.reset();
 				    	//samplePlanStprGrid.getStore().removeAll();
 				    	var tabpanel=formpanel.up("tabpanel");
 						//tabpanel.unmask();
-						var samplePlanDesignGrid=tabpanel.previousSibling("gridpanel#samplePlanDesignGrid") ;
-						samplePlanDesignGrid.getStore().reload();
+						var sampleDesignGrid=tabpanel.previousSibling("gridpanel#sampleDesignGrid") ;
+						sampleDesignGrid.getStore().reload();
 						//用于后面的面料信息
 						window.sampno={
 							sampno:record.get("sampno"),
 							sampnm:record.get("sampnm")
 						};
-				    }
-				});			
+						
+						//var tabpanel=btn.up("tabpanel");
+				       	tabpanel.items.getAt(2).enable();
+				       	tabpanel.items.getAt(3).enable();
+				       	tabpanel.items.getAt(4).enable();
+					}
+					
+				});
+//				record.save({
+//					failure: function(record, operation) {
+//				    },
+//				    success: function(record, operation) {
+//				    	Ext.Msg.alert("消息","保存成功!");
+//						//button.up('window').close();
+//				    	//formpanel.reset();
+//				    	//samplePlanStprGrid.getStore().removeAll();
+//				    	var tabpanel=formpanel.up("tabpanel");
+//						//tabpanel.unmask();
+//						var sampleDesignGrid=tabpanel.previousSibling("gridpanel#sampleDesignGrid") ;
+//						sampleDesignGrid.getStore().reload();
+//						//用于后面的面料信息
+//						window.sampno={
+//							sampno:record.get("sampno"),
+//							sampnm:record.get("sampnm")
+//						};
+//						
+//						//var tabpanel=btn.up("tabpanel");
+//				       	tabpanel.items.getAt(2).enable();
+//				       	tabpanel.items.getAt(3).enable();
+//				       	tabpanel.items.getAt(4).enable();
+//				    }
+//				});			
 				
 				}
 			});
       me.callParent();
 	},
 	loadRecord:function(record){
-		//this.mask("正在刷新....");
-//		var sptyno=this.down("pubcodecombo[name=sptyno]")
-//		sptyno.reload(record.get("spclno"));
-//		var spseno=this.down("pubcodecombo[name=spseno]")
-//		spseno.reload(record.get("spclno"));
-//
-//		this.down("grid#samplePlanStprGrid").getStore().loadData(record.get("samplePlanStpres"));
-//		//this.loadRecord(record);
+		var me=this;
+		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
+		sampleDesignStprGrid_store.removeAll();
+		sampleDesignStprGrid_store.getProxy().extraParams={
+			suitty:record.get("suitty"),
+			sampno:window.sampno.sampno
+		};
+		sampleDesignStprGrid_store.reload();
+					
+		var aa=y.sample.SampleDesign.load(record.get("sampno"),{
+			success:function(sampleDesign){
+				sampleDesign.set("plspnm",record.get("plspnm"));
+				me.getForm().loadRecord(sampleDesign);
+			}
+		});
 		
-		//this.unmask();
+	},
+	/**
+	 * 根据品牌重新刷新所有的衣服属性
+	 * @param {} bradno
+	 */
+	reloadPubcode:function(bradno){
+		if(!bradno){
+			alert("请传递品牌参数");
+			return;
+		}
 		
-		this.getForm().loadRecord(record);
+		var me=this;
+		
 	}
 });

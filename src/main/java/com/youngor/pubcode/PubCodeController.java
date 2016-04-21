@@ -29,10 +29,14 @@ public class PubCodeController {
 
 	@RequestMapping("/pubCodeType/query4Combo.do")
 	@ResponseBody
-	public List<PubCode> query4Combo(String tyno,String fitno) {
+	public List<PubCode> query4Combo(String tyno,String fitno,String bradno) {
 
-		//默认是所有课访问品牌中的第一个品牌，和前段的品牌combobox要对应起来
-		String bradno=ShiroUtils.getFirstBradno();
+		//默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
+		if(bradno==null){
+			bradno=ShiroUtils.getFirstBradno();
+		}
+		
+		
 		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno);
 		//如果返回的是品牌大类，就过滤成用户可访问的品牌大类
 		if("1".equals(tyno)){

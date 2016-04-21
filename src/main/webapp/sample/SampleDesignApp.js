@@ -2,8 +2,8 @@ Ext.require("y.sample.SamplePlan");
 Ext.require("y.sample.SamplePlanGrid");
 Ext.require("y.sample.SamplePlanForm");
 Ext.onReady(function(){
-	var samplePlanDesignGrid=Ext.create('y.sample.SamplePlanDesignGrid',{
-		itemId:'samplePlanDesignGrid',
+	var sampleDesignGrid=Ext.create('y.sample.SampleDesignGrid',{
+		itemId:'sampleDesignGrid',
 		region:'center'
 		//title:'XXX表格'
 	});
@@ -77,21 +77,25 @@ Ext.onReady(function(){
 	
 	
 	
-	samplePlanDesignGrid.on("itemclick",function(view, record, item, index, e, eOpts){
+	sampleDesignGrid.on("itemclick",function(view, record, item, index, e, eOpts){
 		window.sampno={
 			sampno:record.get("sampno"),
 			sampnm:record.get("sampnm")
 		};//当前选中的设计样衣编号
 		
-		if(samplePlanDesignGrid.spclno==record.get("spclno")){
+		if(sampleDesignGrid.sampno==record.get("sampno")){
 			return;
 		}
-		samplePlanDesignGrid.spclno=record.get("spclno");
+		
+		sampleDesignGrid.sampno=record.get("sampno");
 		
 		//tabpanel.mask("正在刷新.....");
 		tabpanel.setTitle("编辑样衣:"+record.get("plspnm"));
 		samplePlanForm.loadRecord(record);
 		tabpanel.unmask();
+		tabpanel.items.getAt(2).enable();
+		tabpanel.items.getAt(3).enable();
+		tabpanel.items.getAt(4).enable();
 		
 		//更新设计开发，数据
 		y.sample.SampleDesign.load(record.get("sampno"), {
@@ -128,7 +132,7 @@ Ext.onReady(function(){
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'border',
-		items:[samplePlanDesignGrid,tabpanel]
+		items:[sampleDesignGrid,tabpanel]
 	});
 
 

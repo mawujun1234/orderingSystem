@@ -54,6 +54,7 @@ public class ${simpleClassName}Controller {
 	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager){
 		return ${simpleClassNameFirstLower}Service.queryPage(pager);
 	}
+	</#if>
 
 	@RequestMapping("/${simpleClassNameFirstLower}/queryAll.do")
 	@ResponseBody
@@ -64,6 +65,7 @@ public class ${simpleClassName}Controller {
 	
 
 	@RequestMapping("/${simpleClassNameFirstLower}/load.do")
+	@ResponseBody
 	public ${simpleClassName} load(${idType} id) {
 		return ${simpleClassNameFirstLower}Service.get(id);
 	}

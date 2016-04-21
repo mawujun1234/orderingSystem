@@ -28,28 +28,28 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 	public SamplePlanRepository getRepository() {
 		return samplePlanRepository;
 	}
-	@Override
-	public String create(SamplePlan samplePlan) {
-		String id=super.create(samplePlan);
-		if(samplePlan.getSamplePlanStpres()!=null){
-			for(SamplePlanStpr samplePlanStpr:samplePlan.getSamplePlanStpres()){
-				samplePlanStpr.setPlspno(samplePlan.getPlspno());
-				samplePlanStprRepository.create(samplePlanStpr);
-			}
-		}
-		return id;
-	}
-	@Override
-	public  void update(SamplePlan samplePlan) {
-		super.update(samplePlan);
-		samplePlanStprRepository.deleteBatch(Cnd.delete().andEquals(M.SamplePlanStpr.plspno, samplePlan.getPlspno()));
-		if(samplePlan.getSamplePlanStpres()!=null){
-			for(SamplePlanStpr samplePlanStpr:samplePlan.getSamplePlanStpres()){
-				samplePlanStpr.setPlspno(samplePlan.getPlspno());
-				samplePlanStprRepository.create(samplePlanStpr);
-			}
-		}
-	}
+//	@Override
+//	public String create(SamplePlan samplePlan) {
+//		String id=super.create(samplePlan);
+//		if(samplePlan.getSamplePlanStpres()!=null){
+//			for(SamplePlanStpr samplePlanStpr:samplePlan.getSamplePlanStpres()){
+//				samplePlanStpr.setPlspno(samplePlan.getPlspno());
+//				samplePlanStprRepository.create(samplePlanStpr);
+//			}
+//		}
+//		return id;
+//	}
+//	@Override
+//	public  void update(SamplePlan samplePlan) {
+//		super.update(samplePlan);
+//		samplePlanStprRepository.deleteBatch(Cnd.delete().andEquals(M.SamplePlanStpr.plspno, samplePlan.getPlspno()));
+//		if(samplePlan.getSamplePlanStpres()!=null){
+//			for(SamplePlanStpr samplePlanStpr:samplePlan.getSamplePlanStpres()){
+//				samplePlanStpr.setPlspno(samplePlan.getPlspno());
+//				samplePlanStprRepository.create(samplePlanStpr);
+//			}
+//		}
+//	}
 	
 	@Override
 	public  void delete(SamplePlan samplePlan) {

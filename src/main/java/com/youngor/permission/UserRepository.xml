@@ -50,5 +50,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		select c.url from t_role_user a,t_role_menu b,t_menu c
 		where a.role_id=b.role_id  and b.menu_id=c.id and c.url is not null and a.user_id=#{user_id} 
 	</select>
+	<!-- 查询设计师的所有户，用于样衣设计的时候-->
+	<select id="querySjs" parameterType="string" resultType="com.youngor.permission.User">
+		select a.* from t_user a,t_position_org_user b,t_position c
+		where a.id=b.user_id and b.position_id=c.id and c.positiontype_id=#{positionType_id}
+	</select>
 </mapper>
 

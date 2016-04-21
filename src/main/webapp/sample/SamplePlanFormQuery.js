@@ -263,22 +263,22 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 	    }
 	  ];   
 	  
-	  var samplePlanStprGrid=Ext.create('y.sample.SamplePlanStprGrid',{
-	  	readOnly:true,
-		itemId:'samplePlanStprGrid'
-	  });
-	  var fieldset={
-        // Fieldset in Column 1 - collapsible via toggle button
-        xtype:'fieldset',
-        //columnWidth: 0.5,
-        title: '套件价格',
-        collapsible: true,
-        //defaultType: 'textfield',
-        defaults: {anchor: '100%'},
-        layout: 'anchor',
-        items :[samplePlanStprGrid]
-    }
-	  me.items.push(fieldset);
+//	  var samplePlanStprGrid=Ext.create('y.sample.SamplePlanStprGrid',{
+//	  	readOnly:true,
+//		itemId:'samplePlanStprGrid'
+//	  });
+//	  var fieldset={
+//        // Fieldset in Column 1 - collapsible via toggle button
+//        xtype:'fieldset',
+//        //columnWidth: 0.5,
+//        title: '套件价格',
+//        collapsible: true,
+//        //defaultType: 'textfield',
+//        defaults: {anchor: '100%'},
+//        layout: 'anchor',
+//        items :[samplePlanStprGrid]
+//    }
+//	  me.items.push(fieldset);
 	  
 
       me.callParent();
@@ -290,13 +290,13 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 		var spseno=this.down("pubcodecombo[name=spseno]")
 		spseno.reload(record.get("spclno"));
 
-		//this.down("grid#samplePlanStprGrid").getStore().loadData(record.get("samplePlanStpres"));
-		//this.loadRecord(record);
-		var samplePlanStprGrid_store=this.down("grid#samplePlanStprGrid").getStore();
-		samplePlanStprGrid_store.getProxy().extraParams={
-			plspno:record.get("plspno")
-		};
-		samplePlanStprGrid_store.reload();
+//		//this.down("grid#samplePlanStprGrid").getStore().loadData(record.get("samplePlanStpres"));
+//		//this.loadRecord(record);
+//		var samplePlanStprGrid_store=this.down("grid#samplePlanStprGrid").getStore();
+//		samplePlanStprGrid_store.getProxy().extraParams={
+//			plspno:record.get("plspno")
+//		};
+//		samplePlanStprGrid_store.reload();
 		
 		this.getForm().loadRecord(record);
 		this.unmask();

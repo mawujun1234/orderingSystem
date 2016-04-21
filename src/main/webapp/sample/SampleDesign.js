@@ -44,14 +44,11 @@ Ext.define("y.sample.SampleDesign",{
 			writeAllFields:true
 		},
 		reader:{
-			type:'json',
-			root:'root',
-			successProperty:'success',
-			totalProperty:'total'		
+			type:'json'	
 		},
 		api:{
-			read:Ext.ContextPath+'/sampleDesign/query.do',
-			load : Ext.ContextPath+'/sampleDesign/load.do',
+			read:Ext.ContextPath+'/sampleDesign/load.do',
+			//load : Ext.ContextPath+'/sampleDesign/load.do',
 			create:Ext.ContextPath+'/sampleDesign/create.do',
 			update:Ext.ContextPath+'/sampleDesign/update.do',
 			destroy:Ext.ContextPath+'/sampleDesign/destroy.do'

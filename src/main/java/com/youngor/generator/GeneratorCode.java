@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.mawujun.generator.ExtenConfig;
 import com.mawujun.generator.GeneratorService;
-import com.youngor.permission.RoleClass;
+import com.youngor.pubsize.PubSize;
 
 import freemarker.template.TemplateException;
 /**
@@ -25,10 +25,10 @@ public class GeneratorCode {
 		aa.extjs_form_layoutColumns=-1;
 		
 		aa.extjs_grid_createDelUpd_button=true;
-		aa.extjs_grid_enable_cellEditing=false;
+		aa.extjs_grid_enable_cellEditing=true;
 		generatorService.setExtenConfig(aa);
 		
-		generatorService.generatorAllFile(RoleClass.class);
+		generatorService.generatorAllFile(PubSize.class);
 
 	}
 	

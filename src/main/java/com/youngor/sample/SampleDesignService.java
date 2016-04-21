@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.youngor.utils.M;
 
 
 /**
@@ -19,6 +21,9 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	@Autowired
 	private SampleDesignRepository sampleDesignRepository;
 	
+	@Autowired
+	private SampleDesignStprRepository sampleDesignStprRepository;
+	
 	@Override
 	public SampleDesignRepository getRepository() {
 		return sampleDesignRepository;
@@ -29,6 +34,29 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 		SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
 		sampleDesign.setSampst(0);
 		sampleDesignRepository.update(sampleDesign);
+	}
+	
+	@Override
+	public String create(SampleDesign samplePlan) {
+		String id=super.create(samplePlan);
+		if(samplePlan.getSampleDesignStpres()!=null){
+			for(SampleDesignStpr samplePlanStpr:samplePlan.getSampleDesignStpres()){
+				samplePlanStpr.setSampno(samplePlan.getSampno());
+				sampleDesignStprRepository.create(samplePlanStpr);
+			}
+		}
+		return id;
+	}
+	@Override
+	public  void update(SampleDesign samplePlan) {
+		super.update(samplePlan);
+		sampleDesignStprRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, samplePlan.getSampno()));
+		if(samplePlan.getSampleDesignStpres()!=null){
+			for(SampleDesignStpr samplePlanStpr:samplePlan.getSampleDesignStpres()){
+				samplePlanStpr.setSampno(samplePlan.getSampno());
+				sampleDesignStprRepository.create(samplePlanStpr);
+			}
+		}
 	}
 
 }

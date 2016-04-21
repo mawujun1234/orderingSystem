@@ -1,7 +1,7 @@
-Ext.define('y.org.PositionForm',{
+Ext.define('y.org.PositionTypeForm',{
 	extend:'Ext.form.Panel',
 	requires: [
-	     'y.org.Position'
+	     'y.org.PositionType'
 	],
 	
     frame: true,
@@ -19,50 +19,25 @@ Ext.define('y.org.PositionForm',{
 	initComponent: function () {
        var me = this;
        me.items= [
+        {
+	        fieldLabel: '编码',
+	        name: 'id',
+            //selectOnFocus:true,
+	        xtype:'textfield'
+	    },
 		{
 	        fieldLabel: '职位名称',
 	        name: 'name',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"职位名称不允许为空",
+            selectOnFocus:true,
 	        xtype:'textfield'
 	    },
-	    {
-			fieldLabel: '职位类型',
-			name: 'positionType_id',
-			queryMode: 'local',
-			editable:false,
-			forceSelection:true,
-		    displayField: 'name',
-		    valueField: 'id',
-		    store: {
-		    	autoLoad:true,
-			    fields: ['id', 'name'],
-			    proxy:{
-			    	type:'ajax',
-			    	url:Ext.ContextPath+'/positionType/query.do'
-			    }
-			},
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"职位类型不允许为空",
-			xtype:'combobox'
-		},
 		{
 	        fieldLabel: '备注',
 	        name: 'remark',
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: 'id',
-	        name: 'id',
-            hidden:true,
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '组织id',
-	        name: 'orgno',
-            hidden:true,
+            selectOnFocus:true,
 	        xtype:'textfield'
 	    }
 	  ];   
@@ -78,14 +53,6 @@ Ext.define('y.org.PositionForm',{
 			handler : function(button){
 				var formpanel = button.up('form');
 				formpanel.updateRecord();
-//				Ext.Ajax.request({
-//					url:Ext.ContextPath+'/position/update.do',
-//					jsonData:formpanel.getForm().getRecord().getData(),
-//					headers:{ 'Accept':'application/json;'},
-//					success:function(){
-//						button.up('window').close();
-//					}
-//				});
 				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
 				    },

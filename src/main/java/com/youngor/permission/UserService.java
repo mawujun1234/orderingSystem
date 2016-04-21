@@ -94,4 +94,9 @@ public class UserService extends AbstractService<User, String> {
 		positionOrgUserRepository.deleteBatch(Cnd.delete().andEquals(M.PositionOrgUser.user.id, user.getId()));
 		this.getRepository().delete(user);
 	}
+	
+	
+	public List<User> querySjs(String positionType_id) {
+		return userRepository.querySjs(positionType_id);
+	}
 }

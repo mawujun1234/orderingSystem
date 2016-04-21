@@ -58,7 +58,7 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 			autoSync:false,
 			pageSize:50,
 			model: 'y.sample.SamplePlan',
-			autoLoad:true
+			autoLoad:false
 	  });
 	  me.dockedItems=[];
       me.dockedItems.push({
@@ -68,14 +68,94 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 	        displayInfo: true
 	  });
 	  
-	 me.dockedItems.push({
+	me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
+	  		//enableOverflow:true,
 		  	items:[{
 		  		itemId:'ordmtcombo',
 				xtype:'ordmtcombo'
+			},{
+		        fieldLabel: '品牌',
+		        itemId: 'bradno',
+		        labelWidth:40,
+		        width:160,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            //value:'Y',
+	            selFirst:true,
+	            blankText:"品牌不允许为空",
+		        xtype:'pubcodecombo',
+		        tyno:'1'
+		    },{
+		        fieldLabel: '大类',
+		        itemId: 'spclno',
+		        labelWidth:40,
+		        width:120,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            blankText:"大类不允许为空",
+	             selFirst:true,
+		        xtype:'pubcodecombo',
+		        tyno:'0',
+		        listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		var sptyno=combo.nextSibling("#sptyno");
+		        		sptyno.reload(record.get("itno"));
+		        		
+		        		var spseno=combo.nextSibling("#spseno");
+		        		spseno.reload(record.get("itno"));
+		        	}	
+		        }
+		    },{
+		        fieldLabel: '小类',
+		        itemId: 'sptyno',
+		        labelWidth:40,
+		        width:140,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'2'
+		    },
+			{
+		        fieldLabel: '系列',
+		        itemId: 'spseno',
+		        labelWidth:40,
+		        width:160,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'5'
+		    },{
+				text: '查询',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+		
+    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
+    				grid.getStore().getProxy().extraParams={
+    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    					"params['spseno']":toolbars[0].down("#spseno").getValue()
+    					//"params['spbseno']":toolbars[1].down("#spbseno").getValue()
+    				};
+    	
+					grid.getStore().reload();
+					
+					//预先读取该品牌大类下的规格系列
+					var sizegpField=grid.tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
+					sizegpField.getStore().getProxy().extraParams={
+						szbrad:toolbars[0].down("#bradno").getValue(),
+						szclno:toolbars[0].down("#spclno").getValue()
+					};
+					sizegpField.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
 			}]
 		});
+		
 	  
        
       me.callParent();

@@ -17,7 +17,7 @@ Ext.define('y.org.OrgTree', {
 	       	fields:['id','name','leaf','orgno','remark','type'],
 			root: {
 			    expanded: true,
-			    orgnm:"雅戈尔" 
+			    name:"雅戈尔" 
 			},
 			proxy:{
 				type:'ajax',
@@ -152,7 +152,7 @@ Ext.define('y.org.OrgTree', {
 		
 		var child=Ext.create('y.org.Position',{
 		    'orgno':parent.get("id"),
-		    text:''
+		    name:''
 		});
 		child.set("id",null);
 		
@@ -187,20 +187,27 @@ Ext.define('y.org.OrgTree', {
     	if(node.get("type")!='position'){
     		return;
     	}
-
+//从后台获取这个职位的数据，然后在load到form中
 		var formpanel=Ext.create('y.org.PositionForm',{});
-		formpanel.loadRecord(node);
 		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'更新',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel]
-    	});
-    	win.show();
+		y.org.Position.load(node.get("id"),{
+			success:function(record){
+				formpanel.loadRecord(record);
+				var win=Ext.create('Ext.window.Window',{
+		    		layout:'fit',
+		    		title:'更新',
+		    		modal:true,
+		    		width:400,
+		    		height:300,
+		    		closeAction:'hide',
+		    		items:[formpanel]
+		    	});
+		    	win.show();
+			}
+		});
+		
+		
+    	
     },
     
     onDelete:function(){

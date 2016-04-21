@@ -1,10 +1,13 @@
 package com.youngor.sample;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,7 +28,7 @@ public class SampleDesign extends BaseObject{
 	@Column(length=36,nullable=false,updatable=false)
 	private String sampno;
 	@FieldDefine(title="设计样衣编号",sort=50)
-	@Column(length=36,nullable=false,updatable=false)
+	@Column(length=36,nullable=false,updatable=false,unique=true)
 	private String sampnm;
 	@FieldDefine(title="企划样衣编号",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=false)
@@ -33,8 +36,8 @@ public class SampleDesign extends BaseObject{
 	@FieldDefine(title="版型",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=true)
 	private String versno;
-	@FieldDefine(title="照片编号",sort=50,hidden=false)
-	@Column(length=36,nullable=false,updatable=true)
+	@FieldDefine(title="照片编号",sort=50,hidden=true)
+	@Column(length=36,nullable=true,updatable=true)
 	private String photno;
 	@FieldDefine(title="工作室系列",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=true)
@@ -89,6 +92,9 @@ public class SampleDesign extends BaseObject{
 	private Integer sampst=1;//0：作废；1：有效
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer spstat=0;//0：未锁定，1：锁定
+	
+	@Transient
+	private List<SampleDesignStpr> sampleDesignStpres;//用于前台网后台传递数据的时候，比如新建，更新
 	
 	public String getSampno() {
 		return sampno;
@@ -233,6 +239,12 @@ public class SampleDesign extends BaseObject{
 	}
 	public void setSpstat(Integer spstat) {
 		this.spstat = spstat;
+	}
+	public List<SampleDesignStpr> getSampleDesignStpres() {
+		return sampleDesignStpres;
+	}
+	public void setSampleDesignStpres(List<SampleDesignStpr> sampleDesignStpres) {
+		this.sampleDesignStpres = sampleDesignStpres;
 	}
 
 

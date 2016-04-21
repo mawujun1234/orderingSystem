@@ -131,13 +131,32 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	left join ORD_SAMPLE_PLAN_STPR b on a.plspno=b.plspno	
     </select> 
     -->
+    
+    <sql id="queryPlanDesign_where">  
+         a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+    	<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="spbseno!=null and spbseno!=''">
+    		and a.spbseno=#{spbseno}
+    	</if>
+    	<if test="spsuno!=null and spsuno!=''">
+    		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
+    	</if>
+ 	</sql> 
     <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
-    	select b.sampno,b.sampnm,a.* from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    	select b.sampno,b.sampnm,a.* 
+    	from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	and
+    	<include refid="queryPlanDesign_where"></include> 
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPlanDesign_count" resultType="int" parameterType="map">
-    	select count(a.sampno)
-		from ord_sample_design a
+    	select count(b.sampno)
+		from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	and
+    	<include refid="queryPlanDesign_where"></include> 
     </select>
     
     

@@ -15,7 +15,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_pub_code a
     </select>
     
-    
+    <!--  获取属性的时候   -->
     <select id="query" resultType="com.youngor.pubcode.PubCode" parameterType="map">
     	select distinct a.* from ord_pub_code a,ord_pub_codebrad b
     	where 

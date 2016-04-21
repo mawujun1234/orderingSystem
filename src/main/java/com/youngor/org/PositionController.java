@@ -46,6 +46,7 @@ public class PositionController {
 	
 
 	@RequestMapping("/position/load.do")
+	@ResponseBody
 	public Position load(String id) {
 		return positionService.get(id);
 	}

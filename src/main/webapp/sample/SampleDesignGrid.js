@@ -1,4 +1,4 @@
-Ext.define('y.sample.SamplePlanDesignGrid',{
+Ext.define('y.sample.SampleDesignGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
 	     //'y.sample.SamplePlan'
@@ -100,7 +100,7 @@ Ext.define('y.sample.SamplePlanDesignGrid',{
 				{name:'sampno',type:'string'},
 				{name:'sampnm',type:'string'}
 			],
-			autoLoad:true,
+			autoLoad:false,
 			proxy:{
 				type:'ajax',
 				url:Ext.ContextPath+'/samplePlan/queryPlanDesign.do',
@@ -109,6 +109,25 @@ Ext.define('y.sample.SamplePlanDesignGrid',{
 					root:'root',
 					successProperty:'success',
 					totalProperty:'total'		
+				}
+			},
+			listeners:{
+				beforeload:function(store){
+				//var grid=btn.up("grid");
+					var grid=me;//Ext.getCmp("sampleDesignGrid");
+					
+					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+		
+    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
+    				grid.getStore().getProxy().extraParams={
+    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
+    				};
 				}
 			}
 	  });
@@ -123,16 +142,119 @@ Ext.define('y.sample.SamplePlanDesignGrid',{
 	 me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
+	  		//enableOverflow:true,
 		  	items:[{
 		  		itemId:'ordmtcombo',
 				xtype:'ordmtcombo'
-			}]
+			},{
+		        fieldLabel: '品牌',
+		        itemId: 'bradno',
+		        labelWidth:40,
+		        width:160,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            //value:'Y',
+	            selFirst:true,
+	            blankText:"品牌不允许为空",
+		        xtype:'pubcodecombo',
+		        tyno:'1'
+		    },{
+		        fieldLabel: '大类',
+		        itemId: 'spclno',
+		        labelWidth:40,
+		        width:120,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            blankText:"大类不允许为空",
+	             selFirst:true,
+		        xtype:'pubcodecombo',
+		        tyno:'0',
+		        listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		var sptyno=combo.nextSibling("#sptyno");
+		        		sptyno.reload(record.get("itno"));
+		        		
+		        		var spseno=combo.nextSibling("#spseno");
+		        		spseno.reload(record.get("itno"));
+		        	}	
+		        }
+		    },{
+		        fieldLabel: '小类',
+		        itemId: 'sptyno',
+		        labelWidth:40,
+		        width:140,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'2'
+		    },
+			{
+		        fieldLabel: '系列',
+		        itemId: 'spseno',
+		        labelWidth:40,
+		        width:160,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'5'
+		    }]
 		});
 	  
 	  me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		        fieldLabel: '大系列',
+		        itemId: 'spbseno',
+		        labelWidth:50,
+		        width:150,
+//	            allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"大系列不允许为空",
+		        xtype:'pubcodecombo',
+		        tyno:'17'
+		    },{
+		        fieldLabel: '成衣供应商',
+		        itemId: 'spsuno',
+//	            allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"供应商不允许为空",
+	            xtype:'pubsunocombo'
+		    },{
+				text: '查询',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+//					var grid=btn.up("grid");
+//					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+//		
+//    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
+//    				grid.getStore().getProxy().extraParams={
+//    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+//    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+//    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+//    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+//    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+//    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+//    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
+//    				};
+    				var grid=btn.up("grid");
+					grid.getStore().reload();
+					
+					var tabpanel=grid.nextSibling("tabpanel");
+					tabpanel.mask();
+					
+					//预先读取该品牌大类下的规格系列
+					var grid=btn.up("grid");
+					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+					var sizegpField=tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
+					sizegpField.getStore().getProxy().extraParams={
+						szbrad:toolbars[0].down("#bradno").getValue(),
+						szclno:toolbars[0].down("#spclno").getValue()
+					};
+					sizegpField.getStore().reload();
+					
+				},
+				iconCls: 'icon-refresh'
+			},{
 				text: '新增',
 				itemId:'create',
 				handler: function(btn){
@@ -146,15 +268,6 @@ Ext.define('y.sample.SamplePlanDesignGrid',{
 			    	me.onDelete();    
 			    },
 			    iconCls: 'icon-trash'
-			},{
-				text: '刷新',
-				itemId:'reload',
-				disabled:me.disabledAction,
-				handler: function(btn){
-					var grid=btn.up("grid");
-					grid.getStore().reload();
-				},
-				iconCls: 'icon-refresh'
 			}]
 		});
 
@@ -177,25 +290,38 @@ Ext.define('y.sample.SamplePlanDesignGrid',{
 //		var formpanel=tabpanel.child("form#samplePlanForm") ;
 //		formpanel.loadRecord(child);
     	window.sampno={};
+    	var tabpanel=me.nextSibling("tabpanel");
     	var samplePlanGridQuery=Ext.create('y.sample.SamplePlanGridQuery',{
-    	
+    		tabpanel:tabpanel
     	});
     	samplePlanGridQuery.on("itemdblclick",function(view, record, item, index, e, eOpts){
-    		var tabpanel=me.nextSibling("tabpanel");
+    		
 			tabpanel.setTitle("新增样衣:"+record.get("plspnm"));
+			tabpanel.setActiveTab( 1 );
 			tabpanel.unmask();
 			var samplePlanFormQuery=tabpanel.child("form#samplePlanFormQuery") ;
 			samplePlanFormQuery.loadRecord(record);
 			
-			//设计开发form填充
-			var sampleDesign=Ext.create('y.sample.SampleDesign',{
-				plspno:record.get("plspno"),
-				plspnm:record.get("plspnm")
-			});
+//			//设计开发form填充
+//			var sampleDesign=Ext.create('y.sample.SampleDesign',{
+//				plspno:record.get("plspno"),
+//				plspnm:record.get("plspnm")
+//			});
+			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;
-			sampleDesignForm.loadRecord(sampleDesign);
+			//sampleDesignForm.loadRecord(sampleDesign);
+			sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
+			sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 		
 			win.hide();
+			
+//			var tabpanel=me.nextSibling("tabpanel");
+//			newCard.getItemId()
+			
+			//var tabpanel=field.up("tabpanel");
+	       	tabpanel.items.getAt(2).disable();
+	       	tabpanel.items.getAt(3).disable();
+	       	tabpanel.items.getAt(4).disable();
 		});
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

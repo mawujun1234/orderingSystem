@@ -9,15 +9,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
 
-@Entity(name="t_position")
-public class Position {
+/**
+ * 职位类型
+ * @author mawujun qq:16064988 mawujun1234@163.com
+ *
+ */
+@Entity(name="t_position_type")
+public class PositionType {
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(
-	        name = "uuid",
-	        strategy = "org.hibernate.id.UUIDGenerator"
-	    )
-	@FieldDefine(title="id",hidden=true)
+	@FieldDefine(title="id",hidden=false)
 	@Column(length=36,nullable=false)
 	private String id;
 	@Column(length=30,nullable=false)
@@ -26,15 +26,6 @@ public class Position {
 	@Column(length=300,nullable=true)
 	@FieldDefine(title="备注",sort=6)
 	private String remark;
-	
-	@FieldDefine(title="组织id",hidden=true)
-	@Column(length=15,nullable=false)
-	private String orgno;
-	
-	@FieldDefine(title="职位类型",hidden=false)
-	@Column(length=36,nullable=false)
-	private String positionType_id;
-	
 	
 	public String getId() {
 		return id;
@@ -53,18 +44,6 @@ public class Position {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public String getOrgno() {
-		return orgno;
-	}
-	public void setOrgno(String orgno) {
-		this.orgno = orgno;
-	}
-	public String getPositionType_id() {
-		return positionType_id;
-	}
-	public void setPositionType_id(String positionType_id) {
-		this.positionType_id = positionType_id;
 	}
 
 }

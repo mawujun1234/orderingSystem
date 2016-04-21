@@ -87,6 +87,7 @@ public static final class Position {
 	public static final String name="name";
 	public static final String remark="remark";
 	public static final String orgno="orgno";
+	public static final String positionType_id="positionType_id";
 }
 public static final class PositionOrgUser {
 	 /**
@@ -97,6 +98,7 @@ public static final class PositionOrgUser {
 		public static final String name="position.name";
 		public static final String remark="position.remark";
 		public static final String orgno="position.orgno";
+		public static final String positionType_id="position.positionType_id";
 			
 	    /**
 	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
@@ -140,6 +142,11 @@ public static final class PositionOrgUser {
 		    return "user";
 	    }
 	}
+}
+public static final class PositionType {
+	public static final String id="id";
+	public static final String name="name";
+	public static final String remark="remark";
 }
 public static final class Menu {
 	public static final String id="id";
@@ -353,6 +360,23 @@ public static final class PubCodeType {
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
 }
+public static final class PubSize {
+	public static final String id="id";
+	public static final String sizety="sizety";
+	public static final String sizeno="sizeno";
+	public static final String sizenm="sizenm";
+	public static final String szbrad="szbrad";
+	public static final String szclno="szclno";
+	public static final String sizeqt="sizeqt";
+	public static final String sizemk="sizemk";
+	public static final String sizeso="sizeso";
+	public static final String sizest="sizest";
+	public static final String szsast="szsast";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
 public static final class SampleColth {
 	public static final String sampno="sampno";
 	public static final String spcotn="spcotn";
@@ -396,6 +420,21 @@ public static final class SampleDesign {
 	public static final String print="print";
 	public static final String sampst="sampst";
 	public static final String spstat="spstat";
+	/**
+	* 这里一般是集合属性，返回的是sampleDesignStpres
+	*/
+	public static final String sampleDesignStpres="sampleDesignStpres";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class SampleDesignStpr {
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String spftpr="spftpr";
+	public static final String sprtpr="sprtpr";
+	public static final String plctpr="plctpr";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
@@ -451,10 +490,6 @@ public static final class SamplePlan {
 	public static final String mldate="mldate";
 	public static final String plstat="plstat";
 	public static final String plspst="plspst";
-	/**
-	* 这里一般是集合属性，返回的是samplePlanStpres
-	*/
-	public static final String samplePlanStpres="samplePlanStpres";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
