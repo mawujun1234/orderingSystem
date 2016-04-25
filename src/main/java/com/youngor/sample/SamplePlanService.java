@@ -58,7 +58,5 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 		samplePlanRepository.update(samplePlan);
 	}
 	
-	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
-		return samplePlanRepository.queryPlanDesign(pager);
-	}
+
 }

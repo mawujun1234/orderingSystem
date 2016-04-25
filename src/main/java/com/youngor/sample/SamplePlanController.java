@@ -88,16 +88,6 @@ public class SamplePlanController {
 		return samplePlan;
 	}
 	
-	/**
-	 * 设计师输入设计资料的时候用的
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @param pager
-	 * @return
-	 */
-	@RequestMapping("/samplePlan/queryPlanDesign.do")
-	@ResponseBody
-	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
-		return samplePlanService.queryPlanDesign(pager);
-	}
+
 	
 }

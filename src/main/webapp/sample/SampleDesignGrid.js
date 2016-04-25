@@ -5,7 +5,10 @@ Ext.define('y.sample.SampleDesignGrid',{
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	selModel: {
+          selType: 'checkboxmodel'
+          //,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -13,6 +16,25 @@ Ext.define('y.sample.SampleDesignGrid',{
 		{dataIndex:'plspnm',header:'企划样衣编号'
         },
         {dataIndex:'sampnm',header:'设计样衣编号'
+        },
+        {dataIndex:'matest',header:'状态',
+        	renderer:function(value, metaData, record, rowIndex, colIndex, store, view){
+        		var val="";
+        		if(record.get("spstat")==1){
+        			val+=",设计开发"
+        		}
+        		if(record.get("spctst")==1){
+        			val+=",成衣信息"
+        		}
+        		if(value==1){
+        			val+=",面料信息"
+        		}
+        		if(val){
+        			val=val.substr(1)+"锁定";
+        		}
+        		
+        		return val;
+        	}
         },
 		{dataIndex:'bradno_name',header:'品牌'
         },
@@ -87,6 +109,10 @@ Ext.define('y.sample.SampleDesignGrid',{
 				{name:'plstat',type:'int'},
 				{name:'plspst',type:'int'},
 				
+				{name:'matest',type:'int'},
+				{name:'spctst',type:'int'},
+				{name:'spstat',type:'int'},
+				
 				{name:'spsean_name',type:'string'},
 				{name:'spclno_name',type:'string'},
 				{name:'bradno_name',type:'string'},
@@ -103,7 +129,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			autoLoad:false,
 			proxy:{
 				type:'ajax',
-				url:Ext.ContextPath+'/samplePlan/queryPlanDesign.do',
+				url:Ext.ContextPath+'/sampleDesign/queryPlanDesign.do',
 				reader:{
 					type:'json',
 					root:'root',
@@ -116,18 +142,14 @@ Ext.define('y.sample.SampleDesignGrid',{
 				//var grid=btn.up("grid");
 					var grid=me;//Ext.getCmp("sampleDesignGrid");
 					
-					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+					//var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		
     				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
-    				grid.getStore().getProxy().extraParams={
-    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
-    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
-    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
-    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
-    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
-    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
-    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
-    				};
+    				grid.getStore().getProxy().extraParams=grid.getParams();
+				},
+				load:function(store, records, successful){
+					var tabpanel=me.nextSibling("tabpanel");
+					tabpanel.mask();
 				}
 			}
 	  });
@@ -198,10 +220,10 @@ Ext.define('y.sample.SampleDesignGrid',{
 		    }]
 		});
 	  
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
+	me.dockedItems.push({
+	  	xtype: 'toolbar',
+	  	dock:'top',
+		items:[{
 		        fieldLabel: '大系列',
 		        itemId: 'spbseno',
 		        labelWidth:50,
@@ -223,40 +245,27 @@ Ext.define('y.sample.SampleDesignGrid',{
 				itemId:'reload',
 				disabled:me.disabledAction,
 				handler: function(btn){
-//					var grid=btn.up("grid");
-//					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-//		
-//    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
-//    				grid.getStore().getProxy().extraParams={
-//    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
-//    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
-//    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
-//    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
-//    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
-//    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
-//    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
-//    				};
+
     				var grid=btn.up("grid");
 					grid.getStore().reload();
 					
-					var tabpanel=grid.nextSibling("tabpanel");
-					tabpanel.mask();
 					
-					//预先读取该品牌大类下的规格系列
-					var grid=btn.up("grid");
-					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-					var sizegpField=tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
-					sizegpField.getStore().getProxy().extraParams={
-						szbrad:toolbars[0].down("#bradno").getValue(),
-						szclno:toolbars[0].down("#spclno").getValue()
-					};
-					sizegpField.getStore().reload();
+					var tabpanel=grid.nextSibling("tabpanel");
+					var params=grid.getStore().getProxy().extraParams;
+					tabpanel.down("form#sampleDesignForm").reloadPubcode(params["params['bradno']"],params["params['spclno']"]);
+					
 					
 				},
 				iconCls: 'icon-refresh'
-			},{
+			}]
+	});
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
 				text: '新增',
 				itemId:'create',
+				hidden:!Permision.canShow('sample_design_create'),
 				handler: function(btn){
 					me.onCreate();
 				},
@@ -264,15 +273,144 @@ Ext.define('y.sample.SampleDesignGrid',{
 			},{
 			    text: '删除',
 			    itemId:'destroy',
+			    hidden:!Permision.canShow('sample_design_destroy'),
 			    handler: function(){
 			    	me.onDelete();    
 			    },
 			    iconCls: 'icon-trash'
+			},{
+			    text: '锁定',
+			    //itemId:'destroy',
+			    hidden:!Permision.canShow('sample_design_lock'),
+			    iconCls: 'icon-lock',
+			    menu:[{
+			    	text: '设计开发',
+			    	 hidden:!Permision.canShow('sample_design_lock_design'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+						grid.lockOrUblock('sample_design_lock_design',true);
+
+			    	 }
+			    },{
+			    	text: '面料信息',
+			    	 hidden:!Permision.canShow('sample_design_lock_mate'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrUblock('sample_design_lock_mate',true);
+			    	 }
+			    },{
+			    	text: '成衣信息',
+			    	 hidden:!Permision.canShow('sample_design_lock_cloth'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrUblock('sample_design_lock_cloth',true);
+			    	 }
+			    }]
+			},{
+			    text: '解锁',
+			    //itemId:'destroy',
+			    hidden:!Permision.canShow('sample_design_unlock'),
+
+			    iconCls: 'icon-unlock',
+			    menu:[{
+			    	text: '设计开发',
+			    	 hidden:!Permision.canShow('sample_design_unlock_design'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrUblock('sample_design_unlock_design',false);
+			    	 }
+			    },{
+			    	text: '面料信息',
+			    	 hidden:!Permision.canShow('sample_design_unlock_mate'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrUblock('sample_design_unlock_mate',false);
+			    	 }
+			    },{
+			    	text: '成衣信息',
+			    	 hidden:!Permision.canShow('sample_design_unlock_cloth'),
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrUblock('sample_design_unlock_cloth',false);
+			    	 }
+			    }]
 			}]
 		});
 
        
       me.callParent();
+	},
+	lockOrUblock:function(type,lockOrUnlock){
+		var url='';
+		if(lockOrUnlock){
+			if(type=='sample_design_lock_design'){
+				url=Ext.ContextPath+'/sampleDesign/lock.do';
+			} else if(type=='sample_design_lock_mate'){
+				url=Ext.ContextPath+'/sampleMate/lock.do';
+			} else if(type=='sample_design_lock_cloth'){
+				url=Ext.ContextPath+'/sampleColth/lock.do';
+			}
+		} else {
+			if(type=='sample_design_unlock_design'){
+				url=Ext.ContextPath+'/sampleDesign/unlock.do';
+			} else if(type=='sample_design_unlock_mate'){
+				url=Ext.ContextPath+'/sampleMate/unlock.do';
+			} else if(type=='sample_design_unlock_cloth'){
+				url=Ext.ContextPath+'/sampleColth/unlock.do';
+			}
+		}
+		
+		var grid=this;
+		var modles=grid.getSelection( ) ;
+		if(modles && modles.length>0){
+			Ext.Msg.confirm("消息","是否对选中的记录进行锁定/解锁?‘<span style='color:red;'>全选</span>’只选中当前页所有数据！<br/>如果未选择，将会按<span style='color:red;'>页面查询条件</span>锁定/解锁所有样衣",function(val){
+				if(val=='yes'){
+					var sampnos=[];
+					for(var i=0;i<modles.length;i++){
+						sampnos.push(modles[i].get("sampno"));
+					}
+					Ext.Ajax.request({
+						    url:url,
+						    params:{
+						    	 sampnos:sampnos
+						    },
+						    method:'POST',
+						    success:function(){
+						    	grid.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    }
+						   });
+					} 
+				});	
+		} else {
+			Ext.Msg.confirm("消息","因为没有选择样衣，是否根据<span style='color:red;'>页面查询条件</span>锁定/解锁所有样衣?",function(val){
+				if(val=='yes'){
+									
+					Ext.Ajax.request({
+						    url:url,
+						    params:grid.getParams(),
+						    method:'POST',
+						    success:function(){
+						    	grid.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    }
+						   });
+				} 
+			});	
+		}
+	},
+	getParams:function(){
+		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		var params={
+						    	 			"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+					    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+					    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+					    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+					    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+					    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+					    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
+						    	 		};
+		return params;
 	},
 	onCreate:function(){
     	var me=this;

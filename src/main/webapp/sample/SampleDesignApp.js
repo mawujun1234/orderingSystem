@@ -65,8 +65,10 @@ Ext.onReady(function(){
 	var tabpanel=Ext.create('Ext.tab.Panel', {
 	    region:'east',
 	    width:300,
+	    title:'样衣信息',
 	    split:true,
 	    collapsible : true,
+	    collapsed :true,
 	    items: [samplePlanForm,sampleDesignForm,sampleMatePanel,sampleColthForm,samplePhotoShow],
 	    listeners:{
 	    	render:function(){
@@ -83,9 +85,9 @@ Ext.onReady(function(){
 			sampnm:record.get("sampnm")
 		};//当前选中的设计样衣编号
 		
-		if(sampleDesignGrid.sampno==record.get("sampno")){
-			return;
-		}
+//		if(sampleDesignGrid.sampno==record.get("sampno")){
+//			return;
+//		}
 		
 		sampleDesignGrid.sampno=record.get("sampno");
 		
@@ -93,11 +95,13 @@ Ext.onReady(function(){
 		tabpanel.setTitle("编辑样衣:"+record.get("plspnm"));
 		samplePlanForm.loadRecord(record);
 		tabpanel.unmask();
+		tabpanel.expand();
 		tabpanel.items.getAt(2).enable();
 		tabpanel.items.getAt(3).enable();
 		tabpanel.items.getAt(4).enable();
 		
 		//更新设计开发，数据
+		sampleDesignForm.reset();
 		y.sample.SampleDesign.load(record.get("sampno"), {
 		    success: function(sampleDesign) {
 		    	//console.log(sampleDesign);
@@ -111,8 +115,12 @@ Ext.onReady(function(){
 			sampno:window.sampno.sampno
 		};
 		sampleMateGrid.getStore().reload();
+		sampleMateForm.lockOrUnlock(record.get("matest"));
+		sampleMateGrid.lockOrUnlock(record.get("matest"));
+		
 		
 		//成衣信息
+		sampleColthForm.reset();
 		y.sample.SampleColth.load(record.get("sampno"), {
 		    success: function(sampleColth) {
 		    	//console.log(sampleDesign);

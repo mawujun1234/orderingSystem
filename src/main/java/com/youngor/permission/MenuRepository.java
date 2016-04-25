@@ -16,4 +16,6 @@ public interface MenuRepository extends IRepository<Menu, String>{
 
 	public List<MenuVO> query_checkbox(@Param("parent_id")String parent_id);
 	public List<MenuVO> queryByUser(@Param("parent_id")String parent_id,@Param("user_id")String user_id);
+	
+	public List<Menu> queryElement(@Param("jsp_url")String jsp_url,@Param("user_id")String user_id);
 }

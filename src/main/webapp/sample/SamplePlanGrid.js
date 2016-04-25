@@ -159,8 +159,11 @@ Ext.define('y.sample.SamplePlanGrid',{
     					"params['spseno']":toolbars[0].down("#spseno").getValue(),
     					"params['spbseno']":toolbars[1].down("#spbseno").getValue()
     				};
-    	
 					grid.getStore().reload();
+					
+					var tabpanel=grid.nextSibling("tabpanel");
+					var params=grid.getStore().getProxy().extraParams;
+					tabpanel.down("form#samplePlanForm").reloadPubcode(params["params['bradno']"]);
 				},
 				iconCls: 'icon-refresh'
 			},{

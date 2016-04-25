@@ -10,6 +10,11 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	private String sampno;//设计样衣id
 	private String sampnm;//设计样衣编码
 	
+	private Integer spstat;//设计锁定状态
+	private Integer matest;//面料信息锁定状态
+	private Integer spctst;//成衣信息锁定状态
+	
+	
 	public String getSampno() {
 		return sampno;
 	}
@@ -21,5 +26,23 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	}
 	public void setSampnm(String sampnm) {
 		this.sampnm = sampnm;
+	}
+	public Integer getMatest() {
+		return matest;
+	}
+	public void setMatest(Integer matest) {
+		this.matest = matest;
+	}
+	public Integer getSpctst() {
+		return spctst;
+	}
+	public void setSpctst(Integer spctst) {
+		this.spctst = spctst;
+	}
+	public Integer getSpstat() {
+		return spstat;
+	}
+	public void setSpstat(Integer spstat) {
+		this.spstat = spstat;
 	}
 }

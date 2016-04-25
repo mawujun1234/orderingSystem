@@ -60,9 +60,11 @@ Ext.define('y.sample.SampleMateForm',{
 	        fieldLabel: '供应商面料货号',
 	        name: 'mateno',
             allowBlank: false,
+            
             afterLabelTextTpl: Ext.required,
             blankText:"供应商面料货号不允许为空",
             selectOnFocus:true,
+            maxLength:50,
 	        xtype:'textfield'
 	    },
 		{
@@ -107,7 +109,7 @@ Ext.define('y.sample.SampleMateForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"面料成分不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'textarea'
 	    },
 		{
 	        fieldLabel: '纱支规格',
@@ -152,7 +154,7 @@ Ext.define('y.sample.SampleMateForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"面料单价不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'numberfield'
 	    },
 		{
 	        fieldLabel: '单件用料',
@@ -161,7 +163,7 @@ Ext.define('y.sample.SampleMateForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"单件用料不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'numberfield'
 	    },
 		{
 	        fieldLabel: '锁定状态',
@@ -181,6 +183,7 @@ Ext.define('y.sample.SampleMateForm',{
 			formBind: true, //only enabled once the form is valid
        		disabled: true,
 			glyph : 0xf0c7,
+			hidden:!Permision.canShow('sample_design_matesave'),
 			handler : function(button){
 				
 				var formpanel = button.up('form');
@@ -198,5 +201,14 @@ Ext.define('y.sample.SampleMateForm',{
 				}
 			});
       me.callParent();
+	},
+	lockOrUnlock:function(matest){
+		//console.log(matest);
+		var me=this;
+		if(matest==1){
+			me.down("#save").hide();
+		} else if(Permision.canShow('sample_design_designsave')){
+			me.down("#save").show();
+		}
 	}
 });

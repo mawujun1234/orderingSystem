@@ -20,7 +20,7 @@ import com.youngor.pubsize.PubSizeRepository;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public class PubSizeService extends AbstractService<PubSize, String>{
+public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 
 	@Autowired
 	private PubSizeRepository pubSizeRepository;

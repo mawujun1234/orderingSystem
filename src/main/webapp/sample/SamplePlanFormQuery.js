@@ -31,13 +31,13 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 	    },
 		{
 	        fieldLabel: '品牌',
-	        name: 'bradno',
+	        name: 'bradno_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             //value:'Y',
             blankText:"品牌不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'1'
 	    },
 		{
@@ -52,93 +52,93 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 	    },
 		{
 	        fieldLabel: '季节',
-	        name: 'spsean',
+	        name: 'spsean_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"季节不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'8'
 	    },
 		{
 	        fieldLabel: '大系列',
-	        name: 'spbseno',
+	        name: 'spbseno_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"大系列不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'17'
 	    },
 		{
 	        fieldLabel: '品牌系列',
-	        name: 'sprseno',
+	        name: 'sprseno_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"品牌系列不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'10'
 	    },
 		{
 	        fieldLabel: '大类',
-	        name: 'spclno',
+	        name: 'spclno_name',
             allowBlank: false,
             readOnly :true,
             afterLabelTextTpl: Ext.required,
             blankText:"大类不允许为空",
-	        xtype:'pubcodecombo',
-	        tyno:'0',
-	        listeners:{
-	        	select:function( combo, record, eOpts ) {
-	        		var sptyno=combo.nextSibling("pubcodecombo[name=sptyno]");
-	        		sptyno.reload(record.get("itno"));
-	        		
-	        		var spseno=combo.nextSibling("pubcodecombo[name=spseno]");
-	        		spseno.reload(record.get("itno"));
-	        	}
-	        }
+	        xtype:'textfield',
+	        tyno:'0'
+//	        listeners:{
+//	        	select:function( combo, record, eOpts ) {
+//	        		var sptyno=combo.nextSibling("pubcodecombo[name=sptyno]");
+//	        		sptyno.reload(record.get("itno"));
+//	        		
+//	        		var spseno=combo.nextSibling("pubcodecombo[name=spseno]");
+//	        		spseno.reload(record.get("itno"));
+//	        	}
+//	        }
 	    },
 		{
 	        fieldLabel: '小类',
-	        name: 'sptyno',
+	        name: 'sptyno_name',
             allowBlank: false,
             readOnly:true,
             afterLabelTextTpl: Ext.required,
             blankText:"小类不允许为空",
             autoLoad:false,
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'2'
 	    },
 		{
 	        fieldLabel: '系列',
-	        name: 'spseno',
+	        name: 'spseno_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"系列不允许为空",
             autoLoad:false,
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'5'
 	    },
 		{
 	        fieldLabel: '定位',
-	        name: 'splcno',
+	        name: 'splcno_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"定位不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'18'
 	    },
 		{
 	        fieldLabel: '上市批次',
-	        name: 'spbano',
+	        name: 'spbano_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"上市批次不允许为空",
-	        xtype:'pubcodecombo',
+	        xtype:'textfield',
 	        tyno:'23'
 	    },
 		{
@@ -284,21 +284,15 @@ Ext.define('y.sample.SamplePlanFormQuery',{
       me.callParent();
 	},
 	loadRecord:function(record){
-		this.mask("正在刷新....");
-		var sptyno=this.down("pubcodecombo[name=sptyno]")
-		sptyno.reload(record.get("spclno"));
-		var spseno=this.down("pubcodecombo[name=spseno]")
-		spseno.reload(record.get("spclno"));
+//		this.mask("正在刷新....");
+//		var sptyno=this.down("pubcodecombo[name=sptyno]")
+//		sptyno.reload(record.get("spclno"));
+//		var spseno=this.down("pubcodecombo[name=spseno]")
+//		spseno.reload(record.get("spclno"));
 
-//		//this.down("grid#samplePlanStprGrid").getStore().loadData(record.get("samplePlanStpres"));
-//		//this.loadRecord(record);
-//		var samplePlanStprGrid_store=this.down("grid#samplePlanStprGrid").getStore();
-//		samplePlanStprGrid_store.getProxy().extraParams={
-//			plspno:record.get("plspno")
-//		};
-//		samplePlanStprGrid_store.reload();
+
 		
 		this.getForm().loadRecord(record);
-		this.unmask();
+//		this.unmask();
 	}
 });

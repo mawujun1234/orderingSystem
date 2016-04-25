@@ -1,13 +1,14 @@
 package com.youngor.pubsize;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.IdClass;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.youngor.pubsize.PubSize.PK;
 import com.youngor.utils.BaseObject;
 
 /**
@@ -16,19 +17,22 @@ import com.youngor.utils.BaseObject;
  *
  */
 @Entity(name="ord_pub_size")
+@IdClass(PK.class)
 public class PubSize extends BaseObject{
+//	@Id
+//	@GeneratedValue(generator = "uuid")
+//	@GenericGenerator(
+//	        name = "uuid",
+//	        strategy = "org.hibernate.id.UUIDGenerator"
+//	    )
+//	@FieldDefine(title="id",hidden=true)
+//	@Column(length=36)
+//	private String id;
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(
-	        name = "uuid",
-	        strategy = "org.hibernate.id.UUIDGenerator"
-	    )
-	@FieldDefine(title="id",hidden=true)
-	@Column(length=36)
-	private String id;
 	@FieldDefine(title="规格类型",hidden=false)
 	@Column(length=36)
 	private String sizety;
+	@Id
 	@FieldDefine(title="规格代码",hidden=false)
 	@Column(length=36)
 	private String sizeno;
@@ -52,12 +56,28 @@ public class PubSize extends BaseObject{
 	private Integer sizest=1;//0：作废；1：有效；
 	@FieldDefine(title="当季状态",hidden=false)
 	private Integer szsast=1;//1：当季；0：非当季
-	public String getId() {
-		return id;
+
+	public static class PK implements Serializable {
+		/**
+		 * @author mawujun qq:16064988 mawujun1234@163.com
+		 */
+		private static final long serialVersionUID = 1L;
+		private String sizety;
+		private String sizeno;
+		public String getSizety() {
+			return sizety;
+		}
+		public void setSizety(String sizety) {
+			this.sizety = sizety;
+		}
+		public String getSizeno() {
+			return sizeno;
+		}
+		public void setSizeno(String sizeno) {
+			this.sizeno = sizeno;
+		}
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 	public String getSizety() {
 		return sizety;
 	}

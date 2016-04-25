@@ -1,16 +1,12 @@
 package com.youngor.sample;
-import java.util.UUID;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.sample.SampleColth;
-import com.youngor.sample.SampleColthRepository;
 
 
 /**
@@ -30,4 +26,11 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 		return sampleColthRepository;
 	}
 
+	
+	public void lock(Map<String,Object> params) {
+		sampleColthRepository.lock(params);
+	}
+	public void unlock(Map<String,Object> params){
+		sampleColthRepository.unlock(params);
+	}
 }

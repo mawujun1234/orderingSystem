@@ -86,6 +86,7 @@ Ext.define('y.sample.SamplePhotoShow', {
 		  	items:[{
 				text: '新增',
 				itemId:'create',
+				hidden:!Permision.canShow('sample_design_photo_create'),
 				handler: function(btn){
 					me.onCreate();
 				},
@@ -93,6 +94,7 @@ Ext.define('y.sample.SamplePhotoShow', {
 			},{
 			    text: '删除',
 			    itemId:'destroy',
+			    hidden:!Permision.canShow('sample_design_photo_destroy'),
 			    handler: function(){
 			    	me.onDelete();    
 			    },

@@ -111,16 +111,26 @@ Ext.define('y.common.PubCode',{
 		}
 		me.callParent();
 	},
+	changeBradno:function(bradno){
+		var me=this;
+		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+	        bradno:bradno
+	    });
+	},
 	reload:function(fitno){
 		var me=this;
 		me.reloaded=false;
+//		if(!bradno){
+//			alert("请输入bradno参数!");//
+//			return;
+//		}
 		if(!fitno){
 			alert("请输入fitno参数!");
 			return;
 		}
 		
 		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
-	        			fitno:fitno
+	        fitno:fitno
 	    })
 	    me.getStore().reload();
 	    me.reloaded=true;

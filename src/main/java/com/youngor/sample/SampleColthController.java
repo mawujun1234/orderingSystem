@@ -1,18 +1,16 @@
 package com.youngor.sample;
 import java.util.List;
-import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
-
-import com.youngor.sample.SampleColth;
-import com.youngor.sample.SampleColthService;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -65,6 +63,28 @@ public class SampleColthController {
 	public  SampleColth update(@RequestBody SampleColth sampleColth) {
 		sampleColthService.update(sampleColth);
 		return sampleColth;
+	}
+	
+	@RequestMapping("/sampleColth/lock.do")
+	@ResponseBody
+	public void lock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleColthService.update(Cnd.update().set(M.SampleColth.spctst, 1).andIn(M.SampleColth.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleColthService.lock(mapParams.getParams());
+		}
+		
+	}
+	@RequestMapping("/sampleColth/unlock.do")
+	@ResponseBody
+	public void unlock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleColthService.update(Cnd.update().set(M.SampleColth.spctst, 0).andIn(M.SampleColth.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleColthService.unlock(mapParams.getParams());
+		}
 	}
 	
 //	@RequestMapping("/sampleColth/deleteById.do")

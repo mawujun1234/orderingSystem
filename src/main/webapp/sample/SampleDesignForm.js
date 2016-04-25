@@ -408,6 +408,7 @@ Ext.define('y.sample.SampleDesignForm',{
 			itemId : 'save',
 			formBind: true, //only enabled once the form is valid
        		//disabled: true,
+			hidden:!Permision.canShow('sample_design_designsave'),
 			glyph : 0xf0c7,
 			handler : function(button){
 				var formpanel = button.up('form');
@@ -505,21 +506,93 @@ Ext.define('y.sample.SampleDesignForm',{
 			success:function(sampleDesign){
 				sampleDesign.set("plspnm",record.get("plspnm"));
 				me.getForm().loadRecord(sampleDesign);
+				
+				//如果是锁定状态，就隐藏这个按钮
+				//hidden:!Permision.canShow('sample_design_designsave'),
+				if(sampleDesign.get("spstat")==1){
+					me.down("#save").hide();		
+				} else if(Permision.canShow('sample_design_designsave')){
+					me.down("#save").show();
+				}
 			}
 		});
 		
 	},
 	/**
 	 * 根据品牌重新刷新所有的衣服属性
-	 * @param {} bradno
+	 * @param {} bradno 品牌
+	 * @param {} spclno 大类
 	 */
-	reloadPubcode:function(bradno){
+	temp_bradno:'Y',//这是临时解决的
+	reloadPubcode:function(bradno,spclno){
 		if(!bradno){
 			alert("请传递品牌参数");
 			return;
 		}
 		
 		var me=this;
+		
+		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
+			//预先读取该品牌大类下的规格系列
+			var sizegpField=me.getForm().findField("sizegp");
+			sizegpField.getStore().getProxy().extraParams={
+				szbrad:bradno,
+				szclno:spclno
+			};
+			sizegpField.getStore().reload();
+		}
+		
+//		//预先读取该品牌大类下的规格系列
+//		var grid=btn.up("grid");
+//		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+//		var sizegpField=tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
+//		sizegpField.getStore().getProxy().extraParams={
+//			szbrad:toolbars[0].down("#bradno").getValue(),
+//			szclno:toolbars[0].down("#spclno").getValue()
+//		};
+//		sizegpField.getStore().reload();
+		
+		if(this.temp_bradno!=bradno){
+			var versnoField=me.getForm().findField("versno");
+			versnoField.changeBradno(bradno);
+			versnoField.getStore().reload();
+			
+			var stsenoField=me.getForm().findField("stseno");
+			stsenoField.changeBradno(bradno);
+			stsenoField.getStore().reload();
+			
+			var spmtnoField=me.getForm().findField("spmtno");
+			spmtnoField.changeBradno(bradno);
+			spmtnoField.getStore().reload();
+			
+			var colrnoField=me.getForm().findField("colrno");
+			colrnoField.changeBradno(bradno);
+			colrnoField.getStore().reload();
+			
+			var pattnoField=me.getForm().findField("pattno");
+			pattnoField.changeBradno(bradno);
+			pattnoField.getStore().reload();
+			
+			var stylnoField=me.getForm().findField("stylno");
+			stylnoField.changeBradno(bradno);
+			stylnoField.getStore().reload();
+			
+			var sexnoField=me.getForm().findField("sexno");
+			sexnoField.changeBradno(bradno);
+			sexnoField.getStore().reload();
+			
+			var slvenoField=me.getForm().findField("slveno");
+			slvenoField.changeBradno(bradno);
+			slvenoField.getStore().reload();
+			
+			var suittyField=me.getForm().findField("suitty");
+			suittyField.changeBradno(bradno);
+			suittyField.getStore().reload();
+			
+			this.temp_bradno=bradno;
+		}
+		
+
 		
 	}
 });

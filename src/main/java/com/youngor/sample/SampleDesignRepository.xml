@@ -15,6 +15,73 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_design a
     </select>
     
-   
+
+    <sql id="queryPlanDesign_where">  
+        and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+    	<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="spbseno!=null and spbseno!=''">
+    		and a.spbseno=#{spbseno}
+    	</if>
+    	<if test="spsuno!=null and spsuno!=''">
+    		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
+    	</if>
+ 	</sql> 
+    <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
+    	select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst 
+    	from (
+    	select b.sampno,b.sampnm,b.spstat,a.* 
+    	from ord_sample_plan a,ord_sample_design b 
+    	where a.plspno=b.plspno	
+    	<include refid="queryPlanDesign_where"></include> 
+    	) x 
+    	left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno
+    	left join ord_sample_colth z on x.sampno=z.sampno
+    	
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPlanDesign_count" resultType="int" parameterType="map">
+    	select count(b.sampno)
+		from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    	<include refid="queryPlanDesign_where"></include> 
+    </select>
+    
+    
+    <sql id="lock_unlock_where">  
+    	exists (select 1 from ord_sample_plan a where a.plspno=b.plspno	and
+    		 a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+    		 <if test="sptyno!=null and sptyno!=''">
+	    		and a.sptyno=#{sptyno}
+	    	</if>
+	    	<if test="spseno!=null and spseno!=''">
+	    		and a.spseno=#{spseno}
+	    	</if>
+	    	<if test="spbseno!=null and spbseno!=''">
+	    		and a.spbseno=#{spbseno}
+	    	</if>
+    	)
+    	<if test="spsuno!=null and spsuno!=''">
+    		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
+    	</if>
+ 	</sql> 
+    <update id="lock" parameterType="map">
+    	update ord_sample_design b set b.spstat=1  where
+    	<include refid="lock_unlock_where"></include> 
+    </update>
+    <update id="unlock" parameterType="map">
+    	update ord_sample_design b set b.spstat=0  where
+    	<include refid="lock_unlock_where"></include> 
+    </update>
+    
+    
+     <!-- 获取订货会批号 -->
+    <select id="queryOrmtno" resultType="string" parameterType="string">
+    	select distinct a.ormtno from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    	and b.sampno=#{sampno}
+    </select> 
 </mapper>
 

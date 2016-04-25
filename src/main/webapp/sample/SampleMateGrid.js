@@ -140,6 +140,14 @@ Ext.define('y.sample.SampleMateGrid',{
 			}
 		});
     },
+    lockOrUnlock:function(matest){
+		var me=this;
+		if(matest==1){
+			me.down("toolbar").hide();
+		} else if(Permision.canShow('sample_design_designsave')){
+			me.down("toolbar").show();
+		}
+	},
     reload:function(){
     
     }

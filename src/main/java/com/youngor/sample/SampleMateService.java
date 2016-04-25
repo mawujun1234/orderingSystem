@@ -1,17 +1,13 @@
 package com.youngor.sample;
-import java.util.UUID;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.sample.SampleMate;
-import com.youngor.sample.SampleMateRepository;
 import com.youngor.utils.M;
 
 
@@ -38,5 +34,12 @@ public class SampleMateService extends AbstractService<SampleMate, SampleMate.PK
 		sampleMate.setMateso(count+1);
 		super.create(sampleMate);
 		return sampleMate.getPk();
+	}
+	
+	public void lock(Map<String,Object> params) {
+		sampleMateRepository.lock(params);
+	}
+	public void unlock(Map<String,Object> params){
+		sampleMateRepository.unlock(params);
 	}
 }

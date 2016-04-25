@@ -345,5 +345,46 @@ Ext.define('y.sample.SamplePlanForm',{
 		
 		//this.loadRecord(record);
 		this.getForm().loadRecord(record);
+	},
+	
+	temp_bradno:'Y',//这是临时解决方案
+	reloadPubcode:function(bradno){
+		var me=this;
+		if(this.temp_bradno!=bradno){
+			var spseanField=me.getForm().findField("spsean");
+			spseanField.changeBradno(bradno);
+			spseanField.getStore().reload();
+			
+			var spbsenoField=me.getForm().findField("spbseno");
+			spbsenoField.changeBradno(bradno);
+			spbsenoField.getStore().reload();
+			
+			var sprsenoField=me.getForm().findField("sprseno");
+			sprsenoField.changeBradno(bradno);
+			sprsenoField.getStore().reload();
+			
+			var spclnoField=me.getForm().findField("spclno");
+			spclnoField.changeBradno(bradno);
+			spclnoField.getStore().reload();
+			
+			var sptynoField=me.getForm().findField("sptyno");
+			sptynoField.changeBradno(bradno);
+			//sptynoField.getStore().reload();
+			
+			var spsenoField=me.getForm().findField("spseno");
+			spsenoField.changeBradno(bradno);
+			//spsenoField.getStore().reload();
+			
+			var splcnoField=me.getForm().findField("splcno");
+			splcnoField.changeBradno(bradno);
+			splcnoField.getStore().reload();
+			
+			var spbanoField=me.getForm().findField("spbano");
+			spbanoField.changeBradno(bradno);
+			spbanoField.getStore().reload();
+			
+
+			this.temp_bradno=bradno;
+		}
 	}
 });

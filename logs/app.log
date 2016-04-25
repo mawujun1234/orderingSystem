@@ -8891,3 +8891,403 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 17:00:12.464 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 17:01:11.902 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 17:05:42.240 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:26:25.138 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:45:53.560 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:50:18.161 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@43febf64
+09:53:09.772 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:56:15.089 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@913db77
+09:57:00.376 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@db6a258
+10:23:17.180 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:42:27.752 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@be53fef0
+10:42:29.295 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@cf92a698
+12:06:19.666 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:06:23.664 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.permission.MenuVO> com.youngor.permission.MenuController.queryByUser()]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'jsp_url' not found. Available parameters are [user_id, parent_id, param1, param2]
+12:06:23.665 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+12:06:23.665 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:06:23.665 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:06:23.665 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'jsp_url' not found. Available parameters are [user_id, parent_id, param1, param2]
+12:11:43.031 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:12:04.327 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:16:51.664 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@fd1d1a40
+12:17:12.045 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@4a92f733
+12:17:13.291 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:13.441 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+12:17:13.452 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:13.452 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+12:17:13.453 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:17:13.453 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:17:13.453 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:13.625 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:17:13.625 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:17:13.625 [http-bio-8086-exec-13] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:13.636 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:13.975 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+12:17:13.976 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:17:13.976 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:17:13.976 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:14.807 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:17:14.807 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+12:17:14.807 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:17:14.807 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:17:14.807 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+12:19:22.903 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@12987150
+12:20:11.175 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@21fdfaaa
+12:20:38.837 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@32bedf50
+12:22:09.074 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@552d505a
+12:22:26.897 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@a9f8023
+12:24:27.902 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@9bb886bd
+12:30:46.363 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@631a38b2
+12:30:47.169 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@25a3fad0
+12:30:47.702 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@bc4c65bd
+12:30:48.201 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@22a936c3
+12:35:54.451 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@4744454e
+12:36:14.674 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7009e6c9
+12:53:25.503 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@6a44bccc
+12:53:26.477 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@ee3b86cd
+12:59:33.150 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@184218a7
+12:59:44.834 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@5ad276c5
+12:59:55.584 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@21657bb8
+13:00:15.536 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@677f78f9
+13:00:26.033 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@1240c22d
+13:00:39.311 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7171fad0
+13:00:55.663 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@90173284
+13:00:56.241 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@cebdb059
+13:00:56.783 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@ff0b4f2a
+13:00:57.868 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@d464a409
+13:00:58.336 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@2fb2ad43
+13:00:59.509 [http-bio-8086-exec-13] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@49a47ba1
+13:47:57.776 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:55:02.173 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:03:52.120 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleDesignController.lock(java.lang.String[])]: java.lang.NullPointerException
+14:03:52.120 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+14:03:52.120 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:03:52.120 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:03:52.120 [http-bio-8086-exec-12] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+14:16:00.175 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:16:23.379 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:16:43.177 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:16:43.386 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:16:43.387 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:16:43.387 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:16:43.387 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:16:51.023 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:17:04.231 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:17:04.231 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:17:04.231 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:17:04.231 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:17:04.231 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:17:42.806 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:17:42.806 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:17:42.806 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:17:42.807 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:17:42.807 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:20:46.529 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:20:46.529 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:20:46.529 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:20:46.529 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:20:46.529 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:21:07.530 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleDesignController.lock(java.lang.String[],java.util.Map<java.lang.String, java.lang.Object>)]: java.lang.NullPointerException
+14:21:07.530 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+14:21:07.530 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:21:07.530 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:21:07.530 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+14:26:17.238 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:26:30.065 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:26:43.832 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:26:44.060 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:26:44.060 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:26:44.060 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:26:44.060 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:27:06.405 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleDesignController.lock(java.lang.String[],com.youngor.utils.MapParams)]: java.lang.NullPointerException
+14:27:06.406 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+14:27:06.406 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:27:06.406 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:27:06.406 [http-bio-8086-exec-14] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+14:56:41.688 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:57:11.472 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:58:15.730 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+14:58:15.731 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+14:58:15.731 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:58:15.732 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:58:15.732 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:07:49.164 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:07:49.165 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:07:49.165 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:07:49.165 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:07:49.166 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:12:06.997 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:12:06.997 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:12:06.997 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:12:06.997 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:12:06.997 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:13:51.148 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:13:51.148 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:13:51.148 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:13:51.148 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:13:51.148 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:36:58.280 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:39:49.490 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:41:25.326 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleMateController.lock(java.lang.String[],com.youngor.utils.MapParams)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+### The error may involve com.youngor.sample.SampleMateRepository.lock-Inline
+### The error occurred while setting parameters
+### SQL: update ord_sample_mate d set d.spstat=1  where               exists (select 1 from ord_sample_plan a ,ord_sample_design b where a.plspno=b.plspno and b.sampno=d.sampno and         a.ormtno=? and a.bradno=? and a.spclno=?                               )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+15:41:25.326 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:41:25.326 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:41:25.327 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:41:25.327 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+### The error may involve com.youngor.sample.SampleMateRepository.lock-Inline
+### The error occurred while setting parameters
+### SQL: update ord_sample_mate d set d.spstat=1  where               exists (select 1 from ord_sample_plan a ,ord_sample_design b where a.plspno=b.plspno and b.sampno=d.sampno and         a.ormtno=? and a.bradno=? and a.spclno=?                               )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+15:41:29.245 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleColthController.lock(java.lang.String[],com.youngor.utils.MapParams)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+### The error may involve com.youngor.sample.SampleColthRepository.lock-Inline
+### The error occurred while setting parameters
+### SQL: update ord_sample_colth d set d.spstat=1  where               exists (select 1 from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno and b.sampno=d.sampno and        a.ormtno=? and a.bradno=? and a.spclno=?                               )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+15:41:29.245 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:41:29.245 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:41:29.245 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:41:29.245 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+### The error may involve com.youngor.sample.SampleColthRepository.lock-Inline
+### The error occurred while setting parameters
+### SQL: update ord_sample_colth d set d.spstat=1  where               exists (select 1 from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno and b.sampno=d.sampno and        a.ormtno=? and a.bradno=? and a.spclno=?                               )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."SPSTAT": invalid identifier
+
+15:44:03.904 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:44:03.904 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+15:44:03.904 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:44:03.904 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:44:03.904 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+15:44:28.775 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@155da1a0
+16:59:46.069 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:59:59.813 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:00:19.525 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+17:00:19.652 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+17:00:19.659 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:00:19.659 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:00:19.660 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+17:00:20.494 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,nvl(y.matest,0,y.matest) matest,nvl(z.spctst,0,z.spctst) spctst from (      select b.sampno,b.sampnm,a.*       from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and a.ormtno=? and a.bradno=? and a.spclno=?                                       ) x       left join (select distinct sampo,matest from ord_sample_mate) y on x.sampno=b.sampno      left join ord_sample_colth z on x.sampno=z.sampno ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+17:00:20.837 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+17:00:20.837 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:00:20.837 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:00:20.837 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,nvl(y.matest,0,y.matest) matest,nvl(z.spctst,0,z.spctst) spctst from (      select b.sampno,b.sampnm,a.*       from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and a.ormtno=? and a.bradno=? and a.spclno=?                                       ) x       left join (select distinct sampo,matest from ord_sample_mate) y on x.sampno=b.sampno      left join ord_sample_colth z on x.sampno=z.sampno ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+17:00:32.481 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,nvl(y.matest,0,y.matest) matest,nvl(z.spctst,0,z.spctst) spctst from (      select b.sampno,b.sampnm,a.*       from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and a.ormtno=? and a.bradno=? and a.spclno=?                                       ) x       left join (select distinct sampo,matest from ord_sample_mate) y on x.sampno=b.sampno      left join ord_sample_colth z on x.sampno=z.sampno ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+17:00:32.481 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+17:00:32.481 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:00:32.481 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:00:32.481 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,nvl(y.matest,0,y.matest) matest,nvl(z.spctst,0,z.spctst) spctst from (      select b.sampno,b.sampnm,a.*       from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and a.ormtno=? and a.bradno=? and a.spclno=?                                       ) x       left join (select distinct sampo,matest from ord_sample_mate) y on x.sampno=b.sampno      left join ord_sample_colth z on x.sampno=z.sampno ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00909: invalid number of arguments
+
+17:00:32.482 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+17:00:32.482 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+17:00:32.482 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:00:32.482 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:00:32.482 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:33:01.916 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:33:19.478 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:33:47.006 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:33:47.010 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:33:47.010 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:33:47.010 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:33:47.010 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:33:47.452 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(b.sampno)   from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno and                  and a.ormtno=? and a.bradno=? and a.spclno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+08:33:47.453 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+08:33:47.453 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:33:47.453 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:33:47.453 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(b.sampno)   from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno and                  and a.ormtno=? and a.bradno=? and a.spclno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+08:34:39.444 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:34:39.444 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:34:39.444 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:34:39.444 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:34:39.444 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:41:07.259 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:41:07.259 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:41:07.259 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:41:07.259 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:41:07.259 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:41:49.396 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:41:49.396 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:41:49.396 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:41:49.396 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:41:49.396 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:42:07.768 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:42:07.768 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:42:07.768 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:42:07.768 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:42:07.768 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:45:30.397 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:45:30.398 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:45:30.398 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:45:30.398 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:45:30.398 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:47:53.132 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:47:53.132 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:47:53.132 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:47:53.133 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:47:53.133 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:48:38.478 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:48:38.479 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:48:38.479 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:48:38.479 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:48:38.479 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:49:47.191 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:49:47.194 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:49:47.194 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:49:47.194 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:49:47.194 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:50:43.931 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:50:43.931 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:50:43.931 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:50:43.931 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:50:43.931 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:51:44.058 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:51:44.058 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:51:44.058 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:51:44.058 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:51:44.058 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:52:05.870 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+08:52:05.870 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+08:52:05.870 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:52:05.870 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:52:05.870 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+10:42:00.044 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:14:33.774 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:10:10.856 [http-bio-8086-exec-14] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:13:26.612 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+12:13:26.612 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+12:13:26.612 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:13:26.612 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:13:26.612 [http-bio-8086-exec-11] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+12:14:16.073 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryPRDSZTY(java.lang.String,java.lang.String)]: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+12:14:16.073 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+12:14:16.073 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:14:16.074 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:14:16.074 [http-bio-8086-exec-14] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+13:52:44.138 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:02:54.790 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:09:52.238 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:14:28.722 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:28.810 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:14:28.811 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:14:28.811 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:14:28.811 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:30.532 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:30.533 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:14:30.533 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:14:30.533 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:14:30.533 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:30.959 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:30.960 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:14:30.960 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:14:30.960 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:14:30.960 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:31.287 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:14:31.287 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:14:31.287 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:14:31.287 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:14:31.287 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:16:42.810 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:19:40.828 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:19:42.154 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:42.154 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:19:42.154 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:19:42.154 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:19:42.154 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:43.852 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:43.852 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:19:43.852 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:19:43.852 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:19:43.852 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:44.961 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:44.961 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:19:44.962 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:19:44.962 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:19:44.962 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:45.118 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.suno.PubSuno> com.youngor.suno.PubSunoController.query4Combo()]: ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:19:45.278 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.catalina.connector.ClientAbortException], based on exception mapping [java.lang.Exception]
+14:19:45.278 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:19:45.278 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:19:45.278 [http-bio-8086-exec-11] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error
+14:21:54.088 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:22:55.298 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:13:39.824 [http-bio-8086-exec-15] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:14:51.149 [http-bio-8086-exec-15] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:22:56.414 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证

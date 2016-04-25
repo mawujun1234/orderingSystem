@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -83,5 +84,25 @@ public class SampleMateController {
 		return sampleMate;
 	}
 	
-	
+	@RequestMapping("/sampleMate/lock.do")
+	@ResponseBody
+	public void lock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleMateService.update(Cnd.update().set(M.SampleMate.matest, 1).andIn(M.SampleMate.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleMateService.lock(mapParams.getParams());
+		}
+		
+	}
+	@RequestMapping("/sampleMate/unlock.do")
+	@ResponseBody
+	public void unlock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleMateService.update(Cnd.update().set(M.SampleMate.matest, 0).andIn(M.SampleMate.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleMateService.unlock(mapParams.getParams());
+		}
+	}
 }

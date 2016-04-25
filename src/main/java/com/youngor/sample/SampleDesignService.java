@@ -1,4 +1,6 @@
 package com.youngor.sample;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -6,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.mawujun.utils.page.Pager;
 import com.youngor.utils.M;
 
 
@@ -59,4 +62,14 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 		}
 	}
 
+	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
+		return sampleDesignRepository.queryPlanDesign(pager);
+	}
+	
+	public void lock(Map<String,Object> params) {
+		sampleDesignRepository.lock(params);
+	}
+	public void unlock(Map<String,Object> params){
+		sampleDesignRepository.unlock(params);
+	}
 }

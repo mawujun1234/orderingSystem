@@ -11,7 +11,7 @@ import com.youngor.pubsize.PubSize;
  * @since 1.0
  */
 @Repository
-public interface PubSizeRepository extends IRepository<PubSize, String>{
+public interface PubSizeRepository extends IRepository<PubSize, PubSize.PK>{
 
 
 }

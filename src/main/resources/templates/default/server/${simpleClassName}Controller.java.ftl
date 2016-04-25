@@ -71,7 +71,7 @@ public class ${simpleClassName}Controller {
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/create.do")
-	//@ResponseBody
+	@ResponseBody
 	public ${simpleClassName} create(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		<#if extenConfig.extjs_treeForm_model==true>
 		if("root".equals(${simpleClassNameFirstLower}.getParent_id())){
@@ -83,21 +83,21 @@ public class ${simpleClassName}Controller {
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/update.do")
-	//@ResponseBody
+	@ResponseBody
 	public  ${simpleClassName} update(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.update(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/deleteById.do")
-	//@ResponseBody
+	@ResponseBody
 	public ${idType} deleteById(${idType} id) {
 		${simpleClassNameFirstLower}Service.deleteById(id);
 		return id;
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/destroy.do")
-	//@ResponseBody
+	@ResponseBody
 	public ${simpleClassName} destroy(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.delete(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};

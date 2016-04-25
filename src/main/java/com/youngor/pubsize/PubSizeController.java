@@ -1,18 +1,15 @@
 package com.youngor.pubsize;
 import java.util.List;
-import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
-
-import com.youngor.pubsize.PubSize;
-import com.youngor.pubsize.PubSizeService;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -54,7 +51,7 @@ public class PubSizeController {
 
 	@RequestMapping("/pubSize/load.do")
 	@ResponseBody
-	public PubSize load(String id) {
+	public PubSize load(PubSize.PK id) {
 		return pubSizeService.get(id);
 	}
 	
@@ -74,7 +71,7 @@ public class PubSizeController {
 	
 	@RequestMapping("/pubSize/deleteById.do")
 	//@ResponseBody
-	public String deleteById(String id) {
+	public PubSize.PK deleteById(PubSize.PK id) {
 		pubSizeService.deleteById(id);
 		return id;
 	}

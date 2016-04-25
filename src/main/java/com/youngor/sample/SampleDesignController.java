@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
+import com.youngor.utils.M;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -69,6 +72,40 @@ public class SampleDesignController {
 	public String deleteById(String sampno) {
 		sampleDesignService.deleteById(sampno);
 		return sampno;
+	}
+	
+	/**
+	 * 设计师输入设计资料的时候用的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping("/sampleDesign/queryPlanDesign.do")
+	@ResponseBody
+	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
+		return sampleDesignService.queryPlanDesign(pager);
+	}
+	
+	@RequestMapping("/sampleDesign/lock.do")
+	@ResponseBody
+	public void lock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleDesignService.update(Cnd.update().set(M.SampleDesign.spstat, 1).andIn(M.SampleDesign.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleDesignService.lock(mapParams.getParams());
+		}
+		
+	}
+	@RequestMapping("/sampleDesign/unlock.do")
+	@ResponseBody
+	public void unlock(String[] sampnos,MapParams mapParams) {
+		if(sampnos!=null){
+			sampleDesignService.update(Cnd.update().set(M.SampleDesign.spstat, 0).andIn(M.SampleDesign.sampno, sampnos));
+		}
+		if(mapParams.getParams()!=null){
+			sampleDesignService.unlock(mapParams.getParams());
+		}
 	}
 	
 //	@RequestMapping("/sampleDesign/destroy.do")

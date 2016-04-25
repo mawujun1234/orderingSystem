@@ -51,19 +51,7 @@ Ext.define('y.permission.MenuTreeCheckbox', {
 		}
 		me.on("checkchange",function(node, checked){
 				me.menuTreeChecked_node.push(node.get("id"));
-				Ext.Msg.confirm('消息','是否要选择/取消下面所有的菜单',function(btn){
-					if(btn=='yes'){
-						node.cascadeBy(function (n) { 
-							if (n != node && !n.isRoot()) {
-								me.menuTreeChecked_node.push(n.get("id"));
-								n.set('checked', checked); 
-							}
-						});
-						checkParent(node);
-					} else {
-						checkParent(node);
-					}
-					
+				if(node.isLeaf()){
 					Ext.Ajax.request({
 						url:Ext.ContextPath+"/role/checkMenuNodes.do",
 						params:{
@@ -76,7 +64,34 @@ Ext.define('y.permission.MenuTreeCheckbox', {
 						}
 					});
 					me.menuTreeChecked_node=[];
-				})
+				} else {
+					Ext.Msg.confirm('消息','是否要选择/取消下面所有的菜单',function(btn){
+						if(btn=='yes'){
+							node.cascadeBy(function (n) { 
+								if (n != node && !n.isRoot()) {
+									me.menuTreeChecked_node.push(n.get("id"));
+									n.set('checked', checked); 
+								}
+							});
+							checkParent(node);
+						} else {
+							checkParent(node);
+						}
+						
+						Ext.Ajax.request({
+							url:Ext.ContextPath+"/role/checkMenuNodes.do",
+							params:{
+								ids:me.menuTreeChecked_node,
+								checked:checked,
+								role_id:window.selected_role.get("id")
+							},
+							success:function(){
+								
+							}
+						});
+						me.menuTreeChecked_node=[];
+					})
+				}
 		});
        
 		me.callParent(arguments);

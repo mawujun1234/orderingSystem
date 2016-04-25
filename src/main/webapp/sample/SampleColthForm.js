@@ -165,6 +165,7 @@ Ext.define('y.sample.SampleColthForm',{
 			formBind: true, //only enabled once the form is valid
        		disabled: true,
 			glyph : 0xf0c7,
+			hidden:!Permision.canShow('sample_design_clothsave'),
 			handler : function(button){
 				if(!window.sampno){
 		    		Ext.Msg.alert("消息","请先建立‘设计开发’中的信息");
@@ -179,6 +180,14 @@ Ext.define('y.sample.SampleColthForm',{
 				    },
 				    success: function(record, operation) {
 						Ext.Msg.alert("消息","保存成功!");
+						
+						//如果是锁定状态，就隐藏这个按钮
+						//hidden:!Permision.canShow('sample_design_designsave'),
+						if(sampleDesign.get("spctst")==1){
+							me.down("#save").hide();		
+						} else if(Permision.canShow('sample_design_designsave')){
+							me.down("#save").show();
+						}
 				    }
 				});			
 				

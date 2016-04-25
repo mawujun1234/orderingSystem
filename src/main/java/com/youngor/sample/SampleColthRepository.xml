@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleColthRepository">
+
+    <sql id="lock_unlock_where">  
+    	exists (select 1 from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	and b.sampno=d.sampno and
+    		 a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+    		 <if test="sptyno!=null and sptyno!=''">
+	    		and a.sptyno=#{sptyno}
+	    	</if>
+	    	<if test="spseno!=null and spseno!=''">
+	    		and a.spseno=#{spseno}
+	    	</if>
+	    	<if test="spbseno!=null and spbseno!=''">
+	    		and a.spbseno=#{spbseno}
+	    	</if>
+    	)
+    	<if test="spsuno!=null and spsuno!=''">
+    		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
+    	</if>
+ 	</sql> 
+    <update id="lock" parameterType="map">
+    	update ord_sample_colth d set d.spctst=1  where
+    	<include refid="lock_unlock_where"></include> 
+    </update>
+    <update id="unlock" parameterType="map">
+    	update ord_sample_colth d set d.spctst=0  where
+    	<include refid="lock_unlock_where"></include> 
+    </update>
+</mapper>
+

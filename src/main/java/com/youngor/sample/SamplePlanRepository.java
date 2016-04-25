@@ -12,7 +12,7 @@ import com.mawujun.utils.page.Pager;
 @Repository
 public interface SamplePlanRepository extends IRepository<SamplePlan, String>{
 
-	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager);
+	
 	
 	public String queryOrmtno(String plspno);
 }

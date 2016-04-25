@@ -16,17 +16,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     
     <!--
-    <select id="query_checkbox" resultType="com.youngor.permission.MenuVO" parameterType="map">
-    	select a.*,decode(b.role_id,null,0,1) as checked from t_menu a left join t_role_menu b on a.id=b.menu_id and b.role_id=#{role_id}
-    	where
-    	<if test="parent_id==null">
-    		parent_id is null
-    	</if>
-    	<if test="parent_id!=null">
-    		parent_id=#{parent_id}
-    	</if>
-    	
-    </select> 
+    在分配权限的时候，生成菜单树的
      -->
      <select id="query_checkbox" resultType="com.youngor.permission.MenuVO" parameterType="map">
     	select a.*,0 as checked from t_menu a 
@@ -55,5 +45,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	</if>
     	
     </select> 
+    
+    
+     <!-- 在打开一个页面的时候，获取这个页面的界面元素控制情况-->
+    <select id="queryElement" resultType="com.youngor.permission.Menu" parameterType="map">
+    	select a.* from t_menu a,t_menu b,t_role_menu c,t_role_user d
+		where a.parent_id=b.id and a.id=c.menu_id and c.role_id=d.role_id 
+		and d.user_id=#{user_id} and b.url=#{jsp_url}
+    </select>
 </mapper>
 
