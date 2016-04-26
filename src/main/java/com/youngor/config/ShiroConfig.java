@@ -116,6 +116,7 @@ public class ShiroConfig {
 		Map<String,String> filterChainDefinitionMap=new HashMap<String,String>();
 		//filterChainDefinitionMap.put("/**", "anon");//这个是临时的
 		filterChainDefinitionMap.put("/", "anon");//anon只是用于判断认证，不用于判断授权
+		filterChainDefinitionMap.put("/**/*.html", "anon");
 		filterChainDefinitionMap.put("/main/login.jsp*", "anon");
 		filterChainDefinitionMap.put("/main/unauthorized.jsp*", "anon");
 		filterChainDefinitionMap.put("/user/login.do*", "anon");

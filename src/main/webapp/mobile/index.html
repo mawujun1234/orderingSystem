@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html style="font-size: 20px;">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订货系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+	<style>
+.hi-icon-wrap {
+		text-align: center;
+		margin: 0 auto;
+		padding: 2em 0 3em;
+}
+.hi-icon {
+	display: inline-block;
+	font-size: 1rem;
+	line-height:4.5rem;
+	cursor: pointer;
+	margin: 15px 30px;
+	width: 4.5rem;
+	height: 4.5rem;
+	border-radius: 50%;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	color: #fff;
+	background-color:#41ab6b;
+}
+
+.hi-icon:after {
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	content: '';
+	-webkit-box-sizing: content-box; 
+	-moz-box-sizing: content-box; 
+	box-sizing: content-box;
+}
+/*
+.hi-icon:before {
+	font-family: 'ecoicon';
+	speak: none;
+	font-size: 48px;
+	line-height: 90px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	display: block;
+	-webkit-font-smoothing: antialiased;
+}
+*/
+	/* Effect 7 */
+.hi-icon-effect-7 .hi-icon {
+	box-shadow: 0 0 0 4px rgba(255,255,255,1);
+	-webkit-transition: background 0.2s, color 0.2s;
+	-moz-transition: background 0.2s, color 0.2s;
+	transition: background 0.2s, color 0.2s;	
+}
+
+.hi-icon-effect-7 .hi-icon:hover {
+	color: #fff;
+}
+
+.hi-icon-effect-7 .hi-icon:after {
+	top: -8px;
+	left: -8px;
+	padding: 8px;
+	z-index: -1;
+	opacity: 1;
+	
+}
+	/* Effect 7b */
+.hi-icon-effect-7b .hi-icon:after {
+	box-shadow: 3px 3px rgba(255,255,255,1);
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	-webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+	-moz-transition: opacity 0.2s, -moz-transform 0.2s;
+	transition: opacity 0.2s, transform 0.2s;
+	
+}
+
+.hi-icon-effect-7b .hi-icon:hover:after {
+	opacity: 1;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.hi-icon-effect-7b .hi-icon:before {
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.7;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	transition: transform 0.2s, opacity 0.2s;
+}
+
+.hi-icon-effect-7b .hi-icon:hover:before {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+	</style>
+  </head>
+  <body>
+  <nav id="bottom_bar" class="bar bar-tab" style="z-index:99999;">
+  	<a class="tab-item active" href="#odpage">
+    	<span class="icon icon-home"></span>
+        <span class="tab-label">订货</span>
+    </a>
+    <a class="tab-item" href="#mypage">
+        <span class="icon icon-me"></span>
+        <span class="tab-label">我</span>
+    </a>
+  </nav>
+	<div class="page-group"> 
+    	    
+        <div class="page page-current" id="odpage"> 
+        	<header class="bar bar-nav">
+              <h1 class='title'>订货</h1>
+            </header>
+            <div class="content">
+            	<div class="list-block">
+                	<ul>
+                    	<li>
+                    	<div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-name"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">样衣编号</div>
+                            <div class="item-input">
+                              <input type="text" placeholder="输入样衣编号">
+                            </div>
+                          </div>
+                        </div>
+                        </li>
+                        <li>
+                        	<a href="#" class="button button-big button-fill button-success" style="margin:10px 5px 5px 5px;">查询</a> 
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="content-block">
+                    <div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
+                        <a href="#set-7" class="hi-icon">扫一扫</a>
+                    </div>
+                </div>
+            </div><!-- content-->
+            
+        </div><!-- #odpage -->
+            
+        <div class="page" id="mypage">    
+             <div class="content">
+                    2222222222
+             </div>
+        </div>
+	</div>
+    
+
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+	
+    <script>
+		$(function(){
+			$("#bottom_bar a.tab-item").click(function(){
+				$("#bottom_bar a.tab-item").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+	</script>
+  </body>
+</html>
