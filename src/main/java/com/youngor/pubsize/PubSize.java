@@ -45,6 +45,9 @@ public class PubSize extends BaseObject{
 	@FieldDefine(title="大类",hidden=false)
 	@Column(length=36)
 	private String szclno;
+	@FieldDefine(title="包装种类",hidden=false)
+	@Column(length=36)
+	private String sizety1;//0：单规装；1：混装
 	@FieldDefine(title="数量",hidden=false)
 	private Integer sizeqt;//主要用于包装的时候，定义这个包装里要包含多少数量
 	@FieldDefine(title="规备注",hidden=false)
@@ -137,6 +140,12 @@ public class PubSize extends BaseObject{
 	}
 	public void setSzsast(Integer szsast) {
 		this.szsast = szsast;
+	}
+	public String getSizety1() {
+		return sizety1;
+	}
+	public void setSizety1(String sizety1) {
+		this.sizety1 = sizety1;
 	}
 
 }

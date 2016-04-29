@@ -9292,3 +9292,93 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 16:14:51.149 [http-bio-8086-exec-15] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 16:22:56.414 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 08:50:44.000 [http-bio-8086-exec-11] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:43:34.579 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:12:19.266 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:12:21.019 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:12:35.261 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:12:36.731 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:13:18.486 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+15:13:25.212 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:13:26.926 [http-bio-8086-exec-17] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:17:42.033 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:18:07.080 [http-bio-8086-exec-14] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:18:08.533 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:18:11.478 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+15:18:19.590 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:18:20.830 [http-bio-8086-exec-16] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:26:50.807 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:29:03.274 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:30:47.545 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@42854bba
+15:31:00.395 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@3f84c2b5
+15:31:12.651 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@4ef80f7f
+15:32:02.001 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@10ddd34a
+15:32:32.481 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@90d44a71
+15:32:35.249 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@8947ccf7
+15:32:39.696 [http-bio-8086-exec-11] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:28:11.396 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:29:21.692 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:29:26.625 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryStdsz(com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize>)]: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.youngor.pubsize.PubSizeRepository.queryPage
+16:29:26.626 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalArgumentException], based on exception mapping [java.lang.IllegalArgumentException]
+16:29:26.626 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:29:26.626 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:29:26.626 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for com.youngor.pubsize.PubSizeRepository.queryPage
+16:32:44.819 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:35:36.037 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:41:15.042 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:46:11.437 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:01:06.224 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:14:17.834 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:45:52.885 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:09:45.892 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:42:34.019 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryStdsz(com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize>)]: java.lang.RuntimeException: Failed to parse mapping resource: 'file:/E:/eclipse/aaa/orderingSystem/target/classes/com/youngor/pubsize/PubSizeRepository.xml'
+14:42:34.019 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.RuntimeException], based on exception mapping [java.lang.Exception]
+14:42:34.020 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:42:34.020 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:42:34.020 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.RuntimeException: Failed to parse mapping resource: 'file:/E:/eclipse/aaa/orderingSystem/target/classes/com/youngor/pubsize/PubSizeRepository.xml'
+14:43:10.539 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize> com.youngor.pubsize.PubSizeController.queryStdsz(com.mawujun.utils.page.Pager<com.youngor.pubsize.PubSize>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve com.youngor.pubsize.PubSizeRepository.queryPage-Inline
+### The error occurred while setting parameters
+### SQL: select * from ord_pub_size where SIZETY=?              sizeno like '%1%'                     sizenm like '%2%'                     sizest = ?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+14:43:10.540 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+14:43:10.540 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:43:10.540 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:43:10.540 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve com.youngor.pubsize.PubSizeRepository.queryPage-Inline
+### The error occurred while setting parameters
+### SQL: select * from ord_pub_size where SIZETY=?              sizeno like '%1%'                     sizenm like '%2%'                     sizest = ?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+15:10:24.765 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:11:10.395 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:26:33.985 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:30:22.032 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:31:12.529 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@9a35974
+16:31:12.660 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.pubsize.PubSize com.youngor.pubsize.PubSizeController.create(com.youngor.pubsize.PubSize)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:31:12.660 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+16:31:12.661 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:31:12.661 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:31:12.661 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:32:09.958 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@57590ba5
+16:32:09.991 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.pubsize.PubSize com.youngor.pubsize.PubSizeController.create(com.youngor.pubsize.PubSize)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:32:09.991 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+16:32:09.991 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:32:09.991 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:32:09.991 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:32:53.798 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@4acc5f4c
+16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.pubsize.PubSize com.youngor.pubsize.PubSizeController.create(com.youngor.pubsize.PubSize)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:32:53.842 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch

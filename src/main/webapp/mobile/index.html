@@ -8,135 +8,39 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+     <link rel="stylesheet" href="mobile.css" >
 	<style>
-.hi-icon-wrap {
-		text-align: center;
-		margin: 0 auto;
-		padding: 2em 0 3em;
-}
-.hi-icon {
-	display: inline-block;
-	font-size: 1rem;
-	line-height:4.5rem;
-	cursor: pointer;
-	margin: 15px 30px;
-	width: 4.5rem;
-	height: 4.5rem;
-	border-radius: 50%;
-	text-align: center;
-	position: relative;
-	z-index: 1;
-	color: #fff;
-	background-color:#41ab6b;
-}
 
-.hi-icon:after {
-	pointer-events: none;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	content: '';
-	-webkit-box-sizing: content-box; 
-	-moz-box-sizing: content-box; 
-	box-sizing: content-box;
-}
-/*
-.hi-icon:before {
-	font-family: 'ecoicon';
-	speak: none;
-	font-size: 48px;
-	line-height: 90px;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	display: block;
-	-webkit-font-smoothing: antialiased;
-}
-*/
-	/* Effect 7 */
-.hi-icon-effect-7 .hi-icon {
-	box-shadow: 0 0 0 4px rgba(255,255,255,1);
-	-webkit-transition: background 0.2s, color 0.2s;
-	-moz-transition: background 0.2s, color 0.2s;
-	transition: background 0.2s, color 0.2s;	
-}
 
-.hi-icon-effect-7 .hi-icon:hover {
-	color: #fff;
-}
-
-.hi-icon-effect-7 .hi-icon:after {
-	top: -8px;
-	left: -8px;
-	padding: 8px;
-	z-index: -1;
-	opacity: 1;
-	
-}
-	/* Effect 7b */
-.hi-icon-effect-7b .hi-icon:after {
-	box-shadow: 3px 3px rgba(255,255,255,1);
-	-webkit-transform: rotate(-90deg);
-	-moz-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-	-webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
-	-moz-transition: opacity 0.2s, -moz-transform 0.2s;
-	transition: opacity 0.2s, transform 0.2s;
-	
-}
-
-.hi-icon-effect-7b .hi-icon:hover:after {
-	opacity: 1;
-	-webkit-transform: rotate(0deg);
-	-moz-transform: rotate(0deg);
-	-ms-transform: rotate(0deg);
-	transform: rotate(0deg);
-}
-
-.hi-icon-effect-7b .hi-icon:before {
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	-ms-transform: scale(0.8);
-	transform: scale(0.8);
-	opacity: 0.7;
-	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
-	transition: transform 0.2s, opacity 0.2s;
-}
-
-.hi-icon-effect-7b .hi-icon:hover:before {
-	-webkit-transform: scale(1);
-	-moz-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
 
 	</style>
   </head>
   <body>
-  <nav id="bottom_bar" class="bar bar-tab" style="z-index:99999;">
-  	<a class="tab-item active" href="#odpage">
+  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;display:none;">
+  	<a class="tab-item active" href="#od_info">
     	<span class="icon icon-home"></span>
         <span class="tab-label">订货</span>
     </a>
-    <a class="tab-item" href="#mypage">
+    <a class="tab-item" href="#od_mypage">
         <span class="icon icon-me"></span>
         <span class="tab-label">我</span>
     </a>
   </nav>
-	<div class="page-group"> 
-    	    
-        <div class="page page-current" id="odpage"> 
+
+ 
+    <div class="page-group"> 
+        <div class="page page-current" id="od_loginpage"> 
         	<header class="bar bar-nav">
-              <h1 class='title'>订货</h1>
+              <h1 class='title'>2016年秋冬春季订货会</h1>
             </header>
+            
             <div class="content">
             	<div class="list-block">
                 	<ul>
@@ -144,46 +48,342 @@
                     	<div class="item-content">
                           <div class="item-media"><i class="icon icon-form-name"></i></div>
                           <div class="item-inner">
-                            <div class="item-title label">样衣编号</div>
+                            <div class="item-title label">登录名:</div>
                             <div class="item-input">
-                              <input type="text" placeholder="输入样衣编号">
+                              <input type="text" placeholder="输入登录名">
                             </div>
                           </div>
                         </div>
                         </li>
                         <li>
-                        	<a href="#" class="button button-big button-fill button-success" style="margin:10px 5px 5px 5px;">查询</a> 
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-password"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">密码</div>
+                                <div class="item-input">
+                                  <input type="password" placeholder="输入密码" class="">
+                                </div>
+                              </div>
+                            </div>
+                        </li>
+                        <li>
+                        	
                         </li>
                     </ul>
                 </div>
-                
                 <div class="content-block">
-                    <div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-                        <a href="#set-7" class="hi-icon">扫一扫</a>
+                	<div class="row">            
+                    	<div class="col-50"><a href="#" class="button button-big button-fill button-danger">退出</a></div>
+                        <div class="col-50"><a href="#od_info" class="button button-big button-fill button-success">登录</a></div>
                     </div>
                 </div>
-            </div><!-- content-->
+                
+                <div class="content-block">
+                    <div class="hi-icon-wrap-login hi-icon-effect-7-login">
+                        <a href="#" onClick="window.location.reload();" class="hi-icon-login hi-icon-scale">扫描登录</a>
+                    </div>
+                </div>
+            </div>
             
-        </div><!-- #odpage -->
+        </div> <!--#od_page -->
+        
+        
             
-        <div class="page" id="mypage">    
-             <div class="content">
-                    2222222222
-             </div>
+        <div class="page" id="od_info" >  
+        	<div id="qrcode_button" class="hi-icon-wrap hi-icon-effect-7">
+       			<a href="#od_mypage"  onClick="window.location.reload();" class="hi-icon hi-icon-cycle external">扫一扫</a>
+			</div>  
+             <div class="content" >                 
+                 <div class="card">
+                    <div class="card-header">
+                    	<div class="list-block">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div class="item-title label" style="width:4.5rem;font-weight:bold;">样衣编号:</div>
+                                    <div class="item-input">
+                                      <input id="od_info_input" type="text" placeholder="请输y样衣编号">
+                                    </div>
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-content-inner">
+                      		<div class="row">
+                              <div class="col-50">版型:</div>
+                              <div class="col-50">系列:</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">出厂价:</div>
+                              <div class="col-50">零售价:</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">已定-系列:</div>
+                              <div class="col-50">已定-系列:</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">指标-系列:</div>
+                              <div class="col-50">上市批次:</div>
+                            </div>
+                      </div>
+                    </div>
+                  </div><!--card -->
+                  
+                  <!--  套件的开始 -->
+                  <div class="card" id="od_info_T00">
+                    <div class="card-header">
+                    	<div class="list-block">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div id="od_info_T00_label" class="item-title label" style="width:4.5rem;font-weight:bold;">标准-数量:</div>
+                                    <div class="item-input">
+                                      <input id="od_info_T00_input" type="text" placeholder="请输入总订货数量">
+                                    </div>
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content guig_content" style="display:none;">
+                      <div class="card-content-inner">
+                       <div class="list-block">
+                        <ul>
+                          <!-- Text inputs -->
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-name"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label" style="font-weight:bold;">规格:</div>
+                                <div class="item-input" style="font-weight:bold;">订货数量:</div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">37</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="37的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">38</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="38的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">39</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="39的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                          
+                        </ul>
+                      </div><!-- list-block -->
+                      </div><!-- card-content-inner -->
+                    </div><!-- card-content -->
+                    
+                  </div><!--card -->
+                  <!--  套件的结束 -->
+                  
+                  <!--  套件的开始 -->
+                  <div class="card" id="od_info_T01" >
+                    <div class="card-header">
+                    	<div class="list-block">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div id="od_info_T01_label" class="item-title label" style="width:4.5rem;font-weight:bold;">上衣-数量:</div>
+                                    <div class="item-input">
+                                      <input id="od_info_T01_input" type="text" placeholder="请输入总订货数量">
+                                    </div>
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content guig_content" style="display:none;">
+                      <div class="card-content-inner">
+                       <div class="list-block">
+                        <ul>
+                          <!-- Text inputs -->
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-name"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label" style="font-weight:bold;">规格:</div>
+                                <div class="item-input" style="font-weight:bold;">订货数量:</div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">37</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="37的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">38</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="38的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">39</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="39的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                          
+                        </ul>
+                      </div><!-- list-block -->
+                      </div><!-- card-content-inner -->
+                    </div><!-- card-content -->
+                    
+                  </div><!--card -->
+                  <!--  套件的结束 -->
+                  <div class="content-block" style="padding-bottom:2rem;">
+                    <div class="row">
+                      <div class="col-50"><a href="#" class="button button-big button-fill button-danger">清零</a></div>
+                      <div class="col-50"><a href="#" class="button button-big button-fill button-success">保存</a></div>
+                    </div>
+                  </div>
+                  
+             </div><!--content -->
         </div>
-	</div>
+        
+        
+        
+        <div class="page" id="od_mypage"> 
+        	<header class="bar bar-nav">
+              <a class="button button-link button-nav pull-left back" href="/docs-demos/router">
+                  <span class="icon icon-left"></span>
+                  返回
+              </a>
+              <h1 class='title'>宁波区域</h1>
+            </header>
+            <div class="content">
+            	<div class="card">
+                    <div class="card-header">我:宁波区域</div>
+                    <div class="card-content">
+                      <div class="card-content-inner">
+                      		<div class="row">
+                              <div class="col-50">已定数量:1233</div>
+                              <div class="col-50">大类个数:5</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">系列个数:3</div>
+                              <div class="col-50">样衣个数:200</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-80">&nbsp; </div>
+                              <div class="col-20"><a href="#" class="button button-fill button-success">确认</a></div>
+                            </div>
+                      </div>
+                    </div>
+                  </div><!--card -->
+                  
+                  <div class="content-block-title">报表清单</div>
+                  <div class="list-block">
+                    <ul>
+                      <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-按商品类</div>
+                        </div>
+                      </li>
+                      <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-按销售渠道</div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div><!-- 报表清单-->
+            </div><!-- content-->
+        </div><!-- #od_mypage -->
+        
+        
+	</div><!-- page-group -->
     
 
     <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='mobile.js' charset='utf-8'></script>
 	
     <script>
 		$(function(){
-			$("#bottom_bar a.tab-item").click(function(){
-				$("#bottom_bar a.tab-item").removeClass("active");
-				$(this).addClass("active");
+			
+			$(".card .card-header .item-title.label").click(function(){
+				var input_id=$(this).attr("id");
+				if(input_id=='od_info_input'){
+					return;
+				}
+				var car_content_id=input_id.substr(0,input_id.length-6);
+				//$(".card .guig_content").toggle();
+				$("#"+car_content_id+" .guig_content").toggle();
 			});
+			$(".card .card-header input").click(function(){
+				var input_id=$(this).attr("id");
+				if(input_id=='od_info_input'){
+					return;
+				}
+				var car_content_id=input_id.substr(0,input_id.length-6);
+				
+				
+				$(".card .guig_content").hide();
+				$("#"+car_content_id+" .guig_content").show();
+			});
+			
+			
+
+
+
 		});
 	</script>
   </body>
