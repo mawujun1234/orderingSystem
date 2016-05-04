@@ -1,4 +1,4 @@
-Ext.define('y.pubsize.PrdpForm',{
+Ext.define('y.pubsize.PrdsztyForm',{
 	extend:'Ext.form.Panel',
 	requires: [
 	     'y.pubsize.PubSize'
@@ -23,7 +23,7 @@ Ext.define('y.pubsize.PrdpForm',{
 	        fieldLabel: '规格类型',
 	        name: 'sizety',
 	        hidden:true,
-	       // value:'',
+	        value:'PRDSZTY',
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
@@ -39,50 +39,64 @@ Ext.define('y.pubsize.PrdpForm',{
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
-		{
+	    {
 	        fieldLabel: '品牌',
 	        name: 'szbrad',
-	        hidden:true,
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
-		{
-	        fieldLabel: '大类',
-	        name: 'szclno',
-	         hidden:true,
-            selectOnFocus:true,
-	        xtype:'textfield'
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            //value:'Y',
+            blankText:"品牌不允许为空",
+	        xtype:'pubcodecombo',
+	        tyno:'1'
 	    },
 	    {
-            xtype      : 'fieldcontainer',
-            fieldLabel : '包装种类',
-            defaultType: 'radiofield',
-            defaults: {
-                flex: 1
-            },
-            layout: 'hbox',
-            items: [
-            	{
-                    boxLabel  : '单规装',
-                    name: 'sizety1',
-                     checked:true,
-                    inputValue: '0'
-                },
-           		{
-                    boxLabel  : '混装',
-                    name: 'sizety1',
-                    inputValue: '1'
-                }
-            ]
-        },
-		{
-	        fieldLabel: '数量',
-	        name: 'sizeqt',
-	        // hidden:true,
-            allowDecimals:false,
-            selectOnFocus:true,
-	        xtype:'numberfield'   
+	        fieldLabel: '大类',
+	        name: 'szclno',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"大类不允许为空",
+	        xtype:'pubcodecombo',
+	        tyno:'0'
+//	        listeners:{
+//	        	select:function( combo, record, eOpts ) {
+//	        		var sptyno=combo.nextSibling("pubcodecombo[name=sptyno]");
+//	        		sptyno.reload(record.get("itno"));
+//	        		
+//	        		var spseno=combo.nextSibling("pubcodecombo[name=spseno]");
+//	        		spseno.reload(record.get("itno"));
+//	        	}
+//	        }
 	    },
+//	    {
+//            xtype      : 'fieldcontainer',
+//            fieldLabel : '包装种类',
+//            defaultType: 'radiofield',
+//            defaults: {
+//                flex: 1
+//            },
+//            layout: 'hbox',
+//            items: [
+//            	{
+//                    boxLabel  : '单规装',
+//                    name: 'sizety1',
+//                     checked:true,
+//                    inputValue: '0'
+//                },
+//           		{
+//                    boxLabel  : '混装',
+//                    name: 'sizety1',
+//                    inputValue: '1'
+//                }
+//            ]
+//        },
+//		{
+//	        fieldLabel: '数量',
+//	        name: 'sizeqt',
+//	        // hidden:true,
+//            allowDecimals:false,
+//            selectOnFocus:true,
+//	        xtype:'numberfield'   
+//	    },
 		{
 	        fieldLabel: '备注',
 	        name: 'sizemk',
@@ -120,14 +134,28 @@ Ext.define('y.pubsize.PrdpForm',{
                 }
             ]
         },
-		{
-	        fieldLabel: '当季状态',
-	        name: 'szsast',
-	        hidden:true,
-            allowDecimals:false,
-            selectOnFocus:true,
-	        xtype:'numberfield'   
-	    },
+        {
+            xtype      : 'fieldcontainer',
+            fieldLabel : '当季状态',
+            defaultType: 'radiofield',
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+            	{
+                    boxLabel  : '非当季',
+                    name: 'szsast',
+                    inputValue: '0'
+                },
+           		{
+                    boxLabel  : '当季',
+                    name: 'szsast',
+                    checked:true,
+                    inputValue: '1'
+                }
+            ]
+        },
 		{
 	        fieldLabel: '创建人',
 	        name: 'rgsp',

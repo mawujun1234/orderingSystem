@@ -9382,3 +9382,668 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
 16:32:53.842 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
 16:32:53.842 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+08:19:11.552 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+08:25:30.160 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+08:30:48.170 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@2f53680d
+08:30:48.411 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.pubsize.PubSize com.youngor.pubsize.PubSizeController.create(com.youngor.pubsize.PubSize)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+08:30:48.411 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+08:30:48.411 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:30:48.411 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:30:48.411 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+08:32:48.612 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+08:33:02.591 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@353d918
+08:34:40.206 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.PubSize@c1fcd87
+08:34:43.970 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.PubSize@b392f29
+09:23:30.307 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+09:23:30.329 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+09:23:30.361 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+09:23:30.376 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+09:23:30.389 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+09:23:30.398 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+09:23:30.399 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+09:23:30.399 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+09:23:30.402 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.Ordmt
+09:23:30.402 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.Ordmt
+09:23:30.403 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtController
+09:23:30.406 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtRepository
+09:23:30.407 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde$PK
+09:23:30.409 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtScde
+09:23:30.409 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde
+09:23:30.410 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeController
+09:23:30.410 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeRepository
+09:23:30.422 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeService
+09:23:30.422 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason$PK
+09:23:30.423 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtSeason
+09:23:30.423 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason
+09:23:30.423 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeasonRepository
+09:23:30.424 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtService
+09:23:30.424 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtVO
+09:23:30.425 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+09:23:30.426 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+09:23:30.426 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.NodeVO
+09:23:30.428 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+09:23:30.429 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+09:23:30.429 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgController
+09:23:30.430 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+09:23:30.430 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+09:23:30.430 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgRepository
+09:23:30.431 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgService
+09:23:30.431 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+09:23:30.431 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+09:23:30.432 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Position
+09:23:30.432 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Position
+09:23:30.433 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionController
+09:23:30.433 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionOrgUser
+09:23:30.433 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUser
+09:23:30.434 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUserRepository
+09:23:30.434 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionRepository
+09:23:30.435 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionService
+09:23:30.435 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionType
+09:23:30.435 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionType
+09:23:30.436 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeController
+09:23:30.437 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeRepository
+09:23:30.438 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeService
+09:23:30.439 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+09:23:30.439 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+09:23:30.440 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+09:23:30.441 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+09:23:30.441 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+09:23:30.442 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+09:23:30.443 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+09:23:30.443 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+09:23:30.443 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+09:23:30.444 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleBrand
+09:23:30.444 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrand
+09:23:30.444 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrandRepository
+09:23:30.445 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleClass
+09:23:30.445 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClass
+09:23:30.445 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClassRepository
+09:23:30.446 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+09:23:30.446 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+09:23:30.446 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+09:23:30.447 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+09:23:30.447 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+09:23:30.448 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+09:23:30.449 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+09:23:30.449 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+09:23:30.449 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+09:23:30.450 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+09:23:30.451 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroApplicationListener
+09:23:30.457 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+09:23:30.457 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+09:23:30.491 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+09:23:30.491 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+09:23:30.491 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+09:23:30.492 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+09:23:30.492 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+09:23:30.493 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+09:23:30.494 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCode
+09:23:30.494 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCode
+09:23:30.494 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeCache
+09:23:30.495 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeController
+09:23:30.496 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeRepository
+09:23:30.496 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeService
+09:23:30.497 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCodeType
+09:23:30.497 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeType
+09:23:30.498 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeController
+09:23:30.498 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeRepository
+09:23:30.499 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeService
+09:23:30.500 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSize$PK
+09:23:30.500 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubsize.PubSize
+09:23:30.500 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSize
+09:23:30.501 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeController
+09:23:30.501 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtl$PK
+09:23:30.502 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubsize.PubSizeDtl
+09:23:30.502 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtl
+09:23:30.502 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtlRepository
+09:23:30.503 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtlService
+09:23:30.503 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeRepository
+09:23:30.503 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeService
+09:23:30.509 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeVO
+09:23:30.512 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleColth
+09:23:30.512 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColth
+09:23:30.512 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthController
+09:23:30.513 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthRepository
+09:23:30.513 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthService
+09:23:30.514 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesign
+09:23:30.514 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesign
+09:23:30.514 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignController
+09:23:30.515 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignRepository
+09:23:30.515 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignService
+09:23:30.516 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStpr$PK
+09:23:30.516 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesignStpr
+09:23:30.516 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStpr
+09:23:30.517 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprController
+09:23:30.517 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprRepository
+09:23:30.518 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprService
+09:23:30.518 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate$PK
+09:23:30.519 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleMate
+09:23:30.519 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate
+09:23:30.520 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateController
+09:23:30.520 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateRepository
+09:23:30.521 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateService
+09:23:30.521 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateVO
+09:23:30.522 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePhoto
+09:23:30.522 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhoto
+09:23:30.523 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoController
+09:23:30.523 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoRepository
+09:23:30.524 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoService
+09:23:30.524 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlan
+09:23:30.525 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlan
+09:23:30.525 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanController
+09:23:30.526 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanDesignVO
+09:23:30.527 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanRepository
+09:23:30.527 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanService
+09:23:30.527 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr$PK
+09:23:30.528 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlanStpr
+09:23:30.528 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr
+09:23:30.529 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprController
+09:23:30.529 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprRepository
+09:23:30.529 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprService
+09:23:30.529 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanVO
+09:23:30.530 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.suno.PubSuno
+09:23:30.531 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSuno
+09:23:30.531 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoController
+09:23:30.531 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoRepository
+09:23:30.546 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoService
+09:23:30.547 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.BaseObject
+09:23:30.548 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+09:23:30.561 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordmt
+09:23:30.577 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtScde
+09:23:30.578 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtSeason
+09:23:30.578 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Org
+09:23:30.579 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$child
+09:23:30.588 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$parent
+09:23:30.589 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg
+09:23:30.589 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Position
+09:23:30.605 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$org
+09:23:30.606 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$position
+09:23:30.607 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$user
+09:23:30.607 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser
+09:23:30.608 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionType
+09:23:30.618 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCode
+09:23:30.619 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCodeType
+09:23:30.619 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSize
+09:23:30.628 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSuno
+09:23:30.629 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+09:23:30.639 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand$pubCode
+09:23:30.640 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand$role
+09:23:30.640 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand
+09:23:30.641 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleClass$pubCode
+09:23:30.641 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleClass$role
+09:23:30.642 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleClass
+09:23:30.642 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+09:23:30.651 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+09:23:30.651 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+09:23:30.652 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+09:23:30.660 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+09:23:30.660 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+09:23:30.673 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleColth
+09:23:30.682 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesign
+09:23:30.682 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesignStpr
+09:23:30.683 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleMate
+09:23:30.683 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePhoto
+09:23:30.686 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlan
+09:23:30.687 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlanStpr
+09:23:30.687 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+09:23:30.687 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+09:23:30.688 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.MapParams
+09:23:30.689 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.Ordmt
+09:23:30.689 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+09:23:30.689 [main] INFO  com.mawujun.utils.file.FileUtils - ormtnm
+09:23:30.689 [main] INFO  com.mawujun.utils.file.FileUtils - ormtsn
+09:23:30.689 [main] INFO  com.mawujun.utils.file.FileUtils - pryear
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - ormtst
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - ormtfg
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - ormtmk
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtScde
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+09:23:30.690 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - mtsttm
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - mtfitm
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtSeason
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - seasno
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+09:23:30.691 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - chancl
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+09:23:30.692 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+09:23:30.698 [main] INFO  com.mawujun.utils.file.FileUtils - child
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Position
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - name
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - positionType_id
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionOrgUser
+09:23:30.699 [main] INFO  com.mawujun.utils.file.FileUtils - position
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - org
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - user
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionType
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - name
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+09:23:30.700 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - code
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - name
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - url
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - name
+09:23:30.701 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleBrand
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - pubCode
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - role
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleClass
+09:23:30.702 [main] INFO  com.mawujun.utils.file.FileUtils - pubCode
+09:23:30.703 [main] INFO  com.mawujun.utils.file.FileUtils - role
+09:23:30.703 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+09:23:30.703 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+09:23:30.704 [main] INFO  com.mawujun.utils.file.FileUtils - role
+09:23:30.704 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+09:23:30.704 [main] INFO  com.mawujun.utils.file.FileUtils - user
+09:23:30.704 [main] INFO  com.mawujun.utils.file.FileUtils - role
+09:23:30.704 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - name
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCode
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itno
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - fitno
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itnm
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itms
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itmk
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itso
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - itst
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - stat
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.705 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCodeType
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - tynm
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - ftyno
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - tyms
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - tymk
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - tyst
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubsize.PubSize
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+09:23:30.706 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizenm
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - szbrad
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - szclno
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizety1
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizeqt
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizemk
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizeso
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizest
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - szsast
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubsize.PubSizeDtl
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - fszty
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - fszno
+09:23:30.707 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sizeqt
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sizemk
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sizest
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - szsast
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleColth
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - spcotn
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - spsuno
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - prsuno
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - sptapa
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - spacry
+09:23:30.708 [main] INFO  com.mawujun.utils.file.FileUtils - spclbd
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - spnwpr
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - contqt
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - contam
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - contpr
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - ctdwdt
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - acsyam
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - spctpr
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - sprmk
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - spctst
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesign
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - sampnm
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+09:23:30.709 [main] INFO  com.mawujun.utils.file.FileUtils - versno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - photno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - stseno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - desgno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - buspno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - spmtno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - gustno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - colrno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - pattno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - stylno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - stylgp
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - sexno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - slveno
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - suitty
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - desp
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - sizegp
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - packqt
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - spltmk
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - print
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - sampst
+09:23:30.710 [main] INFO  com.mawujun.utils.file.FileUtils - spstat
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - sampleDesignStpres
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesignStpr
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.711 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleMate
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - mateso
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - mtsuno
+09:23:30.712 [main] INFO  com.mawujun.utils.file.FileUtils - mateno
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - mtbrad
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - mttype
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - mtcomp
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - yarmct
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - gramwt
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - aftrmt
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - width
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - mtpupr
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - mtcnqt
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - matest
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePhoto
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - id
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - photnm
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - photms
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - imgnm
+09:23:30.713 [main] INFO  com.mawujun.utils.file.FileUtils - photst
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlan
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - plspnm
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - spyear
+09:23:30.714 [main] INFO  com.mawujun.utils.file.FileUtils - spsean
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spbseno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - sprseno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - sptyno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spseno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - splcno
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spbano
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - pldate
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - mldate
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - plstat
+09:23:30.715 [main] INFO  com.mawujun.utils.file.FileUtils - plspst
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlanStpr
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+09:23:30.716 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.suno.PubSuno
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - idsuno
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - idsunm
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - idalsu
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iisucl
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iiclnm
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iiorty
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iiornm
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iicucd
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - iicdnm
+09:23:30.717 [main] INFO  com.mawujun.utils.file.FileUtils - idstat
+10:25:43.263 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+10:26:27.940 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+10:27:31.024 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeDtlVO> com.youngor.pubsize.PubSizeController.queryPrdpStdsz(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='fszno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #2 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+10:27:31.024 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+10:27:31.024 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:27:31.025 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:27:31.025 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='fszno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #2 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+10:32:02.287 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@1bfafd19
+10:35:46.865 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+10:36:31.518 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeDtlVO> com.youngor.pubsize.PubSizeController.queryPrdpStdsz(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select a.*,b.sizenm from ord_pub_size a,ord_pub_size b       where a.sizety=b.sizety and a.sizeno=b.sizeno      a.fszty=? and a.fszno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:36:31.519 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:36:31.519 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:36:31.519 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:36:31.519 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select a.*,b.sizenm from ord_pub_size a,ord_pub_size b       where a.sizety=b.sizety and a.sizeno=b.sizeno      a.fszty=? and a.fszno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:37:02.584 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeDtlVO> com.youngor.pubsize.PubSizeController.queryPrdpStdsz(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select a.*,b.sizenm from ord_pub_size a,ord_pub_size b       where a.sizety=b.sizety and a.sizeno=b.sizeno      and a.fszty=? and a.fszno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+10:37:02.584 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:37:02.584 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:37:02.584 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:37:02.584 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select a.*,b.sizenm from ord_pub_size a,ord_pub_size b       where a.sizety=b.sizety and a.sizeno=b.sizeno      and a.fszty=? and a.fszno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."FSZNO": invalid identifier
+
+12:17:38.718 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+12:26:31.882 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+12:27:48.511 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@2a84ce9b
+12:27:50.586 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@1b0b9e2d
+12:46:33.125 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:47:54.287 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+12:54:04.095 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+12:55:26.405 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:05:18.619 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:05:57.284 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:08:28.831 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:12:17.812 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@152de056
+13:12:19.294 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@4cea35ac
+13:12:19.366 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.selPrdpStdsz(java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+13:12:19.367 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+13:12:19.367 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:12:19.367 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:12:19.367 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+13:12:22.369 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@225b49c9
+13:12:25.970 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@3b405ae8
+13:12:26.013 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.selPrdpStdsz(java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+13:12:26.013 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+13:12:26.013 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:12:26.013 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:12:26.013 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:14:55.523 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:15:41.952 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@685cc34e
+14:15:55.339 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@9bf2d756
+14:16:00.465 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:19:18.202 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:32:08.192 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:33:54.102 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:52:15.587 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:54:13.259 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:02:26.637 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:03:03.619 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:03:12.342 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeDtlVO> com.youngor.pubsize.PubSizeController.querySizegpStdsz(java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubsize.PubSizeRepository.querySizegp
+17:03:12.343 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.apache.ibatis.binding.BindingException], based on exception mapping [java.lang.Exception]
+17:03:12.343 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:03:12.343 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:03:12.344 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubsize.PubSizeRepository.querySizegp
+17:04:44.038 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeDtlVO> com.youngor.pubsize.PubSizeController.querySizegpStdsz(java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'fszty' not found. Available parameters are [szclno, szbrad, sizety, param3, param1, param2]
+17:04:44.039 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+17:04:44.039 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:04:44.039 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:04:44.039 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'fszty' not found. Available parameters are [szclno, szbrad, sizety, param3, param1, param2]
+17:09:32.965 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:10:04.289 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:19:14.818 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:28:31.833 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:28:59.211 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:34:05.955 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:38:55.726 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:39:06.756 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@79ba07d4
+17:39:06.961 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@39c22543
+17:39:08.765 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@7db15eed
+17:40:11.396 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@58862d85
+17:40:29.513 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@2f3733ae
+17:40:29.632 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createSizegpStdsz(java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:40:29.634 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+17:40:29.634 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:40:29.634 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:40:29.634 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:40:43.374 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@5a258727
+17:40:43.424 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createSizegpStdsz(java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:40:43.424 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+17:40:43.424 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:40:43.424 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:40:43.424 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:42:01.744 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:42:29.286 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:43:33.180 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@19d48ae9
+17:43:33.243 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@3437f646
+17:46:21.318 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:47:01.952 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:47:59.971 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@331efa5f
+17:48:00.087 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createSizegpStdsz(java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:48:00.088 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+17:48:00.088 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:48:00.088 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:48:00.088 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:51:16.873 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+17:51:30.043 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:52:02.015 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@49e777bf
+17:54:08.876 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:56:17.258 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@4af7c509
+17:56:17.263 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@4a21b544
+17:56:18.524 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@48ec629e
+17:56:19.533 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@160f21c2
+17:56:27.122 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@147eb64c
+17:56:48.212 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@7bcf9b47
+17:56:48.979 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@7afab83e
+17:56:54.531 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@75106fc1
+12:52:26.599 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+12:53:07.540 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@6b7d91a5
+12:53:26.083 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@aed0c872
+12:53:29.286 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:02:08.565 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@68c2187d
+13:02:08.897 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.pubsize.PubSize com.youngor.pubsize.PubSizeController.create(com.youngor.pubsize.PubSize)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+13:02:08.898 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+13:02:08.898 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:02:08.898 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:02:08.898 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+13:02:16.832 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@1851196
+13:07:37.770 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@4807494d
+13:15:23.302 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:25:13.506 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:01:33.757 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:02:26.470 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:04:40.906 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@2160a824
+14:04:43.287 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@883e946
+14:07:26.493 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:07:41.490 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:08:17.961 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@43f2f79
+14:08:18.096 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createPrdsztyStdsz(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:08:18.096 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:08:18.096 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:08:18.097 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:08:18.097 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:09:07.175 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@456c100e
+14:09:08.527 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@4848a107
+14:09:08.698 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createPrdsztyStdsz(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+14:09:08.698 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+14:09:08.698 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:09:08.698 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:09:08.698 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch

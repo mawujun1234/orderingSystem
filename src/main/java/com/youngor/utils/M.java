@@ -361,15 +361,29 @@ public static final class PubCodeType {
 	public static final String lmdt="lmdt";
 }
 public static final class PubSize {
-	public static final String id="id";
 	public static final String sizety="sizety";
 	public static final String sizeno="sizeno";
 	public static final String sizenm="sizenm";
 	public static final String szbrad="szbrad";
 	public static final String szclno="szclno";
+	public static final String sizety1="sizety1";
 	public static final String sizeqt="sizeqt";
 	public static final String sizemk="sizemk";
 	public static final String sizeso="sizeso";
+	public static final String sizest="sizest";
+	public static final String szsast="szsast";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class PubSizeDtl {
+	public static final String fszty="fszty";
+	public static final String fszno="fszno";
+	public static final String sizety="sizety";
+	public static final String sizeno="sizeno";
+	public static final String sizeqt="sizeqt";
+	public static final String sizemk="sizemk";
 	public static final String sizest="sizest";
 	public static final String szsast="szsast";
 	public static final String rgsp="rgsp";

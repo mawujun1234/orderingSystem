@@ -1,6 +1,15 @@
 package com.youngor.pubsize;
 
+import com.youngor.pubcode.PubCodeCache;
+
 public class PubSizeVO extends PubSize {
+	public String getSzbrad_name(){
+		return PubCodeCache.getBradno_name(super.getSzbrad());
+	}
+	public String getSzclno_name(){
+		return PubCodeCache.getSpclno_name(super.getSzclno());
+	}
+	
 	public String getSizety1_name(){
 		if(this.getSizest()==1){
 			return "混装";

@@ -1,4 +1,4 @@
-Ext.define('y.pubsize.PrdpGrid',{
+Ext.define('y.pubsize.PrdsztyGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
 	     'y.pubsize.PubSize'
@@ -14,26 +14,28 @@ Ext.define('y.pubsize.PrdpGrid',{
       	{xtype: 'rownumberer'},
 //		{dataIndex:'sizety',header:'规格类型'
 //        },
+      	{dataIndex:'szbrad_name',header:'品牌'
+        },
+		{dataIndex:'szclno_name',header:'大类'
+        },
 		{dataIndex:'sizeno',header:'规格代码'
         },
 		{dataIndex:'sizenm',header:'规格名称'
         },
-//		{dataIndex:'szbrad',header:'品牌'
+
+//      	{dataIndex:'sizety1_name',header:'包装类型'
 //        },
-//		{dataIndex:'szclno',header:'大类'
-//        },
-      	{dataIndex:'sizety1_name',header:'包装类型'
-        },
-		{dataIndex:'sizeqt',header:'数量',xtype: 'numbercolumn', format:'0',align : 'right'
+//		{dataIndex:'sizeqt',header:'数量',xtype: 'numbercolumn', format:'0',align : 'right'
+//		},
+		{dataIndex:'sizest_name',header:'状态'
+		},
+		{dataIndex:'szsast_name',header:'当季状态'
 		},
 		{dataIndex:'sizemk',header:'备注'
         },
-//		{dataIndex:'sizeso',header:'排序',xtype: 'numbercolumn', format:'0',align : 'right'
-//		},
-		{dataIndex:'sizest_name',header:'状态'
+		{dataIndex:'sizeso',header:'排序',xtype: 'numbercolumn', format:'0',align : 'right'
 		}
-//		{dataIndex:'szsast_name',header:'当季状态'
-//		}
+
       ];
       
 
@@ -44,7 +46,7 @@ Ext.define('y.pubsize.PrdpGrid',{
 			model: 'y.pubsize.PubSize',
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/pubSize/queryPrdp.do',
+			    url : Ext.ContextPath+'/pubSize/queryPrdszty.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50
@@ -133,13 +135,6 @@ Ext.define('y.pubsize.PrdpGrid',{
 					
 			    },
 			    iconCls: 'icon-edit'
-			},{
-			    text: '删除',
-			    itemId:'destroy',
-			    handler: function(){
-			    	me.onDelete();    
-			    },
-			    iconCls: 'icon-trash'
 			}]
 		});
 
@@ -158,11 +153,13 @@ Ext.define('y.pubsize.PrdpGrid',{
 	onCreate:function(){
     	var me=this;
 		var child=Ext.create('y.pubsize.PubSize',{
-			sizety:'PRDPK'
+			sizety:'PRDSZTY',
+			szsast:1,
+			sizest:1
 		});
 		child.set("id",null);
 		
-		var formpanel=Ext.create('y.pubsize.PrdpForm',{});
+		var formpanel=Ext.create('y.pubsize.PrdsztyForm',{});
 		formpanel.loadRecord(child);
 		
     	var win=Ext.create('Ext.window.Window',{
@@ -191,7 +188,9 @@ Ext.define('y.pubsize.PrdpGrid',{
     		return;
     	}
 
-		var formpanel=Ext.create('y.pubsize.PrdpForm',{});
+		var formpanel=Ext.create('y.pubsize.PrdsztyForm',{
+			
+		});
 		formpanel.loadRecord(node);
 		
     	var win=Ext.create('Ext.window.Window',{
