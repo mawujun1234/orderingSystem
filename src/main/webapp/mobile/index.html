@@ -108,6 +108,7 @@
                                     <div class="item-input">
                                       <input id="od_info_input" type="text" placeholder="请输y样衣编号">
                                     </div>
+                                    <a href="#" class="button button-fill button-success">查询</a>
                                   </div>
                                 </div>
                                 </li>
@@ -150,6 +151,7 @@
                                     <div class="item-input">
                                       <input id="od_info_T00_input" type="text" placeholder="请输入总订货数量">
                                     </div>
+                                    <span class="icon icon-up"></span>
                                   </div>
                                 </div>
                                 </li>
@@ -226,6 +228,7 @@
                                     <div class="item-input">
                                       <input id="od_info_T01_input" type="text" placeholder="请输入总订货数量">
                                     </div>
+                                    <span class="icon icon-up"></span>
                                   </div>
                                 </div>
                                 </li>
@@ -362,27 +365,7 @@
     <script>
 		$(function(){
 			
-			$(".card .card-header .item-title.label").click(function(){
-				var input_id=$(this).attr("id");
-				if(input_id=='od_info_input'){
-					return;
-				}
-				var car_content_id=input_id.substr(0,input_id.length-6);
-				//$(".card .guig_content").toggle();
-				$("#"+car_content_id+" .guig_content").toggle();
-			});
-			$(".card .card-header input").click(function(){
-				var input_id=$(this).attr("id");
-				if(input_id=='od_info_input'){
-					return;
-				}
-				var car_content_id=input_id.substr(0,input_id.length-6);
-				
-				
-				$(".card .guig_content").hide();
-				$("#"+car_content_id+" .guig_content").show();
-			});
-			
+
 			
 
 

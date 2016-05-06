@@ -148,7 +148,20 @@ Ext.define('y.sample.SampleMateGrid',{
 			me.down("toolbar").show();
 		}
 	},
-    reload:function(){
-    
+	//获取面料的价格
+    sumMtpupr:function(){
+    	var me=this;
+    	var store=me.getStore();
+    	var records=store.getRange();
+    	var val=0;
+    	if(!records || records.length==0){
+    		return val;
+    	}
+    	
+    	for(var i=0;i<records.length;i++){
+    		val+=records[i].get("mtpupr")*records[i].get("mtcnqt");
+    	}
+    	return val;
+    	
     }
 });

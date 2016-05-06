@@ -108,8 +108,30 @@ Ext.define('y.sample.SampleMateForm',{
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"面料成分不允许为空",
-            selectOnFocus:true,
-	        xtype:'textarea'
+            //selectOnFocus:true,
+	        xtype:'textarea',
+	        listeners:{
+	        	change:function( field, newValue, oldValue, eOpts ) {
+	        		field.setValue(field.sevenReturn(newValue));
+	        	},
+	        	blur:function(field,event){
+	        		//var val=field.getValue();
+	        		//field.setValue(field.sevenReturn(val));
+	        	}
+	        },
+	        sevenReturn:function(val){
+	        	var resultStr = val.replace(/\ +/g, ""); //去掉空格
+			        resultStr = val.replace(/[ ]/g, "");    //去掉空格
+			        resultStr = val.replace(/[\r\n]/g, ""); //去掉回车换行
+			        //resultStr.substr(0,7);
+			        var arry=[];
+			        while(resultStr.length>7){
+			        	arry.push(resultStr.substr(0,7));
+			        	resultStr=resultStr.substr(7);
+			        }
+			        arry.push(resultStr);
+			        return arry.join("\r\n");
+	        }
 	    },
 		{
 	        fieldLabel: '纱支规格',
@@ -195,6 +217,8 @@ Ext.define('y.sample.SampleMateForm',{
 				    	Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
 				    	me.previousSibling("grid#sampleMateGrid").getStore().reload();
+				    	
+				    	
 				    }
 				});			
 				

@@ -239,6 +239,8 @@ Ext.define('y.sample.SampleDesignForm',{
 						sampno:window.sampno.sampno
 					};
 					sampleDesignStprGrid_store.reload();
+					
+					//
 	        	}
 	        }
 	    },
@@ -264,11 +266,11 @@ Ext.define('y.sample.SampleDesignForm',{
 			editable:true,
 	        selectOnFocus:true,
 			forceSelection:true,
-		    displayField: 'name',
-		    valueField: 'id',
+		    displayField: 'sizenm',
+		    valueField: 'sizeno',
 		    store: {
 		    	autoLoad:false,
-			    fields: ['id', 'name'],
+			    fields: ['sizeno', 'sizenm'],
 			    proxy:{
 			    	type:'ajax',
 			    	//extraParams:{szbrad:'sjs'},
@@ -594,5 +596,10 @@ Ext.define('y.sample.SampleDesignForm',{
 		
 
 		
+	},
+	reset:function(){
+		this.getForm().reset();
+		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
+		sampleDesignStprGrid_store.removeAll();
 	}
 });

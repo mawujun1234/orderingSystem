@@ -29,6 +29,27 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<include refid="queryPage_where"></include>
     </select>
     
+    <select id="queryStdsz4Sel" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
+    	select * from ord_pub_size a
+    	<include refid="queryPage_where"></include>
+    	and not exists(
+    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
+    		and b.fszty=#{fszty} and b.fszno=#{fszno}
+    	)
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryStdsz4Sel_count" resultType="int" parameterType="map">
+    	select count(a.sizeno)
+		from ord_pub_size a 
+		<include refid="queryPage_where"></include>
+		<if test="fszno!=null and fszno!=''">
+		and not exists(
+    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
+    		and b.fszty=#{fszty} and b.fszno=#{fszno}
+    	)
+    	</if>
+    </select>
+    
     <!-- 获取某个包装规格里的明细规格-->
     <select id="queryPrdpStdsz" resultType="com.youngor.pubsize.PubSizeDtlVO">
     	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 

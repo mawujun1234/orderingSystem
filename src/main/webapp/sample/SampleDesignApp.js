@@ -10,6 +10,7 @@ Ext.onReady(function(){
 	
 	var samplePlanForm=Ext.create('y.sample.SamplePlanFormQuery',{
 		title:'商品企划',
+		id:'samplePlanFormQuery',
 		itemId:'samplePlanFormQuery'
 	});
 	//设计开发
@@ -135,6 +136,15 @@ Ext.onReady(function(){
 		};
 		//samplePhotoShow.down("#samplePhotoView").refresh( );
 		samplePhotoShow.getStore().reload();
+		
+//		//如果是套西小类，设计样衣标准套的出厂价和零售价取自 企业样衣，设计师不允许修改
+//		var samplePlan=samplePlanForm.getRecord();
+//		if(samplePlan.get("sptyno")=='S10'){
+//			var sampleDesignStprGrid=sampleDesignForm.down("#sampleDesignStprGrid");
+//			//if
+//			
+//		}
+		
 		
 	});
 	

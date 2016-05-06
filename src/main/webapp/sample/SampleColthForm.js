@@ -52,7 +52,12 @@ Ext.define('y.sample.SampleColthForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"含税工缴不允许为空",
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield',
+	        listeners:{
+	        	change:function( field, newValue, oldValue, eOpts ) {
+	        		field.up("form").sumSpctpr();
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '含税辅料',
@@ -61,7 +66,12 @@ Ext.define('y.sample.SampleColthForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"含税辅料不允许为空",
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield' ,
+	        listeners:{
+	        	change:function( field, newValue, oldValue, eOpts ) {
+	        		field.up("form").sumSpctpr();
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '服饰配料',
@@ -70,7 +80,12 @@ Ext.define('y.sample.SampleColthForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"服饰配料不允许为空",
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield' ,
+	        listeners:{
+	        	change:function( field, newValue, oldValue, eOpts ) {
+	        		field.up("form").sumSpctpr();
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '新成衣价',
@@ -129,10 +144,11 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '预计成本价',
 	        name: 'spctpr',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"预计成本价不允许为空",
-            selectOnFocus:true,
+            //allowBlank: false,
+            //afterLabelTextTpl: Ext.required,
+            //blankText:"预计成本价不允许为空",
+            //selectOnFocus:true,
+            editable:false,
 	        xtype:'numberfield'   
 	    },
 		{
@@ -194,5 +210,31 @@ Ext.define('y.sample.SampleColthForm',{
 				}
 			});
       me.callParent();
+	},
+	/**
+	 * 统计预计成本价
+	 */
+	sumSpctpr:function(){
+		var me=this;
+		
+		var sptapa=this.getForm().findField("sptapa");
+		var spacry=this.getForm().findField("spacry");
+		var spclbd=this.getForm().findField("spclbd");
+		var spctpr=this.getForm().findField("spctpr");
+		
+		var value=sptapa.getValue()+spacry.getValue()+spclbd.getValue();
+		
+		//获取面料的价格
+		var tabpanel=me.up("tabpanel");
+		if(!tabpanel){
+			return;
+		}
+		//var sampleMateForm=tabpanel.down("#sampleMateForm");
+		var sampleMateGrid=tabpanel.down("grid#sampleMateGrid");
+		value+=sampleMateGrid.sumMtpupr();
+		
+		spctpr.setValue(value);
+
+
 	}
 });

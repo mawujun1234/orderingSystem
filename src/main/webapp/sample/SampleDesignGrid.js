@@ -448,6 +448,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;
 			//sampleDesignForm.loadRecord(sampleDesign);
+			sampleDesignForm.reset();
 			sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
 			sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 		

@@ -27,6 +27,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</if>
 		where  a.DTYNO='3' and a.TYNO='20'
 		 AND a.itno=#{suitty} 
+		 order by a.ditno
 		 
     </select>
 </mapper>

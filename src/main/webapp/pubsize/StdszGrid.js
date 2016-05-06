@@ -28,10 +28,18 @@ Ext.define('y.pubsize.StdszGrid',{
         },
 //		{dataIndex:'sizeso',header:'排序',xtype: 'numbercolumn', format:'0',align : 'right'
 //		},
-		{dataIndex:'sizest_name',header:'状态'
-		},
-		{dataIndex:'szsast_name',header:'当季状态'
+		{dataIndex:'sizest',header:'状态',xtype:'checkcolumn',listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+					var grid=checkcolumn.up("grid");
+					//console.log(grid);
+					var record=grid.getStore().getAt(rowIndex);
+					record.set('sizest',checked?1:0);
+					record.save();
+				}
+			}
 		}
+//		{dataIndex:'szsast_name',header:'当季状态'
+//		}
       ];
       
 
@@ -146,7 +154,8 @@ Ext.define('y.pubsize.StdszGrid',{
 		var params={
 			"params['sizeno']":toolbars[0].down("#sizeno").getValue(),
 			"params['sizenm']":toolbars[0].down("#sizenm").getValue(),
-			"params['sizest']":toolbars[0].down("#sizest").getValue()
+			"params['sizest']":toolbars[0].down("#sizest").getValue(),
+			"params['sizety']":"STDSZ"
 		};
 		return params;
 	},

@@ -1,4 +1,49 @@
 $(function(){
+			$(".card .card-header .item-title.label").click(function(){
+				var input_id=$(this).attr("id");
+				//如果是订货信息的就不收缩
+				if(input_id=='od_info_input'){
+					return;
+				}
+				var car_content_id=input_id.substr(0,input_id.length-6);
+				//$(".card .guig_content").toggle();
+				var guig_content=$("#"+car_content_id+" .guig_content");
+				guig_content.toggle();
+				
+				var icon=$(this).next().next();//alert(icon.length);
+				icon.toggleClass("icon-up");
+				icon.toggleClass("icon-down");
+			});
+			
+			$(".card .card-header input").click(function(){
+				var input_id=$(this).attr("id");
+				if(input_id=='od_info_input'){
+					return;
+				}
+				var car_content_id=input_id.substr(0,input_id.length-6);
+				
+				
+				$(".card .guig_content").hide();
+				$("#"+car_content_id+" .guig_content").show();
+				
+				//alert($(".card .card-header .item-content .icon").length);
+				$(".card .card-header .item-content .icon").removeClass("icon-down");
+				$(".card .card-header .item-content .icon").addClass("icon-up");
+				var icon=$(this).parent().next(".icon");
+				icon.removeClass("icon-up");
+				icon.addClass("icon-down");
+			});
+			
+			$(".card .card-header .item-content .icon").click(function(){
+				//搜索具体的规格
+				$(this).parents(".card").children(".guig_content").toggle();
+				
+				var icon=$(this);
+				icon.toggleClass("icon-up");
+				icon.toggleClass("icon-down");
+			});
+			
+	//---------------------------------------------------------------------------------------------------		
 	$("#bottom_bar a.tab-item").click(function(){
 		$("#bottom_bar a.tab-item").removeClass("active");
 		$(this).addClass("active");

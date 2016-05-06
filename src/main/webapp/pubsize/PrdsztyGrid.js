@@ -27,9 +27,25 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 //        },
 //		{dataIndex:'sizeqt',header:'数量',xtype: 'numbercolumn', format:'0',align : 'right'
 //		},
-		{dataIndex:'sizest_name',header:'状态'
+		{dataIndex:'sizest',header:'状态',xtype:'checkcolumn',listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+					var grid=checkcolumn.up("grid");
+					//console.log(grid);
+					var record=grid.getStore().getAt(rowIndex);
+					record.set('sizest',checked?1:0);
+					record.save();
+				}
+			}
 		},
-		{dataIndex:'szsast_name',header:'当季状态'
+		{dataIndex:'szsast',header:'当季状态',xtype:'checkcolumn',listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+					var grid=checkcolumn.up("grid");
+					//console.log(grid);
+					var record=grid.getStore().getAt(rowIndex);
+					record.set('szsast',checked?1:0);
+					record.save();
+				}
+			}
 		},
 		{dataIndex:'sizemk',header:'备注'
         },
@@ -137,6 +153,34 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 			    iconCls: 'icon-edit'
 			}]
 		});
+		
+		
+	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	  this.cellEditing.on("edit",function(editor, context){
+	  	var record=context.record;
+	  	var grid=context.grid;
+	  	var field =context.field ;
+	  	var value=context.value;
+	  	
+
+	  	Ext.Ajax.request({
+						url:Ext.ContextPath+'/pubSize/updatePrdpStdszSizeqt.do',
+						params:{
+							fszno:me.getStore().getProxy().extraParams.fszno,
+							sizety:record.get("sizety"),
+							sizeno:record.get("sizeno"),
+							sizeqt:value
+						},
+						success:function(){
+							me.getStore().reload();
+						}
+						
+					});
+	  	
+	  });
 
        
       me.callParent();

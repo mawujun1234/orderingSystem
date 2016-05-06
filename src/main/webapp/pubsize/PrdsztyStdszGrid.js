@@ -191,6 +191,8 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 		
 		var stdszSelGrid=Ext.create('y.pubsize.StdszSelGrid',{
 			sizety:'STDSZ',
+			fszno:me.getStore().getProxy().extraParams.fszno,
+			fszty:me.getStore().getProxy().extraParams.fszty,
 			listeners:{
 				itemdblclick:function(view, record, item, index, e, eOpts){
 					Ext.Ajax.request({
@@ -203,6 +205,7 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 						},
 						success:function(){
 							me.getStore().reload();
+							stdszSelGrid.getStore().reload();
 						}
 						
 					});

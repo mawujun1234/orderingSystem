@@ -58,6 +58,23 @@ Ext.define('y.sample.SampleDesignStprGrid',{
 //					successProperty:'success',
 //					totalProperty:'total'		
 				}
+			},
+			listeners:{
+						load:function(store, records, successful){
+							//如果标准套的数据没有，那就从商品企划中获取标准套的价格
+							for(var i=0;i<records.length;i++){
+								if(records[i].get("suitno")=='T00'){
+									if(!records[i].get("spftpr")){
+										var tabpanel=me.up("tabpanel");
+										var samplePlanFormQuery=tabpanel.down("#samplePlanFormQuery");
+										var samplePlan=samplePlanFormQuery.getRecord();
+										records[i].set("spftpr",samplePlan.get("spftpr"));
+										records[i].set("sprtpr",samplePlan.get("sprtpr"));
+									}
+									return;
+								}
+							}
+						}
 			}
 	  });
 
@@ -102,7 +119,19 @@ Ext.define('y.sample.SampleDesignStprGrid',{
 //		});
 
 	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
-            clicksToEdit : 1  
+            clicksToEdit : 1 ,
+            listeners:{
+            	beforeedit:function( editor, context, eOpts ) {
+            		var record=context.record;
+            		//标准套件不准修改
+            		if(record.get("suitno")=='T00'){
+            			return false;
+            		} else {
+            			return true;
+            		}
+            		
+            	}          		
+            }       
       });  
 	  this.plugins = [this.cellEditing];
 //	  //this.selType = 'cellmodel';//'rowmodel','checkboxmodel';

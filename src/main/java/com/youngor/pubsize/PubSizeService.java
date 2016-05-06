@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
-
-
+import com.mawujun.utils.page.Pager;
 import com.youngor.pubsize.PubSize;
 import com.youngor.pubsize.PubSizeRepository;
 import com.youngor.utils.M;
@@ -38,6 +37,9 @@ public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 		return pubSizeRepository;
 	}
 	
+	public Pager<PubSize> queryStdsz4Sel(Pager<PubSize> pager) {
+		return pubSizeRepository.queryStdsz4Sel(pager);
+	}
 	public List<PubSizeDtlVO> queryPrdpStdsz(String fszty,String fszno){
 		return pubSizeRepository.queryPrdpStdsz(fszty,fszno);
 	}

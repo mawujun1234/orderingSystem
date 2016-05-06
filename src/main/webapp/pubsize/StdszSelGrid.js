@@ -44,7 +44,7 @@ Ext.define('y.pubsize.StdszSelGrid',{
 			model: 'y.pubsize.PubSize',
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/pubSize/queryStdsz.do',
+			    url : Ext.ContextPath+'/pubSize/queryStdsz4Sel.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50
@@ -149,6 +149,8 @@ Ext.define('y.pubsize.StdszSelGrid',{
 	getParams:function(){
 		var toolbars=this.getDockedItems('toolbar[dock="top"]');
 		var params={
+			"params['fszty']":this.fszty,
+			"params['fszno']":this.fszno,
 			"params['sizety']":this.sizety,
 			"params['sizeno']":toolbars[0].down("#sizeno").getValue(),
 			"params['sizenm']":toolbars[0].down("#sizenm").getValue(),

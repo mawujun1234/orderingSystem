@@ -31,12 +31,29 @@ public class PubSizeController {
 
 
 
-
+	/**
+	 * 查询所有的单规
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
 	@RequestMapping("/pubSize/queryStdsz.do")
 	@ResponseBody
 	public Pager<PubSize> queryStdsz(Pager<PubSize> pager){
 		//pager.addParam(M.PubSize.sizety, "STDSZ");
 		return pubSizeService.queryPage(pager);
+	}
+	/**
+	 * 为包装规格，规格池，规格系类选择单规的时候查询的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping("/pubSize/queryStdsz4Sel.do")
+	@ResponseBody
+	public Pager<PubSize> queryStdsz4Sel(Pager<PubSize> pager){
+		//pager.addParam(M.PubSize.sizety, "STDSZ");
+		return pubSizeService.queryStdsz4Sel(pager);
 	}
 	
 	@RequestMapping("/pubSize/queryPrdp.do")
@@ -271,6 +288,7 @@ public class PubSizeController {
 				.andEquals(M.PubSize.sizety, "PRDSZTY")
 				.andEquals(M.PubSize.szbrad, szbrad)
 				.andEquals(M.PubSize.szclno, szclno)
+				.andEquals(M.PubSize.sizest, 1)
 				.asc(M.PubSize.sizeso));
 		return pubSizees;
 	}
