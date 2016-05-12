@@ -116,11 +116,11 @@ Ext.define('y.org.OrgTree', {
 		    store: {
 			    fields: ['key', 'name'],
 			    data : [
-			    	{"key":"sale", "name":"销售渠道"},
-			    	{"key":"drp", "name":"物资渠道"}
+			    	{"key":"SALE", "name":"销售渠道"},
+			    	{"key":"DRP", "name":"物资渠道"}
 			    ]
 			},
-			value:'sale',
+			value:'SALE',
             allowBlank: false,
             //afterLabelTextTpl: Ext.required,
             blankText:"菜单类型不允许为空",

@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -80,5 +81,10 @@ public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 	
 	public List<PubSizeDtlVO> queryPrdszty(String fszty,String fszno,String sizety){
 		return pubSizeRepository.queryPrdszty(fszty,fszno,sizety);
+	}
+	
+	
+	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno)  {
+		return pubSizeRepository.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno);
 	}
 }

@@ -78,7 +78,7 @@ public class SampleDesign extends BaseObject{
 	@FieldDefine(title="规格版型说明",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=true)
 	private String desp;
-	@FieldDefine(title="规格系列",sort=50,hidden=false)
+	@FieldDefine(title="规格范围",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=true)
 	private String sizegp;
 	

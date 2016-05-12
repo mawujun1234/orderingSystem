@@ -27,13 +27,14 @@ Ext.onReady(function(){
 	
 	grid.on("itemclick",function(view, record, item, index, e, eOpts){
 		
-		if(grid.spclno==record.get("spclno")){
-			return;
-		}
+//		if(grid.spclno==record.get("spclno")){
+//			return;
+//		}
 		tabpanel.mask("正在更新.....");
 		grid.spclno=record.get("spclno");
 		tabpanel.setTitle("编辑样衣:"+record.get("plspnm"));
 		
+		samplePlanForm.reset();
 		samplePlanForm.loadRecord(record);
 		tabpanel.unmask();
 		

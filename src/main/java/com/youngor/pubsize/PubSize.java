@@ -12,7 +12,7 @@ import com.youngor.pubsize.PubSize.PK;
 import com.youngor.utils.BaseObject;
 
 /**
- * 规格系列
+ * 规格范围
  * @author mawujun qq:16064988 mawujun1234@163.com
  *
  */

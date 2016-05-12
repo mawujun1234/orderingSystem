@@ -9,7 +9,7 @@ public class OrdmtVO extends Ordmt {
 	private List<OrdmtSeason> seasnos;
 	
 	public String getSeasnos_name(){
-		if(this.seasnos!=null){
+		if(this.seasnos!=null && this.seasnos.size()>0){
 			StringBuilder builder=new StringBuilder();
 			for(OrdmtSeason season :seasnos){
 				builder.append(PubCodeCache.getSpsean_name(season.getSeasno()));

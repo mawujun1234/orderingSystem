@@ -175,6 +175,7 @@ Ext.define('y.common.OrdmtCombo',{
 					if(myStore.getCount( ) >0){
 			 			var r=myStore.getAt(0);
 			 			me.select( r );
+			 			me.fireEvent("select", me, r);
 			 		}
 				}
 			}

@@ -6,7 +6,7 @@ package com.youngor.org;
  *
  */
 public enum Dim {
-	sale("销售渠道"),drp("物资渠道");
+	SALE("销售渠道"),DRP("物资渠道");
 	
 	private String name;
 	

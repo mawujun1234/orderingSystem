@@ -2,7 +2,9 @@ package com.youngor.permission;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
 import com.youngor.utils.M;
+import com.youngor.utils.SignUtil;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -83,6 +86,50 @@ public class UserController {
         }  
        // return model;
 	}
+	
+	@RequestMapping("/user/mobile/login.do")
+	@ResponseBody
+	public Map<String,Object> mobile_login(String username,String password,String url) {
+		
+		Map<String,Object> model=new HashMap<String,Object>();
+		Subject subject = SecurityUtils.getSubject(); 
+		
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
+		//subject.login(token);
+		String error=null;
+		try {  
+            subject.login(token);  
+        } catch (UnknownAccountException e) {  
+            error = "用户名/密码错误";  
+        } catch (IncorrectCredentialsException e) {  
+            error = "用户名/密码错误";  
+        } catch (AuthenticationException e) {  
+            //其他错误，比如锁定，如果想单独处理请单独catch处理  
+            error = "认证失败，账号不存在!";  
+            e.printStackTrace();
+        }  
+        if(error != null) {//出错了，返回登录页面  
+        	model.put("msg", error);
+        	model.put("success", false);
+        	//return "/main/login.jsp";
+        } else {//登录成功  
+   
+             model.put("success", true);
+             //显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
+             //SecurityUtils.getSubject().hasRole("XXX") ;
+             //设置微信调用设想头的信息
+             Map<String,Object> wxConfig=new HashMap<String,Object>();
+             wxConfig.put("appId", SignUtil.APPID);
+             wxConfig.put("nonceStr", SignUtil.noncestr);
+             wxConfig.put("signature", SignUtil.getSignature(url));
+             wxConfig.put("timestamp", SignUtil.timestamp);
+             //wxConfig.put("jsApiList", new String[]{"scanQRCode"});
+             model.put("wxConfig", wxConfig);
+        }  
+		return model;
+	}
+	
+
 	private String getIpAddr(HttpServletRequest request) {
 		String ipAddress = null;
 		// ipAddress = request.getRemoteAddr();

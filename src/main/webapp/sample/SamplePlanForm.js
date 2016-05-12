@@ -31,6 +31,7 @@ Ext.define('y.sample.SamplePlanForm',{
 		{
 	        fieldLabel: '品牌',
 	        name: 'bradno',
+	        //selFirst:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             //value:'Y',
@@ -77,6 +78,7 @@ Ext.define('y.sample.SamplePlanForm',{
 		{
 	        fieldLabel: '大类',
 	        name: 'spclno',
+	        //selFirst:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"大类不允许为空",
@@ -178,6 +180,7 @@ Ext.define('y.sample.SamplePlanForm',{
 //	        selectOnFocus:true,
 //            allowBlank: false,
 //            afterLabelTextTpl: Ext.required,
+	        readOnly:true,
             blankText:"企划成本价不允许为空",
 	        xtype:'numberfield'   
 	    },
@@ -306,8 +309,8 @@ Ext.define('y.sample.SamplePlanForm',{
 					failure: function(record, operation) {
 				    },
 				    success: function(record, operation) {
-				    	//formpanel.reset();
-				    	samplePlanStprGrid.getStore().removeAll();
+				    	formpanel.reset();
+				    	//samplePlanStprGrid.getStore().removeAll();
 				    	var tabpanel=formpanel.up("tabpanel");
 						//tabpanel.unmask();
 						var samplePlanGrid=tabpanel.previousSibling("gridpanel#samplePlanGrid") ;
@@ -323,10 +326,13 @@ Ext.define('y.sample.SamplePlanForm',{
 	},
 	loadRecord:function(record){
 		var me=this;
-		var sptyno=this.down("pubcodecombo[name=sptyno]")
-		sptyno.reload(record.get("spclno"));
-		var spseno=this.down("pubcodecombo[name=spseno]")
-		spseno.reload(record.get("spclno"));
+		if(record.get("spclno")){
+			var sptyno=this.down("pubcodecombo[name=sptyno]")
+			sptyno.reload(record.get("spclno"));
+			var spseno=this.down("pubcodecombo[name=spseno]")
+			spseno.reload(record.get("spclno"));
+		}
+		
 ////		Ext.Ajax.request({
 ////			url:Ext.ContextPath+"",
 ////			params:{

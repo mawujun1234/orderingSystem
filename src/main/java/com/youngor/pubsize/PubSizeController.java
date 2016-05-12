@@ -211,7 +211,7 @@ public class PubSizeController {
 	}
 	
 	
-	// -----------------------------------------------------------------------规格系列部分
+	// -----------------------------------------------------------------------规格范围部分
 	@RequestMapping("/pubSize/queryPrdszty.do")
 	@ResponseBody
 	public Pager<PubSize> queryPrdszty(Pager<PubSize> pager){
@@ -290,6 +290,18 @@ public class PubSizeController {
 				.andEquals(M.PubSize.szclno, szclno)
 				.andEquals(M.PubSize.sizest, 1)
 				.asc(M.PubSize.sizeso));
+		return pubSizees;
+	}
+	
+	/**
+	 * 查询规格范围,查寻某次订货会使用的规格范围
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/pubSize/queryPRDSZTY4Ordmt.do")
+	@ResponseBody
+	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno) {	
+		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno);
 		return pubSizees;
 	}
 	

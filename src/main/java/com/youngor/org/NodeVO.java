@@ -4,11 +4,27 @@ public class NodeVO {
 	
 	private String id;
 	private String name;
-	private Boolean leaf;
+	//private Boolean leaf;
 	private String type;
 	private String remark;
 	
 	private String orgno;//所在节点的组织单元，如果是组织单元就是自身的orgno
+	
+	public String getIconCls(){
+		if("position".equals(this.getType())){
+			return "icon-group";
+		} else {
+			return "";
+		}
+	}
+	
+	public Boolean getLeaf(){
+		if( "position".equals(this.getType())){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public String getId() {
 		return id;
@@ -22,12 +38,12 @@ public class NodeVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Boolean getLeaf() {
-		return leaf;
-	}
-	public void setLeaf(Boolean leaf) {
-		this.leaf = leaf;
-	}
+//	public Boolean getLeaf() {
+//		return leaf;
+//	}
+//	public void setLeaf(Boolean leaf) {
+//		this.leaf = leaf;
+//	}
 	public String getOrgno() {
 		return orgno;
 	}

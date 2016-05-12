@@ -35,7 +35,7 @@ public class OrgController {
 	@ResponseBody
 	public List<NodeVO> query(String parent_id,Dim dim) {
 		if(dim==null){
-			dim=Dim.sale;
+			dim=Dim.SALE;
 		}
 
 		//Cnd cnd=Cnd.select().andEquals(M.OrgOrg, "root".equals(parent_id)?null:parent_id);

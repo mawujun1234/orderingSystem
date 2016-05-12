@@ -1,7 +1,7 @@
 package com.youngor.pubsize;
 
 /**
- * 规格系列
+ * 规格范围
  * @author mawujun qq:16064988 mawujun1234@163.com
  *
  */

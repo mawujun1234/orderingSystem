@@ -24,4 +24,6 @@ public interface PubSizeRepository extends IRepository<PubSize, PubSize.PK>{
 	public List<PubSizeDtlVO> queryPrdszty(@Param("fszty")String fszty,@Param("fszno")String fszno,@Param("sizety")String sizety);
 	
 	public Pager<PubSize> queryStdsz4Sel(Pager<PubSize> pager);
+	
+	public List<PubSizeVO> queryPRDSZTY4Ordmt(@Param("szbrad")String szbrad,@Param("szclno")String szclno,@Param("ormtno")String ormtno) ;
 }

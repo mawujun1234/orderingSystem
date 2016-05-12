@@ -255,7 +255,7 @@ Ext.define('y.sample.SampleDesignForm',{
 	        grow      : true
 	    },
 		{
-	        fieldLabel: '规格系列',
+	        fieldLabel: '规格范围',
 	        name: 'sizegp',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,

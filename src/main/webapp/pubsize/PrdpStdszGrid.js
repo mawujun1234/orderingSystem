@@ -8,6 +8,7 @@ Ext.define('y.pubsize.PrdpStdszGrid',{
 	viewConfig:{
 		enableTextSelection:true
 	},
+	selModel:'cellmodel',
 	initComponent: function () {
       var me = this;
       me.columns=[

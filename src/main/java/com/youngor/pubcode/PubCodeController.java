@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.youngor.ordmt.Ordmt;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -25,6 +27,8 @@ public class PubCodeController {
 	@Resource
 	private PubCodeService pubCodeService;
 	@Resource
+	private PubCodeRepository pubCodeRepository;
+	@Resource
 	private PubCodeTypeService pubCodeTypeService;
 
 	@RequestMapping("/pubCodeType/query4Combo.do")
@@ -33,7 +37,7 @@ public class PubCodeController {
 
 		//默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
 		if(bradno==null){
-			bradno=ShiroUtils.getFirstBradno();
+			bradno=ContextUtils.getFirstBradno();
 		}
 		
 		
@@ -71,6 +75,40 @@ public class PubCodeController {
 //			list.add(code);
 //		}
 //		return list;
+	}
+	
+	@RequestMapping("/pubCodeType/queryVersno4Ordmt.do")
+	@ResponseBody
+	public List<PubCode> queryVersno4Ordmt(String ormtno,String bradno,String spclno) {
+		// 默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
+		if (bradno == null) {
+			bradno = ContextUtils.getFirstBradno();
+		}
+		
+		if(ormtno==null || "".equals(ormtno)){
+			Ordmt ordmt= ContextUtils.getFirstOrdmt();
+			ormtno=ordmt.getOrmtno();
+		}
+		
+		return pubCodeRepository.queryVersno4Ordmt(ormtno, bradno,spclno);
+		
+	}
+	
+	@RequestMapping("/pubCodeType/querySpseno4Ordmt.do")
+	@ResponseBody
+	public List<PubCode> querySpseno4Ordmt(String ormtno,String bradno,String spclno) {
+		// 默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
+		if (bradno == null) {
+			bradno = ContextUtils.getFirstBradno();
+		}
+		
+		if(ormtno==null || "".equals(ormtno)){
+			Ordmt ordmt= ContextUtils.getFirstOrdmt();
+			ormtno=ordmt.getOrmtno();
+		}
+		
+		return pubCodeRepository.querySpseno4Ordmt(ormtno, bradno,spclno);
+		
 	}
 	
 	@PostConstruct

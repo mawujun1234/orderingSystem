@@ -25,7 +25,7 @@
   <body>
   <div  id="tap_effect" >
   </div>
-  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;display:none;">
+  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;">
   	<a class="tab-item active" href="#od_info">
     	<span class="icon icon-home"></span>
         <span class="tab-label">订货</span>
@@ -52,7 +52,7 @@
                           <div class="item-inner">
                             <div class="item-title label">登录名:</div>
                             <div class="item-input">
-                              <input type="text" placeholder="输入登录名">
+                              <input id="od_loginpage_username"  type="text" placeholder="输入登录名">
                             </div>
                           </div>
                         </div>
@@ -63,7 +63,7 @@
                               <div class="item-inner">
                                 <div class="item-title label">密码</div>
                                 <div class="item-input">
-                                  <input type="password" placeholder="输入密码" class="">
+                                  <input id="od_loginpage_password" type="password" placeholder="输入密码" class="">
                                 </div>
                               </div>
                             </div>
@@ -76,7 +76,7 @@
                 <div class="content-block">
                 	<div class="row">            
                     	<div class="col-50"><a href="#" class="button button-big button-fill button-danger">退出</a></div>
-                        <div class="col-50"><a href="#od_info" class="button button-big button-fill button-success">登录</a></div>
+                        <div class="col-50"><a href="#" id="od_loginpage_login_btn" class="button button-big button-fill button-success">登录</a></div>
                     </div>
                 </div>
                 
@@ -93,12 +93,12 @@
             
         <div class="page" id="od_info" >  
         	<div id="qrcode_button" class="hi-icon-wrap hi-icon-effect-7">
-       			<a href="#od_mypage"  onClick="window.location.reload();" class="hi-icon hi-icon-cycle external">扫一扫</a>
+       			<a href="#"  id="od_info_scanQRCode_btn" class="hi-icon hi-icon-cycle external">扫一扫</a>
 			</div>  
              <div class="content" >                 
                  <div class="card">
                     <div class="card-header">
-                    	<div class="list-block">
+                    	<div class="list-block" style="width:100%;">
                             <ul>
                                 <li>
                                 <div class="item-content" style="padding-left:0px;">
@@ -106,9 +106,9 @@
                                   <div class="item-inner">
                                     <div class="item-title label" style="width:4.5rem;font-weight:bold;">样衣编号:</div>
                                     <div class="item-input">
-                                      <input id="od_info_input" type="text" placeholder="请输y样衣编号">
+                                      <input id="od_info_input" type="text" placeholder="请输入样衣编号">
                                     </div>
-                                    <a href="#" class="button button-fill button-success">查询</a>
+                                    <a href="#" class="button button-fill button-success">查询</a><!-- -->
                                   </div>
                                 </div>
                                 </li>
@@ -141,7 +141,7 @@
                   <!--  套件的开始 -->
                   <div class="card" id="od_info_T00">
                     <div class="card-header">
-                    	<div class="list-block">
+                    	<div class="list-block" style="width:100%;">
                             <ul>
                                 <li>
                                 <div class="item-content" style="padding-left:0px;">
@@ -218,7 +218,7 @@
                   <!--  套件的开始 -->
                   <div class="card" id="od_info_T01" >
                     <div class="card-header">
-                    	<div class="list-block">
+                    	<div class="list-block" style="width:100%;">
                             <ul>
                                 <li>
                                 <div class="item-content" style="padding-left:0px;">
@@ -360,9 +360,11 @@
 
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='mobile.js' charset='utf-8'></script>
 	
     <script>
+
 		$(function(){
 			
 

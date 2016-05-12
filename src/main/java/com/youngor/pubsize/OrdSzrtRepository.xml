@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.pubsize.OrdSzrtRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage" resultType="com.youngor.pubsize.OrdSzrt" parameterType="map">
+    	select * from ord_ord_szrt
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(a.id)
+		from ord_ord_szrt a
+    </select>
+    
+    <!-- 获取单规的规格系列 -->
+   <select id="queryStdszColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
+    	select b.* from ord_pub_sizedtl a ,ord_pub_size b
+       where a.sizeno=b.sizeno and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='STDSZ' and b.sizety='STDSZ'
+       order by b.sizeso
+    </select> 
+</mapper>
+

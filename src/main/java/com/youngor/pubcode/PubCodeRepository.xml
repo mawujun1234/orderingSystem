@@ -26,5 +26,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and b.stat=1
     	order by a.itso
     </select> 
+    
+    
+    <!--  获取这次订货会用到的属版型   -->
+    <select id="queryVersno4Ordmt" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select distinct a.* from ord_pub_code a,ord_pub_codebrad b
+    	where 
+    	a.tyno='13' and b.bradno=#{bradno}
+    	and exists (select 1 from ord_sample_design c,ord_sample_plan d where c.plspno=d.plspno  and a.itno=c.versno 
+    			and d.ormtno=#{ormtno} and d.spclno=#{spclno}
+
+    		)
+    	and b.stat=1
+    	order by a.itso
+    </select> 
+    
+     <!--  获取这次订货会用到的系列   -->
+    <select id="querySpseno4Ordmt" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select distinct a.* from ord_pub_code a,ord_pub_codebrad b
+    	where 
+    	a.tyno='5' and b.bradno=#{bradno}
+    	and exists (select 1 from ord_sample_plan d where a.itno=d.spseno and d.ormtno=#{ormtno} and d.spclno=#{spclno})
+    	and b.stat=1
+    	order by a.itso
+    </select> 
 </mapper>
 

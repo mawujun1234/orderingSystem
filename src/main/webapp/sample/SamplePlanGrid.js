@@ -58,7 +58,26 @@ Ext.define('y.sample.SamplePlanGrid',{
 			autoSync:false,
 			pageSize:50,
 			model: 'y.sample.SamplePlan',
-			autoLoad:false
+			autoLoad:false,
+			listeners:{
+				beforeload:function(store){
+				//var grid=btn.up("grid");
+					var grid=me;//Ext.getCmp("sampleDesignGrid");
+					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+		
+    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
+    				grid.getStore().getProxy().extraParams={
+    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+    					"params['spbseno']":toolbars[1].down("#spbseno").getValue()
+    				};
+
+    				//grid.getStore().getProxy().extraParams=grid.getParams();
+				}
+			}
 	  });
 	  me.dockedItems=[];
       me.dockedItems.push({
@@ -148,17 +167,7 @@ Ext.define('y.sample.SamplePlanGrid',{
 				disabled:me.disabledAction,
 				handler: function(btn){
 					var grid=btn.up("grid");
-					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-		
-    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
-    				grid.getStore().getProxy().extraParams={
-    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
-    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
-    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
-    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
-    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
-    					"params['spbseno']":toolbars[1].down("#spbseno").getValue()
-    				};
+					
 					grid.getStore().reload();
 					
 					var tabpanel=grid.nextSibling("tabpanel");
@@ -201,8 +210,8 @@ Ext.define('y.sample.SamplePlanGrid',{
 
     	//获取订货会编号
 		var child=Ext.create('y.sample.SamplePlan',{
-			ormtno:ordmtcombo.getValue(),
-			bradno:'Y'
+			ormtno:ordmtcombo.getValue()
+			//bradno:'Y'
 		});
 		var tabpanel=me.nextSibling("tabpanel");
 		tabpanel.setTitle("新增样衣");
