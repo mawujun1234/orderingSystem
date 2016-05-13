@@ -185,7 +185,7 @@ Ext.define('y.common.OrdmtCombo',{
 	}
 });
 
-
+//供应商
 Ext.define('y.common.PubSunoCombo',{
 	extend:'Ext.form.field.ComboBox',
 	xtype:'pubsunocombo',
@@ -229,5 +229,68 @@ Ext.define('y.common.PubSunoCombo',{
 			
 		});
 		me.callParent();
+	}
+});
+
+//组织节点
+Ext.define('y.common.OrgCombo',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'orgcombo',
+	//fieldLabel: '角色类型',
+	emptyText:'请选择组织节点',
+	//		name: 'roleType',
+	autoLoad:true,
+	queryMode: 'local',
+	editable:false,
+	forceSelection:true,
+	displayField: 'orgnm',
+	valueField: 'orgno',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	dim:'SALE',
+	initComponent: function () {
+		var me=this;
+		var params={
+			dim:me.dim,
+			parent_no:'root'
+		};
+		
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['orgno', 'orgnm'],
+			//model:'y.org.Org',
+			autoLoad:me.autoLoad,
+			proxy: {
+			    extraParams:params,
+			    type: 'ajax',
+			    url: Ext.ContextPath+'/org/query4Combo.do',
+			    reader: {
+			        type: 'json'
+			        //rootProperty: '${propertyColumn.property}'
+			    }
+			},
+			listeners:{
+				load:function(myStore){
+					if(myStore.getCount( ) >0){
+			 			var r=myStore.getAt(0);
+			 			me.select( r );
+			 			me.fireEvent("select", me, r);
+			 		}
+				}
+			}
+			
+		});
+		me.callParent();
+	},
+	reload:function(parent_no){
+		if(!parent_no){
+			alert("请先选择上级组织节点!");
+			return;
+		}
+		var me=this;
+		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+			parent_no:parent_no
+		});
+		me.getStore().reload();
 	}
 });

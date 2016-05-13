@@ -99,4 +99,12 @@ public class UserService extends AbstractService<User, String> {
 	public List<User> querySjs(String positionType_id) {
 		return userRepository.querySjs(positionType_id);
 	}
+	/**
+	 * 初始化该用户可访问的组织单元
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param userVO
+	 */
+	public void queryOrgPermission(UserVO userVO) {
+		
+	}
 }

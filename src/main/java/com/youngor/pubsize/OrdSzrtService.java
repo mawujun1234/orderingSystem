@@ -1,16 +1,11 @@
 package com.youngor.pubsize;
-import java.util.UUID;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.pubsize.OrdSzrt;
-import com.youngor.pubsize.OrdSzrtRepository;
 
 
 /**
@@ -20,7 +15,7 @@ import com.youngor.pubsize.OrdSzrtRepository;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public class OrdSzrtService extends AbstractService<OrdSzrt, String>{
+public class OrdSzrtService extends AbstractService<OrdSzrt, OrdSzrt.PK>{
 
 	@Autowired
 	private OrdSzrtRepository ordSzrtRepository;
@@ -29,5 +24,14 @@ public class OrdSzrtService extends AbstractService<OrdSzrt, String>{
 	public OrdSzrtRepository getRepository() {
 		return ordSzrtRepository;
 	}
-
+	@Override
+	public OrdSzrt.PK create(OrdSzrt ordSzrt) {
+		try {
+		ordSzrtRepository.deleteById(ordSzrt.geetPK());
+		} catch( ObjectNotFoundException e) {
+			
+		}
+		ordSzrtRepository.create(ordSzrt);
+		return ordSzrt.geetPK();
+	}
 }

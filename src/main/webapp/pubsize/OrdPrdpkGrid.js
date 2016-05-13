@@ -1,4 +1,4 @@
-Ext.define('y.pubsize.OrdSzrtGrid',{
+Ext.define('y.pubsize.OrdPrdpkGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
 	     //'y.pubsize.OrdSzrt'
@@ -36,7 +36,8 @@ Ext.define('y.pubsize.OrdSzrtGrid',{
       	 	header:me.initColumns[i]["sizenm"]
       	 	,editor: {
                 xtype: 'numberfield',
-                allowDecimals:false,
+                allowDecimals:true,
+                maxValue:1.00,
                 selectOnFocus:true 
             },renderer:function(value, metaData, record, rowIndex, colIndex, store){
             	 metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -92,7 +93,7 @@ Ext.define('y.pubsize.OrdSzrtGrid',{
 				spclno:record.get("SPCLNO"),
 				versno:record.get("VERSNO"),
 				spseno:record.get("SPSENO"),
-				sizety:'STDSZ',
+				sizety:'PRDPK',
 				szrate:value
 			},
 			success:function(){

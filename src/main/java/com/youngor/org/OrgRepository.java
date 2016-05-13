@@ -15,4 +15,6 @@ import com.mawujun.repository.IRepository;
 public interface OrgRepository extends IRepository<Org, String>{
 
 	public List<NodeVO> query(@Param("parent_id")String parent_id,@Param("dim")Dim dim);
+	
+	public List<Org> query4Combo(@Param("parent_no")String parent_no,@Param("dim")Dim dim);
 }

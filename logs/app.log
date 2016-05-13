@@ -11388,3 +11388,203 @@ public com.youngor.permission.User com.youngor.permission.UserController.create(
 17:12:29.535 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 17:14:13.376 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
 17:14:27.539 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:39:12.567 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:40:03.091 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:40:28.696 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.pubsize.OrdSzrt> com.youngor.pubsize.OrdSzrtController.query(com.mawujun.utils.page.Pager<com.youngor.pubsize.OrdSzrt>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_ord_szrt a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+08:40:28.700 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+08:40:28.701 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+08:40:28.701 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+08:40:28.701 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_ord_szrt a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+09:24:07.308 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:11:57.855 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:13:40.989 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:18:13.158 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:19:36.712 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.pubsize.OrdSzrtController.querySzrtData(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.querySzrtData_a-Inline
+### The error occurred while setting parameters
+### SQL: select a.ormtno, as ordorg,121 as sizegp,a.bradno,a.spclno,a.spseno,b.versno         from ord_sample_plan a,ord_sample_design b         where a.plspno=b.plspno and  a.ormtno=? and a.bradno=? and a.spclno=?                      and b.versno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+10:19:36.713 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:19:36.713 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:19:36.713 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:19:36.713 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.querySzrtData_a-Inline
+### The error occurred while setting parameters
+### SQL: select a.ormtno, as ordorg,121 as sizegp,a.bradno,a.spclno,a.spseno,b.versno         from ord_sample_plan a,ord_sample_design b         where a.plspno=b.plspno and  a.ormtno=? and a.bradno=? and a.spclno=?                      and b.versno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+10:21:10.333 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.pubsize.OrdSzrtController.querySzrtData(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.querySzrtData_a-Inline
+### The error occurred while setting parameters
+### SQL: select a.ormtno, as ordorg,121 as sizegp,a.bradno,a.spclno,a.spseno,b.versno         from ord_sample_plan a,ord_sample_design b         where a.plspno=b.plspno and  a.ormtno=? and a.bradno=? and a.spclno=?                      and b.versno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+10:21:10.334 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:21:10.334 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:21:10.334 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:21:10.334 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubsize/OrdSzrtRepository.xml
+### The error may involve com.youngor.pubsize.OrdSzrtRepository.querySzrtData_a-Inline
+### The error occurred while setting parameters
+### SQL: select a.ormtno, as ordorg,121 as sizegp,a.bradno,a.spclno,a.spseno,b.versno         from ord_sample_plan a,ord_sample_design b         where a.plspno=b.plspno and  a.ormtno=? and a.bradno=? and a.spclno=?                      and b.versno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+10:32:51.058 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:33:20.520 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:38:48.352 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:39:43.325 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:39:14.066 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [null]: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'ordSzrtController' method 
+public void com.youngor.pubsize.OrdSzrtController.create(com.youngor.pubsize.OrdSzrt)
+to {[/ordSzrt/update.do]}: There is already 'ordSzrtController' bean method
+public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(com.youngor.pubsize.OrdSzrt) mapped.
+11:39:14.067 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalStateException], based on exception mapping [java.lang.Exception]
+11:39:14.067 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:39:14.067 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:39:14.067 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'ordSzrtController' method 
+public void com.youngor.pubsize.OrdSzrtController.create(com.youngor.pubsize.OrdSzrt)
+to {[/ordSzrt/update.do]}: There is already 'ordSzrtController' bean method
+public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(com.youngor.pubsize.OrdSzrt) mapped.
+11:47:06.643 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [null]: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'ordSzrtController' method 
+public void com.youngor.pubsize.OrdSzrtController.create(com.youngor.pubsize.OrdSzrt)
+to {[/ordSzrt/update.do]}: There is already 'ordSzrtController' bean method
+public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(com.youngor.pubsize.OrdSzrt) mapped.
+11:47:06.643 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.IllegalStateException], based on exception mapping [java.lang.Exception]
+11:47:06.643 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:47:06.643 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:47:06.643 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'ordSzrtController' method 
+public void com.youngor.pubsize.OrdSzrtController.create(com.youngor.pubsize.OrdSzrt)
+to {[/ordSzrt/update.do]}: There is already 'ordSzrtController' bean method
+public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(com.youngor.pubsize.OrdSzrt) mapped.
+11:48:10.760 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:50:03.930 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:58:47.725 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:01:01.998 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:05:35.779 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:07:17.652 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:07:59.316 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.OrdSzrtController.create(com.youngor.pubsize.OrdSzrt)]: org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.pubsize.OrdSzrt#com.youngor.pubsize.OrdSzrt$PK@37b1ee6e]
+12:07:59.317 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.ObjectNotFoundException], based on exception mapping [java.lang.Exception]
+12:07:59.317 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:07:59.317 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:07:59.317 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.pubsize.OrdSzrt#com.youngor.pubsize.OrdSzrt$PK@37b1ee6e]
+12:09:45.375 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@36a37bda
+13:02:52.138 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:07:58.723 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:09:13.019 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:10:49.658 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:12:31.482 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:12:41.787 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.NodeVO> com.youngor.org.OrgController.queryByUser(java.lang.String,com.youngor.org.Dim)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:12:41.789 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+13:12:41.789 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:12:41.789 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:12:41.789 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='parent_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:26:09.259 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:26:42.050 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:37:30.591 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@69504844
+13:38:48.325 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@4f430ed8
+13:38:49.183 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@ce857be
+13:38:50.414 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@51ef97cb
+13:55:33.770 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@63018667
+13:55:33.771 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2afdb495
+13:55:39.471 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@3d92a8e4
+13:55:39.472 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@36aa40b9
+13:55:41.559 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@3fa1786d
+13:55:41.560 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7d315999
+13:55:44.818 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@46035f5
+13:55:44.818 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@70c377d7
+13:57:08.083 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@3718b56b
+14:11:42.547 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:13:24.252 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:25:34.949 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@d4b0e69
+14:25:37.608 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@70e856a3
+14:25:43.848 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@268a2dc
+14:25:43.849 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2136cd1b
+14:27:43.371 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@7c996dc
+14:27:43.400 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@33e78491
+14:27:43.421 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@5606a9f5
+14:27:43.425 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@cd0fb03
+14:29:59.534 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@14462e3d
+14:29:59.540 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@79ce45b3
+14:29:59.553 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@882b406
+14:29:59.558 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@5e620426
+14:31:06.188 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@3af7768f
+14:31:06.193 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@296f4a24
+14:31:06.198 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@294d9301
+14:31:06.203 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@699587bf
+14:31:20.494 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@1618158a
+14:31:20.494 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@933cc59
+14:31:21.430 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@12f4646d
+14:31:21.430 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@23e86e17
+14:31:22.302 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@5cc5ee31
+14:31:22.302 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7e4621a1
+14:31:23.997 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@13e11a86
+14:31:23.998 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7a3f64a9
+14:31:25.578 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@2f7ffbb8
+14:31:25.578 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7da818b7
+14:31:30.133 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@4c8ed4d6
+14:31:30.133 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@c1e4e4a
+14:31:32.695 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@51d88f35
+14:31:32.696 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2f2bc292
+14:33:16.995 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@32567c13
+14:33:16.996 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7a7d0c14
+14:33:29.926 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@43f6d276
+14:33:29.927 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@4e115e3c
+14:36:13.607 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:40:57.125 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:41:39.032 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@68875434
+14:41:39.789 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@590a66bc
+14:41:40.905 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@3dc1c401
+14:41:43.305 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@7720de88
+14:41:43.306 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@4b3b9128
+14:41:47.876 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@5490793e
+14:41:47.877 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7d603d0b
+14:41:48.943 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@5b4bc45a
+14:41:48.943 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@1e06f683
+14:41:49.984 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@74855291
+14:41:49.984 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@1334831d
+14:41:52.719 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@43b0100c
+14:42:06.657 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@5178ec5a
+14:42:09.162 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@5116a72e
+14:42:11.828 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@60fb0dc7
+14:42:11.829 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@10711943
+14:42:16.909 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@7329ce32
+14:42:16.909 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@d3bce2

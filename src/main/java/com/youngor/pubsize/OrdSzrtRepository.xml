@@ -21,5 +21,35 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        where a.sizeno=b.sizeno and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='STDSZ' and b.sizety='STDSZ'
        order by b.sizeso
     </select> 
+    
+    <!-- 从订货样衣表中获取版型和系列的初始数据-->
+    <select id="querySzrtData_a" resultType="map" parameterType="map">
+    	select a.ormtno,'${ordorg}' as ordorg,'${sizegp}' as sizegp,a.bradno,a.spclno,a.spseno,b.versno
+        from ord_sample_plan a,ord_sample_design b
+        where a.plspno=b.plspno and  a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+        	<if test="spseno!=null and spseno!=''">
+        		and a.spseno=#{spseno}
+        	</if>
+        	and b.versno=#{versno}
+    </select>
+     <!-- 获取指定版型和系列的规格比例-->
+    <select id="querySzrtData_b" resultType="com.youngor.pubsize.OrdSzrt" parameterType="map">
+    	select * from ord_ord_szrt a
+    	  where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+    	  and a.ordorg=#{ordorg} and a.sizegp=#{sizegp} and a.sizety=#{sizety}
+    	  <if test="spseno!=null and spseno!=''">
+        		and a.spseno=#{spseno}
+        </if>
+        and a.versno=#{versno}
+    </select>
+    
+    
+    <!-- 获取包装规格的列 -->
+    <select id="queryPrdpkColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
+    	select b.* from ord_pub_sizedtl a ,ord_pub_size b
+       where a.sizeno=b.sizeno and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
+       order by b.sizeso
+    </select> 
+
 </mapper>
 

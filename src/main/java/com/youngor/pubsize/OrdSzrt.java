@@ -35,6 +35,14 @@ public class OrdSzrt {
 	@FieldDefine(title="规格代码",hidden=true)
 	@Column(length=36)
 	private String sizeno;
+	@Id
+	@FieldDefine(title="系列",hidden=true)
+	@Column(length=36)
+	private String spseno;
+	@Id
+	@FieldDefine(title="版型",hidden=true)
+	@Column(length=36)
+	private String versno;
 	
 	@FieldDefine(title="品牌",hidden=true)
 	@Column(length=36)
@@ -42,18 +50,24 @@ public class OrdSzrt {
 	@FieldDefine(title="大类",hidden=true)
 	@Column(length=36)
 	private String spclno;
-	@FieldDefine(title="系列",hidden=true)
-	@Column(length=36)
-	private String spseno;
-	@FieldDefine(title="版型",hidden=true)
-	@Column(length=36)
-	private String versno;
+	
 	@FieldDefine(title="规格类型",hidden=true)
 	@Column(length=36)
 	private String sizety;
 	@FieldDefine(title="比例",hidden=true)
 	private Double szrate;
 	
+	
+	public OrdSzrt.PK geetPK(){
+		OrdSzrt.PK pk=new OrdSzrt.PK();
+		pk.setOrdorg(ordorg);
+		pk.setOrmtno(ormtno);
+		pk.setSizegp(sizegp);
+		pk.setSizeno(sizeno);
+		pk.setSpseno(spseno);
+		pk.setVersno(versno);
+		return pk;
+	}
 	
 	public static class PK implements Serializable {
 		/**
@@ -64,6 +78,8 @@ public class OrdSzrt {
 		private String ordorg;
 		private String sizegp;
 		private String sizeno;
+		private String spseno;
+		private String versno;
 		public String getOrmtno() {
 			return ormtno;
 		}
@@ -87,6 +103,18 @@ public class OrdSzrt {
 		}
 		public void setSizeno(String sizeno) {
 			this.sizeno = sizeno;
+		}
+		public String getSpseno() {
+			return spseno;
+		}
+		public void setSpseno(String spseno) {
+			this.spseno = spseno;
+		}
+		public String getVersno() {
+			return versno;
+		}
+		public void setVersno(String versno) {
+			this.versno = versno;
 		}
 		
 	}

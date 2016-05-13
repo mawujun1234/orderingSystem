@@ -42,6 +42,23 @@ public class OrgController {
 		List<NodeVO> orges=orgService.query(parent_id,dim);
 		return orges;
 	}
+	/**
+	 * 添加了权限的组织节点过滤
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param parent_id
+	 * @param dim
+	 * @return
+	 */
+	@RequestMapping("/org/query4Combo.do")
+	@ResponseBody
+	public List<Org> query4Combo(String parent_no,Dim dim) {
+		if(dim==null){
+			dim=Dim.SALE;
+		}
+
+		List<Org> orges=orgService.query4Combo(parent_no,dim);
+		return orges;
+	}
 
 
 //	@RequestMapping("/org/queryAll.do")

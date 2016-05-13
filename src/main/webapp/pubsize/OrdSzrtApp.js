@@ -2,14 +2,10 @@ Ext.require("y.pubsize.OrdSzrt");
 Ext.require("y.pubsize.OrdSzrtGrid");
 //Ext.require("y.pubsize.OrdSzrtForm");
 Ext.onReady(function(){
-	var grid=Ext.create('y.pubsize.OrdSzrtGrid',{
-		region:'center',
-		title:'规格比例设置'
-	});
 	
+	window.load_num=0;
 	var tabpanel=Ext.create('Ext.tab.Panel',{
-		items:[grid],
-		load_num:0,
+		//items:[grid],
 		dockedItems:[{
 	  		xtype: 'toolbar',
 	  		dock:'top',
@@ -21,8 +17,31 @@ Ext.onReady(function(){
 				xtype:'ordmtcombo',
 				listeners:{
 					select:function( combo, record, eOpts ) {
-						tabpanel.load_num++;
+						window.load_num++;
 						reloadSizegp();
+					}
+				}
+			},{
+		  		fieldLabel: '营销公司',
+		  		labelWidth:60,
+		  		width:160,
+		  		itemId:'compcombo',
+				xtype:'orgcombo',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						var regioncombo=combo.nextSibling("#regioncombo");
+		        		regioncombo.reload(record.get("orgno"));
+					}
+				}
+			},{
+		  		fieldLabel: '区域',
+		  		labelWidth:50,
+		  		itemId:'regioncombo',
+				xtype:'orgcombo',
+				autoLoad:false,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						
 					}
 				}
 			},{
@@ -39,7 +58,7 @@ Ext.onReady(function(){
 		        tyno:'1',
 		        listeners:{
 					select:function( combo, record, eOpts ) {
-						tabpanel.load_num++;
+						window.load_num++;
 						reloadSizegp();
 					}
 				}
@@ -62,7 +81,7 @@ Ext.onReady(function(){
 //		        		var spseno=combo.nextSibling("#spseno");
 //		        		spseno.reload(record.get("itno"));
 		        		
-		        		tabpanel.load_num++;
+		        		window.load_num++;
 						reloadSizegp();
 		        	}	
 		        }
@@ -76,28 +95,6 @@ Ext.onReady(function(){
 	            // selFirst:true,
 		        xtype:'pubcodecombo',
 		        tyno:'2'
-		    },
-			{
-		        fieldLabel: '系列',
-		        itemId: 'spseno',
-		        labelWidth:40,
-		        width:160,
-	            autoLoad:false,
-		        xtype:'combo',
-		         queryMode: 'local',
-		        tyno:'5',
-		        queryMode: 'remote',
-		        displayField: 'itnm',
-			    valueField: 'itno',
-			    store: {
-			    	autoLoad:false,
-				    fields: ['itno', 'itnm'],
-				    proxy:{
-				    	type:'ajax',
-				    	//extraParams:{szbrad:'sjs'},
-				    	url:Ext.ContextPath+'/pubCodeType/querySpseno4Ordmt.do'
-				    }
-				}
 		    }]
 		},{
 	  		xtype: 'toolbar',
@@ -149,6 +146,28 @@ Ext.onReady(function(){
 				    }
 				}
 		        
+		    },
+			{
+		        fieldLabel: '系列',
+		        itemId: 'spseno',
+		        labelWidth:40,
+		        width:160,
+	            autoLoad:false,
+		        xtype:'combo',
+		         queryMode: 'local',
+		        tyno:'5',
+		        queryMode: 'remote',
+		        displayField: 'itnm',
+			    valueField: 'itno',
+			    store: {
+			    	autoLoad:false,
+				    fields: ['itno', 'itnm'],
+				    proxy:{
+				    	type:'ajax',
+				    	//extraParams:{szbrad:'sjs'},
+				    	url:Ext.ContextPath+'/pubCodeType/querySpseno4Ordmt.do'
+				    }
+				}
 		    },{
 		    	xtype:'button',
 		    	text:'查询',
@@ -163,9 +182,9 @@ Ext.onReady(function(){
 	});
 
 	function reloadSizegp(){
-		//console.log(tabpanel.load_num);
+		//console.log(window.load_num);
 		
-		if(tabpanel.load_num>=3){
+		if(window.load_num>=3){
 			var spseno=tabpanel.down("#spseno");
 			spseno.clearValue( );
 			spseno.getStore().getProxy().extraParams={
@@ -204,11 +223,75 @@ Ext.onReady(function(){
 			params:{
 				sizegp:sizegp.getValue()
 			},
-			succes:function(response){
-			 console.log(response.responseText);
-			
+			success:function(response){
+			 	//console.log(response.responseText);
+				var obj=Ext.decode(response.responseText);
+				tabpanel.removeAll(true);
+				createOrdSzrtGrid(obj.szrtColumns);
+				createPrdpkGrid(obj.prdpkColumns);
 			}
 		});
+	}
+	function getParams(){
+		var params={
+			ordorg:tabpanel.down("#regioncombo").getValue() ,
+			ormtno:tabpanel.down("#ordmtcombo").getValue() ,
+			bradno:tabpanel.down("#bradno").getValue(),
+			spclno:tabpanel.down("#spclno").getValue(),
+			spseno:tabpanel.down("#spseno").getValue(),
+			versno:tabpanel.down("#versno").getValue(),
+			sizegp:tabpanel.down("#sizegp").getValue()
+			
+		}
+		return params;
+	}
+	
+	function createOrdSzrtGrid(initColumns){
+		var params=getParams();
+		if(!params.versno){
+			Ext.msg.alert("消息","请先选择版型!");
+			return;
+		}
+		if(!params.sizegp){
+			Ext.msg.alert("消息","请先选择规格范围!");
+			return;
+		}
+		params.sizety='STDSZ';
+		var grid=Ext.create('y.pubsize.OrdSzrtGrid',{
+			title:'规格比例设置',
+			//activeTab :0,
+			params:params,
+			initColumns:initColumns
+		});
+		//alert(1);
+		
+		tabpanel.add(grid);
+		tabpanel.setActiveItem(0);
+	}
+	
+	function createPrdpkGrid(initColumns){
+		var params=getParams();
+		if(!params.versno){
+			Ext.msg.alert("消息","请先选择版型!");
+			return;
+		}
+		if(!params.sizegp){
+			Ext.msg.alert("消息","请先选择规格范围!");
+			return;
+		}
+		params.sizety='PRDPK';
+		var grid=Ext.create('y.pubsize.OrdPrdpkGrid',{
+			title:'包装箱比例设置',
+			//activeTab :0,
+			tbar:[{
+				xtyle:'label',
+				text:'注意：这里只能输入小数，例如0.2，表示这个包装箱占比20%'
+			}],
+			params:params,
+			initColumns:initColumns
+		});
+		//alert(1);
+		tabpanel.add(grid);
 	}
 	
 	
