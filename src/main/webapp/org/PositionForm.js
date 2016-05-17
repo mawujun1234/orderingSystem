@@ -48,6 +48,26 @@ Ext.define('y.org.PositionForm',{
             blankText:"职位类型不允许为空",
 			xtype:'combobox'
 		},
+		  {
+			fieldLabel: '权限规则',
+			name: 'accessRule',
+			queryMode: 'local',
+			editable:false,
+			forceSelection:true,
+		    displayField: 'name',
+		    valueField: 'id',
+		    value:'this_org',
+		    store: {
+		    	//autoLoad:true,
+		    	xtype:'jsonpstore',
+			    fields: ['id', 'name'],
+			    data:[{id:'this_org',name:'所在组织单元'},{id:'all_org',name:'全部'}]
+			},
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"权限规则不允许为空",
+			xtype:'combobox'
+		},
 		{
 	        fieldLabel: '备注',
 	        name: 'remark',
@@ -86,11 +106,14 @@ Ext.define('y.org.PositionForm',{
 //						button.up('window').close();
 //					}
 //				});
+				formpanel.mask("正在执行，请稍候.....");
 				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
+						formpanel.unmask();
 				    },
 				    success: function(record, operation) {
 						button.up('window').close();
+						formpanel.unmask();
 				    }
 				});			
 				

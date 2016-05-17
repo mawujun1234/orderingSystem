@@ -36,6 +36,8 @@ public class Org {
 	@Enumerated(EnumType.STRING)
 	@FieldDefine(title="状态",sort=4,showType=ShowType.combobox,hidden=false)//
 	private Orgst orgst;
+	@FieldDefine(title="排序",sort=4,hidden=true)	
+	private Integer orgso;
 	
 	public String getId() {
 		return  getOrgno();
@@ -79,6 +81,12 @@ public class Org {
 	}
 	public void setOrgst(Orgst orgst) {
 		this.orgst = orgst;
+	}
+	public Integer getOrgso() {
+		return orgso;
+	}
+	public void setOrgso(Integer orgso) {
+		this.orgso = orgso;
 	}
 
 

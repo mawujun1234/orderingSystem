@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.mawujun.generator.model.FieldDefine;
@@ -45,12 +46,14 @@ public class OrdmtScde extends BaseObject{
 	@FieldDefine(title="修改日期",sort=40)
 	private Date lmdt;
 	
+	
+	@Transient
+	private String orgty_name;
+	public void setOrgty_name(String name){
+		this.orgty_name=name;
+	}
 	public String getOrgty_name(){
-		if("ZY".equals(orgty)){
-			return "自营";
-		} else {
-			return "特许";
-		}
+		return this.orgty_name;
 	}
 	
 	public static class PK implements Serializable {

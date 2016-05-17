@@ -2,12 +2,15 @@ package com.youngor.org;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.generator.model.ShowType;
 
 @Entity(name="t_position")
 public class Position {
@@ -26,6 +29,10 @@ public class Position {
 	@Column(length=300,nullable=true)
 	@FieldDefine(title="备注",sort=6)
 	private String remark;
+	@Column(length=15,nullable=true)
+	@Enumerated(EnumType.STRING)
+	@FieldDefine(title="权限规则",sort=4,showType=ShowType.combobox,hidden=false)//
+	private AccessRule accessRule;
 	
 	@FieldDefine(title="组织id",hidden=true)
 	@Column(length=15,nullable=false)
@@ -65,6 +72,12 @@ public class Position {
 	}
 	public void setPositionType_id(String positionType_id) {
 		this.positionType_id = positionType_id;
+	}
+	public AccessRule getAccessRule() {
+		return accessRule;
+	}
+	public void setAccessRule(AccessRule accessRule) {
+		this.accessRule = accessRule;
 	}
 
 }

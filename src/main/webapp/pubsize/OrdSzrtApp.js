@@ -249,11 +249,11 @@ Ext.onReady(function(){
 	function createOrdSzrtGrid(initColumns){
 		var params=getParams();
 		if(!params.versno){
-			Ext.msg.alert("消息","请先选择版型!");
+			Ext.Msg.alert("消息","请先选择版型!");
 			return;
 		}
 		if(!params.sizegp){
-			Ext.msg.alert("消息","请先选择规格范围!");
+			Ext.Msg.alert("消息","请先选择规格范围!");
 			return;
 		}
 		params.sizety='STDSZ';
@@ -272,11 +272,11 @@ Ext.onReady(function(){
 	function createPrdpkGrid(initColumns){
 		var params=getParams();
 		if(!params.versno){
-			Ext.msg.alert("消息","请先选择版型!");
+			Ext.Msg.alert("消息","请先选择版型!");
 			return;
 		}
 		if(!params.sizegp){
-			Ext.msg.alert("消息","请先选择规格范围!");
+			Ext.Msg.alert("消息","请先选择规格范围!");
 			return;
 		}
 		params.sizety='PRDPK';

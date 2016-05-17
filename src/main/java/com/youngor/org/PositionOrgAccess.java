@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.mawujun.utils.Assert;
@@ -24,6 +25,7 @@ public class PositionOrgAccess implements Serializable{
 	Position position;
 	@Id
 	@ManyToOne
+	@JoinColumn(name="orgno")
 	Org org;
 
 	

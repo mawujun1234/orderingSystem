@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -39,9 +41,32 @@ public class OrdmtScdeController {
 
 	@RequestMapping("/ordmtScde/query.do")
 	@ResponseBody
-	public List<OrdmtScde> query() {	
-		List<OrdmtScde> ordmtScdees=ordmtScdeService.queryAll();
+	public List<OrdmtScde> query(String ormtno) {	
+		List<OrdmtScde> ordmtScdees=ordmtScdeService.query(Cnd.select().andEquals(M.OrdmtScde.ormtno, ormtno));
+		
+		if(orgChancl==null){
+			orgChancl=queryOrgty();
+		}
+		
+		for(OrdmtScde aaa:ordmtScdees){
+			for(OrgChancl bb:orgChancl){
+				if(aaa.getOrgty().equals(bb.getChanno())){
+					aaa.setOrgty_name(bb.getChannm());
+					break;
+				}
+			}
+			
+		}
 		return ordmtScdees;
+	}
+	
+	
+	private List<OrgChancl> orgChancl=null;
+	@RequestMapping("/ordmtScde/queryOrgty.do")
+	@ResponseBody
+	public List<OrgChancl> queryOrgty() {	
+		orgChancl=ordmtScdeService.queryOrgty();
+		return orgChancl;
 	}
 	
 

@@ -30,7 +30,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<!-- 查询语句，会自动分页-->
     <select id="queryPageVO" resultMap="ordmtVO" parameterType="map">
     	select a.*,b.seasno as season_seasno,b.ormtno as season_ormtno from ord_ordmt a left join ord_ordmt_season b on a.ormtno=b.ormtno
-    	order by a.ormtno
+    	order by a.ormtst asc,a.ormtno desc
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPageVO_count" resultType="int" parameterType="map">

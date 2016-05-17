@@ -37,7 +37,7 @@ Ext.define('y.pubsize.OrdPrdpkGrid',{
       	 	,editor: {
                 xtype: 'numberfield',
                 allowDecimals:true,
-                maxValue:1.00,
+                maxValue:0.9999,
                 selectOnFocus:true 
             },renderer:function(value, metaData, record, rowIndex, colIndex, store){
             	 metaData.tdStyle = 'color:red;background-color:#98FB98;' ;

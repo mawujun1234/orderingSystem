@@ -55,14 +55,14 @@ public class PositionController {
 	//@ResponseBody
 	public Position create(@RequestBody Position position) {
 		
-		positionService.create(position);
+		positionService.create(position,Dim.SALE);
 		return position;
 	}
 	
 	@RequestMapping("/position/update.do")
 	//@ResponseBody
 	public  Position update(@RequestBody Position position) {
-		positionService.update(position);
+		positionService.update(position,Dim.SALE);
 		return position;
 	}
 	

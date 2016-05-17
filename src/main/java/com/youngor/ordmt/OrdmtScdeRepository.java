@@ -1,6 +1,8 @@
 package com.youngor.ordmt;
 
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.UUID;
 import com.mawujun.repository.IRepository;
 
@@ -12,6 +14,6 @@ import com.youngor.ordmt.OrdmtScde;
  */
 @Repository
 public interface OrdmtScdeRepository extends IRepository<OrdmtScde, String>{
-
+	public List<OrgChancl> queryOrgty();
 
 }

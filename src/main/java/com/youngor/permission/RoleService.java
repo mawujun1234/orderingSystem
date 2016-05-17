@@ -79,17 +79,17 @@ public class RoleService extends AbstractService<Role, String>{
 	}
 	public void selClass(String role_id,String itno) {
 		Role role=roleRepository.load(role_id);
-		PubCode pubCode=pubCodeRepository.load(itno);
+		//PubCode pubCode=pubCodeRepository.load(itno);
 		
-		RoleClass roleClass=new RoleClass(pubCode,role);
+		RoleClass roleClass=new RoleClass(itno,role);
 		roleClassRepository.create(roleClass);
 	}
 
 	public void deselClass(String role_id,String itno) {
 		Role role=roleRepository.load(role_id);
-		PubCode pubCode=pubCodeRepository.load(itno);
+		//PubCode pubCode=pubCodeRepository.load(itno);
 		
-		RoleClass roleClass=new RoleClass(pubCode,role);
+		RoleClass roleClass=new RoleClass(itno,role);
 		roleClassRepository.delete(roleClass);
 	}
 	

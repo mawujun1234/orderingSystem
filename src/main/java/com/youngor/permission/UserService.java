@@ -13,6 +13,7 @@ import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
 import com.youngor.org.OrgRepository;
+import com.youngor.org.PositionOrgAccessRepository;
 import com.youngor.org.PositionOrgUser;
 import com.youngor.org.PositionOrgUserRepository;
 import com.youngor.org.PositionRepository;
@@ -39,6 +40,7 @@ public class UserService extends AbstractService<User, String> {
 	private PositionOrgUserRepository positionOrgUserRepository;
 	@Autowired
 	private RoleUserRepository userRoleRepository;
+	
 
 	@Override
 	public UserRepository getRepository() {
@@ -55,6 +57,7 @@ public class UserService extends AbstractService<User, String> {
 		super.create(user);
 		PositionOrgUser positionOrgUser = new PositionOrgUser(positionRepository.load(position_id),orgRepository.load(orgno),user);
 		positionOrgUserRepository.create(positionOrgUser);
+		
 	}
 	public void addRole(String user_id,String role_id) {
 		RoleUser userRole = new RoleUser(userRepository.load(user_id), roleRepository.load(role_id));
@@ -105,6 +108,7 @@ public class UserService extends AbstractService<User, String> {
 	 * @param userVO
 	 */
 	public void queryOrgPermission(UserVO userVO) {
+		//获取用户当前所属的组织单元
 		
 	}
 }

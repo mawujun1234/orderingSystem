@@ -31,7 +31,7 @@ public class OrgService extends AbstractService<Org, String>{
 	}
 
 	
-	public List<Org> query4Combo(String parent_no,Dim dim) {
-		return orgRepository.query4Combo(parent_no, dim);
+	public List<Org> query4Combo(String parent_no,Dim dim,String user_id) {
+		return orgRepository.query4Combo(parent_no, dim,user_id);
 	}
 }

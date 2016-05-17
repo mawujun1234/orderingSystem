@@ -5,6 +5,7 @@ Ext.define("y.org.Position",{
 		{name:'remark',type:'string'},
 		{name:'id',type:'string'},
 		{name:'orgno',type:'string'},
+		{name:'accessRule',type:'string'},
 		{name:'positionType_id',type:'string'}
 	],
 	proxy:{

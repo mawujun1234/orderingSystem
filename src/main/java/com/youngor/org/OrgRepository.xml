@@ -22,7 +22,28 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	where a.orgno=b.child_no  and a.orgst='KQ'
     	and b.parent_no=#{parent_no}
     	and b.dim=#{dim}
+    	and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.orgno and d.user_id=#{user_id})
+    	order by orgso
 	</select>
+	
+	<!-- 查询本节点的所有父节点-->
+	<select id="queryParent" resultType="com.youngor.org.Org" parameterType="map">
+		select distinct a.* from t_org a,t_org_org b
+    	where a.orgno=b.parent_no  and a.orgst='KQ'
+    	and b.child_no=#{child_no}
+    	and b.dim=#{dim}
+	</select>
+	<!--查询本节点的所有子节点 -->
+	<select id="queryChildren" resultType="com.youngor.org.Org" parameterType="map">
+		select distinct a.* from t_org a,t_org_org b
+    	where a.orgno=b.child_no  and a.orgst='KQ'
+    	and b.parent_no=#{parent_no}
+    	and b.dim=#{dim}
+	</select>
+	<!-- 插入这个职位可以访问的组织单元-->
+	<insert id="insert_positionorgaccess">
+		insert into t_position_org_access(position_id,orgno) values(#{position_id},#{orgno})
+	</insert>
 
 </mapper>
 

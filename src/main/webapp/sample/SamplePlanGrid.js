@@ -210,8 +210,10 @@ Ext.define('y.sample.SamplePlanGrid',{
 
     	//获取订货会编号
 		var child=Ext.create('y.sample.SamplePlan',{
-			ormtno:ordmtcombo.getValue()
-			//bradno:'Y'
+			ormtno:ordmtcombo.getValue(),
+			bradno:toolbars[0].down("#bradno").getValue(),
+			spyear:Ext.Date.format(new Date(),'Y'),
+			spclno:toolbars[0].down("#spclno").getValue()
 		});
 		var tabpanel=me.nextSibling("tabpanel");
 		tabpanel.setTitle("新增样衣");

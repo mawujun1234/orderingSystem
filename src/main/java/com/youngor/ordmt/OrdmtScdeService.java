@@ -1,4 +1,5 @@
 package com.youngor.ordmt;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class OrdmtScdeService extends AbstractService<OrdmtScde, String>{
 	@Override
 	public OrdmtScdeRepository getRepository() {
 		return ordmtScdeRepository;
+	}
+	
+	public List<OrgChancl> queryOrgty() {
+		return ordmtScdeRepository.queryOrgty();
 	}
 	
 

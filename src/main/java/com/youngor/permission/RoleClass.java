@@ -22,10 +22,13 @@ public class RoleClass implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+//	@Id
+//	@ManyToOne
+//	@JoinColumn(name="itno")
+//	private PubCode pubCode;
+	
 	@Id
-	@ManyToOne
-	@JoinColumn(name="itno")
-	private PubCode pubCode;
+	private String itno;
 
 	@Id
 	@ManyToOne
@@ -35,10 +38,11 @@ public class RoleClass implements Serializable {
 
 	}
 
-	public RoleClass(PubCode pubCode, Role role) {
-		Assert.notNull(pubCode);
+	public RoleClass(String itno, Role role) {
+		Assert.notNull(itno);
 		Assert.notNull(role);
-		this.pubCode = pubCode;
+		//this.pubCode = pubCode;
+		this.itno=itno;
 		this.role = role;
 	}
 
@@ -50,44 +54,52 @@ public class RoleClass implements Serializable {
 		this.role = role;
 	}
 
-	public PubCode getPubCode() {
-		return pubCode;
+	public String getItno() {
+		return itno;
 	}
 
-	public void setPubCode(PubCode pubCode) {
-		this.pubCode = pubCode;
+	public void setItno(String itno) {
+		this.itno = itno;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((pubCode == null) ? 0 : pubCode.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RoleClass other = (RoleClass) obj;
-		if (pubCode == null) {
-			if (other.pubCode != null)
-				return false;
-		} else if (!pubCode.equals(other.pubCode))
-			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
-		return true;
-	}
+//	public PubCode getPubCode() {
+//		return pubCode;
+//	}
+//
+//	public void setPubCode(PubCode pubCode) {
+//		this.pubCode = pubCode;
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((pubCode == null) ? 0 : pubCode.hashCode());
+//		result = prime * result + ((role == null) ? 0 : role.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		RoleClass other = (RoleClass) obj;
+//		if (pubCode == null) {
+//			if (other.pubCode != null)
+//				return false;
+//		} else if (!pubCode.equals(other.pubCode))
+//			return false;
+//		if (role == null) {
+//			if (other.role != null)
+//				return false;
+//		} else if (!role.equals(other.role))
+//			return false;
+//		return true;
+//	}
 
 	
 }

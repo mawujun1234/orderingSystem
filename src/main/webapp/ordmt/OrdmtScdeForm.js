@@ -28,24 +28,24 @@ Ext.define('y.ordmt.OrdmtScdeForm',{
 			queryMode: 'remote',
 			editable:false,
 			forceSelection:true,
-		    displayField: 'name',
-		    valueField: 'key',
-		    store: {
-			    fields: ['key', 'name'],
-			    data:[{key:'ZY',name:'自营'},{key:'TX',name:'特许'}]
-			},
+		    displayField: 'channm',
+		    valueField: 'channo',
 //		    store: {
 //			    fields: ['key', 'name'],
-//			    proxy: {
-//			    	autoLoad:true,
-//			        type: 'ajax',
-//			        url: Ext.ContextPath+'/orgty/query.do',
+//			    data:[{key:'ZY',name:'自营'},{key:'TX',name:'特许'}]
+//			},
+		    store: {
+			    fields: ['channo', 'channm'],
+			    proxy: {
+			    	autoLoad:true,
+			        type: 'ajax',
+			        url: Ext.ContextPath+'/ordmtScde/queryOrgty.do'
 //			        reader: {
 //			            type: 'json',
 //			            rootProperty: 'orgty'
 //			        }
-//			    }
-//			},
+			    }
+			},
             hidden:false,
 			xtype:'combobox'
 		},

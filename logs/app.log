@@ -11588,3 +11588,377 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 14:42:11.829 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@10711943
 14:42:16.909 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@7329ce32
 14:42:16.909 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@d3bce2
+09:02:24.359 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:11:08.607 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:12:09.489 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@6b824011
+09:12:09.714 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:12:09.715 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:12:09.715 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:12:09.716 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:12:09.716 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:14:17.368 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@d4cf467
+09:14:17.410 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:14:17.410 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:14:17.410 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:14:17.410 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:14:17.410 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:15:30.015 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@5e1ce157
+09:15:30.060 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:15:30.060 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:15:30.060 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:15:30.060 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:15:30.061 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:16:15.839 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@680a393b
+09:16:18.336 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:16:18.336 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:16:18.336 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:16:18.336 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:16:18.336 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:17:39.158 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:18:38.393 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:19:28.959 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@65deea8a
+09:19:29.057 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:19:29.058 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:19:29.058 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:19:29.058 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:19:29.058 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:22:25.593 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:22:46.087 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:23:18.577 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@287f4ea8
+09:23:18.685 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.hibernate.exception.SQLGrammarException: could not execute batch
+09:23:18.685 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.SQLGrammarException], based on exception mapping [java.lang.Exception]
+09:23:18.685 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:23:18.685 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:23:18.685 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.SQLGrammarException: could not execute batch
+09:35:10.402 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:35:52.372 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:36:23.907 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@3b8c6bea
+09:36:24.339 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,org_id) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:36:24.339 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+09:36:24.339 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:36:24.340 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:36:24.340 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,org_id) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:39:07.770 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:39:26.692 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:40:01.339 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@7a2e0769
+09:40:01.663 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,org_id) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:40:01.664 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+09:40:01.664 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:40:01.664 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:40:01.664 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,org_id) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:41:44.040 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@25939db0
+09:41:58.396 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:41:58.396 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+09:41:58.396 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:41:58.396 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:41:58.396 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:43:23.304 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@1b027c5a
+09:43:57.026 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:43:57.026 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+09:43:57.026 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:43:57.026 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:43:57.026 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+09:51:47.582 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:00:04.563 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:00:51.820 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@183394b
+10:00:57.902 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:00:57.903 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:00:57.903 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:00:57.903 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:00:57.903 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:06:06.175 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@5ebfa7d9
+10:06:35.878 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:06:35.878 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:06:35.878 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:06:35.878 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:06:35.878 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:08:16.215 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@2ce4caca
+10:08:16.474 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:08:16.474 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:08:16.474 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:08:16.474 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:08:16.474 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:23:18.236 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:23:59.839 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:24:39.842 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@176bc13a
+10:24:40.207 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:24:40.208 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:24:40.208 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:24:40.208 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:24:40.209 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:25:29.757 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@5307b7cc
+10:26:06.812 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.create(com.youngor.org.Position)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:26:06.812 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:26:06.812 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:26:06.812 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:26:06.812 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into t_position_org_access(position_id,orgno) values(?,?);
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+10:26:30.191 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@4a37e31
+10:36:03.269 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:37:35.803 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.update(com.youngor.org.Position)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.DEPT
+10:37:35.803 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+10:37:35.803 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:37:35.803 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:37:35.803 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.DEPT
+10:39:40.622 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:40:29.012 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:42:32.381 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:43:09.116 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.update(com.youngor.org.Position)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.WZ
+10:43:09.117 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+10:43:09.117 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:43:09.117 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:43:09.117 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.WZ
+10:51:20.010 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.update(com.youngor.org.Position)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.WZ
+10:51:20.010 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+10:51:20.010 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:51:20.010 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:51:20.010 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.WZ
+10:53:23.133 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:54:50.616 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:55:27.987 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.org.Position com.youngor.org.PositionController.update(com.youngor.org.Position)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.QT
+10:55:27.988 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+10:55:27.988 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:55:27.988 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:55:27.988 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.result.ResultMapException: Error attempting to get column 'CHANCL' from result set.  Cause: java.lang.IllegalArgumentException: No enum constant com.youngor.org.Chancl.QT
+10:57:34.164 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:57:47.970 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:03:43.089 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:04:04.867 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:04:22.086 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.org.Org> com.youngor.org.OrgController.query4Combo(java.lang.String,com.youngor.org.Dim)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+### The error may exist in com/youngor/org/OrgRepository.xml
+### The error may involve com.youngor.org.OrgRepository.query4Combo-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from t_org a,t_org_org b      where a.orgno=b.child_no  and a.orgst='KQ'      and b.parent_no=?      and b.dim=?      and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.orgno and d.use_id=?)
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+11:04:22.087 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+11:04:22.087 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:04:22.088 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:04:22.088 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+### The error may exist in com/youngor/org/OrgRepository.xml
+### The error may involve com.youngor.org.OrgRepository.query4Combo-Inline
+### The error occurred while setting parameters
+### SQL: select a.* from t_org a,t_org_org b      where a.orgno=b.child_no  and a.orgst='KQ'      and b.parent_no=?      and b.dim=?      and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.orgno and d.use_id=?)
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "D"."USE_ID": invalid identifier
+
+08:34:17.195 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:47:33.274 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:53:41.842 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:55:13.616 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionType@dc75fd4
+08:55:34.958 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@6c62baa4
+08:55:55.017 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@12e5468b
+08:55:55.074 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@29c7aabc
+08:56:23.972 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Role@52dbe978
+08:57:00.352 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@f243613d
+08:57:20.599 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@47ce421
+08:57:20.623 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@37ea15ed
+08:57:25.175 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleBrand@2c35f406
+08:57:32.099 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@114045c
+08:57:32.123 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@5040a8d9
+08:57:32.161 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@7af580a6
+08:57:32.170 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@170797bb
+08:57:32.234 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@1ed62700
+08:57:32.257 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@3b0fa686
+08:57:32.277 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@49c64f29
+08:57:32.324 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@265ff8e1
+08:57:32.342 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@754ca844
+08:57:32.375 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@b405728
+08:57:32.392 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@2e163f3d
+08:57:32.407 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@1376ed91
+08:57:32.416 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@d108d8c
+08:57:32.466 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@7948b791
+08:57:32.482 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@299a8ed9
+08:57:32.498 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@33ac6672
+08:57:32.524 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@608fe907
+08:57:32.537 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleClass@15d68fab
+08:57:41.496 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+08:57:54.072 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:10:34.583 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+09:10:42.305 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:21:55.981 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@34729244
+09:21:57.337 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@13831e72
+09:21:57.337 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@58e08af8
+09:21:58.152 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@55b24559
+09:21:58.942 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@60da3d67
+09:22:01.625 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@49442bb6
+09:22:07.913 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2a55d0dc
+09:22:14.518 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@64f6ca0f
+09:22:14.519 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@3792cf14
+09:22:48.412 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@49039c57
+09:22:48.412 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@203d09e
+09:22:50.506 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@6006bf46
+10:36:03.976 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:36:23.685 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:50:42.007 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:51:21.976 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:52:06.197 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdmtScde@7e83765b
+12:23:46.816 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证

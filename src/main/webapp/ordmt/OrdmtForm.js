@@ -29,7 +29,7 @@ Ext.define('y.ordmt.OrdmtForm',{
        		},
        		async:false,
        		success:function(response){
-       			 console.log(2);
+       			// console.log(2);
        			var obj=Ext.decode(response.responseText);
        			//console.log(response.responseText);
        			for(var i=0;i<obj.length;i++){
@@ -42,7 +42,7 @@ Ext.define('y.ordmt.OrdmtForm',{
        		}
        	
        });
-        console.log(1);
+       // console.log(1);
        //me.unmask();
        me.items= [
 		{

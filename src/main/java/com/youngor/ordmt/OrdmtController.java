@@ -46,7 +46,7 @@ public class OrdmtController {
 	@RequestMapping("/ordmt/query4Combo.do")
 	@ResponseBody
 	public List<Ordmt> query4Combo() {	
-		List<Ordmt> ordmtes=ordmtService.query(Cnd.select().asc(M.Ordmt.ormtno));
+		List<Ordmt> ordmtes=ordmtService.query(Cnd.select().asc(M.Ordmt.ormtst).desc(M.Ordmt.ormtno));
 		return ordmtes;
 	}
 	

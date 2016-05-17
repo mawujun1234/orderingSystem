@@ -13,6 +13,7 @@ import com.mawujun.utils.page.Pager;
 
 import com.youngor.org.Org;
 import com.youngor.org.OrgService;
+import com.youngor.permission.ShiroUtils;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -56,7 +57,7 @@ public class OrgController {
 			dim=Dim.SALE;
 		}
 
-		List<Org> orges=orgService.query4Combo(parent_no,dim);
+		List<Org> orges=orgService.query4Combo(parent_no,dim,ShiroUtils.getUserId());
 		return orges;
 	}
 

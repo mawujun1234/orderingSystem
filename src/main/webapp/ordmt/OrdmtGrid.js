@@ -103,6 +103,9 @@ Ext.define('y.ordmt.OrdmtGrid',{
 			}]
 		});
 
+		me.on('itemdblclick',function(view, record, item, index, e, eOpts){
+			me.onUpdate();
+		});
        
       me.callParent();
 	},
