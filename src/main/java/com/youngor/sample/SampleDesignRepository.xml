@@ -17,7 +17,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
 
     <sql id="queryPlanDesign_where">  
-        and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+        and b.sampst=1  and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
     	<if test="sptyno!=null and sptyno!=''">
     		and a.sptyno=#{sptyno}
     	</if>
@@ -34,7 +34,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
     	select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst 
     	from (
-    	select b.sampno,b.sampnm,b.spstat,a.* 
+    	select b.sampno,b.sampnm,b.spstat,b.suitty,a.* 
     	from ord_sample_plan a,ord_sample_design b 
     	where a.plspno=b.plspno	
     	<include refid="queryPlanDesign_where"></include> 

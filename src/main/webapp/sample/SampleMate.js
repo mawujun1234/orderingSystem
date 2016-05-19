@@ -28,7 +28,7 @@ Ext.define("y.sample.SampleMate",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

@@ -1,6 +1,15 @@
 Ext.require("y.sample.SamplePlan");
 Ext.require("y.sample.SamplePlanGrid");
 Ext.require("y.sample.SamplePlanForm");
+Ext.require('y.sample.SampleDesignStprGrid');
+Ext.require('y.sample.SampleColthForm');
+Ext.require('y.sample.SampleDesignGrid');
+Ext.require('y.sample.SamplePlanFormQuery');
+Ext.require('y.sample.SampleDesignForm');
+Ext.require('y.sample.SampleMateGrid');
+Ext.require('y.sample.SampleMateForm');
+Ext.require('y.sample.SamplePhotoShow');
+Ext.require('y.sample.SamplePlanGridQuery');
 Ext.onReady(function(){
 	var sampleDesignGrid=Ext.create('y.sample.SampleDesignGrid',{
 		itemId:'sampleDesignGrid',
@@ -54,7 +63,7 @@ Ext.onReady(function(){
 	var sampleColth=Ext.create('y.sample.SampleColth',{
 					sampno:null
 	});
-	sampleColthForm.loadRecord(sampleColth);
+	sampleColthForm.getForm().loadRecord(sampleColth);
 	
 	//图片信息
 	var samplePhotoShow=Ext.create('y.sample.SamplePhotoShow',{
@@ -85,6 +94,7 @@ Ext.onReady(function(){
 			sampno:record.get("sampno"),
 			sampnm:record.get("sampnm")
 		};//当前选中的设计样衣编号
+		window.sampleDesign=record;
 		
 //		if(sampleDesignGrid.sampno==record.get("sampno")){
 //			return;
@@ -100,6 +110,8 @@ Ext.onReady(function(){
 		tabpanel.items.getAt(2).enable();
 		tabpanel.items.getAt(3).enable();
 		tabpanel.items.getAt(4).enable();
+		
+		//alert(record.get("sptyno"));
 		
 		//更新设计开发，数据
 		sampleDesignForm.reset();
@@ -126,9 +138,11 @@ Ext.onReady(function(){
 		    success: function(sampleColth) {
 		    	//console.log(sampleDesign);
 		       //sampleDesign.set("plspnm",record.get("plspnm"));
+		    	//var suitty_field=sampleDesignForm.getForm().findField("suitty");
 		       sampleColthForm.loadRecord(sampleColth);
 		    }
 		});
+		sampleColthForm.loadGrid(record);
 		
 		//产品图片
 		samplePhotoShow.getStore().getProxy().extraParams={

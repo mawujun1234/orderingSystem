@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.OrdRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage" resultType="com.youngor.order.Ord" parameterType="map">
+    	select * from ord_ord
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(a.id)
+		from ord_ord a
+    </select>
+    
+     <select id="haveOrd" resultType="com.youngor.order.Ord" parameterType="com.youngor.order.Ord">
+     	select * from ORD_ORD
+       where ormtno=#{ormtno} and ortyno=#{ortyno} and ordorg=#{ordorg}
+     </select>
+     
+     
+     <select id="querySample" resultType="com.youngor.order.SampleVO" parameterType="map">
+     	 select a.plspno,a.plspnm,b.sampno,b.sampnm,
+	     b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,
+	     a.spclno,a.sptyno,a.bradno,b.sexno,b.suitty,b.spltmk   
+	     from ord_sample_plan a,ord_sample_design b
+	     where a.plspno=b.plspno and b.sampnm=#{sampnm} and a.ormtno=#{ormtno}
+	     and b.sampst=1 and a.plstat=1
+     </select>
+     
+     
+     <resultMap id="querySuitVO_mapper" type="com.youngor.order.SuitVO" >  
+        <id column="suitno" property="suitno"/>  
+        <result column="spftpr" property="spftpr"/> 
+        <result column="sprtpr" property="sprtpr"/> 
+        <collection property="sizeVOs" ofType="com.youngor.order.SizeVO">  
+            <id column="sizeno" property="sizeno"/>  
+            <result column="sizenm" property="sizenm"/>  
+            <result column="szrate" property="szrate"/> 
+        </collection>  
+          
+    </resultMap>  
+     <!--查询不是套西之外的小类，即表中套中拥有的规格 -->
+     <select id="querySuitVO_T00" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
+     	select a.*,nvl(b.szrate,1) szrate from (
+     	  SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+	      and  c.sampno=#{sampno}
+	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
+	    ) a left join (
+	    	select * from    ORD_ORD_SZRT
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+             and sizety='STDSZ'
+	    ) b
+	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+     </select>
+     
+     <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
+     <select id="querySuitVO" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
+     	select a.*,nvl(b.szrate,1) szrate from (
+     	  SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+	      and  c.sampno=#{sampno}
+	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
+	      and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno 
+	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk}
+	        )
+	     ) a left join (
+	    	select * from    ORD_ORD_SZRT
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+             and sizety='STDSZ'
+	    ) b
+	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+     </select>
+</mapper>
+

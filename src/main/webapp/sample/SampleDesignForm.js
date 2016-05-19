@@ -18,6 +18,8 @@ Ext.define('y.sample.SampleDesignForm',{
     },
 	initComponent: function () {
        var me = this;
+       
+				
        me.items= [
 		{
 	        fieldLabel: '企划样衣id',
@@ -41,6 +43,7 @@ Ext.define('y.sample.SampleDesignForm',{
 	        fieldLabel: '设计样衣编号',
 	        name: 'sampnm',
             allowBlank: false,
+            //readOnly:sampnm_readOnly,
             afterLabelTextTpl: Ext.required,
             blankText:"设计样衣编号不允许为空",
             selectOnFocus:true,
@@ -221,29 +224,7 @@ Ext.define('y.sample.SampleDesignForm',{
             xtype:'pubcodecombo',
 	        tyno:'7'
 	    },
-		{
-	        fieldLabel: '套装种类',
-	        name: 'suitty',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"套装种类不允许为空",
-            xtype:'pubcodecombo',
-	        tyno:'20',
-	        listeners:{
-	        	select:function(combo, record){
-	        		var form=combo.up("form");
-	        		var sampleDesignStprGrid_store=form.down("grid#sampleDesignStprGrid").getStore();
-	        		sampleDesignStprGrid_store.removeAll();
-					sampleDesignStprGrid_store.getProxy().extraParams={
-						suitty:record.get("itno"),
-						sampno:window.sampno.sampno
-					};
-					sampleDesignStprGrid_store.reload();
-					
-					//
-	        	}
-	        }
-	    },
+		
 		{
 	        fieldLabel: '规格版型说明',
 	        name: 'desp',
@@ -254,31 +235,7 @@ Ext.define('y.sample.SampleDesignForm',{
 	        xtype:'textareafield',
 	        grow      : true
 	    },
-		{
-	        fieldLabel: '规格范围',
-	        name: 'sizegp',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"规格系列不允许为空",
-            selectOnFocus:true,
-	        xtype:'combobox',
-	        queryMode: 'local',
-			editable:true,
-	        selectOnFocus:true,
-			forceSelection:true,
-		    displayField: 'sizenm',
-		    valueField: 'sizeno',
-		    store: {
-		    	autoLoad:false,
-			    fields: ['sizeno', 'sizenm'],
-			    proxy:{
-			    	type:'ajax',
-			    	//extraParams:{szbrad:'sjs'},
-			    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY.do'
-			    }
-			}
-	        
-	    },
+
 
 	    {
             xtype      : 'fieldcontainer',
@@ -331,6 +288,55 @@ Ext.define('y.sample.SampleDesignForm',{
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield'   
+	    },
+//	    {
+//	        fieldLabel: '规格范围',
+//	        name: 'sizegp',
+////            allowBlank: false,
+////            afterLabelTextTpl: Ext.required,
+////            blankText:"规格系列不允许为空",
+//            selectOnFocus:true,
+//	        xtype:'combobox',
+//	        queryMode: 'local',
+//			editable:true,
+//	        selectOnFocus:true,
+//			forceSelection:true,
+//		    displayField: 'sizenm',
+//		    valueField: 'sizeno',
+//		    store: {
+//		    	autoLoad:false,
+//			    fields: ['sizeno', 'sizenm'],
+//			    proxy:{
+//			    	type:'ajax',
+//			    	//extraParams:{szbrad:'sjs'},
+//			    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY.do'
+//			    }
+//			}
+//	        
+//	    },
+	    {
+	        fieldLabel: '套装种类',
+	        name: 'suitty',
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"套装种类不允许为空",
+            xtype:'pubcodecombo',
+	        tyno:'20',
+	        listeners:{
+	        	select:function(combo, record){
+	        		var form=combo.up("form");
+	        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
+	        		sampleDesignSizegpGrid_store.removeAll();
+					sampleDesignSizegpGrid_store.getProxy().extraParams={
+						suitty:record.get("itno"),
+						sampno:window.sampno.sampno
+						
+					};
+					sampleDesignSizegpGrid_store.reload();
+					
+					//
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '设计样衣代码',
@@ -387,19 +393,20 @@ Ext.define('y.sample.SampleDesignForm',{
         }
 	  ];   
 	  
-	  var sampleDesignStprGrid=Ext.create('y.sample.SampleDesignStprGrid',{
-	  	itemId:'sampleDesignStprGrid'
+	 var sampleDesignSizegpGrid=Ext.create('y.sample.SampleDesignSizegpGrid',{
+	  	itemId:'sampleDesignSizegpGrid'
 	  });
 	  var fieldset={
         // Fieldset in Column 1 - collapsible via toggle button
         xtype:'fieldset',
         //columnWidth: 0.5,
-        title: '套件价格',
+        title: '套件规格',
+        itemId:'sampleDesignSizegpGrid_fieldset',
         collapsible: true,
         //defaultType: 'textfield',
         defaults: {anchor: '100%'},
         layout: 'anchor',
-        items :[sampleDesignStprGrid]
+        items :[sampleDesignSizegpGrid]
       }
 	  me.items.push(fieldset);
 	  
@@ -418,27 +425,32 @@ Ext.define('y.sample.SampleDesignForm',{
 //					alert("请先填写必填项!");
 //					return;
 //				}
-				formpanel.updateRecord();
+				//formpanel.updateRecord();
 				//var record=button.up('form').getForm().getRecord();
-				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();
+				var sampleDesignSizegpes=sampleDesignSizegpGrid.getStore().getRange();
 				
 				var aa=[];
-				for(var i=0;i<sampleDesignStpres.length;i++){
+				for(var i=0;i<sampleDesignSizegpes.length;i++){
 					aa.push({
 						//sampno:sampleDesignStpres[i].get("getSampno"),
-						suitno:sampleDesignStpres[i].get("suitno"),
-						spftpr:sampleDesignStpres[i].get("spftpr"),
-						sprtpr:sampleDesignStpres[i].get("sprtpr"),
-						plctpr:sampleDesignStpres[i].get("plctpr")
+						suitno:sampleDesignSizegpes[i].get("suitno"),
+						sizegp:sampleDesignSizegpes[i].get("sizegp")
 					});
 				}
 				//record.set("sampleDesignStpres",aa);
 				var jsonData=formpanel.getForm().getFieldValues();
-				jsonData.sampleDesignStpres=aa;
+				jsonData.sampleDesignSizegpes=aa;
 				
+				var url="/sampleDesign/create.do";
+		       //var sampnm_readOnly=false;
+				if(window.sampleDesign &&　window.sampleDesign.get("sampno")){
+					url="/sampleDesign/update.do";
+					//sampnm_readOnly=true;
+					//alert(1);
+				}
 				//console.log(aa);
 				Ext.Ajax.request({
-					url:Ext.ContextPath+"/sampleDesign/create.do",
+					url:Ext.ContextPath+url,
 					actionMethods: { read: 'POST' },
 					timeout :600000,
 					headers:{ 'Accept':'application/json;'},
@@ -454,8 +466,8 @@ Ext.define('y.sample.SampleDesignForm',{
 						sampleDesignGrid.getStore().reload();
 						//用于后面的面料信息
 						window.sampno={
-							sampno:record.get("sampno"),
-							sampnm:record.get("sampnm")
+							sampno:jsonData.sampno,//,record.get("sampno"),
+							sampnm:jsonData.sampnm//record.get("sampnm")
 						};
 						
 						//var tabpanel=btn.up("tabpanel");
@@ -465,30 +477,7 @@ Ext.define('y.sample.SampleDesignForm',{
 					}
 					
 				});
-//				record.save({
-//					failure: function(record, operation) {
-//				    },
-//				    success: function(record, operation) {
-//				    	Ext.Msg.alert("消息","保存成功!");
-//						//button.up('window').close();
-//				    	//formpanel.reset();
-//				    	//samplePlanStprGrid.getStore().removeAll();
-//				    	var tabpanel=formpanel.up("tabpanel");
-//						//tabpanel.unmask();
-//						var sampleDesignGrid=tabpanel.previousSibling("gridpanel#sampleDesignGrid") ;
-//						sampleDesignGrid.getStore().reload();
-//						//用于后面的面料信息
-//						window.sampno={
-//							sampno:record.get("sampno"),
-//							sampnm:record.get("sampnm")
-//						};
-//						
-//						//var tabpanel=btn.up("tabpanel");
-//				       	tabpanel.items.getAt(2).enable();
-//				       	tabpanel.items.getAt(3).enable();
-//				       	tabpanel.items.getAt(4).enable();
-//				    }
-//				});			
+		
 				
 				}
 			});
@@ -496,28 +485,47 @@ Ext.define('y.sample.SampleDesignForm',{
 	},
 	loadRecord:function(record){
 		var me=this;
-		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
-		sampleDesignStprGrid_store.removeAll();
-		sampleDesignStprGrid_store.getProxy().extraParams={
-			suitty:record.get("suitty"),
-			sampno:window.sampno.sampno
-		};
-		sampleDesignStprGrid_store.reload();
-					
-		var aa=y.sample.SampleDesign.load(record.get("sampno"),{
-			success:function(sampleDesign){
-				sampleDesign.set("plspnm",record.get("plspnm"));
-				me.getForm().loadRecord(sampleDesign);
-				
-				//如果是锁定状态，就隐藏这个按钮
-				//hidden:!Permision.canShow('sample_design_designsave'),
-				if(sampleDesign.get("spstat")==1){
+		//如果小类是套西的话，就隐藏套装种类
+		if(window.sampleDesign.get("sptyno")=='S10'){
+			//me.showsampleDesignSizegpGrid_bool=true;
+			me.showsampleDesignSizegpGrid(true);
+		} else {
+			//me.showsampleDesignSizegpGrid_bool=false;
+			me.showsampleDesignSizegpGrid(false);
+		}
+		
+		//if(me.showsampleDesignSizegpGrid_bool){
+			var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+			sampleDesignSizegpGrid_store.removeAll();
+			sampleDesignSizegpGrid_store.getProxy().extraParams={
+				suitty:record.get("suitty"),
+				sampno:window.sampno.sampno
+			};
+			sampleDesignSizegpGrid_store.reload();
+		//}
+		
+		me.getForm().loadRecord(record);
+		
+			if(record.get("spstat")==1){
 					me.down("#save").hide();		
 				} else if(Permision.canShow('sample_design_designsave')){
 					me.down("#save").show();
 				}
-			}
-		});
+					
+//		var aa=y.sample.SampleDesign.load(record.get("sampno"),{
+//			success:function(sampleDesign){
+//				sampleDesign.set("plspnm",record.get("plspnm"));
+//				me.getForm().loadRecord(sampleDesign);
+//				
+//				//如果是锁定状态，就隐藏这个按钮
+//				//hidden:!Permision.canShow('sample_design_designsave'),
+//				if(sampleDesign.get("spstat")==1){
+//					me.down("#save").hide();		
+//				} else if(Permision.canShow('sample_design_designsave')){
+//					me.down("#save").show();
+//				}
+//			}
+//		});
 		
 	},
 	/**
@@ -534,25 +542,21 @@ Ext.define('y.sample.SampleDesignForm',{
 		
 		var me=this;
 		
+		
+		
 		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
-			//预先读取该品牌大类下的规格系列
-			var sizegpField=me.getForm().findField("sizegp");
-			sizegpField.getStore().getProxy().extraParams={
-				szbrad:bradno,
-				szclno:spclno
-			};
-			sizegpField.getStore().reload();
+//			//预先读取该品牌大类下的规格范围
+//			var sizegpField=me.getForm().findField("sizegp");
+//			sizegpField.getStore().getProxy().extraParams={
+//				szbrad:bradno,
+//				szclno:spclno
+//			};
+//			sizegpField.getStore().reload();
+			
+			this.down("grid#sampleDesignSizegpGrid").reloadEditor(bradno,spclno);
 		}
 		
-//		//预先读取该品牌大类下的规格系列
-//		var grid=btn.up("grid");
-//		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-//		var sizegpField=tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
-//		sizegpField.getStore().getProxy().extraParams={
-//			szbrad:toolbars[0].down("#bradno").getValue(),
-//			szclno:toolbars[0].down("#spclno").getValue()
-//		};
-//		sizegpField.getStore().reload();
+
 		
 		if(this.temp_bradno!=bradno){
 			var versnoField=me.getForm().findField("versno");
@@ -599,7 +603,27 @@ Ext.define('y.sample.SampleDesignForm',{
 	},
 	reset:function(){
 		this.getForm().reset();
-		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
-		sampleDesignStprGrid_store.removeAll();
+		var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+		sampleDesignSizegpGrid_store.removeAll();
+	},
+	//如果小类是套西的时候，就显示套装种类
+	showsampleDesignSizegpGrid:function(bool){
+		var me=this;
+		this.showsampleDesignSizegpGrid_bool=bool;
+		if(!bool){
+			var suittyField=me.getForm().findField("suitty");
+			suittyField.hide();
+			//this.down("#sampleDesignSizegpGrid_fieldset").hide();
+			
+//			var sizegpField=me.getForm().findField("sizegp");
+//			sizegpField.show();
+		} else {
+			var suittyField=me.getForm().findField("suitty");
+			suittyField.show();
+			//this.down("#sampleDesignSizegpGrid_fieldset").show();
+			
+//			var sizegpField=me.getForm().findField("sizegp");
+//			sizegpField.hide();
+		}
 	}
 });

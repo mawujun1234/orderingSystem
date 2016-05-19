@@ -1,11 +1,13 @@
 package com.youngor.sample;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.mawujun.generator.model.FieldDefine;
 
@@ -51,16 +53,20 @@ public class SampleColth {
 	@FieldDefine(title="合同交期",sort=50,hidden=false)
 	private Date ctdwdt;
 	@FieldDefine(title="包装辅料费",sort=50,hidden=false)
-	@Column(nullable=false,updatable=true)
+	@Column(nullable=true,updatable=true)
 	private Integer acsyam;
 	@FieldDefine(title="预计成本价",sort=50,hidden=false)
-	@Column(nullable=false,updatable=true)
+	@Column(nullable=true,updatable=true)
 	private Double spctpr;
 	@FieldDefine(title="备注",sort=50,hidden=false)
-	@Column(length=100,nullable=false,updatable=true)
+	@Column(length=100,nullable=true,updatable=true)
 	private String sprmk;
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer spctst=0;//：1：锁定；0：未锁定
+	
+	
+	@Transient
+	private List<SampleDesignStpr> sampleDesignStpres;//用于前台网后台传递数据的时候，比如新建，更新
 	
 	public String getSampno() {
 		return sampno;
@@ -157,6 +163,12 @@ public class SampleColth {
 	}
 	public void setSpctst(Integer spctst) {
 		this.spctst = spctst;
+	}
+	public List<SampleDesignStpr> getSampleDesignStpres() {
+		return sampleDesignStpres;
+	}
+	public void setSampleDesignStpres(List<SampleDesignStpr> sampleDesignStpres) {
+		this.sampleDesignStpres = sampleDesignStpres;
 	}
 
 

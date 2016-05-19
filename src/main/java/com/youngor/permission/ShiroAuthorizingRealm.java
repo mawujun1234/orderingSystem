@@ -49,8 +49,8 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
 		user.setBrandes(roleService.queryUserSelBrand(user.getId()));
 		user.setClasses(roleService.queryUserSelClass(user.getId()));
 		
-		//设置用户可访问的组织单元
-		userService.queryOrgPermission(user);
+		//设置用户当前所属的组织单元
+		user.setCurrentOrges(userService.queryCurrentOrg(user.getId()));
 		
 		return authorizationInfo;
 	}

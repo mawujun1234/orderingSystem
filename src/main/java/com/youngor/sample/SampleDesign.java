@@ -73,14 +73,14 @@ public class SampleDesign extends BaseObject{
 	@Column(length=36,nullable=false,updatable=true)
 	private String slveno;
 	@FieldDefine(title="套装种类",sort=50,hidden=false)
-	@Column(length=36,nullable=false,updatable=true)
+	@Column(length=36,nullable=true,updatable=true)
 	private String suitty;
 	@FieldDefine(title="规格版型说明",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=true)
 	private String desp;
-	@FieldDefine(title="规格范围",sort=50,hidden=false)
-	@Column(length=36,nullable=false,updatable=true)
-	private String sizegp;
+//	@FieldDefine(title="规格范围",sort=50,hidden=false)
+//	@Column(length=36,nullable=false,updatable=true)
+//	private String sizegp;
 	
 	@FieldDefine(title="包装要求",sort=50,hidden=false)
 	private Integer packqt;
@@ -94,7 +94,7 @@ public class SampleDesign extends BaseObject{
 	private Integer spstat=0;//0：未锁定，1：锁定
 	
 	@Transient
-	private List<SampleDesignStpr> sampleDesignStpres;//用于前台网后台传递数据的时候，比如新建，更新
+	private List<SampleDesignSizegp> sampleDesignSizegpes;
 	
 	public String getSampno() {
 		return sampno;
@@ -204,12 +204,7 @@ public class SampleDesign extends BaseObject{
 	public void setDesp(String desp) {
 		this.desp = desp;
 	}
-	public String getSizegp() {
-		return sizegp;
-	}
-	public void setSizegp(String sizegp) {
-		this.sizegp = sizegp;
-	}
+
 	public Integer getPackqt() {
 		return packqt;
 	}
@@ -240,13 +235,11 @@ public class SampleDesign extends BaseObject{
 	public void setSpstat(Integer spstat) {
 		this.spstat = spstat;
 	}
-	public List<SampleDesignStpr> getSampleDesignStpres() {
-		return sampleDesignStpres;
+	public List<SampleDesignSizegp> getSampleDesignSizegpes() {
+		return sampleDesignSizegpes;
 	}
-	public void setSampleDesignStpres(List<SampleDesignStpr> sampleDesignStpres) {
-		this.sampleDesignStpres = sampleDesignStpres;
+	public void setSampleDesignSizegpes(List<SampleDesignSizegp> sampleDesignSizegpes) {
+		this.sampleDesignSizegpes = sampleDesignSizegpes;
 	}
-
-
 
 }

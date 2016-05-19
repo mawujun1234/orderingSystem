@@ -68,7 +68,7 @@ public class SampleDesignController {
 	}
 	
 	@RequestMapping("/sampleDesign/deleteById.do")
-	//@ResponseBody
+	@ResponseBody
 	public String deleteById(String sampno) {
 		sampleDesignService.deleteById(sampno);
 		return sampno;

@@ -1,18 +1,11 @@
 package com.youngor.sample;
 import java.util.List;
-import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.mawujun.repository.cnd.Cnd;
-import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
-
-import com.youngor.sample.SampleDesignStpr;
-import com.youngor.sample.SampleDesignStprService;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -48,39 +41,39 @@ public class SampleDesignStprController {
 	}
 	
 
-	@RequestMapping("/sampleDesignStpr/load.do")
-	@ResponseBody
-	public SampleDesignStpr load(String id) {
-		return sampleDesignStprService.get(id);
-	}
-	
-	@RequestMapping("/sampleDesignStpr/create.do")
-	//@ResponseBody
-	public SampleDesignStpr create(@RequestBody SampleDesignStpr sampleDesignStpr) {
-		sampleDesignStprService.create(sampleDesignStpr);
-		return sampleDesignStpr;
-	}
-	
-	@RequestMapping("/sampleDesignStpr/update.do")
-	//@ResponseBody
-	public  SampleDesignStpr update(@RequestBody SampleDesignStpr sampleDesignStpr) {
-		sampleDesignStprService.update(sampleDesignStpr);
-		return sampleDesignStpr;
-	}
-	
-	@RequestMapping("/sampleDesignStpr/deleteById.do")
-	//@ResponseBody
-	public String deleteById(String id) {
-		sampleDesignStprService.deleteById(id);
-		return id;
-	}
-	
-	@RequestMapping("/sampleDesignStpr/destroy.do")
-	//@ResponseBody
-	public SampleDesignStpr destroy(@RequestBody SampleDesignStpr sampleDesignStpr) {
-		sampleDesignStprService.delete(sampleDesignStpr);
-		return sampleDesignStpr;
-	}
+//	@RequestMapping("/sampleDesignStpr/load.do")
+//	@ResponseBody
+//	public SampleDesignStpr load(String id) {
+//		return sampleDesignStprService.get(id);
+//	}
+//	
+//	@RequestMapping("/sampleDesignStpr/create.do")
+//	//@ResponseBody
+//	public SampleDesignStpr create(@RequestBody SampleDesignStpr sampleDesignStpr) {
+//		sampleDesignStprService.create(sampleDesignStpr);
+//		return sampleDesignStpr;
+//	}
+//	
+//	@RequestMapping("/sampleDesignStpr/update.do")
+//	//@ResponseBody
+//	public  SampleDesignStpr update(@RequestBody SampleDesignStpr sampleDesignStpr) {
+//		sampleDesignStprService.update(sampleDesignStpr);
+//		return sampleDesignStpr;
+//	}
+//	
+//	@RequestMapping("/sampleDesignStpr/deleteById.do")
+//	//@ResponseBody
+//	public String deleteById(String id) {
+//		sampleDesignStprService.deleteById(id);
+//		return id;
+//	}
+//	
+//	@RequestMapping("/sampleDesignStpr/destroy.do")
+//	//@ResponseBody
+//	public SampleDesignStpr destroy(@RequestBody SampleDesignStpr sampleDesignStpr) {
+//		sampleDesignStprService.delete(sampleDesignStpr);
+//		return sampleDesignStpr;
+//	}
 	
 	
 }

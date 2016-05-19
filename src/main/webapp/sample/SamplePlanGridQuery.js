@@ -144,13 +144,15 @@ Ext.define('y.sample.SamplePlanGridQuery',{
     	
 					grid.getStore().reload();
 					
-					//预先读取该品牌大类下的规格系列
-					var sizegpField=grid.tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
-					sizegpField.getStore().getProxy().extraParams={
-						szbrad:toolbars[0].down("#bradno").getValue(),
-						szclno:toolbars[0].down("#spclno").getValue()
-					};
-					sizegpField.getStore().reload();
+//					//预先读取该品牌大类下的规格系列
+//					var sizegpField=grid.tabpanel.down("form#sampleDesignForm").getForm().findField("sizegp");
+//					sizegpField.getStore().getProxy().extraParams={
+//						szbrad:toolbars[0].down("#bradno").getValue(),
+//						szclno:toolbars[0].down("#spclno").getValue()
+//					};
+//					sizegpField.getStore().reload();
+					
+					//grid.tabpanel.down("form#sampleDesignForm").down("grid#sampleDesignSizegpGrid").reloadEditor(toolbars[0].down("#bradno").getValue(),toolbars[0].down("#spclno").getValue());
 				},
 				iconCls: 'icon-refresh'
 			}]

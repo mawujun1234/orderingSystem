@@ -96,7 +96,7 @@
        			<a href="#"  id="od_info_scanQRCode_btn" class="hi-icon hi-icon-cycle external">扫一扫</a>
 			</div>  
              <div class="content" >                 
-                 <div class="card" id="od_info_sample_info">
+                 <div class="card">
                     <div class="card-header">
                     	<div class="list-block" style="width:100%;">
                             <ul>
@@ -108,7 +108,7 @@
                                     <div class="item-input">
                                       <input id="od_info_input" type="text" placeholder="请输入样衣编号">
                                     </div>
-                                    <a href="#" id="od_info_scan_button" class="button button-fill button-success">查询</a><!-- -->
+                                    <a href="#" class="button button-fill button-success">查询</a><!-- -->
                                   </div>
                                 </div>
                                 </li>
@@ -116,33 +116,30 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card-content" style="display:none;">
+                    <div class="card-content">
                       <div class="card-content-inner">
                       		<div class="row">
-                              <div class="col-50">版型:{{ versno_name }}</div>
-                              <div class="col-50">系列:{{ spseno_name }}</div>
+                              <div class="col-50">版型:</div>
+                              <div class="col-50">系列:</div>
                             </div>
                             <div class="row">
-                              <div class="col-50">出厂价:{{ spftpr }}</div>
-                              <div class="col-50">零售价:{{ sprtpr }}</div>
+                              <div class="col-50">出厂价:</div>
+                              <div class="col-50">零售价:</div>
                             </div>
                             <div class="row">
-                              <div class="col-50">大系列:{{ spbsen_name }}</div>
-                              <div class="col-50">品牌系列{{ sprseno_name }}:</div>
+                              <div class="col-50">已定-系列:</div>
+                              <div class="col-50">已定-系列:</div>
                             </div>
                             <div class="row">
-                              <div class="col-50">定位:{{ splcno_name }}</div>
-                              <div class="col-50">上市批次:{{ spbano_name }}</div>
+                              <div class="col-50">指标-系列:</div>
+                              <div class="col-50">上市批次:</div>
                             </div>
                       </div>
                     </div>
                   </div><!--card -->
                   
                   <!--  套件的开始 -->
-                  <div id="od_info_suitVOs">
-                 <!--  <component-suitvos :suitvos="suitvos" ></component-suitvos>-->
-                  <template v-for="suitVO in suitVOs">
-                  <div class="card" id="od_info_{{ suitVO.suitno }}">
+                  <div class="card" id="od_info_T00">
                     <div class="card-header">
                     	<div class="list-block" style="width:100%;">
                             <ul>
@@ -150,11 +147,11 @@
                                 <div class="item-content" style="padding-left:0px;">
                                   
                                   <div class="item-inner">
-                                    <div id="od_info_T00_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:4.5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
+                                    <div id="od_info_T00_label" class="item-title label" style="width:4.5rem;font-weight:bold;">标准-数量:</div>
                                     <div class="item-input">
-                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeOrmtqs" onClick="card_header_input_click(this)" type="text" placeholder="请输入总订货数量" v-model="suitVO.ormtqs">
+                                      <input id="od_info_T00_input" type="text" placeholder="请输入总订货数量">
                                     </div>
-                                    <span class="icon icon-up" onClick="card_header_item_content_icon(this)"></span>
+                                    <span class="icon icon-up"></span>
                                   </div>
                                 </div>
                                 </li>
@@ -171,25 +168,44 @@
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-name"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label" style="font-weight:bold;">规格(占比):</div>
+                                <div class="item-title label" style="font-weight:bold;">规格:</div>
                                 <div class="item-input" style="font-weight:bold;">订货数量:</div>
                               </div>
                             </div>
                           </li>
-                          
-                          <template v-for="sizeVO in suitVO.sizeVOs">
                           <li>
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-email"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label">{{sizeVO.sizenm}}({{sizeVO.szrate}})</div>
+                                <div class="item-title label">37</div>
                                 <div class="item-input">
-                                  <input type="number" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt">
+                                  <input type="email" placeholder="37的订货数量">
                                 </div>
                               </div>
                             </div>
                            </li>
-                           </template>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">38</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="38的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">39</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="39的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
                           
                         </ul>
                       </div><!-- list-block -->
@@ -197,15 +213,88 @@
                     </div><!-- card-content -->
                     
                   </div><!--card -->
-                  </template>
-                  </div><!-- # od_info_suitVOs-->
                   <!--  套件的结束 -->
                   
-                 
+                  <!--  套件的开始 -->
+                  <div class="card" id="od_info_T01" >
+                    <div class="card-header">
+                    	<div class="list-block" style="width:100%;">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div id="od_info_T01_label" class="item-title label" style="width:4.5rem;font-weight:bold;">上衣-数量:</div>
+                                    <div class="item-input">
+                                      <input id="od_info_T01_input" type="text" placeholder="请输入总订货数量">
+                                    </div>
+                                    <span class="icon icon-up"></span>
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content guig_content" style="display:none;">
+                      <div class="card-content-inner">
+                       <div class="list-block">
+                        <ul>
+                          <!-- Text inputs -->
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-name"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label" style="font-weight:bold;">规格:</div>
+                                <div class="item-input" style="font-weight:bold;">订货数量:</div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">37</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="37的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">38</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="38的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">39</div>
+                                <div class="item-input">
+                                  <input type="email" placeholder="39的订货数量">
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                          
+                        </ul>
+                      </div><!-- list-block -->
+                      </div><!-- card-content-inner -->
+                    </div><!-- card-content -->
+                    
+                  </div><!--card -->
+                  <!--  套件的结束 -->
                   <div class="content-block" style="padding-bottom:2rem;">
                     <div class="row">
                       <div class="col-50"><a href="#" class="button button-big button-fill button-danger">清零</a></div>
-                      <div class="col-50"><a id="od_info_save_button" href="#" class="button button-big button-fill button-success">保存</a></div>
+                      <div class="col-50"><a href="#" class="button button-big button-fill button-success">保存</a></div>
                     </div>
                   </div>
                   
@@ -267,75 +356,12 @@
 	</div><!-- page-group -->
     
 
-
-
-				<script type="text/x-template" id="template-suitvos">
-                  <template v-for="suitVO in suitvos">
-                  <div class="card" id="od_info_{{ suitVO.suitno }}">
-                    <div class="card-header">
-                    	<div class="list-block" style="width:100%;">
-                            <ul>
-                                <li>
-                                <div class="item-content" style="padding-left:0px;">
-                                  
-                                  <div class="item-inner">
-                                    <div id="od_info_T00_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:4.5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
-                                    <div class="item-input">
-                                      <input id="od_info_{{ suitVO.suitno }}_input" onClick="card_header_input_click(this)" type="text" placeholder="请输入总订货数量" v-model="suitVO.ormtqs">
-                                    </div>
-                                    <span class="icon icon-up" onClick="card_header_item_content_icon(this)"></span>
-                                  </div>
-                                </div>
-                                </li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-content guig_content" style="display:none;">
-                      <div class="card-content-inner">
-                       <div class="list-block">
-                        <ul>
-                          <!-- Text inputs -->
-                          <li>
-                            <div class="item-content">
-                              <div class="item-media"><i class="icon icon-form-name"></i></div>
-                              <div class="item-inner">
-                                <div class="item-title label" style="font-weight:bold;">规格:</div>
-                                <div class="item-input" style="font-weight:bold;">订货数量:</div>
-                              </div>
-                            </div>
-                          </li>
-                          
-                          <template v-for="sizeVO in suitVO.sizeVOs">
-                          <li>
-                            <div class="item-content">
-                              <div class="item-media"><i class="icon icon-form-email"></i></div>
-                              <div class="item-inner">
-                                <div class="item-title label">{{sizeVO.sizenm}}</div>
-                                <div class="item-input">
-                                  <input type="text" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt">
-                                </div>
-                              </div>
-                            </div>
-                           </li>
-                           </template>
-                          
-                        </ul>
-                      </div><!-- list-block -->
-                      </div><!-- card-content-inner -->
-                    </div><!-- card-content -->
-                    
-                  </div><!--card -->
-                  </template>
-				  </script>
     <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
-    <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
     <script type='text/javascript' src='mobile.js' charset='utf-8'></script>
-    
 	
     <script>
 

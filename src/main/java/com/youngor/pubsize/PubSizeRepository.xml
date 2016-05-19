@@ -103,7 +103,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select distinct a.* from ord_pub_size a
     	where 
     	a.sizety='PRDSZTY' and a.szbrad=#{szbrad} and a.szclno=#{szclno} and a.sizest=1
-    	and exists (select 1 from ord_sample_design c,ord_sample_plan d where c.plspno=d.plspno  and a.sizeno=c.sizegp and d.ormtno=#{ormtno})
+    	and exists (select 1 from ord_sample_design c,ord_sample_plan d,ord_sample_design_sizegp e where c.sampno=e.sampno and c.plspno=d.plspno  and a.sizeno=e.sizegp and d.ormtno=#{ormtno})
     	order by a.sizeso
     </select> 
 </mapper>

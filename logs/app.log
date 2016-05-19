@@ -11962,3 +11962,432 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 11:51:21.976 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 11:52:06.197 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdmtScde@7e83765b
 12:23:46.816 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:16:18.940 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:17:28.010 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.permission.UserController.mobile_login(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:17:28.010 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+13:17:28.010 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:17:28.011 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:17:28.011 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:18:15.574 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.permission.UserController.mobile_login(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:18:15.574 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+13:18:15.574 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:18:15.574 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:18:15.574 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:19:48.278 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.permission.UserController.mobile_login(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:19:48.278 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [java.lang.Exception]
+13:19:48.278 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:19:48.278 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:19:48.278 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该用户未加入组织单元，不能进行订货!
+13:24:34.372 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:31:28.656 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@7e0c0813
+13:42:13.766 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@38f82724
+14:53:17.957 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:58:52.412 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.SampleDesignVO com.youngor.order.OrdController.querySample(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'sampnm' not found. Available parameters are [sampno, ormtno, param1, param2]
+14:58:52.413 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+14:58:52.413 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+14:58:52.413 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+14:58:52.413 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'sampnm' not found. Available parameters are [sampno, ormtno, param1, param2]
+15:00:43.728 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:02:13.151 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:09:48.894 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@771cab97
+16:09:49.585 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@4470e876
+16:09:50.513 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@5d992dc7
+16:09:52.922 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@3238577c
+16:09:57.136 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@1b139ab1
+16:09:57.137 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@34790dae
+16:10:01.464 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@5dfea0a5
+16:10:01.464 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@64c29f80
+16:10:03.736 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@39df2155
+16:10:03.736 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@54436dae
+16:10:04.432 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@33c4c8a7
+16:10:04.433 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@5a7dcb5b
+16:10:04.987 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@630bf77
+16:10:04.988 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@6c1e3721
+16:10:05.832 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@31f0160b
+16:10:05.833 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@57db7d23
+16:10:47.026 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@269a8076
+16:10:47.026 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@8239aac
+16:10:47.558 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@683008d7
+16:10:47.559 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2f3679ca
+16:10:48.085 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@46970029
+16:10:48.086 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@149a861b
+16:10:48.759 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@1202178
+16:10:48.759 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@582845d2
+16:10:49.190 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@2d3c596d
+16:10:49.702 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@3c072510
+16:10:50.271 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@22af35c7
+16:10:51.108 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@35b795e9
+16:10:51.664 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@4005208b
+16:10:51.664 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@c8d0637
+16:10:52.218 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@b34ed59
+16:10:52.218 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@511849b1
+16:10:52.929 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@3be42e77
+16:10:52.930 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@8268976
+16:31:10.879 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:31:56.203 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:35:11.264 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:35:43.115 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:39:27.342 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:41:32.985 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:43:21.499 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:46:31.532 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:48:01.568 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:26:13.585 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:26:37.032 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:47:16.781 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@31299206
+17:47:17.081 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:47:17.083 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+17:47:17.083 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:47:17.083 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:47:17.083 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:52:08.825 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:52:30.351 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:53:42.416 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@481b7ca0
+17:53:42.516 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:53:42.516 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+17:53:42.516 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:53:42.516 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:53:42.517 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:06:19.293 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@6b799fc1
+18:06:19.403 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.create(com.youngor.sample.SampleColth)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:06:19.403 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+18:06:19.403 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:06:19.403 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:06:19.403 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:08:11.344 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@15a5b7c8
+18:08:11.382 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.create(com.youngor.sample.SampleColth)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:08:11.382 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+18:08:11.382 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:08:11.382 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:08:11.382 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:09:17.508 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@6f6b42b0
+18:09:17.566 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@3c08d979
+18:09:17.680 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.create(com.youngor.sample.SampleColth)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:09:17.680 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+18:09:17.680 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:09:17.680 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:09:17.680 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:10:45.894 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@647057d3
+18:10:46.041 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@4dea730b
+18:10:46.056 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@3161e8a1
+18:10:46.064 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@1e506f5
+18:11:05.697 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@7c9a35ca
+18:11:05.744 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.create(com.youngor.sample.SampleColth)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:11:05.744 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+18:11:05.744 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:11:05.744 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:11:05.744 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:13:40.620 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleColth@2b6d169b
+18:13:40.620 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@2b6d169b
+18:13:40.629 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@6624cac6
+18:13:40.634 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@76c9a2c
+18:13:40.640 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@39d3ec40
+18:15:53.533 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@f3c3781
+18:16:09.034 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@8e37445
+18:18:02.934 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@5f78e545
+18:18:31.742 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@2029050
+18:18:49.474 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@6a033061
+18:21:44.912 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@557ee098
+18:21:44.912 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@557ee098
+18:27:38.016 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:29:08.904 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:45:11.709 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:46:37.588 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:39:57.365 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:44:50.339 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:48:28.063 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:31:16.878 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:31:58.048 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:41:22.577 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@41f3d7a4
+10:44:38.949 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:45:53.997 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@10f0492e
+10:45:55.400 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@2569df0f
+10:46:15.720 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@76d6c04
+10:46:17.319 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@160f98ed
+10:46:23.375 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@1e9cdc61
+10:50:00.601 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.sample.SampleDesignSizegp> com.youngor.sample.SampleDesignSizegpController.queryAll(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp                and b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:50:00.606 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:50:00.606 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:50:00.607 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:50:00.607 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp                and b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:50:50.912 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.sample.SampleDesignSizegp> com.youngor.sample.SampleDesignSizegpController.queryAll(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp b                b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:50:50.912 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:50:50.912 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:50:50.912 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:50:50.912 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp b                b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:51:30.867 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.sample.SampleDesignSizegp> com.youngor.sample.SampleDesignSizegpController.queryAll(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp b                b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+10:51:30.867 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+10:51:30.867 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:51:30.868 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:51:30.868 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/sample/SampleDesignSizegpRepository.xml
+### The error may involve com.youngor.sample.SampleDesignSizegpRepository.querySampleDesignSizegp_T00-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  *       FROM ord_sample_design_sizegp b                b.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+11:42:48.008 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:11:21.245 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:11:54.373 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:13:25.233 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@5ef9e251
+12:14:17.186 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3c8a9dc6
+12:28:59.752 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:30:45.707 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePlan@72a2a2e4
+12:39:10.762 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:43:56.258 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSize@48e899a0
+12:44:03.367 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@6df125ff
+12:44:04.679 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@353ab583
+12:44:06.042 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@1f960d6c
+12:44:20.001 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@358d9927
+12:44:20.840 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@7735ba53
+12:44:26.850 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@503d84b6
+12:45:57.188 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@7f28d5ce
+12:45:57.189 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@7f28d5ce
+12:45:57.263 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+12:45:57.263 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+12:45:57.263 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:45:57.263 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:45:57.263 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+12:46:42.863 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@2a67c5b0
+12:46:42.864 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@2a67c5b0
+12:46:43.147 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3485e2d4
+12:46:43.154 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3b53fd53
+12:46:43.160 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6d9a188e
+12:46:43.165 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@367eae85
+13:04:37.826 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@1971110a
+13:04:37.831 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@168c7712
+13:04:37.835 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@61696af
+13:04:37.838 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@32d637e0
+13:09:26.783 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeVO> com.youngor.pubsize.PubSizeController.queryPRDSZTY4Ordmt(java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve com.youngor.pubsize.PubSizeRepository.queryPRDSZTY4Ordmt-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_size a      where       a.sizety='PRDSZTY' and a.szbrad=? and a.szclno=? and a.sizest=1      and exists (select 1 from ord_sample_design c,ord_sample_plan d,ord_sample_design_sizegp e where c.sampno=e.samno and c.plspno=d.plspno  and a.sizeno=e.sizegp and d.ormtno=?)      order by a.sizeso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+13:09:26.784 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+13:09:26.784 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+13:09:26.784 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+13:09:26.784 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+### The error may exist in com/youngor/pubsize/PubSizeRepository.xml
+### The error may involve com.youngor.pubsize.PubSizeRepository.queryPRDSZTY4Ordmt-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_size a      where       a.sizety='PRDSZTY' and a.szbrad=? and a.szclno=? and a.sizest=1      and exists (select 1 from ord_sample_design c,ord_sample_plan d,ord_sample_design_sizegp e where c.sampno=e.samno and c.plspno=d.plspno  and a.sizeno=e.sizegp and d.ormtno=?)      order by a.sizeso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "E"."SAMNO": invalid identifier
+
+13:09:52.601 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@73458314
+13:09:53.182 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@71aacbf1
+13:09:53.916 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@54e39df1
+13:09:54.442 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@18dc70b7
+13:09:56.217 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@b85bf82
+13:10:03.768 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@41929685
+13:10:04.475 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@66000284
+13:10:05.088 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@73386d1a
+13:10:06.824 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@55cdda90
+15:50:19.989 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:50:48.540 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
+15:50:48.541 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+15:50:48.541 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:50:48.542 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:50:48.542 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
+15:53:03.188 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: java.lang.NullPointerException
+15:53:03.188 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+15:53:03.188 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:03.188 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:03.188 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:32:10.401 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+18:26:02.191 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+18:31:12.818 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:38:36.294 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:39:29.608 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@5eddd2cb
+18:39:29.614 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@4f8ed6bd
+18:39:29.617 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@23d6bd75
+18:39:29.695 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.update(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:39:29.700 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+18:39:29.700 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+18:39:29.700 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+18:39:29.700 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:40:11.578 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:44:05.856 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@42cea0b9
+18:44:05.860 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@78007e2c
+18:44:05.864 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@446afad3
+14:47:04.887 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:08:34.562 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:08:34.563 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:08:34.563 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:08:34.563 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:08:34.563 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:10:43.056 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:11:35.409 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:13:41.104 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:13:41.105 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:13:41.105 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:13:41.105 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:13:41.106 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:15:01.756 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:15:28.831 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:15:28.832 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:15:28.832 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:15:28.833 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:15:28.833 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySample-Inline
+### The error occurred while setting parameters
+### SQL: select a.plspno,a.plspnm,b.sampno,b.sampnm,       b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,       a。spclno,a.sptyno,b.sexno,b.suitty,b.spltmk          from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno and b.sampnm=? and a.ormtno=?       and b.sampst=1 and a.plstat=1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+15:31:54.985 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:38:25.341 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'ordorg' in 'class com.youngor.order.SampleVO'
+15:38:25.342 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+15:38:25.343 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:38:25.343 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:38:25.343 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'ordorg' in 'class com.youngor.order.SampleVO'
+15:40:46.881 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:42:01.338 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:48:51.666 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'bradno' in 'class com.youngor.order.SampleVO'
+15:48:51.666 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.mybatis.spring.MyBatisSystemException], based on exception mapping [java.lang.Exception]
+15:48:51.666 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:48:51.666 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:48:51.667 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'bradno' in 'class com.youngor.order.SampleVO'
+15:52:12.220 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:53:15.339 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySuitVO_T00-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,nvl(b.szrate,1) szrate from (         SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c          where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'        and  c.sampno=?        and a.sizety='STDSZ' and b.sizety='STDSZ'        ) a left join (       select * from    ORD_ORD_SZRT             where ormtno=? and ordorg=? and bradno=? and spclno=? and spseno=? and versno=?              and sizety='STDSZ'      ) b      where a.sizegp=b.sizegp
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+
+15:53:15.340 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+15:53:15.340 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+15:53:15.340 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+15:53:15.341 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.querySuitVO_T00-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,nvl(b.szrate,1) szrate from (         SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c          where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'        and  c.sampno=?        and a.sizety='STDSZ' and b.sizety='STDSZ'        ) a left join (       select * from    ORD_ORD_SZRT             where ormtno=? and ordorg=? and bradno=? and spclno=? and spseno=? and versno=?              and sizety='STDSZ'      ) b      where a.sizegp=b.sizegp
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00905: missing keyword
+

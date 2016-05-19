@@ -23,9 +23,10 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 
 	@Autowired
 	private SampleDesignRepository sampleDesignRepository;
-	
 	@Autowired
-	private SampleDesignStprRepository sampleDesignStprRepository;
+	private SampleDesignSizegpRepository sampleDesignSizegpRepository;
+	
+	
 	
 	@Override
 	public SampleDesignRepository getRepository() {
@@ -40,24 +41,26 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 	
 	@Override
-	public String create(SampleDesign samplePlan) {
-		String id=super.create(samplePlan);
-		if(samplePlan.getSampleDesignStpres()!=null){
-			for(SampleDesignStpr samplePlanStpr:samplePlan.getSampleDesignStpres()){
-				samplePlanStpr.setSampno(samplePlan.getSampno());
-				sampleDesignStprRepository.create(samplePlanStpr);
+	public String create(SampleDesign sampleDesign) {
+		super.delete(sampleDesign);
+		sampleDesign.setSampst(1);
+		String id=super.create(sampleDesign);
+		if(sampleDesign.getSampleDesignSizegpes()!=null){
+			for(SampleDesignSizegp sampleDesignSizegp:sampleDesign.getSampleDesignSizegpes()){
+				sampleDesignSizegp.setSampno(sampleDesign.getSampno());
+				sampleDesignSizegpRepository.create(sampleDesignSizegp);
 			}
 		}
 		return id;
 	}
 	@Override
-	public  void update(SampleDesign samplePlan) {
-		super.update(samplePlan);
-		sampleDesignStprRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, samplePlan.getSampno()));
-		if(samplePlan.getSampleDesignStpres()!=null){
-			for(SampleDesignStpr samplePlanStpr:samplePlan.getSampleDesignStpres()){
-				samplePlanStpr.setSampno(samplePlan.getSampno());
-				sampleDesignStprRepository.create(samplePlanStpr);
+	public  void update(SampleDesign sampleDesign) {
+		super.update(sampleDesign);
+		sampleDesignSizegpRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, sampleDesign.getSampno()));
+		if(sampleDesign.getSampleDesignSizegpes()!=null){
+			for(SampleDesignSizegp sampleDesignSizegp:sampleDesign.getSampleDesignSizegpes()){
+				sampleDesignSizegp.setSampno(sampleDesign.getSampno());
+				sampleDesignSizegpRepository.create(sampleDesignSizegp);
 			}
 		}
 	}

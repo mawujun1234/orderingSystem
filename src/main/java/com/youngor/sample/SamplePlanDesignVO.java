@@ -9,6 +9,7 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 
 	private String sampno;//设计样衣id
 	private String sampnm;//设计样衣编码
+	private String suitty;//套装种类
 	
 	private Integer spstat;//设计锁定状态
 	private Integer matest;//面料信息锁定状态
@@ -44,5 +45,11 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	}
 	public void setSpstat(Integer spstat) {
 		this.spstat = spstat;
+	}
+	public String getSuitty() {
+		return suitty;
+	}
+	public void setSuitty(String suitty) {
+		this.suitty = suitty;
 	}
 }

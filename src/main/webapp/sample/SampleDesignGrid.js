@@ -132,7 +132,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 				url:Ext.ContextPath+'/sampleDesign/queryPlanDesign.do',
 				reader:{
 					type:'json',
-					root:'root',
+					rootProperty:'root',
 					successProperty:'success',
 					totalProperty:'total'		
 				}
@@ -453,6 +453,23 @@ Ext.define('y.sample.SampleDesignGrid',{
 			sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 		
 			win.hide();
+			
+			var sampleDesignSizegpGrid=tabpanel.down("form#sampleDesignForm").down("grid#sampleDesignSizegpGrid");
+			sampleDesignSizegpGrid.reloadEditor(record.get("bradno"),record.get("spclno"));
+			if(record.get("sptyno")=='S10'){
+				//me.showsampleDesignSizegpGrid_bool=true;
+				sampleDesignForm.showsampleDesignSizegpGrid(true);
+			} else {
+				//me.showsampleDesignSizegpGrid_bool=false;
+				sampleDesignForm.showsampleDesignSizegpGrid(false);
+			}
+//			var sampleDesignSizegpGrid_store=sampleDesignSizegpGrid.getStore();
+//			sampleDesignSizegpGrid_store.removeAll();
+//			sampleDesignSizegpGrid_store.getProxy().extraParams={
+//				suitty:record.get("suitty"),
+//				sampno:window.sampno.sampno
+//			};
+//			sampleDesignSizegpGrid_store.reload();
 			
 //			var tabpanel=me.nextSibling("tabpanel");
 //			newCard.getItemId()

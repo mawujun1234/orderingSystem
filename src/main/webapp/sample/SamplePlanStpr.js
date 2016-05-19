@@ -24,7 +24,7 @@ Ext.define("y.sample.SamplePlanStpr",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
+import com.youngor.order.OrdService;
 import com.youngor.utils.M;
 import com.youngor.utils.SignUtil;
 /**
@@ -40,6 +42,8 @@ public class UserController {
 
 	@Resource
 	private UserService userService;
+	@Resource
+	private OrdService ordService;
 
 
 	@RequestMapping("/user/login.do")
@@ -108,6 +112,17 @@ public class UserController {
             error = "认证失败，账号不存在!";  
             e.printStackTrace();
         }  
+		
+		//显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
+        SecurityUtils.getSubject().hasRole("XXX") ;
+		
+		//创建订单主表
+		try {
+			ordService.create();
+		 } catch (BusinessException e) {  
+	        error = e.getMessage();  
+	     }
+        
         if(error != null) {//出错了，返回登录页面  
         	model.put("msg", error);
         	model.put("success", false);
@@ -125,6 +140,8 @@ public class UserController {
              wxConfig.put("timestamp", SignUtil.timestamp);
              //wxConfig.put("jsApiList", new String[]{"scanQRCode"});
              model.put("wxConfig", wxConfig);
+             
+             
         }  
 		return model;
 	}

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
+import com.youngor.org.Org;
 import com.youngor.org.OrgRepository;
 import com.youngor.org.PositionOrgAccessRepository;
 import com.youngor.org.PositionOrgUser;
@@ -107,8 +108,9 @@ public class UserService extends AbstractService<User, String> {
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param userVO
 	 */
-	public void queryOrgPermission(UserVO userVO) {
+	public List<Org> queryCurrentOrg(String user_id) {
 		//获取用户当前所属的组织单元
+		return userRepository.queryCurrentOrg(user_id);
 		
 	}
 }

@@ -6,6 +6,7 @@ import com.mawujun.controller.spring.SpringContextHolder;
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.ordmt.Ordmt;
+import com.youngor.ordmt.OrdmtController;
 import com.youngor.ordmt.OrdmtService;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
@@ -31,8 +32,8 @@ public class ContextUtils {
 	 * @return
 	 */
 	public static Ordmt getFirstOrdmt(){
-		OrdmtService ordmtService=SpringContextHolder.getBean(OrdmtService.class);
-		List<Ordmt> ordmtes=ordmtService.query(Cnd.select().asc(M.Ordmt.ormtno));
+		OrdmtController ordmtService=SpringContextHolder.getBean(OrdmtController.class);
+		List<Ordmt> ordmtes=ordmtService.query4Combo();
 		return ordmtes.get(0);
 		
 	}

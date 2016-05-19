@@ -24,7 +24,7 @@ Ext.define("y.pubsize.OrdSzrt",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

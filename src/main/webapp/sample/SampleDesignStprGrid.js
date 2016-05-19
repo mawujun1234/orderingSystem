@@ -81,42 +81,7 @@ Ext.define('y.sample.SampleDesignStprGrid',{
 	  me.dockedItems=[];
 
 	  
-//	  me.dockedItems.push({
-//	  		xtype: 'toolbar',
-//	  		dock:'top',
-//		  	items:[{
-//				text: '新增',
-//				itemId:'create',
-//				handler: function(btn){
-//					me.onCreate();
-//				},
-//				iconCls: 'icon-plus'
-//			},{
-//			    text: '更新',
-//			    itemId:'update',
-//			    handler: function(){
-//			    	me.onUpdate();
-//					
-//			    },
-//			    iconCls: 'icon-edit'
-//			},{
-//			    text: '删除',
-//			    itemId:'destroy',
-//			    handler: function(){
-//			    	me.onDelete();    
-//			    },
-//			    iconCls: 'icon-trash'
-//			},{
-//				text: '刷新',
-//				itemId:'reload',
-//				disabled:me.disabledAction,
-//				handler: function(btn){
-//					var grid=btn.up("grid");
-//					grid.getStore().reload();
-//				},
-//				iconCls: 'icon-refresh'
-//			}]
-//		});
+
 
 	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
             clicksToEdit : 1 ,

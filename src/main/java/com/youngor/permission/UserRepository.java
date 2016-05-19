@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
 import com.mawujun.utils.page.Pager;
+import com.youngor.org.Org;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -22,5 +23,8 @@ public interface UserRepository extends IRepository<User, String>{
 	 
 	 
 	 public List<User> querySjs(String positionType_id);
+	 
+	 
+	 public List<Org> queryCurrentOrg(@Param("user_id")String user_id);
 
 }

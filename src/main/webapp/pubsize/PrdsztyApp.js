@@ -1,6 +1,9 @@
 Ext.require("y.pubsize.PubSize");
 Ext.require("y.pubsize.PrdpGrid");
 Ext.require("y.pubsize.PrdpForm");
+Ext.require('y.pubsize.PrdsztyPrdpkGrid');
+Ext.require('y.pubsize.PrdsztyStdszGrid');
+Ext.require('y.pubsize.PrdsztyGrid');
 Ext.onReady(function(){
 	var grid=Ext.create('y.pubsize.PrdsztyGrid',{
 		region:'center'

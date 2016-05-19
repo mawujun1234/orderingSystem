@@ -19,7 +19,7 @@ Ext.define("y.sample.SampleDesign",{
 		{name:'slveno',type:'string'},
 		{name:'suitty',type:'string'},
 		{name:'desp',type:'string'},
-		{name:'sizegp',type:'string'},
+		//{name:'sizegp',type:'string'},
 		{name:'packqt',type:'int'},
 		{name:'spltmk',type:'int'},
 		{name:'print',type:'int'},

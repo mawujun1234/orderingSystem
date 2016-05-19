@@ -23,7 +23,7 @@ Ext.define("y.sample.SampleDesignStpr",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

@@ -55,5 +55,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		select a.* from t_user a,t_position_org_user b,t_position c
 		where a.id=b.user_id and b.position_id=c.id and c.positiontype_id=#{positionType_id}
 	</select>
+	
+	<!-- 查询当前用户所属的组织的安远-->
+	<select id="queryCurrentOrg" resultType="com.youngor.org.Org" parameterType="string">
+    	select b.* from t_position_org_user a,t_org b
+    	where a.org_orgno=b.orgno and a.user_id=#{user_id}
+    </select> 
 </mapper>
 

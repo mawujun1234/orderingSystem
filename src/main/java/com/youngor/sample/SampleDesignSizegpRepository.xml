@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleDesignSizegpRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage" resultType="com.youngor.sample.SampleDesignSizegp" parameterType="map">
+    	select * from ord_sample_design_sizegp
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(a.id)
+		from ord_sample_design_sizegp a
+    </select>
+    
+    
+     <select id="querySampleDesignSizegp_T00" resultType="com.youngor.sample.SampleDesignSizegp" parameterType="map">
+    	SELECT  *
+    	 FROM ord_sample_design_sizegp b
+    	 <where>
+        <if test="sampno!=null and sampno!=''">
+		 	 b.sampno=#{sampno}
+		</if>
+		</where>
+		 
+    </select>
+    <select id="querySampleDesignSizegp" resultType="com.youngor.sample.SampleDesignSizegp" parameterType="map">
+    	SELECT    a.ditno as suitno,'${sampno}' as sampno,b.sizegp
+    	 FROM ORD_CODE_DC a 
+        left join ord_sample_design_sizegp b on a.ditno=b.suitno 
+        <if test="sampno!=null and sampno!=''">
+		 	 and b.sampno=#{sampno}
+		</if>
+		<if test="sampno==null or sampno==''">
+		 	 and b.sampno='111'
+		</if>
+		where  a.DTYNO='3' and a.TYNO='20'
+		 AND a.itno=#{suitty} 
+		 order by a.ditno
+		 
+    </select>
+</mapper>
+

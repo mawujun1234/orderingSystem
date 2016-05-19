@@ -174,6 +174,23 @@ Ext.define('y.sample.SampleColthForm',{
 	  ];   
 	  
 	  
+	   var sampleDesignStprGrid=Ext.create('y.sample.SampleDesignStprGrid',{
+	  	itemId:'sampleDesignStprGrid'
+	  });
+	  var fieldset={
+        // Fieldset in Column 1 - collapsible via toggle button
+        xtype:'fieldset',
+        //columnWidth: 0.5,
+        title: '套件价格',
+        collapsible: true,
+        //defaultType: 'textfield',
+        defaults: {anchor: '100%'},
+        layout: 'anchor',
+        items :[sampleDesignStprGrid]
+      }
+	  me.items.push(fieldset);
+	  
+	  
 	  this.buttons = [];
 		this.buttons.push({
 			text : '保存',
@@ -190,13 +207,33 @@ Ext.define('y.sample.SampleColthForm',{
 		    	
 				var formpanel = button.up('form');
 				formpanel.updateRecord();
-				formpanel.getForm().getRecord().set("sampno",window.sampno.sampno);
-				formpanel.getForm().getRecord().save({
-					failure: function(record, operation) {
-				    },
-				    success: function(record, operation) {
+				//formpanel.getForm().getRecord().set("sampno",window.sampno.sampno);
+				
+				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();		
+				var aa=[];
+				for(var i=0;i<sampleDesignStpres.length;i++){
+					aa.push({
+						//sampno:sampleDesignStpres[i].get("getSampno"),
+						suitno:sampleDesignStpres[i].get("suitno"),
+						spftpr:sampleDesignStpres[i].get("spftpr"),
+						sprtpr:sampleDesignStpres[i].get("sprtpr"),
+						plctpr:sampleDesignStpres[i].get("plctpr")
+					});
+				}
+				var jsonData=formpanel.getForm().getFieldValues();
+				//alert(jsonData.ctdwdt);
+				jsonData.ctdwdt=Ext.Date.format(jsonData.ctdwdt,'Y-m-d H:i:s');
+				jsonData.sampno=window.sampno.sampno;
+				jsonData.sampleDesignStpres=aa;
+				
+				Ext.Ajax.request({
+					url:Ext.ContextPath+"/sampleColth/create.do",
+					actionMethods: { read: 'POST' },
+					timeout :600000,
+					headers:{ 'Accept':'application/json;'},
+					jsonData:jsonData,
+					success:function(response){
 						Ext.Msg.alert("消息","保存成功!");
-						
 						//如果是锁定状态，就隐藏这个按钮
 						//hidden:!Permision.canShow('sample_design_designsave'),
 						if(sampleDesign.get("spctst")==1){
@@ -204,8 +241,26 @@ Ext.define('y.sample.SampleColthForm',{
 						} else if(Permision.canShow('sample_design_designsave')){
 							me.down("#save").show();
 						}
-				    }
-				});			
+					}
+					
+				});
+				
+				
+//				formpanel.getForm().getRecord().save({
+//					failure: function(record, operation) {
+//				    },
+//				    success: function(record, operation) {
+//						Ext.Msg.alert("消息","保存成功!");
+//						
+//						//如果是锁定状态，就隐藏这个按钮
+//						//hidden:!Permision.canShow('sample_design_designsave'),
+//						if(sampleDesign.get("spctst")==1){
+//							me.down("#save").hide();		
+//						} else if(Permision.canShow('sample_design_designsave')){
+//							me.down("#save").show();
+//						}
+//				    }
+//				});			
 				
 				}
 			});
@@ -236,5 +291,23 @@ Ext.define('y.sample.SampleColthForm',{
 		spctpr.setValue(value);
 
 
+	},
+	loadRecord:function(record){
+		var me=this;				
+		this.getForm().loadRecord(record);
+	},
+	loadGrid:function(sampleDesign){
+		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
+		sampleDesignStprGrid_store.removeAll();
+		sampleDesignStprGrid_store.getProxy().extraParams={
+			suitty:sampleDesign.get("suitty"),
+			sampno:sampleDesign.get("sampno")//window.sampno.sampno
+		};
+		sampleDesignStprGrid_store.reload();
+	},
+	reset:function(){
+		this.getForm().reset();
+		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();
+		sampleDesignStprGrid_store.removeAll();
 	}
 });

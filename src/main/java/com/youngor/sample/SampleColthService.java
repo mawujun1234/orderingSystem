@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.youngor.utils.M;
 
 
 /**
@@ -20,12 +22,39 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 
 	@Autowired
 	private SampleColthRepository sampleColthRepository;
+	@Autowired
+	private SampleDesignStprRepository sampleDesignStprRepository;
 	
 	@Override
 	public SampleColthRepository getRepository() {
 		return sampleColthRepository;
 	}
 
+	
+	@Override
+	public String create(SampleColth sampleColth) {
+		super.delete(sampleColth);
+		String id=super.create(sampleColth);
+		sampleDesignStprRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, sampleColth.getSampno()));
+		if(sampleColth.getSampleDesignStpres()!=null){
+			for(SampleDesignStpr samplePlanStpr:sampleColth.getSampleDesignStpres()){
+				samplePlanStpr.setSampno(sampleColth.getSampno());
+				sampleDesignStprRepository.create(samplePlanStpr);
+			}
+		}
+		return id;
+	}
+//	@Override
+//	public  void update(SampleColth sampleColth) {
+//		super.update(sampleColth);
+//		sampleDesignStprRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, sampleColth.getSampno()));
+//		if(sampleColth.getSampleDesignStpres()!=null){
+//			for(SampleDesignStpr samplePlanStpr:sampleColth.getSampleDesignStpres()){
+//				samplePlanStpr.setSampno(sampleColth.getSampno());
+//				sampleDesignStprRepository.create(samplePlanStpr);
+//			}
+//		}
+//	}
 	
 	public void lock(Map<String,Object> params) {
 		sampleColthRepository.lock(params);
