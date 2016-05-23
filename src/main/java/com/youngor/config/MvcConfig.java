@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mawujun.controller.spring.SpringContextHolder;
 import com.mawujun.controller.spring.mvc.DateConverter;
 import com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver;
+import com.mawujun.exception.BusinessException;
 
 
 @Configuration
@@ -115,6 +116,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 //        viewname="404_error";
 //        simpleMappingExceptionResolver.addStatusCode(viewname, 404);
 //        simpleMappingExceptionResolver.addErrorMsg(viewname, "找不到指定页面"); 
+        viewname="common_error";
+        properties.setProperty(BusinessException.class.getName(), viewname);
+        simpleMappingExceptionResolver.addStatusCode(viewname, 503);
+        simpleMappingExceptionResolver.addErrorMsg(BusinessException.class, "业务异常");
         
         viewname="common_error";
         properties.setProperty(ConstraintViolationException.class.getName(), viewname);

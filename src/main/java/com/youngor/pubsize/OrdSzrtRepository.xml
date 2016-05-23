@@ -22,9 +22,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        order by b.sizeso
     </select> 
     
-    <!-- 从订货样衣表中获取版型和系列的初始数据-->
+    <!-- 从订货样衣表中获取版型和系列的初始数据,界面的格式-->
     <select id="querySzrtData_a" resultType="map" parameterType="map">
-    	select a.ormtno,'${ordorg}' as ordorg,'${sizegp}' as sizegp,a.bradno,a.spclno,a.spseno,b.versno
+    	select distinct a.ormtno,'${ordorg}' as ordorg,'${sizegp}' as sizegp,a.bradno,a.spclno,a.spseno,b.versno
         from ord_sample_plan a,ord_sample_design b
         where a.plspno=b.plspno and  a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
         	<if test="spseno!=null and spseno!=''">

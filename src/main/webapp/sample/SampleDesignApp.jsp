@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.List,com.youngor.permission.Menu,com.youngor.permission.MenuService,com.mawujun.controller.spring.SpringContextHolder;" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.List,com.youngor.permission.Menu,com.youngor.permission.MenuService,com.mawujun.controller.spring.SpringContextHolder" pageEncoding="UTF-8"%>
 <%
 String contextPath = request.getContextPath();
 //String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

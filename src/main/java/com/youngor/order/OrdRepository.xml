@@ -26,8 +26,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	     b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,
 	     a.spclno,a.sptyno,a.bradno,b.sexno,b.suitty,b.spltmk   
 	     from ord_sample_plan a,ord_sample_design b
-	     where a.plspno=b.plspno and b.sampnm=#{sampnm} and a.ormtno=#{ormtno}
+	     where a.plspno=b.plspno and lower(b.sampnm)=lower(#{sampnm}) and a.ormtno=#{ormtno}
 	     and b.sampst=1 and a.plstat=1
+     </select>
+     <select id="querySampleDesignStpr" resultType="com.youngor.sample.SampleDesignStpr" parameterType="map">
+     	 select a.* from ord_sample_design_stpr a
+     	 where  a.sampno=#{sampno}
      </select>
      
      
@@ -35,17 +39,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         <id column="suitno" property="suitno"/>  
         <result column="spftpr" property="spftpr"/> 
         <result column="sprtpr" property="sprtpr"/> 
+        <result column="sampno" property="sampno"/> 
         <collection property="sizeVOs" ofType="com.youngor.order.SizeVO">  
             <id column="sizeno" property="sizeno"/>  
+            <result column="sizety" property="sizety"/>
             <result column="sizenm" property="sizenm"/>  
             <result column="szrate" property="szrate"/> 
+            <result column="orszqt" property="orszqt"/> 
         </collection>  
           
     </resultMap>  
      <!--查询不是套西之外的小类，即表中套中拥有的规格 -->
      <select id="querySuitVO_T00" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,1) szrate from (
-     	  SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+     	select a.*,nvl(b.szrate,1) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
@@ -55,12 +62,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
              and sizety='STDSZ'
 	    ) b
 	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+	    left join (<!-- 获取已经定了的数量-->
+	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
+	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    order by a.sizeno
      </select>
      
      <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
      <select id="querySuitVO" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,1) szrate from (
-     	  SELECT c.suitno,c.sizegp,a.sizeno,a.sizenm FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+     	select a.*,nvl(b.szrate,1) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
@@ -73,6 +84,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
              and sizety='STDSZ'
 	    ) b
 	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+	    left join (<!-- 获取已经定了的数量-->
+	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
+	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    order by a.sizeno
      </select>
+     <!-- 移动端进行清零按钮的时候 -->
+     <delete id="clearOrddtl" parameterType="map">
+     	delete ord_orddtl where mtorno=#{mtorno} and sampno=#{sampno}
+     </delete>
+     <delete id="clearOrdszdtl" parameterType="map">
+     	delete ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno}
+     </delete>
 </mapper>
 

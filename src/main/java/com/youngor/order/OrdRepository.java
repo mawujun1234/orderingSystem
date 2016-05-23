@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
+import com.youngor.sample.SampleDesignStpr;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -16,6 +17,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public Ord haveOrd(Ord ord);
 	
 	public SampleVO querySample(@Param("sampnm")String sampnm,@Param("ormtno")String ormtno);
+	public List<SampleDesignStpr> querySampleDesignStpr(@Param("sampno")String sampno);
 	
 	public List<SuitVO> querySuitVO_T00(SampleVO sampleVO);
 	
@@ -32,5 +34,8 @@ public interface OrdRepository extends IRepository<Ord, String>{
 //	public List<SuitVO> querySuitVO(@Param("sampno")String sampno,
 //			@Param("sptyno")String sptyno,@Param("sexno")String sexno,@Param("suitty")String suitty,@Param("spltmk")Integer spltmk);
 	public List<SuitVO> querySuitVO(SampleVO sampleVO);
+	
+	public void clearOrddtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
+	public void clearOrdszdtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
 
 }

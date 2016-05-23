@@ -1,8 +1,10 @@
 package com.youngor.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.youngor.pubcode.PubCodeCache;
+import com.youngor.sample.SampleDesignStpr;
 
 public class SampleVO {
 
@@ -26,15 +28,25 @@ public class SampleVO {
 	private String spclno;//大类
 	private String sptyno;//小类
 	private String bradno;//品牌
-	private String sexno;//性别
+	private String sexno;//性别  Z0：男  Z1：女
 	private String suitty;//套装种类
-	private Integer spltmk;//是否拆套
+	private Integer spltmk;//是否拆套 1：拆套；0：不拆套
 	
 	
 	private String ormtno;//订货会编号
 	private String ordorg;//订货单位
+	private String mtorno;//订单号
 	
 	//private List<SuitVO> suitVOs;
+	
+	private List<SampleDesignStpr> suitStpres=new ArrayList<SampleDesignStpr>();//各个套件的价格
+	public Boolean getShowSuitStpres(){
+		if(suitStpres==null || suitStpres.size()==0){
+			return false;
+		} else {
+			return true;
+		}
+	}
 	
 	
 	public String getVersno_name() {
@@ -177,6 +189,22 @@ public class SampleVO {
 	}
 	public void setBradno(String bradno) {
 		this.bradno = bradno;
+	}
+	public String getMtorno() {
+		return mtorno;
+	}
+	public void setMtorno(String mtorno) {
+		this.mtorno = mtorno;
+	}
+
+
+	public List<SampleDesignStpr> getSuitStpres() {
+		return suitStpres;
+	}
+
+
+	public void setSuitStpres(List<SampleDesignStpr> suitStpres) {
+		this.suitStpres = suitStpres;
 	}
 
 }

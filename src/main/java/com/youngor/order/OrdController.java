@@ -1,19 +1,12 @@
 package com.youngor.order;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.mawujun.repository.cnd.Cnd;
-import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
-
-import com.youngor.order.Ord;
-import com.youngor.order.OrdService;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -33,10 +26,31 @@ public class OrdController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/ord/querySample.do")
+	@RequestMapping("/ord/mobile/querySample.do")
 	@ResponseBody
 	public Map<String,Object> querySample(String sampnm) {
 		return ordService.querySample(sampnm);
+	}
+	/**
+	 * 创建订单明细 和规格明细数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param suitVOs
+	 * @return
+	 */
+	@RequestMapping("/ord/mobile/createOrddtl.do")
+	@ResponseBody
+	public String createOrddtl(@RequestBody SuitVO[] suitVOs) {
+		//System.out.println(suitVOs.length);
+		ordService.createOrddtl(suitVOs);
+		return "success";
+	}
+	
+	@RequestMapping("/ord/mobile/clearSampno.do")
+	@ResponseBody
+	public String clearSampno(String sampno) {
+		//System.out.println(suitVOs.length);
+		ordService.clearSampno(sampno);
+		return "success";
 	}
 
 //	/**

@@ -85,7 +85,7 @@ public class SampleDesign extends BaseObject{
 	@FieldDefine(title="包装要求",sort=50,hidden=false)
 	private Integer packqt;
 	@FieldDefine(title="套西是否拆套",sort=50,hidden=false)
-	private Integer spltmk;
+	private Integer spltmk;//1：拆套；0：不拆套
 	@FieldDefine(title="吊牌打印标志",sort=50,hidden=false)
 	private Integer print;
 	@FieldDefine(title="样衣状态",sort=50,hidden=true)

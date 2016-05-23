@@ -5,17 +5,24 @@ import java.util.List;
 import com.youngor.pubcode.PubCodeCache;
 
 public class SuitVO {
+	private String sampno;
+	private String sampnm;
 	private String suitno;//套件
 	//private String suitnm;//套件名称,上衣，裤子等
+	//private String mtorno;
 	
-	private Integer ormtqs;//原始数量
+	private Integer ormtqt;//确认数量
 	
 	private Double spftpr;//出厂价
 	private Double sprtpr;//零售价
 	
 
 	
-	private List<SizeVO> sizeVOs;
+	private List<SizeVO> sizeVOs;//=new ArrayList<SizeVO>();
+	
+	public SuitVO(){
+		super();
+	}
 	/**
 	 * 套件名称,上衣，裤子等
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -23,6 +30,24 @@ public class SuitVO {
 	 */
 	public String getSuitno_name() {
 		return PubCodeCache.getSuitno_name(this.getSuitno());
+	}
+	public Integer getOrmtqt() {
+		if(sizeVOs!=null && (ormtqt==null || ormtqt==0)){
+			ormtqt= geetOrmtqt_sum();
+			return ormtqt;
+		} else {
+			//ormtqt=0;
+			return ormtqt;
+		}
+	}
+	public Integer geetOrmtqt_sum() {
+		Integer sum=0;
+		for(SizeVO sizeVO:sizeVOs){
+			if(sizeVO.getOrszqt()!=null){
+				sum+=sizeVO.getOrszqt();
+			}
+		}
+		return sum;
 	}
 	/**
 	 * 获取规格比例的总数
@@ -51,12 +76,7 @@ public class SuitVO {
 		this.suitno = suitno;
 	}
 	
-	public Integer getOrmtqs() {
-		return ormtqs;
-	}
-	public void setOrmtqs(Integer ormtqs) {
-		this.ormtqs = ormtqs;
-	}
+
 	public Double getSpftpr() {
 		return spftpr;
 	}
@@ -77,8 +97,22 @@ public class SuitVO {
 	public void setSizeVOs(List<SizeVO> sizeVOs) {
 		this.sizeVOs = sizeVOs;
 	}
+	public String getSampno() {
+		return sampno;
+	}
+	public void setSampno(String sampno) {
+		this.sampno = sampno;
+	}
 
-	
-	
+	public void setOrmtqt(Integer ormtqt) {
+		this.ormtqt = ormtqt;
+	}
+	public String getSampnm() {
+		return sampnm;
+	}
+	public void setSampnm(String sampnm) {
+		this.sampnm = sampnm;
+	}
+
 
 }

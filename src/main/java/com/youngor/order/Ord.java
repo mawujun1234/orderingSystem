@@ -3,6 +3,7 @@ package com.youngor.order;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.mawujun.generator.model.FieldDefine;
 
@@ -24,6 +25,9 @@ public class Ord {
 	@Column(length=30)
 	@FieldDefine(title="订货单位类型",sort=50,hidden=false)
 	private String channo;
+	
+	@Transient
+	private SampleVO sampleVO;//是作为临时缓存用的，保存的是当前扫描的样衣编号数据
 	
 	public String getMtorno() {
 		return mtorno;
@@ -55,5 +59,12 @@ public class Ord {
 	public void setChanno(String channo) {
 		this.channo = channo;
 	}
+	public SampleVO getSampleVO() {
+		return sampleVO;
+	}
+	public void setSampleVO(SampleVO sampleVO) {
+		this.sampleVO = sampleVO;
+	}
+
 
 }

@@ -265,3 +265,16 @@
 		display:none;
 	}
 }
+
+#od_info_unsave_tips{
+	display:none;
+	position:fixed;
+	z-index:887;
+	bottom:2.5rem;
+	text-align:center;
+	background-color:rgba(242,245,194,0.70);
+	width:100%;
+	font-weight:bold;
+	color:red;
+	font-family:"Times New Roman",Georgia,Serif;
+}

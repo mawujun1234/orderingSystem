@@ -192,6 +192,8 @@ $(function(){
 					response.wxConfig.jsApiList=['scanQRCode'];
 					wx.config(response.wxConfig);
 					//wx.hideAllNonBaseMenuItem();
+					
+					document.title = response.orgnm;
 				}
 				
 			}
@@ -203,17 +205,46 @@ $(function(){
 
 //-----------------------------------扫描样衣编号的模块
 $(function(){
+	//显示或隐藏 未保存提示框
+	window.od_info_data_issaved_bool=true;
+	function showOd_info_unsave_tips(bool){
+		window.od_info_data_issaved_bool=!bool;
+		if(bool){
+			$("#od_info_unsave_tips").show();
+		} else {
+			$("#od_info_unsave_tips").hide();	
+		}
+	}
+	//判断能否切换页面或者重新扫描，如果未保存的话
+	//返回true，表示可以进行切换
+	function od_info_data_issaved() {
+		//console.log(window.od_info_data_issaved_bool);
+		return window.od_info_data_issaved_bool;
+	}
+	
 	$("#od_info_scan_button").click(function(){
 		var val=$("#od_info_input").val();
 		if(!val){
 			return;
 		}
-		scan(val);
+		
+		if(!od_info_data_issaved()){
+			$.confirm('数据未保存！确定要进行切换吗？', function () {
+				scan(val);
+			});//$.confirm('Are you sure?', function () {
+		}//if(od_info_data_issaved()){	
+		else {
+			scan(val);
+		}
+		
 	});
 	//开始扫描某个样衣
 	function scan(sampnm){
+		showOd_info_unsave_tips(false);
+				  //$.alert('You clicked Ok button');
+		
 		$.showPreloader("正在获取样衣信息...");
-		$.post(Ext.ContextPath+"/ord/querySample.do",
+		$.post(Ext.ContextPath+"/ord/mobile/querySample.do",
 			{
 				sampnm:sampnm
 			},function(response){
@@ -223,7 +254,7 @@ $(function(){
 					return;
 				}
 				//样衣信息
-				if(window.vm_sampleVO){
+				if(window.vm_sampleVO){//alert(1);
 					window.vm_sampleVO.$data=response.sampleVO;
 				} else {
 					window.vm_sampleVO=new Vue({
@@ -242,7 +273,9 @@ $(function(){
 					  el: '#od_info_suitVOs',
 					  data:{suitVOs:response.suitVOs},//{suitvos:response.suitVOs}
 					  methods: {
-						distributeOrmtqs:function(event){
+						distributeormtqt:function(event){
+							showOd_info_unsave_tips(true);
+							
 							var vm=this;
 							var index=event.target.dataset.index;
 							var suitVO=vm.suitVOs[index];
@@ -257,14 +290,16 @@ $(function(){
 									max_szrate=sizeVOs[i].szrate;
 									max_szrate_sizeVO=sizeVOs[i];
 								}
-								sizeVOs[i].orszqt=Math.floor(suitVO.ormtqs*(sizeVOs[i].szrate/szrate_sum));
+								sizeVOs[i].orszqt=Math.floor(suitVO.ormtqt*(sizeVOs[i].szrate/szrate_sum));
 								used_orszqt+=sizeVOs[i].orszqt;
 							};
 							//把剩余的量加到比率最大的规格上
-							max_szrate_sizeVO.orszqt=max_szrate_sizeVO.orszqt+(suitVO.ormtqs-used_orszqt);
+							max_szrate_sizeVO.orszqt=max_szrate_sizeVO.orszqt+(suitVO.ormtqt-used_orszqt);
 							
 						}, //distribute 
 						sumOrszqt:function(event){
+							showOd_info_unsave_tips(true);
+							
 							var vm=this;
 							var suitno=event.target.dataset.suitno;
 							//console.log(index);
@@ -277,11 +312,11 @@ $(function(){
 							}
 							
 							var sizeVOs=suitVO.sizeVOs;
-							var ormtqs=0;
+							var ormtqt=0;
 							for(var i=0;i<sizeVOs.length;i++){
-								ormtqs+=parseInt(sizeVOs[i].orszqt);
+								ormtqt+=parseInt(sizeVOs[i].orszqt);
 							}
-							suitVO.ormtqs=ormtqs;
+							suitVO.ormtqt=ormtqt;
 							
 						}
 					  }
@@ -292,29 +327,35 @@ $(function(){
 				$("#od_info_sample_info .card-content").show(200);
 			}
 		)
+		
+		
+		
 	}//function scan()
-	
-	//Vue.component('component-suitvos', {
-//  		template: '#template-suitvos',
-//		props: {
-//			suitvos: Array
-//		}
-//	});
-	
+
+	$("#od_info_clear_button").click(function(){
+		var sampno=window.vm_sampleVO.sampno
+		$.post(Ext.ContextPath+"/ord/mobile/clearSampno.do",{sampno:sampno},function(response){
+			window.vm_sampleVO.$data={};
+			window.vm_od_info_suitVOs.suitVOs=[];//splice
+			
+			showOd_info_unsave_tips(false);
+		},"json");
+	});
 	$("#od_info_save_button").click(function(){
+		$.showPreloader("正在保存订货信息...");
 		var suitVOs=window.vm_od_info_suitVOs.suitVOs;
 		//console.log(suitVOs);
 		//判断一个套件中的总量和各个规格加起来是否相等
 		for(var i=0;i<suitVOs.length;i++){
-			if(!suitVOs[i].ormtqs){
+			if(!suitVOs[i].ormtqt){
 				continue;
 			}
 			var orszqt_sum=0;
 			for(var j=0;j<suitVOs[i].sizeVOs.length;j++){
 				orszqt_sum+=parseInt(suitVOs[i].sizeVOs[j].orszqt);
 			}
-			//console.log(suitVOs[i].ormtqs+"===="+orszqt_sum);
-			if(suitVOs[i].ormtqs!=orszqt_sum){
+			//console.log(suitVOs[i].ormtqt+"===="+orszqt_sum);
+			if(suitVOs[i].ormtqt!=orszqt_sum){
 				alert("<"+suitVOs[i].suitno_name+">的数据不一致!");
 				//$.toast("<"+suitVOs[i].suitno_name+">的数据不一致!", 2345, 'success top');
 				return;
@@ -322,9 +363,27 @@ $(function(){
 		}
 		
 		//console.log(data["suitVOs"]);
-		//$.post(Ext.ContextPath+"/user/mobile/login.do",window.vm_od_info.$data.suitVOs,function(response){
+		//$.post(Ext.ContextPath+"/ord/mobile/create.do",suitVOs,function(response){
 			
-		//})
+		//},"json");
+		$.ajax({
+			type:'post',
+			url:Ext.ContextPath+"/ord/mobile/createOrddtl.do",
+			data:JSON.stringify(suitVOs),
+			dataType:'json',
+			contentType :'application/json;charset=utf-8',
+			//header 
+			success:function(response, status, xhr) {
+				if(response.success==false){
+					$.toast(response.msg);
+					$.hidePreloader();
+					return;
+				}
+				$.toast("保存成功!");
+				$.hidePreloader();
+				showOd_info_unsave_tips(false);
+			}
+		});
 	});
 });
 

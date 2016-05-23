@@ -63,14 +63,7 @@ public class OrdSzrtController {
 				if(ordSzrt.getSpseno().equals(map.get("SPSENO"))){
 					map.put(ordSzrt.getSizeno(), ordSzrt.getSzrate());
 				}
-//				if(ordSzrt.getOrmtno().equals(map.get("ormtno"))
-//						&& ordSzrt.getOrdorg().equals(map.get("ORDORG"))
-//						&& ordSzrt.getSizegp().equals(map.get("SIZEGP"))
-//						&& ordSzrt.getBradno().equals(map.get("BRADNO"))
-//						&& ordSzrt.getSpseno().equals(map.get("SPSENO"))
-//						&& ordSzrt.getVersno().equals(map.get("VERSNO"))){
-//					
-//				}
+
 			}
 		}
 		return szrtData_a;

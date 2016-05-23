@@ -142,6 +142,8 @@ public class UserController {
              model.put("wxConfig", wxConfig);
              
              
+             model.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
+             
         }  
 		return model;
 	}
