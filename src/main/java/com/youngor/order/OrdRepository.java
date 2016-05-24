@@ -40,5 +40,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public void clearOrdszdtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
 	
 	public OrdmtScde get_ordmt_scde(@Param("ormtno")String ormtno,@Param("channo")String channo);
+	
+	public MyInfoVO queryMyInfoVO(@Param("mtorno")String mtorno);
 
 }

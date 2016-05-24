@@ -102,5 +102,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="get_ordmt_scde" resultType="com.youngor.ordmt.OrdmtScde" parameterType="map">
      	select * from ORD_ORDMT_SCDE where ormtno=#{ormtno} and channo=#{channo}
      </select>
+     
+     <!-- 本次订货的一些统计信息-->
+     <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
+     	select sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
+         from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+         where a.sampno=b.sampno and b.plspno=c.plspno
+         and a.mtorno=#{mtorno}  
+     </select>
 </mapper>
 

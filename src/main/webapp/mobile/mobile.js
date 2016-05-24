@@ -411,6 +411,29 @@ $(function(){
 
 //我  里面的内容开发
 $(function(){
+	function queryMyInfoVO (){
+		$.post(Ext.ContextPath+"/ord/mobile/queryMyInfoVO.do",{},function(response){
+			//od_mypage_myinfo_card
+			$("#od_mypage_myinfo_card").show();
+			//样衣信息
+			if(window.vm_myinfo_card){//alert(1);
+				window.vm_myinfo_card.$data=response;
+			} else {
+				window.vm_myinfo_card=new Vue({
+					el: '#od_mypage_myinfo_card',
+					data: response
+				});
+			}
+		},"json");
+	}
+	$(document).on("pageInit", function(e, pageId, $page) {
+	  if(pageId == "od_mypage") {
+		  queryMyInfoVO ();
+	  } 
+	});
 	
+	$("#od_mypage_confirm_button").click(function(){
+		
+	});
 	
 });

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -329,5 +330,14 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		return result;
 		
+	}
+	
+	public MyInfoVO queryMyInfoVO() {
+		UserVO userVO=ShiroUtils.getAuthenticationInfo();
+		Ord ord=userVO.getOrd();
+		MyInfoVO myInfoVO= ordRepository.queryMyInfoVO(ord.getMtorno());
+		Org org=userVO.getFirstCurrentOrg();
+		myInfoVO.setOrgnm(org.getOrgnm());
+		return myInfoVO;
 	}
 }

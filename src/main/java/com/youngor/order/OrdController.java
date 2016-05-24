@@ -65,6 +65,12 @@ public class OrdController {
 	public Map<String,Object> checked_closeing_info() {
 		return ordService.checked_closeing_info();
 	}
+	
+	@RequestMapping("/ord/mobile/queryMyInfoVO.do")
+	@ResponseBody
+	public MyInfoVO queryMyInfoVO() {
+		return ordService.queryMyInfoVO();
+	}
 
 //	/**
 //	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
