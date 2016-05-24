@@ -19,11 +19,6 @@ import com.youngor.utils.BaseObject;
 public class SampleDesign extends BaseObject{
 
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(
-	        name = "uuid",
-	        strategy = "org.hibernate.id.UUIDGenerator"
-	    )
 	@FieldDefine(title="设计样衣代码",sort=50,hidden=true)
 	@Column(length=36,nullable=false,updatable=false)
 	private String sampno;

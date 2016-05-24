@@ -24,8 +24,8 @@ Ext.define('y.ordmt.OrdmtScdeForm',{
 			allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"订货单位类型不允许为空",
-			name: 'orgty',
-			queryMode: 'remote',
+			name: 'channo',
+			queryMode: 'local',
 			editable:false,
 			forceSelection:true,
 		    displayField: 'channm',
@@ -36,10 +36,11 @@ Ext.define('y.ordmt.OrdmtScdeForm',{
 //			},
 		    store: {
 			    fields: ['channo', 'channm'],
+			    autoLoad:true,
 			    proxy: {
-			    	autoLoad:true,
+			    	
 			        type: 'ajax',
-			        url: Ext.ContextPath+'/ordmtScde/queryOrgty.do'
+			        url: Ext.ContextPath+'/ordmtScde/queryChanncl.do'
 //			        reader: {
 //			            type: 'json',
 //			            rootProperty: 'orgty'

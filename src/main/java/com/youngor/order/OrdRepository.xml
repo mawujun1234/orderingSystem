@@ -96,5 +96,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <delete id="clearOrdszdtl" parameterType="map">
      	delete ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno}
      </delete>
+     
+     
+     <!-- 查询这个订货单元可以使用的订货时间 -->
+     <select id="get_ordmt_scde" resultType="com.youngor.ordmt.OrdmtScde" parameterType="map">
+     	select * from ORD_ORDMT_SCDE where ormtno=#{ormtno} and channo=#{channo}
+     </select>
 </mapper>
 

@@ -17,11 +17,6 @@ import com.youngor.utils.BaseObject;
 @Table(name="ord_sample_plan")
 public class SamplePlan extends BaseObject{
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(
-	        name = "uuid",
-	        strategy = "org.hibernate.id.UUIDGenerator"
-	    )
 	@FieldDefine(title="企划样衣代码",sort=50,hidden=true)
 	@Column(length=36,nullable=false,updatable=false)
 	private String plspno;

@@ -33,8 +33,8 @@ public class OrdmtScdeService extends AbstractService<OrdmtScde, String>{
 		return ordmtScdeRepository;
 	}
 	
-	public List<OrgChancl> queryOrgty() {
-		return ordmtScdeRepository.queryOrgty();
+	public List<OrgChancl> queryChanncl() {
+		return ordmtScdeRepository.queryChanncl();
 	}
 	
 

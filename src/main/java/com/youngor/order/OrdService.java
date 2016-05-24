@@ -1,10 +1,12 @@
 package com.youngor.order;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
+import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
@@ -61,7 +64,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		ord.setOrmtno(ContextUtils.getFirstOrdmt().getOrmtno());
 		ord.setOrtyno("DZ");
 		ord.setOrdorg(org.getOrgno());
-		ord.setChanno(org.getChancl().toString());
+		ord.setChanno(org.getChanno().toString());
 		
 		Ord ord_have=ordRepository.haveOrd(ord);
 		if(ord_have==null){
@@ -73,6 +76,11 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	
 	public Map<String,Object> querySample(String sampnm){
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		if(!ord.canOrd()){
+			throw new BusinessException("不能进行订货!");
+		}
+		
 		Map<String,Object> result=new HashMap<String,Object>();
 		SampleVO sampleVO= ordRepository.querySample(sampnm,ContextUtils.getFirstOrdmt().getOrmtno());
 		if(sampleVO==null){
@@ -80,7 +88,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		sampleVO.setOrmtno(ContextUtils.getFirstOrdmt().getOrmtno());
 		sampleVO.setOrdorg(ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno());
-		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		
 		sampleVO.setMtorno(ord.getMtorno());
 		ord.setSampleVO(sampleVO);
 		
@@ -237,5 +245,89 @@ public class OrdService extends AbstractService<Ord, String>{
 		//拷贝订单副表--》订单副表-历史
 		
 		//拷贝订单明细表-->订单明细表历史
+	}
+	
+	SimpleDateFormat HHmm_format=new SimpleDateFormat("HHmm");
+	public Map<String,Object> checked_closeing_info() {
+		//这里去获取该用户，离订货时间借宿还有多长时间，如果时间不够的话，就给出提示
+		UserVO userVO=ShiroUtils.getAuthenticationInfo();
+		Ord ord=userVO.getOrd();
+		Org org=userVO.getFirstCurrentOrg();
+		Map<String,Object> result=new HashMap<String,Object>();
+		ord.setOrdCheckInfo(result);
+		OrdmtScde ordmtScde=ordRepository.get_ordmt_scde(ord.getOrmtno(), org.getChanno().toString());
+		if(ordmtScde==null){
+			result.put("show", true);
+			result.put("canOrd", false);//是否可以订货
+			result.put("msg", "你所在的订货单位未设置订货日程，不能订货!");
+			return result;
+		}
+		
+		
+		
+		//result.put("minutes", 36);
+		
+		
+		//Date now=new Date();
+		Calendar cal=Calendar.getInstance();
+		//判断日期范围
+		if(ordmtScde.getMtstdt().getTime()>cal.getTimeInMillis()){
+			result.put("show", true);
+			result.put("canOrd", false);//是否可以订货
+			result.put("msg", "订货会还未开始，请稍候!");
+		} else if(ordmtScde.getMtfidt().getTime()<cal.getTimeInMillis()){
+			result.put("show", true);
+			result.put("canOrd", false);//是否可以订货
+			result.put("msg", "订货会已经结束，不能再订货!");
+		} else {
+			
+			int now_hhmm=Integer.parseInt(HHmm_format.format(cal.getTime()));
+			//开始时间
+			int mtsttm=Integer.parseInt(ordmtScde.getMtsttm().replace(":", ""));
+			//结束时间
+			int mtfitm=Integer.parseInt(ordmtScde.getMtfitm().replace(":", ""));
+			
+			if(now_hhmm<mtsttm){
+				int now_hour=cal.get(Calendar.HOUR_OF_DAY);
+				int now_min=cal.get(Calendar.MINUTE);
+				String mtsttmes[]=ordmtScde.getMtsttm().split(":");
+				int mtsttm_hour=Integer.parseInt(mtsttmes[0]);
+				int mtsttm_min=Integer.parseInt(mtsttmes[1]);
+				StringBuilder builder=new StringBuilder("离今日订货会开始还有:");
+				if(mtsttm_hour-now_hour>0){
+					builder.append(mtsttm_hour-now_hour+"小时");
+				}	
+				
+				builder.append(Math.abs(mtsttm_min-now_min)+"分钟，请稍候!");
+				result.put("show", true);
+				result.put("canOrd", false);//是否可以订货
+				result.put("msg", builder.toString());
+			} else if(now_hhmm>mtfitm){
+				result.put("show", true);
+				result.put("canOrd", false);//是否可以订货
+				result.put("msg", "今日订货会已经结束，不能再订货!");
+			} else {
+				int now_hour=cal.get(Calendar.HOUR_OF_DAY);
+				int now_min=cal.get(Calendar.MINUTE);
+				String mtfitmes[]=ordmtScde.getMtfitm().split(":");
+				int mtfitm_hour=Integer.parseInt(mtfitmes[0]);
+				int mtfitm_min=Integer.parseInt(mtfitmes[1]);
+				//如果离订货会结束，还超过1个小时就不提示
+				//System.out.println((mtfitm_hour*60+mtfitm_min-now_hour*60+now_min));
+				Integer min=((mtfitm_hour*60+mtfitm_min)-(now_hour*60+now_min));
+				if(min>60){
+					result.put("show", false);
+					result.put("canOrd", true);//是否可以订货
+					result.put("msg", "");
+				} else {//在前面已经判断过了，今天是否可以订货，所以这里就不判断了
+					result.put("show", true);
+					result.put("canOrd", true);//是否可以订货
+					result.put("msg", "离今日订货结束还差"+min+"分钟，注意数据保存！");
+				}
+				
+			}
+		}
+		return result;
+		
 	}
 }

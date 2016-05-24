@@ -11,7 +11,7 @@ Ext.define('y.ordmt.OrdmtScdeGrid',{
       me.columns=[
       	//{xtype: 'rownumberer'},
       	
-      	{dataIndex:'orgty_name',header:'订货单位类型'
+      	{dataIndex:'channo_name',header:'订货单位类型'
         },
 		{dataIndex:'mtstdt',header:'开始日期',xtype: 'datecolumn', format:'Y-m-d',width:150
 		},

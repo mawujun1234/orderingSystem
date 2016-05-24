@@ -45,13 +45,13 @@ public class OrdmtScdeController {
 		List<OrdmtScde> ordmtScdees=ordmtScdeService.query(Cnd.select().andEquals(M.OrdmtScde.ormtno, ormtno));
 		
 		if(orgChancl==null){
-			orgChancl=queryOrgty();
+			orgChancl=queryChanncl();
 		}
 		
 		for(OrdmtScde aaa:ordmtScdees){
 			for(OrgChancl bb:orgChancl){
-				if(aaa.getOrgty().equals(bb.getChanno())){
-					aaa.setOrgty_name(bb.getChannm());
+				if(aaa.getChanno().equals(bb.getChanno())){
+					aaa.setChanno_name(bb.getChannm());
 					break;
 				}
 			}
@@ -62,10 +62,10 @@ public class OrdmtScdeController {
 	
 	
 	private List<OrgChancl> orgChancl=null;
-	@RequestMapping("/ordmtScde/queryOrgty.do")
+	@RequestMapping("/ordmtScde/queryChanncl.do")
 	@ResponseBody
-	public List<OrgChancl> queryOrgty() {	
-		orgChancl=ordmtScdeService.queryOrgty();
+	public List<OrgChancl> queryChanncl() {	
+		orgChancl=ordmtScdeService.queryChanncl();
 		return orgChancl;
 	}
 	

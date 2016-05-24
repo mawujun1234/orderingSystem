@@ -478,6 +478,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 	       	tabpanel.items.getAt(2).disable();
 	       	tabpanel.items.getAt(3).disable();
 	       	tabpanel.items.getAt(4).disable();
+	       	
+	       	window.sampleDesign=null;
 		});
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

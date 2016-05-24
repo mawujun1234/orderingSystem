@@ -15,7 +15,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_ordmt_scde a
     </select>
     
-     <select id="queryOrgty" resultType="com.youngor.ordmt.OrgChancl" >
+     <select id="queryChanncl" resultType="com.youngor.ordmt.OrgChancl" >
     	select * from T_ORG_CHANCL where stat=1 order by chanso
     </select> 
 </mapper>

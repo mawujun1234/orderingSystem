@@ -1,6 +1,8 @@
 Ext.require("y.ordmt.Ordmt");
 Ext.require("y.ordmt.OrdmtGrid");
 Ext.require("y.ordmt.OrdmtForm");
+Ext.require('y.ordmt.OrdmtScdeGrid');
+Ext.require('y.ordmt.OrdmtScdeForm');
 Ext.onReady(function(){
 	var ordmtGrid=Ext.create('y.ordmt.OrdmtGrid',{
 		region:'center'

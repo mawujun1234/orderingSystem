@@ -7,8 +7,7 @@ Ext.define("y.ordmt.OrdmtScde",{
 		{name:'mtfitm',type:'date',dateFormat: 'H:i'},
 		{name:'lmsp',type:'string'},
 		{name:'lmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
-		{name:'ormtno',type:'string'},
-		{name:'orgty',type:'string'}
+		{name:'channo',type:'string'}
 	],
 	proxy:{
 		type:'ajax',
@@ -22,7 +21,7 @@ Ext.define("y.ordmt.OrdmtScde",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

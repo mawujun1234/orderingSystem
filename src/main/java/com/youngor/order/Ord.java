@@ -1,5 +1,7 @@
 package com.youngor.order;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +19,7 @@ public class Ord {
 	@FieldDefine(title="订货会编号",sort=50,hidden=false)
 	private String ormtno;
 	@Column(length=30)
-	@FieldDefine(title="订货类型号",sort=50,hidden=false)
+	@FieldDefine(title="订货类型",sort=50,hidden=false)
 	private String ortyno;
 	@Column(length=30)
 	@FieldDefine(title="订货单位",sort=50,hidden=false)
@@ -28,6 +30,15 @@ public class Ord {
 	
 	@Transient
 	private SampleVO sampleVO;//是作为临时缓存用的，保存的是当前扫描的样衣编号数据
+	@Transient
+	private Map<String,Object> ordCheckInfo;//是否能订货的的内容
+	
+	public Boolean canOrd(){
+		if(ordCheckInfo==null){
+			return false;
+		}
+		return (Boolean)ordCheckInfo.get("canOrd");
+	}
 	
 	public String getMtorno() {
 		return mtorno;
@@ -64,6 +75,12 @@ public class Ord {
 	}
 	public void setSampleVO(SampleVO sampleVO) {
 		this.sampleVO = sampleVO;
+	}
+	public Map<String, Object> getOrdCheckInfo() {
+		return ordCheckInfo;
+	}
+	public void setOrdCheckInfo(Map<String, Object> ordCheckInfo) {
+		this.ordCheckInfo = ordCheckInfo;
 	}
 
 

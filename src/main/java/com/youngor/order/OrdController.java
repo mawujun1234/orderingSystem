@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.youngor.permission.ShiroUtils;
+import com.youngor.permission.UserVO;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -30,6 +33,9 @@ public class OrdController {
 	@RequestMapping("/ord/mobile/querySample.do")
 	@ResponseBody
 	public Map<String,Object> querySample(String sampnm) {
+		//在查询的时候判断，是否已经超时了，如果已经超时了，就不能查询了
+		
+		
 		return ordService.querySample(sampnm);
 	}
 	/**
@@ -57,15 +63,7 @@ public class OrdController {
 	@RequestMapping("/ord/mobile/checked_closeing_info.do")
 	@ResponseBody
 	public Map<String,Object> checked_closeing_info() {
-		//System.out.println(suitVOs.length);
-		Map<String,Object> result=new HashMap<String,Object>();
-		result.put("show", true);
-		result.put("minutes", 36);
-		
-		//这里去获取该用户，离订货时间借宿还有多长时间，如果时间不够的话，就给出提示
-		。。。
-		
-		return result;
+		return ordService.checked_closeing_info();
 	}
 
 //	/**

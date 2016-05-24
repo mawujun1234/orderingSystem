@@ -2,6 +2,7 @@ package com.youngor.sample;
 
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
@@ -18,4 +19,5 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	
 	public void lock(Map<String,Object> params);
 	public void unlock(Map<String,Object> params);
+	public int checkOnlyOne(@Param("sampnm")String sampnm);
 }

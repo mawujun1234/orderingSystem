@@ -14,6 +14,6 @@ import com.youngor.ordmt.OrdmtScde;
  */
 @Repository
 public interface OrdmtScdeRepository extends IRepository<OrdmtScde, String>{
-	public List<OrgChancl> queryOrgty();
+	public List<OrgChancl> queryChanncl();
 
 }

@@ -27,7 +27,7 @@ Ext.define("y.ordmt.Ordmt",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
@@ -42,8 +43,15 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	
 	@Override
 	public String create(SampleDesign sampleDesign) {
+		//判断在本次订货会中，样衣编号是否唯一
+		if(sampleDesignRepository.checkOnlyOne(sampleDesign.getSampnm())>0){
+			throw new BusinessException("样衣编号已存在");
+		}
+		
+		
 		super.delete(sampleDesign);
 		sampleDesign.setSampst(1);
+		sampleDesign.setSampno(sampleDesign.getPlspno()+sampleDesign.getSampnm());
 		String id=super.create(sampleDesign);
 		if(sampleDesign.getSampleDesignSizegpes()!=null){
 			for(SampleDesignSizegp sampleDesignSizegp:sampleDesign.getSampleDesignSizegpes()){

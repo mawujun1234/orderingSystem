@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
+import com.youngor.ordmt.OrdmtScde;
 import com.youngor.sample.SampleDesignStpr;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -37,5 +38,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void clearOrddtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
 	public void clearOrdszdtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
+	
+	public OrdmtScde get_ordmt_scde(@Param("ormtno")String ormtno,@Param("channo")String channo);
 
 }

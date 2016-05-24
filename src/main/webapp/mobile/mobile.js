@@ -1,18 +1,22 @@
 Ext={};
 Ext.ContextPath="";
 //显示和隐藏今日订货会快结束的信息
-window.od_closeing_info=null;
+window.od_closeing_info=null;//提高性能
+window.canOrd=null;//判断是否可以订货
 function show_od_closeing_info(){
-	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', { sample: 'payload' }, function(response){
-		if(response.show){
-			if(!window.od_closeing_info){
+	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', {  }, function(response){
+		window.canOrd=response.canOrd;
+		if(!window.od_closeing_info){
 				window.od_closeing_info=$("#od_closeing_info");
-			}
-			window.od_closeing_info.html("离今日订货结束还差"+response.minutes+"分钟，注意数据保存！");
+		}
+		if(response.show){
+			window.od_closeing_info.html(response.msg);
 			window.od_closeing_info.show();
+		} else {
+			window.od_closeing_info.hide();
 		}
 	});
-	setTimeout("show_od_closeing_info",300*1000);
+	setTimeout("show_od_closeing_info()",120*1000);
 }
 $(function(){
 //			$(".card .card-header .item-title.label").click(function(){
@@ -341,6 +345,7 @@ $(function(){
 				$.hidePreloader();
 				
 				$("#od_info_sample_info .card-content").show(200);
+				$("#od_info_saveAndclear_button").show(200);
 			}
 		)
 		
@@ -403,3 +408,9 @@ $(function(){
 	});
 });
 
+
+//我  里面的内容开发
+$(function(){
+	
+	
+});

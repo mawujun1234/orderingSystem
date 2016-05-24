@@ -25,7 +25,7 @@ public class OrdmtScde extends BaseObject{
 	@Id
 	@FieldDefine(title="订货单位类型",sort=50,hidden=true,showType=ShowType.combobox)
 	@Column(length=30,nullable=false,updatable=false)
-	private String orgty;
+	private String channo;
 	
 	@FieldDefine(title="开始日期",sort=50)
 	@NotNull
@@ -48,12 +48,12 @@ public class OrdmtScde extends BaseObject{
 	
 	
 	@Transient
-	private String orgty_name;
-	public void setOrgty_name(String name){
-		this.orgty_name=name;
+	private String channo_name;
+	public void setChanno_name(String name){
+		this.channo_name=name;
 	}
-	public String getOrgty_name(){
-		return this.orgty_name;
+	public String getChanno_name(){
+		return this.channo_name;
 	}
 	
 	public static class PK implements Serializable {
@@ -61,7 +61,7 @@ public class OrdmtScde extends BaseObject{
 
 		private String ormtno;
 
-        private String orgty;
+        private String channo;
 
 		public String getOrmtno() {
 			return ormtno;
@@ -71,14 +71,15 @@ public class OrdmtScde extends BaseObject{
 			this.ormtno = ormtno;
 		}
 
-		public String getOrgty() {
-			return orgty;
+		public String getChanno() {
+			return channo;
 		}
 
-		public void setOrgty(String orgty) {
-			this.orgty = orgty;
+		public void setChanno(String channo) {
+			this.channo = channo;
 		}
 
+		
 
         
     }
@@ -89,11 +90,11 @@ public class OrdmtScde extends BaseObject{
 	public void setOrmtno(String ormtno) {
 		this.ormtno = ormtno;
 	}
-	public String getOrgty() {
-		return orgty;
+	public String getChanno() {
+		return channo;
 	}
-	public void setOrgty(String orgty) {
-		this.orgty = orgty;
+	public void setChanno(String channo) {
+		this.channo = channo;
 	}
 	public Date getMtstdt() {
 		return mtstdt;

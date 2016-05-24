@@ -58,6 +58,7 @@ public class SamplePlanController {
 		//samplePlan.setPlspno("222");
 		//samplePlan.setOrmtno("201604");
 		
+		samplePlan.setPlspno(samplePlan.getOrmtno()+samplePlan.getPlspnm());
 		samplePlan.setRgdt(new Date());
 		samplePlan.setRgsp(ShiroUtils.getLoginName());
 		samplePlanService.create(samplePlan);
