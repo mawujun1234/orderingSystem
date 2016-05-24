@@ -1,4 +1,5 @@
 package com.youngor.order;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -51,6 +52,20 @@ public class OrdController {
 		//System.out.println(suitVOs.length);
 		ordService.clearSampno(sampno);
 		return "success";
+	}
+	
+	@RequestMapping("/ord/mobile/checked_closeing_info.do")
+	@ResponseBody
+	public Map<String,Object> checked_closeing_info() {
+		//System.out.println(suitVOs.length);
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("show", true);
+		result.put("minutes", 36);
+		
+		//这里去获取该用户，离订货时间借宿还有多长时间，如果时间不够的话，就给出提示
+		。。。
+		
+		return result;
 	}
 
 //	/**

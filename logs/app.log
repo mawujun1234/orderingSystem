@@ -12773,3 +12773,4 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 16:55:15.782 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@2bbdee44
 16:55:15.838 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@744043ec
 16:55:15.842 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@47bff34e
+17:19:32.202 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ×¢ÈëApplicationContextµ½SpringContextHolder:null

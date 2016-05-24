@@ -278,3 +278,15 @@
 	color:red;
 	font-family:"Times New Roman",Georgia,Serif;
 }
+#od_closeing_info{
+	display:none;
+	position:fixed;
+	z-index:1000000;
+	top:0rem;
+	text-align:center;
+	background-color:rgba(242,245,194,0.70);
+	width:100%;
+	font-size:0.7rem;
+	color:red;
+	font-family:"Times New Roman",Georgia,Serif;
+}

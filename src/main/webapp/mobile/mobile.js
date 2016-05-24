@@ -1,5 +1,19 @@
 Ext={};
 Ext.ContextPath="";
+//显示和隐藏今日订货会快结束的信息
+window.od_closeing_info=null;
+function show_od_closeing_info(){
+	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', { sample: 'payload' }, function(response){
+		if(response.show){
+			if(!window.od_closeing_info){
+				window.od_closeing_info=$("#od_closeing_info");
+			}
+			window.od_closeing_info.html("离今日订货结束还差"+response.minutes+"分钟，注意数据保存！");
+			window.od_closeing_info.show();
+		}
+	});
+	setTimeout("show_od_closeing_info",300*1000);
+}
 $(function(){
 //			$(".card .card-header .item-title.label").click(function(){
 //				var input_id=$(this).attr("id");
@@ -194,6 +208,8 @@ $(function(){
 					//wx.hideAllNonBaseMenuItem();
 					
 					document.title = response.orgnm;
+					
+					show_od_closeing_info();
 				}
 				
 			}
