@@ -44,9 +44,9 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 					return val;
 				}
 				var combobox_store=me.sizegp_editor_store;
-				console.log(val);
+				//console.log(val);
 	            var record = combobox_store.findRecord('sizeno',val,0,false,false,true); 
-	            console.log(record.get("sizeno")+"----");
+	           // console.log(record.get("sizeno")+"----");
 	            if (record != null){
 	                return record.get("sizenm"); 
 	            } else {

@@ -145,11 +145,14 @@ Ext.define('y.sample.SampleDesignGrid',{
 					//var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		
     				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
-    				grid.getStore().getProxy().extraParams=grid.getParams();
+    				//grid.getStore().getProxy().extraParams=grid.getParams();
 				},
 				load:function(store, records, successful){
 					var tabpanel=me.nextSibling("tabpanel");
-					tabpanel.mask();
+					if(!store.getProxy().extraParams.sampno){
+						tabpanel.mask();
+					}
+					
 				}
 			}
 	  });
@@ -247,6 +250,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 				handler: function(btn){
 
     				var grid=btn.up("grid");
+    				grid.getStore().getProxy().extraParams=grid.getParams();
 					grid.getStore().reload();
 					
 					
@@ -408,7 +412,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 					    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 					    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
 					    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
-					    					"params['spsuno']":toolbars[1].down("#spsuno").getValue()
+					    					"params['spsuno']":toolbars[1].down("#spsuno").getValue(),
+					    					"params['sampno']":null//修复新建后的样衣编号
 						    	 		};
 		return params;
 	},
@@ -480,6 +485,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 	       	tabpanel.items.getAt(4).disable();
 	       	
 	       	window.sampleDesign=null;
+	       	
+	       	tabpanel.expand();
 		});
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

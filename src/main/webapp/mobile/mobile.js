@@ -176,7 +176,12 @@ $(function(){
 		  $("#bottom_bar").hide();
 	  } else {
 		  $("#bottom_bar").show();
+		  
+		  $("#bottom_bar a.tab-item").removeClass("active");
+	      $("#bottom_bar_"+pageId).addClass("active");
 	  }
+	  
+	 
 	});
 	
 	$("#od_loginpage_login_btn").click(function(){
@@ -433,7 +438,11 @@ $(function(){
 	});
 	
 	$("#od_mypage_confirm_button").click(function(){
-		
+		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
+			//od_mypage_myinfo_card
+			$("#od_mypage_confirm_button").hide();
+			
+		},"json");
 	});
 	
 });

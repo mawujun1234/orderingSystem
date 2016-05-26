@@ -1,5 +1,5 @@
 package com.youngor.order;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.youngor.permission.ShiroUtils;
-import com.youngor.permission.UserVO;
+import com.mawujun.utils.page.Pager;
+import com.youngor.org.Org;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -22,6 +22,8 @@ public class OrdController {
 
 	@Resource
 	private OrdService ordService;
+	@Resource
+	private OrdtyService ordtyService;
 
 
 	/**
@@ -70,6 +72,54 @@ public class OrdController {
 	@ResponseBody
 	public MyInfoVO queryMyInfoVO() {
 		return ordService.queryMyInfoVO();
+	}
+	
+	@RequestMapping("/ord/mobile/confirm.do")
+	@ResponseBody
+	public String confirm() {
+		ordService.confirm();
+		return "{success:true}";
+	}
+	
+	
+	@RequestMapping("/ord/ordty/queryAll.do")
+	@ResponseBody
+	public List<Ordty> queryAll() {
+		List<Ordty> list=ordtyService.queryAll();
+		return list;
+	}
+	/**
+	 * 查询这次订货会当前区域下的订货单位
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/queryOrdorg.do")
+	@ResponseBody
+	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
+		//return null;
+		return ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
+	}
+	
+	/**
+	 * 查询区域下的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping("/ord/queryQyVO.do")
+	@ResponseBody
+	public Pager<QyVO> queryQyVO(Pager<QyVO> pager){
+		return ordService.queryQyVO(pager);
+	}
+	
+	/**
+	 * 调整数量
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	@RequestMapping("/ord/updateOrmtqt.do")
+	@ResponseBody
+	public void updateOrmtqt(String mtorno,String sampno,String suitno,Integer ormtqt){
+		ordService.updateOrmtqt(mtorno, sampno, suitno, ormtqt);
 	}
 
 //	/**

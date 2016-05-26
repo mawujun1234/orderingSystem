@@ -291,19 +291,6 @@ Ext.define('y.sample.SamplePlanForm',{
 				var formpanel = button.up('form');
 				button.up('form').updateRecord();
 				var record=button.up('form').getForm().getRecord();
-//				var samplePlanStpres=samplePlanStprGrid.getStore().getRange();
-//				
-//				var aa=[];
-//				for(var i=0;i<samplePlanStpres.length;i++){
-//					aa.push({
-//						plspno:samplePlanStpres[i].get("plspno"),
-//						suitno:samplePlanStpres[i].get("suitno"),
-//						spftpr:samplePlanStpres[i].get("spftpr"),
-//						sprtpr:samplePlanStpres[i].get("sprtpr")
-//					
-//					});
-//				}
-//				record.set("samplePlanStpres",aa);
 				
 				record.save({
 					failure: function(record, operation) {
@@ -333,24 +320,20 @@ Ext.define('y.sample.SamplePlanForm',{
 			spseno.reload(record.get("spclno"));
 		}
 		
-////		Ext.Ajax.request({
-////			url:Ext.ContextPath+"",
-////			params:{
-////			
-////			},
-////			success:function(response){
-////				var objes=Ext.decode(response.responseText);
-////				me.down("grid#samplePlanStprGrid").getStore().loadData(objes);
-////			}
-////		});
-//		var samplePlanStprGrid_store=me.down("grid#samplePlanStprGrid").getStore();
-//		samplePlanStprGrid_store.getProxy().extraParams={
-//			plspno:record.get("plspno")
-//		};
-//		samplePlanStprGrid_store.reload();
 		
 		//this.loadRecord(record);
 		this.getForm().loadRecord(record);
+		
+		me.lockOrUnlock(record.get("plspst"));
+	},
+	lockOrUnlock:function(bool){
+		var me=this;
+		var save_btn=me.down("#save");
+		if(bool){
+			save_btn.hide();
+		} else {
+			save_btn.show();
+		}
 	},
 	
 	temp_bradno:'Y',//这是临时解决方案

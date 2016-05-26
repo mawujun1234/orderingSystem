@@ -139,8 +139,8 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				//form.add(aa);
 	       				form.moveAfter( aa, field );
 	       				
-	       				var tabpanel=field.up("tabpanel");
-	       				tabpanel.items.getAt(2).disable();//面料信息
+	       				//var tabpanel=field.up("tabpanel");
+	       				//tabpanel.items.getAt(2).disable();//面料信息
 	       			} else if(newValue=='ZC') {
 	       				form.remove(gustnoField,true);
 	       				
@@ -154,8 +154,8 @@ Ext.define('y.sample.SampleDesignForm',{
 //	       				//form.add(aa);
 //	       				form.moveAfter( aa, field )
 	       				
-	       				var tabpanel=field.up("tabpanel");
-	       				tabpanel.items.getAt(2).enable();
+	       				//var tabpanel=field.up("tabpanel");
+	       				//tabpanel.items.getAt(2).enable();
 	       			}
 	       		}
 	        
@@ -327,12 +327,16 @@ Ext.define('y.sample.SampleDesignForm',{
 	        		var form=combo.up("form");
 	        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
 	        		sampleDesignSizegpGrid_store.removeAll();
-					sampleDesignSizegpGrid_store.getProxy().extraParams={
+//					sampleDesignSizegpGrid_store.getProxy().extraParams={
+//						suitty:record.get("itno"),
+//						sampno:window.sampno.sampno
+//						
+//					};
+					sampleDesignSizegpGrid_store.reload({params:{
 						suitty:record.get("itno"),
 						sampno:window.sampno.sampno
 						
-					};
-					sampleDesignSizegpGrid_store.reload();
+					}});
 					
 					//
 	        	}
@@ -456,6 +460,7 @@ Ext.define('y.sample.SampleDesignForm',{
 					headers:{ 'Accept':'application/json;'},
 					jsonData:jsonData,
 					success:function(response){
+						var obj=Ext.decode(response.responseText);
 						Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
 				    	//formpanel.reset();
@@ -463,7 +468,16 @@ Ext.define('y.sample.SampleDesignForm',{
 				    	var tabpanel=formpanel.up("tabpanel");
 						//tabpanel.unmask();
 						var sampleDesignGrid=tabpanel.previousSibling("gridpanel#sampleDesignGrid") ;
-						sampleDesignGrid.getStore().reload();
+						
+						if(url=="/sampleDesign/create.do"){//如果是新建的时候，就只查出这个一个
+//							sampleDesignGrid.getStore().reload({
+//								params:{"params['sampno']":obj.sampleDesign.sampno}
+//							});
+							sampleDesignGrid.getStore().getProxy().extraParams={
+								params:{"params['sampno']":obj.sampleDesign.sampno}
+							}
+						}
+						
 						//用于后面的面料信息
 						window.sampno={
 							sampno:jsonData.sampno,//,record.get("sampno"),
@@ -497,11 +511,16 @@ Ext.define('y.sample.SampleDesignForm',{
 		//if(me.showsampleDesignSizegpGrid_bool){
 			var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
 			sampleDesignSizegpGrid_store.removeAll();
-			sampleDesignSizegpGrid_store.getProxy().extraParams={
-				suitty:record.get("suitty"),
-				sampno:window.sampno.sampno
-			};
-			sampleDesignSizegpGrid_store.reload();
+//			sampleDesignSizegpGrid_store.getProxy().extraParams={
+//				suitty:record.get("suitty"),
+//				sampno:window.sampno.sampno
+//			};
+			sampleDesignSizegpGrid_store.reload({
+				params:{
+					suitty:record.get("suitty"),
+					sampno:window.sampno.sampno
+				}
+			});
 		//}
 		
 		me.getForm().loadRecord(record);
@@ -625,5 +644,9 @@ Ext.define('y.sample.SampleDesignForm',{
 //			var sizegpField=me.getForm().findField("sizegp");
 //			sizegpField.hide();
 		}
+		
+		var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+		sampleDesignSizegpGrid_store.removeAll();
+		sampleDesignSizegpGrid_store.reload();
 	}
 });

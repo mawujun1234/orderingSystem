@@ -27,11 +27,11 @@
   </div>
   <div id="od_closeing_info">离今日订货结束还差60分钟，注意数据保存！</div>
   <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;">
-  	<a class="tab-item active" href="#od_info">
+  	<a id="bottom_bar_od_info" class="tab-item active" href="#od_info">
     	<span class="icon icon-home"></span>
         <span class="tab-label">订货</span>
     </a>
-    <a class="tab-item" href="#od_mypage">
+    <a id="bottom_bar_od_mypage" class="tab-item" href="#od_mypage">
         <span class="icon icon-me"></span>
         <span class="tab-label">我</span>
     </a>
@@ -224,13 +224,13 @@
         
         
         <div class="page" id="od_mypage"> 
-        	<header class="bar bar-nav">
+        	<!--<header class="bar bar-nav">
               <a class="button button-link button-nav pull-left back" href="/docs-demos/router">
                   <span class="icon icon-left"></span>
                   返回
               </a>
               <h1 class='title'>宁波区域</h1>
-            </header>
+            </header>-->
             <div class="content">
             	<div class="card" id="od_mypage_myinfo_card" style="display:none;">
                     <div class="card-header">我:{{ orgnm }}</div>
@@ -246,7 +246,7 @@
                             </div>
                             <div class="row">
                               <div class="col-80">&nbsp; </div>
-                              <div class="col-20"><a href="#" id="od_mypage_confirm_button" v-show="canConfirm" class="button button-fill button-success">确认</a></div>
+                              <div class="col-20"><a href="#" id="od_mypage_confirm_button" v-show="!canConfirm" class="button button-fill button-success">确认</a></div>
                             </div>
                       </div>
                     </div>

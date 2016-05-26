@@ -31,7 +31,7 @@ public class PubCodeController {
 	@Resource
 	private PubCodeTypeService pubCodeTypeService;
 
-	@RequestMapping("/pubCodeType/query4Combo.do")
+	@RequestMapping("/pubCode/query4Combo.do")
 	@ResponseBody
 	public List<PubCode> query4Combo(String tyno,String fitno,String bradno) {
 

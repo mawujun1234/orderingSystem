@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
+import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.OrdmtScde;
+import com.youngor.org.Org;
 import com.youngor.sample.SampleDesignStpr;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -43,4 +45,21 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public MyInfoVO queryMyInfoVO(@Param("mtorno")String mtorno);
 
+	
+	public void updateMtornoMlorvn(@Param("mtorno")String mtorno);
+	
+	public void updateOrmtqtZeor(@Param("mtorno")String mtorno);
+	
+	public void createOrd_ordhd(@Param("mtorno")String mtorno);
+	
+	public void createOrd_ordhd_his(@Param("mtorno")String mtorno);
+	public void createOrd_orddtl_his(@Param("mtorno")String mtorno);
+	
+	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
+	
+	
+	public Pager<QyVO> queryQyVO(Pager<QyVO> pager);
+	
+	
+	public void updateOrmtqt(@Param("mtorno")String mtorno,@Param("sampno")String sampno,@Param("suitno")String suitno,@Param("ormtqt")Integer ormtqt);
 }

@@ -26,8 +26,11 @@ public class SampleDesignSizegpController {
 	public List<SampleDesignSizegp> queryAll(String sampno,String suitty) {	
 		//如果套装种类为空，表示选的都是标准套
 		List<SampleDesignSizegp> sampleDesignSizegpes=null;
-		if(suitty==null || "".equals(suitty)){
-			sampleDesignSizegpes=sampleDesignSizegpService.querySampleDesignSizegp_T00(sampno);
+		if(suitty==null || "".equals(suitty)){//表示新建的没有套件的时候
+			if(sampno!=null && !"".equals(sampno)){//新建样衣的时候
+				sampleDesignSizegpes=sampleDesignSizegpService.querySampleDesignSizegp_T00(sampno);
+			}
+			
 			if(sampleDesignSizegpes==null || sampleDesignSizegpes.size()==0){
 				sampleDesignSizegpes=new ArrayList<SampleDesignSizegp>();
 				SampleDesignSizegp aa=new SampleDesignSizegp();

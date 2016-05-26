@@ -10,6 +10,14 @@ Ext.define('y.sample.SamplePlanGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
+      	{dataIndex:'plspst',header:'锁定',width:60,renderer:function(value){
+      		if(value==1){
+      			return "<span style='color:red;'>锁定</span>"
+      		} else {
+      			return "";
+      		}
+      	}
+        },
 		{dataIndex:'plspnm',header:'企划样衣编号'
         },
 		{dataIndex:'bradno_name',header:'品牌'
@@ -183,13 +191,31 @@ Ext.define('y.sample.SamplePlanGrid',{
 				},
 				iconCls: 'icon-plus'
 			},{
-			    text: '更新',
-			    itemId:'update',
+			    text: '复制',
+			    itemId:'copy',
 			    handler: function(){
-			    	me.onUpdate();
-					
+			    	me.onCopy();    
 			    },
-			    iconCls: 'icon-edit'
+			    iconCls: 'icon-trash'
+			},{
+			    text: '锁定/解锁',
+			    //itemId:'destroy',
+			    //hidden:!Permision.canShow('sample_design_lock'),
+			    iconCls: 'icon-lock',
+			    menu:[{
+			    	text: '锁定',
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrunlock(true);
+						
+			    	 }
+			    },{
+			    	text: '解锁',
+			    	 handler:function(btn){
+			    	 	var grid=btn.up("grid");
+			    	 	grid.lockOrunlock(false);
+			    	 }
+			    }]
 			},{
 			    text: '删除',
 			    itemId:'destroy',
@@ -212,7 +238,7 @@ Ext.define('y.sample.SamplePlanGrid',{
 		var child=Ext.create('y.sample.SamplePlan',{
 			ormtno:ordmtcombo.getValue(),
 			bradno:toolbars[0].down("#bradno").getValue(),
-			spyear:Ext.Date.format(new Date(),'Y'),
+			spyear:ordmtcombo.getSelection( ).get("pryear"),
 			spclno:toolbars[0].down("#spclno").getValue()
 		});
 		var tabpanel=me.nextSibling("tabpanel");
@@ -224,29 +250,29 @@ Ext.define('y.sample.SamplePlanGrid',{
 		
     },
     
-     onUpdate:function(){
-    	var me=this;
-
-    	var node=me.getSelectionModel( ).getLastSelected();
-    	if(node==null){
-    		Ext.Msg.alert("提醒","请选择一行数据!");
-    		return;
-    	}
-
-		var formpanel=Ext.create('y.sample.SamplePlanForm',{});
-		formpanel.loadRecord(node);
-		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'更新',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel]
-    	});
-    	win.show();
-    },
+//     onUpdate:function(){
+//    	var me=this;
+//
+//    	var node=me.getSelectionModel( ).getLastSelected();
+//    	if(node==null){
+//    		Ext.Msg.alert("提醒","请选择一行数据!");
+//    		return;
+//    	}
+//
+//		var formpanel=Ext.create('y.sample.SamplePlanForm',{});
+//		formpanel.loadRecord(node);
+//		
+//    	var win=Ext.create('Ext.window.Window',{
+//    		layout:'fit',
+//    		title:'更新',
+//    		modal:true,
+//    		width:400,
+//    		height:300,
+//    		closeAction:'hide',
+//    		items:[formpanel]
+//    	});
+//    	win.show();
+//    },
     
     onDelete:function(){
     	var me=this;
@@ -267,6 +293,60 @@ Ext.define('y.sample.SamplePlanGrid',{
 					    	me.getStore().reload();
 					    }
 				});
+			}
+		});
+    },
+    onCopy:function(){
+    	var me=this;
+    	var record=me.getSelectionModel( ).getLastSelected( );
+		
+		if(!record){
+		    Ext.Msg.alert("消息","请先选择一行数据");	
+			return;
+		}
+		var rec = record.copy(null);
+		rec.set("plspnm",null);
+		rec.set("plspno",null);
+		var tabpanel=me.nextSibling("tabpanel");
+		tabpanel.setTitle("复制样衣");
+		tabpanel.unmask();
+		var formpanel=tabpanel.child("form#samplePlanForm") ;
+		formpanel.reset();
+		formpanel.loadRecord(rec);
+		
+    },
+    getSiblingForm:function(){
+    	var me=this;
+    	if(me.siblingForm){
+    		return me.siblingForm;
+    	}
+    	var tabpanel=me.nextSibling("tabpanel");
+    	var formpanel=tabpanel.child("form#samplePlanForm") ;
+    	me.siblingForm=formpanel;
+    	return formpanel;
+    },
+    /**
+     * 
+     * @param {} bool true表示锁定
+     */
+    lockOrunlock:function(bool){
+    	var me=this;
+    	var record=me.getSelectionModel( ).getLastSelected( );
+		
+		if(!record){
+		    Ext.Msg.alert("消息","请先选择一行数据");	
+			return;
+		}
+		Ext.Ajax.request({
+			url:Ext.ContextPath+'/samplePlan/lockOrunlock.do',
+			params:{
+				plspno:record.get("plspno"),
+				plspst:bool?1:0
+			},
+			success:function(){
+				//me.getStore().reload();
+				record.set("plspst",bool?1:0);
+				me.getSiblingForm().lockOrUnlock(record.get("plspst"));
 			}
 		});
     }

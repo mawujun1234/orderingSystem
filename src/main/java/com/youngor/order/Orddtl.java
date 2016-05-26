@@ -33,7 +33,7 @@ public class Orddtl extends BaseObject{
 	
 	@Column(length=30)
 	@FieldDefine(title="审批订单号",sort=50,hidden=false)
-	private String mlorno;
+	private String mlorno;//订单号+品牌+大类
 	@FieldDefine(title="审批订单版本号",sort=50,hidden=false)
 	private Integer mlorvn;
 	

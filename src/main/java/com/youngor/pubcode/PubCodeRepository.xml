@@ -24,6 +24,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		and a.fitno=#{fitno}
     	</if>
     	and b.stat=1
+    	and a.stat=1
     	order by a.itso
     </select> 
     

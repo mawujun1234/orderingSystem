@@ -89,6 +89,13 @@ public class SamplePlanController {
 		return samplePlan;
 	}
 	
+	
+	@RequestMapping("/samplePlan/lockOrunlock.do")
+	@ResponseBody
+	public void lockOrunlock(String plspno,Integer plspst) {
+		samplePlanService.lockOrunlock(plspno, plspst);
+	}
+	
 
 	
 }

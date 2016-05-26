@@ -36,6 +36,7 @@ Ext.onReady(function(){
 		
 		samplePlanForm.reset();
 		samplePlanForm.loadRecord(record);
+		
 		tabpanel.unmask();
 		
 		

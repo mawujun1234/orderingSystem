@@ -27,6 +27,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="spbseno!=null and spbseno!=''">
     		and a.spbseno=#{spbseno}
     	</if>
+    	<if test="sampno!=null and sampno!=''">
+    		and b.sampno=#{sampno}
+    	</if>
     	<if test="spsuno!=null and spsuno!=''">
     		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
     	</if>
@@ -84,7 +87,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and b.sampno=#{sampno}
     </select> 
     <!-- 判断样衣编号在一次订货会中是否是唯一的-->
-     <select id="checkOnlyOne" resultType="string" parameterType="string">
+     <select id="checkOnlyOne" resultType="int" parameterType="string">
      	select count(sampno) from  ord_sample_design where sampnm=#{sampnm}
      </select>
 </mapper>

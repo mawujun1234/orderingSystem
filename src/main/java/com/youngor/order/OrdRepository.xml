@@ -105,10 +105,121 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      <!-- 本次订货的一些统计信息-->
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
-     	select sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
+     	select count(mlorno) as canConfirm,sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno
          and a.mtorno=#{mtorno}  
      </select>
+     <!-- 生成版本订单号和版本号 -->
+     <update id="updateMtornoMlorvn" parameterType="map">
+     	  update ord_orddtl a set ORMTQS=ORMTQT,mlorvn=1,mlorno=(select mlorno from (
+           select a.mtorno,a.sampno,a.suitno,a.mtorno||c.bradno||spclno as mlorno 
+           from ord_orddtl a,ord_sample_design b,ord_sample_plan c
+           where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+           ) b where a.mtorno=b.mtorno and a.sampno=b.sampno and a.suitno=b.suitno
+          ) 
+          where a.mtorno=#{mtorno}
+     </update>
+     <!-- 拷贝订单明细表中的确认数量->原始数量,同时设置确认数量为0 
+     <update id="updateOrmtqtZeor" parameterType="map">
+     	 update ord_orddtl a set ORMTQT=0 where  a.mtorno=#{mtorno}
+     </update>-->
+     <!-- 创建订单副表  -->
+     <insert id="createOrd_ordhd" parameterType="map">
+     	   insert into ORD_ORDHD(mtorno,mlorno,MLORVN,BRADNO,SPCLNO,SDTYNO,ORSTAT,SZSTAT,ISFECT) 
+       select distinct a.mtorno,a.mlorno ,a.MLORVN,c.BRADNO,c.SPCLNO,20,0,0,1
+           from ord_orddtl a,ord_sample_design b,ord_sample_plan c
+           where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+     </insert>
+     <!-- 创建订单副表的历史表 -->
+     <insert id="createOrd_ordhd_his" parameterType="map">
+     	 insert into Ord_ordhd_his
+ 		 select * from Ord_ordhd where mtorno=#{mtorno}
+     </insert>
+      <!-- 创建订单明细表的历史表 -->
+     <insert id="createOrd_orddtl_his" parameterType="map">
+     	 insert into Ord_orddtl_his
+ 		select * from Ord_orddtl where mtorno=#{mtorno}
+     </insert>
+     <!-- 
+     <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
+     	select b.* from ORD_ORD a,t_org b
+      	where a.ORDORG=b.orgno  
+      	<if test="channo!=null and channo!=''">
+			and a.channo=#{channo}
+		</if>
+		<if test="ormtno!=null and ormtno!=''">
+			 and a.ormtno=#{ormtno}
+		</if>
+		<if test="ortyno!=null and ortyno!=''">
+			and a.ortyno=#{ortyno}
+		</if>
+     </select>
+     -->
+     <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
+     	select b.* from ORD_ORD a,V_ORD_ORG b
+      	where a.ORDORG=b.orgno  
+      	<if test="channo!=null and channo!=''">
+			and a.channo=#{channo}
+		</if>
+		<if test="ormtno!=null and ormtno!=''">
+			 and a.ormtno=#{ormtno}
+		</if>
+		<if test="ortyno!=null and ortyno!=''">
+			and a.ortyno=#{ortyno}
+		</if>
+		<if test="qyno!=null and qyno!=''">
+			and b.qyno=#{qyno}
+		</if>
+     </select>
+     
+     <sql id="queryQyVO_where">
+     	<where>
+			a.ormtno=#{ormtno} 
+			<if test="ortyno!=null and ortyno!=''">
+				and a.ortyno=#{ortyno} 
+			</if>
+			<if test="channo!=null and channo!=''">
+				and a.channo=#{channo} 
+			</if>
+			<if test="ordorg!=null and ordorg!=''">
+				and a.ordorg=#{ordorg} 
+			</if>
+			and g.yxgsno=#{yxgsno} and g.qyno=#{qyno}
+			<if test="suitno!=null and suitno!=''">
+				and c.suitno='#{suitno} 
+			</if>		
+			and b.sdtyno='20' 
+			<if test="orstat!=null and orstat!=''">
+				and b.orstat=#{orstat}
+			</if>
+			and e.bradno=#{bradno} and e.spclno=#{spclno} 
+			<if test="sptyno!=null and sptyno!=''">
+				and e.sptyno=#{sptyno}
+			</if>
+			<if test="spseno!=null and spseno!=''">
+				and e.spseno=#{spseno}
+			</if> 
+			<if test="sampnm!=null and sampnm!=''">
+				and d.sampnm like '%${sampnm}%'
+			</if> 
+			
+     	</where>
+     </sql>
+     <select id="queryQyVO" parameterType="map" resultType="com.youngor.order.QyVO" >
+     	SELECT c.mtorno,b.orstat,a.channo,a.ordorg,g.orgnm as ordorg_name,e.SPCLNO,e.SPTYNO,e.SPSENO,e.plspno,e.plspnm,d.sampno,d.sampnm,d.packqt,c.suitno,c.ormtqs,c.ormtqt
+		FROM ORD_ORD A
+		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		<include refid="queryQyVO_where"></include> 
+     </select>
+     
+     
+     <update id="updateOrmtqt" parameterType="map"  >
+     	update ORD_ORDDTL set ormtqt=#{ormtqt} where mtorno=#{mtorno} and sampno=#{sampno} and suitno=#{suitno}
+     </update>
 </mapper>
 

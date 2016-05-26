@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
+import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
@@ -237,15 +238,19 @@ public class OrdService extends AbstractService<Ord, String>{
 	public void confirm() {
 		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
 		
-		//先为订单明细表生成 审批订单号 和审批订单号版本
+		//先为订单明细表生成 审批订单号 和审批订单号版本,订单号+品牌+大类
+		ordRepository.updateMtornoMlorvn(ord.getMtorno());
+//		拷贝订单明细表中的确认数量-->原始数量,同时设置确认数量为0
+//		ordRepository.updateOrmtqtZeor(ord.getMtorno());
 		
 		//为订单副表 生成数据，根据订单明细表生成数据 
-		
-		//拷贝订单明细表中的确认数量-->原始数量,同时设置确认数量为0
-		
+		ordRepository.createOrd_ordhd(ord.getMtorno());
+	
 		//拷贝订单副表--》订单副表-历史
+		ordRepository.createOrd_ordhd_his(ord.getMtorno());
 		
 		//拷贝订单明细表-->订单明细表历史
+		ordRepository.createOrd_orddtl_his(ord.getMtorno());
 	}
 	
 	SimpleDateFormat HHmm_format=new SimpleDateFormat("HHmm");
@@ -339,5 +344,17 @@ public class OrdService extends AbstractService<Ord, String>{
 		Org org=userVO.getFirstCurrentOrg();
 		myInfoVO.setOrgnm(org.getOrgnm());
 		return myInfoVO;
+	}
+	
+	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
+		return ordRepository.queryOrdorg(ormtno, qyno, channo,ortyno);
+	}
+	
+	public Pager<QyVO> queryQyVO(Pager<QyVO> pager) {
+		return ordRepository.queryQyVO(pager);
+	}
+	
+	public void updateOrmtqt(String mtorno,String sampno,String suitno,Integer ormtqt) {
+		ordRepository.updateOrmtqt(mtorno, sampno, suitno, ormtqt);
 	}
 }

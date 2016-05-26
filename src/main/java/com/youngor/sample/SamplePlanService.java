@@ -58,5 +58,11 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 		samplePlanRepository.update(samplePlan);
 	}
 	
+	public void lockOrunlock(String plspno,Integer plspst) {
+		SamplePlan samplePlan=samplePlanRepository.get(plspno);
+		samplePlan.setPlspst(plspst);
+		samplePlanRepository.update(samplePlan);
+	}
+	
 
 }

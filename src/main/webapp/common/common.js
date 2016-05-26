@@ -91,7 +91,7 @@ Ext.define('y.common.PubCode',{
 			    	tyno:me.tyno
 					//fitno:me.fitno
 			    },
-			    url: Ext.ContextPath+'/pubCodeType/query4Combo.do',
+			    url: Ext.ContextPath+'/pubCode/query4Combo.do',
 			    reader: {
 			        type: 'json'
 			        //rootProperty: '${propertyColumn.property}'
@@ -292,5 +292,96 @@ Ext.define('y.common.OrgCombo',{
 			parent_no:parent_no
 		});
 		me.getStore().reload();
+	}
+});
+
+
+
+//订货类型，定制 还是统配
+Ext.define('y.common.OrdtyCombo',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'ordtycombo',
+	fieldLabel: '订货类型',
+	//emptyText:'可输入关键字过滤',
+	name: 'ordty',
+	autoLoad:true,
+	queryMode: 'local',
+	editable:true,
+	forceSelection:true,
+	displayField: 'ortynm',
+	valueField: 'ortyno',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	initComponent: function () {
+		var me=this;
+
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['ortyno', 'ortynm'],
+			autoLoad:me.autoLoad,
+			proxy: {
+			    
+			    type: 'ajax',
+			    url: Ext.ContextPath+'/ord/ordty/queryAll.do',
+			    reader: {
+			        type: 'json'
+			        //rootProperty: '${propertyColumn.property}'
+			    }
+			},
+			listeners:{
+				load:function(myStore){
+					if(!me.value && me.selFirst){
+					if(myStore.getCount( ) >0){
+			 			var r=myStore.getAt(0);
+			 			me.select( r );
+			 		}
+					}
+				}
+			}
+			
+		});
+		me.callParent();
+	}
+});
+
+//渠道类型
+Ext.define('y.common.ChannoCombo',{
+	extend:'Ext.form.field.ComboBox',
+	xtype:'channocombo',
+	fieldLabel: '订货类型',
+	//emptyText:'可输入关键字过滤',
+	name: 'channo',
+	autoLoad:true,
+	queryMode: 'local',
+	editable:true,
+	forceSelection:true,
+	displayField: 'channm',
+	valueField: 'channo',
+//    allowBlank: false,
+//    afterLabelTextTpl: Ext.required,
+//    blankText:"菜单类型不允许为空",
+	initComponent: function () {
+		var me=this;
+
+		me.store=Ext.create('Ext.data.Store',{
+			fields: ['channo', 'channm'],
+			autoLoad:me.autoLoad,
+			proxy: {  	
+				type: 'ajax',
+				 url: Ext.ContextPath+'/ordmtScde/queryChanncl.do'
+			},
+			listeners:{
+				load:function(myStore){
+					if(!me.value && me.selFirst){
+					if(myStore.getCount( ) >0){
+			 			var r=myStore.getAt(0);
+			 			me.select( r );
+			 		}
+					}
+				}
+			}
+			
+		});
+		me.callParent();
 	}
 });
