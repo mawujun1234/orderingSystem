@@ -196,7 +196,7 @@ Ext.define('y.sample.SamplePlanGrid',{
 			    handler: function(){
 			    	me.onCopy();    
 			    },
-			    iconCls: 'icon-trash'
+			    iconCls: 'icon-copy'
 			},{
 			    text: '锁定/解锁',
 			    //itemId:'destroy',

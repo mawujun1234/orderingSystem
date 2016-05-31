@@ -1,13 +1,12 @@
 package com.youngor.order;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,6 +36,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private OrdRepository ordRepository;
 	@Autowired
 	private OrddtlRepository orddtlRepository;
+	@Autowired
+	private OrdhdRepository ordhdRepository;
 	@Autowired
 	private OrdszdtlRepository ordszdtlRepository;
 	
@@ -356,5 +357,56 @@ public class OrdService extends AbstractService<Ord, String>{
 	
 	public void updateOrmtqt(String mtorno,String sampno,String suitno,Integer ormtqt) {
 		ordRepository.updateOrmtqt(mtorno, sampno, suitno, ormtqt);
+	}
+	
+	public List<QyNewFormVO> querySuitBySampnm(String ormtno,String sampnm) {
+		return ordRepository.querySuitBySampnm(ormtno, sampnm);
+	}
+	public void createNew(ArrayList<Orddtl> orddtles,String ordorg,String ortyno,String channo,String ormtno) {
+		if(orddtles==null|| orddtles.size()==0){
+			return;
+		}
+		String sampno=orddtles.get(0).getSampno();
+		//先判断这个订货单位有没有订这样样衣编号
+		int count=ordRepository.checkSampnoOrded(sampno, ordorg, ortyno, channo, ormtno);
+		if(count>0){
+			throw new BusinessException("该样衣编号已订！");
+		}
+		
+		//获取对应的订单号，审批订单号，审批订单版本号,这里已经确定了品牌和大类(样衣编号)
+		Ordhd ordhd=ordRepository.getOrdhd(sampno, ordorg, ortyno, channo, ormtno);
+		//判断状态，如果状态不对的话，就不能保存
+		if(ordhd.getOrstat()!=0 && ordhd.getOrstat()!=4){
+			throw new BusinessException("该订单已被提交审批，不能新建!");
+		}
+//		// 如果这个样衣的这个品牌大类还没有订过，就创建订单副表的数据
+//		if (ordhd == null) {
+//
+//		}	
+		//创建订单明细表
+		for(Orddtl orddtl:orddtles){
+			orddtl.setMtorno(ordhd.getMtorno());
+			orddtl.setMlorno(ordhd.getMlorno());
+			orddtl.setMlorvn(ordhd.getMlorvn());
+			orddtl.setOrmtqs(0);
+			
+			orddtlRepository.create(orddtl);
+		}
+	}
+	
+	public void updateApprove_org(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno) {
+		
+		if(ordorg!=null && !"".equals(ordorg)){
+			//提交某个指定的订单
+			ordRepository.updateApprove_org(ordorg, ormtno, bradno, spclno);
+		} else {
+			//提交当前区域下的所有订单
+			//获取所有的订货单位
+			List<Org> orgs=queryOrdorg( ormtno, qyno, channo, "DZ");
+			for(Org org:orgs){
+				ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
+			}
+		}
+		
 	}
 }

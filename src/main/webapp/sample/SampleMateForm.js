@@ -27,16 +27,16 @@ Ext.define('y.sample.SampleMateForm',{
 			hidden:true,
 	        xtype:'textfield'
 	    },
-	    {
-	        fieldLabel: '设计样衣代码',
-	        name: 'sampnm',
-            allowBlank: false,
-            readOnly:true,
-//            afterLabelTextTpl: Ext.required,
-//            blankText:"设计样衣代码不允许为空",
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
+//	    {
+//	        fieldLabel: '设计样衣代码',
+//	        name: 'sampnm',
+//            allowBlank: false,
+//            readOnly:true,
+////            afterLabelTextTpl: Ext.required,
+////            blankText:"设计样衣代码不允许为空",
+//            selectOnFocus:true,
+//	        xtype:'textfield'
+//	    },
 		{
 	        fieldLabel: '面料编号',
 	        name: 'mateso',
@@ -209,6 +209,8 @@ Ext.define('y.sample.SampleMateForm',{
 			handler : function(button){
 				
 				var formpanel = button.up('form');
+				//var sampno_field=formpanel.getForm().findField("sampno");
+				//sampno_field.setValue(window.sampno.);
 				formpanel.updateRecord();
 				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
@@ -224,6 +226,9 @@ Ext.define('y.sample.SampleMateForm',{
 				
 				}
 			});
+	me.on("render",function(panel){
+		panel.mask();	
+	});
       me.callParent();
 	},
 	lockOrUnlock:function(matest){

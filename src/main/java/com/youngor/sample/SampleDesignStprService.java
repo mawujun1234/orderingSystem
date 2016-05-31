@@ -31,8 +31,15 @@ public class SampleDesignStprService extends AbstractService<SampleDesignStpr, S
 		return sampleDesignStprRepository;
 	}
 	
-	public List<SampleDesignStpr> querySampleDesignStpr(String suitty,String sampno) {
-		return sampleDesignStprRepository.querySampleDesignStpr(suitty,sampno);
+//	public List<SampleDesignStpr> querySampleDesignStpr(String suitty,String sampno) {
+//		return sampleDesignStprRepository.querySampleDesignStpr(suitty,sampno);
+//	}
+	
+	public List<SampleDesignStpr> querySampleDesignStpr(String sampno,String suitty) {
+		return sampleDesignStprRepository.querySampleDesignStpr(sampno, suitty);
+	}
+	public List<SampleDesignStpr> querySampleDesignStpr_T00(String sampno) {
+		return sampleDesignStprRepository.querySampleDesignStpr_T00(sampno);
 	}
 
 }

@@ -62,4 +62,14 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	
 	public void updateOrmtqt(@Param("mtorno")String mtorno,@Param("sampno")String sampno,@Param("suitno")String suitno,@Param("ormtqt")Integer ormtqt);
+	
+	
+	public List<QyNewFormVO> querySuitBySampnm(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
+	
+	public int checkSampnoOrded(@Param("sampno")String sampno,@Param("ordorg")String ordorg,@Param("ortyno")String ortyno,
+			@Param("channo")String channo,@Param("ormtno")String ormtno);
+	public Ordhd getOrdhd(@Param("sampno")String sampno,@Param("ordorg")String ordorg,@Param("ortyno")String ortyno,
+			@Param("channo")String channo,@Param("ormtno")String ormtno);
+	
+	public void updateApprove_org(@Param("ordorg")String ordorg,@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 }

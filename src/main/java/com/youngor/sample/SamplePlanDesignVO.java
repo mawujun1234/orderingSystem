@@ -7,6 +7,7 @@ package com.youngor.sample;
  */
 public class SamplePlanDesignVO extends SamplePlanVO{
 
+	private String photno;//
 	private String sampno;//设计样衣id
 	private String sampnm;//设计样衣编码
 	private String suitty;//套装种类
@@ -51,5 +52,11 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	}
 	public void setSuitty(String suitty) {
 		this.suitty = suitty;
+	}
+	public String getPhotno() {
+		return photno;
+	}
+	public void setPhotno(String photno) {
+		this.photno = photno;
 	}
 }

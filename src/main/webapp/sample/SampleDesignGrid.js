@@ -13,6 +13,14 @@ Ext.define('y.sample.SampleDesignGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
+      	{dataIndex:'photno',header:'图片',width:65,renderer:function(value, metaData, record, rowIndex, colIndex, store, view){
+      		if(value>0){
+      			return "已上传";
+      		} else {
+      			return "";
+      		}
+      	}
+        },
 		{dataIndex:'plspnm',header:'企划样衣编号'
         },
         {dataIndex:'sampnm',header:'设计样衣编号'
@@ -94,6 +102,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 				{name:'spseno',type:'string'},
 				{name:'splcno',type:'string'},
 				{name:'spbano',type:'string'},
+				{name:'photno',type:'string'},
 				{name:'spftpr',type:'float'},
 				{name:'sprtpr',type:'float'},
 				{name:'spplrd',type:'float'},
@@ -227,22 +236,42 @@ Ext.define('y.sample.SampleDesignGrid',{
 	  	xtype: 'toolbar',
 	  	dock:'top',
 		items:[{
-		        fieldLabel: '大系列',
+		        //fieldLabel: '大系列',
 		        itemId: 'spbseno',
 		        labelWidth:50,
-		        width:150,
+		       width:90,
+		        emptyText:'大系列',
 //	            allowBlank: false,
 //	            afterLabelTextTpl: Ext.required,
 //	            blankText:"大系列不允许为空",
 		        xtype:'pubcodecombo',
 		        tyno:'17'
 		    },{
-		        fieldLabel: '成衣供应商',
+		       // fieldLabel: '生产类型',
+		        emptyText:'生产类型',
+		         width:90,
+		        itemId: 'spmtno',
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            blankText:"生产类型不允许为空",
+	            selectOnFocus:true,
+		        xtype:'pubcodecombo',
+		        tyno:'29'
+		    },{
+		        //fieldLabel: '成衣供应商',
+		    	emptyText:'成衣供应商',
+		         labelWidth:65,
 		        itemId: 'spsuno',
 //	            allowBlank: false,
 //	            afterLabelTextTpl: Ext.required,
 //	            blankText:"供应商不允许为空",
 	            xtype:'pubsunocombo'
+		    },{
+		    	emptyText:'请输入样衣编号',
+		    	itemId: 'sampnm',
+		    	width:90,
+		    	xtype:'textfield'
+		    	
 		    },{
 				text: '查询',
 				itemId:'reload',
@@ -256,7 +285,9 @@ Ext.define('y.sample.SampleDesignGrid',{
 					
 					var tabpanel=grid.nextSibling("tabpanel");
 					var params=grid.getStore().getProxy().extraParams;
-					tabpanel.down("form#sampleDesignForm").reloadPubcode(params["params['bradno']"],params["params['spclno']"]);
+					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
+					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
+					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
 					
 					
 				},
@@ -274,6 +305,13 @@ Ext.define('y.sample.SampleDesignGrid',{
 					me.onCreate();
 				},
 				iconCls: 'icon-plus'
+			},{
+			    text: '复制',
+			    itemId:'copy',
+			    handler: function(){
+			    	me.onCopy();    
+			    },
+			    iconCls: 'icon-copy'
 			},{
 			    text: '删除',
 			    itemId:'destroy',
@@ -413,6 +451,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 					    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
 					    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
 					    					"params['spsuno']":toolbars[1].down("#spsuno").getValue(),
+					    					"params['spmtno']":toolbars[1].down("#spmtno").getValue(),
+					    					"params['sampnm']":toolbars[1].down("#sampnm").getValue(),
 					    					"params['sampno']":null//修复新建后的样衣编号
 						    	 		};
 		return params;
@@ -445,17 +485,23 @@ Ext.define('y.sample.SampleDesignGrid',{
 			var samplePlanFormQuery=tabpanel.child("form#samplePlanFormQuery") ;
 			samplePlanFormQuery.loadRecord(record);
 			
-//			//设计开发form填充
-//			var sampleDesign=Ext.create('y.sample.SampleDesign',{
-//				plspno:record.get("plspno"),
-//				plspnm:record.get("plspnm")
-//			});
+			//获取当季的属性
+			
+			
+			//设计开发form填充
+			var sampleDesign=Ext.create('y.sample.SampleDesign',{
+				plspno:record.get("plspno"),
+				plspnm:record.get("plspnm")
+			});
 			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;
-			//sampleDesignForm.loadRecord(sampleDesign);
+			
 			sampleDesignForm.reset();
-			sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
-			sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
+			sampleDesignForm.loadRecord(sampleDesign);
+			//sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
+			//sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
+			//获取当季的属性
+			sampleDesignForm.reloadPubcode(record.get("bradno"),1);
 		
 			win.hide();
 			
@@ -468,21 +514,18 @@ Ext.define('y.sample.SampleDesignGrid',{
 				//me.showsampleDesignSizegpGrid_bool=false;
 				sampleDesignForm.showsampleDesignSizegpGrid(false);
 			}
-//			var sampleDesignSizegpGrid_store=sampleDesignSizegpGrid.getStore();
-//			sampleDesignSizegpGrid_store.removeAll();
-//			sampleDesignSizegpGrid_store.getProxy().extraParams={
-//				suitty:record.get("suitty"),
-//				sampno:window.sampno.sampno
-//			};
-//			sampleDesignSizegpGrid_store.reload();
-			
-//			var tabpanel=me.nextSibling("tabpanel");
-//			newCard.getItemId()
+
 			
 			//var tabpanel=field.up("tabpanel");
 	       	tabpanel.items.getAt(2).disable();
 	       	tabpanel.items.getAt(3).disable();
 	       	tabpanel.items.getAt(4).disable();
+	       	//重置
+	       	tabpanel.down("grid#sampleMateGrid").getStore().removeAll();
+	       	tabpanel.down("form#sampleMateForm").reset();
+	       	tabpanel.down("form#sampleColthForm").reset();
+	       //	tabpanel.down("grid#sampleDesignStprGrid").getStore().removeAll();
+	       	tabpanel.down("#samplePhotoShow").getStore().removeAll();
 	       	
 	       	window.sampleDesign=null;
 	       	
@@ -528,5 +571,24 @@ Ext.define('y.sample.SampleDesignGrid',{
 				})
 			}
 		});
+    },
+    onCopy:function(){
+    	var me=this;
+    	var record=me.getSelectionModel( ).getLastSelected( );
+		
+		if(!record){
+		    Ext.Msg.alert("消息","请先选择一行数据");	
+			return;
+		}
+		var rec = record.copy(null);
+		rec.set("plspnm",null);
+		rec.set("plspno",null);
+		var tabpanel=me.nextSibling("tabpanel");
+		tabpanel.setTitle("复制样衣");
+		tabpanel.unmask();
+		var formpanel=tabpanel.child("form#samplePlanForm") ;
+		formpanel.reset();
+		formpanel.loadRecord(rec);
+		
     }
 });

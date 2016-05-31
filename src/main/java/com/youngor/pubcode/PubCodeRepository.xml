@@ -23,8 +23,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="fitno!=null">
     		and a.fitno=#{fitno}
     	</if>
+    	<if test="stat!=null and stat!=''">
+    		and a.stat=#{stat}
+    	</if>
     	and b.stat=1
-    	and a.stat=1
+    	and a.itst=1
     	order by a.itso
     </select> 
     

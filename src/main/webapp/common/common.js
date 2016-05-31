@@ -89,6 +89,7 @@ Ext.define('y.common.PubCode',{
 			    type: 'ajax',
 			    extraParams:{
 			    	tyno:me.tyno
+			    	
 					//fitno:me.fitno
 			    },
 			    url: Ext.ContextPath+'/pubCode/query4Combo.do',
@@ -96,6 +97,14 @@ Ext.define('y.common.PubCode',{
 			        type: 'json'
 			        //rootProperty: '${propertyColumn.property}'
 			    }
+			},
+			listeners:{
+				beforeload:function(store){
+					//添加是否当季
+					store.getProxy().extraParams=Ext.apply(store.getProxy().extraParams,{
+						stat:window.stat_xtrydeeeeeeeee!=0?1:null
+					});
+				}
 			}
 			
 		});
@@ -195,10 +204,15 @@ Ext.define('y.common.PubSunoCombo',{
 	autoLoad:true,
 	queryMode: 'local',
 	editable:true,
-	forceSelection:true,
+	//forceSelection:true,
 	displayField: 'idsunm',
 	valueField: 'idsuno',
 //    allowBlank: false,
+	typeAhead : true,
+//	typeAheadDelay :500,
+//	triggerAction : 'all',
+	queryDelay:1000,
+	selectOnFocus:true,
 //    afterLabelTextTpl: Ext.required,
 //    blankText:"菜单类型不允许为空",
 	initComponent: function () {
@@ -225,6 +239,21 @@ Ext.define('y.common.PubSunoCombo',{
 			 		}
 					}
 				}
+			}
+			
+		});
+		me.on("beforequery",function(e){
+			var combo = e.combo;
+			if (!e.forceAll) {
+				var value = e.query;
+				combo.store.filterBy(function(record, id) {
+					var text = record.get(combo.displayField);
+					//console.log(text);
+					//console.log(value)
+					return (text.indexOf(value) != -1);
+				});
+				combo.expand();
+				return false;
 			}
 			
 		});

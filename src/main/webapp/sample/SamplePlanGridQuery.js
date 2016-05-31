@@ -74,7 +74,8 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 	  		//enableOverflow:true,
 		  	items:[{
 		  		itemId:'ordmtcombo',
-				xtype:'ordmtcombo'
+				xtype:'ordmtcombo',
+				readOnly:true
 			},{
 		        fieldLabel: '品牌',
 		        itemId: 'bradno',

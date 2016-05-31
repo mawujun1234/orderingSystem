@@ -88,6 +88,7 @@ Ext.define('y.sample.SampleMateGrid',{
 		
 		var formpanel=me.nextSibling("form#sampleMateForm");
 		formpanel.loadRecord(child);
+		formpanel.unmask();
 		
   
     },

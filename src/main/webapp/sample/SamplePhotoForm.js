@@ -60,9 +60,9 @@ Ext.define('y.sample.SamplePhotoForm',{
 		{
 	        fieldLabel: '图片描述',
 	        name: 'photms',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"图片描述不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"图片描述不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },

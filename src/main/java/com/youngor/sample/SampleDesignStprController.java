@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,8 +37,27 @@ public class SampleDesignStprController {
 	@RequestMapping("/sampleDesignStpr/query.do")
 	@ResponseBody
 	public List<SampleDesignStpr> query(String suitty,String sampno) {	
-		List<SampleDesignStpr> sampleDesignStpres=sampleDesignStprService.querySampleDesignStpr(suitty,sampno);
-		return sampleDesignStpres;
+		//List<SampleDesignStpr> sampleDesignStpres=sampleDesignStprService.querySampleDesignStpr(suitty,sampno);
+		//return sampleDesignStpres;
+		//如果套装种类为空，表示选的都是标准套
+				List<SampleDesignStpr> sampleDesignSizegpes=null;
+				if(suitty==null || "".equals(suitty)){//表示新建的没有套件的时候
+					if(sampno!=null && !"".equals(sampno)){//新建样衣的时候
+						sampleDesignSizegpes=sampleDesignStprService.querySampleDesignStpr_T00(sampno);
+					}
+					
+					if(sampleDesignSizegpes==null || sampleDesignSizegpes.size()==0){
+						sampleDesignSizegpes=new ArrayList<SampleDesignStpr>();
+						SampleDesignStpr aa=new SampleDesignStpr();
+						aa.setSampno(sampno);
+						aa.setSuitno("T00");
+						sampleDesignSizegpes.add(aa);
+					}
+				} else {
+					sampleDesignSizegpes=sampleDesignStprService.querySampleDesignStpr(sampno,suitty);
+					
+				}
+				return sampleDesignSizegpes;
 	}
 	
 

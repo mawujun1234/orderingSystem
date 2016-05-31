@@ -136,7 +136,10 @@ public class UserController {
              Map<String,Object> wxConfig=new HashMap<String,Object>();
              wxConfig.put("appId", SignUtil.APPID);
              wxConfig.put("nonceStr", SignUtil.noncestr);
-             wxConfig.put("signature", SignUtil.getSignature(url));
+             //如果不能访问外网，就不去获取签名,在测试库的时候
+             if(url.indexOf("192.168.188.69")==-1){
+            	 wxConfig.put("signature", SignUtil.getSignature(url));
+             }
              wxConfig.put("timestamp", SignUtil.timestamp);
              //wxConfig.put("jsApiList", new String[]{"scanQRCode"});
              model.put("wxConfig", wxConfig);

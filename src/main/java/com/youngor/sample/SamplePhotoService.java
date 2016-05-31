@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
+import javax.naming.Context;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mawujun.repository.idEntity.UUIDGenerator;
 import com.mawujun.service.AbstractService;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.ContextUtils;
 
 
 /**
@@ -27,8 +30,10 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 
 	@Autowired
 	private SamplePhotoRepository samplePhotoRepository;
+//	@Autowired
+//	private SamplePlanRepository samplePlanRepository;
 	@Autowired
-	private SamplePlanRepository samplePlanRepository;
+	private SampleDesignRepository sampleDesignRepository;
 	
 	@Override
 	public SamplePhotoRepository getRepository() {
@@ -36,7 +41,21 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 	}
 	
 	public String create(SamplePhoto samplePhoto,MultipartFile imageFile,String contextPath) throws IOException {
-		String id=UUIDGenerator.generate();
+		//获取订货会编号
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();// samplePlanRepository.queryOrmtno(samplePhoto.getSampno());
+		String id=ormtno+"_"+samplePhoto.getSampno();//UUIDGenerator.generate();
+		SampleDesign sampleDesign=sampleDesignRepository.get(samplePhoto.getSampno());//.getSampleDesignBySampno(ormtno, samplePhoto.getSampno());
+		if(sampleDesign.getPhotno() ==null || "".equals(sampleDesign.getPhotno())){
+			sampleDesign.setPhotno("1");
+			id=id+"_"+sampleDesign.getPhotno();
+		} else {
+			Integer photno=Integer.parseInt(sampleDesign.getPhotno());
+			photno++;
+			id=id+"_"+photno;
+			sampleDesign.setPhotno(photno+"");
+		}
+		sampleDesignRepository.update(sampleDesign);
+		
 		samplePhoto.setId(id);
 		samplePhoto.setPhotnm(imageFile.getOriginalFilename());
 		samplePhoto.setRgdt(new Date());
@@ -47,8 +66,7 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		//以照片的id作为文件名的id
 		String imgnm=id+"."+aa[aa.length-1];
 		
-		//获取订货会编号
-		String ormtno=samplePlanRepository.queryOrmtno(samplePhoto.getSampno());
+		
 		samplePhoto.setImgnm("/" +ormtno+"/"+imgnm);
 		File dir=new File(contextPath + File.separator +ormtno);
 		if(!dir.exists()){

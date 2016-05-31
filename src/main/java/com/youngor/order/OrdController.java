@@ -1,4 +1,5 @@
 package com.youngor.order;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.utils.page.Pager;
@@ -106,7 +108,7 @@ public class OrdController {
 	 * @param pager
 	 * @return
 	 */
-	@RequestMapping("/ord/queryQyVO.do")
+	@RequestMapping("/ord/quVO/queryQyVO.do")
 	@ResponseBody
 	public Pager<QyVO> queryQyVO(Pager<QyVO> pager){
 		return ordService.queryQyVO(pager);
@@ -116,10 +118,42 @@ public class OrdController {
 	 * 调整数量
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 */
-	@RequestMapping("/ord/updateOrmtqt.do")
+	@RequestMapping("/ord/quVO/updateOrmtqt.do")
 	@ResponseBody
 	public void updateOrmtqt(String mtorno,String sampno,String suitno,Integer ormtqt){
 		ordService.updateOrmtqt(mtorno, sampno, suitno, ormtqt);
+	}
+	/**
+	 * 获取某次订货会中的某个样衣编号使用的套件
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mtorno
+	 * @param sampnm
+	 */
+	@RequestMapping("/ord/qyVO/querySuitBySampnm.do")
+	@ResponseBody
+	public List<QyNewFormVO> querySuitBySampnm(String ormtno,String sampnm){
+		return ordService.querySuitBySampnm(ormtno, sampnm);
+	}
+	
+	@RequestMapping("/ord/qyVO/createNew.do")
+	@ResponseBody
+	public String createNew(@RequestBody ArrayList<Orddtl> orddtles,String ordorg,String ortyno,String channo,String ormtno){
+		//System.out.println(orddtles);
+		ordService.createNew(orddtles, ordorg, ortyno, channo, ormtno);
+		return "{success:true}";
+	}
+	/**
+	 * 提交审批,某个订货单位下的指定品牌，大类的订单都提交
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/qyVO/updateApprove.do")
+	@ResponseBody
+	public String updateApprove(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno){
+		//System.out.println(orddtles);
+		
+		ordService.updateApprove_org(qyno, channo, ordorg, ormtno, bradno, spclno);
+		return "{success:true}";
 	}
 
 //	/**

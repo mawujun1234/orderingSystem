@@ -27,8 +27,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="spbseno!=null and spbseno!=''">
     		and a.spbseno=#{spbseno}
     	</if>
+    	<if test="spmtno!=null and spmtno!=''">
+    		and b.spmtno=#{spmtno}
+    	</if>
     	<if test="sampno!=null and sampno!=''">
     		and b.sampno=#{sampno}
+    	</if>
+    	<if test="sampnm!=null and sampnm!=''">
+    		and b.sampnm like '%${sampnm}%'
     	</if>
     	<if test="spsuno!=null and spsuno!=''">
     		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
@@ -37,7 +43,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
     	select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst 
     	from (
-    	select b.sampno,b.sampnm,b.spstat,b.suitty,a.* 
+    	select b.sampno,b.sampnm,b.spstat,b.suitty,b.photno,a.* 
     	from ord_sample_plan a,ord_sample_design b 
     	where a.plspno=b.plspno	
     	<include refid="queryPlanDesign_where"></include> 
@@ -81,11 +87,19 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </update>
     
     
-     <!-- 获取订货会批号 -->
+     <!-- 获取订货会批号 
     <select id="queryOrmtno" resultType="string" parameterType="string">
     	select distinct a.ormtno from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
     	and b.sampno=#{sampno}
-    </select> 
+    </select> -->
+    <!-- 在上传图片的时候，获取设计样衣 
+    <select id="getSampleDesignBySampno" resultType="com.youngor.sample.SampleDesign" parameterType="map">
+    	select b.* from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
+    	and b.sampno=#{sampno} and a.ormtno=#{ormtno}
+    </select>
+    <update id="updateSampleDesingPhotno" parameterType="map">
+    	update ord_sample_design set photno=#{photno} where plspno=#{plspno} and sampno=#{sampno} 
+    </update>-->
     <!-- 判断样衣编号在一次订货会中是否是唯一的-->
      <select id="checkOnlyOne" resultType="int" parameterType="string">
      	select count(sampno) from  ord_sample_design where sampnm=#{sampnm}

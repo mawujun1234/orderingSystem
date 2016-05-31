@@ -10,7 +10,9 @@ Ext.require('y.sample.SampleMateGrid');
 Ext.require('y.sample.SampleMateForm');
 Ext.require('y.sample.SamplePhotoShow');
 Ext.require('y.sample.SamplePlanGridQuery');
+Ext.require('y.sample.SamplePhotoForm');
 Ext.onReady(function(){
+	window.stat_xtrydeeeeeeeee="1";
 	var sampleDesignGrid=Ext.create('y.sample.SampleDesignGrid',{
 		itemId:'sampleDesignGrid',
 		region:'center'
@@ -96,6 +98,9 @@ Ext.onReady(function(){
 		};//当前选中的设计样衣编号
 		window.sampleDesign=record;
 		
+//		//用于获取设计样衣的当季属性
+		sampleDesignForm.reloadPubcode(record.get("bradno"),record.get("spstat"));
+		
 //		if(sampleDesignGrid.sampno==record.get("sampno")){
 //			return;
 //		}
@@ -120,6 +125,7 @@ Ext.onReady(function(){
 		    	//console.log(sampleDesign);
 		       sampleDesign.set("plspnm",record.get("plspnm"));
 		       sampleDesignForm.loadRecord(sampleDesign);
+		       sampleColthForm.loadGrid(sampleDesign);
 		    }
 		});
 		
@@ -132,6 +138,7 @@ Ext.onReady(function(){
 		sampleMateGrid.lockOrUnlock(record.get("matest"));
 		
 		
+		
 		//成衣信息
 		sampleColthForm.reset();
 		y.sample.SampleColth.load(record.get("sampno"), {
@@ -142,7 +149,7 @@ Ext.onReady(function(){
 		       sampleColthForm.loadRecord(sampleColth);
 		    }
 		});
-		sampleColthForm.loadGrid(record);
+		
 		
 		//产品图片
 		samplePhotoShow.getStore().getProxy().extraParams={

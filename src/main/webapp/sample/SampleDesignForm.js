@@ -1,7 +1,8 @@
 Ext.define('y.sample.SampleDesignForm',{
 	extend:'Ext.form.Panel',
 	requires: [
-	     'y.sample.SampleDesign'
+	     'y.sample.SampleDesign',
+	     'y.sample.SampleDesignSizegpGrid'
 	],
 	
     frame: true,
@@ -143,19 +144,6 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				//tabpanel.items.getAt(2).disable();//面料信息
 	       			} else if(newValue=='ZC') {
 	       				form.remove(gustnoField,true);
-	       				
-//	       				var aa=Ext.create('Ext.form.field.Text',{
-//					        fieldLabel: '客供编号',
-//					        name: 'gustno',
-//				            selectOnFocus:true,
-//					        xtype:'textfield'
-//					    });
-//	       				
-//	       				//form.add(aa);
-//	       				form.moveAfter( aa, field )
-	       				
-	       				//var tabpanel=field.up("tabpanel");
-	       				//tabpanel.items.getAt(2).enable();
 	       			}
 	       		}
 	        
@@ -488,6 +476,11 @@ Ext.define('y.sample.SampleDesignForm',{
 				       	tabpanel.items.getAt(2).enable();
 				       	tabpanel.items.getAt(3).enable();
 				       	tabpanel.items.getAt(4).enable();
+				       	
+				       	//这里需要测试，当新建成功后，成衣里面能不能出现标准的套件
+				       	//formpanel.getForm().updateRecord();
+				       	var user = Ext.create('y.sample.SampleDesign', obj.sampleDesign);
+				       	tabpanel.down("#sampleColthForm").loadGrid(user);
 					}
 					
 				});
@@ -553,7 +546,13 @@ Ext.define('y.sample.SampleDesignForm',{
 	 * @param {} spclno 大类
 	 */
 	temp_bradno:'Y',//这是临时解决的
-	reloadPubcode:function(bradno,spclno){
+	reloadEditor:function(bradno,spclno){
+		//刷新规格组的数据
+		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
+			this.down("grid#sampleDesignSizegpGrid").reloadEditor(bradno,spclno);
+		}
+	},
+	reloadPubcode:function(bradno,stat_xtrydeeeeeeeee){
 		if(!bradno){
 			alert("请传递品牌参数");
 			return;
@@ -562,22 +561,8 @@ Ext.define('y.sample.SampleDesignForm',{
 		var me=this;
 		
 		
-		
-		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
-//			//预先读取该品牌大类下的规格范围
-//			var sizegpField=me.getForm().findField("sizegp");
-//			sizegpField.getStore().getProxy().extraParams={
-//				szbrad:bradno,
-//				szclno:spclno
-//			};
-//			sizegpField.getStore().reload();
-			
-			this.down("grid#sampleDesignSizegpGrid").reloadEditor(bradno,spclno);
-		}
-		
-
-		
-		if(this.temp_bradno!=bradno){
+		if(this.temp_bradno!=bradno || window.stat_xtrydeeeeeeeee!=stat_xtrydeeeeeeeee){//alert(stat_xtrydeeeeeeeee);
+			window.stat_xtrydeeeeeeeee=stat_xtrydeeeeeeeee;
 			var versnoField=me.getForm().findField("versno");
 			versnoField.changeBradno(bradno);
 			versnoField.getStore().reload();

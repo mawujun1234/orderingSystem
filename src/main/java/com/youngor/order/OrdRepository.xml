@@ -221,5 +221,35 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <update id="updateOrmtqt" parameterType="map"  >
      	update ORD_ORDDTL set ormtqt=#{ormtqt} where mtorno=#{mtorno} and sampno=#{sampno} and suitno=#{suitno}
      </update>
+     
+     <select id="querySuitBySampnm" resultType="com.youngor.order.QyNewFormVO"  parameterType="map"  >
+     	  select distinct c.* from  ord_sample_plan a,ord_sample_design b,ord_sample_design_sizegp c
+          where a.plspno=b.plspno and b.sampno=c.sampno
+          and a.ormtno=#{ormtno} and b.sampnm=#{sampnm}
+     </select>
+     
+     <!--判断某个样衣编号是否已经订过了 -->
+     <select id="checkSampnoOrded" resultType="int"  parameterType="map"  >
+     	  select count(*) from ord_orddtl a
+          where a.sampno=#{sampno}
+          and exists (select 1 from ord_ord b where a.mtorno=b.mtorno
+              and b.ormtno=#{ormtno} and b.ortyno=#{ortyno} and b.ordorg=#{ordorg} and b.channo=#{channo} 
+          )
+     </select>
+     <!-- 为了 获取审批订单号，审批版本号 -->
+      <select id="getOrdhd" resultType="com.youngor.order.Ordhd"  parameterType="map"  >
+     	   select a.* from ORD_ORDHD a,ord_sample_plan b,ord_sample_design c
+          where a.bradno=b.bradno and a.SPCLNO=b.SPCLNO and b.plspno=c.plspno
+          and c.sampno=#{sampno}
+          and exists (select 1 from ORD_ORD b where a.MTORNO=b.MTORNO
+              and b.ormtno=#{ormtno} and b.ortyno=#{ortyno} and b.ordorg=#{ordorg} and b.channo=#{channo} and ortyno='DZ'
+          )
+     </select>
+     <!-- 提交指定的订货单位-->
+     <update id="updateApprove_org" parameterType="map"  >
+     	update ord_ordhd a set a.orstat=1 where (a.orstat=0 or a.orstat=4)
+        and a.bradno=#{bradno} and a.spclno=#{spclno}
+        and exists (select 1 from ord_ord b where a.mtorno=b.mtorno and b.ormtno=#{ormtno} and b.ordorg=#{ordorg} and ortyno='DZ')
+     </update>
 </mapper>
 

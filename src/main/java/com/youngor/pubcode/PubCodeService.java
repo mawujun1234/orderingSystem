@@ -31,7 +31,7 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 		return pubCodeRepository;
 	}
 
-	public List<PubCode> query(String tyno,String fitno,String bradno) {
-		return pubCodeRepository.query(tyno,fitno, bradno);
+	public List<PubCode> query(String tyno,String fitno,String bradno,String stat) {
+		return pubCodeRepository.query(tyno,fitno, bradno,stat);
 	}
 }

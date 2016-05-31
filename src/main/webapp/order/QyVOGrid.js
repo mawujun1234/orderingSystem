@@ -1,7 +1,8 @@
 Ext.define('y.order.QyVOGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
-	     'y.order.QyVO'
+	     'y.order.QyVO',
+	     'y.order.QyVONewForm'
 	],
 	columnLines :true,
 	stripeRows:true,
@@ -64,7 +65,7 @@ Ext.define('y.order.QyVOGrid',{
 	  	
 
 	  	Ext.Ajax.request({
-						url:Ext.ContextPath+'/ord/updateOrmtqt.do',
+						url:Ext.ContextPath+'/ord/quVO/updateOrmtqt.do',
 						params:{
 							mtorno:record.get("mtorno"),
 							sampno:record.get("sampno"),
@@ -88,7 +89,7 @@ Ext.define('y.order.QyVOGrid',{
 			model: 'y.order.QyVO',
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/ord/queryQyVO.do',
+			    url : Ext.ContextPath+'/ord/quVO/queryQyVO.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
@@ -97,6 +98,29 @@ Ext.define('y.order.QyVOGrid',{
 					rootProperty:'root',
 					successProperty:'success',
 					totalProperty:'total'		
+				}
+			},
+			listeners:{
+				load:function(store,records){
+					if(records && records.length>0){
+						if(!me.createNew_btn){
+							var toolbars=me.getDockedItems('toolbar[dock="top"]');
+							var createNew=toolbars[2].down("#createNew");
+							var updateApprove=toolbars[2].down("#updateApprove");
+							
+							me.createNew_btn=createNew;
+							me.updateApprove_btn=updateApprove;
+						}
+						
+						if(records[0].get("orstat")==0 || records[0].get("orstat")==4 ){
+							me.createNew_btn.enable();
+							me.updateApprove_btn.enable();
+						} else {
+							me.createNew_btn.disable();
+							me.updateApprove_btn.disable();
+						}
+						
+					}
 				}
 			}
 	  });
@@ -114,6 +138,8 @@ Ext.define('y.order.QyVOGrid',{
 		  	items:[{
 		  		itemId:'ordmtcombo',
 				xtype:'ordmtcombo',
+				allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 				listeners:{
 					select:function( combo, record, eOpts ) {	
 						var ordorg=combo.nextSibling("#ordorg");
@@ -127,6 +153,8 @@ Ext.define('y.order.QyVOGrid',{
 		  		fieldLabel: '营销公司',
 		  		labelWidth:60,
 		  		width:160,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
 				listeners:{
@@ -139,6 +167,8 @@ Ext.define('y.order.QyVOGrid',{
 		  		fieldLabel: '区域',
 		  		labelWidth:45,
 		  		width:170,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 		  		itemId:'qyno',
 				xtype:'orgcombo',
 				autoLoad:false,
@@ -156,8 +186,11 @@ Ext.define('y.order.QyVOGrid',{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
 				width:150,
+				allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 				itemId: 'channo',
 				xtype:'channocombo',
+				value:'QY',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 		        		
@@ -169,21 +202,6 @@ Ext.define('y.order.QyVOGrid',{
 					}
 				}
 			 },{
-		  		itemId:'ortyno',
-				xtype:'ordtycombo',
-				labelWidth:65,
-				//selFirst:true,
-				width:150,
-				listeners:{
-					select:function( combo, record, eOpts ) {
-						var ordorg=combo.nextSibling("#ordorg");
-		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
-		        			ortyno:record.get("ortyno")
-		        		});
-		        		ordorg.getStore().reload();
-					}
-				}
-			},{
 				fieldLabel: '订货单位',
 				labelWidth:65,
 				width:170,
@@ -213,6 +231,21 @@ Ext.define('y.order.QyVOGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		  		itemId:'ortyno',
+				xtype:'ordtycombo',
+				labelWidth:65,
+				//selFirst:true,
+				width:150,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+//						var ordorg=combo.nextSibling("#ordorg");
+//		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+//		        			ortyno:record.get("ortyno")
+//		        		});
+//		        		ordorg.getStore().reload();
+					}
+				}
+			},{
 		        fieldLabel: '品牌',
 		        itemId: 'bradno',
 		        labelWidth:40,
@@ -314,18 +347,25 @@ Ext.define('y.order.QyVOGrid',{
 				iconCls: 'icon-refresh'
 			},{
 				text: '新增未定样衣',
-				itemId:'create',
+				itemId:'createNew',
 				handler: function(btn){
-					me.onCreate();
+					me.createNew();
 				},
 				iconCls: 'icon-plus'
 			},{
 			    text: '提交审批',
-			    itemId:'update',
-			    handler: function(){
-					Ext.Msg.confirm("消息","是否确定要提交审批!当前选中的<span style='color:red;'>‘品牌+大类’</span>的订单都会被提交!",function(btn){
+			    itemId:'updateApprove',
+			    handler: function(btn){
+			    	var toolbars=btn.up("grid").getDockedItems('toolbar[dock="top"]');
+			    	var ordorg_name=toolbars[0].down("#ordorg").getRawValue();
+			    	if(!ordorg_name){
+			    		ordorg_name="当前区域下的<span style='color:red;'>所有订货单位</span>";
+			    	} else {
+			    		ordorg_name="<span style='color:red;'>"+ordorg_name+"</span>订货单位";
+			    	}
+					Ext.Msg.confirm("消息","是否确定要提交审批!"+ordorg_name+"和当前选中的<span style='color:red;'>‘品牌+大类’</span>的数据都会被提交!",function(btn){
 						if(btn=='yes'){
-							alert(1);
+							me.updateApprove();
 						}
 					});
 			    },
@@ -343,8 +383,9 @@ Ext.define('y.order.QyVOGrid',{
 			"params['yxgsno']":toolbars[0].down("#yxgsno").getValue(),
 			"params['qyno']":toolbars[0].down("#qyno").getValue(),
 			"params['channo']":toolbars[0].down("#channo").getValue(),	
-			"params['ortyno']":toolbars[0].down("#ortyno").getValue(),
 			"params['ordorg']":toolbars[0].down("#ordorg").getValue(),
+			
+			"params['ortyno']":toolbars[1].down("#ortyno").getValue(),
 			"params['bradno']":toolbars[1].down("#bradno").getValue(),
 			"params['spclno']":toolbars[1].down("#spclno").getValue(),
 			"params['sptyno']":toolbars[1].down("#sptyno").getValue(),
@@ -355,15 +396,28 @@ Ext.define('y.order.QyVOGrid',{
 		};
 		return params;
 	},
-	onCreate:function(){
-    	var me=this;
-		var child=Ext.create('y.order.QyVO',{
-
-		});
-		child.set("id",null);
+	createNew:function(){
+		var me=this;
+		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		var ordorg=toolbars[0].down("#ordorg").getValue();
+		if(!ordorg){
+			Ext.Msg.alert("消息","请先选择一个订货单位!");
+			return;
+		}
+//		var ortyno=toolbars[0].down("#ortyno").getValue();
+//		if(!ortyno){
+//			ortyno='DZ';
+//		}
 		
-		var formpanel=Ext.create('y.order.QyVOForm',{});
-		formpanel.loadRecord(child);
+		
+    	var qyVONewForm=Ext.create('y.order.QyVONewForm',{
+    		params:{
+    			ordorg:ordorg,
+	    		ortyno:'DZ',
+	    		channo:toolbars[0].down("#channo").getValue(),
+	    		ormtno:toolbars[0].down("#ordmtcombo").getValue()
+    		}
+    	});
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -372,7 +426,7 @@ Ext.define('y.order.QyVOGrid',{
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[formpanel],
+    		items:[qyVONewForm],
     		listeners:{
     			close:function(){
     				me.getStore().reload();
@@ -381,51 +435,34 @@ Ext.define('y.order.QyVOGrid',{
     	});
     	win.show();
     },
-    
-     onUpdate:function(){
+    updateApprove:function(){
     	var me=this;
-
-    	var node=me.getSelectionModel( ).getLastSelected();
-    	if(node==null){
-    		Ext.Msg.alert("提醒","请选择一行数据!");
-    		return;
-    	}
-
-		var formpanel=Ext.create('y.order.QyVOForm',{});
-		formpanel.loadRecord(node);
-		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'更新',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel]
-    	});
-    	win.show();
-    },
-    
-    onDelete:function(){
-    	var me=this;
-    	var node=me.getSelectionModel( ).getLastSelected( );
-
-		if(!node){
-		    Ext.Msg.alert("消息","请先选择一行数据");	
-			return;
-		}
-		var parent=node.parentNode;
-		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
-				if (btn == 'yes'){
-					node.erase({
-					    failure: function(record, operation) {
-			            	me.getStore().reload();
-					    },
-					    success:function(){
-					    	me.getStore().reload();
-					    }
-				});
+    	var toolbars=this.getDockedItems('toolbar[dock="top"]');
+    	var params={
+    		ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+    		qyno:toolbars[0].down("#qyno").getValue(),
+			channo:toolbars[0].down("#channo").getValue(),
+    		ordorg:toolbars[0].down("#ordorg").getValue(),
+    		bradno:toolbars[1].down("#bradno").getValue(),
+    		spclno:toolbars[1].down("#spclno").getValue()
+    		
+    	};
+    	Ext.Ajax.request({
+			url:Ext.ContextPath+'/ord/qyVO/updateApprove.do',
+			params:params,
+			method:'POST',
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+					Ext.Msg.alert("消息",obj.msg);
+					return;
+				}
+				Ext.Msg.alert("消息","提交成功!");
+				//button.up('window').close();
+				me.getStore().reload();
 			}
 		});
     }
+   
+    
 });

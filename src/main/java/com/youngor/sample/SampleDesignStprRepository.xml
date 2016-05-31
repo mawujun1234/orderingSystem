@@ -15,6 +15,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_design_stpr a
     </select>
     
+    <select id="querySampleDesignStpr_T00" resultType="com.youngor.sample.SampleDesignStpr" parameterType="map">
+    	SELECT  *
+    	 FROM ord_sample_design_sizegp b
+    	 <where>
+        <if test="sampno!=null and sampno!=''">
+		 	 b.sampno=#{sampno}
+		</if>
+		</where>
+		 
+    </select>
     <select id="querySampleDesignStpr" resultType="com.youngor.sample.SampleDesignStpr" parameterType="string">
     	SELECT    a.ditno as suitno,'${sampno}' as sampno,b.plctpr,b.spftpr,b.sprtpr
     	 FROM ORD_CODE_DC a 

@@ -58,7 +58,8 @@ public class SamplePhotoController {
 	}
 	
 	@RequestMapping("/samplePhoto/create.do")
-	public void create(HttpServletRequest request,HttpServletResponse response,MultipartFile imageFile,SamplePhoto samplePhoto) throws IOException {	
+	@ResponseBody
+	public Map<String,Object> create(HttpServletRequest request,HttpServletResponse response,MultipartFile imageFile,SamplePhoto samplePhoto) throws IOException {	
 		//保存文件
 		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
 		
@@ -66,9 +67,9 @@ public class SamplePhotoController {
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("success", true);
 		
-		response.setContentType("text/html");
-		response.getWriter().write("{\"success\":true}");
-		//return map;
+		//response.setContentType("text/html");
+		//response.getWriter().write("{\"success\":true}");
+		return map;
 	}
 	
 	@RequestMapping("/samplePhoto/update.do")

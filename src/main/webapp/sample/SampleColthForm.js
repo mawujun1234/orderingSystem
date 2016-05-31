@@ -303,6 +303,8 @@ Ext.define('y.sample.SampleColthForm',{
 			suitty:sampleDesign.get("suitty"),
 			sampno:sampleDesign.get("sampno")//window.sampno.sampno
 		};
+		//console.log(sampleDesign.get("suitty"));
+		//console.log(sampleDesign.get("sampno"));
 		sampleDesignStprGrid_store.reload();
 	},
 	reset:function(){
