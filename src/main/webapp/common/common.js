@@ -112,7 +112,7 @@ Ext.define('y.common.PubCode',{
 		if(!me.value && me.selFirst){
 			me.store.on("load",function(myStore){
 				if(myStore.getCount( ) >0){
-			 		var r=myStore.getAt(0);
+			 		var r=myStore.getAt(1);//第一行是无
 			 		me.select( r );
 			 		me.fireEvent("select", me, r);
 			 	}
@@ -234,7 +234,7 @@ Ext.define('y.common.PubSunoCombo',{
 				load:function(myStore){
 					if(!me.value && me.selFirst){
 					if(myStore.getCount( ) >0){
-			 			var r=myStore.getAt(0);
+			 			var r=myStore.getAt(1);
 			 			me.select( r );
 			 		}
 					}

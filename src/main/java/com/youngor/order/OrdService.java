@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
@@ -40,6 +41,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private OrdhdRepository ordhdRepository;
 	@Autowired
 	private OrdszdtlRepository ordszdtlRepository;
+	@Autowired
+	private CompPalService compPalService;
 	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -203,6 +206,8 @@ public class OrdService extends AbstractService<Ord, String>{
 					ordszdtl.setSizety(sizeVO.getSizety());
 					ordszdtl.setSizeno(sizeVO.getSizeno());
 					ordszdtl.setOrszqt(sizeVO.getOrszqt());
+					ordszdtl.setOritqt(ordszdtl.getOrszqt());
+					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt());
 					
 					ordszdtl.setRgsp(ShiroUtils.getAuthenticationInfo().getId());
 					ordszdtl.setRgdt(new Date());
@@ -407,6 +412,42 @@ public class OrdService extends AbstractService<Ord, String>{
 				ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
 			}
 		}
+		
+	}
+	
+	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager) {
+		return ordRepository.queryZgsVO(pager);
+	}
+	
+	public void clearNum(String[] sampnos,String ormtno) {
+		if(sampnos==null || sampnos.length==0){
+			return;
+		}
+		for(String sampno:sampnos){
+			//清空明细表
+			ordRepository.clearnum_orddtl(sampno);
+			////清空规格明细,放到后面的时候清零，发现明细表里的数量为0，就把规格明细表中的数据清零
+			//ordRepository.clearnum_ordszdtl(sampno);
+			//插入总公司平衡主表
+			CompPal compPay=new CompPal();
+			compPay.setOrmtno(ormtno);
+			compPay.setSampno(sampno);
+			compPay.setPaltpy("取消");
+			compPalService.create(compPay);
+			
+		}
+	}
+	
+	public void meger_all(ArrayList<Map<String,Object>> data) {
+		
+	}
+	public List<Map<String,Object>> query_meger_comp(String SAMPNO) {
+		return ordRepository.query_meger_comp(SAMPNO);
+	}
+	public void meger_comp(ArrayList<Map<String,Object>> data) {
+		
+	}
+	public void recover(String[] sampnos,String ormtno) {
 		
 	}
 }

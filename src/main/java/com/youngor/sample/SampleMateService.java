@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,9 @@ public class SampleMateService extends AbstractService<SampleMate, SampleMate.PK
 	}
 	public void unlock(Map<String,Object> params){
 		sampleMateRepository.unlock(params);
+	}
+	
+	public List<SampleMate> queryAll(){
+		return sampleMateRepository.queryAll();
 	}
 }

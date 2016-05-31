@@ -52,6 +52,8 @@ public class Ordszdtl  extends BaseObject{
 	private Integer orszst;//0：未确认；1：已确认
 	@FieldDefine(title="包装数量",sort=50,hidden=false)
 	private Integer orbgqt;
+	@FieldDefine(title="包装数量",sort=50,hidden=false)
+	private Integer oritqt;
 	@Column(length=100)
 	@FieldDefine(title="备注",sort=50,hidden=false)
 	private String ormark;
@@ -154,6 +156,12 @@ public class Ordszdtl  extends BaseObject{
 	}
 	public void setOrmark(String ormark) {
 		this.ormark = ormark;
+	}
+	public Integer getOritqt() {
+		return oritqt;
+	}
+	public void setOritqt(Integer oritqt) {
+		this.oritqt = oritqt;
 	}
 
 }

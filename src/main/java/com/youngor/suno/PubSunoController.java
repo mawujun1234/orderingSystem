@@ -43,6 +43,10 @@ public class PubSunoController {
 	@ResponseBody
 	public List<PubSuno> query4Combo() {	
 		List<PubSuno> pubSudoes=pubSunoService.queryAll();
+		PubSuno wu=new PubSuno();
+		wu.setIdsuno("");
+		wu.setIdsunm("无");
+		pubSudoes.add(0, wu);
 		return pubSudoes;
 	}
 	

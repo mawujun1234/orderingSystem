@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.mawujun.generator.model.FieldDefine;
 import com.youngor.sample.SampleMate.PK;
@@ -65,6 +66,9 @@ public class SampleMate {
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer matest;//锁定状态：1：锁定；0：未锁定
 	
+	@Transient
+	private String mtsuno_name;
+	
 	public static class PK implements Serializable {
 		private static final long serialVersionUID = 1L;
 
@@ -95,6 +99,8 @@ public class SampleMate {
 		pk.setSampno(this.getSampno());
 		return pk;
 	}
+	
+
 
 	public String getSampno() {
 		return sampno;
@@ -206,5 +212,17 @@ public class SampleMate {
 
 	public void setMatest(Integer matest) {
 		this.matest = matest;
+	}
+
+
+
+	public String getMtsuno_name() {
+		return mtsuno_name;
+	}
+
+
+
+	public void setMtsuno_name(String mtsuno_name) {
+		this.mtsuno_name = mtsuno_name;
 	}
 }

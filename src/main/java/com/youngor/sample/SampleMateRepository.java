@@ -2,6 +2,7 @@ package com.youngor.sample;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import com.mawujun.repository.IRepository;
@@ -17,4 +18,6 @@ public interface SampleMateRepository extends IRepository<SampleMate,  SampleMat
 
 	public void lock(Map<String,Object> params);
 	public void unlock(Map<String,Object> params);
+	
+	public List<SampleMate> queryAll();
 }

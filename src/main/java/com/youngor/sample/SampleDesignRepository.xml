@@ -43,14 +43,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
     	select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst 
     	from (
-    	select b.sampno,b.sampnm,b.spstat,b.suitty,b.photno,a.* 
+    	select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,a.* 
     	from ord_sample_plan a,ord_sample_design b 
     	where a.plspno=b.plspno	
     	<include refid="queryPlanDesign_where"></include> 
     	) x 
     	left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno
     	left join ord_sample_colth z on x.sampno=z.sampno
-    	
+    	order by x.sampno
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPlanDesign_count" resultType="int" parameterType="map">
@@ -104,5 +104,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="checkOnlyOne" resultType="int" parameterType="string">
      	select count(sampno) from  ord_sample_design where sampnm=#{sampnm}
      </select>
+     
+     <insert id="copy_ord_sample_mate"  parameterType="map">
+     	insert into ord_sample_mate(sampno,mateso,mtsuno,mateno,mtbrad,mttype,mtcomp,yarmct,gramwt,aftrmt,width,mtpupr,mtcnqt,matest)
+     	select '${sampno}',mateso,mtsuno,mateno,mtbrad,mttype,mtcomp,yarmct,gramwt,aftrmt,width,mtpupr,mtcnqt,0
+     	from ord_sample_mate where sampno=#{old_sampno}
+     </insert>
+     
+     <insert id="copy_ord_sample_colth"  parameterType="map">
+     	insert into ord_sample_colth(sampno,spcotn,spsuno,prsuno,sptapa,spacry,spclbd,spnwpr,contqt,contam,contpr,ctdwdt,acsyam,spctpr,sprmk,spctst)
+     	select '${sampno}',spcotn,spsuno,prsuno,sptapa,spacry,spclbd,spnwpr,contqt,contam,contpr,ctdwdt,acsyam,spctpr,sprmk,0
+     	from ord_sample_colth where sampno=#{old_sampno}  	
+     </insert>
+     <insert id="copy_ord_sample_design_stpr"  parameterType="map">
+     		insert into ord_sample_design_stpr(sampno,suitno,spftpr,sprtpr,plctpr)
+     		select '${sampno}',suitno,spftpr,sprtpr,plctpr
+     		from ord_sample_design_stpr where sampno=#{old_sampno}  	
+     </insert>
 </mapper>
 

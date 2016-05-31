@@ -163,6 +163,10 @@ $(function(){
 
 //=========================================================登录相关
 $(function(){
+	$.post(Ext.ContextPath+'/ord/mobile/getOrdmt.do', {  }, function(response){
+		$("#od_loginpage_title").html(response.ormtnm);	
+	},'json');
+	
 	window.user=1;
 	if(!window.user){
 		$.router.load("#od_loginpage"); 

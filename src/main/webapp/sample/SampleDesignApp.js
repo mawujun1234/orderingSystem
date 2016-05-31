@@ -128,14 +128,17 @@ Ext.onReady(function(){
 		       sampleColthForm.loadGrid(sampleDesign);
 		    }
 		});
+		sampleDesignForm.getForm().findField("sampnm").setReadOnly(true);
 		
 		//面料信息,并且默认选中第一行
 		sampleMateGrid.getStore().getProxy().extraParams={
 			sampno:window.sampno.sampno
 		};
 		sampleMateGrid.getStore().reload();
+		sampleMateForm.reset();
 		sampleMateForm.lockOrUnlock(record.get("matest"));
 		sampleMateGrid.lockOrUnlock(record.get("matest"));
+		
 		
 		
 		

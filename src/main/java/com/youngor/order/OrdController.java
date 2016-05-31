@@ -8,11 +8,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.utils.page.Pager;
+import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
+import com.youngor.utils.ContextUtils;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -26,7 +27,11 @@ public class OrdController {
 	private OrdService ordService;
 	@Resource
 	private OrdtyService ordtyService;
-
+	@RequestMapping("/ord/mobile/getOrdmt.do")
+	@ResponseBody
+	public Ordmt getOrdmt() {
+		return ContextUtils.getFirstOrdmt();
+	}
 
 	/**
 	 * 查询某个样衣的信息
@@ -63,6 +68,7 @@ public class OrdController {
 		ordService.clearSampno(sampno);
 		return "success";
 	}
+	
 	
 	@RequestMapping("/ord/mobile/checked_closeing_info.do")
 	@ResponseBody
@@ -154,6 +160,53 @@ public class OrdController {
 		
 		ordService.updateApprove_org(qyno, channo, ordorg, ormtno, bradno, spclno);
 		return "{success:true}";
+	}
+	
+	/**
+	 * 查询区域下的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping("/ord/zgsVO/queryZgsVO.do")
+	@ResponseBody
+	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager){
+		return ordService.queryZgsVO(pager);
+	}
+	/**
+	 * 清零
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sampnos
+	 * @return
+	 */
+	@RequestMapping("/ord/zgsVO/clearNum.do")
+	@ResponseBody
+	public String clearNum(String[] sampnos,String ormtno){
+		ordService.clearNum(sampnos,ormtno);
+		return "success";
+	}
+	@RequestMapping("/ord/zgsVO/meger_all.do")
+	@ResponseBody
+	public String meger_all(@RequestBody ArrayList<Map<String,Object>> data) {
+		ordService.meger_all(data);
+		return "success";
+	}
+	@RequestMapping("/ord/zgsVO/meger_comp.do")
+	@ResponseBody
+	public String meger_comp(@RequestBody ArrayList<Map<String,Object>> data) {
+		ordService.meger_comp(data);
+		return "success";
+	}
+	@RequestMapping("/ord/zgsVO/query_meger_comp.do")
+	@ResponseBody
+	public List<Map<String,Object>> query_meger_comp(String SAMPNO) {
+		return ordService.query_meger_comp(SAMPNO);
+	}
+	@RequestMapping("/ord/zgsVO/recover.do")
+	@ResponseBody
+	public String recover(String[] sampnos,String ormtno) {
+		ordService.recover(sampnos,ormtno);
+		return "success";
 	}
 
 //	/**

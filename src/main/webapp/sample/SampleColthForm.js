@@ -19,15 +19,7 @@ Ext.define('y.sample.SampleColthForm',{
 	initComponent: function () {
        var me = this;
        me.items= [
-		{
-	        fieldLabel: '纱厂',
-	        name: 'spcotn',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"纱厂不允许为空",
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
+		
 		{
 	        fieldLabel: '开发供应商',
 	        name: 'spsuno',
@@ -35,18 +27,37 @@ Ext.define('y.sample.SampleColthForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"开发供应商不允许为空", 
             selectOnFocus:true,
-	        xtype:'pubsunocombo'
+	        xtype:'pubsunocombo',
+	        listeners:{
+	        	select:function(combo, record, eOpts ){
+	        		var prsuno=combo.nextSibling("pubsunocombo#prsuno");
+
+	        		prsuno.select( record );
+
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '货号采购供应商',
 	        name: 'prsuno',
+	        itemId: 'prsuno',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"货号采购供应商不允许为空",
             xtype:'pubsunocombo'
 	    },
+	    {
+	        fieldLabel: '纱厂',
+	        name: 'spcotn',
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"纱厂不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield'
+	    },
 		{
 	        fieldLabel: '含税工缴',
+	        value:0,
 	        name: 'sptapa',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
@@ -62,6 +73,7 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '含税辅料',
 	        name: 'spacry',
+	        value:0,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"含税辅料不允许为空",
@@ -76,6 +88,7 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '服饰配料',
 	        name: 'spclbd',
+	        value:0,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"服饰配料不允许为空",
@@ -90,18 +103,18 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '新成衣价',
 	        name: 'spnwpr',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"新成衣价不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"新成衣价不允许为空",
             selectOnFocus:true,
 	        xtype:'numberfield'   
 	    },
 		{
 	        fieldLabel: '成衣数量',
 	        name: 'contqt',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"成衣数量不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"成衣数量不允许为空",
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield'   
@@ -109,18 +122,18 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '成衣金额',
 	        name: 'contam',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"成衣金额不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"成衣金额不允许为空",
             selectOnFocus:true,
 	        xtype:'numberfield'   
 	    },
 		{
 	        fieldLabel: '成衣核价克重',
 	        name: 'contpr',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"成衣核价克重不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"成衣核价克重不允许为空",
             selectOnFocus:true,
 	        xtype:'numberfield'   
 	    },
@@ -134,6 +147,7 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '包装辅料费',
 	        name: 'acsyam',
+	        value:0,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"包装辅料费不允许为空",

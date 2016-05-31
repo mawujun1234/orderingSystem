@@ -65,6 +65,10 @@ public class PubCodeController {
 			}
 			pubCodes=list;
 		}
+		PubCode wu=new PubCode();
+		wu.setItno("");
+		wu.setItnm("无");
+		pubCodes.add(0, wu);
 		return pubCodes;
 		
 //		List<PubCode> list=new ArrayList<PubCode>();

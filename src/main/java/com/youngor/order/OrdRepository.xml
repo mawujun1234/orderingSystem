@@ -251,5 +251,57 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         and a.bradno=#{bradno} and a.spclno=#{spclno}
         and exists (select 1 from ord_ord b where a.mtorno=b.mtorno and b.ormtno=#{ormtno} and b.ordorg=#{ordorg} and ortyno='DZ')
      </update>
+     
+     
+     <select id="queryZgsVO" resultType="map" parameterType="map">
+     	SELECT P.PALTPY,DECODE(M.SDTYNO,0,'总公司平衡','非总公司平衡')SDTYNO,DECODE(M.ORSTAT,0,'编辑中','平衡完成')ORSTAT,
+		       M.SPTYNM,M.SPSENM,M.SAMPNO,M.SAMPNM,M.ORMTQS00,M.ORMTQS01,M.ORMTQS02,M.ORMTQS04,
+		       M.ORMTQT00,M.ORMTQT01,M.ORMTQT02,M.ORMTQT04,P1.SAMPNM PLSPNM
+		 FROM
+		(SELECT A.ORMTNO,SUM(DECODE(B.SDTYNO,'30',0,1))SDTYNO,SUM(DECODE(B.ORSTAT,0,0,4,0,1))ORSTAT,
+		   E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,
+		   DECODE(C.SUITNO,'T00',SUM(C.ORMTQS),0)ORMTQS00,DECODE(C.SUITNO,'T01',SUM(C.ORMTQS),0)ORMTQS01,
+		   DECODE(C.SUITNO,'T02',SUM(C.ORMTQS),0)ORMTQS02,DECODE(C.SUITNO,'T04',SUM(C.ORMTQS),0)ORMTQS04,
+		   DECODE(C.SUITNO,'T00',SUM(C.ORMTQT),0)ORMTQT00,DECODE(C.SUITNO,'T01',SUM(C.ORMTQT),0)ORMTQT01,
+		   DECODE(C.SUITNO,'T02',SUM(C.ORMTQT),0)ORMTQT02,DECODE(C.SUITNO,'T04',SUM(C.ORMTQT),0)ORMTQT04
+		 FROM ORD_ORD A
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
+		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
+		WHERE
+		A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' 
+		AND E.BRADNO=#{bradno}  AND E.SPCLNO=#{spclno}
+		<if test="sptyno!=null and sptyno!=''">
+			 and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and e.spseno=#{spseno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			 and d.sampnm like '%${sampnm}%'
+		</if>	 
+		GROUP BY A.ORMTNO,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,C.SUITNO
+		)M 
+		LEFT JOIN ORD_COMP_PAL P ON M.ORMTNO=P.ORMTNO AND M.SAMPNO=P.SAMPNO
+		LEFT JOIN ORD_SAMPLE_DESIGN P1 ON P.SAMPNO=P1.SAMPNO
+     </select>
+     <!--对订单明细表的确认数量清0-->
+     <update id="clearnum_orddtl" parameterType="string">
+     	update ORD_ORDDTL set ORMTQS=ORMTQT,ORMTQT=0 where sampno=#{sampno}
+     </update>
+     <!--对订单规格明细表的确认数量清0-->
+     <update id="clearnum_ordszdtl" parameterType="string">
+     	update ORD_ORDSZDTL set ORSZQT=0,ORBGQT=0,ORITQT=0 where sampno=#{sampno}
+     </update>
+     <!--获取某个样衣编号按照营销公司的汇总数据-->
+     <select id="query_meger_comp" resultType="map" parameterType="string">
+     	select C.YXGSNO,c.YXGSNM,B.SAMPNO,SUM(B.ORMTQT) ORMTQT from
+		ORD_ORD a,ORD_ORDDTL b,V_ORD_ORG c
+		where a.MTORNO=b.MTORNO and a.ORDORG=c.orgno and b.SAMPNO=#{SAMPNO}
+		GROUP BY C.YXGSNO,c.YXGSNM,B.SAMPNO
+     </select>
 </mapper>
 

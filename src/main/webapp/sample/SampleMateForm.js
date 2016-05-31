@@ -51,18 +51,19 @@ Ext.define('y.sample.SampleMateForm',{
 		{
 	        fieldLabel: '供应商',
 	        name: 'mtsuno',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"供应商不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"供应商不允许为空",
             xtype:'pubsunocombo'
 	    },
 		{
 	        fieldLabel: '供应商面料货号',
 	        name: 'mateno',
-            allowBlank: false,
-            
-            afterLabelTextTpl: Ext.required,
-            blankText:"供应商面料货号不允许为空",
+//            allowBlank: false,
+//            
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"供应商面料货号不允许为空",
+	        maxLength:50,
             selectOnFocus:true,
             maxLength:50,
 	        xtype:'textfield'
@@ -70,9 +71,9 @@ Ext.define('y.sample.SampleMateForm',{
 		{
 	        fieldLabel: '面料品牌',
 	        name: 'mtbrad',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"面料品牌不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"面料品牌不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
@@ -136,54 +137,54 @@ Ext.define('y.sample.SampleMateForm',{
 		{
 	        fieldLabel: '纱支规格',
 	        name: 'yarmct',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"纱支规格不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"纱支规格不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
 		{
 	        fieldLabel: '克重/密度',
 	        name: 'gramwt',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"克重/密度不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"克重/密度不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
 		{
 	        fieldLabel: '后整理',
 	        name: 'aftrmt',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"后整理不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"后整理不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
 		{
 	        fieldLabel: '门幅',
 	        name: 'width',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"门幅不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"门幅不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
 		{
 	        fieldLabel: '面料单价',
 	        name: 'mtpupr',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"面料单价不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"面料单价不允许为空",
             selectOnFocus:true,
 	        xtype:'numberfield'
 	    },
 		{
 	        fieldLabel: '单件用料',
 	        name: 'mtcnqt',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"单件用料不允许为空",
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"单件用料不允许为空",
             selectOnFocus:true,
 	        xtype:'numberfield'
 	    },

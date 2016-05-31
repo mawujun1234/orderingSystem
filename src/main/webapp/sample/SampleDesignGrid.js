@@ -25,6 +25,8 @@ Ext.define('y.sample.SampleDesignGrid',{
         },
         {dataIndex:'sampnm',header:'设计样衣编号'
         },
+        {dataIndex:'sampnm1',header:'出样样衣编号'
+        },
         {dataIndex:'matest',header:'状态',
         	renderer:function(value, metaData, record, rowIndex, colIndex, store, view){
         		var val="";
@@ -42,6 +44,14 @@ Ext.define('y.sample.SampleDesignGrid',{
         		}
         		
         		return val;
+        	}
+        },
+        {dataIndex:'abstat',header:'必定',width:50,
+        	renderer:function(value, metaData, record, rowIndex, colIndex, store, view){
+        		if(value==1){
+        			return "<span style='color:red;'>必定</span>";
+        		}
+        		return "";
         	}
         },
 		{dataIndex:'bradno_name',header:'品牌'
@@ -313,6 +323,20 @@ Ext.define('y.sample.SampleDesignGrid',{
 			    },
 			    iconCls: 'icon-copy'
 			},{
+			    text: '必定款',
+			    iconCls: 'icon-magnet',
+			    menu:[{
+			    	text: '指定',
+			    	handler: function(){
+				    	me.onMustOrder(1);    
+				    }
+			    },{
+			    	text: '取消',
+			    	handler: function(){
+				    	me.onMustOrder(0);    
+				    }
+			    }]
+			},{
 			    text: '删除',
 			    itemId:'destroy',
 			    hidden:!Permision.canShow('sample_design_destroy'),
@@ -498,6 +522,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			
 			sampleDesignForm.reset();
 			sampleDesignForm.loadRecord(sampleDesign);
+			sampleDesignForm.getForm().findField("sampnm").setReadOnly(false);
 			//sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
 			//sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 			//获取当季的属性
@@ -580,15 +605,104 @@ Ext.define('y.sample.SampleDesignGrid',{
 		    Ext.Msg.alert("消息","请先选择一行数据");	
 			return;
 		}
-		var rec = record.copy(null);
-		rec.set("plspnm",null);
-		rec.set("plspno",null);
-		var tabpanel=me.nextSibling("tabpanel");
-		tabpanel.setTitle("复制样衣");
-		tabpanel.unmask();
-		var formpanel=tabpanel.child("form#samplePlanForm") ;
-		formpanel.reset();
-		formpanel.loadRecord(rec);
+//		var rec = record.copy(null);
+//		rec.set("plspnm",null);
+//		rec.set("plspno",null);
+//		var tabpanel=me.nextSibling("tabpanel");
+//		tabpanel.setTitle("复制样衣");
+//		tabpanel.unmask();
+//		var formpanel=tabpanel.child("form#samplePlanForm") ;
+//		formpanel.reset();
+//		formpanel.loadRecord(rec);
 		
+		//跳转到设计样衣 把设计样衣编号名称和设计样衣编号设置为null
+		//当点保存后，就把所有form中的设计样衣编号改成新的
+		var tabpanel=me.nextSibling("tabpanel");
+		var sampleDesignForm=tabpanel.down("form#sampleDesignForm") ;
+		var new_record=record.copy(null);
+		new_record.set("sampnm","");
+		new_record.set("sampnm1","");
+		//new_record.set("sampno","");故意保存，用来复制原始的数据
+		new_record.set("spstat",0);
+		new_record.set("photno",null);
+		//sampleDesignForm.showOrHidden_saveButton(0);
+		window.sampleDesign=new_record;
+		window.sampleDesignForm_url_dfgdfg="/sampleDesign/copy.do";
+		sampleDesignForm.loadRecord(new_record);
+		sampleDesignForm.getForm().findField("sampnm").setReadOnly(false);
+		
+		tabpanel.setActiveTab(1);
+		tabpanel.items.getAt(2).disable();
+	    tabpanel.items.getAt(3).disable();
+	    tabpanel.items.getAt(4).disable();
+	    
+
+	    
+	    sampleDesignForm.on("create",function( record){
+//	    	me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+//	    		sampno: sampleDesign.get("sampno")
+//	    	});
+	    	window.sampleDesignForm_url_dfgdfg=null;
+	    	
+	    	//面料信息,并且默认选中第一行
+		    var sampleMateGrid=tabpanel.down("grid#sampleMateGrid") ;
+		    var sampleMateForm=tabpanel.down("form#sampleMateForm") ;
+			sampleMateGrid.getStore().getProxy().extraParams={
+				sampno:record.get("sampno")
+			};
+			sampleMateGrid.getStore().reload();
+			sampleMateForm.reset();
+			sampleMateForm.lockOrUnlock(record.get("matest"));
+			sampleMateGrid.lockOrUnlock(record.get("matest"));
+			
+			//成衣信息
+			var sampleColthForm=tabpanel.down("form#sampleColthForm") ;
+			sampleColthForm.reset();
+			y.sample.SampleColth.load(record.get("sampno"), {
+			    success: function(sampleColth) {
+			    	//console.log(sampleDesign);
+			       //sampleDesign.set("plspnm",record.get("plspnm"));
+			    	//var suitty_field=sampleDesignForm.getForm().findField("suitty");
+			       sampleColthForm.loadRecord(sampleColth);
+			    }
+			});
+		    
+		    tabpanel.down("#samplePhotoShow").getStore().removeAll();
+	    });
+		
+		
+		
+    },
+    /**
+     * 设置必定款
+     */
+    onMustOrder:function(abstat){
+    	var grid=this;
+		var modles=grid.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}
+		Ext.Msg.confirm("消息","是否对选中的样衣指定/取消为必定款?‘<span style='color:red;'>全选</span>’只选中当前页所有数据！",function(val){
+				if(val=='yes'){
+					var sampnos=[];
+					for(var i=0;i<modles.length;i++){
+						sampnos.push(modles[i].get("sampno"));
+					}
+					Ext.Ajax.request({
+						    url:Ext.ContextPath+'/sampleDesign/mustOrder.do',
+						    params:{
+						    	 sampnos:sampnos,
+						    	 abstat:abstat
+						    },
+						    method:'POST',
+						    success:function(){
+						    	grid.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    }
+						   });
+					} 
+				});	
+				
     }
 });

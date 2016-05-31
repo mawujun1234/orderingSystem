@@ -61,6 +61,20 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 		}
 		return id;
 	}
+	
+	public void copy(SampleDesign sampleDesign) {
+		String old_sampno=sampleDesign.getSampno();
+		sampleDesign.setSampno(null);
+		create(sampleDesign);
+		String sampno=sampleDesign.getSampno();
+		//拷贝面料信息
+		sampleDesignRepository.copy_ord_sample_mate(sampno, old_sampno);		
+		//拷贝成衣信息
+		sampleDesignRepository.copy_ord_sample_colth(sampno, old_sampno);	
+		//拷贝成衣套件价格
+		sampleDesignRepository.copy_ord_sample_design_stpr(sampno, old_sampno);
+		
+	}
 	@Override
 	public  void update(SampleDesign sampleDesign) {
 		super.update(sampleDesign);

@@ -25,6 +25,9 @@ public class SampleDesign extends BaseObject{
 	@FieldDefine(title="设计样衣编号",sort=50)
 	@Column(length=36,nullable=false,updatable=false,unique=true)
 	private String sampnm;
+	@FieldDefine(title="出样样衣编号",sort=50)
+	@Column(length=36,nullable=false,updatable=true,unique=true)
+	private String sampnm1;
 	@FieldDefine(title="企划样衣编号",sort=50,hidden=false)
 	@Column(length=36,nullable=false,updatable=false)
 	private String plspno;
@@ -87,6 +90,8 @@ public class SampleDesign extends BaseObject{
 	private Integer sampst=1;//0：作废；1：有效
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer spstat=0;//0：未锁定，1：锁定
+	@FieldDefine(title="必定款",sort=50,hidden=true)
+	private Integer abstat;//0：不需要必定，1：必定
 	
 	@Transient
 	private List<SampleDesignSizegp> sampleDesignSizegpes;
@@ -235,6 +240,18 @@ public class SampleDesign extends BaseObject{
 	}
 	public void setSampleDesignSizegpes(List<SampleDesignSizegp> sampleDesignSizegpes) {
 		this.sampleDesignSizegpes = sampleDesignSizegpes;
+	}
+	public Integer getAbstat() {
+		return abstat;
+	}
+	public void setAbstat(Integer abstat) {
+		this.abstat = abstat;
+	}
+	public String getSampnm1() {
+		return sampnm1;
+	}
+	public void setSampnm1(String sampnm1) {
+		this.sampnm1 = sampnm1;
 	}
 
 }

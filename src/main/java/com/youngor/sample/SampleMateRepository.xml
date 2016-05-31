@@ -30,5 +30,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	update ord_sample_mate d set d.matest=0  where
     	<include refid="lock_unlock_where"></include> 
     </update>
+    
+    <select id="queryAll" resultType="com.youngor.sample.SampleMate">
+    	select a.*,b.idsunm as mtsuno_name from ord_sample_mate a,ord_pub_suno b
+    	where a.mateno=b.idsuno
+    </select>
 </mapper>
 

@@ -3,6 +3,7 @@ Ext.define("y.sample.SampleDesign",{
 	fields:[
 		{name:'sampno',type:'string'},
 		{name:'sampnm',type:'string'},
+		{name:'sampnm1',type:'string'},
 		{name:'plspno',type:'string'},
 		{name:'versno',type:'string'},
 		{name:'photno',type:'string'},
@@ -23,7 +24,7 @@ Ext.define("y.sample.SampleDesign",{
 		{name:'packqt',type:'int'},
 		{name:'spltmk',type:'int'},
 		{name:'print',type:'int'},
-		
+		{name:'abstat',type:'int'},
 		{name:'sampst',type:'int'},
 		{name:'spstat',type:'int'},
 		{name:'rgsp',type:'string'},

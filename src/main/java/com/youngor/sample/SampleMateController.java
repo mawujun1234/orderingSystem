@@ -43,8 +43,9 @@ public class SampleMateController {
 	@RequestMapping("/sampleMate/query.do")
 	@ResponseBody
 	public Map<String,Object> query(String sampno) {	
-		List<SampleMate> sampleMatees=sampleMateService.query(Cnd.select().andEquals(M.SampleMate.sampno, sampno).asc(M.SampleMate.mateso));
+		//List<SampleMate> sampleMatees=sampleMateService.query(Cnd.select().andEquals(M.SampleMate.sampno, sampno).asc(M.SampleMate.mateso));
 		
+		List<SampleMate> sampleMatees=sampleMateService.queryAll();
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("root", sampleMatees);
 		return map;

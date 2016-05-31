@@ -48,9 +48,25 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"设计样衣编号不允许为空",
             selectOnFocus:true,
+	        xtype:'textfield',
+	        listeners:{
+	        	change:function(field, newValue, oldValue){
+	        		var sampnm1=field.nextSibling("#sampnm1");
+	        		sampnm1.setValue(newValue);
+	        	}
+	        }
+	    },
+		{
+	        fieldLabel: '出样样衣编号',
+	        name: 'sampnm1',
+	        itemId: 'sampnm1',
+            allowBlank: false,
+            //readOnly:sampnm_readOnly,
+            afterLabelTextTpl: Ext.required,
+            blankText:"出样样衣编号不允许为空",
+            selectOnFocus:true,
 	        xtype:'textfield'
 	    },
-		
 	    
 		{
 	        fieldLabel: '版型',
@@ -225,28 +241,36 @@ Ext.define('y.sample.SampleDesignForm',{
 	    },
 
 
+//	    {
+//            xtype      : 'fieldcontainer',
+//            fieldLabel : '包装要求',
+//            defaultType: 'radiofield',
+//            defaults: {
+//                flex: 1
+//            },
+//            layout: 'hbox',
+//            items: [
+//            	{
+//                    boxLabel  : '包装',
+//                    name: 'packqt',
+//                    checked:true,
+//                    inputValue: '1'
+//                },
+//           		{
+//                    boxLabel  : '不包装',
+//                    name: 'packqt',
+//                    inputValue: '0'
+//                }
+//            ]
+//        },
 	    {
-            xtype      : 'fieldcontainer',
-            fieldLabel : '包装要求',
-            defaultType: 'radiofield',
-            defaults: {
-                flex: 1
-            },
-            layout: 'hbox',
-            items: [
-            	{
-                    boxLabel  : '包装',
-                    name: 'packqt',
-                    checked:true,
-                    inputValue: '1'
-                },
-           		{
-                    boxLabel  : '不包装',
-                    name: 'packqt',
-                    inputValue: '0'
-                }
-            ]
-        },
+	        fieldLabel: '包装要求',
+	        name: 'packqt',
+            allowDecimals:false,
+            selectOnFocus:true,
+	        xtype:'numberfield'  ,
+	         value:0
+	    },
 
         {
             xtype      : 'fieldcontainer',
@@ -275,7 +299,8 @@ Ext.define('y.sample.SampleDesignForm',{
 	        name: 'print',
             allowDecimals:false,
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield',
+	        value:0
 	    },
 //	    {
 //	        fieldLabel: '规格范围',
@@ -423,6 +448,10 @@ Ext.define('y.sample.SampleDesignForm',{
 				
 				var aa=[];
 				for(var i=0;i<sampleDesignSizegpes.length;i++){
+					if(!sampleDesignSizegpes[i].get("sizegp")){
+						Ext.Msg.alert("消息","规格范围必须选择!");
+						return;
+					}
 					aa.push({
 						//sampno:sampleDesignStpres[i].get("getSampno"),
 						suitno:sampleDesignSizegpes[i].get("suitno"),
@@ -437,9 +466,13 @@ Ext.define('y.sample.SampleDesignForm',{
 		       //var sampnm_readOnly=false;
 				if(window.sampleDesign &&　window.sampleDesign.get("sampno")){
 					url="/sampleDesign/update.do";
-					//sampnm_readOnly=true;
-					//alert(1);
 				}
+				//如果有复制，就使用复制的
+				if(window.sampleDesignForm_url_dfgdfg){
+					url=window.sampleDesignForm_url_dfgdfg;
+				}
+				
+				
 				//console.log(aa);
 				Ext.Ajax.request({
 					url:Ext.ContextPath+url,
@@ -468,8 +501,8 @@ Ext.define('y.sample.SampleDesignForm',{
 						
 						//用于后面的面料信息
 						window.sampno={
-							sampno:jsonData.sampno,//,record.get("sampno"),
-							sampnm:jsonData.sampnm//record.get("sampnm")
+							sampno:obj.sampleDesign.sampno,//,record.get("sampno"),
+							sampnm:obj.sampleDesign.sampnm//record.get("sampnm")
 						};
 						
 						//var tabpanel=btn.up("tabpanel");
@@ -481,6 +514,9 @@ Ext.define('y.sample.SampleDesignForm',{
 				       	//formpanel.getForm().updateRecord();
 				       	var user = Ext.create('y.sample.SampleDesign', obj.sampleDesign);
 				       	tabpanel.down("#sampleColthForm").loadGrid(user);
+				       	window.sampleDesign=user;
+				       	
+				       	me.fireEvent("create",user);
 					}
 					
 				});
@@ -518,11 +554,7 @@ Ext.define('y.sample.SampleDesignForm',{
 		
 		me.getForm().loadRecord(record);
 		
-			if(record.get("spstat")==1){
-					me.down("#save").hide();		
-				} else if(Permision.canShow('sample_design_designsave')){
-					me.down("#save").show();
-				}
+		me.showOrHidden_saveButton(record.get("spstat"));
 					
 //		var aa=y.sample.SampleDesign.load(record.get("sampno"),{
 //			success:function(sampleDesign){
@@ -550,6 +582,18 @@ Ext.define('y.sample.SampleDesignForm',{
 		//刷新规格组的数据
 		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
 			this.down("grid#sampleDesignSizegpGrid").reloadEditor(bradno,spclno);
+		}
+	},
+	/**
+	 * 显示或隐藏按钮，
+	 * @param {} spstat 是否锁定，如果锁定了就不能显示
+	 */
+	showOrHidden_saveButton:function(spstat){
+		var me=this;
+		if(spstat==1){
+			me.down("#save").hide();		
+		} else if(Permision.canShow('sample_design_designsave')){
+			me.down("#save").show();
 		}
 	},
 	reloadPubcode:function(bradno,stat_xtrydeeeeeeeee){

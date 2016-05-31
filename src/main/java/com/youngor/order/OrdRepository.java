@@ -1,6 +1,7 @@
 package com.youngor.order;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -72,4 +73,12 @@ public interface OrdRepository extends IRepository<Ord, String>{
 			@Param("channo")String channo,@Param("ormtno")String ormtno);
 	
 	public void updateApprove_org(@Param("ordorg")String ordorg,@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	
+	
+	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager);
+	
+	public void clearnum_orddtl(@Param("sampno")String sampno);
+	public void clearnum_ordszdtl(@Param("sampno")String sampno);
+	
+	public List<Map<String,Object>> query_meger_comp(@Param("SAMPNO")String SAMPNO);
 }

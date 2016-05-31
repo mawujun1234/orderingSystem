@@ -1,5 +1,101 @@
 package com.youngor.utils;
 public final class M {
+public static final class Ord {
+	public static final String mtorno="mtorno";
+	public static final String ormtno="ormtno";
+	public static final String ortyno="ortyno";
+	public static final String ordorg="ordorg";
+	public static final String channo="channo";
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class sampleVO {
+		public static final String sampno="sampleVO.sampno";
+		public static final String sampnm="sampleVO.sampnm";
+		public static final String plspno="sampleVO.plspno";
+		public static final String plspnm="sampleVO.plspnm";
+		public static final String versno="sampleVO.versno";
+		public static final String spseno="sampleVO.spseno";
+		public static final String spftpr="sampleVO.spftpr";
+		public static final String sprtpr="sampleVO.sprtpr";
+		public static final String spbseno="sampleVO.spbseno";
+		public static final String sprseno="sampleVO.sprseno";
+		public static final String splcno="sampleVO.splcno";
+		public static final String spbano="sampleVO.spbano";
+		public static final String spclno="sampleVO.spclno";
+		public static final String sptyno="sampleVO.sptyno";
+		public static final String bradno="sampleVO.bradno";
+		public static final String sexno="sampleVO.sexno";
+		public static final String suitty="sampleVO.suitty";
+		public static final String spltmk="sampleVO.spltmk";
+		public static final String ormtno="sampleVO.ormtno";
+		public static final String ordorg="sampleVO.ordorg";
+		public static final String mtorno="sampleVO.mtorno";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "sampleVO";
+	    }
+	}
+	/**
+	* 这里一般是集合属性，返回的是ordCheckInfo
+	*/
+	public static final String ordCheckInfo="ordCheckInfo";
+}
+public static final class Orddtl {
+	public static final String mtorno="mtorno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String mlorno="mlorno";
+	public static final String mlorvn="mlorvn";
+	public static final String ormtqs="ormtqs";
+	public static final String ormtqt="ormtqt";
+	public static final String ormtqt1="ormtqt1";
+	public static final String ormark="ormark";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class Ordhd {
+	public static final String mtorno="mtorno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String mlorno="mlorno";
+	public static final String mlorvn="mlorvn";
+	public static final String sdtyno="sdtyno";
+	public static final String orstat="orstat";
+	public static final String szstat="szstat";
+	public static final String orapdp="orapdp";
+	public static final String orapsp="orapsp";
+	public static final String orapdt="orapdt";
+	public static final String isfect="isfect";
+}
+public static final class Ordszdtl {
+	public static final String mtorno="mtorno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String sizety="sizety";
+	public static final String sizeno="sizeno";
+	public static final String mlorno="mlorno";
+	public static final String orszqt="orszqt";
+	public static final String orszst="orszst";
+	public static final String orbgqt="orbgqt";
+	public static final String ormark="ormark";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class Ordty {
+	public static final String ortyno="ortyno";
+	public static final String ortynm="ortynm";
+	public static final String ortyds="ortyds";
+	public static final String ortymk="ortymk";
+	public static final String stat="stat";
+}
 public static final class Ordmt {
 	public static final String ormtno="ormtno";
 	public static final String ormtnm="ormtnm";
@@ -17,13 +113,14 @@ public static final class Ordmt {
 }
 public static final class OrdmtScde {
 	public static final String ormtno="ormtno";
-	public static final String orgty="orgty";
+	public static final String channo="channo";
 	public static final String mtstdt="mtstdt";
 	public static final String mtfidt="mtfidt";
 	public static final String mtsttm="mtsttm";
 	public static final String mtfitm="mtfitm";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+	public static final String channo_name="channo_name";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 }
@@ -35,13 +132,20 @@ public static final class OrdmtSeason {
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
 }
+public static final class Channo {
+	public static final String channo="channo";
+	public static final String channm="channm";
+	public static final String chanso="chanso";
+	public static final String stat="stat";
+}
 public static final class Org {
 	public static final String orgno="orgno";
 	public static final String orgnm="orgnm";
 	public static final String orgsn="orgsn";
 	public static final String orgty="orgty";
-	public static final String chancl="chancl";
+	public static final String channo="channo";
 	public static final String orgst="orgst";
+	public static final String orgso="orgso";
 }
 public static final class OrgOrg {
 	 /**
@@ -52,8 +156,9 @@ public static final class OrgOrg {
 		public static final String orgnm="parent.orgnm";
 		public static final String orgsn="parent.orgsn";
 		public static final String orgty="parent.orgty";
-		public static final String chancl="parent.chancl";
+		public static final String channo="parent.channo";
 		public static final String orgst="parent.orgst";
+		public static final String orgso="parent.orgso";
 			
 	    /**
 	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
@@ -70,8 +175,9 @@ public static final class OrgOrg {
 		public static final String orgnm="child.orgnm";
 		public static final String orgsn="child.orgsn";
 		public static final String orgty="child.orgty";
-		public static final String chancl="child.chancl";
+		public static final String channo="child.channo";
 		public static final String orgst="child.orgst";
+		public static final String orgso="child.orgso";
 			
 	    /**
 	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
@@ -86,10 +192,11 @@ public static final class Position {
 	public static final String id="id";
 	public static final String name="name";
 	public static final String remark="remark";
+	public static final String accessRule="accessRule";
 	public static final String orgno="orgno";
 	public static final String positionType_id="positionType_id";
 }
-public static final class PositionOrgUser {
+public static final class PositionOrgAccess {
 	 /**
 	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
 	 */
@@ -97,6 +204,7 @@ public static final class PositionOrgUser {
 		public static final String id="position.id";
 		public static final String name="position.name";
 		public static final String remark="position.remark";
+		public static final String accessRule="position.accessRule";
 		public static final String orgno="position.orgno";
 		public static final String positionType_id="position.positionType_id";
 			
@@ -115,8 +223,48 @@ public static final class PositionOrgUser {
 		public static final String orgnm="org.orgnm";
 		public static final String orgsn="org.orgsn";
 		public static final String orgty="org.orgty";
-		public static final String chancl="org.chancl";
+		public static final String channo="org.channo";
 		public static final String orgst="org.orgst";
+		public static final String orgso="org.orgso";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "org";
+	    }
+	}
+}
+public static final class PositionOrgUser {
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class position {
+		public static final String id="position.id";
+		public static final String name="position.name";
+		public static final String remark="position.remark";
+		public static final String accessRule="position.accessRule";
+		public static final String orgno="position.orgno";
+		public static final String positionType_id="position.positionType_id";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "position";
+	    }
+	}
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class org {
+		public static final String orgno="org.orgno";
+		public static final String orgnm="org.orgnm";
+		public static final String orgsn="org.orgsn";
+		public static final String orgty="org.orgty";
+		public static final String channo="org.channo";
+		public static final String orgst="org.orgst";
+		public static final String orgso="org.orgso";
 			
 	    /**
 	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
@@ -209,31 +357,7 @@ public static final class RoleBrand {
 	}
 }
 public static final class RoleClass {
-	 /**
-	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
-	 */
-	public static final class pubCode {
-		public static final String itno="pubCode.itno";
-		public static final String tyno="pubCode.tyno";
-		public static final String fitno="pubCode.fitno";
-		public static final String itnm="pubCode.itnm";
-		public static final String itms="pubCode.itms";
-		public static final String itmk="pubCode.itmk";
-		public static final String itso="pubCode.itso";
-		public static final String itst="pubCode.itst";
-		public static final String stat="pubCode.stat";
-		public static final String rgsp="pubCode.rgsp";
-		public static final String rgdt="pubCode.rgdt";
-		public static final String lmsp="pubCode.lmsp";
-		public static final String lmdt="pubCode.lmdt";
-			
-	    /**
-	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
-	    */
-	    public static String name(){ 
-		    return "pubCode";
-	    }
-	}
+	public static final String itno="itno";
 	 /**
 	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
 	 */
@@ -333,6 +457,30 @@ public static final class User {
 	public static final String pwd="pwd";
 	public static final String remark="remark";
 }
+public static final class PlanHd {
+	public static final String ormtno="ormtno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String orgno="orgno";
+	public static final String plmtqt="plmtqt";
+	public static final String plmtam="plmtam";
+	public static final String plstat="plstat";
+}
+public static final class PlanOrg {
+	public static final String plorno="plorno";
+	public static final String ormtno="ormtno";
+	public static final String ordorg="ordorg";
+	public static final String bradno="bradno";
+	public static final String plstat="plstat";
+}
+public static final class PlanOrgdtl {
+	public static final String plorno="plorno";
+	public static final String spclno="spclno";
+	public static final String spseno1="spseno1";
+	public static final String pltyno="pltyno";
+	public static final String plmtqt="plmtqt";
+	public static final String plmtam="plmtam";
+}
 public static final class PubCode {
 	public static final String itno="itno";
 	public static final String tyno="tyno";
@@ -360,6 +508,18 @@ public static final class PubCodeType {
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
 }
+public static final class OrdSzrt {
+	public static final String ormtno="ormtno";
+	public static final String ordorg="ordorg";
+	public static final String sizegp="sizegp";
+	public static final String sizeno="sizeno";
+	public static final String spseno="spseno";
+	public static final String versno="versno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String sizety="sizety";
+	public static final String szrate="szrate";
+}
 public static final class PubSize {
 	public static final String sizety="sizety";
 	public static final String sizeno="sizeno";
@@ -386,10 +546,6 @@ public static final class PubSizeDtl {
 	public static final String sizemk="sizemk";
 	public static final String sizest="sizest";
 	public static final String szsast="szsast";
-	public static final String rgsp="rgsp";
-	public static final String rgdt="rgdt";
-	public static final String lmsp="lmsp";
-	public static final String lmdt="lmdt";
 }
 public static final class SampleColth {
 	public static final String sampno="sampno";
@@ -408,6 +564,10 @@ public static final class SampleColth {
 	public static final String spctpr="spctpr";
 	public static final String sprmk="sprmk";
 	public static final String spctst="spctst";
+	/**
+	* 这里一般是集合属性，返回的是sampleDesignStpres
+	*/
+	public static final String sampleDesignStpres="sampleDesignStpres";
 }
 public static final class SampleDesign {
 	public static final String sampno="sampno";
@@ -428,20 +588,25 @@ public static final class SampleDesign {
 	public static final String slveno="slveno";
 	public static final String suitty="suitty";
 	public static final String desp="desp";
-	public static final String sizegp="sizegp";
 	public static final String packqt="packqt";
 	public static final String spltmk="spltmk";
 	public static final String print="print";
 	public static final String sampst="sampst";
 	public static final String spstat="spstat";
+	public static final String abstat="abstat";
 	/**
-	* 这里一般是集合属性，返回的是sampleDesignStpres
+	* 这里一般是集合属性，返回的是sampleDesignSizegpes
 	*/
-	public static final String sampleDesignStpres="sampleDesignStpres";
+	public static final String sampleDesignSizegpes="sampleDesignSizegpes";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+}
+public static final class SampleDesignSizegp {
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String sizegp="sizegp";
 }
 public static final class SampleDesignStpr {
 	public static final String sampno="sampno";

@@ -60,6 +60,13 @@ public class SampleDesignController {
 		return sampleDesign;
 	}
 	
+	@RequestMapping("/sampleDesign/copy.do")
+	//@ResponseBody
+	public SampleDesign copy(@RequestBody SampleDesign sampleDesign) {
+		sampleDesignService.copy(sampleDesign);
+		return sampleDesign;
+	}
+	
 	@RequestMapping("/sampleDesign/update.do")
 	//@ResponseBody
 	public  SampleDesign update(@RequestBody SampleDesign sampleDesign) {
@@ -106,6 +113,16 @@ public class SampleDesignController {
 		if(mapParams.getParams()!=null){
 			sampleDesignService.unlock(mapParams.getParams());
 		}
+	}
+	
+	@RequestMapping("/sampleDesign/mustOrder.do")
+	@ResponseBody
+	public void mustOrder(String[] sampnos,Integer abstat) {
+		if(sampnos!=null){
+			sampleDesignService.update(Cnd.update().set(M.SampleDesign.abstat, abstat).andIn(M.SampleDesign.sampno, sampnos));
+		}
+
+		
 	}
 	
 //	@RequestMapping("/sampleDesign/destroy.do")
