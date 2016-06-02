@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.mawujun.controller.spring.mvc.json.JsonConfigHolder;
 import com.mawujun.repository.cnd.Cnd;
-import com.youngor.utils.M;
-import com.mawujun.utils.page.Pager;
+import com.mawujun.utils.M;
+import com.mawujun.utils.page.PageParam;
+import com.mawujun.utils.page.PageResult;
 
 import ${basepackage}.${simpleClassName};
 import ${basepackage}.${simpleClassName}Service;
@@ -33,8 +35,8 @@ public class ${simpleClassName}Controller {
 	 */
 	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
 	@ResponseBody
-	public List<${simpleClassName}> query(String parent_id) {
-		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.parent_id, "root".equals(parent_id)?null:parent_id);
+	public List<${simpleClassName}> query(String id) {
+		Cnd cnd=Cnd.select().andEquals(M.${simpleClassName}.id, "root".equals(id)?null:id);
 		List<${simpleClassName}> ${simpleClassNameFirstLower}es=${simpleClassNameFirstLower}Service.query(cnd);
 		return ${simpleClassNameFirstLower}es;
 	}
@@ -49,10 +51,11 @@ public class ${simpleClassName}Controller {
 	 * @param userName
 	 * @return
 	 */
-	@RequestMapping("/${simpleClassNameFirstLower}/query.do")
+	@RequestMapping("/${simpleClassNameFirstLower}/queryPager.do")
 	@ResponseBody
-	public Pager<${simpleClassName}> query(Pager<${simpleClassName}> pager){
-		return ${simpleClassNameFirstLower}Service.queryPage(pager);
+	public PageResult<${simpleClassName}> queryPager(Integer start,Integer limit,String sampleName){
+		PageParam page=PageParam.getInstance(start,limit);//.addParam(M.${simpleClassName}.sampleName, "%"+sampleName+"%");
+		return ${simpleClassNameFirstLower}Service.queryPage(page);
 	}
 	</#if>
 
@@ -65,39 +68,33 @@ public class ${simpleClassName}Controller {
 	
 
 	@RequestMapping("/${simpleClassNameFirstLower}/load.do")
-	@ResponseBody
 	public ${simpleClassName} load(${idType} id) {
 		return ${simpleClassNameFirstLower}Service.get(id);
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/create.do")
-	@ResponseBody
+	//@ResponseBody
 	public ${simpleClassName} create(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
-		<#if extenConfig.extjs_treeForm_model==true>
-		if("root".equals(${simpleClassNameFirstLower}.getParent_id())){
-			${simpleClassNameFirstLower}.setParent_id(null);
-		}
-		</#if>
 		${simpleClassNameFirstLower}Service.create(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/update.do")
-	@ResponseBody
+	//@ResponseBody
 	public  ${simpleClassName} update(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.update(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/deleteById.do")
-	@ResponseBody
+	//@ResponseBody
 	public ${idType} deleteById(${idType} id) {
 		${simpleClassNameFirstLower}Service.deleteById(id);
 		return id;
 	}
 	
 	@RequestMapping("/${simpleClassNameFirstLower}/destroy.do")
-	@ResponseBody
+	//@ResponseBody
 	public ${simpleClassName} destroy(@RequestBody ${simpleClassName} ${simpleClassNameFirstLower}) {
 		${simpleClassNameFirstLower}Service.delete(${simpleClassNameFirstLower});
 		return ${simpleClassNameFirstLower};

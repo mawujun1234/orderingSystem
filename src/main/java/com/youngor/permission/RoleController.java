@@ -39,12 +39,14 @@ public class RoleController {
 	}
 
 
-	@RequestMapping("/role/queryAll.do")
+	@RequestMapping("/role/query4Combo.do")
 	@ResponseBody
-	public List<Role> queryAll() {	
+	public List<Role> query4Combo() {	
 		List<Role> rolees=roleService.queryAll();
 		return rolees;
 	}
+	
+	
 	
 
 	@RequestMapping("/role/load.do")

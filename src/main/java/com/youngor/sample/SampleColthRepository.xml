@@ -31,5 +31,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	update ord_sample_colth d set d.spctst=0  where
     	<include refid="lock_unlock_where"></include> 
     </update>
+    
+    <select id="load" parameterType="map" resultType="com.youngor.sample.SampleColth">
+    	select a.*,c.spftpr,c.sprtpr 
+    	from ord_sample_colth a right join (select b.sampno,c.spftpr,c.sprtpr  from ord_sample_design b,ord_sample_plan c where  b.plspno=c.plspno and b.sampno=#{sampno}) c
+    	on a.sampno=c.sampno  and a.sampno=#{sampno}
+    </select>
 </mapper>
 

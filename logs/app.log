@@ -14426,3 +14426,868 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 17:56:31.405 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 17:57:14.206 [http-bio-8086-exec-11] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 18:04:53.380 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@50662170
+08:49:22.313 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:50:09.860 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:14:12.071 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@5ec8292e
+09:14:41.946 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@66ee4928
+09:21:09.708 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleColth@133a8f22
+09:21:09.709 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@133a8f22
+09:21:09.870 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.create(com.youngor.sample.SampleColth)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+09:21:09.870 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+09:21:09.871 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+09:21:09.871 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:21:09.871 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:23:27.590 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleColth@74ecde9c
+09:23:27.591 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@74ecde9c
+09:23:27.759 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@7e9bb721
+09:41:58.524 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:42:26.350 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:48:14.711 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.load(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+### The error may exist in com/youngor/sample/SampleColthRepository.xml
+### The error may involve com.youngor.sample.SampleColthRepository.load-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,c.spftpr,c.sprtpr       from ord_sample_colth a, right join (select b.sampno,c.spftpr,c.sprtpr  from ord_sample_design b,ord_sample_plan c where  b.plspno=c.plspno and b.sampno=?) c      on a.sampno=c.sampno  and a.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+09:48:14.712 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+### The error may exist in com/youngor/sample/SampleColthRepository.xml
+### The error may involve com.youngor.sample.SampleColthRepository.load-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,c.spftpr,c.sprtpr       from ord_sample_colth a, right join (select b.sampno,c.spftpr,c.sprtpr  from ord_sample_design b,ord_sample_plan c where  b.plspno=c.plspno and b.sampno=?) c      on a.sampno=c.sampno  and a.sampno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+10:02:32.319 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:54:04.507 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:55:13.364 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:17:38.531 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:20:13.806 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:23:48.414 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleColth@4d811bbf
+11:23:48.492 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@4d811bbf
+11:23:48.612 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@4cab97e1
+12:36:58.245 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:37:15.022 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:38:12.772 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@3e0a3fdc
+12:38:12.775 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@3589111b
+12:38:13.446 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@161d1334
+12:38:13.447 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@19146f43
+12:38:14.111 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@2701c3cf
+12:38:14.112 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@77739516
+12:38:31.063 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@72b7f10c
+12:38:31.063 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@24b14cec
+12:38:33.769 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@2b83feb4
+12:38:33.770 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@7ca47438
+12:38:34.718 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@4f3eaa85
+12:38:34.719 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@271fac6e
+12:38:35.340 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.pubsize.OrdSzrt@79a0e769
+12:38:35.340 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@55506032
+13:04:06.422 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:04:15.219 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:08:40.581 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:56:32.160 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:01:24.199 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:03:16.253 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@1d7444f4
+16:03:35.461 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@74d35e1
+16:03:38.201 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:05:41.690 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.query(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:05:41.690 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:14.456 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:14.457 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:43.424 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:43.424 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:45.887 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:19:45.887 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:30:12.011 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:30:12.011 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:33:18.547 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:33:18.549 [http-bio-8086-exec-11] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:34:03.982 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:34:03.982 [http-bio-8086-exec-11] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:36:09.216 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:36:09.217 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:36:44.737 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:36:44.738 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:37:07.209 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:37:07.209 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:37:32.806 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:37:32.807 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:38:02.731 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:38:02.731 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:38:41.575 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:38:41.575 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:39:10.414 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:42:02.727 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:42:02.727 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:50:05.228 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Role@ef67eea
+16:51:06.388 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:52:04.425 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:52:35.484 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:52:35.484 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:53:13.197 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:53:13.197 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:53:20.119 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:53:20.119 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:55:32.357 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:55:32.358 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:56:14.787 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:56:14.787 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:56:21.908 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+16:56:21.908 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:25:43.210 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:26:08.303 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:26:08.303 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:27:10.606 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:27:10.606 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:27:18.178 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:27:18.178 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:28:41.699 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:28:41.699 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:28:43.484 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:28:43.484 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:33:56.250 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:34:16.393 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:34:53.215 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:34:53.215 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:36:37.539 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:40:30.812 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:41:06.349 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:41:06.349 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:41:08.101 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:41:08.102 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:49:07.342 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:49:21.634 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:49:38.465 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:49:38.466 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:50:14.857 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+17:50:14.857 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:23:36.029 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+18:23:55.289 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:24:34.955 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:24:34.955 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:25:57.744 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+18:26:13.575 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:26:34.420 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:26:34.420 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:26:36.699 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:26:36.699 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:27:02.401 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@16f9048c
+18:27:06.082 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@62a09056
+18:27:13.303 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@4bd3d46e
+18:27:18.847 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.ordmt.OrdOrgController.create(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:27:18.847 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+18:27:18.960 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:27:18.960 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/ordmt/OrdOrgRepository.xml
+### The error may involve com.youngor.ordmt.OrdOrgRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ORD_ORG a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+18:31:01.346 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@41288185
+18:31:01.361 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@54767dc3
+18:31:01.388 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@d934968
+18:31:01.415 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@497abd4
+18:31:01.500 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@445cc8b2
+18:36:10.302 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+18:38:35.504 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:39:45.234 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:39:56.440 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:39:56.440 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:39:59.332 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:39:59.332 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:41:05.613 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:41:05.613 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:42:39.438 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:42:39.438 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:43:08.634 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:43:08.634 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:43:37.293 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:43:37.294 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+19:10:54.739 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@655268ae
+19:11:35.717 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@c1370b77
+19:20:37.772 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:21:38.803 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:37:43.898 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:38:09.574 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:52:26.198 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证

@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.mawujun.generator.ExtenConfig;
 import com.mawujun.generator.GeneratorService;
-import com.youngor.order.CompPal;
+import com.youngor.ordmt.OrdOrg;
 
 import freemarker.template.TemplateException;
 /**
@@ -28,7 +28,7 @@ public class GeneratorCode {
 		aa.extjs_grid_enable_cellEditing=false;
 		generatorService.setExtenConfig(aa);
 		
-		generatorService.generatorAllFile(CompPal.class);
+		generatorService.generatorAllFile(OrdOrg.class);
 
 	}
 	

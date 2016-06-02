@@ -62,4 +62,9 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 	public void unlock(Map<String,Object> params){
 		sampleColthRepository.unlock(params);
 	}
+	
+	//@Override
+	public SampleColth load(String sampno) {
+		return sampleColthRepository.load(sampno);
+	}
 }

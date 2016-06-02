@@ -64,6 +64,49 @@ public class SampleColth {
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer spctst=0;//：1：锁定；0：未锁定
 	
+	@Transient
+	private Double spftpr;//出厂价
+	@Transient
+	private Double sprtpr;//零售价
+	//spftpr_spctpr//出厂价/预计成本价
+	//sprtpr_spftpr//零售价/出厂价
+	//sprtpr_spctpr//零售价/预计成本价
+	/**
+	 * 出厂价/预计成本价
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getSpftpr_spctpr(){
+		if(spftpr==null || spctpr==null || spctpr==0){
+			return 0d;
+		} else {
+			return spftpr/spctpr;
+		}
+	}
+	/**
+	 * 零售价/出厂价
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getSprtpr_spftpr(){
+		if(sprtpr==null || spftpr==null || spftpr==0){
+			return 0d;
+		} else {
+			return sprtpr/spftpr;
+		}
+	}
+	/**
+	 * 零售价/预计成本价
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getSprtpr_spctpr(){
+		if(sprtpr==null || spctpr==null || spctpr==0){
+			return 0d;
+		} else {
+			return sprtpr/spctpr;
+		}
+	}
 	
 	@Transient
 	private List<SampleDesignStpr> sampleDesignStpres;//用于前台网后台传递数据的时候，比如新建，更新
@@ -169,6 +212,18 @@ public class SampleColth {
 	}
 	public void setSampleDesignStpres(List<SampleDesignStpr> sampleDesignStpres) {
 		this.sampleDesignStpres = sampleDesignStpres;
+	}
+	public Double getSpftpr() {
+		return spftpr;
+	}
+	public void setSpftpr(Double spftpr) {
+		this.spftpr = spftpr;
+	}
+	public Double getSprtpr() {
+		return sprtpr;
+	}
+	public void setSprtpr(Double sprtpr) {
+		this.sprtpr = sprtpr;
 	}
 
 

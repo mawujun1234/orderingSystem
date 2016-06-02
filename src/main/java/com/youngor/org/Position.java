@@ -39,7 +39,7 @@ public class Position {
 	private String orgno;
 	
 	@FieldDefine(title="职位类型",hidden=false)
-	@Column(length=36,nullable=false)
+	@Column(length=36,nullable=true)
 	private String positionType_id;
 	
 	

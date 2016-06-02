@@ -16,7 +16,13 @@ Ext.define("y.sample.SampleColth",{
 		{name:'spctpr',type:'float'},
 		{name:'sprmk',type:'string'},
 		{name:'spctst',type:'int'},
-		{name:'sampno',type:'string'}
+		{name:'sampno',type:'string'},
+		
+		{name:'spftpr',type:'float'},
+		{name:'sprtpr',type:'float'},
+		{name:'spftpr_spctpr',type:'float'},
+		{name:'sprtpr_spftpr',type:'float'},
+		{name:'sprtpr_spctpr',type:'float'}
 	],
 	proxy:{
 		type:'ajax',
@@ -29,14 +35,14 @@ Ext.define("y.sample.SampleColth",{
 			writeAllFields:true
 		},
 		reader:{
-			type:'json',
-			rootProperty:'root',
-			successProperty:'success',
-			totalProperty:'total'		
+			type:'json'
+//			rootProperty:'root',
+//			successProperty:'success',
+//			totalProperty:'total'		
 		},
 		api:{
-			read:Ext.ContextPath+'/sampleColth/query.do',
-			load : Ext.ContextPath+'/sampleColth/load.do',
+			read:Ext.ContextPath+'/sampleColth/load.do',
+			//load : Ext.ContextPath+'/sampleColth/load.do',
 			create:Ext.ContextPath+'/sampleColth/create.do',
 			update:Ext.ContextPath+'/sampleColth/update.do',
 			destroy:Ext.ContextPath+'/sampleColth/destroy.do'

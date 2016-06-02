@@ -1,6 +1,7 @@
 package com.youngor.org;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,6 +31,9 @@ public class OrgService extends AbstractService<Org, String>{
 		return orgRepository.query(parent_id, dim);
 	}
 
+	public List<NodeVO> queryOnlyOrg(String parent_id,Dim dim){
+		return orgRepository.queryOnlyOrg(parent_id, dim);
+	}
 	
 	public List<Org> query4Combo(String parent_no,Dim dim,String user_id) {
 		return orgRepository.query4Combo(parent_no, dim,user_id);

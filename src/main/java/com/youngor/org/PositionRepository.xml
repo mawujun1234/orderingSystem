@@ -14,5 +14,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select count(a.id)
 		from t_position a
     </select>
+    
+    <select id="queryPositionByName" parameterType="map" resultType="com.youngor.org.Position">
+    	select * from t_position where orgno=#{orgno} and name=#{name}
+    </select>
 </mapper>
 

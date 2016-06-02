@@ -100,6 +100,17 @@ Ext.define('y.sample.SampleColthForm',{
 	        	}
 	        }
 	    },
+	    {
+	        fieldLabel: '包装辅料费',
+	        name: 'acsyam',
+	        value:0,
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"包装辅料费不允许为空",
+            allowDecimals:false,
+            selectOnFocus:true,
+	        xtype:'numberfield'   
+	    },
 		{
 	        fieldLabel: '新成衣价',
 	        name: 'spnwpr',
@@ -144,17 +155,7 @@ Ext.define('y.sample.SampleColthForm',{
             xtype: 'datefield',
             format: 'Y-m-d'   
         },
-		{
-	        fieldLabel: '包装辅料费',
-	        name: 'acsyam',
-	        value:0,
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"包装辅料费不允许为空",
-            allowDecimals:false,
-            selectOnFocus:true,
-	        xtype:'numberfield'   
-	    },
+		
 		{
 	        fieldLabel: '预计成本价',
 	        name: 'spctpr',
@@ -163,6 +164,41 @@ Ext.define('y.sample.SampleColthForm',{
             //blankText:"预计成本价不允许为空",
             //selectOnFocus:true,
             editable:false,
+	        xtype:'numberfield'   
+	    },
+	    {
+	        fieldLabel: '出厂价',
+	        name: 'spftpr',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'numberfield'   
+	    },
+	     {
+	        fieldLabel: '出厂价/预计成本价',
+	        name: 'spftpr_spctpr',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'numberfield'   
+	    },
+	    {
+	        fieldLabel: '零售价',
+	        name: 'sprtpr',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'numberfield'   
+	    },
+	    {
+	        fieldLabel: '零售价/出厂价',
+	        name: 'sprtpr_spftpr',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'numberfield'   
+	    },
+	    {
+	        fieldLabel: '零售价/预计成本价',
+	        name: 'sprtpr_spctpr',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
 	        xtype:'numberfield'   
 	    },
 		{
@@ -303,6 +339,19 @@ Ext.define('y.sample.SampleColthForm',{
 		value+=sampleMateGrid.sumMtpupr();
 		
 		spctpr.setValue(value);
+		
+		//alert(1);
+		if(value){//alert(2);
+			////出厂价/预计成本价
+			var spftpr=this.getForm().findField("spftpr");
+			var spftpr_spctpr=this.getForm().findField("spftpr_spctpr");
+			spftpr_spctpr.setValue(spftpr.getValue()/value);
+			//零售价/预计成本价
+			var sprtpr=this.getForm().findField("sprtpr");
+			var sprtpr_spctpr=this.getForm().findField("sprtpr_spctpr");
+			sprtpr_spctpr.setValue(sprtpr.getValue()/value);
+		}
+		
 
 
 	},

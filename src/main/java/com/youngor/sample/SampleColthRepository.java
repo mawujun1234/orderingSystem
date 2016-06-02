@@ -2,6 +2,7 @@ package com.youngor.sample;
 
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
@@ -14,5 +15,7 @@ import com.mawujun.repository.IRepository;
 public interface SampleColthRepository extends IRepository<SampleColth, String>{
 	public void lock(Map<String,Object> params);
 	public void unlock(Map<String,Object> params);
+	
+	public SampleColth load(@Param("sampno")String sampno);
 
 }

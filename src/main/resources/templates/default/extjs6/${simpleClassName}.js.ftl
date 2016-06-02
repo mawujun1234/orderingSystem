@@ -23,10 +23,10 @@ Ext.define("${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}",{
 			writeAllFields:true
 		},
 		reader:{
-			type:'json',
-			root:'root',
-			successProperty:'success',
-			totalProperty:'total'		
+			type:'json'
+			///rootProperty:'root',
+			//successProperty:'success',
+			//totalProperty:'total'		
 		},
 		api:{
 			read:Ext.ContextPath+'/${simpleClassNameFirstLower}/load.do',

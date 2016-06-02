@@ -8,7 +8,9 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	viewConfig:{
+		enableTextSelection:true
+	},
 	initComponent: function () {
       var me = this;
      <#-----------------------------------------生成列--------------------------------- ----->
@@ -33,7 +35,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 		proxy: {
 			autoLoad:true,
 			type: 'ajax',
-			url: Ext.ContextPath+'/${propertyColumn.property}/query.do',
+			url: Ext.ContextPath+'/${propertyColumn.property}/queryPager.do',
 			reader: {
 				type: 'json',
 				rootProperty: '${propertyColumn.property}'
@@ -177,7 +179,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 			model: '${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}',
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/${simpleClassNameFirstLower}/query.do',
+			    url : Ext.ContextPath+'/${simpleClassNameFirstLower}/queryPager.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
@@ -340,7 +342,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
             	iconCls:'icon-search',
             	handler:function(btn){
             		var grid=btn.up("grid");
-	            	grid.getStore().getProxy().extraParams={
+	            	grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,{
 	            		<#list queryProperties as propertyColumn>
 	            		<#if propertyColumn.jsType=='date'>
 	            		"params['${propertyColumn.property}_start']": Ext.Date.format(grid.down("#${propertyColumn.property}_start").getValue(),'Y-m-d H:i:s'),
@@ -355,7 +357,7 @@ Ext.define('${extenConfig.extjs_packagePrefix}.${module}.${simpleClassName}Grid'
 						"params['${propertyColumn.property}']":grid.down("#${propertyColumn.property}").getValue()<#if propertyColumn_has_next>,</#if>
 						</#if>
 		                </#list>
-	                };
+	                });
             		grid.getStore().reload();
             	}
             }

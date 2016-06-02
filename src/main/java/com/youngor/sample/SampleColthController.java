@@ -47,8 +47,10 @@ public class SampleColthController {
 	
 
 	@RequestMapping("/sampleColth/load.do")
+	@ResponseBody
 	public SampleColth load(String id) {
-		return sampleColthService.get(id);
+		
+		return sampleColthService.load(id);
 	}
 	
 	@RequestMapping("/sampleColth/create.do")
