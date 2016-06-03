@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.youngor.utils.M;
 
 
 /**
@@ -84,6 +86,12 @@ public class PositionService extends AbstractService<Position, String>{
 			}
 			
 		}
+	}
+	
+	public void delete(Position position) {
+		//先删除这个角色可以访问的Org
+		positionOrgAccessRepository.deleteBatch(Cnd.delete().andEquals(M.PositionOrgAccess.position.id, position.getId()));
+		super.delete(position);
 	}
 
 }

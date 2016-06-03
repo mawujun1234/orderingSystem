@@ -66,7 +66,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
-	    order by a.sizeno
+	    order by a.suitno,a.sizeno
      </select>
      
      <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
@@ -88,7 +88,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
-	    order by a.sizeno
+	    order by a.suitno,a.sizeno
      </select>
      <!-- 移动端进行清零按钮的时候 -->
      <delete id="clearOrddtl" parameterType="map">
@@ -106,7 +106,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      <!-- 本次订货的一些统计信息-->
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
-     	select count(mlorno) as canConfirm,sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
+     	select sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno
          and a.mtorno=#{mtorno}  
@@ -128,7 +128,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <!-- 创建订单副表  -->
      <insert id="createOrd_ordhd" parameterType="map">
      	   insert into ORD_ORDHD(mtorno,mlorno,MLORVN,BRADNO,SPCLNO,SDTYNO,ORSTAT,SZSTAT,ISFECT) 
-       select distinct a.mtorno,a.mlorno ,a.MLORVN,c.BRADNO,c.SPCLNO,20,0,0,1
+       select distinct a.mtorno,a.mlorno ,a.MLORVN,c.BRADNO,c.SPCLNO,10,0,0,1
            from ord_orddtl a,ord_sample_design b,ord_sample_plan c
            where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
      </insert>
@@ -142,6 +142,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	 insert into Ord_orddtl_his
  		select * from Ord_orddtl where mtorno=#{mtorno}
      </insert>
+     <!-- 更新订单的节点类型未“区域平衡”-->
+     <update id="update_ordhd_SDTYNO">
+     	update ORD_ORDHD set SDTYNO=20 where mtorno=#{mtorno} and SDTYNO=10
+     </update>
+     <!-- 更新规格明细表的版本订单号-->
+     <update id="update_ord_ordszdtl_MLORNO">
+     	update ORD_ORDSZDTL a set MLORNO =
+		(select distinct MLORNO from ORD_ORDDTL b 
+		where a.MTORNO=b.MTORNO and a.SAMPNO=b.SAMPNO and b.mtorno=#{mtorno})
+     </update>
+     
+     <select id="check_is_confirm" resultType="string" parameterType="map">
+     	select distinct SDTYNO  from ORD_ORDHD where mtorno=#{mtorno}
+     </select>
      <!-- 
      <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
      	select b.* from ORD_ORD a,t_org b

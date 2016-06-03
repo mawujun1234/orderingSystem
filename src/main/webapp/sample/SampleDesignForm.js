@@ -556,20 +556,7 @@ Ext.define('y.sample.SampleDesignForm',{
 		
 		me.showOrHidden_saveButton(record.get("spstat"));
 					
-//		var aa=y.sample.SampleDesign.load(record.get("sampno"),{
-//			success:function(sampleDesign){
-//				sampleDesign.set("plspnm",record.get("plspnm"));
-//				me.getForm().loadRecord(sampleDesign);
-//				
-//				//如果是锁定状态，就隐藏这个按钮
-//				//hidden:!Permision.canShow('sample_design_designsave'),
-//				if(sampleDesign.get("spstat")==1){
-//					me.down("#save").hide();		
-//				} else if(Permision.canShow('sample_design_designsave')){
-//					me.down("#save").show();
-//				}
-//			}
-//		});
+
 		
 	},
 	/**

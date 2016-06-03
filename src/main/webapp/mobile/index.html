@@ -160,7 +160,7 @@
                                   <div class="item-inner">
                                     <div id="od_info_T00_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:4.5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
                                     <div class="item-input">
-                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt" onClick="card_header_input_click(this)" type="text" placeholder="请输入总订货数量" v-model="suitVO.ormtqt">
+                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt" onClick="card_header_input_click(this)" type="number" placeholder="请输入总订货数量" v-model="suitVO.ormtqt">
                                     </div>
                                     <span class="icon icon-up" onClick="card_header_item_content_icon(this)"></span>
                                   </div>
@@ -193,7 +193,7 @@
                               <div class="item-inner">
                                 <div class="item-title label">{{sizeVO.sizenm}}({{sizeVO.szrate}})</div>
                                 <div class="item-input">
-                                  <input type="number" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt">
+                                  <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" >
                                 </div>
                               </div>
                             </div>
@@ -246,7 +246,7 @@
                             </div>
                             <div class="row">
                               <div class="col-80">&nbsp; </div>
-                              <div class="col-20"><a href="#" id="od_mypage_confirm_button" v-show="!canConfirm" class="button button-fill button-success">确认</a></div>
+                              <div class="col-20"><a href="#" id="od_mypage_confirm_button"  class="button button-fill button-success">确认</a></div>
                             </div>
                       </div>
                     </div>

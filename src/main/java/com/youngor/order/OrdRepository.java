@@ -49,12 +49,15 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void updateMtornoMlorvn(@Param("mtorno")String mtorno);
 	
-	public void updateOrmtqtZeor(@Param("mtorno")String mtorno);
+	//public void updateOrmtqtZeor(@Param("mtorno")String mtorno);
 	
 	public void createOrd_ordhd(@Param("mtorno")String mtorno);
 	
 	public void createOrd_ordhd_his(@Param("mtorno")String mtorno);
 	public void createOrd_orddtl_his(@Param("mtorno")String mtorno);
+	public void update_ordhd_SDTYNO(@Param("mtorno")String mtorno);
+	public void update_ord_ordszdtl_MLORNO(@Param("mtorno")String mtorno);
+	public List<String> check_is_confirm(@Param("mtorno")String mtorno);
 	
 	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
 	

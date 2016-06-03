@@ -511,7 +511,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			
 			//获取当季的属性
 			
-			
+			window.sampleDesign=record;
 			//设计开发form填充
 			var sampleDesign=Ext.create('y.sample.SampleDesign',{
 				plspno:record.get("plspno"),

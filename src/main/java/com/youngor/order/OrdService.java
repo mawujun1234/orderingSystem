@@ -99,6 +99,9 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		sampleVO.setMtorno(ord.getMtorno());
 		ord.setSampleVO(sampleVO);
+		if("TX".equals(ord.getChanno())){
+			sampleVO.setSpftpr(0d);
+		}
 		
 		result.put("sampleVO", sampleVO);
 		//获取套件和套件内的规格信息，
@@ -106,6 +109,12 @@ public class OrdService extends AbstractService<Ord, String>{
 		if(sampleVO.getSptyno().equals("S10")){
 			//获取各个套件的价格
 			List<SampleDesignStpr> stpres=ordRepository.querySampleDesignStpr(sampleVO.getSampno());
+			//如果是特许，不显示出厂价
+			if("TX".equals(ord.getChanno())){
+				for(SampleDesignStpr sampleDesignStpr:stpres){
+					sampleDesignStpr.setSpftpr(0d);
+				}
+			}
 			sampleVO.setSuitStpres(stpres);
 			
 			List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
@@ -216,8 +225,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					ordszdtl.setLmsp(ShiroUtils.getAuthenticationInfo().getId());
 					ordszdtl.setLmdt(new Date());
 					//orddtlRepository.delete(orddtl);
-					ordszdtlRepository.createOrUpdate(ordszdtl);
-					
+					ordszdtlRepository.createOrUpdate(ordszdtl);	
 				}
 			}
 			
@@ -259,6 +267,12 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//拷贝订单明细表-->订单明细表历史
 		ordRepository.createOrd_orddtl_his(ord.getMtorno());
+		
+		//修改ordhd的订单节点类型为20，即区域平衡
+		ordRepository.update_ordhd_SDTYNO(ord.getMtorno());
+		
+		//更新订单规格明细表中的“审批订单号”
+		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
 	}
 	
 	SimpleDateFormat HHmm_format=new SimpleDateFormat("HHmm");
@@ -341,8 +355,25 @@ public class OrdService extends AbstractService<Ord, String>{
 				
 			}
 		}
+		
+		///判断该订单是否已经“确认”，
+		boolean canConfirm=check_is_confirm(ord.getMtorno());
+		result.put("canConfirm", canConfirm);
 		return result;
 		
+	}
+	
+	private boolean check_is_confirm(String mtorno){
+		List<String> list=ordRepository.check_is_confirm(mtorno);
+		if(list ==null || list.size()==0){
+			return true;
+		}
+		if(list.size()==1 ){
+			if("10".equals(list.get(0))){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public MyInfoVO queryMyInfoVO() {

@@ -15,6 +15,11 @@ function show_od_closeing_info(){
 		} else {
 			window.od_closeing_info.hide();
 		}
+		//如果已经确认了的话
+		if(!response.canConfirm){
+			$("#od_mypage_confirm_button").hide();
+			$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
+		}
 	});
 	setTimeout("show_od_closeing_info()",120*1000);
 }
@@ -361,6 +366,13 @@ $(function(){
 		
 		
 	}//function scan()
+	
+	$("#od_info").on('focus', 'input[type=number]', function(e){ 
+		$(this).get(0).select();
+	});
+	$("#od_info").on('keyup', 'input[type=number]', function(e){ 
+		this.value=this.value.replace('/[^0-9]/g');
+	});
 
 	$("#od_info_clear_button").click(function(){
 		var sampno=window.vm_sampleVO.sampno

@@ -61,6 +61,7 @@ public class SamplePlanController {
 		samplePlan.setPlspno(samplePlan.getOrmtno()+samplePlan.getPlspnm());
 		samplePlan.setRgdt(new Date());
 		samplePlan.setRgsp(ShiroUtils.getLoginName());
+		samplePlan.setPlstat(1);
 		samplePlanService.create(samplePlan);
 		return samplePlan;
 	}

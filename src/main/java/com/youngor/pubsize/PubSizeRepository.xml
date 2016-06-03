@@ -23,6 +23,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="szclno!=null and szclno!=''">
     		and szclno = #{szclno}
     	</if>
+    	<if test="szsast!=null and szsast!=''">
+    		and szsast = #{szsast}
+    	</if>
 	</sql>
     <select id="queryPage" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
     	select * from ord_pub_size a
