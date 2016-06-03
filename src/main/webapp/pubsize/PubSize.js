@@ -32,7 +32,7 @@ Ext.define("y.pubsize.PubSize",{
 		},
 		reader:{
 			type:'json',
-			root:'root',
+			rootProperty:'root',
 			successProperty:'success',
 			totalProperty:'total'		
 		},

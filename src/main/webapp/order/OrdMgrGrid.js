@@ -1,0 +1,507 @@
+Ext.define('y.order.OrdMgrGrid',{
+	extend:'Ext.grid.Panel',
+	requires: [
+
+	],
+	columnLines :true,
+	stripeRows:true,
+
+	initComponent: function () {
+      var me = this;
+      me.columns=[
+      	{xtype: 'rownumberer'},
+      	{dataIndex:'ORTYNO',header:'订单类型'
+      		,renderer:function(value){
+      			if(value=='DZ'){
+      				return "定制";
+      			} else if(value=='TP'){
+      				return "统配";
+      			}
+      		}
+        },
+        {dataIndex:'YXGSNM',header:'营销公司'
+        },
+        {dataIndex:'QYNM',header:'区域'
+        },
+        {dataIndex:'ORDORG_NAME',header:'订货单位'
+        },
+        {dataIndex:'CHANNO_NAME',header:'订货单位类型'
+        },
+        {dataIndex:'MLORNO',header:'审批订单号'
+        },
+        {dataIndex:'MLORVN',header:'版本号'
+        },
+        {dataIndex:'ISFECT',header:'有效'
+        	,renderer:function(value){
+      			if(value=='0'){
+      				return "无效";
+      			} else if(value=='1'){
+      				return "有效";
+      			}  else {
+      				return "";
+      			}
+      		}
+        },
+        {dataIndex:'SDTYNO',header:'订单节点'
+        	,renderer:function(value){
+      			if(value=='10'){
+      				return "现场订货";
+      			} else if(value=='20'){
+      				return "区域平衡";
+      			}  else if(value=='30'){
+      				return "总公司平衡";
+      			}  else if(value=='40'){
+      				return "尾箱调整";
+      			}    else {
+      				return "";
+      			}
+      		}
+        },
+        {dataIndex:'BRADNO_NAME',header:'品牌'
+        },
+        {dataIndex:'SPCLNO_NAME',header:'大类'
+        },
+        {dataIndex:'ORAPDP',header:'审批部门'
+        },
+        {dataIndex:'ORSTAT',header:'总量状态'
+        	,renderer:function(value){
+      			if(value=='0'){
+      				return "编辑中";
+      			} else if(value=='1'){
+      				return "审批中";
+      			}  else if(value=='2'){
+      				return "大区审批通过";
+      			}  else if(value=='3'){
+      				return "总部审批通过";
+      			}  else if(value=='4'){
+      				return "退回";
+      			}  else {
+      				return "";
+      			}
+      		}
+        },
+        {dataIndex:'SZSTAT',header:'规格状态'
+        	,renderer:function(value){
+      			if(value=='0'){
+      				return "编辑中";
+      			} else if(value=='1'){
+      				return "审批中";
+      			}  else if(value=='2'){
+      				return "大区审批通过";
+      			}  else if(value=='3'){
+      				return "总部审批通过";
+      			}  else if(value=='4'){
+      				return "退回";
+      			}  else {
+      				return "";
+      			}
+      		}
+        },
+        {dataIndex:'ORAPDT',header:'处理日期'
+        }
+      ];
+      
+     
+      
+
+	  me.store=Ext.create('Ext.data.Store',{
+			autoSync:false,
+			pageSize:50,
+			autoLoad:false,
+			//model: 'y.order.QyVO',
+			fields:['ORTYNO','YXGSNM','QYNM','ORDORG','ORDORG_NAME','CHANNO','CHANNO_NAME','MLORNO','MLORVN','ISFECT','SDTYNO','BRADNO','SPCLNO',
+				'ORAPDP','ORSTAT','SZSTAT','ORAPDT','BRADNO_NAME','SPCLNO_NAME'],
+			proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/ord/ordMgr/queryOrdMgr.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    extraParams:{limit:50},
+			    reader:{
+					type:'json',//如果没有分页，那么可以把后面三行去掉，而且后台只需要返回一个数组就行了
+					rootProperty:'root',
+					successProperty:'success',
+					totalProperty:'total'		
+				}
+			},
+			listeners:{
+				load:function(store,records){
+//					if(records && records.length>0){
+//						if(!me.createNew_btn){
+//							var toolbars=me.getDockedItems('toolbar[dock="top"]');
+//							var createNew=toolbars[2].down("#createNew");
+//							var updateApprove=toolbars[2].down("#updateApprove");
+//							
+//							me.createNew_btn=createNew;
+//							me.updateApprove_btn=updateApprove;
+//						}
+//						
+//						if(records[0].get("orstat")==0 || records[0].get("orstat")==4 ){
+//							me.createNew_btn.enable();
+//							me.updateApprove_btn.enable();
+//						} else {
+//							me.createNew_btn.disable();
+//							me.updateApprove_btn.disable();
+//						}
+//						
+//					}
+				}
+			}
+	  });
+
+	  me.dockedItems=[];
+      me.dockedItems.push({
+	        xtype: 'pagingtoolbar',
+	        store: me.store,  
+	        dock: 'bottom',
+	        displayInfo: true
+	  });
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+		  		itemId:'ordmtcombo',
+				xtype:'ordmtcombo',
+				allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+				listeners:{
+					select:function( combo, record, eOpts ) {	
+						var ordorg=combo.nextSibling("#ordorg");
+		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+		        			ormtno:record.get("ormtno")
+		        		});
+		        		//ordorg.getStore().reload();
+					}
+				}
+			},{
+		  		fieldLabel: '营销公司',
+		  		labelWidth:65,
+		  		width:160,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+		  		itemId:'yxgsno',
+				xtype:'orgcombo',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						var regioncombo=combo.nextSibling("#qyno");
+		        		regioncombo.reload(record.get("orgno"));
+					}
+				}
+			},{
+		  		fieldLabel: '区域',
+		  		labelWidth:45,
+		  		width:170,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+		  		itemId:'qyno',
+				xtype:'orgcombo',
+				autoLoad:false,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+		        		
+						var ordorg=combo.nextSibling("#ordorg");
+		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+		        			qyno:record.get("orgno")
+		        		});
+		        		ordorg.getStore().reload();
+					}
+				}
+			},{
+				fieldLabel: '渠道类型',
+				labelWidth:65,
+				width:150,
+				allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+				itemId: 'channo',
+				xtype:'channocombo',
+				value:'QY',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+		        		
+						var ordorg=combo.nextSibling("#ordorg");
+		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+		        			channo:record.get("channo")
+		        		});
+		        		ordorg.getStore().reload();
+					}
+				}
+			 },{
+				fieldLabel: '订货单位',
+				labelWidth:65,
+				width:170,
+//				allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"订货单位不允许为空",
+				itemId: 'ordorg',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'orgnm',
+			    valueField: 'orgno',
+			    store: {
+				    fields: ['orgno', 'orgnm'],
+				    autoLoad:false,
+				    proxy: {
+				        type: 'ajax',
+				        url: Ext.ContextPath+'/ord/queryOrdorg.do'
+				    },
+				    listeners:{
+				    	load:function(myStore){
+//				    		if(myStore.getCount( ) >0){
+//						 		var r=myStore.getAt(0);
+//						 		var ordorg=me.down("#ordorg");
+//						 		ordorg.select( r );
+//						 		ordorg.fireEvent("select", ordorg, r);
+//						 	}
+				    	}
+				    }
+				},
+	            hidden:false,
+				xtype:'combobox'
+			 }]
+	  });
+	  
+	   me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+		  		itemId:'ortyno',
+				xtype:'ordtycombo',
+				labelWidth:65,
+				//selFirst:true,
+				width:150,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+//						var ordorg=combo.nextSibling("#ordorg");
+//		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+//		        			ortyno:record.get("ortyno")
+//		        		});
+//		        		ordorg.getStore().reload();
+					}
+				}
+			},{
+		        fieldLabel: '品牌',
+		        itemId: 'bradno',
+		        labelWidth:40,
+		        width:160,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            //value:'Y',
+	            selFirst:true,
+	            blankText:"品牌不允许为空",
+		        xtype:'pubcodecombo',
+		        tyno:'1',
+		        listeners:{
+		        	select:function( combo, record, eOpts ) {
+//		        		var toolbar=combo.up("toolbar");
+//		        		var suitno=toolbar.down("#suitno");
+//		        		suitno.changeBradno(record.get("itno"));
+//		        		suitno.getStore().reload();
+		        	}	
+		        }
+		    },{
+		        fieldLabel: '大类',
+		        itemId: 'spclno',
+		        labelWidth:40,
+		        width:120,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            blankText:"大类不允许为空",
+	             selFirst:true,
+		        xtype:'pubcodecombo',
+		        tyno:'0',
+		        listeners:{
+		        	select:function( combo, record, eOpts ) {
+//		        		var sptyno=combo.nextSibling("#sptyno");
+//		        		sptyno.reload(record.get("itno"));
+//		        		
+//		        		var spseno=combo.nextSibling("#spseno");
+//		        		spseno.reload(record.get("itno"));
+		        	}	
+		        }
+		    },{
+				fieldLabel: '总量状态',
+				labelWidth:65,
+		        width:165,
+				itemId: 'orstat',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'id',
+			    store: {
+				    fields: ['id', 'name'],
+				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				},
+	            hidden:false,
+				xtype:'combobox'
+			 },{
+				fieldLabel: '规格状态',
+				labelWidth:65,
+		        width:165,
+				itemId: 'szstat',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'id',
+			    store: {
+				    fields: ['id', 'name'],
+				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				},
+	            hidden:false,
+				xtype:'combobox'
+			 },{
+				fieldLabel: '有效状态',
+				labelWidth:65,
+		        width:140,
+				itemId: 'isfect',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'id',
+			    store: {
+				    fields: ['id', 'name'],
+				    data:[{id:'0',name:'无效'},{id:'1',name:'有效'}]
+				},
+	            hidden:false,
+				xtype:'combobox'
+			 },{
+				text: '查询',
+				itemId:'reload',
+				handler: function(btn){
+					var grid=btn.up("grid");
+    				grid.getStore().getProxy().extraParams=grid.getParams();
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			}]
+	   });
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+			    text: '审批',
+			    handler: function(btn){
+			    	
+			    },
+			    iconCls: 'icon-edit'
+			},{
+				text: '退回',
+				handler: function(btn){
+					
+				},
+				iconCls: 'icon-reply'
+			},{
+				text: '作废',
+				handler: function(btn){
+					
+				},
+				iconCls: 'icon-trash'
+			},{
+				text: '新建',
+				handler: function(btn){
+					
+				},
+				iconCls: 'icon-plus'
+			},{
+				text: '订单流转',
+				handler: function(btn){
+					
+				},
+				iconCls: 'icon-exchange'
+			}]
+		});
+
+       
+      me.callParent();
+	},
+	getParams:function(){
+		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		var params={
+			"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+			"params['yxgsno']":toolbars[0].down("#yxgsno").getValue(),
+			"params['qyno']":toolbars[0].down("#qyno").getValue(),
+			"params['channo']":toolbars[0].down("#channo").getValue(),	
+			"params['ordorg']":toolbars[0].down("#ordorg").getValue(),
+			
+			"params['ortyno']":toolbars[1].down("#ortyno").getValue(),
+			"params['bradno']":toolbars[1].down("#bradno").getValue(),
+			"params['spclno']":toolbars[1].down("#spclno").getValue(),
+			"params['szstat']":toolbars[1].down("#szstat").getValue(),
+			"params['orstat']":toolbars[1].down("#orstat").getValue(),
+			"params['isfect']":toolbars[1].down("#isfect").getValue()
+		};
+		return params;
+	},
+	createNew:function(){
+		var me=this;
+		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		var ordorg=toolbars[0].down("#ordorg").getValue();
+		if(!ordorg){
+			Ext.Msg.alert("消息","请先选择一个订货单位!");
+			return;
+		}
+//		var ortyno=toolbars[0].down("#ortyno").getValue();
+//		if(!ortyno){
+//			ortyno='DZ';
+//		}
+		
+		
+    	var qyVONewForm=Ext.create('y.order.QyVONewForm',{
+    		params:{
+    			ordorg:ordorg,
+	    		ortyno:'DZ',
+	    		channo:toolbars[0].down("#channo").getValue(),
+	    		ormtno:toolbars[0].down("#ordmtcombo").getValue()
+    		}
+    	});
+		
+    	var win=Ext.create('Ext.window.Window',{
+    		layout:'fit',
+    		title:'新增',
+    		modal:true,
+    		width:400,
+    		height:300,
+    		closeAction:'hide',
+    		items:[qyVONewForm],
+    		listeners:{
+    			close:function(){
+    				me.getStore().reload();
+    			}
+    		}
+    	});
+    	win.show();
+    },
+    updateApprove:function(){
+    	var me=this;
+    	var toolbars=this.getDockedItems('toolbar[dock="top"]');
+    	var params={
+    		ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+    		qyno:toolbars[0].down("#qyno").getValue(),
+			channo:toolbars[0].down("#channo").getValue(),
+    		ordorg:toolbars[0].down("#ordorg").getValue(),
+    		bradno:toolbars[1].down("#bradno").getValue(),
+    		spclno:toolbars[1].down("#spclno").getValue()
+    		
+    	};
+    	Ext.Ajax.request({
+			url:Ext.ContextPath+'/ord/qyVO/updateApprove.do',
+			params:params,
+			method:'POST',
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+					Ext.Msg.alert("消息",obj.msg);
+					return;
+				}
+				Ext.Msg.alert("消息","提交成功!");
+				//button.up('window').close();
+				me.getStore().reload();
+			}
+		});
+    }
+   
+    
+});

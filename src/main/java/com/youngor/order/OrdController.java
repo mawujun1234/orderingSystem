@@ -209,6 +209,35 @@ public class OrdController {
 		return "success";
 	}
 
+	
+	//======================================================================================
+	/**
+	 * 获取动态生成的列
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sizegp 规格范围
+	 * @param sztype 规格上报方式
+	 * @return
+	 */
+	@RequestMapping("/ord/sizeVO/querySizeVOColumns.do")
+	@ResponseBody
+	public List<Map<String,Object>> querySizeVOColumns(String sizegp,Integer sztype){
+		
+		return ordService.sizeVO_querySizeVOColumns( sizegp, sztype);
+	}
+	
+	@RequestMapping("/ord/sizeVO/querySizeVOData.do")
+	@ResponseBody
+	public List<Map<String,Object>> querySizeVOData(@RequestBody Map<String,Object> params){
+		return ordService.sizeVO_querySizeVOData(params);
+	}
+	
+	//=====================================================================
+	@RequestMapping("/ord/ordMgr/queryOrdMgr.do")
+	@ResponseBody
+	public Pager<Map<String,Object>> queryOrdMgr(Pager<Map<String,Object>> pager){
+		return ordService.ordMgr_queryOrdMgr(pager);
+	}
+	
 //	/**
 //	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
 //	 * @author mawujun email:16064988@163.com qq:16064988

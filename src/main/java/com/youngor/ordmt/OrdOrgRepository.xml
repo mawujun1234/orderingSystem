@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.ordmt.OrdOrgRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage" resultType="com.youngor.ordmt.OrdOrg" parameterType="map">
+    	select a.*,b.orgnm,c.channm from ORD_ORG a,t_org b,t_org_chancl c
+    	where a.ordorg=b.orgno and a.channo=c.channo and a.channo=#{channo}
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(*)
+		from ORD_ORG a
+		where a.channo=#{channo}
+    </select>
+    
+    <select id="getOrdOrgByOrg" resultType="com.youngor.ordmt.OrdOrg" parameterType="map">
+    	select *
+		from ORD_ORG a
+		where a.ordorg=#{orgno} and a.ormtno=#{ormtno}
+    </select>
+</mapper>
+

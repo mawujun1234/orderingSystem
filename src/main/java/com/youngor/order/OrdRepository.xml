@@ -20,7 +20,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        where ormtno=#{ormtno} and ortyno=#{ortyno} and ordorg=#{ordorg}
      </select>
      
-     
+     <!--移动端扫描，获取样衣的信息 -->
      <select id="querySample" resultType="com.youngor.order.SampleVO" parameterType="map">
      	 select a.plspno,a.plspnm,b.sampno,b.sampnm,
 	     b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,
@@ -29,6 +29,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	     where a.plspno=b.plspno and lower(b.sampnm)=lower(#{sampnm}) and a.ormtno=#{ormtno}
 	     and b.sampst=1 and a.plstat=1
      </select>
+     
      <select id="querySampleDesignStpr" resultType="com.youngor.sample.SampleDesignStpr" parameterType="map">
      	 select a.* from ord_sample_design_stpr a
      	 where  a.sampno=#{sampno}
@@ -302,6 +303,63 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ORD_ORD a,ORD_ORDDTL b,V_ORD_ORG c
 		where a.MTORNO=b.MTORNO and a.ORDORG=c.orgno and b.SAMPNO=#{SAMPNO}
 		GROUP BY C.YXGSNO,c.YXGSNM,B.SAMPNO
+     </select>
+     
+     <!--查询某个规格组的内容,sztype==1:规格上报，sztype==2：包装箱上报-->
+     <select id="sizeVO_querySizeVOColumns" resultType="map" parameterType="string">
+     	select a.sizety,a.sizeno,b.sizenm from ORD_PUB_SIZEDTL a ,ORD_PUB_SIZE b
+		where  a.sizety=b.sizety and a.sizeno=b.sizeno  and 
+		a.fszty='PRDSZTY' and a.fszno=#{sizegp} 
+		<if test="sztype==1">
+			and a.sizety='STDSZ'
+		</if>
+		order by a.sizety desc,a.sizeno
+		
+     </select>
+     
+      <select id="sizeVO_querySizeVOData" resultType="map" parameterType="string">
+      		select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (
+			     select a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT
+				from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d
+				where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno 
+			       and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'
+			       and d.mtorno='201605_DZ_QY0003'
+			 ) x left join (
+				 select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT
+				 from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c
+				 where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno
+				       and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN 
+				 and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'
+				 AND a.BRADNO='Y' and a.SPCLNO='01'
+				 and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'
+			 ) y on x.sampno=y.sampno
+			 ORDER by x.sampno
+      </select>
+      
+      
+      
+      
+     <select id="ordMgr_queryOrdMgr" resultType="map" parameterType="map">
+       	 select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT
+		 from ORD_ORD a,ORD_ORDHD b,v_ord_org c
+		 where a.MTORNO=b.MTORNO and a.ordorg=c.orgno
+       	 and a.ormtno=#{ormtno}   and c.yxgsno=#{yxgsno}   and c.qyno=#{qyno}   and a.channo=#{channo}   
+       	 and b.bradno=#{bradno} and b.spclno=#{spclno} 
+       	 <if test="ordorg!=null and ordorg!=''">
+       	 	and a.ordorg=#{ordorg} 
+       	 </if>
+       	 <if test="ortyno!=null and ortyno!=''">
+       	 	and a.ortyno=#{ortyno}
+       	 </if>
+       	 <if test=" orstat!=null and orstat!=''">
+       	 	 and b.orstat=#{orstat}
+       	 </if>
+       	 <if test=" szstat!=null and szstat!=''">
+       	 	 and b.szstat=#{szstat}
+       	 </if>
+       	 <if test=" isfect!=null and isfect!=''">
+       	 	and b.isfect=#{isfect}
+       	 </if>
      </select>
 </mapper>
 

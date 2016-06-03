@@ -67,7 +67,7 @@ public class ContextUtils {
 	}
 	
 	/**
-	 * 获取订单类型
+	 * 获取渠道类型
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */

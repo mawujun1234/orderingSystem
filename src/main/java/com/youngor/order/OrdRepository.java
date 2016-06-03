@@ -81,4 +81,10 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public void clearnum_ordszdtl(@Param("sampno")String sampno);
 	
 	public List<Map<String,Object>> query_meger_comp(@Param("SAMPNO")String SAMPNO);
+	
+	
+	public List<Map<String,Object>> sizeVO_querySizeVOColumns(@Param("sizegp")String sizegp,@Param("sztype")Integer sztype);
+	public List<Map<String,Object>> sizeVO_querySizeVOData(Map<String,Object> params);
+	
+	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager);
 }

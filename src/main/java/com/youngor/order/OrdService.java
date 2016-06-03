@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
@@ -20,6 +19,7 @@ import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
+import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.utils.ContextUtils;
 
@@ -66,11 +66,13 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		
 		Ord ord=new Ord();
-		ord.setMtorno(format.format(new Date()));
+		
 		ord.setOrmtno(ContextUtils.getFirstOrdmt().getOrmtno());
 		ord.setOrtyno("DZ");
 		ord.setOrdorg(org.getOrgno());
 		ord.setChanno(org.getChanno().toString());
+		//主订单编号
+		ord.setMtorno(ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg());//这里边了后后面的规格平衡等地方也要变了，很多地方都要变了
 		
 		Ord ord_have=ordRepository.haveOrd(ord);
 		if(ord_have==null){
@@ -120,7 +122,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		return result;
 	}
 	/**
-	 * 
+	 * 创建订单数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param suitVOs
 	 */
@@ -161,8 +163,8 @@ public class OrdService extends AbstractService<Ord, String>{
 			}
 			//不拆套 男 套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准)
 			if(sampleVO.getSpltmk()==0 && "Z0".equals(sampleVO.getSexno()) && "S10".equals(sampleVO.getSptyno())){
-				if(T02_ormtqt>T00_ormtqt*1.15){
-					throw new BusinessException("不拆套 男套西 的裤子数量必须小于标准套的115%");
+				if(T02_ormtqt>T00_ormtqt*0.15){
+					throw new BusinessException("不拆套 男套西 的裤子数量必须小于标准套的15%");
 				}
 			} else if(sampleVO.getSpltmk()==1 && "Z0".equals(sampleVO.getSexno()) && "S10".equals(sampleVO.getSptyno())){
 				// 拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
@@ -206,8 +208,8 @@ public class OrdService extends AbstractService<Ord, String>{
 					ordszdtl.setSizety(sizeVO.getSizety());
 					ordszdtl.setSizeno(sizeVO.getSizeno());
 					ordszdtl.setOrszqt(sizeVO.getOrszqt());
-					ordszdtl.setOritqt(ordszdtl.getOrszqt());
-					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt());
+					ordszdtl.setOritqt(ordszdtl.getOrszqt());//原始数量，备份现场定后数量
+					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt());//确认数量 报表要实时查看的数量
 					
 					ordszdtl.setRgsp(ShiroUtils.getAuthenticationInfo().getId());
 					ordszdtl.setRgdt(new Date());
@@ -449,5 +451,166 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	public void recover(String[] sampnos,String ormtno) {
 		
+	}
+	
+	//==========================================================
+	public List<Map<String,Object>> sizeVO_querySizeVOColumns(String sizegp,Integer sztype) {
+		if(sztype==0 ){//包装箱+规格
+			//生成单规后，还要生成一个单规的规格组
+			List<Map<String,Object>> columns=ordRepository.sizeVO_querySizeVOColumns(sizegp, sztype);
+			List<Map<String,Object>> columns_new=new ArrayList<Map<String,Object>>();
+			for(Map<String,Object> map:columns){
+				if("STDSZ".equals(map.get("SIZETY"))){//如果是单规，就生成单规的规格组
+					Map<String,Object> map_new = new HashMap<String,Object>();
+					map_new.put("SIZETY", "STDSZPRDPK");//变成包装箱组的单规
+					map_new.put("SIZENO", "STDSZPRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
+					map_new.put("SIZENM", map.get("SIZENM"));
+					columns_new.add(map_new);
+				}
+				//对原数据进行处理,保证唯一性
+				map.put("SIZENO",map.get("SIZETY")+"___"+map.get("SIZENO"));
+				
+			}
+			columns.addAll(columns_new);
+			return columns;
+		} else if(sztype==1){//单规上报
+			List<Map<String,Object>> columns=ordRepository.sizeVO_querySizeVOColumns(sizegp, sztype);
+			for(Map<String,Object> map:columns){
+				//对原数据进行处理,保证唯一性
+				map.put("SIZENO",map.get("SIZETY")+"___"+map.get("SIZENO"));
+			}
+			return columns;
+		}  else if(sztype==2){//包装箱上报
+			List<Map<String,Object>> columns=ordRepository.sizeVO_querySizeVOColumns(sizegp, sztype);
+			List<Map<String,Object>> columns_new=new ArrayList<Map<String,Object>>();
+			List<Map<String,Object>> columns_new_PRDPK=new ArrayList<Map<String,Object>>();
+			for(Map<String,Object> map:columns){
+				if("STDSZ".equals(map.get("SIZETY"))){//如果是单规，就生成单规的规格组
+					Map<String,Object> map_new = new HashMap<String,Object>();
+					map_new.put("SIZETY", "STDSZPRDPK");//变成包装箱组的单规
+					map_new.put("SIZENO", "STDSZPRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
+					map_new.put("SIZENM", map.get("SIZENM"));
+					columns_new.add(map_new);
+				}
+				if("PRDPK".equals(map.get("SIZETY"))){
+					Map<String,Object> map_new = new HashMap<String,Object>();
+					map_new.put("SIZETY", "PRDPK");//变成包装箱组的单规
+					map_new.put("SIZENO", "PRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
+					map_new.put("SIZENM", map.get("SIZENM"));
+					columns_new_PRDPK.add(map_new);
+				}
+			}
+			columns_new_PRDPK.addAll(columns_new);
+			return columns_new_PRDPK;
+		} else {
+			return null;
+		}
+	}
+	/**
+	 * 规格平衡查询数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param params
+	 * @return
+	 */
+	public List<Map<String,Object>> sizeVO_querySizeVOData(Map<String,Object> params) {
+		List<Map<String,Object>> list= ordRepository.sizeVO_querySizeVOData(params);
+		List<Map<String,Object>> result= new ArrayList<Map<String,Object>>();
+		
+		//String temp_sampno="";
+		
+		Integer sztype=Integer.parseInt(params.get("sztype").toString());
+		if(sztype==0){//数组组装成规格，标准箱，剩余单规三种
+			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
+			for(Map<String,Object> listmap:list){
+				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
+				if(map==null) {
+					map=new HashMap<String,Object>();
+					map.put("ORDORG_NAME", params.get("ordorg_name"));
+					map.put("SPTYNO", listmap.get("SPTYNO"));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
+					map.put("SPSENO", listmap.get("SPSENO"));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
+					map.put("VERSNO", listmap.get("VERSNO"));
+					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+					map.put("PLSPNO", listmap.get("PLSPNO"));
+					map.put("PLSPNM", listmap.get("PLSPNM"));
+					map.put("SAMPNO", listmap.get("SAMPNO"));
+					map.put("SAMPNM", listmap.get("SAMPNM"));
+					map.put("ORMTQT", listmap.get("ORMTQT"));
+					result.add(map);
+					key_map.put(listmap.get("SAMPNO").toString(), map);
+				}
+				//接下来是行列转换
+				if("STDSZ".equals(listmap.get("SIZETY"))){//如果是单规
+					map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（确认数量）作为单规剩余数量
+					map.put("STDSZ___"+listmap.get("SIZENO"), listmap.get("ORSZQT"));//如果是单规，就取ORSZQT(数量)作为单规的值
+				} else if("PRDPK".equals(listmap.get("SIZETY"))){
+					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+				}
+			}
+		} else if(sztype==1){//单规上报
+			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
+			for(Map<String,Object> listmap:list){
+				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
+				if(map==null) {
+					map=new HashMap<String,Object>();
+					map.put("ORDORG_NAME", params.get("ordorg_name"));
+					map.put("SPTYNO", listmap.get("SPTYNO"));
+					map.put("SPSENO", listmap.get("SPSENO"));
+					map.put("VERSNO", listmap.get("VERSNO"));
+					map.put("PLSPNO", listmap.get("PLSPNO"));
+					map.put("PLSPNM", listmap.get("PLSPNM"));
+					map.put("SAMPNO", listmap.get("SAMPNO"));
+					map.put("SAMPNM", listmap.get("SAMPNM"));
+					map.put("ORMTQT", listmap.get("ORMTQT"));
+					result.add(map);
+					key_map.put(listmap.get("SAMPNO").toString(), map);
+				}
+				//接下来是行列转换
+				map.put(map.get("SIZETY")+"___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+			}
+		} else if(sztype==2){
+			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
+			for(Map<String,Object> listmap:list){
+				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
+				if(map==null) {
+					map=new HashMap<String,Object>();
+					map.put("ORDORG_NAME", params.get("ordorg_name"));
+					map.put("SPTYNO", listmap.get("SPTYNO"));
+					map.put("SPSENO", listmap.get("SPSENO"));
+					map.put("VERSNO", listmap.get("VERSNO"));
+					map.put("PLSPNO", listmap.get("PLSPNO"));
+					map.put("PLSPNM", listmap.get("PLSPNM"));
+					map.put("SAMPNO", listmap.get("SAMPNO"));
+					map.put("SAMPNM", listmap.get("SAMPNM"));
+					map.put("ORMTQT", listmap.get("ORMTQT"));
+					result.add(map);
+					key_map.put(listmap.get("SAMPNO").toString(), map);
+				}
+				//接下来是行列转换
+				if("STDSZ".equals(listmap.get("SIZETY"))){//如果是单规
+					map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（确认数量）作为单规剩余数量
+				} else if("PRDPK".equals(listmap.get("SIZETY"))){
+					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	
+	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager) {
+		//
+		
+		pager= ordRepository.ordMgr_queryOrdMgr(pager);
+		List<Map<String,Object>> list=pager.getRoot();//new ArrayList<Map<String,Object>>();
+		for(Map<String,Object> map:list){
+			map.put("CHANNO_NAME", ContextUtils.getChanno(map.get("CHANNO").toString()).getChannm());
+			map.put("BRADNO_NAME", PubCodeCache.getBradno_name(map.get("BRADNO").toString()));
+			map.put("SPCLNO_NAME", PubCodeCache.getSpclno_name(map.get("SPCLNO").toString()));
+		}
+		pager.setRoot(list);
+		return pager;
 	}
 }
