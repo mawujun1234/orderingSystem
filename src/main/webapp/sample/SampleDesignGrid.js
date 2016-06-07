@@ -496,10 +496,14 @@ Ext.define('y.sample.SampleDesignGrid',{
 //		tabpanel.unmask();
 //		var formpanel=tabpanel.child("form#samplePlanForm") ;
 //		formpanel.loadRecord(child);
+    	var toolbars=this.getDockedItems('toolbar[dock="top"]');
+    	
     	window.sampno={};
     	var tabpanel=me.nextSibling("tabpanel");
     	var samplePlanGridQuery=Ext.create('y.sample.SamplePlanGridQuery',{
-    		tabpanel:tabpanel
+    		tabpanel:tabpanel,
+    		ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+    		bradno:toolbars[0].down("#bradno").getValue()
     	});
     	samplePlanGridQuery.on("itemdblclick",function(view, record, item, index, e, eOpts){
     		
@@ -514,6 +518,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			window.sampleDesign=record;
 			//设计开发form填充
 			var sampleDesign=Ext.create('y.sample.SampleDesign',{
+				sexno:'Z0',
 				plspno:record.get("plspno"),
 				plspnm:record.get("plspnm")
 			});
@@ -548,6 +553,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 	       	//重置
 	       	tabpanel.down("grid#sampleMateGrid").getStore().removeAll();
 	       	tabpanel.down("form#sampleMateForm").reset();
+
 	       	tabpanel.down("form#sampleColthForm").reset();
 	       //	tabpanel.down("grid#sampleDesignStprGrid").getStore().removeAll();
 	       	tabpanel.down("#samplePhotoShow").getStore().removeAll();

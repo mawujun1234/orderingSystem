@@ -272,89 +272,72 @@ Ext.define('y.sample.SampleDesignForm',{
 	         value:0
 	    },
 
-        {
-            xtype      : 'fieldcontainer',
-            fieldLabel : '是否拆套',
-            defaultType: 'radiofield',
-            defaults: {
-                flex: 1
-            },
-            layout: 'hbox',
-            items: [
-            	{
-                    boxLabel  : '是',
-                    name: 'spltmk',
-                    inputValue: '1'
-                },
-           		{
-                    boxLabel  : '否',
-                    name: 'spltmk',
-                    checked:true,
-                    inputValue: '0'
-                }
-            ]
-        },
+       
 		{
 	        fieldLabel: '吊牌打印标志',
 	        name: 'print',
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield',
+	        fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
 	        value:0
 	    },
-//	    {
-//	        fieldLabel: '规格范围',
-//	        name: 'sizegp',
-////            allowBlank: false,
-////            afterLabelTextTpl: Ext.required,
-////            blankText:"规格系列不允许为空",
-//            selectOnFocus:true,
-//	        xtype:'combobox',
-//	        queryMode: 'local',
-//			editable:true,
-//	        selectOnFocus:true,
-//			forceSelection:true,
-//		    displayField: 'sizenm',
-//		    valueField: 'sizeno',
-//		    store: {
-//		    	autoLoad:false,
-//			    fields: ['sizeno', 'sizenm'],
-//			    proxy:{
-//			    	type:'ajax',
-//			    	//extraParams:{szbrad:'sjs'},
-//			    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY.do'
-//			    }
-//			}
-//	        
-//	    },
-	    {
-	        fieldLabel: '套装种类',
-	        name: 'suitty',
+//	     {
+//            xtype      : 'fieldcontainer',
+//            fieldLabel : '是否拆套',
 //            allowBlank: false,
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"套装种类不允许为空",
-            xtype:'pubcodecombo',
-	        tyno:'20',
-	        listeners:{
-	        	select:function(combo, record){
-	        		var form=combo.up("form");
-	        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
-	        		sampleDesignSizegpGrid_store.removeAll();
-//					sampleDesignSizegpGrid_store.getProxy().extraParams={
+//            itemId:'spltmk_container',
+//            defaultType: 'radiofield',
+//            defaults: {
+//                flex: 1
+//            },
+//            layout: 'hbox',
+//            items: [
+//            	{
+//                    boxLabel  : '是',
+//                    name: 'spltmk',
+//                    inputValue: '1'
+//                },
+//           		{
+//                    boxLabel  : '否',
+//                    name: 'spltmk',
+//                    checked:true,
+//                    inputValue: '0'
+//                }
+//            ]
+//        },
+//	    {
+//	        fieldLabel: '套装种类',
+//	        name: 'suitty',
+//            allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"套装种类不允许为空",
+//            xtype:'pubcodecombo',
+//	        tyno:'20',
+//	        selFirst:true,
+//	        listeners:{
+//	        	select:function(combo, record){
+//	        		var form=combo.up("form");
+//	        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
+//	        		sampleDesignSizegpGrid_store.removeAll();
+////					sampleDesignSizegpGrid_store.getProxy().extraParams={
+////						suitty:record.get("itno"),
+////						sampno:window.sampno.sampno
+////						
+////					};
+//					sampleDesignSizegpGrid_store.reload({params:{
 //						suitty:record.get("itno"),
 //						sampno:window.sampno.sampno
 //						
-//					};
-					sampleDesignSizegpGrid_store.reload({params:{
-						suitty:record.get("itno"),
-						sampno:window.sampno.sampno
-						
-					}});
-					
-					//
-	        	}
-	        }
-	    },
+//					}});
+//					
+//					//
+//	        	}
+//	        }
+//	    },
 		{
 	        fieldLabel: '设计样衣代码',
 	        name: 'sampno',
@@ -510,6 +493,24 @@ Ext.define('y.sample.SampleDesignForm',{
 				       	tabpanel.items.getAt(3).enable();
 				       	tabpanel.items.getAt(4).enable();
 				       	
+				       	if(url=="/sampleDesign/create.do"){
+				       		var sampleMate=Ext.create('y.sample.SampleMate',{
+								sampno:window.sampno.sampno,
+								sampnm:window.sampno.sampnm
+							});
+							tabpanel.down("form#sampleMateForm").loadRecord(sampleMate);
+							
+							var　samplePlanFormQuery=tabpanel.down("form#samplePlanFormQuery");
+							var sampleColth=Ext.create('y.sample.SampleColth',{
+								sampno:window.sampno.sampno,
+								sampnm:window.sampno.sampnm,
+								spftpr:samplePlanFormQuery.getForm().findField("spftpr").getValue(),//出厂价
+								sprtpr:samplePlanFormQuery.getForm().findField("sprtpr").getValue()//零售价
+								
+							});
+							tabpanel.down("form#sampleColthForm").loadRecord(sampleColth);
+				       	}
+				       	
 				       	//这里需要测试，当新建成功后，成衣里面能不能出现标准的套件
 				       	//formpanel.getForm().updateRecord();
 				       	var user = Ext.create('y.sample.SampleDesign', obj.sampleDesign);
@@ -627,8 +628,11 @@ Ext.define('y.sample.SampleDesignForm',{
 			slvenoField.getStore().reload();
 			
 			var suittyField=me.getForm().findField("suitty");
-			suittyField.changeBradno(bradno);
-			suittyField.getStore().reload();
+			if(suittyField){
+				suittyField.changeBradno(bradno);
+				suittyField.getStore().reload();
+			}
+			
 			
 			this.temp_bradno=bradno;
 		}
@@ -645,20 +649,89 @@ Ext.define('y.sample.SampleDesignForm',{
 	showsampleDesignSizegpGrid:function(bool){
 		var me=this;
 		this.showsampleDesignSizegpGrid_bool=bool;
+		//小类为套西时，是否拆套和套装种类 必填，其他情况不显示；
 		if(!bool){
 			var suittyField=me.getForm().findField("suitty");
-			suittyField.hide();
-			//this.down("#sampleDesignSizegpGrid_fieldset").hide();
+			//suittyField.hide();
+			me.remove(suittyField,true);
+
 			
-//			var sizegpField=me.getForm().findField("sizegp");
-//			sizegpField.show();
+			var spltmk_container=me.down("#spltmk_container");
+			//spltmk_container.hide();
+			me.remove(spltmk_container,true);
+			
+
 		} else {
 			var suittyField=me.getForm().findField("suitty");
-			suittyField.show();
-			//this.down("#sampleDesignSizegpGrid_fieldset").show();
+//			suittyField.show();
+//			
+//			var spltmk_container=me.down("#spltmk_container");
+//			spltmk_container.show();
+			if(!suittyField){
+				me.add([{
+		            xtype      : 'fieldcontainer',
+		            fieldLabel : '是否拆套',
+		            allowBlank: false,
+		            afterLabelTextTpl: Ext.required,
+		            blankText:"套装种类不允许为空",
+		            itemId:'spltmk_container',
+		            defaultType: 'radiofield',
+		            defaults: {
+		                flex: 1
+		            },
+		            layout: 'hbox',
+		            items: [
+		            	{
+		                    boxLabel  : '是',
+		                    name: 'spltmk',
+		                    inputValue: '1'
+		                },
+		           		{
+		                    boxLabel  : '否',
+		                    name: 'spltmk',
+		                    checked:true,
+		                    inputValue: '0'
+		                }
+		            ]
+		        },
+			    {
+			        fieldLabel: '套装种类',
+			        name: 'suitty',
+			        itemId:'suitty',
+		            allowBlank: false,
+		            afterLabelTextTpl: Ext.required,
+		            blankText:"套装种类不允许为空",
+		            xtype:'pubcodecombo',
+			        tyno:'20',
+			        selFirst:true,
+			        listeners:{
+			        	select:function(combo, record){
+			        		var form=combo.up("form");
+			        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
+			        		sampleDesignSizegpGrid_store.removeAll();
+		//					sampleDesignSizegpGrid_store.getProxy().extraParams={
+		//						suitty:record.get("itno"),
+		//						sampno:window.sampno.sampno
+		//						
+		//					};
+							sampleDesignSizegpGrid_store.reload({params:{
+								suitty:record.get("itno"),
+								sampno:window.sampno.sampno
+								
+							}});
+							
+							//
+			        	}
+			        }
+			    }]);
+			    var sampleDesignSizegpGrid_fieldset=me.down("#sampleDesignSizegpGrid_fieldset");
+		    	me.moveBefore( me.down("#spltmk_container"), sampleDesignSizegpGrid_fieldset );
+		    	me.moveBefore( me.down("#suitty"), sampleDesignSizegpGrid_fieldset )
+			}
+		    
+		    
 			
-//			var sizegpField=me.getForm().findField("sizegp");
-//			sizegpField.hide();
+
 		}
 		
 		var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();

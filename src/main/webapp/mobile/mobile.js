@@ -118,6 +118,7 @@ $(function(){
 	$("#bottom_bar a.tab-item").click(function(){
 		$("#bottom_bar a.tab-item").removeClass("active");
 		$(this).addClass("active");
+		window.nav_click_aaaa=true;
 	});
 //	$(document).on("pageInit", function(e, pageId, $page) {
 ////	   if(pageId == "od_loginpage") {
@@ -172,11 +173,12 @@ $(function(){
 		$("#od_loginpage_title").html(response.ormtnm);	
 	},'json');
 	
-	window.user=1;
+	window.user=null;
 	if(!window.user){
 		$.router.load("#od_loginpage"); 
 	}
 	$(document).on("pageInit", function(e, pageId, $page) {
+	  window.nav_click_aaaa=false;
 	  if(pageId != "od_loginpage" && !window.user) {
 		 $.router.load("#od_loginpage"); 
 		 return;
@@ -192,6 +194,14 @@ $(function(){
 	  
 	 
 	});
+//	$(document).on("beforePageSwitch", function(e, pageId, $page) {
+//		//还要添加一个判断，这个判断是说不是通过菜单进行按的
+//		if(!window.nav_click_aaaa && (pageId=="od_info" || pageId=="od_mypage")) {
+//			alert("准备后退");
+//			return false;
+//		}
+//		
+//	});
 	
 	$("#od_loginpage_login_btn").click(function(){
 		var od_loginpage_username=$("#od_loginpage_username").val();
@@ -256,6 +266,11 @@ $(function(){
 		return window.od_info_data_issaved_bool;
 	}
 	
+	$("#od_info_input").on('focus', function(e){ 
+	
+		$(this).get(0).select();
+		//alert($(this).get(0));
+	});
 	$("#od_info_scan_button").click(function(){
 		var val=$("#od_info_input").val();
 		if(!val){
@@ -367,11 +382,14 @@ $(function(){
 		
 	}//function scan()
 	
-	$("#od_info").on('focus', 'input[type=number]', function(e){ 
+	$("#od_info").on('click', 'input[type=number]', function(e){ 
 		$(this).get(0).select();
 	});
-	$("#od_info").on('keyup', 'input[type=number]', function(e){ 
-		this.value=this.value.replace('/[^0-9]/g');
+	$("#od_info").on('input', 'input[type=number]', function(e){ //alert(1);
+		console.log(this.value);
+		this.value=this.value.replace(/\D/g,'');//.replace('/^[0-9]*[1-9][0-9]*$/g');//this.value.replace('/[^0-9]/g');
+		this.value=parseInt(this.value);//.replace('.','')
+		console.log(this.value+"====");
 	});
 
 	$("#od_info_clear_button").click(function(){
@@ -456,7 +474,11 @@ $(function(){
 	$("#od_mypage_confirm_button").click(function(){
 		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
 			//od_mypage_myinfo_card
+			if(response.success==false){
+				$.toast("确认失败!");return;
+			}
 			$("#od_mypage_confirm_button").hide();
+			$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
 			
 		},"json");
 	});

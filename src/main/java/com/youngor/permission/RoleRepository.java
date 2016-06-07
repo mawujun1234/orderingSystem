@@ -1,5 +1,6 @@
 package com.youngor.permission;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,8 @@ public interface RoleRepository extends IRepository<Role, String>{
 	
 	public List<String> queryUserSelBrand(String user_id );
 	public List<String> queryUserSelClass(String user_id );
+	
+	
+	public void delete_t_role_userByUser(@Param("user_id")String user_id);
 
 }

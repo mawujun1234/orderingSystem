@@ -88,14 +88,31 @@ public class OrdService extends AbstractService<Ord, String>{
 		if(!ord.canOrd()){
 			throw new BusinessException("不能进行订货!");
 		}
+
+		if(ord.getOrdCheckInfo().get("canConfirm")!=null && (Boolean)ord.getOrdCheckInfo().get("canConfirm")==false){
+			throw new BusinessException("订单已经确认,不能进行订货!");
+		}
+
+		
 		
 		Map<String,Object> result=new HashMap<String,Object>();
 		SampleVO sampleVO= ordRepository.querySample(sampnm,ContextUtils.getFirstOrdmt().getOrmtno());
 		if(sampleVO==null){
 			throw new BusinessException("该样衣编号不存在!");
 		}
+		
+//		渠道类型为特许 的订货单位，输入样衣时需判断 是否可订该样衣，调用函数
+//		ORDER_DL.ORDER_CAN(订货批号，特许门店代码，样衣编号代码)
+//		判断，返回1 可订，返回0 不可订，提示“该样衣不在您的订货范围内”
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		if("TX".equals(org.getChanno().toString())){
+			int count=	ordRepository.order_dl__order_can(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
+			if(count==1){
+				throw new BusinessException("该样衣不可订!");
+			}
+		}
 		sampleVO.setOrmtno(ContextUtils.getFirstOrdmt().getOrmtno());
-		sampleVO.setOrdorg(ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno());
+		sampleVO.setOrdorg(org.getOrgno());
 		
 		sampleVO.setMtorno(ord.getMtorno());
 		ord.setSampleVO(sampleVO);
@@ -273,6 +290,10 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//更新订单规格明细表中的“审批订单号”
 		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
+		
+		ord.getOrdCheckInfo().put("canConfirm", false);
+		//result.put("canConfirm", canConfirm);
+		
 	}
 	
 	SimpleDateFormat HHmm_format=new SimpleDateFormat("HHmm");

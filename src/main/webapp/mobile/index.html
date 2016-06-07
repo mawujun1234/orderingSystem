@@ -13,8 +13,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="./css/sm.min.css">
+    <link rel="stylesheet" href="./sm-extend.min.css">
      <link rel="stylesheet" href="mobile.css" >
 	<style>
 
@@ -180,7 +180,7 @@
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-name"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label" style="font-weight:bold;">规格(占比):</div>
+                                <div class="item-title label" style="font-weight:bold;width:60%;">规格(占比):</div>
                                 <div class="item-input" style="font-weight:bold;">订货数量:</div>
                               </div>
                             </div>
@@ -191,7 +191,7 @@
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-email"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label">{{sizeVO.sizenm}}({{sizeVO.szrate}})</div>
+                                <div class="item-title label" style="width:60%;">{{sizeVO.sizenm}}({{sizeVO.szrate}})</div>
                                 <div class="item-input">
                                   <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" >
                                 </div>
@@ -258,6 +258,12 @@
                       <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
+                          <div class="item-title">未定的必定款样衣</div>
+                        </div>
+                      </li>
+                      <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
                           <div class="item-title">订货统计-按商品类</div>
                         </div>
                       </li>
@@ -279,10 +285,10 @@
 
 
 				
-    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/zepto.min.js' charset='utf-8'></script>
 
-    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
     <script type='text/javascript' src='mobile.js' charset='utf-8'></script>

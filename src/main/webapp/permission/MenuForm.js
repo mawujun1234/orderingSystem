@@ -40,6 +40,11 @@ Ext.define('y.permission.MenuForm',{
 //            blankText:"地址不允许为空",
 	        xtype:'textfield'
 	    },
+	    {
+	        fieldLabel: '排序',
+	        name: 'sort',
+	        xtype:'numberfield'
+	    },
 		{
 	        fieldLabel: '备注',
 	        name: 'remark',

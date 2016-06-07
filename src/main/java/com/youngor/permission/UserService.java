@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -112,5 +113,9 @@ public class UserService extends AbstractService<User, String> {
 		//获取用户当前所属的组织单元
 		return userRepository.queryCurrentOrg(user_id);
 		
+	}
+	
+	public void deleteUserByLoginName(String loginName) {
+		userRepository.deleteUserByLoginName(loginName);
 	}
 }

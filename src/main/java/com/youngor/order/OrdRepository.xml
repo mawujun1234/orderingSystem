@@ -19,7 +19,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	select * from ORD_ORD
        where ormtno=#{ormtno} and ortyno=#{ortyno} and ordorg=#{ordorg}
      </select>
-     
+     <!--
+     <parameterMap type="map" id="order_dl__order_can_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_ORDORG" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SAMPNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="W_NUM" jdbcType="INTEGER" mode="OUT"/>   
+	 </parameterMap>  
+	 <update id="order_dl__order_can" parameterMap="order_dl__order_can_params" statementType="CALLABLE">  
+       {call ORDER_DL.ORDER_CAN(?,?,?)}  
+    </update>
+    -->
+    
+    <select id="order_dl__order_can" parameterType="map" resultType="int">
+    	select ORDER_DL.ORDER_CAN(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO}) from dual
+    </select>
+
      <!--移动端扫描，获取样衣的信息 -->
      <select id="querySample" resultType="com.youngor.order.SampleVO" parameterType="map">
      	 select a.plspno,a.plspnm,b.sampno,b.sampnm,
@@ -77,7 +92,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
 	      and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno 
-	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk}
+	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk} and bb.bradno=#{bradno}
 	        )
 	     ) a left join (
 	    	select * from    ORD_ORD_SZRT

@@ -101,7 +101,7 @@ public class ShiroConfig {
 		
 		ShiroKickoutSessionControlFilter shiroKickoutSessionControlFilter=new ShiroKickoutSessionControlFilter();
 		shiroKickoutSessionControlFilter.setKickoutUrl("/main/login.jsp");
-		shiroKickoutSessionControlFilter.setMaxSession(1);
+		//shiroKickoutSessionControlFilter.setMaxSession(1);
 		shiroKickoutSessionControlFilter.setKickoutAfter(false);
 		shiroKickoutSessionControlFilter.setCacheManager(ehcacheManager());
 		shiroKickoutSessionControlFilter.setSessionManager(sessionManager());

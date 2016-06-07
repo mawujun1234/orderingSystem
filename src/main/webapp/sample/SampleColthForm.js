@@ -109,7 +109,12 @@ Ext.define('y.sample.SampleColthForm',{
             blankText:"包装辅料费不允许为空",
             allowDecimals:false,
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield',
+	        listeners:{
+	        	change:function( field, newValue, oldValue, eOpts ) {
+	        		field.up("form").sumSpctpr();
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '新成衣价',
@@ -261,7 +266,29 @@ Ext.define('y.sample.SampleColthForm',{
 				
 				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();		
 				var aa=[];
+				//套件的其他值加起来，要等于标准套的值
+				var t00_temp={
+					spftpr:0,
+					sprtpr:0,
+					plctpr:0
+				}
+				var other_temp={
+					spftpr:0,
+					sprtpr:0,
+					plctpr:0
+				}
 				for(var i=0;i<sampleDesignStpres.length;i++){
+					if(sampleDesignStpres[i].get("suitno")=='T00'){
+						t00_temp={
+							spftpr:sampleDesignStpres[i].get("spftpr"),
+							sprtpr:sampleDesignStpres[i].get("sprtpr"),
+							plctpr:sampleDesignStpres[i].get("plctpr")
+						}
+					} else {
+						other_temp.spftpr+=sampleDesignStpres[i].get("spftpr");
+						other_temp.sprtpr+=sampleDesignStpres[i].get("sprtpr");
+						other_temp.plctpr+=sampleDesignStpres[i].get("plctpr");
+					}
 					aa.push({
 						//sampno:sampleDesignStpres[i].get("getSampno"),
 						suitno:sampleDesignStpres[i].get("suitno"),
@@ -269,6 +296,21 @@ Ext.define('y.sample.SampleColthForm',{
 						sprtpr:sampleDesignStpres[i].get("sprtpr"),
 						plctpr:sampleDesignStpres[i].get("plctpr")
 					});
+				}
+				//套件的其他值加起来，要等于标准套的值
+				if(sampleDesignStpres.length>1){
+					if(t00_temp.spftpr!=other_temp.spftpr){
+						Ext.Msg.alert("消息","出厂价 ：其他套件的出厂价和不等于标准套的出厂价");
+						return;
+					}
+					if(t00_temp.sprtpr!=other_temp.sprtpr){
+						Ext.Msg.alert("消息","零售价：其他套件的零售价和不等于标准套的零售价");
+						return;
+					}
+					if(t00_temp.plctpr!=other_temp.plctpr){
+						Ext.Msg.alert("消息","企划成本价 ：其他套件的企划成本价和不等于标准套的企划成本价");
+						return;
+					}
 				}
 				var jsonData=formpanel.getForm().getFieldValues();
 				//alert(jsonData.ctdwdt);
@@ -326,6 +368,7 @@ Ext.define('y.sample.SampleColthForm',{
 		var spacry=this.getForm().findField("spacry");
 		var spclbd=this.getForm().findField("spclbd");
 		var spctpr=this.getForm().findField("spctpr");
+		var acsyam=this.getForm().findField("acsyam");
 		
 		var value=sptapa.getValue()+spacry.getValue()+spclbd.getValue();
 		
@@ -336,8 +379,8 @@ Ext.define('y.sample.SampleColthForm',{
 		}
 		//var sampleMateForm=tabpanel.down("#sampleMateForm");
 		var sampleMateGrid=tabpanel.down("grid#sampleMateGrid");
-		value+=sampleMateGrid.sumMtpupr();
-		
+		value+=sampleMateGrid.sumMtpupr()+acsyam.getValue();
+		//预计成本价
 		spctpr.setValue(value);
 		
 		//alert(1);

@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.M;
 
 
@@ -50,6 +52,10 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 		
 		
 		super.delete(sampleDesign);
+		sampleDesign.setRgdt(new Date());
+		sampleDesign.setRgsp(ShiroUtils.getLoginName());
+		sampleDesign.setLmdt(new Date());
+		sampleDesign.setLmsp(ShiroUtils.getLoginName());
 		sampleDesign.setSampst(1);
 		sampleDesign.setSampno(sampleDesign.getPlspno()+sampleDesign.getSampnm());
 		String id=super.create(sampleDesign);
@@ -77,6 +83,8 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 	@Override
 	public  void update(SampleDesign sampleDesign) {
+		sampleDesign.setLmdt(new Date());
+		sampleDesign.setLmsp(ShiroUtils.getLoginName());
 		super.update(sampleDesign);
 		sampleDesignSizegpRepository.deleteBatch(Cnd.delete().andEquals(M.SampleDesignStpr.sampno, sampleDesign.getSampno()));
 		if(sampleDesign.getSampleDesignSizegpes()!=null){

@@ -4,7 +4,7 @@ Ext.define("y.ordmt.OrdOrg",{
 		{name:'ormtno',type:'string'},
 		{name:'ordorg',type:'string'},
 		{name:'channo',type:'string'},
-		{name:'sztype',type:'int'},
+		{name:'sztype',type:'string'},
 		{name:'print',type:'int'}
 	],
 	proxy:{

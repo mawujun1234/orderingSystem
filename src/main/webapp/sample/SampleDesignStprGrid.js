@@ -31,7 +31,7 @@ Ext.define('y.sample.SampleDesignStprGrid',{
                 selectOnFocus:true 
             }
 		},
-		{dataIndex:'plctpr',header:'预计成本价',xtype: 'numbercolumn', format:'0.00',align : 'right',width:100
+		{dataIndex:'plctpr',header:'企划成本价',xtype: 'numbercolumn', format:'0.00',align : 'right',width:100
 			,editor: {
                 xtype: 'numberfield',
                 allowBlank: false,

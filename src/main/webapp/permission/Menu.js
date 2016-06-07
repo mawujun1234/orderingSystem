@@ -9,7 +9,8 @@ Ext.define("y.permission.Menu",{
 		{name:'url',type:'string'},
 		{name:'remark',type:'string'},
 		{name:'id',type:'string'},
-		{name:'parent_id',type:'string'}
+		{name:'parent_id',type:'string'},
+		{name:'sort',type:'int'}
 	],
 	proxy:{
 		type:'ajax',

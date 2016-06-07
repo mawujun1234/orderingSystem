@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.service.AbstractService;
 import com.youngor.org.AccessRule;
@@ -75,12 +76,12 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 			ordOrg.setSztype(sztype);
 			ordOrg.setPrint(0);
 			ordOrgRepository.create(ordOrg);
-			//同时生成用户名和默认密码，账号是区域代码，密码是123
+			//同时生成用户名和默认密码，账号是区域代码，密码是0
 			User user=userService.getByLoginName(ordorg.toLowerCase());
 			if(user==null){
 				user=new User();
 				user.setLoginName(ordorg.toLowerCase());
-				user.setPwd("123");
+				user.setPwd("0");
 				user.setName(org.getName());
 				userService.create(user);
 			}
@@ -93,9 +94,10 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 				position.setOrgno(ordorg);
 				//定义该职位可以访问的组织单元
 				position.setAccessRule(AccessRule.this_org);
-				positionService.this_org(position, Dim.SALE);
+				
 				position.setPositionType_id(null);
 				positionRepository.create(position);
+				positionService.this_org(position, Dim.SALE);
 				
 			} else {
 				position=positiones.get(0);
@@ -123,5 +125,20 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 	
 	public OrdOrg getOrdOrgByOrg(String ormtno,String orgno) {
 		return ordOrgRepository.getOrdOrgByOrg(ormtno, orgno);
+	}
+	
+	public void destroy(OrdOrg ordOrg) {
+		super.delete(ordOrg);
+		
+		//删除这个用户
+		String loginName=ordOrg.getOrdorg().toLowerCase();
+		User user=userService.getByLoginName(loginName);
+		
+		
+		positionRepository.delete_t_position_org_userByUser(user.getId());
+		roleRepository.delete_t_role_userByUser(user.getId());
+		
+		userService.deleteUserByLoginName(loginName);
+		
 	}
 }

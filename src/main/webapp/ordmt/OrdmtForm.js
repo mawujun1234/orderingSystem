@@ -23,7 +23,7 @@ Ext.define('y.ordmt.OrdmtForm',{
        //me.mask("正在刷新....");
       
        Ext.Ajax.request({
-       		url:Ext.ContextPath+'/pubCodeType/query4Combo.do',
+       		url:Ext.ContextPath+'/pubCode/query4Combo.do',
        		params:{
        			tyno:8
        		},

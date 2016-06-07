@@ -5,7 +5,10 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	selModel: {
+          selType: 'checkboxmodel'
+          //,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -16,17 +19,30 @@ Ext.define('y.ordmt.OrdOrgGrid',{
         },
 		{dataIndex:'channm',header:'订货单位类型'
         },
-		{dataIndex:'sztype',header:'上报方式',xtype: 'numbercolumn', format:'0',align : 'right',
+		{dataIndex:'sztype',header:'上报方式',align : 'right',width:160,
 			renderer:function(value){
-				if(value==0){
+				if(value=="0"){
 					return "规格+包装上报"
-				} else if(value==1){
+				} else if(value=="1"){
 					return "规格上报";
-				} else if(value==2){
+				} else if(value=="2"){
 					return "包装上报";
 				}
 				return "";
-			}
+			},
+			editor:Ext.create('Ext.form.ComboBox', {
+			    store: Ext.create('Ext.data.Store', {
+				    fields: ['abbr', 'name'],
+				    data : [
+				        {"id":"0", "name":"规格+包装上报"},
+				        {"id":"1", "name":"规格上报"},
+				        {"id":"2", "name":"包装上报"}
+				    ]
+				}),
+			    queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'id'
+			})
 		},
 		{dataIndex:'print',header:'打印状态',xtype: 'numbercolumn', format:'0',align : 'right',
 			renderer:function(value){
@@ -77,6 +93,9 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		  		itemId:'ordmtcombo',
+				xtype:'ordmtcombo'
+			},{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
 				width:150,
@@ -103,7 +122,9 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 				handler: function(btn){
 					var grid=btn.up("grid");
 					var channo_combo=btn.previousSibling("#channo");
+					var ordmtcombo=btn.previousSibling("#ordmtcombo");
 					grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,{
+							"params['ormtno']":ordmtcombo.getValue(),
 		        			"params['channo']":channo_combo.getValue()
 	        		});
 	        		
@@ -135,7 +156,33 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 			}]
 		});
 
-       
+      this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	  
+	  this.cellEditing.on("edit",function(editor, context){
+	  	var record=context.record;
+//	  	var grid=context.grid;
+//	  	var field =context.field ;
+//	  	var value=context.value;
+	  	
+	  	Ext.Ajax.request({
+						url:Ext.ContextPath+'/ordOrg/update.do',
+						jsonData:record.getData(),
+						success:function(response){
+							var obj=Ext.decode(response.responseText);
+							if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+							}
+							record.commit();
+							//me.getStore().reload();
+						}
+						
+					});
+	  	
+	  });
       me.callParent();
 	},
 	onCreate:function(){

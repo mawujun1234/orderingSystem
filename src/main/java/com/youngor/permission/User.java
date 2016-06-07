@@ -24,7 +24,7 @@ public class User implements IShiroUser{
 	@Column(length=36)
 	private String id;
 	@FieldDefine(title="姓名",hidden=false,genQuery=true,sort=5)
-	@Column(length=10,nullable=false)
+	@Column(length=50,nullable=false)
 	private String name;
 	@FieldDefine(title="登录名",hidden=false,genQuery=true,sort=5)
 	@Column(length=30,nullable=false,unique=true)

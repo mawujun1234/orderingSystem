@@ -7,7 +7,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.permission.MenuRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPage" resultType="com.youngor.permission.Menu" parameterType="map">
-    	select * from t_menu
+    	select * from t_menu a
+    	order by a.sort
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">
@@ -27,7 +28,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="parent_id!=null">
     		parent_id=#{parent_id}
     	</if>
-    	
+    	order by a.sort
     </select> 
     
     <!-- 在登录后，获取某个用户可访问的菜单-->
@@ -43,7 +44,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="user_id!=null ">
     		and b.user_id =#{user_id}
     	</if>
-    	
+    	order by a.sort
     </select> 
     
     

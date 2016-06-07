@@ -19,10 +19,12 @@ String extjscontextPath=request.getContextPath();
     
     
     
+    
      <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/ext6/build/classic/theme-crisp/resources/theme-crisp-all.css">
    
         <script type="text/javascript" src="<%=request.getContextPath()%>/ext6/build/ext-all-debug.js"></script>
          <script type="text/javascript" src="<%=request.getContextPath()%>/ext6/build/classic/theme-crisp/theme-crisp.js"></script>
+         <script type="text/javascript" src="<%=request.getContextPath()%>/ext6/build/classic/locale/locale-zh_CN.js"></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/common/common.js"></script>
 	<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.css">
 	

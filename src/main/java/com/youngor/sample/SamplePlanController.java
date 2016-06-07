@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.utils.page.Pager;
 import com.youngor.permission.ShiroUtils;
 /**
@@ -58,9 +59,17 @@ public class SamplePlanController {
 		//samplePlan.setPlspno("222");
 		//samplePlan.setOrmtno("201604");
 		
+		
+		
 		samplePlan.setPlspno(samplePlan.getOrmtno()+samplePlan.getPlspnm());
+		SamplePlan aaa=samplePlanService.get(samplePlan.getPlspno());
+		if(aaa!=null){
+			throw new BusinessException("该样衣编号已经存在!");
+		}
 		samplePlan.setRgdt(new Date());
 		samplePlan.setRgsp(ShiroUtils.getLoginName());
+		samplePlan.setLmdt(new Date());
+		samplePlan.setLmsp(ShiroUtils.getLoginName());
 		samplePlan.setPlstat(1);
 		samplePlanService.create(samplePlan);
 		return samplePlan;

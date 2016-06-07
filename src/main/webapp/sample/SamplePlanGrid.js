@@ -80,7 +80,9 @@ Ext.define('y.sample.SamplePlanGrid',{
     					"params['spclno']":toolbars[0].down("#spclno").getValue(),
     					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
     					"params['spseno']":toolbars[0].down("#spseno").getValue(),
-    					"params['spbseno']":toolbars[1].down("#spbseno").getValue()
+    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+    					"params['plspnm']":toolbars[1].down("#plspnm").getValue()
+    					
     				};
 
     				//grid.getStore().getProxy().extraParams=grid.getParams();
@@ -169,6 +171,11 @@ Ext.define('y.sample.SamplePlanGrid',{
 //	            blankText:"大系列不允许为空",
 		        xtype:'pubcodecombo',
 		        tyno:'17'
+		    },{
+		        fieldLabel: '样衣编号',
+		        labelWidth:65,
+		        itemId: 'plspnm',
+	            xtype:'textfield'
 		    },{
 				text: '查询',
 				itemId:'reload',

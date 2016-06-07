@@ -64,12 +64,12 @@ public class OrdOrgController {
 		 return "success";
 	}
 	
-//	@RequestMapping("/ordOrg/update.do")
-//	@ResponseBody
-//	public  OrdOrg update(@RequestBody OrdOrg ordOrg) {
-//		ordOrgService.update(ordOrg);
-//		return ordOrg;
-//	}
+	@RequestMapping("/ordOrg/update.do")
+	@ResponseBody
+	public  OrdOrg update(@RequestBody OrdOrg ordOrg) {
+		ordOrgService.update(ordOrg);
+		return ordOrg;
+	}
 	
 	@RequestMapping("/ordOrg/deleteById.do")
 	@ResponseBody
@@ -81,7 +81,7 @@ public class OrdOrgController {
 	@RequestMapping("/ordOrg/destroy.do")
 	@ResponseBody
 	public OrdOrg destroy(@RequestBody OrdOrg ordOrg) {
-		ordOrgService.delete(ordOrg);
+		ordOrgService.destroy(ordOrg);
 		return ordOrg;
 	}
 	

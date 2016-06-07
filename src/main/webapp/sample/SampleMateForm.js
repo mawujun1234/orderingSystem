@@ -219,7 +219,7 @@ Ext.define('y.sample.SampleMateForm',{
 				    success: function(record, operation) {
 				    	Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
-				    	me.previousSibling("grid#sampleMateGrid").getStore().reload();
+				    	me.previousSibling("grid#sampleMateGrid").getStore().reload({params:{sampno:record.get("sampno")}});
 				    	
 				    	
 				    }
@@ -228,7 +228,7 @@ Ext.define('y.sample.SampleMateForm',{
 				}
 			});
 	me.on("render",function(panel){
-		panel.mask();	
+		//panel.mask();	
 	});
       me.callParent();
 	},

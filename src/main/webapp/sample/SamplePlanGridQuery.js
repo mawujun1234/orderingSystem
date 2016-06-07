@@ -67,7 +67,7 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 	        dock: 'bottom',
 	        displayInfo: true
 	  });
-	  
+	  //alert(me.ormtno);
 	me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
@@ -75,6 +75,8 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 		  	items:[{
 		  		itemId:'ordmtcombo',
 				xtype:'ordmtcombo',
+				value:me.ormtno,
+				selFirst:false,
 				readOnly:true
 			},{
 		        fieldLabel: '品牌',
@@ -84,7 +86,8 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            //value:'Y',
-	            selFirst:true,
+	            selFirst:false,
+	            value:me.bradno,
 	            blankText:"品牌不允许为空",
 		        xtype:'pubcodecombo',
 		        tyno:'1'

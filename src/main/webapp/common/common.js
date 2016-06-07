@@ -158,6 +158,7 @@ Ext.define('y.common.OrdmtCombo',{
 	autoLoad:true,
 	queryMode: 'local',
 	editable:false,
+	selFirst:true,
 	forceSelection:true,
 	displayField: 'ormtnm',
 	valueField: 'ormtno',
@@ -178,18 +179,19 @@ Ext.define('y.common.OrdmtCombo',{
 			        type: 'json'
 			        //rootProperty: '${propertyColumn.property}'
 			    }
-			},
-			listeners:{
-				load:function(myStore){
-					if(myStore.getCount( ) >0){
-			 			var r=myStore.getAt(0);
-			 			me.select( r );
-			 			me.fireEvent("select", me, r);
-			 		}
-				}
 			}
 			
 		});
+		
+		if(!me.value && me.selFirst){
+			me.store.on("load",function(myStore){
+				if(myStore.getCount( ) >0){
+			 		var r=myStore.getAt(0);//第一行是无
+			 		me.select( r );
+			 		me.fireEvent("select", me, r);
+			 	}
+			})
+		}
 		me.callParent();
 	}
 });

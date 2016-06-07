@@ -16,6 +16,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="spbseno!=null and spbseno!=''">
     		and a.spbseno=#{spbseno}
     	</if>
+    	<if test="plspnm!=null and plspnm!=''">
+    		and a.plspnm like '%${plspnm}%'
+    	</if>
  	</sql> 
 	<!-- 查询语句，会自动分页
 	<resultMap type="com.youngor.sample.SamplePlanVO" id="samplePlan">

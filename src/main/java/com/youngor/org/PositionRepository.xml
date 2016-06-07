@@ -18,5 +18,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPositionByName" parameterType="map" resultType="com.youngor.org.Position">
     	select * from t_position where orgno=#{orgno} and name=#{name}
     </select>
+    
+    <!-- 在订货单位维护的时候-->
+    <delete id="delete_t_position_org_userByUser">
+    	delete t_position_org_user where user_id=#{user_id}
+    </delete>
 </mapper>
 
