@@ -22,11 +22,11 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		{dataIndex:'sztype',header:'上报方式',align : 'right',width:160,
 			renderer:function(value){
 				if(value=="0"){
-					return "规格+包装上报"
+					return "单规+整箱上报"
 				} else if(value=="1"){
-					return "规格上报";
+					return "单规上报";
 				} else if(value=="2"){
-					return "包装上报";
+					return "整箱上报";
 				}
 				return "";
 			},
@@ -34,9 +34,9 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 			    store: Ext.create('Ext.data.Store', {
 				    fields: ['abbr', 'name'],
 				    data : [
-				        {"id":"0", "name":"规格+包装上报"},
-				        {"id":"1", "name":"规格上报"},
-				        {"id":"2", "name":"包装上报"}
+				        {"id":"0", "name":"单规+整箱上报"},
+				        {"id":"1", "name":"单规上报"},
+				        {"id":"2", "name":"整箱上报"}
 				    ]
 				}),
 			    queryMode: 'local',
@@ -44,7 +44,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 			    valueField: 'id'
 			})
 		},
-		{dataIndex:'print',header:'打印状态',xtype: 'numbercolumn', format:'0',align : 'right',
+		{dataIndex:'print',header:'打印状态', align : 'right',
 			renderer:function(value){
 				if(value==0){
 					return "未打印"

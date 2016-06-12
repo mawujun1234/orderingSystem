@@ -2,12 +2,54 @@ package com.youngor.order;
 
 public class MyInfoVO {
 	private String orgnm;
-	private Integer ormtqt_count;//已定数量
-	//private Integer ormtqs_count=0;//原始数量，如果原始数量不为0，表示已经确定过了
-	private Integer spseno_count;//系类个数
-	private Integer spclno_count;//大类数量
-	private Integer sampno_count;
+	private Double plmtam;//指标金额
+	private Integer plmtqt;//指标数量
 	
+	//private Double spftpr;//出厂价
+	//private Double sprtpr;//零售价
+	private Integer ormtam;//实订金额
+	private Integer ormtqt;//实订数量
+	
+	
+	public String getOrgnm() {
+		return orgnm;
+	}
+	public void setOrgnm(String orgnm) {
+		this.orgnm = orgnm;
+	}
+	public Double getPlmtam() {
+		return plmtam;
+	}
+	public void setPlmtam(Double plmtam) {
+		this.plmtam = plmtam;
+	}
+	public Integer getPlmtqt() {
+		return plmtqt;
+	}
+	public void setPlmtqt(Integer plmtqt) {
+		this.plmtqt = plmtqt;
+	}
+	public Integer getOrmtqt() {
+		return ormtqt;
+	}
+	public void setOrmtqt(Integer ormtqt) {
+		this.ormtqt = ormtqt;
+	}
+	public Integer getOrmtam() {
+		return ormtam;
+	}
+	public void setOrmtam(Integer ormtam) {
+		this.ormtam = ormtam;
+	}
+
+
+	
+//	private Integer ormtqt_count;//已定数量
+//	//private Integer ormtqs_count=0;//原始数量，如果原始数量不为0，表示已经确定过了
+//	private Integer spseno_count;//系类个数
+//	private Integer spclno_count;//大类数量
+//	private Integer sampno_count;
+//	
 	//private Boolean canConfirm;//能不能按确认按钮，如果存在了审批单号，就说名已经确认过了
 	
 //	/**
@@ -23,37 +65,6 @@ public class MyInfoVO {
 //		}
 //	}
 //	
-	public Integer getOrmtqt_count() {
-		return ormtqt_count;
-	}
-	public void setOrmtqt_count(Integer ormtqt_count) {
-		this.ormtqt_count = ormtqt_count;
-	}
-	public Integer getSpseno_count() {
-		return spseno_count;
-	}
-	public void setSpseno_count(Integer spseno_count) {
-		this.spseno_count = spseno_count;
-	}
-	public Integer getSpclno_count() {
-		return spclno_count;
-	}
-	public void setSpclno_count(Integer spclno_count) {
-		this.spclno_count = spclno_count;
-	}
-
-	public String getOrgnm() {
-		return orgnm;
-	}
-	public void setOrgnm(String orgnm) {
-		this.orgnm = orgnm;
-	}
-	public Integer getSampno_count() {
-		return sampno_count;
-	}
-	public void setSampno_count(Integer sampno_count) {
-		this.sampno_count = sampno_count;
-	}
-
+	
 
 }

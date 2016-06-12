@@ -1,8 +1,17 @@
 package com.youngor.sample;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -132,5 +141,114 @@ public class SampleDesignController {
 //		return sampleDesign;
 //	}
 	
+	
+	@RequestMapping("/samplePlan/exportSample.do")
+	@ResponseBody
+	public void exportSample(MapParams params,HttpServletResponse response) throws Exception {
+		//samplePlanService.lockOrunlock(plspno, plspst);
+		System.out.println(params);
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("资料");
+		crreateTitle_exportSample(wb,sheet1);
+		
+		
+
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("企划样衣资料".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	
+	private void crreateTitle_exportSample(XSSFWorkbook wb,Sheet sheet1){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+		 
+		Row title = sheet1.createRow((short)0);
+		Cell cell0 = title.createCell(0);
+		cell0.setCellValue(1);
+		cell0.setCellStyle(cellStyle);
+	}
+	
+	@RequestMapping("/samplePlan/exportSampleMate.do")
+	@ResponseBody
+	public void exportSampleMate(MapParams params,HttpServletResponse response) throws Exception {
+		//samplePlanService.lockOrunlock(plspno, plspst);
+		System.out.println(params);
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("资料");
+		crreateTitle_exportSampleMate(wb,sheet1);
+		
+		
+
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("主面料信息".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	private void crreateTitle_exportSampleMate(XSSFWorkbook wb,Sheet sheet1){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+		 
+		Row title = sheet1.createRow((short)0);
+		Cell cell0 = title.createCell(0);
+		cell0.setCellValue(1);
+		cell0.setCellStyle(cellStyle);
+	}
+	
+	@RequestMapping("/samplePlan/exportSampleMate_other.do")
+	@ResponseBody
+	public void exportSampleMate_other(MapParams params,HttpServletResponse response) throws Exception {
+		//samplePlanService.lockOrunlock(plspno, plspst);
+		System.out.println(params);
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("资料");
+		crreateTitle_exportSampleMate_other(wb,sheet1);
+		
+		
+
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("其他面料信息".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	private void crreateTitle_exportSampleMate_other(XSSFWorkbook wb,Sheet sheet1){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+		 
+		Row title = sheet1.createRow((short)0);
+		Cell cell0 = title.createCell(0);
+		cell0.setCellValue(1);
+		cell0.setCellStyle(cellStyle);
+	}
 	
 }

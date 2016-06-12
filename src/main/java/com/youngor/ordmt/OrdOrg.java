@@ -28,11 +28,11 @@ public class OrdOrg {
 	@Column(length=36)
 	private String ordorg;//订货单位
 	
-	@FieldDefine(title="订货会类型")
+	@FieldDefine(title="订货单位类型")
 	@Column(length=36)
 	private String channo;//订货单位类型
 	@FieldDefine(title="上报方式")
-	private Integer sztype;//0：规格+包装上报；1：规格上报；2：包装上报；
+	private Integer sztype;//0：单规+整箱上报；1：单规上报；2：整箱上报；
 	@FieldDefine(title="打印状态")
 	private Integer print=0;//0：未打印；1：已打印
 	
@@ -44,6 +44,17 @@ public class OrdOrg {
 	public static class PK implements Serializable{
 		private String ormtno;
 		private String ordorg;
+		
+		
+		public PK() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public PK(String ormtno, String ordorg) {
+			super();
+			this.ormtno = ormtno;
+			this.ordorg = ordorg;
+		}
 		public String getOrmtno() {
 			return ormtno;
 		}

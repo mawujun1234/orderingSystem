@@ -20,7 +20,7 @@ public class SampleVO {
 	private Double sprtpr;//零售价
 	
 	private String spbseno;//大系列
-	private String sprseno;//品牌系列
+	//private String sprseno;//品牌系列
 	
 	private String splcno;//定位
 	private String spbano;//上市批次
@@ -31,6 +31,8 @@ public class SampleVO {
 	private String sexno;//性别  Z0：男  Z1：女
 	private String suitty;//套装种类
 	private Integer spltmk;//是否拆套 1：拆套；0：不拆套
+	
+	private Integer abstat;//必定款
 	
 	
 	private String ormtno;//订货会编号
@@ -58,9 +60,9 @@ public class SampleVO {
 	public String getSpbseno_name() {
 		return PubCodeCache.getSpbseno_name(this.getSpbseno());
 	}
-	public String getSprseno_name() {
-		return PubCodeCache.getSprseno_name(this.getSprseno());
-	}
+//	public String getSprseno_name() {
+//		return PubCodeCache.getSprseno_name(this.getSprseno());
+//	}
 	public String getSplcno_name() {
 		return PubCodeCache.getSplcno_name(this.getSplcno());
 	}
@@ -123,12 +125,7 @@ public class SampleVO {
 	public void setSpbseno(String spbseno) {
 		this.spbseno = spbseno;
 	}
-	public String getSprseno() {
-		return sprseno;
-	}
-	public void setSprseno(String sprseno) {
-		this.sprseno = sprseno;
-	}
+
 	public String getSplcno() {
 		return splcno;
 	}
@@ -205,6 +202,16 @@ public class SampleVO {
 
 	public void setSuitStpres(List<SampleDesignStpr> suitStpres) {
 		this.suitStpres = suitStpres;
+	}
+
+
+	public Integer getAbstat() {
+		return abstat;
+	}
+
+
+	public void setAbstat(Integer abstat) {
+		this.abstat = abstat;
 	}
 
 }

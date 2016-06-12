@@ -10,6 +10,7 @@ import com.mawujun.repository.IRepository;
 import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
+import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -25,6 +26,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public List<SampleDesignStpr> querySampleDesignStpr(@Param("sampno")String sampno);
 	
 	public List<SuitVO> querySuitVO_T00(SampleVO sampleVO);
+	public List<SuitVO> querySuitVO_PRDPK(SampleVO sampleVO);
 	
 	/**
 	 * 
@@ -45,8 +47,9 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public OrdmtScde get_ordmt_scde(@Param("ormtno")String ormtno,@Param("channo")String channo);
 	
-	public MyInfoVO queryMyInfoVO(@Param("mtorno")String mtorno);
+	public MyInfoVO queryMyInfoVO(@Param("mtorno")String mtorno,@Param("channo")String channo);
 
+	public List<SampleDesign> query_none_abstat(@Param("ormtno")String ormtno,@Param("mtorno")String mtorno);
 	
 	public void updateMtornoMlorvn(@Param("mtorno")String mtorno);
 	

@@ -173,7 +173,7 @@ $(function(){
 		$("#od_loginpage_title").html(response.ormtnm);	
 	},'json');
 	
-	window.user=null;
+	window.user=1;//null;
 	if(!window.user){
 		$.router.load("#od_loginpage"); 
 	}
@@ -273,9 +273,11 @@ $(function(){
 	});
 	$("#od_info_scan_button").click(function(){
 		var val=$("#od_info_input").val();
+
 		if(!val){
 			return;
 		}
+		val=val.replace('(必定款)','');
 		
 		if(!od_info_data_issaved()){
 			$.confirm('数据未保存！确定要进行切换吗？', function () {
@@ -302,6 +304,7 @@ $(function(){
 					$.hidePreloader();
 					return;
 				}
+				
 				//样衣信息
 				if(window.vm_sampleVO){//alert(1);
 					window.vm_sampleVO.$data=response.sampleVO;
@@ -373,6 +376,9 @@ $(function(){
 				}
 				$.hidePreloader();
 				
+				if(response.sampleVO.abstat==1){
+					$("#od_info_input").val(sampnm+"(必定款)");	
+				}
 				$("#od_info_sample_info .card-content").show(200);
 				$("#od_info_saveAndclear_button").show(200);
 			}
@@ -475,7 +481,37 @@ $(function(){
 		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
 			//od_mypage_myinfo_card
 			if(response.success==false){
-				$.toast("确认失败!");return;
+				//$.toast(response.msg);
+				//$.popup('.popup_abstat');
+				var sampnms=JSON.parse(response.msg);
+				var html="";
+				for(var i=0;i<sampnms.length;i++){
+					html+='<li class="item-content">'+
+					'<div class="item-media"><i class="icon icon-f7"></i></div>'+
+					'<div class="item-inner"><div class="item-title">'+sampnms[i]+'</div></div>'+
+					'</li>';
+				}
+				 var popupHTML = 
+				 '<div class="popup">'+
+				 	''+
+                    '<div class="content-block">'+
+                      '<div class="content-block-title">下列样衣是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
+                      '<div class="list-block">'+
+					  '<ul>'+
+					  //'<li class="item-content">'+
+					 // '<div class="item-media"><i class="icon icon-f7"></i></div>'+
+					 // '<div class="item-inner">'+
+					  html+
+					  //'<div class="item-title">商品名称</div>'+
+					  //'<div class="item-after">杜蕾斯</div>'+
+					 // '</div>'+
+					 // '</li>'+
+					  '</ul>'+
+					  '</div>'+
+                    '</div>'+
+                  '</div>'
+  				$.popup(popupHTML);
+				return;
 			}
 			$("#od_mypage_confirm_button").hide();
 			$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");

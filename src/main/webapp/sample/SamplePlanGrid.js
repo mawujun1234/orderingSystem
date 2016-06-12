@@ -70,20 +70,20 @@ Ext.define('y.sample.SamplePlanGrid',{
 			listeners:{
 				beforeload:function(store){
 				//var grid=btn.up("grid");
-					var grid=me;//Ext.getCmp("sampleDesignGrid");
-					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-		
-    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
-    				grid.getStore().getProxy().extraParams={
-    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
-    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
-    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
-    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
-    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
-    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
-    					"params['plspnm']":toolbars[1].down("#plspnm").getValue()
-    					
-    				};
+//					var grid=me;//Ext.getCmp("sampleDesignGrid");
+//					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+//		
+//    				//var ordmtcombo=toolbars[0].down("#ordmtcombo");
+//    				grid.getStore().getProxy().extraParams={
+//    					"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+//    					"params['bradno']":toolbars[0].down("#bradno").getValue(),
+//    					"params['spclno']":toolbars[0].down("#spclno").getValue(),
+//    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+//    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+//    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+//    					"params['plspnm']":toolbars[1].down("#plspnm").getValue()
+//    					
+//    				};
 
     				//grid.getStore().getProxy().extraParams=grid.getParams();
 				}
@@ -183,14 +183,21 @@ Ext.define('y.sample.SamplePlanGrid',{
 				handler: function(btn){
 					var grid=btn.up("grid");
 					
+					var params=grid.getParams();
+					grid.getStore().getProxy().extraParams=params;
 					grid.getStore().reload();
 					
 					var tabpanel=grid.nextSibling("tabpanel");
-					var params=grid.getStore().getProxy().extraParams;
+					//var params=grid.getStore().getProxy().extraParams;
 					tabpanel.down("form#samplePlanForm").reloadPubcode(params["params['bradno']"]);
 				},
 				iconCls: 'icon-refresh'
-			},{
+			}]
+		});
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
 				text: '新增',
 				itemId:'create',
 				handler: function(btn){
@@ -230,11 +237,32 @@ Ext.define('y.sample.SamplePlanGrid',{
 			    	me.onDelete();    
 			    },
 			    iconCls: 'icon-trash'
+			},{
+			    text: '导出',
+			    handler: function(){
+			    	me.onExport();    
+			    },
+			    iconCls: ' icon-download-alt'
 			}]
-		});
-
+	  });
        
       me.callParent();
+	},
+	getParams:function(){
+		var grid=this;//Ext.getCmp("sampleDesignGrid");
+		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+
+    	var params={
+    		"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
+    		"params['bradno']":toolbars[0].down("#bradno").getValue(),
+    		"params['spclno']":toolbars[0].down("#spclno").getValue(),
+    		"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    		"params['spseno']":toolbars[0].down("#spseno").getValue(),
+    		"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+    		"params['plspnm']":toolbars[1].down("#plspnm").getValue()
+    					
+    	};
+    	return params;
 	},
 	onCreate:function(){
     	var me=this;
@@ -356,5 +384,12 @@ Ext.define('y.sample.SamplePlanGrid',{
 				me.getSiblingForm().lockOrUnlock(record.get("plspst"));
 			}
 		});
+    },
+    onExport:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/samplePlan/export.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    	
     }
 });

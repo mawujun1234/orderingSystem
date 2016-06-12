@@ -39,7 +39,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="querySample" resultType="com.youngor.order.SampleVO" parameterType="map">
      	 select a.plspno,a.plspnm,b.sampno,b.sampnm,
 	     b.versno,a.spseno,a.spftpr,a.sprtpr,a.spbseno,a.sprseno,a.splcno,a.spbano,
-	     a.spclno,a.sptyno,a.bradno,b.sexno,b.suitty,b.spltmk   
+	     a.spclno,a.sptyno,a.bradno,b.sexno,b.suitty,b.spltmk,b.abstat
 	     from ord_sample_plan a,ord_sample_design b
 	     where a.plspno=b.plspno and lower(b.sampnm)=lower(#{sampnm}) and a.ormtno=#{ormtno}
 	     and b.sampst=1 and a.plstat=1
@@ -83,6 +83,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
 	    order by a.suitno,a.sizeno
      </select>
+     <!-- 当上报方式为  包装箱的时候  包装箱只显示标准箱(即单规箱)-->
+     <select id="querySuitVO_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
+     	select a.*,'1' as szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+	      and NVL(a.SIZETY1,1)=1
+	      and  c.sampno=#{sampno}
+	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
+	    ) a 
+	    left join (<!-- 获取已经定了的数量-->
+	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='PRDPK'
+	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    order by a.suitno,a.sizeno
+     </select>
      
      <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
      <select id="querySuitVO" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
@@ -119,12 +133,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	select * from ORD_ORDMT_SCDE where ormtno=#{ormtno} and channo=#{channo}
      </select>
      
-     <!-- 本次订货的一些统计信息-->
+     <!-- 本次订货的一些统计信息
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
      	select sum(a.ormtqt)ormtqt_count,sum(a.ormtqs) ormtqs_count,count(distinct c.spseno) spseno_count,count(distinct c.spclno) spclno_count,count(distinct a.sampno) sampno_count 
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno
          and a.mtorno=#{mtorno}  
+     </select>-->
+     <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
+     	select sum(a.ormtqt)ormtqt
+     	<if test="channo=='TX'">
+     		,sum(a.ormtqt*c.spftpr) ormtam
+     	</if>
+     	<if test="channo!='TX'">
+     		,sum(a.ormtqt*c.sprtpr) ormtam
+     	</if>
+         from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+         where a.sampno=b.sampno and b.plspno=c.plspno
+         and a.mtorno=#{mtorno}  
+     </select>
+     <!-- 检查必定款是否已经全订 -->
+     <select id="query_none_abstat" resultType="com.youngor.sample.SampleDesign" parameterType="map">
+     	select a.* from ord_sample_design a,ORD_SAMPLE_PLAN b where a.PLSPNO=b.PLSPNO and b.ORMTNO=#{ormtno}
+     	and abstat='1' and not exists (
+     		select 1 from ORD_ORDDTL c where a.sampno=c.sampno and c.mtorno=#{mtorno}
+     	)
      </select>
      <!-- 生成版本订单号和版本号 -->
      <update id="updateMtornoMlorvn" parameterType="map">

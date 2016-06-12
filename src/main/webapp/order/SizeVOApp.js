@@ -146,7 +146,7 @@ Ext.onReady(function(){
 				store: {
 					    fields: ['id', 'name'],
 					    autoLoad:false,
-					    data:[{id:'0',name:'规格+包装上报'},{id:'1',name:'规格上报'},{id:'2',name:'包装上报'}]
+					    data:[{id:'0',name:'单规+整箱上报'},{id:'1',name:'单规上报'},{id:'2',name:'整箱上报'}]
 				},
 		        hidden:false,
 				xtype:'combobox'  

@@ -14,7 +14,7 @@
     <meta http-equiv="Expires" content="0" />
 
     <link rel="stylesheet" href="./css/sm.min.css">
-    <link rel="stylesheet" href="./sm-extend.min.css">
+    <link rel="stylesheet" href="./css/sm-extend.min.css">
      <link rel="stylesheet" href="mobile.css" >
 	<style>
 
@@ -120,21 +120,21 @@
                     </div>
                     <div class="card-content" style="display:none;">
                       <div class="card-content-inner">
-                      		<div class="row">
-                              <div class="col-50">版型:{{ versno_name }}</div>
-                              <div class="col-50">系列:{{ spseno_name }}</div>
+                      		<div class="row">      
+                              <div class="col-50">大系列:{{spbseno_name }}</div>
+                              <div class="col-50">系列:{{spseno_name }}</div>
                             </div>
                             <div class="row">
-                              <div class="col-50">大系列:{{ spbsen_name }}</div>
-                              <div class="col-50">品牌系列:{{ sprseno_name }}</div>
+                              <div class="col-50">版型:{{versno_name }}</div>
+                              <div class="col-50">定位:{{splcno_name }}</div>          
                             </div>
                             <div class="row">
-                              <div class="col-50">定位:{{ splcno_name }}</div>
-                              <div class="col-50">上市批次:{{ spbano_name }}</div>
+                              <div class="col-50">上市批次:{{spbano_name }}</div>
+                              <div class="col-50"></div>
                             </div>
                             <div class="row" v-show="!showSuitStpres">
-                              <div class="col-50">出厂价:{{ spftpr }}</div>
-                              <div class="col-50">零售价:{{ sprtpr }}</div>
+                              <div class="col-50">出厂价:{{spftpr }}</div>
+                              <div class="col-50">零售价:{{sprtpr }}</div>
                             </div>
                             <template v-if="showSuitStpres" v-for="suitStpr in suitStpres">
                             	<div class="row" >
@@ -180,7 +180,7 @@
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-name"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label" style="font-weight:bold;width:60%;">规格(占比):</div>
+                                <div class="item-title label" style="font-weight:bold;width:60%;">规格<span style="font-size:0.6rem;color:gray;">(占比)</span>:</div>
                                 <div class="item-input" style="font-weight:bold;">订货数量:</div>
                               </div>
                             </div>
@@ -191,7 +191,7 @@
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-email"></i></div>
                               <div class="item-inner">
-                                <div class="item-title label" style="width:60%;">{{sizeVO.sizenm}}({{sizeVO.szrate}})</div>
+                                <div class="item-title label" style="width:60%;">{{sizeVO.sizenm}}<span style="font-size:0.6rem;color:gray;">({{sizeVO.szrate}})</span></div>
                                 <div class="item-input">
                                   <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" >
                                 </div>
@@ -222,7 +222,13 @@
         </div>
         
         
-        
+        <div class="popup popup_abstat">
+           <div class="content-block">
+                <p>Services</p>
+                <p><a href="#" class="close-popup">Close popup</a></p>
+                <p>Lorem ipsum dolor ...</p>
+           </div>
+        </div>     
         <div class="page" id="od_mypage"> 
         	<!--<header class="bar bar-nav">
               <a class="button button-link button-nav pull-left back" href="/docs-demos/router">
@@ -231,18 +237,19 @@
               </a>
               <h1 class='title'>宁波区域</h1>
             </header>-->
+   
             <div class="content">
             	<div class="card" id="od_mypage_myinfo_card" style="display:none;">
                     <div class="card-header">我:{{ orgnm }}</div>
                     <div class="card-content">
                       <div class="card-content-inner">
                       		<div class="row">
-                              <div class="col-50">已定数量:{{ ormtqt_count}}</div>
-                              <div class="col-50">大类个数:{{ spclno_count }}</div>
+                              <div class="col-50">指标金额(万元):{{plmtam}}</div>
+                              <div class="col-50">指标数量(件):{{plmtqt}}</div>
                             </div>
                             <div class="row">
-                              <div class="col-50">系列个数:{{ spseno_count }}</div>
-                              <div class="col-50">样衣个数:{{ sampno_count }}</div>
+                              <div class="col-50">实订金额(万元):{{ormtam}}</div>
+                              <div class="col-50">实订数量(件):{{ormtqt}}</div>
                             </div>
                             <div class="row">
                               <div class="col-80">&nbsp; </div>
@@ -264,13 +271,21 @@
                       <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                          <div class="item-title">订货统计-按商品类</div>
+                          <div class="item-title">订货统计-按实订样衣</div>
                         </div>
                       </li>
                       <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
-                          <div class="item-title">订货统计-按销售渠道</div>
+                          <div class="item-title">订货统计-按商品类
+</div>
+                        </div>
+                      </li>
+                      <li class="item-content item-link">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-按价位
+</div>
                         </div>
                       </li>
                     </ul>

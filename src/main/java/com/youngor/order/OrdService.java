@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
+import com.youngor.ordmt.OrdOrg;
+import com.youngor.ordmt.OrdOrgService;
 import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
 import com.youngor.pubcode.PubCodeCache;
+import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.utils.ContextUtils;
 
@@ -43,6 +46,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private OrdszdtlRepository ordszdtlRepository;
 	@Autowired
 	private CompPalService compPalService;
+	@Autowired
+	private OrdOrgService ordOrgService;
 	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -104,6 +109,7 @@ public class OrdService extends AbstractService<Ord, String>{
 //		渠道类型为特许 的订货单位，输入样衣时需判断 是否可订该样衣，调用函数
 //		ORDER_DL.ORDER_CAN(订货批号，特许门店代码，样衣编号代码)
 //		判断，返回1 可订，返回0 不可订，提示“该样衣不在您的订货范围内”
+		//特许只能订，区域订过的样衣编号
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 		if("TX".equals(org.getChanno().toString())){
 			int count=	ordRepository.order_dl__order_can(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
@@ -111,6 +117,11 @@ public class OrdService extends AbstractService<Ord, String>{
 				throw new BusinessException("该样衣不可订!");
 			}
 		}
+		
+		
+		
+		
+		
 		sampleVO.setOrmtno(ContextUtils.getFirstOrdmt().getOrmtno());
 		sampleVO.setOrdorg(org.getOrgno());
 		
@@ -121,30 +132,42 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		
 		result.put("sampleVO", sampleVO);
-		//获取套件和套件内的规格信息，
-		//只有套西的小类的时候，才需要去ORD_SUIT_DC表中获取套装种类
-		if(sampleVO.getSptyno().equals("S10")){
-			//获取各个套件的价格
-			List<SampleDesignStpr> stpres=ordRepository.querySampleDesignStpr(sampleVO.getSampno());
-			//如果是特许，不显示出厂价
-			if("TX".equals(ord.getChanno())){
-				for(SampleDesignStpr sampleDesignStpr:stpres){
-					sampleDesignStpr.setSpftpr(0d);
-				}
-			}
-			sampleVO.setSuitStpres(stpres);
-			
-			List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
-			result.put("suitVOs", suitVOs);
-			//sampleVO.setSuitVOs(suitVOs);
-		} else {
-			//获取标准条件中的规格范围，价格，具有的规格
-			List<SuitVO> suitVOs=ordRepository.querySuitVO_T00(sampleVO);
-			result.put("suitVOs", suitVOs);
-			//sampleVO.setSuitVOs(suitVOs);
+		
+		//获取该用户的上报方式,如果是单规+整箱和单规，显示的是单规的信息，如果是整箱上报方式，那这里显示的是包装箱
+		OrdOrg ordOrg=ord.getOrdMethod();
+		if(ordOrg==null){
+			ordOrg=ordOrgService.get(new OrdOrg.PK(ord.getOrmtno(),org.getOrgno()));
 		}
 		
-		
+		//如果是包装箱上报，就显示包装箱
+		if(ordOrg.getSztype()==2){
+			
+			List<SuitVO> suitVOs=ordRepository.querySuitVO_PRDPK(sampleVO);
+			result.put("suitVOs", suitVOs);
+		} else {
+			//获取套件和套件内的规格信息，
+			//只有套西的小类的时候，才需要去ORD_SUIT_DC表中获取套装种类
+			if(sampleVO.getSptyno().equals("S10")){
+				//获取各个套件的价格
+				List<SampleDesignStpr> stpres=ordRepository.querySampleDesignStpr(sampleVO.getSampno());
+				//如果是特许，不显示出厂价
+				if("TX".equals(ord.getChanno())){
+					for(SampleDesignStpr sampleDesignStpr:stpres){
+						sampleDesignStpr.setSpftpr(0d);
+					}
+				}
+				sampleVO.setSuitStpres(stpres);
+				
+				List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
+				result.put("suitVOs", suitVOs);
+				//sampleVO.setSuitVOs(suitVOs);
+			} else {
+				//获取标准条件中的规格范围，价格，具有的规格
+				List<SuitVO> suitVOs=ordRepository.querySuitVO_T00(sampleVO);
+				result.put("suitVOs", suitVOs);
+				//sampleVO.setSuitVOs(suitVOs);
+			}
+		}
 		return result;
 	}
 	/**
@@ -270,6 +293,28 @@ public class OrdService extends AbstractService<Ord, String>{
 	 */
 	public void confirm() {
 		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		
+		//区域 订单确认时判断 必定款的样衣是否全部已订，提示未订的必定款样衣；
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		if("QY".equals(org.getChanno().toString())){
+			//订单号
+			String mtorno=ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();
+			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
+			if(none_abstat!=null && none_abstat.size()>0){
+				StringBuilder builder=new StringBuilder();
+				int i=0;
+				for(SampleDesign sampleDesign:none_abstat){
+//					if(i>=4){//一次最多显示4个样衣编号
+//						break;
+//					}
+					builder.append(","+sampleDesign.getSampnm());
+					i++;
+				}
+				
+				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+			}
+		}
+
 		
 		//先为订单明细表生成 审批订单号 和审批订单号版本,订单号+品牌+大类
 		ordRepository.updateMtornoMlorvn(ord.getMtorno());
@@ -400,8 +445,9 @@ public class OrdService extends AbstractService<Ord, String>{
 	public MyInfoVO queryMyInfoVO() {
 		UserVO userVO=ShiroUtils.getAuthenticationInfo();
 		Ord ord=userVO.getOrd();
-		MyInfoVO myInfoVO= ordRepository.queryMyInfoVO(ord.getMtorno());
 		Org org=userVO.getFirstCurrentOrg();
+		MyInfoVO myInfoVO= ordRepository.queryMyInfoVO(ord.getMtorno(),org.getChanno().toString());
+		
 		myInfoVO.setOrgnm(org.getOrgnm());
 		return myInfoVO;
 	}

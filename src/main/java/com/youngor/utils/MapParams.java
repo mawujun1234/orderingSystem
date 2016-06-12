@@ -3,8 +3,7 @@ package com.youngor.utils;
 import java.util.Map;
 
 public class MapParams {
-	
-	private Map<String,Object> params;
+	Map<String,Object> params;
 
 	public Map<String, Object> getParams() {
 		return params;

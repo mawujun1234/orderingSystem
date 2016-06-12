@@ -400,6 +400,26 @@ Ext.define('y.sample.SampleDesignGrid',{
 			    	 	grid.lockOrUblock('sample_design_unlock_cloth',false);
 			    	 }
 			    }]
+			},{
+			    text: '导出',
+			   
+			    menu:[{
+			    	text: '产品资料导出',
+			    	handler:function(){
+			    		me.onExportSample(); 
+			    	}
+			    },{
+			    	text: '主面料信息',
+			    	handler:function(){
+			    		me.onExportSampleMate(); 
+			    	}
+			    },{
+			    	text: '其他面料信息',
+			    	handler:function(){
+			    		me.onExportSampleMate_other(); 
+			    	}
+			    }],
+			    iconCls: ' icon-download-alt'
 			}]
 		});
 
@@ -710,5 +730,23 @@ Ext.define('y.sample.SampleDesignGrid',{
 					} 
 				});	
 				
+    },
+    onExportSample:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/samplePlan/exportSample.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    },
+    onExportSampleMate:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/samplePlan/exportSampleMate.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    },
+    onExportSampleMate_other:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/samplePlan/exportSampleMate_other.do?"+Ext.urlEncode(params);
+    	window.open(url);
     }
 });

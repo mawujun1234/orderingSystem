@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.youngor.ordmt.OrdOrg;
 
 @Entity(name="ord_ord")
 public class Ord {
@@ -32,6 +33,8 @@ public class Ord {
 	private SampleVO sampleVO;//是作为临时缓存用的，保存的是当前扫描的样衣编号数据
 	@Transient
 	private Map<String,Object> ordCheckInfo;//是否能订货的的内容
+	@Transient
+	private OrdOrg ordMethod;//当前订货单位使用的订货方式
 	
 	public Boolean canOrd(){
 		if(ordCheckInfo==null){
@@ -82,6 +85,15 @@ public class Ord {
 	public void setOrdCheckInfo(Map<String, Object> ordCheckInfo) {
 		this.ordCheckInfo = ordCheckInfo;
 	}
+
+	public OrdOrg getOrdMethod() {
+		return ordMethod;
+	}
+
+	public void setOrdMethod(OrdOrg ordMethod) {
+		this.ordMethod = ordMethod;
+	}
+
 
 
 }
