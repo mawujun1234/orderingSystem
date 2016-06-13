@@ -39,7 +39,6 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	a.tyno='13' and b.bradno=#{bradno}
     	and exists (select 1 from ord_sample_design c,ord_sample_plan d where c.plspno=d.plspno  and a.itno=c.versno 
     			and d.ormtno=#{ormtno} and d.spclno=#{spclno}
-
     		)
     	and b.stat=1
     	order by a.itso
