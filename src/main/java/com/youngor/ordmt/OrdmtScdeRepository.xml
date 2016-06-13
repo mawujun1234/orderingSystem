@@ -16,7 +16,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     
      <select id="queryChanncl" resultType="com.youngor.ordmt.OrgChancl" >
-    	select * from T_ORG_CHANCL where stat=1 order by chanso
+    	select * from T_ORG_CHANCL a where stat=1 
+    	<if test="ormtno!=null and ormtno!=''">
+    		and exists (select 1 from ORD_ORG b where a.channo=b.channo and b.ormtno=#{ormtno})
+    	</if>
+    	order by chanso
     </select> 
 </mapper>
 

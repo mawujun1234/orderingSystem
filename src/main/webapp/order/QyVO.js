@@ -14,8 +14,13 @@ Ext.define("y.order.QyVO",{
 		{name:'ormtqt',type:'int'},
 		{name:'orstat',type:'int'},
 		{name:'ormark',type:'string'},
+		{name:'spftpr',type:'string'},
+		{name:'sprtpr',type:'string'},
 		{name:'channo_name',type:'string'},
-		{name:'ordorg_name',type:'string'}
+		{name:'ordorg_name',type:'string'},
+		{name:'ormtqt_zhes',type:'float'},
+		{name:'ormtqs_zhes',type:'float'}
+		
 //		{name:'orgno',type:'string'},
 //		{name:'ormtno',type:'string'},
 //		{name:'ortyno',type:'string'},

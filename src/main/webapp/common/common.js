@@ -332,7 +332,7 @@ Ext.define('y.common.OrgCombo',{
 Ext.define('y.common.OrdtyCombo',{
 	extend:'Ext.form.field.ComboBox',
 	xtype:'ordtycombo',
-	fieldLabel: '订货类型',
+	fieldLabel: '订单类型',
 	//emptyText:'可输入关键字过滤',
 	name: 'ordty',
 	autoLoad:true,

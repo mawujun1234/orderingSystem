@@ -30,7 +30,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         	<if test="spseno!=null and spseno!=''">
         		and a.spseno=#{spseno}
         	</if>
-        	and b.versno=#{versno}
+        	<if test="versno!=null and versno!=''">
+        		and b.versno=#{versno}
+        	</if>
+        order by a.spseno, b.versno
     </select>
      <!-- 获取指定版型和系列的规格比例-->
     <select id="querySzrtData_b" resultType="com.youngor.pubsize.OrdSzrt" parameterType="map">
@@ -40,14 +43,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	  <if test="spseno!=null and spseno!=''">
         		and a.spseno=#{spseno}
         </if>
-        and a.versno=#{versno}
+        <if test="versno!=null and versno!=''">
+        	and a.versno=#{versno}
+        </if>
+        order by a.spseno,a.versno
     </select>
     
     
     <!-- 获取包装规格的列 -->
     <select id="queryPrdpkColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
     	select b.* from ord_pub_sizedtl a ,ord_pub_size b
-       where a.sizeno=b.sizeno and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
+       where a.sizeno=b.sizeno and NVL(b.SIZETY1,1)=1 and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
        order by b.sizeso
     </select> 
 

@@ -26,6 +26,9 @@ public class QyVO {
 	private String ormark;//备注
 	private Integer orstat;//总量状态
 	
+	private Double spftpr;//出厂价
+	private Double sprtpr;//零售价
+	
 //	//----名称
 //	private String channo_name;
 	private String ordorg_name;
@@ -38,6 +41,55 @@ public class QyVO {
 //	private String ortyno;//订货类型
 //	private String bradno;//品牌
 //	private String spclno;//大类
+	/**
+	 * 获取原始数量折算
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getOrmtqs_zhes(){
+		if("T00".equals(this.getSuitno())){
+			return ormtqs*1d;
+		} else if("T01".equals(this.getSuitno())){//上衣
+			return ormtqs*0.75d; 
+		} else if("T02".equals(this.getSuitno())){//裤子
+			return ormtqs*0.25d; 
+		} else if("T04".equals(this.getSuitno())){//裙子
+			return ormtqs*0.25d;
+		} else {
+			return ormtqs*1d;
+		}
+	}
+	
+	/**
+	 * 获取原始数量折算,放在这里是因为ext的原因
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getOrmtqt_zhes(){
+		if("T00".equals(this.getSuitno())){
+			return (ormtqt==null?0:ormtqt)*1d;
+		} else if("T01".equals(this.getSuitno())){//上衣
+			return (ormtqt==null?0:ormtqt)*0.75d; 
+		} else if("T02".equals(this.getSuitno())){//裤子
+			return (ormtqt==null?0:ormtqt)*0.25d; 
+		} else if("T04".equals(this.getSuitno())){//裙子
+			return (ormtqt==null?0:ormtqt)*0.25d;
+		} else {
+			return (ormtqt==null?0:ormtqt)*1d;
+		}
+	}
+	public Double getSpftpr_jine(){
+		if(spftpr==null || ormtqt==null){
+			return 0d;
+		}
+		return spftpr*ormtqt;
+	}
+	public Double getSprtpr_jine(){
+		if(sprtpr==null || ormtqt==null){
+			return 0d;
+		}
+		return sprtpr*ormtqt;
+	}
 	
 	public String getSptyno_name() {
 		return PubCodeCache.getSptyno_name(this.getSptyno());
@@ -151,6 +203,18 @@ public class QyVO {
 	}
 	public void setOrstat(Integer orstat) {
 		this.orstat = orstat;
+	}
+	public Double getSpftpr() {
+		return spftpr;
+	}
+	public void setSpftpr(Double spftpr) {
+		this.spftpr = spftpr;
+	}
+	public Double getSprtpr() {
+		return sprtpr;
+	}
+	public void setSprtpr(Double sprtpr) {
+		this.sprtpr = sprtpr;
 	}
 
 

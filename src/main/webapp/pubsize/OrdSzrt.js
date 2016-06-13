@@ -10,7 +10,8 @@ Ext.define("y.pubsize.OrdSzrt",{
 		{name:'spseno',type:'string'},
 		{name:'versno',type:'string'},
 		{name:'sizety',type:'string'},
-		{name:'szrate',type:'float'}
+		{name:'szrate',type:'float'},
+		{name:'sizeso',type:'string'}
 	],
 	proxy:{
 		type:'ajax',

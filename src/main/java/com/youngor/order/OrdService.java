@@ -1,4 +1,6 @@
 package com.youngor.order;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +27,7 @@ import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.utils.ContextUtils;
+import com.youngor.utils.MapParams;
 
 
 /**
@@ -498,22 +501,119 @@ public class OrdService extends AbstractService<Ord, String>{
 			orddtlRepository.create(orddtl);
 		}
 	}
-	
+	/**
+	 * 区域平衡 提交审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param qyno
+	 * @param channo
+	 * @param ordorg
+	 * @param ormtno
+	 * @param bradno
+	 * @param spclno
+	 */
 	public void updateApprove_org(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno) {
 		
 		if(ordorg!=null && !"".equals(ordorg)){
+			check_S10_rule(ormtno, ordorg, spclno, bradno);
 			//提交某个指定的订单
-			ordRepository.updateApprove_org(ordorg, ormtno, bradno, spclno);
+			//ordRepository.updateApprove_org(ordorg, ormtno, bradno, spclno);
 		} else {
 			//提交当前区域下的所有订单
 			//获取所有的订货单位
 			List<Org> orgs=queryOrdorg( ormtno, qyno, channo, "DZ");
 			for(Org org:orgs){
-				ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
+				check_S10_rule(ormtno, org.getOrgno(), spclno, bradno);
+				//ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
 			}
 		}
 		
+
+		
+		
+//	            拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
+//		select b.sampno,b.sampnm
+//		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
+//		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
+//		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
+//		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+//		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno='201605_DZ_QY0010'
+//		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=0
+//		group by  b.sampno,b.sampnm
+		
+//	    女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
+//		select b.sampno,b.sampnm
+//		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
+//		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
+//		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
+//		,sum(decode(a.suitno,'T04',ormtqt,0)) T04_ormtqt
+//		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+//		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno='201605_DZ_QY0010'
+//		and c.sptyno='S10' and b.sexno='Z1' --and b.spltmk=0
+//		group by  b.sampno,b.sampnm
+
 	}
+	/**
+	 * 只检查套西，那么也就是只有西服大类提交的时候才会检查
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ordorg
+	 * @param ormtno
+	 * @param spclno
+	 */
+	public void check_S10_rule(String ormtno,String ordorg,String spclno,String bradno){
+		//如果当前提交的不是西服大类，就不进行检查
+		if(!"02".equals(spclno)){
+			return;
+		}
+		String mtorno=ormtno+"_DZ_"+ordorg;
+//		不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准)
+
+		//List<String> sampnoes=new ArrayList<String>();
+		StringBuilder builder=new StringBuilder();
+
+		List<Map<String,Object>> check_S10_Z0_0=ordRepository.check_S10_Z0_0(mtorno);
+		for(Map<String,Object> map:check_S10_Z0_0){
+			BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ORMTQT");
+			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+			if(T02_ormtqt.compareTo(T00_ormtqt.multiply(new BigDecimal(0.15)).setScale(2, RoundingMode.HALF_UP))==1){
+				//sampnoes.add(map.get("SAMPNM").toString());
+				builder.append(","+map.get("SAMPNM"));
+			}
+		}
+		if(builder.length()>0) {
+			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是： 裤子<=15%*标准");
+		}
+//      拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
+		List<Map<String,Object>> check_S10_Z0_1=ordRepository.check_S10_Z0_1(mtorno);
+		for(Map<String,Object> map:check_S10_Z0_1){
+			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
+			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
+			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)).setScale(2, RoundingMode.HALF_UP))==1 || T02_ormtqt.compareTo(T01_ormtqt)==-1){
+				//sampnoes.add(map.get("SAMPNM").toString());
+				builder.append(","+map.get("SAMPNM"));
+			}
+		}
+		if(builder.length()>0){
+			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=<裤子<=115%*上衣");
+		}
+		
+		//	    女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
+		List<Map<String,Object>> check_S10_Z1=ordRepository.check_S10_Z1(mtorno);
+		for(Map<String,Object> map:check_S10_Z1){
+			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
+			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
+			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+			BigDecimal T04_ormtqt=(BigDecimal)map.get("T04_ORMTQT");
+			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)))!=0 && T02_ormtqt.compareTo(T04_ormtqt)!=0 ){
+				//sampnoes.add(map.get("SAMPNM").toString());
+				builder.append(","+map.get("SAMPNM"));
+			}
+		}
+		if(builder.length()>0){
+			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=裤子=裙子");
+		}
+	}
+	
 	
 	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager) {
 		return ordRepository.queryZgsVO(pager);
@@ -710,5 +810,9 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		pager.setRoot(list);
 		return pager;
+	}
+	
+	public ReloadTotal reloadTotal(MapParams params) {
+		return ordRepository.reloadTotal(params.getParams());
 	}
 }

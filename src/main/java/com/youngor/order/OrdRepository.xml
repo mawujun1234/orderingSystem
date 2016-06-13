@@ -271,14 +271,30 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </sql>
      <select id="queryQyVO" parameterType="map" resultType="com.youngor.order.QyVO" >
      	SELECT c.mtorno,b.orstat,a.channo,a.ordorg,g.orgnm as ordorg_name,e.SPCLNO,e.SPTYNO,e.SPSENO,e.plspno,e.plspnm,d.sampno,d.sampnm,d.packqt,c.suitno,c.ormtqs,c.ormtqt
+		,f.spftpr,f.sprtpr
 		FROM ORD_ORD A
 		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
 		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
-		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
 		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
 		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		inner join ORD_SAMPLE_DESIGN_STPR f on c.sampno=f.sampno and c.suitno=f.suitno
 		<include refid="queryQyVO_where"></include> 
      </select>
+     
+      <select id="reloadTotal" parameterType="map" resultType="com.youngor.order.ReloadTotal">
+      	SELECT sum(ormtqs) ormtqs,sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*ormtqs) ormtqs_zhes,
+      	sum(ormtqt) ormtqt,sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*ormtqt) ormtqt_zhes,
+      	SUM(F.spftpr*ormtqt) spftpr_jine,SUM(f.sprtpr*ormtqt) sprtpr_jine
+		FROM ORD_ORD A
+		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		inner join ORD_SAMPLE_DESIGN_STPR f on c.sampno=f.sampno and c.suitno=f.suitno
+		<include refid="queryQyVO_where"></include> 
+      </select>
      
      
      <update id="updateOrmtqt" parameterType="map"  >
@@ -422,6 +438,40 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        	 <if test=" isfect!=null and isfect!=''">
        	 	and b.isfect=#{isfect}
        	 </if>
+     </select>
+     
+     <!--  不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准) -->
+     <select id="check_S10_Z0_0" resultType="map" parameterType="map">
+     	select b.sampnm
+		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
+		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=0
+		group by b.sampnm
+     </select>
+     <!--   拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣) -->
+     <select id="check_S10_Z0_1" resultType="map" parameterType="map">
+     	select b.sampno,b.sampnm
+		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
+		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
+		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=1
+		group by  b.sampno,b.sampnm
+     </select>
+     <!-- 女 套西：上衣，裤子，裙子      (上衣=裤子=裙子) -->
+     <select id="check_S10_Z1" resultType="map" parameterType="map">
+     	select b.sampno,b.sampnm
+		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
+		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
+		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
+		,sum(decode(a.suitno,'T04',ormtqt,0)) T04_ormtqt
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		and c.sptyno='S10' and b.sexno='Z1' 
+		group by  b.sampno,b.sampnm
      </select>
 </mapper>
 

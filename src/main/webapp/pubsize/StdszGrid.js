@@ -162,12 +162,15 @@ Ext.define('y.pubsize.StdszGrid',{
 	onCreate:function(){
     	var me=this;
 		var child=Ext.create('y.pubsize.PubSize',{
-
+			sizest:1,
+			sizety:"STDSZ"
 		});
 		child.set("id",null);
 		
 		var formpanel=Ext.create('y.pubsize.StdszForm',{});
 		formpanel.loadRecord(child);
+		
+		formpanel.down("#sizeno").setReadOnly(false);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -197,6 +200,7 @@ Ext.define('y.pubsize.StdszGrid',{
 
 		var formpanel=Ext.create('y.pubsize.StdszForm',{});
 		formpanel.loadRecord(node);
+		formpanel.down("#sizeno").setReadOnly(true);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

@@ -56,6 +56,8 @@ public class OrdSzrt {
 	private String sizety;
 	@FieldDefine(title="比例",hidden=true)
 	private Double szrate;
+	@FieldDefine(title="排序",hidden=false)
+	private Integer sizeso;
 	
 	
 	public OrdSzrt.PK geetPK(){
@@ -217,6 +219,16 @@ public class OrdSzrt {
 
 	public void setSzrate(Double szrate) {
 		this.szrate = szrate;
+	}
+
+
+	public Integer getSizeso() {
+		return sizeso;
+	}
+
+
+	public void setSizeso(Integer sizeso) {
+		this.sizeso = sizeso;
 	}
 
 }

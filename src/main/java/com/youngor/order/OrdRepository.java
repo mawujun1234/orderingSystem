@@ -12,6 +12,7 @@ import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -94,4 +95,10 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public List<Map<String,Object>> sizeVO_querySizeVOData(Map<String,Object> params);
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager);
+	
+	public List<Map<String,Object>> check_S10_Z0_0(@Param("mtorno")String mtorno);
+	public List<Map<String,Object>> check_S10_Z0_1(@Param("mtorno")String mtorno);
+	public List<Map<String,Object>> check_S10_Z1(@Param("mtorno")String mtorno);
+	
+	public ReloadTotal reloadTotal(Map<String,Object> params);
 }

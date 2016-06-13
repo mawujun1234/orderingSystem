@@ -14,6 +14,7 @@ import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
 import com.youngor.utils.ContextUtils;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -105,7 +106,12 @@ public class OrdController {
 	@ResponseBody
 	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
 		//return null;
-		return ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
+		List<Org> orges= ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
+		Org org=new Org();
+		org.setOrgno("");
+		org.setOrgnm("不限");
+		orges.add(0, org);
+		return orges;
 	}
 	
 	/**
@@ -157,9 +163,15 @@ public class OrdController {
 	@ResponseBody
 	public String updateApprove(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno){
 		//System.out.println(orddtles);
-		
 		ordService.updateApprove_org(qyno, channo, ordorg, ormtno, bradno, spclno);
 		return "{success:true}";
+	}
+	@RequestMapping("/ord/qyVO/reloadTotal.do")
+	@ResponseBody
+	public ReloadTotal reloadTotal(MapParams params){
+		
+		ReloadTotal reloadTotal= ordService.reloadTotal(params);
+		return reloadTotal==null?new ReloadTotal():reloadTotal;
 	}
 	
 	/**

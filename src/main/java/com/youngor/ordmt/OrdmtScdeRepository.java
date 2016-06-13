@@ -1,12 +1,11 @@
 package com.youngor.ordmt;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.UUID;
 import com.mawujun.repository.IRepository;
-
-import com.youngor.ordmt.OrdmtScde;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -14,6 +13,6 @@ import com.youngor.ordmt.OrdmtScde;
  */
 @Repository
 public interface OrdmtScdeRepository extends IRepository<OrdmtScde, String>{
-	public List<OrgChancl> queryChanncl();
+	public List<OrgChancl> queryChanncl(@Param("ormtno")String ormtno);
 
 }

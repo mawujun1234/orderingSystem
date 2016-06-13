@@ -22,6 +22,7 @@ Ext.define('y.pubsize.StdszForm',{
 		{
 	        fieldLabel: '规格类型',
 	        name: 'sizety',
+	       
 	        hidden:true,
 	        value:'STDSZ',
             selectOnFocus:true,
@@ -30,6 +31,7 @@ Ext.define('y.pubsize.StdszForm',{
 		{
 	        fieldLabel: '规格代码',
 	        name: 'sizeno',
+	         itemId:'sizeno',
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },
@@ -38,6 +40,12 @@ Ext.define('y.pubsize.StdszForm',{
 	        name: 'sizenm',
             selectOnFocus:true,
 	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '排序',
+	        name: 'sizeso',
+            selectOnFocus:true,
+	        xtype:'numberfield'
 	    },
 		{
 	        fieldLabel: '品牌',
@@ -83,17 +91,17 @@ Ext.define('y.pubsize.StdszForm',{
                 flex: 1
             },
             layout: 'hbox',
-            value:'1',
+           // value:'1',
             items: [
             	{
                     boxLabel  : '作废',
                     name: 'sizest',
-                     checked:true,
                     inputValue: '0'
                 },
            		{
                     boxLabel  : '有效',
                     name: 'sizest',
+                    checked:true,
                     inputValue: '1'
                 }
             ]

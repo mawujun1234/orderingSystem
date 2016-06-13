@@ -36,7 +36,25 @@ Ext.define('y.order.QyVONewForm',{
 	      }
        // console.log(1);
        //me.unmask();
-       me.items= [
+       me.items= [{
+				fieldLabel: '订货单位',
+				labelWidth:65,
+				width:170,
+//				allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"订货单位不允许为空",
+				name:'ordorg',
+				itemId: 'ordorg',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'orgnm',
+			    valueField: 'orgno',
+			    store:Ext.data.StoreManager.lookup('ordorg_storeId'),
+	            hidden:false,
+	            value:me.params.ordorg,
+				xtype:'combobox'
+			 },
 		{
 	        fieldLabel: '样衣编号',
 	        name: 'sampnm',
@@ -92,7 +110,8 @@ Ext.define('y.order.QyVONewForm',{
 						ormtqt:records[i].get("ormtqt")
 					});
 				}
-				
+				var ordorg_field=button.up("form").getForm().findField("ordorg");
+				params.ordorg=ordorg_field.getValue();
 				Ext.Ajax.request({
 					url:Ext.ContextPath+'/ord/qyVO/createNew.do',
 					params:params,

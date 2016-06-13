@@ -57,10 +57,10 @@ Ext.define('y.main.Main', {
 //							hidden : '{!isToolbarMenu}'
 //						}
 //					},
-					{
-						xtype : 'mainbottom',
-						region : 'south' // 把他放在最底下
-					}, 
+//					{
+//						xtype : 'mainbottom',
+//						region : 'south' // 把他放在最底下
+//					}, 
 					{
 						xtype : 'mainmenutree',
 						itemId:'mainmenutree',

@@ -11,17 +11,35 @@ Ext.define('y.order.QyVOGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-        {dataIndex:'channo_name',header:'渠道类型'
+        {dataIndex:'channo_name',header:'渠道类型',hidden:true
         },
 		{dataIndex:'ordorg_name',header:'订货单位'
+        },
+        {dataIndex:'orstat',header:'订货状态',renderer:function(value){
+        		if(value==0){
+        			return "编辑中";
+        		} else if(value==1){
+        			return "审批中";
+        		} else if(value==2){
+        			return "大区审批通过";
+        		} else if(value==3){
+        			return "总部审批通过";
+        		} else if(value==4){
+        			return "退回";
+        		}
+        	}
         },
 		{dataIndex:'sptyno_name',header:'小类'
         },
 		{dataIndex:'spseno_name',header:'系列'
         },
-		{dataIndex:'plspnm',header:'企划样衣编号'
+		{dataIndex:'plspnm',header:'企划样衣编号',hidden:true
         },
 		{dataIndex:'sampnm',header:'设计样衣编号'
+        },
+        {dataIndex:'spftpr',header:'出厂价'
+        },
+        {dataIndex:'sprtpr',header:'零售价'
         },
 		{dataIndex:'packqt',header:'包装要求'
         },
@@ -29,20 +47,39 @@ Ext.define('y.order.QyVOGrid',{
         },
 		{dataIndex:'ormtqs',header:'原始数量',width:75
         },
+        {dataIndex:'ormtqs_zhes',header:'原始数量折算',width:75
+//        	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+//        		var suitno=record.get("suitno");
+//        		if("T00"==suitno){
+//					return value*1;
+//				} else if("T01"==suitno){//上衣
+//					return value*0.75; 
+//				} else if("T02"==suitno){//裤子
+//					return value*0.25; 
+//				} else if("T04"==suitno){//裙子
+//					return value*0.25;
+//				} else {
+//					return value*1;
+//				}
+//        	}
+        },
 		{dataIndex:'ormtqt',header:'平衡数量',width:75,
 			renderer:function(value, metaData, record, rowIndex, colIndex, store){
 				if(record.get("orstat")==0 || record.get("orstat")==1){
 					metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 				}
-            	 
+
             	 return value;
             },editor: {
                 xtype: 'numberfield',
                 allowDecimals:false,
                 selectOnFocus:true 
             }
+        }
+        ,{dataIndex:'ormtqt_zhes',header:'平衡数量折算',width:75},
+        {dataIndex:'spftpr_jine',header:'出厂金额'
         },
-		{dataIndex:'ormark',header:'备注'
+        {dataIndex:'sprtpr_jine',header:'零售金额'
         }
       ];
       
@@ -53,7 +90,8 @@ Ext.define('y.order.QyVOGrid',{
 	  
 	  this.cellEditing.on("beforeedit",function(editor, context){
 	   	var record=context.record;
-	   	if(record.get("orstat")!=0 && record.get("orstat")!=1){
+	   	//console.log(record.get("orstat"));
+	   	if(record.get("orstat")!=0 && record.get("orstat")!=4){//alert(1);
 			return false;
 		}
 	  });
@@ -63,6 +101,15 @@ Ext.define('y.order.QyVOGrid',{
 	  	var field =context.field ;
 	  	var value=context.value;
 	  	
+	  	//区域的平衡数量必须 为包装要求的整数倍,但是裤子可以不是整数倍
+	  	if(record.get("channo")=="QY" && record.get("suitno")!="T02"){
+	  		var temp=value/record.get("packqt");
+	  		if(parseInt(temp)!=temp){
+	  			Ext.Msg.alert("消息","修改失败，输入的平衡数量必须是‘包装要求’的整数倍!");
+	  			record.set("ormtqt", context.originalValue);
+	  			return;
+	  		}
+	  	}
 
 	  	Ext.Ajax.request({
 						url:Ext.ContextPath+'/ord/quVO/updateOrmtqt.do',
@@ -75,6 +122,23 @@ Ext.define('y.order.QyVOGrid',{
 						success:function(){
 							record.commit();
 							//me.getStore().reload();
+							//计算折算值，放在前面好像会报错
+							var suitno=record.get("suitno");
+			        		if("T00"==suitno){
+								record.set("ormtqt_zhes", value);
+							} else if("T01"==suitno){//上衣
+								record.set("ormtqt_zhes", (value*0.75).toFixed( 2 )); 
+							} else if("T02"==suitno){//裤子
+								record.set("ormtqt_zhes", (value*0.25).toFixed( 2 )); 
+							} else if("T04"==suitno){//裙子
+								record.set("ormtqt_zhes", (value*0.25).toFixed( 2 ));
+							} else {
+								record.set("ormtqt_zhes", value*1);
+							}
+							record.set("spftpr_jine", (value*record.get("spftpr")).toFixed( 2 )); 
+							record.set("sprtpr_jine", (value*record.get("sprtpr")).toFixed( 2 )); 
+							//刷新汇总信息
+							grid.reloadTotal(grid.getStore().getProxy().extraParams);
 						}
 						
 					});
@@ -82,6 +146,7 @@ Ext.define('y.order.QyVOGrid',{
 	  });
       
 
+	 
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
@@ -125,6 +190,14 @@ Ext.define('y.order.QyVOGrid',{
 			}
 	  });
 
+//	  me.ordorg_store=Ext.create('Ext.data.Store',{
+//				    fields: ['orgno', 'orgnm'],
+//				    autoLoad:false,
+//				    proxy: {
+//				        type: 'ajax',
+//				        url: Ext.ContextPath+'/ord/queryOrdorg.do'
+//				    }
+//				});
 	  me.dockedItems=[];
       me.dockedItems.push({
 	        xtype: 'pagingtoolbar',
@@ -147,6 +220,12 @@ Ext.define('y.order.QyVOGrid',{
 		        			ormtno:record.get("ormtno")
 		        		});
 		        		//ordorg.getStore().reload();
+		        		
+		        		var channo=combo.nextSibling("#channo");
+		        		channo.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+		        			ormtno:record.get("ormtno")
+		        		});
+		        		channo.getStore().reload();
 					}
 				}
 			},{
@@ -214,8 +293,10 @@ Ext.define('y.order.QyVOGrid',{
 				forceSelection:true,
 			    displayField: 'orgnm',
 			    valueField: 'orgno',
-			    store: {
+			    //store:me.ordorg_store,
+			    store:{
 				    fields: ['orgno', 'orgnm'],
+				    storeId:'ordorg_storeId',
 				    autoLoad:false,
 				    proxy: {
 				        type: 'ajax',
@@ -316,12 +397,12 @@ Ext.define('y.order.QyVOGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '样衣编号',
-		        labelWidth:65,
+		        fieldLabel: '设计样衣编号',
+		        labelWidth:85,
 		        itemId: 'sampno',
 	            xtype:'textfield'
 		    },{
-				fieldLabel: '订货状态',
+				fieldLabel: '订单状态',
 				labelWidth:65,
 		        width:165,
 				itemId: 'orstat',
@@ -343,6 +424,8 @@ Ext.define('y.order.QyVOGrid',{
 					var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=grid.getParams();
 					grid.getStore().reload();
+					//重新统计汇总数据
+					grid.reloadTotal(grid.getStore().getProxy().extraParams);
 				},
 				iconCls: 'icon-refresh'
 			},{
@@ -363,7 +446,9 @@ Ext.define('y.order.QyVOGrid',{
 			    	} else {
 			    		ordorg_name="<span style='color:red;'>"+ordorg_name+"</span>订货单位";
 			    	}
-					Ext.Msg.confirm("消息","是否确定要提交审批!"+ordorg_name+"和当前选中的<span style='color:red;'>‘品牌+大类’</span>的数据都会被提交!",function(btn){
+	
+			    	
+					Ext.Msg.confirm("消息","是否确定要提交审批!"+ordorg_name+"和当前选中的<span style='color:red;'>‘"+toolbars[1].down("#bradno").getRawValue()+"+"+toolbars[1].down("#spclno").getRawValue()+"’</span>的数据都会被提交!",function(btn){
 						if(btn=='yes'){
 							me.updateApprove();
 						}
@@ -400,17 +485,15 @@ Ext.define('y.order.QyVOGrid',{
 		var me=this;
 		var toolbars=this.getDockedItems('toolbar[dock="top"]');
 		var ordorg=toolbars[0].down("#ordorg").getValue();
-		if(!ordorg){
-			Ext.Msg.alert("消息","请先选择一个订货单位!");
-			return;
-		}
-//		var ortyno=toolbars[0].down("#ortyno").getValue();
-//		if(!ortyno){
-//			ortyno='DZ';
+//		if(!ordorg){
+//			Ext.Msg.alert("消息","请先选择一个订货单位!");
+//			return;
 //		}
+
 		
 		
     	var qyVONewForm=Ext.create('y.order.QyVONewForm',{
+    		//ordorg_store:ordorg.getStore(),
     		params:{
     			ordorg:ordorg,
 	    		ortyno:'DZ',
@@ -452,6 +535,7 @@ Ext.define('y.order.QyVOGrid',{
 			params:params,
 			method:'POST',
 			success:function(response){
+				
 				var obj=Ext.decode(response.responseText);
 				if(obj.success==false){
 					Ext.Msg.alert("消息",obj.msg);
@@ -460,6 +544,28 @@ Ext.define('y.order.QyVOGrid',{
 				Ext.Msg.alert("消息","提交成功!");
 				//button.up('window').close();
 				me.getStore().reload();
+			}
+		});
+    },
+    reloadTotal:function(params){
+    	var me=this;
+    	Ext.Ajax.request({
+			url:Ext.ContextPath+'/ord/qyVO/reloadTotal.do',
+			params:params,
+			method:'POST',
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+					Ext.Msg.alert("消息",obj.msg);
+					return;
+				}
+				me.total_panel.down("#ormtqs").setValue(obj.ormtqs);
+				me.total_panel.down("#ormtqs_zhes").setValue(obj.ormtqs_zhes);
+				me.total_panel.down("#ormtqt").setValue(obj.ormtqt);
+				me.total_panel.down("#ormtqt_zhes").setValue(obj.ormtqt_zhes);
+				me.total_panel.down("#spftpr_jine").setValue(obj.spftpr_jine);
+				me.total_panel.down("#sprtpr_jine").setValue(obj.sprtpr_jine);
+				
 			}
 		});
     }

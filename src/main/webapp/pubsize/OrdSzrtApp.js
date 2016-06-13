@@ -104,9 +104,9 @@ Ext.onReady(function(){
 		        fieldLabel: '版型',
 		        labelWidth:50,
 		        itemId: 'versno',
-	            allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
-	            blankText:"版型不允许为空",
+//	            allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"版型不允许为空",
 	            xtype:'combo',
 		        tyno:'13',
 		        queryMode: 'local',
@@ -137,12 +137,22 @@ Ext.onReady(function(){
 			    displayField: 'sizenm',
 			    valueField: 'sizeno',
 			    store: {
-			    	autoLoad:false,
+			    	autoLoad:true,
 				    fields: ['sizeno', 'sizenm'],
 				    proxy:{
 				    	type:'ajax',
 				    	//extraParams:{szbrad:'sjs'},
 				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY4Ordmt.do'
+				    },
+				    listeners:{
+				    	load:function(myStore){
+				    		if(myStore.getCount( ) >0){
+						 		var r=myStore.getAt(0);//第一行是无
+						 		var me=tabpanel.down("#sizegp");
+						 		me.select( r );
+						 		me.fireEvent("select", me, r);
+						 	}
+				    	}
 				    }
 				}
 		        
@@ -248,10 +258,10 @@ Ext.onReady(function(){
 	
 	function createOrdSzrtGrid(initColumns){
 		var params=getParams();
-		if(!params.versno){
-			Ext.Msg.alert("消息","请先选择版型!");
-			return;
-		}
+//		if(!params.versno){
+//			Ext.Msg.alert("消息","请先选择版型!");
+//			return;
+//		}
 		if(!params.sizegp){
 			Ext.Msg.alert("消息","请先选择规格范围!");
 			return;
@@ -271,10 +281,10 @@ Ext.onReady(function(){
 	
 	function createPrdpkGrid(initColumns){
 		var params=getParams();
-		if(!params.versno){
-			Ext.Msg.alert("消息","请先选择版型!");
-			return;
-		}
+//		if(!params.versno){
+//			Ext.Msg.alert("消息","请先选择版型!");
+//			return;
+//		}
 		if(!params.sizegp){
 			Ext.Msg.alert("消息","请先选择规格范围!");
 			return;
