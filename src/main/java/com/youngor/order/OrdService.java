@@ -638,6 +638,13 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 	}
 	
+	public Map<String,Object> zgs_check_canedit(String ormtno,String bradno,String spclno) {
+		return ordRepository.zgs_check_canedit(ormtno, bradno, spclno);
+	}
+	public List<Map<String,Object>> zgs_queryOrderState(String ormtno,String bradno,String spclno){
+		return ordRepository.zgs_queryOrderState(ormtno, bradno, spclno);
+	}
+	
 	public void meger_all(ArrayList<Map<String,Object>> data) {
 		
 	}

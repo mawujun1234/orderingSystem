@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.TpRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="tpAllQuery_where">
+			<if test="bradno!=null and bradno!=''">
+				and c.bradno=#{bradno}
+			</if>
+			<if test="spclno!=null and spclno!=''">
+				and c.spclno=#{spclno}
+			</if>
+			<if test="sptyno!=null and sptyno!=''">
+				and C.sptyno=#{sptyno}
+			</if> 
+			<if test="spseno!=null and spseno!=''">
+				and C.spseno=#{spseno}
+			</if> 
+			<if test="sampnm!=null and sampnm!=''">
+				and B.sampnm like '%${sampnm}%'
+			</if> 
+     </sql>
+    <select id="tpAllQuery" resultType="map" parameterType="map">
+    	SELECT X.*,Y.ORMTQT_TP FROM (
+		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X LEFT JOIN
+		(
+		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY A.SAMPNO,A.SUITNO
+		) Y
+		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+    </select> 
+    <select id="tpAllQuery_count" resultType="int" parameterType="map">
+    	SELECT count(*) FROM (
+			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+			<include refid="tpAllQuery_where"></include> 
+			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X
+    </select> 
+    
+    <select id="queryTpYxgsColumns" resultType="map">
+    	select * from t_org where orgty='COMP'AND ORGST='KQ' AND ORGNO!='08' ORDER BY ORGSO
+    </select>
+    
+    <select id="tpYxgsQuery" resultType="map" parameterType="map">
+    	SELECT X.*,Y.ORMTQT_TP FROM (
+		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X LEFT JOIN
+		(
+		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY A.SAMPNO,A.SUITNO
+		) Y
+		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+    </select> 
+    <select id="tpYxgsQuery_count" resultType="int" parameterType="map">
+    	SELECT count(*) FROM (
+			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+			<include refid="tpAllQuery_where"></include> 
+			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X
+    </select> 
+    
+    
+     <select id="queryTpQyColumns" resultType="map" parameterType="map">
+    	select A.* from t_org A,T_ORG_ORG B 
+		where A.ORGNO=B.CHILD_NO AND orgty='REGN' AND ORGST='KQ' AND B.DIM='SALE' AND B.PARENT_NO=#{yxgsno} 
+		ORDER BY ORGSO
+    </select>
+    <select id="tpQyQuery" resultType="map" parameterType="map">
+    	SELECT X.*,Y.ORMTQT_TP FROM (
+		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X LEFT JOIN
+		(
+		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
+		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
+		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+		<include refid="tpAllQuery_where"></include> 
+		GROUP BY A.SAMPNO,A.SUITNO
+		) Y
+		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+    </select> 
+    <select id="tpQyQuery_count" resultType="int" parameterType="map">
+    	SELECT count(*) FROM (
+			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
+			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
+			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+			<include refid="tpAllQuery_where"></include> 
+			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+		) X
+    </select> 
+    
+</mapper>
+

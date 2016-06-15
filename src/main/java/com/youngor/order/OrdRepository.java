@@ -88,6 +88,9 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public void clearnum_orddtl(@Param("sampno")String sampno);
 	public void clearnum_ordszdtl(@Param("sampno")String sampno);
 	
+	public Map<String,Object> zgs_check_canedit(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	public List<Map<String,Object>> zgs_queryOrderState(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	
 	public List<Map<String,Object>> query_meger_comp(@Param("SAMPNO")String SAMPNO);
 	
 	

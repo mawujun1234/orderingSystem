@@ -333,11 +333,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      
      <select id="queryZgsVO" resultType="map" parameterType="map">
-     	SELECT P.PALTPY,DECODE(M.SDTYNO,0,'总公司平衡','非总公司平衡')SDTYNO,DECODE(M.ORSTAT,0,'编辑中','平衡完成')ORSTAT,
+     	SELECT P.PALTPY,DECODE(M.SDTYNO,0,'总公司平衡','非总公司平衡')SDTYNO,DECODE(M.ORSTAT,1,'已提交','未提交审批')ORSTAT,
 		       M.SPTYNM,M.SPSENM,M.SAMPNO,M.SAMPNM,M.ORMTQS00,M.ORMTQS01,M.ORMTQS02,M.ORMTQS04,
 		       M.ORMTQT00,M.ORMTQT01,M.ORMTQT02,M.ORMTQT04,P1.SAMPNM PLSPNM
 		 FROM
-		(SELECT A.ORMTNO,SUM(DECODE(B.SDTYNO,'30',0,1))SDTYNO,SUM(DECODE(B.ORSTAT,0,0,4,0,1))ORSTAT,
+		(SELECT A.ORMTNO,SUM(DECODE(B.SDTYNO,'30',0,1))SDTYNO,SUM(DECODE(B.ORSTAT,1,1,0))ORSTAT,
 		   E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,
 		   DECODE(C.SUITNO,'T00',SUM(C.ORMTQS),0)ORMTQS00,DECODE(C.SUITNO,'T01',SUM(C.ORMTQS),0)ORMTQS01,
 		   DECODE(C.SUITNO,'T02',SUM(C.ORMTQS),0)ORMTQS02,DECODE(C.SUITNO,'T04',SUM(C.ORMTQS),0)ORMTQS04,
@@ -365,7 +365,23 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		GROUP BY A.ORMTNO,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,C.SUITNO
 		)M 
 		LEFT JOIN ORD_COMP_PAL P ON M.ORMTNO=P.ORMTNO AND M.SAMPNO=P.SAMPNO
-		LEFT JOIN ORD_SAMPLE_DESIGN P1 ON P.SAMPNO=P1.SAMPNO
+		LEFT JOIN ORD_SAMPLE_DESIGN P1 ON P.PSMPNO=P1.SAMPNO
+     </select>
+     <!-- 判断这个品牌和大类下的订单是否可以处理了 -->
+     <select id="zgs_check_canedit" resultType="map" parameterType="map">
+     	select SUM(DECODE(A.SDTYNO,'30',1,0))SDTYNO,SUM(DECODE(A.ORSTAT,1,1,0))ORSTAT
+		from ORD_ORDHD a,ORD_ORD b
+		where a.MTORNO=b.MTORNO AND b.ORTYNO='DZ' and b.ORMTNO=#{ormtno} and A.bradno=#{bradno} and A.spclno=#{spclno} 
+     </select>
+     <!-- 查询总公司下哪些区域的订单状态-->
+     <select id="zgs_queryOrderState" resultType="map" parameterType="map">
+     	SELECT G.ORGNM,C.SDTYNM,DEITNM FROM ORD_ORD A
+		INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO
+		INNER JOIN ORD_SCDTY C ON B.SDTYNO=C.SDTYNO
+		INNER JOIN ORD_PUB_DEFCODE ON DETYNO='ORDSTAT' AND ORSTAT=DEITNO
+		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO 
+		WHERE A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' 
+			AND B.BRADNO=#{bradno} AND B.SPCLNO=#{spclno}
      </select>
      <!--对订单明细表的确认数量清0-->
      <update id="clearnum_orddtl" parameterType="string">

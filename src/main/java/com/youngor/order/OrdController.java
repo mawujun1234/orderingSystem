@@ -1,5 +1,7 @@
 package com.youngor.order;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -184,6 +186,31 @@ public class OrdController {
 	@ResponseBody
 	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager){
 		return ordService.queryZgsVO(pager);
+	}
+	
+	@RequestMapping("/ord/zgsVO/zgs_check_canedit.do")
+	@ResponseBody
+	public Map<String,Object> zgs_check_canedit(String ormtno,String bradno,String spclno){
+		Map<String,Object> map= ordService.zgs_check_canedit(ormtno, bradno, spclno);
+		if(map==null || map.size()==0){
+			map=new HashMap<String,Object>();
+			map.put("canedit", false);
+		} else {
+			BigDecimal SDTYNO=(BigDecimal)map.get("SDTYNO");
+			BigDecimal ORSTAT=(BigDecimal)map.get("ORSTAT");
+			if(SDTYNO.intValue()>0 && ORSTAT.intValue()>0){
+				map.put("canedit", true);
+			} else {
+				map.put("canedit", false);
+			}
+		}
+		return map;
+	}
+	
+	@RequestMapping("/ord/zgsVO/queryOrderState.do")
+	@ResponseBody
+	public List<Map<String,Object>> zgs_queryOrderState(String ormtno,String bradno,String spclno){
+		return ordService.zgs_queryOrderState(ormtno, bradno, spclno);
 	}
 	/**
 	 * 清零

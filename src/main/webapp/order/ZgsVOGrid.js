@@ -1,6 +1,8 @@
 Ext.define('y.order.ZgsVOGrid',{
 	extend:'Ext.grid.Panel',
-	requires: [],
+	requires: [
+		'y.order.ZgsOrderState'
+	],
 	columnLines :true,
 	stripeRows:true,
 	selModel: {
@@ -16,10 +18,16 @@ Ext.define('y.order.ZgsVOGrid',{
 	      {xtype: 'rownumberer'},
 	      {dataIndex:'PALTPY',header:'状态'},
 	      {dataIndex:'SDTYNO',header:'订单节点'},
-	      {dataIndex:'ORSTAT',header:'订单状态'},
+	      {dataIndex:'ORSTAT',header:'区域提交状态',renderer:function(value){
+	      	if(value=="已提交"){
+	      		return value;
+	      	} else {
+	      		return "<a href='#'>"+value+"</a>";
+	      	}
+	      }},
 	      {dataIndex:'SPTYNM',header:'小类'},
 	      {dataIndex:'SPSENM',header:'系列'},
-	      {dataIndex:'SAMPNM',header:'样衣编号'},
+	      {dataIndex:'SAMPNM',header:'设计样衣编号'},
 	      {
            header: '原始数量',columns:[
 		      {dataIndex:'ORMTQS00',header:'标准',width: 80,renderer:function(value){
@@ -101,27 +109,28 @@ Ext.define('y.order.ZgsVOGrid',{
 			},
 			listeners:{
 				load:function(store,records){
-//					if(records && records.length>0){
-//						if(!me.createNew_btn){
-//							var toolbars=me.getDockedItems('toolbar[dock="top"]');
-//							var createNew=toolbars[2].down("#createNew");
-//							var updateApprove=toolbars[2].down("#updateApprove");
-//							
-//							me.createNew_btn=createNew;
-//							me.updateApprove_btn=updateApprove;
-//						}
-//						
-//						if(records[0].get("orstat")==0 || records[0].get("orstat")==4 ){
-//							me.createNew_btn.enable();
-//							me.updateApprove_btn.enable();
-//						} else {
-//							me.createNew_btn.disable();
-//							me.updateApprove_btn.disable();
-//						}
-//						
-//					}
+	
+				
 				}
 			}
+	  });
+	  
+	  me.on("cellclick",function(view, td, cellIndex, record, tr, rowIndex, e, eOpts){
+	  	if(cellIndex!=4){
+	  		return;
+	  	}
+	  	if(record.get("ORSTAT")=="已提交"){
+	      	return ;
+	    }
+	  	me.showZgsOrderState();
+	  	
+	  });
+	   me.on("rowdblclick",function(view, record, tr, rowIndex, e, eOpts){
+//	  	if(record.get("ORSTAT")=="已提交"){
+//	      	return ;
+//	    }
+	  	me.showZgsOrderState();
+	  	
 	  });
 	  
 	  me.dockedItems=[];
@@ -204,26 +213,19 @@ Ext.define('y.order.ZgsVOGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '样衣编号',
-		        labelWidth:65,
+		        fieldLabel: '设计样衣编号',
+		        labelWidth:85,
 		        itemId: 'sampno',
 	            xtype:'textfield'
 		    },{
-				fieldLabel: '订货状态',
+				fieldLabel: '订单状态',
 				labelWidth:65,
 		        width:165,
-				itemId: 'orstat',
-				queryMode: 'local',
-				editable:false,
-				forceSelection:true,
-			    displayField: 'name',
-			    valueField: 'id',
-			    store: {
-				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
-				},
-	            hidden:false,
-				xtype:'combobox'
+				itemId: 'zgs_orstat',
+				fieldStyle:'background-color:#CDC9C9;',
+				readOnly:true,
+				xtype:'textfield'
+
 			 },{
 				text: '查询',
 				itemId:'reload',
@@ -231,6 +233,8 @@ Ext.define('y.order.ZgsVOGrid',{
 					var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=grid.getParams();
 					grid.getStore().reload();
+					
+					me.check_canedit();
 				},
 				iconCls: 'icon-refresh'
 			}]
@@ -264,11 +268,17 @@ Ext.define('y.order.ZgsVOGrid',{
 				},
 				iconCls: 'icon-reply'
 		  	},{
+		  		text: '平衡完成',
+				handler: function(btn){
+					me.balanceOver();
+				},
+				iconCls: ' icon-legal'
+		  	},{
 		  		text: '导出',
 				handler: function(btn){
 					me.createNew();
 				},
-				iconCls: 'icon-save'
+				iconCls: ' icon-download-alt'
 		  	}]
 	    });
 	  
@@ -283,10 +293,56 @@ Ext.define('y.order.ZgsVOGrid',{
 			"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[0].down("#spseno").getValue(),
 
-			"params['sampno']":toolbars[1].down("#sampno").getValue(),
-			"params['orstat']":toolbars[1].down("#orstat").getValue()
+			"params['sampno']":toolbars[1].down("#sampno").getValue()
+			//"params['orstat']":toolbars[1].down("#orstat").getValue()
 		};
 		return params;
+	},
+	check_canedit:function(){
+		var me=this;
+		//var params=me.getStore().getProxy().extraParams;
+		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		Ext.Ajax.request({
+			url:Ext.ContextPath+'/ord/zgsVO/zgs_check_canedit.do',
+			params:{
+				ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+				bradno:toolbars[0].down("#bradno").getValue(),
+				spclno:toolbars[0].down("#spclno").getValue()
+			},
+			method:'POST',
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(obj.canedit==true){
+					toolbars[2].enable();
+					toolbars[1].down("#zgs_orstat").setValue("可操作");
+				} else {
+					toolbars[2].disable();
+					toolbars[1].down("#zgs_orstat").setValue("不可操作");
+				}
+				
+			}
+		});
+		
+	},
+	showZgsOrderState:function(){
+		var me=this;
+		var grid=Ext.create('y.order.ZgsOrderState',{});
+	  	var toolbars=me.getDockedItems('toolbar[dock="top"]'); 
+	  	grid.getStore().getProxy().extraParams={
+	  		ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+			bradno:toolbars[0].down("#bradno").getValue(),
+			spclno:toolbars[0].down("#spclno").getValue()
+	  	};
+	  	grid.getStore().reload();
+	  	var win=Ext.create('Ext.Window',{
+	  		layout:'fit',
+	  		width:400,
+	  		height:320,
+	  		modal:true,
+	  		title:'区域订货状态',
+	  		items:[grid]
+	  	});
+	  	win.show();
 	},
 	clearNum:function(){
 		var grid=this;
@@ -295,12 +351,17 @@ Ext.define('y.order.ZgsVOGrid',{
 			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
 		}
+		
 		Ext.Msg.confirm("消息","是否确定对选中的样衣数据清零?",function(val){
 				if(val=='yes'){
 					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 					var ormtno=toolbars[0].down("#ordmtcombo").getValue();
 					var sampnos=[];
 					for(var i=0;i<modles.length;i++){
+						if(modles[i].get("PALTPY")){
+								Ext.Msg.alert("消息","样衣编号"+modles[i].get("SAMPNM")+"已经平衡过不能再平衡!");
+								return;
+						}
 						sampnos.push(modles[i].get("SAMPNO"));
 					}
 					Ext.Ajax.request({
@@ -332,6 +393,10 @@ Ext.define('y.order.ZgsVOGrid',{
 		    ]
 		});
 		for(var i=0;i<modles.length;i++){
+			if(modles[i].get("PALTPY")){
+				Ext.Msg.alert("消息","样衣编号"+modles[i].get("SAMPNM")+"已经平衡过不能再平衡!");
+				return;
+			}
 			store.add({
 				SAMPNO:modles[i].get("SAMPNO"),
 				SAMPNM:modles[i].get("SAMPNM"),
@@ -406,6 +471,10 @@ Ext.define('y.order.ZgsVOGrid',{
 			return;
 		}
 		var model=modles[0];
+		if(model.get("PALTPY")){
+				Ext.Msg.alert("消息","样衣编号"+model.get("SAMPNM")+"已经平衡过不能再平衡!");
+				return;
+		}
 		var store=Ext.create('Ext.data.Store', {
 			autoLoad:true,
 		    fields:[ 'SAMPNO','PSMPNO','YXGSNO','YXGSNM','ORMTQT'],
@@ -483,6 +552,13 @@ Ext.define('y.order.ZgsVOGrid',{
 		win.show();
 	},
 	recover:function(){
+		
+	},
+	/**
+	 * 平衡完成
+	 * @type 
+	 */
+	balanceOver:{
 	
 	}
 });
