@@ -27,7 +27,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public List<SampleDesignStpr> querySampleDesignStpr(@Param("sampno")String sampno);
 	
 	public List<SuitVO> querySuitVO_T00(SampleVO sampleVO);
-	public List<SuitVO> querySuitVO_PRDPK(SampleVO sampleVO);
+	public List<SuitVO> querySuitVO_T00_PRDPK(SampleVO sampleVO);
 	
 	/**
 	 * 
@@ -42,6 +42,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 //	public List<SuitVO> querySuitVO(@Param("sampno")String sampno,
 //			@Param("sptyno")String sptyno,@Param("sexno")String sexno,@Param("suitty")String suitty,@Param("spltmk")Integer spltmk);
 	public List<SuitVO> querySuitVO(SampleVO sampleVO);
+	public List<SuitVO> querySuitVO_PRDPK(SampleVO sampleVO);
 	
 	public void clearOrddtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);
 	public void clearOrdszdtl(@Param("mtorno")String mtorno,@Param("sampno")String sampno);

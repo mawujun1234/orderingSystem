@@ -63,13 +63,13 @@ Ext.define('y.pubsize.PrdpForm',{
             layout: 'hbox',
             items: [
             	{
-                    boxLabel  : '单规装',
+                    boxLabel  : '单规箱',
                     name: 'sizety1',
-                     checked:true,
+                    // checked:true,
                     inputValue: '0'
                 },
            		{
-                    boxLabel  : '混装',
+                    boxLabel  : '标准箱',
                     name: 'sizety1',
                     inputValue: '1'
                 }

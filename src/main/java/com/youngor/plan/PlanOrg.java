@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 import com.mawujun.generator.model.FieldDefine;
 
-@Entity(name="ord_plan_org")
+//@Entity(name="ord_plan_org")
 public class PlanOrg {
 	@Id
 	@Column(length=50)

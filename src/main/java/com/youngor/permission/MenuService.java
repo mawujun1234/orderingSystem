@@ -67,5 +67,11 @@ public class MenuService extends AbstractService<Menu, String>{
 	public List<Menu> queryElement(String jsp_url) {
 		return  menuRepository.queryElement(jsp_url, ShiroUtils.getUserId());
 	}
+	@Override
+	public void delete(Menu entity) {
+		//删除菜单角色的关联关系
+		roleMenuRepository.deleteBatch(Cnd.delete().andEquals(M.RoleMenu.menu.id, entity.getId()));
+		this.getRepository().delete(entity);
+	}
 
 }

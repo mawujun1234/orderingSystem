@@ -23,6 +23,7 @@ Ext.define('y.sample.SampleColthForm',{
 		{
 	        fieldLabel: '开发供应商',
 	        name: 'spsuno',
+	        itemId: 'spsuno',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"开发供应商不允许为空", 
@@ -401,6 +402,15 @@ Ext.define('y.sample.SampleColthForm',{
 	loadRecord:function(record){
 		var me=this;				
 		this.getForm().loadRecord(record);
+		//为供应商初始化名称
+		var spsuno_combo=me.down("#spsuno");
+		var spsuno_model= spsuno_combo.getStore().createModel({idsuno:record.get("spsuno"),idsunm:record.get("spsuno_name")});
+		spsuno_combo.setValue(spsuno_model);
+		
+		var prsuno_combo=me.down("#prsuno");
+		var prsuno_model= prsuno_combo.getStore().createModel({idsuno:record.get("prsuno"),idsunm:record.get("prsuno_name")});
+		prsuno_combo.setValue(prsuno_model);
+
 	},
 	loadGrid:function(sampleDesign){
 		var sampleDesignStprGrid_store=this.down("grid#sampleDesignStprGrid").getStore();

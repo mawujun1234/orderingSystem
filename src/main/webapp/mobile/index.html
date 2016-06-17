@@ -158,7 +158,7 @@
                                 <div class="item-content" style="padding-left:0px;">
                                   
                                   <div class="item-inner">
-                                    <div id="od_info_T00_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:4.5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
+                                    <div id="od_info_{{ suitVO.suitno_name }}_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
                                     <div class="item-input">
                                       <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt" onClick="card_header_input_click(this)" type="number" placeholder="请输入总订货数量" v-model="suitVO.ormtqt">
                                     </div>

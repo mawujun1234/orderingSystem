@@ -302,6 +302,19 @@ Ext.define('y.order.QyVOGrid',{
 				        type: 'ajax',
 				        url: Ext.ContextPath+'/ord/queryOrdorg.do'
 				    }
+//				    listeners:{
+//				    	load:function(store){
+//				    		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+//				    		var ordorg_combo=toolbars.down("#ordorg");
+//				    		if(!ordorg_combo.value ){
+//								if(myStore.getCount( ) >0){
+//						 			var r=myStore.getAt(1);
+//						 			me.select( r );
+//						 			me.fireEvent("select", me, r);
+//						 		}
+//							}
+//				    	}
+//				    }
 				},
 	            hidden:false,
 				xtype:'combobox'

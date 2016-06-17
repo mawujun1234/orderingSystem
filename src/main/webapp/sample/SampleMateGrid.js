@@ -16,7 +16,7 @@ Ext.define('y.sample.SampleMateGrid',{
 		
 		{dataIndex:'mateno',header:'面料货号'
         },
-        {dataIndex:'mtsuno',header:'供应商'
+        {dataIndex:'mtsuno_name',header:'供应商'
         }
 //		{dataIndex:'mtbrad',header:'面料品牌'
 //        },

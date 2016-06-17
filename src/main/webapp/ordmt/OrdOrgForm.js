@@ -18,6 +18,8 @@ Ext.define('y.ordmt.OrdOrgForm',{
     },
 	initComponent: function () {
        var me = this;
+       me.show_SelectOrdorgTree=false;
+       
        me.items= [
 //		{
 //	        fieldLabel: '订货会编号',
@@ -54,11 +56,11 @@ Ext.define('y.ordmt.OrdOrgForm',{
             		
             		//alert(newValue.id);
             		if(newValue.addModel=='single'){
-            			radiogroup.nextSibling("textfield[name='ordorg_name']").show();
-            			radiogroup.nextSibling("textfield[name='ordorg_name']").setValue("");
+            			radiogroup.nextSibling("#ordorg_fieldcontainer").show();
+            			radiogroup.nextSibling("#ordorg_fieldcontainer").down("#ordorg_name").setValue("");
             		} else {
-            			radiogroup.nextSibling("textfield[name='ordorg_name']").hide();
-            			radiogroup.nextSibling("textfield[name='ordorg_name']").setValue(newValue.addModel);
+            			radiogroup.nextSibling("#ordorg_fieldcontainer").hide();
+            			radiogroup.nextSibling("#ordorg_fieldcontainer").down("#ordorg_name").setValue(newValue.addModel);
             		}
             		if(newValue.addModel=='allQY'){
  						var sztype_combo=radiogroup.nextSibling("combobox[name='sztype']");
@@ -70,26 +72,56 @@ Ext.define('y.ordmt.OrdOrgForm',{
             	}
             }
         },
-		{
+        {
+	        xtype: 'fieldcontainer',
+	        itemId:"ordorg_fieldcontainer",
 	        fieldLabel: '订货单位',
-	        name: 'ordorg_name',
-	        allowBlank: false,
+	        labelWidth: 70,
+			allowBlank: false,
 	        afterLabelTextTpl: Ext.required,
 	        blankText:"订货单位不允许为空",
-            selectOnFocus:true,
-	        xtype:'textfield',
-	        listeners:{
-	        	focus:function(field){
-	        		me.selectOrdOrg(field);
-	        	}
-	        }
+	        // The body area will contain three text fields, arranged
+	        // horizontally, separated by draggable splitters.
+	        layout: 'hbox',
+	        items: [{
+	//	        fieldLabel: '订货单位',
+	//	        labelWidth: 65,
+		        name: 'ordorg_name',
+		        itemId: 'ordorg_name',
+		        allowBlank: false,
+		        afterLabelTextTpl: Ext.required,
+		        blankText:"订货单位不允许为空",
+	            selectOnFocus:true,
+	            readOnly:true,
+	            fieldStyle:'background-color:#CDC9C9;',
+		        xtype:'textfield'
+//		        listeners:{
+//		        	activate:function(field){
+//		        		console.log(1);
+//		        		if(me.show_SelectOrdorgTree==true){
+//		        			return;
+//		        		}
+//		        		me.show_SelectOrdorgTree=true;
+//		        		me.selectOrdOrg(field);
+//		        	}
+//		        }
+		    },{
+		    	xtype:'button',
+		    	text:'选择订货单位',
+		    	margin :'0 0 0 10',
+		    	handler:function(btn){
+		    		btn.up("form").selectOrdOrg(btn.previousSibling("textfield[name='ordorg_name']"));
+		    	}
+		    
+		    },{
+		        fieldLabel: '订货单位',
+		        name: 'ordorg',
+		        xtype:'textfield',
+				hidden:true
+		    }]
 	    },
-	    {
-	        fieldLabel: '订货单位',
-	        name: 'ordorg',
-	        xtype:'textfield',
-			hidden:true
-	    },
+		
+	    
 //		{
 //	        fieldLabel: '订货会类型',
 //	        name: 'channo',
@@ -176,6 +208,7 @@ Ext.define('y.ordmt.OrdOrgForm',{
 							return;
 						}
 						button.up('window').close();
+						me.grid.reload();
 					}
 					
 				});	
@@ -193,6 +226,7 @@ Ext.define('y.ordmt.OrdOrgForm',{
 	},
 	selectOrdOrg:function(field){
 		var me=this;
+		
 		var orgTree=Ext.create('y.org.OrgTreeQuery',{
 			
 			listeners:{
@@ -209,8 +243,18 @@ Ext.define('y.ordmt.OrdOrgForm',{
 			modal:true,
 			width:350,
 			height:560,
-			items:[orgTree]
+			style: {
+	            "z-index":190100
+	        },
+			items:[orgTree],
+			listeners:{
+				close:function(){
+					me.show_SelectOrdorgTree=false;
+				}
+			}
 		});
 		win.show();
+		//win.focus();
+		//alert(1);
 	}
 });

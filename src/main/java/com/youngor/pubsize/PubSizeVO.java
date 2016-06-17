@@ -11,10 +11,13 @@ public class PubSizeVO extends PubSize {
 	}
 	
 	public String getSizety1_name(){
-		if(this.getSizest()==1){
-			return "混装";
+		if(this.getSizety1()==null){
+			return null;
+		}
+		if(this.getSizety1()==1){
+			return "标准箱";
 		} else {
-			return "单规装";
+			return "单规箱";
 		}
 	}
 	

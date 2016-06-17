@@ -173,7 +173,7 @@ $(function(){
 		$("#od_loginpage_title").html(response.ormtnm);	
 	},'json');
 	
-	window.user=1;//null;
+	window.user=null;
 	if(!window.user){
 		$.router.load("#od_loginpage"); 
 	}
@@ -334,19 +334,31 @@ $(function(){
 							var sizeVOs=suitVO.sizeVOs;
 							var szrate_sum=suitVO.szrate_sum;
 							
+							var ormtqt=suitVO.ormtqt;//输入的总的数量
 							var used_orszqt=0;//已经使用掉的数量
 							var max_szrate_sizeVO=null;//持有最大比率的规格
 							var max_szrate=0;//最大的比率
 							for(var i=0;i<sizeVOs.length;i++){
-								if(sizeVOs[i].szrate>max_szrate){
-									max_szrate=sizeVOs[i].szrate;
-									max_szrate_sizeVO=sizeVOs[i];
+								//如果是标准箱的时候
+								if(sizeVOs[i].sizety=='PRDPK') {
+									//可以凑成几箱
+									var xiang_temp=Math.floor((suitVO.ormtqt*sizeVOs[i].szrate)/sizeVOs[i].sizeqt);
+									sizeVOs[i].orszqt=xiang_temp;
+									//还有多少数量
+									ormtqt=ormtqt-xiang_temp*sizeVOs[i].sizeqt;
+									
+								} else {//计算单规的数量
+									//获取持有最大比率的单规
+									if(sizeVOs[i].szrate>max_szrate){
+										max_szrate=sizeVOs[i].szrate;
+										max_szrate_sizeVO=sizeVOs[i];
+									}
+									sizeVOs[i].orszqt=Math.floor(ormtqt*(sizeVOs[i].szrate/szrate_sum));
+									used_orszqt+=sizeVOs[i].orszqt;
 								}
-								sizeVOs[i].orszqt=Math.floor(suitVO.ormtqt*(sizeVOs[i].szrate/szrate_sum));
-								used_orszqt+=sizeVOs[i].orszqt;
 							};
 							//把剩余的量加到比率最大的规格上
-							max_szrate_sizeVO.orszqt=max_szrate_sizeVO.orszqt+(suitVO.ormtqt-used_orszqt);
+							max_szrate_sizeVO.orszqt=max_szrate_sizeVO.orszqt+(ormtqt-used_orszqt);
 							
 						}, //distribute 
 						sumOrszqt:function(event){
@@ -366,7 +378,7 @@ $(function(){
 							var sizeVOs=suitVO.sizeVOs;
 							var ormtqt=0;
 							for(var i=0;i<sizeVOs.length;i++){
-								ormtqt+=parseInt(sizeVOs[i].orszqt);
+								ormtqt+=parseInt(sizeVOs[i].orszqt*sizeVOs[i].sizeqt);
 							}
 							suitVO.ormtqt=ormtqt;
 							
@@ -389,13 +401,14 @@ $(function(){
 	}//function scan()
 	
 	$("#od_info").on('click', 'input[type=number]', function(e){ 
+		//console.log(this.value);
 		$(this).get(0).select();
 	});
 	$("#od_info").on('input', 'input[type=number]', function(e){ //alert(1);
-		console.log(this.value);
+		//console.log(this.value);
 		this.value=this.value.replace(/\D/g,'');//.replace('/^[0-9]*[1-9][0-9]*$/g');//this.value.replace('/[^0-9]/g');
 		this.value=parseInt(this.value);//.replace('.','')
-		console.log(this.value+"====");
+		//console.log(this.value+"====");
 	});
 
 	$("#od_info_clear_button").click(function(){
@@ -418,12 +431,13 @@ $(function(){
 			}
 			var orszqt_sum=0;
 			for(var j=0;j<suitVOs[i].sizeVOs.length;j++){
-				orszqt_sum+=parseInt(suitVOs[i].sizeVOs[j].orszqt);
+				orszqt_sum+=parseInt(suitVOs[i].sizeVOs[j].orszqt*suitVOs[i].sizeVOs[j].sizeqt);
 			}
 			//console.log(suitVOs[i].ormtqt+"===="+orszqt_sum);
 			if(suitVOs[i].ormtqt!=orszqt_sum){
 				alert("<"+suitVOs[i].suitno_name+">的数据不一致!");
 				//$.toast("<"+suitVOs[i].suitno_name+">的数据不一致!", 2345, 'success top');
+				$.hidePreloader();
 				return;
 			}
 		}

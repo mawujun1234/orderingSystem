@@ -51,6 +51,7 @@ Ext.define('y.sample.SampleMateForm',{
 		{
 	        fieldLabel: '供应商',
 	        name: 'mtsuno',
+	        itemId: 'mtsuno',
 //            allowBlank: false,
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"供应商不允许为空",
@@ -219,7 +220,7 @@ Ext.define('y.sample.SampleMateForm',{
 				    success: function(record, operation) {
 				    	Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
-				    	me.previousSibling("grid#sampleMateGrid").getStore().reload({params:{sampno:record.get("sampno")}});
+				    	me.previousSibling("grid#sampleMateGrid").getStore().reload();
 				    	
 				    	
 				    }
@@ -228,7 +229,7 @@ Ext.define('y.sample.SampleMateForm',{
 				}
 			});
 	me.on("render",function(panel){
-		//panel.mask();	
+		panel.mask();	
 	});
       me.callParent();
 	},

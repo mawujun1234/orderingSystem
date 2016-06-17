@@ -11,8 +11,8 @@ import com.mawujun.generator.model.FieldDefine;
 import com.youngor.plan.PlanOrgdtl.PK;
 
 
-@Entity(name="ord_plan_orgdtl")
-@IdClass(PK.class)
+//@Entity(name="ord_plan_orgdtl")
+//@IdClass(PK.class)
 public class PlanOrgdtl {
 	@Id
 	@Column(length=50)

@@ -5,6 +5,7 @@ public class SizeVO {
 	private String sizeno;//规格代码
 	private String sizenm;//规格名称
 	private Integer orszqt;//数量
+	private Integer sizeqt=1;//主要用于计算，一个包装箱里有几件衣服，在查询包装箱的时候有用,如果单规默认是1，如果是标准箱 就是标准箱的数量
 	private Double szrate;//规格比例中的规格占比
 
 	
@@ -43,5 +44,13 @@ public class SizeVO {
 
 	public void setSizety(String sizety) {
 		this.sizety = sizety;
+	}
+
+	public Integer getSizeqt() {
+		return sizeqt;
+	}
+
+	public void setSizeqt(Integer sizeqt) {
+		this.sizeqt = sizeqt;
 	}
 }

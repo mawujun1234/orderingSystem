@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -137,29 +138,59 @@ public class OrdService extends AbstractService<Ord, String>{
 		result.put("sampleVO", sampleVO);
 		
 		//获取该用户的上报方式,如果是单规+整箱和单规，显示的是单规的信息，如果是整箱上报方式，那这里显示的是包装箱
-		OrdOrg ordOrg=ord.getOrdMethod();
-		if(ordOrg==null){
-			ordOrg=ordOrgService.get(new OrdOrg.PK(ord.getOrmtno(),org.getOrgno()));
-		}
+		OrdOrg ordOrg=getOrdMethod();//ord.getOrdMethod();
+//		if(ordOrg==null){
+//			ordOrg=ordOrgService.get(new OrdOrg.PK(ord.getOrmtno(),org.getOrgno()));
+//		}
 		
 		//如果是包装箱上报，就显示包装箱
 		if(ordOrg.getSztype()==2){
+			if(sampleVO.getSptyno().equals("S10")){
+				//获取各个套件的价格
+				setSuitStpres(sampleVO,ord.getChanno());
+				
+				//获取套件的标准箱
+				List<SuitVO> suitVOs_PRDPK=ordRepository.querySuitVO_PRDPK(sampleVO);
+				
+				List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
+				
+				//把规格数量进行合并，合并
+				for(SuitVO suitVO:suitVOs){
+					for(SuitVO suitVO_prdpk:suitVOs_PRDPK){
+						if(suitVO.getSuitno().equals(suitVO_prdpk.getSuitno())){
+							suitVO.getSizeVOs().addAll(0,suitVO_prdpk.getSizeVOs());
+						}
+						
+					}
+				}
+				
+				result.put("suitVOs", suitVOs);
+				
+			} else {//不是套装的时候，数据获取方式
+				//获取包装箱的数据
+				List<SuitVO> suitVOs_T00_PRDPK=ordRepository.querySuitVO_T00_PRDPK(sampleVO);
+				//放这里是因为，sql要用suitno进行关联，这样要改多个地方，玛法
+				
+				//获取单规的数据
+				List<SuitVO> suitVOs_T00=ordRepository.querySuitVO_T00(sampleVO);
+				//把规格数量进行合并，合并
+				for(SuitVO suitVO:suitVOs_T00){
+					for(SuitVO suitVO_prdpk:suitVOs_T00_PRDPK){
+						if(suitVO.getSuitno().equals(suitVO_prdpk.getSuitno())){
+							suitVO.getSizeVOs().addAll(0,suitVO_prdpk.getSizeVOs());
+						}
+						
+					}
+				}
+				result.put("suitVOs", suitVOs_T00);
+			}
 			
-			List<SuitVO> suitVOs=ordRepository.querySuitVO_PRDPK(sampleVO);
-			result.put("suitVOs", suitVOs);
 		} else {
 			//获取套件和套件内的规格信息，
 			//只有套西的小类的时候，才需要去ORD_SUIT_DC表中获取套装种类
 			if(sampleVO.getSptyno().equals("S10")){
 				//获取各个套件的价格
-				List<SampleDesignStpr> stpres=ordRepository.querySampleDesignStpr(sampleVO.getSampno());
-				//如果是特许，不显示出厂价
-				if("TX".equals(ord.getChanno())){
-					for(SampleDesignStpr sampleDesignStpr:stpres){
-						sampleDesignStpr.setSpftpr(0d);
-					}
-				}
-				sampleVO.setSuitStpres(stpres);
+				setSuitStpres(sampleVO,ord.getChanno());
 				
 				List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
 				result.put("suitVOs", suitVOs);
@@ -174,6 +205,31 @@ public class OrdService extends AbstractService<Ord, String>{
 		return result;
 	}
 	/**
+	 * 获取各个套件的价格
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sampleVO
+	 */
+	private void setSuitStpres(SampleVO sampleVO,String channo){
+		List<SampleDesignStpr> stpres=ordRepository.querySampleDesignStpr(sampleVO.getSampno());
+		//如果是特许，不显示出厂价
+		if("TX".equals(channo)){
+			for(SampleDesignStpr sampleDesignStpr:stpres){
+				sampleDesignStpr.setSpftpr(0d);
+			}
+		}
+		sampleVO.setSuitStpres(stpres);
+	}
+	
+	private OrdOrg getOrdMethod(){
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		OrdOrg ordOrg=ord.getOrdMethod();
+		if(ordOrg==null){
+			ordOrg=ordOrgService.get(new OrdOrg.PK(ord.getOrmtno(),org.getOrgno()));
+		}
+		return ordOrg;
+	}
+	/**
 	 * 创建订单数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param suitVOs
@@ -185,6 +241,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		//订货总数据和订单的明细数据之和是否一致，如果不一致就报错
 		for(SuitVO suitVO:suitVOs){
 			//如果两个地方数据不一样就报错
+			System.out.println(suitVO.geetOrmtqt_sum()!=suitVO.getOrmtqt());
 			if(suitVO.getOrmtqt()!=suitVO.geetOrmtqt_sum()){
 				throw new BusinessException("总订货数和明细数据不一致，不能保存!");
 			}
@@ -196,20 +253,25 @@ public class OrdService extends AbstractService<Ord, String>{
 //		    拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
 //		     女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
 //		    可根据样衣的套件规格组判断； 
-		if(suitVOs.length>1){
-			SampleVO sampleVO= ord.getSampleVO();
+		SampleVO sampleVO= ord.getSampleVO();
+		//if(suitVOs.length>1){
+		if("S10".equals(sampleVO.getSptyno())){	
 			int T02_ormtqt=0;//裤子的数量
 			int T00_ormtqt=0;//标准的数量
 			int T01_ormtqt=0;//上衣的数量
 			int T04_ormtqt=0;//裙子的数量
 			for(SuitVO suitVO:suitVOs){
-				if("T02".equals(suitVO.getSuitno())){
+				String suitno=suitVO.getSuitno();
+//				if(suitno.lastIndexOf("_PRDPK")!=-1){
+//					suitno=suitVO.getSuitno().split("_")[0];	
+//				}
+				if("T02".equals(suitno)){
 					T02_ormtqt=suitVO.getOrmtqt();
-				} else if("T00".equals(suitVO.getSuitno())){
+				} else if("T00".equals(suitno)){
 					T00_ormtqt=suitVO.getOrmtqt();
-				}else if("T01".equals(suitVO.getSuitno())){
+				}else if("T01".equals(suitno)){
 					T01_ormtqt=suitVO.getOrmtqt();
-				}else if("T04".equals(suitVO.getSuitno())){
+				}else if("T04".equals(suitno)){
 					T04_ormtqt=suitVO.getOrmtqt();
 				}
 			}
@@ -234,15 +296,15 @@ public class OrdService extends AbstractService<Ord, String>{
 				}
 			}
 		}
-		
-		
 
 		//进行保存
 		for(SuitVO suitVO:suitVOs){
+			String suitno=suitVO.getSuitno();
+
 			Orddtl orddtl=new Orddtl();
 			orddtl.setMtorno(ord.getMtorno());
 			orddtl.setSampno(suitVO.getSampno());
-			orddtl.setSuitno(suitVO.getSuitno());
+			orddtl.setSuitno(suitno);
 			orddtl.setOrmtqt(suitVO.getOrmtqt());
 			
 			orddtl.setRgsp(ShiroUtils.getAuthenticationInfo().getId());
@@ -256,7 +318,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					Ordszdtl ordszdtl=new Ordszdtl();
 					ordszdtl.setMtorno(ord.getMtorno());
 					ordszdtl.setSampno(suitVO.getSampno());
-					ordszdtl.setSuitno(suitVO.getSuitno());
+					ordszdtl.setSuitno(suitno);
 					ordszdtl.setSizety(sizeVO.getSizety());
 					ordszdtl.setSizeno(sizeVO.getSizeno());
 					ordszdtl.setOrszqt(sizeVO.getOrszqt());

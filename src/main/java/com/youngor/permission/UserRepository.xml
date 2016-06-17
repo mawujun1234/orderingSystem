@@ -39,10 +39,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	</if>
     </select>
     
-    
+    <!-- 登录的时候用的-->
     <select id="getByLoginName" resultType="com.youngor.permission.UserVO" parameterType="map">
     	select * from t_user a
-    	where a.loginName=#{loginName}
+    	where lower(a.loginName)=lower(#{loginName})
     </select> 
     <delete id="deleteUserByLoginName" parameterType="map">
     	delete t_user a where a.loginName=#{loginName}

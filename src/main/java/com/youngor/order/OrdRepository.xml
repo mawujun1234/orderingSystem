@@ -62,6 +62,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
             <result column="sizenm" property="sizenm"/>  
             <result column="szrate" property="szrate"/> 
             <result column="orszqt" property="orszqt"/> 
+            <result column="sizeqt" property="sizeqt"/> 
         </collection>  
           
     </resultMap>  
@@ -84,14 +85,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    order by a.suitno,a.sizeno
      </select>
      <!-- 当上报方式为  包装箱的时候  包装箱只显示标准箱(即单规箱)-->
-     <select id="querySuitVO_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,'1' as szrate,c.orszqt from (
-     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+     <select id="querySuitVO_T00_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c 
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
 	      and NVL(a.SIZETY1,1)=1
 	      and  c.sampno=#{sampno}
 	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
 	    ) a 
+	    left join (
+	    	select * from    ORD_ORD_SZRT
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+             and sizety='PRDPK'
+	    ) b
+	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='PRDPK'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
@@ -112,10 +119,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    	select * from    ORD_ORD_SZRT
             where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
              and sizety='STDSZ'
-	    ) b
-	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+	    ) b on a.sizegp=b.sizegp and a.sizeno=b.sizeno
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
+	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    order by a.suitno,a.sizeno
+     </select>
+     <select id="querySuitVO_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+	      and NVL(a.SIZETY1,1)=1
+	      and  c.sampno=#{sampno}
+	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
+	      and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno 
+	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk} and bb.bradno=#{bradno}
+	        )
+	     ) a left join (
+	    	select * from    ORD_ORD_SZRT
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+             and sizety='PRDPK'
+	    ) b on a.sizegp=b.sizegp and a.sizeno=b.sizeno
+	    left join (
+	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='PRDPK'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
 	    order by a.suitno,a.sizeno
      </select>

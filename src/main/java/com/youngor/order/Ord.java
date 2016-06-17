@@ -30,7 +30,7 @@ public class Ord {
 	private String channo;
 	
 	@Transient
-	private SampleVO sampleVO;//是作为临时缓存用的，保存的是当前扫描的样衣编号数据
+	private SampleVO sampleVO;//是作为临时缓存用的，保存的是当前扫描的样衣编号数据,只保存最新扫描的那个样衣编号
 	@Transient
 	private Map<String,Object> ordCheckInfo;//是否能订货的的内容
 	@Transient
@@ -73,6 +73,11 @@ public class Ord {
 	public void setChanno(String channo) {
 		this.channo = channo;
 	}
+	/**
+	 * //是作为临时缓存用的，保存的是当前扫描的样衣编号数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
 	public SampleVO getSampleVO() {
 		return sampleVO;
 	}

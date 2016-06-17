@@ -100,7 +100,7 @@ Ext.onReady(function(){
 				    listeners:{
 				    	load:function(myStore){
 				    		if(myStore.getCount( ) >0){
-						 		var r=myStore.getAt(0);
+						 		var r=myStore.getAt(1);
 						 		var me=panel.down("#ordorg");
 						 		me.select( r );
 						 		me.fireEvent("select", me, r);

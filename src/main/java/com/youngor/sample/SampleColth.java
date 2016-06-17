@@ -68,6 +68,10 @@ public class SampleColth {
 	private Double spftpr;//出厂价
 	@Transient
 	private Double sprtpr;//零售价
+	@Transient
+	private String spsuno_name;
+	@Transient
+	private String prsuno_name;
 	//spftpr_spctpr//出厂价/预计成本价
 	//sprtpr_spftpr//零售价/出厂价
 	//sprtpr_spctpr//零售价/预计成本价
@@ -224,6 +228,18 @@ public class SampleColth {
 	}
 	public void setSprtpr(Double sprtpr) {
 		this.sprtpr = sprtpr;
+	}
+	public String getSpsuno_name() {
+		return spsuno_name;
+	}
+	public void setSpsuno_name(String spsuno_name) {
+		this.spsuno_name = spsuno_name;
+	}
+	public String getPrsuno_name() {
+		return prsuno_name;
+	}
+	public void setPrsuno_name(String prsuno_name) {
+		this.prsuno_name = prsuno_name;
 	}
 
 

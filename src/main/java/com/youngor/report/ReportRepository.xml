@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.report.ReportRepository">
+
+     <!--
+              成衣采购计划表
+	-大类，小类，系列，风格，季节，上市批次，设计样衣编号，成品货号，客供编号，颜色，
+	-进口/国产，面料成分，纱支，克重，规格版型特殊说明，原成衣价，新成本价，出厂价，零售价，
+	-交货批次，成衣交期，生产单位，生产类型，订货总量
+      -->
+    <select id="queryClothPurePlan" resultType="map" parameterType="map">
+    	SELECT P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,P10.ITNM AS SPRSENM,P8.ITNM AS SPSEANM,P23.ITNM AS SPBANM,
+       A.SAMPNM,H.PRODNM,A.GUSTNO,P9.ITNM AS COLRNM,DECODE(M.MTTYPE,'gc','国产','进口')MTTYPE,M.MTCOMP,M.YARMCT,M.GRAMWT,A.DESP,
+       C.SPCTPR,'',B.SPFTPR,B.SPRTPR,NVL(CT.PLDTCT,1)PLDTCT,NVL(DT.PLDATE,B.PLDATE)PLDATE,S.IDSUNM,P29.ITNM AS SPMTNM,O.ORMTQT
+		FROM ORD_SAMPLE_DESIGN A
+		INNER JOIN ORD_SAMPLE_PLAN B ON A.PLSPNO=B.PLSPNO 
+		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO,SUM(ORMTQT)ORMTQT FROM ORD_ORD A
+		          INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		          INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		          WHERE A.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno} 
+		        
+		          AND B.ISFECT=1 AND C.SUITNO IN('T00','T01')
+		          GROUP BY A.ORMTNO,C.SAMPNO having SUM(ORMTQT)!=0) O ON  B.ORMTNO=O.ORMTNO AND A.SAMPNO=O.SAMPNO
+		INNER JOIN ORD_SAMPLE_COLTH C ON A.SAMPNO=C.SAMPNO
+		LEFT JOIN ORD_SAMPLE_MATE M ON A.SAMPNO=M.SAMPNO AND M.MATESO=1
+		LEFT JOIN ORD_SAMPLE_DESIGN_STPR P ON A.SAMPNO=P.SAMPNO AND P.SUITNO='T00'
+		LEFT JOIN (SELECT ORMTNO,SAMPNO,MAX(PRODNM)PRODNM FROM ORD_SAMPLE_PROD 
+		            WHERE ORMTNO=#{ormtno}
+		           GROUP BY  ORMTNO,SAMPNO)H ON B.ORMTNO=H.ORMTNO AND A.SAMPNO=H.SAMPNO
+		INNER JOIN ORD_PUB_CODE P0 ON P0.TYNO='0' AND B.SPCLNO=P0.ITNO
+		INNER JOIN ORD_PUB_CODE P2 ON P2.TYNO='2' AND B.SPCLNO=P2.FITNO AND B.SPTYNO=P2.ITNO
+		INNER JOIN ORD_PUB_CODE P5 ON P5.TYNO='5' AND B.SPCLNO=P5.FITNO AND B.SPSENO=P5.ITNO
+		INNER JOIN ORD_PUB_CODE P10 ON P10.TYNO='10' AND B.SPRSENO=P10.ITNO
+		INNER JOIN ORD_PUB_CODE P8 ON P8.TYNO='8' AND B.SPSEAN=P8.ITNO
+		INNER JOIN ORD_PUB_CODE P23 ON P23.TYNO='23' AND B.SPBANO=P23.ITNO
+		INNER JOIN ORD_PUB_CODE P9 ON P9.TYNO='9' AND A.COLRNO=P9.ITNO
+		INNER JOIN ORD_PUB_CODE P29 ON P29.TYNO='29' AND A.SPMTNO=P29.ITNO
+		LEFT JOIN ORD_PUB_SUNO S ON S.IDSUNO=NVL(C.PRSUNO,C.SPSUNO)
+		LEFT JOIN(SELECT ORMTNO,SAMPNO,MIN(PLDATE)PLDATE FROM ORD_ORD_DWDT 
+		         WHERE ORMTNO=#{ormtno} GROUP BY ORMTNO,SAMPNO) DT ON B.ORMTNO=DT.ORMTNO AND A.SAMPNO=DT.SAMPNO
+		LEFT JOIN(SELECT ORMTNO,SAMPNO,COUNT(DISTINCT PLDATE) PLDTCT FROM ORD_ORD_DWDT 
+		         WHERE ORMTNO=#{ormtno} GROUP BY ORMTNO,SAMPNO)CT ON B.ORMTNO=CT.ORMTNO AND A.SAMPNO=CT.SAMPNO
+		WHERE B.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno}
+		AND B.SPCLNO=#{spclno} 
+		<if test="sptyno!=null and sptyno!=''">
+			and b.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and b.spseno=#{spseno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			and a.sampnm like '%${sampnm}%'
+		</if>
+		<if test="prodnm!=null and prodnm!=''">
+			and h.prodnm like '%${prodnm}%'
+		</if>
+		<if test="spmtno!=null and spmtno!=''">
+			and a.spmtno =#{spmtno}
+		</if>
+		<if test="idsunm!=null and idsunm!=''">
+			and s.idsunm like '%${idsunm}%'
+		</if>
+    </select> 
+    <!--
+    <select id="queryClothPurePlan_count" resultType="int" parameterType="map">
+    	
+    </select> 
+    -->
+    <!--
+    -面料采购计划表
+	-样衣编号，产品货号，原供应商，新供应商，进口/国产，供应商面料货号，面料货号，主料/拼料，计划成衣交期，计划面料交期，
+	-面料单价，合同单价，面料成分，纱支针数，克重密度，门幅，下单件数，单耗，下单米数，合同数量，合同交期，
+	-季节，上市批次，颜色，版型，大系列，大类，小类，系列
+    -->
+    <select id="queryMatePurePlan" resultType="map" parameterType="map">
+    	SELECT  A.SAMPNM,H.PRODNM,S1.IDSUNM,S2.IDSUNM AS NWSUNM,NVL(T.MLTYPE,DECODE(M.MTTYPE,'gc','国产','进口'))MTTYPE,M.MATENO,T.MLITNO,M.MATESO,NVL(DT.PLDATE,B.PLDATE)PLDATE,NVL(DT.MLDATE,B.MLDATE)MLDATE,
+        M.MTPUPR,T.HTTRPR,NVL(T.MLCOMP,M.MTCOMP)MTCOMP,NVL(T.MLSZZS,M.YARMCT)YARMCT,NVL(T.MLKZMD,M.GRAMWT)GRAMWT,NVL(T.MLWDTH,M.WIDTH)MLWDTH,O.ORMTQT,M.MTCNQT,O.ORMTQT*M.MTCNQT AS ORMLQT,T.HTTRQT,T.HTORDT,
+        P8.ITNM AS SPSEANM,P23.ITNM AS SPBANM,P9.ITNM AS COLRNM,P13.ITNM AS VERSNM,P17.ITNM AS SPBSENM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM
+		FROM ORD_SAMPLE_DESIGN A
+		INNER JOIN ORD_SAMPLE_PLAN B ON A.PLSPNO=B.PLSPNO 
+		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO,SUM(ORMTQT)ORMTQT FROM ORD_ORD A
+		          INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		          INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		          WHERE A.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno} 
+		          --订单有效状态（固定参数  1），套件（固定参数）
+		          AND B.ISFECT=1 AND C.SUITNO IN('T00','T01')
+		          GROUP BY A.ORMTNO,C.SAMPNO having SUM(ORMTQT)!=0) O ON  B.ORMTNO=O.ORMTNO AND A.SAMPNO=O.SAMPNO
+		LEFT JOIN ORD_SAMPLE_MATE M ON A.SAMPNO=M.SAMPNO
+		LEFT JOIN (SELECT ORMTNO,SAMPNO,MAX(PRODNM)PRODNM FROM ORD_SAMPLE_PROD 
+		            WHERE ORMTNO=#{ormtno}
+		           GROUP BY  ORMTNO,SAMPNO)H ON B.ORMTNO=H.ORMTNO AND A.SAMPNO=H.SAMPNO
+		INNER JOIN ORD_PUB_CODE P0 ON P0.TYNO='0' AND B.SPCLNO=P0.ITNO
+		INNER JOIN ORD_PUB_CODE P2 ON P2.TYNO='2' AND B.SPCLNO=P2.FITNO AND B.SPTYNO=P2.ITNO
+		INNER JOIN ORD_PUB_CODE P5 ON P5.TYNO='5' AND B.SPCLNO=P5.FITNO AND B.SPSENO=P5.ITNO
+		INNER JOIN ORD_PUB_CODE P13 ON P13.TYNO='13' AND A.VERSNO=P13.ITNO
+		INNER JOIN ORD_PUB_CODE P17 ON P17.TYNO='17' AND B.SPBSENO=P17.ITNO
+		INNER JOIN ORD_PUB_CODE P8 ON P8.TYNO='8' AND B.SPSEAN=P8.ITNO
+		INNER JOIN ORD_PUB_CODE P23 ON P23.TYNO='23' AND B.SPBANO=P23.ITNO
+		INNER JOIN ORD_PUB_CODE P9 ON P9.TYNO='9' AND A.COLRNO=P9.ITNO
+		LEFT JOIN ORD_PUB_SUNO S1 ON S1.IDSUNO=M.MTSUNO
+		LEFT JOIN(SELECT ORMTNO,SAMPNO,MIN(MLDATE)MLDATE,MIN(PLDATE)PLDATE FROM ORD_ORD_DWDT 
+		         WHERE ORMTNO=#{ormtno} GROUP BY ORMTNO,SAMPNO) DT ON B.ORMTNO=DT.ORMTNO AND A.SAMPNO=DT.SAMPNO
+		LEFT JOIN ORD_MATE_POHED T ON B.ORMTNO=T.MLORMT AND A.SAMPNO=T.MLSMNO AND M.MATESO=T.MLZLPL
+		LEFT JOIN ORD_PUB_SUNO S2 ON T.MLSUNO=S2.IDSUNO
+		WHERE B.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno}
+		AND B.SPCLNO=#{spclno} 
+		<if test="sptyno!=null and sptyno!=''">
+			and b.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and b.spseno=#{spseno}
+		</if> 
+		<if test="sampnm!=null and sampnm!=''">
+			and a.sampnm like '%${sampnm}%'
+		</if>
+		<if test="prodnm!=null and prodnm!=''">
+			and h.prodnm like '%${prodnm}%'
+		</if> 
+		<if test="idsunm!=null and idsunm!=''">
+			and s.idsunm like '%${idsunm}%'
+		</if>
+		<if test="spmtno!=null and spmtno!=''">
+			and a.spmtno =#{spmtno}
+		</if>
+		order by a.sampnm,m.mateso 
+    </select>
+    
+    <!-- 
+    -双击 SQL
+	-序号，合同数量，合同价格，合同交期，备注
+	查询条件：订货会批次，面料货号
+     -->
+    <select id="query_mate_podtl" resultType="map" parameterType="map">
+    	SELECT HTSEQN,HTTRQT,HTTRPR,HTORDT,HTMARK FROM ORD_MATE_PODTL 
+		WHERE HTORMT=#{ormtno} AND HTITNO=#{htitno}
+		ORDER BY HTSEQN
+    </select>
+   
+</mapper>
+

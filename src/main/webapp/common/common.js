@@ -204,7 +204,7 @@ Ext.define('y.common.PubSunoCombo',{
 	emptyText:'可输入关键字过滤',
 	//		name: 'roleType',
 	autoLoad:true,
-	queryMode: 'local',
+	queryMode: 'remote',
 	editable:true,
 	//forceSelection:true,
 	displayField: 'idsunm',
@@ -214,6 +214,7 @@ Ext.define('y.common.PubSunoCombo',{
 //	typeAheadDelay :500,
 //	triggerAction : 'all',
 	queryDelay:1000,
+	minChars:2,
 	selectOnFocus:true,
 //    afterLabelTextTpl: Ext.required,
 //    blankText:"菜单类型不允许为空",
@@ -224,7 +225,8 @@ Ext.define('y.common.PubSunoCombo',{
 			fields: ['idsuno', 'idsunm'],
 			autoLoad:me.autoLoad,
 			proxy: {
-			    
+			    method:'POST',
+			    actionMethods :{read: 'POST'},
 			    type: 'ajax',
 			    url: Ext.ContextPath+'/pubSuno/query4Combo.do',
 			    reader: {
@@ -244,21 +246,21 @@ Ext.define('y.common.PubSunoCombo',{
 			}
 			
 		});
-		me.on("beforequery",function(e){
-			var combo = e.combo;
-			if (!e.forceAll) {
-				var value = e.query;
-				combo.store.filterBy(function(record, id) {
-					var text = record.get(combo.displayField);
-					//console.log(text);
-					//console.log(value)
-					return (text.indexOf(value) != -1);
-				});
-				combo.expand();
-				return false;
-			}
-			
-		});
+//		me.on("beforequery",function(e){
+//			var combo = e.combo;
+//			if (!e.forceAll) {
+//				var value = e.query;
+//				combo.store.filterBy(function(record, id) {
+//					var text = record.get(combo.displayField);
+//					//console.log(text);
+//					//console.log(value)
+//					return (text.indexOf(value) != -1);
+//				});
+//				combo.expand();
+//				return false;
+//			}
+//			
+//		});
 		me.callParent();
 	}
 });

@@ -15,6 +15,7 @@ import com.youngor.org.ChannoService;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
 import com.youngor.suno.PubSuno;
+import com.youngor.suno.PubSunoService;
 
 public class ContextUtils {
 	/**
@@ -85,6 +86,25 @@ public class ContextUtils {
 		}
 		
 		return channo_map.get(channo);
+		
+	}
+	/**
+	 * 所有供应商
+	 */
+	private static Map<String,PubSuno> pubSuno_map=new HashMap<String,PubSuno>();
+	public static PubSuno getPubSuno(String idsuno){
+		if(idsuno==null || "".equals(idsuno)){
+			return null;
+		}
+		if(pubSuno_map==null || pubSuno_map.size()==0){
+			PubSunoService pubSunoService=SpringContextHolder.getBean(PubSunoService.class);
+			List<PubSuno> pubSunoes=pubSunoService.queryAll();
+			for(PubSuno pubSuno:pubSunoes){
+				pubSuno_map.put(pubSuno.getIdsuno(), pubSuno);
+			}
+		}
+		
+		return pubSuno_map.get(idsuno);
 		
 	}
 

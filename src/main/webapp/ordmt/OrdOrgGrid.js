@@ -194,6 +194,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		
 		var formpanel=Ext.create('y.ordmt.OrdOrgForm',{});
 		formpanel.loadRecord(child);
+		formpanel.grid=me;
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

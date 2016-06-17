@@ -108,12 +108,12 @@ public class MenuController {
 		return menu;
 	}
 	
-	@RequestMapping("/menu/deleteById.do")
-	//@ResponseBody
-	public String deleteById(String id) {
-		menuService.deleteById(id);
-		return id;
-	}
+//	@RequestMapping("/menu/deleteById.do")
+//	//@ResponseBody
+//	public String deleteById(String id) {
+//		menuService.deleteById(id);
+//		return id;
+//	}
 	
 	@RequestMapping("/menu/destroy.do")
 	//@ResponseBody

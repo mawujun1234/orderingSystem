@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 /**
@@ -42,6 +43,11 @@ public class SampleColthController {
 	@ResponseBody
 	public List<SampleColth> query(String id) {	
 		List<SampleColth> sampleColthes=sampleColthService.query(Cnd.select().andEqualsIf(M.SampleColth.sampno, id));
+//		for(SampleColth sampleColth:sampleColthes){
+//			sampleColth.setSpsuno_name(ContextUtils.getPubSuno(sampleColth.getSpsuno()).getIdsunm());
+//			sampleColth.setPrsuno_name(ContextUtils.getPubSuno(sampleColth.getPrsuno()).getIdsunm());
+//			
+//		}
 		return sampleColthes;
 	}
 	
@@ -50,7 +56,13 @@ public class SampleColthController {
 	@ResponseBody
 	public SampleColth load(String id) {
 		
-		return sampleColthService.load(id);
+		SampleColth sampleColth= sampleColthService.load(id);
+		if(ContextUtils.getPubSuno(sampleColth.getSpsuno())!=null){
+			sampleColth.setSpsuno_name(ContextUtils.getPubSuno(sampleColth.getSpsuno()).getIdsunm());
+			sampleColth.setPrsuno_name(ContextUtils.getPubSuno(sampleColth.getPrsuno()).getIdsunm());
+		}
+
+		return sampleColth;
 	}
 	
 	@RequestMapping("/sampleColth/create.do")

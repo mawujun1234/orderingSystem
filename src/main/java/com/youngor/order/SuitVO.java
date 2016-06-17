@@ -8,16 +8,18 @@ public class SuitVO {
 	private String sampno;
 	private String sampnm;
 	private String suitno;//套件
+	//private String suitno_suffix;//套件的后缀，表示是标准箱还是单规
 	//private String suitnm;//套件名称,上衣，裤子等
 	//private String mtorno;
 	
 	private Integer ormtqt;//确认数量
 	
+	
 	private Double spftpr;//出厂价
 	private Double sprtpr;//零售价
 	
 
-	
+	//private String suitno_name;
 	private List<SizeVO> sizeVOs;//=new ArrayList<SizeVO>();
 	
 	public SuitVO(){
@@ -29,8 +31,19 @@ public class SuitVO {
 	 * @return
 	 */
 	public String getSuitno_name() {
-		return PubCodeCache.getSuitno_name(this.getSuitno());
+		String suitno=this.getSuitno();
+//		if(suitno.indexOf("_PRDPK")!=-1){
+//			suitno=suitno.split("_")[0];
+//		} 
+		return PubCodeCache.getSuitno_name(suitno);
 	}
+//	public String getSuitno_suffix() {
+//		if(suitno.indexOf("_PRDPK")!=-1){
+//			return "箱";
+//		} else {
+//			return "数量";
+//		}
+//	}
 	public Integer getOrmtqt() {
 		if(sizeVOs!=null && (ormtqt==null || ormtqt==0)){
 			ormtqt= geetOrmtqt_sum();
@@ -40,11 +53,11 @@ public class SuitVO {
 			return ormtqt;
 		}
 	}
-	public Integer geetOrmtqt_sum() {
+	public int geetOrmtqt_sum() {
 		Integer sum=0;
 		for(SizeVO sizeVO:sizeVOs){
 			if(sizeVO.getOrszqt()!=null){
-				sum+=sizeVO.getOrszqt();
+				sum+=sizeVO.getOrszqt()*sizeVO.getSizeqt();
 			}
 		}
 		return sum;
@@ -113,6 +126,5 @@ public class SuitVO {
 	public void setSampnm(String sampnm) {
 		this.sampnm = sampnm;
 	}
-
 
 }

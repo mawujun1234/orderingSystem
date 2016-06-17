@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 /**
@@ -44,7 +45,14 @@ public class SampleMateController {
 	@ResponseBody
 	public Map<String,Object> query(String sampno) {	
 		List<SampleMate> sampleMatees=sampleMateService.query(Cnd.select().andEquals(M.SampleMate.sampno, sampno).asc(M.SampleMate.mateso));
-		
+		for(SampleMate sampleColth:sampleMatees){
+			if(sampleColth.getMtsuno()!=null){
+				if(ContextUtils.getPubSuno(sampleColth.getMtsuno())!=null){
+					sampleColth.setMtsuno_name(ContextUtils.getPubSuno(sampleColth.getMtsuno()).getIdsunm());
+				}
+			}
+	
+		}
 		//List<SampleMate> sampleMatees=sampleMateService.queryAll();
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("root", sampleMatees);

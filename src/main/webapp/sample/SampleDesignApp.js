@@ -44,17 +44,22 @@ Ext.onReady(function(){
 		layout:'border',
 		items:[sampleMateGrid,sampleMateForm]
 	});
-	sampleMateGrid.getStore().on("load",function(store,records){
-		if(records.length>0){
-			sampleMateGrid.getSelectionModel( ).select(records[0]);
-			//就是为了显示设计编号，没什么实际用处，如果form中的sampnm去掉，那这个也可以去掉了
-			records[0].set("sampnm",window.sampno.sampnm);
-			sampleMateForm.loadRecord(records[0]);
-		}
-		
-	});
+//	sampleMateGrid.getStore().on("load",function(store,records){
+//		if(records.length>0){
+//			sampleMateGrid.getSelectionModel( ).select(records[0]);
+//			//就是为了显示设计编号，没什么实际用处，如果form中的sampnm去掉，那这个也可以去掉了
+//			records[0].set("sampnm",window.sampno.sampnm);
+//			sampleMateForm.loadRecord(records[0]);
+//		}
+//		
+//	});
 	sampleMateGrid.on("itemclick",function(view, record, item, index, e, eOpts){
+		
 		sampleMateForm.loadRecord(record);
+		var mtsuno_combo=sampleMateForm.down("#mtsuno");
+		var mtsuno_model= mtsuno_combo.getStore().createModel({idsuno:record.get("mtsuno"),idsunm:record.get("mtsuno_name")});
+		mtsuno_combo.setValue(mtsuno_model);
+		sampleMateForm.unmask();
 	});
 	
 	//成衣信息
@@ -132,10 +137,11 @@ Ext.onReady(function(){
 		
 		//面料信息,并且默认选中第一行
 		sampleMateGrid.getStore().getProxy().extraParams={
-			sampno:window.sampno.sampno
+			sampno:record.get("sampno")
 		};
 		sampleMateGrid.getStore().reload();
 		sampleMateForm.reset();
+		sampleMateForm.mask();
 		sampleMateForm.lockOrUnlock(record.get("matest"));
 		sampleMateGrid.lockOrUnlock(record.get("matest"));
 		
@@ -151,6 +157,7 @@ Ext.onReady(function(){
 		    	//var suitty_field=sampleDesignForm.getForm().findField("suitty");
 		    	//alert(sampleColth.get("sprtpr_spftpr"));
 		       sampleColthForm.loadRecord(sampleColth);
+		       
 		    }
 		});
 		
