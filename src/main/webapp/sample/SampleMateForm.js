@@ -64,9 +64,8 @@ Ext.define('y.sample.SampleMateForm',{
 //            
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"供应商面料货号不允许为空",
-	        maxLength:50,
+	        maxLength:20,
             selectOnFocus:true,
-            maxLength:50,
 	        xtype:'textfield'
 	    },
 		{
@@ -114,11 +113,12 @@ Ext.define('y.sample.SampleMateForm',{
 	        xtype:'textarea',
 	        listeners:{
 	        	change:function( field, newValue, oldValue, eOpts ) {
-	        		field.setValue(field.sevenReturn(newValue));
+	        		//field.setValue(field.sevenReturn(newValue));
 	        	},
 	        	blur:function(field,event){
 	        		//var val=field.getValue();
 	        		//field.setValue(field.sevenReturn(val));
+	        		field.setValue(field.sevenReturn(field.getValue()));
 	        	}
 	        },
 	        sevenReturn:function(val){

@@ -18,9 +18,11 @@ Ext.define('y.order.SizeVOGrid',{
         },
          {dataIndex:'VERSNO_NAME',header:'版型'
         },
-         {dataIndex:'PLSPNM',header:'企划样衣编号'
+//         {dataIndex:'PLSPNM',header:'企划样衣编号'
+//        },
+         {dataIndex:'SAMPNM',header:'订货样衣编号'
         },
-         {dataIndex:'SAMPNM',header:'设计样衣编号'
+         {dataIndex:'PRODNM',header:'产品货号'
         },
          {dataIndex:'ORMTQT',header:'平衡数量',width:75
          	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
@@ -117,7 +119,7 @@ Ext.define('y.order.SizeVOGrid',{
             	}
       		 });
       		me.columns.push({
-      			header:'规格',
+      			header:'规格合计',
       			columns:STDSZ_columns
       		});
       	}
@@ -145,7 +147,7 @@ Ext.define('y.order.SizeVOGrid',{
             	}
       		 });
       		me.columns.push({
-      			header:'单规箱',
+      			header:'单规',
       			columns:STDSZPRDPK_columns
       		});
       	}

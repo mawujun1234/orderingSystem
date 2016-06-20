@@ -1,4 +1,4 @@
-package com.youngor.plan;
+package com.youngor.pubcode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.service.AbstractService;
-import com.youngor.utils.MapParams;
 
 
 /**
@@ -17,18 +16,18 @@ import com.youngor.utils.MapParams;
  */
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
-public class PlanOrgService extends AbstractService<PlanOrg, String>{
+public class PubPlanrtService extends AbstractService<PubPlanrt, com.youngor.pubsize.PubSize.PK>{
 
 	@Autowired
-	private PlanOrgRepository planOrgRepository;
+	private PubPlanrtRepository pubPlanrtRepository;
 	
 	@Override
-	public PlanOrgRepository getRepository() {
-		return planOrgRepository;
+	public PubPlanrtRepository getRepository() {
+		return pubPlanrtRepository;
 	}
 	
-	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {
-		return planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+	public List<PubPlanrt> queryGrid(String bradno,String spclno,String sptyno) {
+		return pubPlanrtRepository.queryGrid(bradno,spclno,sptyno);
 	}
 
 }

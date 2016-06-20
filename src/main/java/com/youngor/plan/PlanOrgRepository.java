@@ -1,6 +1,9 @@
 package com.youngor.plan;
 
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import com.mawujun.repository.IRepository;
 
@@ -13,5 +16,5 @@ import com.youngor.plan.PlanOrg;
 @Repository
 public interface PlanOrgRepository extends IRepository<PlanOrg, String>{
 
-
+	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(Map<String, Object> params);
 }

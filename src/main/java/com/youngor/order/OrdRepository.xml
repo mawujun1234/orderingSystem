@@ -438,8 +438,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      
       <select id="sizeVO_querySizeVOData" resultType="map" parameterType="string">
-      		select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (
-			     select a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT
+      		select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT,z.PRODNM from (
+			     select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT
 				from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d
 				where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno 
 			       and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'
@@ -453,6 +453,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				 AND a.BRADNO='Y' and a.SPCLNO='01'
 				 and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'
 			 ) y on x.sampno=y.sampno
+			 left join ord_sample_prod z on x.sampno=z.sampno and x.ormtno=z.ormtno
 			 ORDER by x.sampno
       </select>
       

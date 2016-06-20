@@ -17075,3 +17075,1056 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 15:36:08.884 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6b6b8681
 15:36:08.888 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@143a3efc
 15:36:08.892 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@70694438
+16:21:12.687 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:30:48.396 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeVO> com.youngor.pubsize.PubSizeController.queryPRDSZTY4Ordmt(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='szbrad', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:30:48.396 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='szbrad', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:31:46.837 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:31:46.837 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+17:18:31.883 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+17:26:04.770 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePlan@21a7943b
+08:19:09.227 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+08:19:42.988 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+08:20:06.983 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:06.984 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:21.946 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:21.946 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:33.139 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:33.139 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:37.174 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:37.174 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:47.708 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:20:47.709 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:08.735 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:08.735 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:16.299 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:16.300 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:17.166 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:17.167 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:25.059 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+08:21:25.060 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.sizeVO_querySizeVOData-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT from (         select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT     from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d     where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno            and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'           and d.mtorno='201605_DZ_QY0003'     ) x left join (      select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT      from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c      where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno            and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN       and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'      AND a.BRADNO='Y' and a.SPCLNO='01'      and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'     ) y on x.sampno=y.sampno     LEFT JOIN ORD_SAMPLE_PROD Z ON x.sampno=Z.sampno and x.ormtno=y.ormtno     ORDER by x.sampno
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+10:34:10.572 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+10:34:27.888 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+10:37:05.285 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@760994d8
+10:37:21.980 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@5096c07
+10:37:27.471 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:31:30.573 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:32:52.142 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:33:30.056 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:33:35.839 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:33:35.839 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:09.406 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:09.406 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:12.653 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:12.653 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:32.353 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:34:38.864 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:38.864 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:40.693 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:40.693 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:42.845 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:34:42.845 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:11.632 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:35:16.035 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:16.035 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:18.967 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:18.968 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:20.622 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid()]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:35:20.622 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.pubcode.PubPlanrtRepository.queryGrid
+13:36:38.241 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:36:49.867 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+13:48:01.406 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+13:48:41.093 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:00:08.968 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:07:18.663 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:16:17.086 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:16:29.527 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:20:47.002 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:21:04.780 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:21:22.581 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:21:22.581 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:21:25.647 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:21:25.648 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:22:33.100 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:22:47.432 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:22:54.809 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:22:54.809 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:11.850 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:11.851 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:14.103 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:14.103 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:46.482 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:23:46.482 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:24:53.289 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/pubcode/PubPlanrtRepository.xml
+### The error may involve com.youngor.pubcode.PubPlanrtRepository.queryGrid-Inline
+### The error occurred while setting parameters
+### SQL: select Y bradno,a.* from (            SELECT p0.tyno as spclno,p0.itnm as spclnm,p2.tyno as sptyno, p2.itnm as sptynm         FROM ORD_pub_code p0,ORD_pub_code p2          where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'         order by p0.itso,p2.itso      ) a      left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+14:24:53.289 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/pubcode/PubPlanrtRepository.xml
+### The error may involve com.youngor.pubcode.PubPlanrtRepository.queryGrid-Inline
+### The error occurred while setting parameters
+### SQL: select Y bradno,a.* from (            SELECT p0.tyno as spclno,p0.itnm as spclnm,p2.tyno as sptyno, p2.itnm as sptynm         FROM ORD_pub_code p0,ORD_pub_code p2          where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'         order by p0.itso,p2.itso      ) a      left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+14:28:32.641 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubPlanrt> com.youngor.pubcode.PubPlanrtController.queryGrid(java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/pubcode/PubPlanrtRepository.xml
+### The error may involve com.youngor.pubcode.PubPlanrtRepository.queryGrid-Inline
+### The error occurred while setting parameters
+### SQL: select Y as bradno,a.* from (            SELECT p0.tyno as spclno,p0.itnm as spclnm,p2.tyno as sptyno, p2.itnm as sptynm         FROM ORD_pub_code p0,ORD_pub_code p2          where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'         order by p0.itso,p2.itso      ) a      left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+14:28:32.641 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+### The error may exist in com/youngor/pubcode/PubPlanrtRepository.xml
+### The error may involve com.youngor.pubcode.PubPlanrtRepository.queryGrid-Inline
+### The error occurred while setting parameters
+### SQL: select Y as bradno,a.* from (            SELECT p0.tyno as spclno,p0.itnm as spclnm,p2.tyno as sptyno, p2.itnm as sptynm         FROM ORD_pub_code p0,ORD_pub_code p2          where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'         order by p0.itso,p2.itso      ) a      left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_Y'
+
+14:33:07.251 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@3996d1ad
+14:33:10.081 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@3bc5d05a
+14:40:33.684 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@314c3e05
+14:40:40.571 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@b72241c
+14:40:47.295 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:40:47.295 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:41:27.993 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:41:27.993 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+14:41:40.485 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@6a051e8e
+14:41:44.021 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@7544bb28
+14:48:28.239 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:48:42.281 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:51:45.709 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+14:51:58.049 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:52:10.404 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@39518448
+14:56:35.393 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+14:56:53.476 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@2b6d929
+15:42:36.575 [main] INFO  com.mawujun.utils.file.FileUtils - fileÁ±ªÂûãÁöÑÊâ´Êèè
+15:42:36.581 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.DispatcherServletInitializer
+15:42:36.593 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.MvcConfig
+15:42:36.604 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.RepositoryConfig
+15:42:36.605 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroConfig
+15:42:36.606 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.config.ShiroWebApplicationInitializer
+15:42:36.606 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorCode
+15:42:36.606 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.generator.GeneratorM
+15:42:36.607 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.CompPal$PK
+15:42:36.610 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.CompPal
+15:42:36.610 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.CompPal
+15:42:36.614 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.CompPalRepository
+15:42:36.623 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.CompPalService
+15:42:36.623 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.MyInfoVO
+15:42:36.624 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.Ord
+15:42:36.624 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ord
+15:42:36.625 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdController
+15:42:36.626 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Orddtl$PK
+15:42:36.627 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.Orddtl
+15:42:36.627 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Orddtl
+15:42:36.627 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrddtlRepository
+15:42:36.628 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ordhd$PK
+15:42:36.628 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.Ordhd
+15:42:36.629 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ordhd
+15:42:36.629 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdhdRepository
+15:42:36.630 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdRepository
+15:42:36.631 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdService
+15:42:36.631 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ordszdtl$PK
+15:42:36.632 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.Ordszdtl
+15:42:36.632 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ordszdtl
+15:42:36.632 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdszdtlRepository
+15:42:36.633 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.order.Ordty
+15:42:36.633 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.Ordty
+15:42:36.633 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdtyRepository
+15:42:36.634 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.OrdtyService
+15:42:36.634 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.QyNewFormVO
+15:42:36.634 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.QyVO
+15:42:36.635 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.ReloadTotal
+15:42:36.635 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.SampleVO
+15:42:36.636 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.SizeVO
+15:42:36.636 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.SuitVO
+15:42:36.636 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.TpController
+15:42:36.637 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.TpRepository
+15:42:36.637 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.order.TpService
+15:42:36.639 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.Ordmt
+15:42:36.639 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.Ordmt
+15:42:36.639 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtController
+15:42:36.640 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtRepository
+15:42:36.640 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde$PK
+15:42:36.642 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtScde
+15:42:36.642 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScde
+15:42:36.642 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeController
+15:42:36.643 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeRepository
+15:42:36.644 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtScdeService
+15:42:36.644 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason$PK
+15:42:36.645 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdmtSeason
+15:42:36.645 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeason
+15:42:36.646 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtSeasonRepository
+15:42:36.646 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtService
+15:42:36.646 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdmtVO
+15:42:36.647 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdOrg$PK
+15:42:36.647 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.ordmt.OrdOrg
+15:42:36.647 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdOrg
+15:42:36.648 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdOrgController
+15:42:36.648 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdOrgRepository
+15:42:36.649 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrdOrgService
+15:42:36.649 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.ordmt.OrgChancl
+15:42:36.650 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.AccessRule
+15:42:36.650 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Chancl
+15:42:36.651 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Channo
+15:42:36.651 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Channo
+15:42:36.651 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.ChannoRepository
+15:42:36.652 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.ChannoService
+15:42:36.652 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Dim
+15:42:36.652 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.NodeVO
+15:42:36.655 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Org
+15:42:36.655 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Org
+15:42:36.656 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgController
+15:42:36.656 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.OrgOrg
+15:42:36.656 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgOrg
+15:42:36.657 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgRepository
+15:42:36.657 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.OrgService
+15:42:36.657 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgst
+15:42:36.658 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Orgty
+15:42:36.658 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.Position
+15:42:36.658 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.Position
+15:42:36.659 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionController
+15:42:36.659 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionOrgAccess
+15:42:36.659 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgAccess
+15:42:36.659 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgAccessRepository
+15:42:36.660 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionOrgUser
+15:42:36.660 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUser
+15:42:36.660 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionOrgUserRepository
+15:42:36.661 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionRepository
+15:42:36.661 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionService
+15:42:36.662 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.org.PositionType
+15:42:36.662 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionType
+15:42:36.662 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeController
+15:42:36.663 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeRepository
+15:42:36.663 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.org.PositionTypeService
+15:42:36.664 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Menu
+15:42:36.664 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Menu
+15:42:36.665 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuController
+15:42:36.665 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuRepository
+15:42:36.666 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuService
+15:42:36.666 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuType
+15:42:36.667 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.MenuVO
+15:42:36.667 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.Role
+15:42:36.667 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.Role
+15:42:36.667 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleBrand
+15:42:36.667 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrand
+15:42:36.668 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleBrandRepository
+15:42:36.668 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleClass
+15:42:36.668 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClass
+15:42:36.669 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleClassRepository
+15:42:36.669 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleController
+15:42:36.670 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleMenu
+15:42:36.670 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenu
+15:42:36.670 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleMenuRepository
+15:42:36.670 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleRepository
+15:42:36.671 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleService
+15:42:36.672 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleType
+15:42:36.672 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.RoleUser
+15:42:36.672 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUser
+15:42:36.672 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.RoleUserRepository
+15:42:36.673 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroApplicationListener
+15:42:36.678 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroAuthorizingRealm
+15:42:36.678 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.ShiroUtils
+15:42:36.703 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.permission.User
+15:42:36.703 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.User
+15:42:36.704 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserController
+15:42:36.705 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserRepository
+15:42:36.705 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserService
+15:42:36.705 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.permission.UserVO
+15:42:36.706 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanHd$PK
+15:42:36.707 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.plan.PlanHd
+15:42:36.707 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanHd
+15:42:36.707 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.plan.PlanOrg
+15:42:36.707 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrg
+15:42:36.708 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgController
+15:42:36.708 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgdtl$PK
+15:42:36.708 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.plan.PlanOrgdtl
+15:42:36.708 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgdtl
+15:42:36.709 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgdtlVO
+15:42:36.709 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgRepository
+15:42:36.710 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.plan.PlanOrgService
+15:42:36.711 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCode
+15:42:36.711 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCode
+15:42:36.711 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeCache
+15:42:36.712 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeController
+15:42:36.712 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeRepository
+15:42:36.713 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeService
+15:42:36.713 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubCodeType
+15:42:36.713 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeType
+15:42:36.714 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeController
+15:42:36.715 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeRepository
+15:42:36.715 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubCodeTypeService
+15:42:36.716 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubPlanrt$PK
+15:42:36.717 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubcode.PubPlanrt
+15:42:36.717 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubPlanrt
+15:42:36.718 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubPlanrtController
+15:42:36.718 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubPlanrtRepository
+15:42:36.719 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubcode.PubPlanrtService
+15:42:36.719 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.OrdSzrt$PK
+15:42:36.720 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubsize.OrdSzrt
+15:42:36.720 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.OrdSzrt
+15:42:36.721 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.OrdSzrtController
+15:42:36.721 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.OrdSzrtRepository
+15:42:36.722 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.OrdSzrtService
+15:42:36.722 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSize$PK
+15:42:36.723 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubsize.PubSize
+15:42:36.723 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSize
+15:42:36.723 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeController
+15:42:36.724 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtl$PK
+15:42:36.724 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.pubsize.PubSizeDtl
+15:42:36.724 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtl
+15:42:36.725 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtlRepository
+15:42:36.725 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtlService
+15:42:36.725 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeDtlVO
+15:42:36.726 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeRepository
+15:42:36.726 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeService
+15:42:36.726 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.pubsize.PubSizeVO
+15:42:36.727 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.report.ReportController
+15:42:36.727 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.report.ReportRepository
+15:42:36.729 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleColth
+15:42:36.729 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColth
+15:42:36.729 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthController
+15:42:36.729 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthRepository
+15:42:36.730 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleColthService
+15:42:36.730 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesign
+15:42:36.730 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesign
+15:42:36.731 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignController
+15:42:36.731 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignRepository
+15:42:36.732 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignService
+15:42:36.732 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignSizegp$PK
+15:42:36.732 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesignSizegp
+15:42:36.733 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignSizegp
+15:42:36.733 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignSizegpController
+15:42:36.733 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignSizegpRepository
+15:42:36.734 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignSizegpService
+15:42:36.734 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStpr$PK
+15:42:36.734 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleDesignStpr
+15:42:36.734 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStpr
+15:42:36.735 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprController
+15:42:36.735 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprRepository
+15:42:36.735 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleDesignStprService
+15:42:36.735 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate$PK
+15:42:36.737 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SampleMate
+15:42:36.737 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMate
+15:42:36.737 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateController
+15:42:36.737 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateRepository
+15:42:36.738 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateService
+15:42:36.738 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SampleMateVO
+15:42:36.739 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePhoto
+15:42:36.739 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhoto
+15:42:36.739 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoController
+15:42:36.739 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoRepository
+15:42:36.740 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePhotoService
+15:42:36.740 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlan
+15:42:36.740 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlan
+15:42:36.740 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanController
+15:42:36.741 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanDesignVO
+15:42:36.741 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanRepository
+15:42:36.742 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanService
+15:42:36.742 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr$PK
+15:42:36.742 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.sample.SamplePlanStpr
+15:42:36.742 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStpr
+15:42:36.743 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprController
+15:42:36.743 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprRepository
+15:42:36.743 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanStprService
+15:42:36.743 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.sample.SamplePlanVO
+15:42:36.744 [main] INFO  com.mawujun.utils.file.FileUtils - ============================ÊâæÂà∞ÂÆû‰ΩìÁ±ª:com.youngor.suno.PubSuno
+15:42:36.744 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSuno
+15:42:36.744 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoController
+15:42:36.745 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoRepository
+15:42:36.745 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.suno.PubSunoService
+15:42:36.746 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.AccessToken
+15:42:36.746 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.BaseObject
+15:42:36.747 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.ContextUtils
+15:42:36.747 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.Jsapi_ticket
+15:42:36.747 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Channo
+15:42:36.748 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Menu
+15:42:36.748 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ord$sampleVO
+15:42:36.749 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ord
+15:42:36.749 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Orddtl
+15:42:36.749 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordhd
+15:42:36.750 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordmt
+15:42:36.750 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtScde
+15:42:36.750 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdmtSeason
+15:42:36.751 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordszdtl
+15:42:36.751 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrdSzrt
+15:42:36.751 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Ordty
+15:42:36.752 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Org
+15:42:36.752 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$child
+15:42:36.752 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg$parent
+15:42:36.753 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$OrgOrg
+15:42:36.753 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PlanHd
+15:42:36.753 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PlanOrg
+15:42:36.754 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PlanOrgdtl
+15:42:36.754 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Position
+15:42:36.754 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgAccess$org
+15:42:36.754 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgAccess$position
+15:42:36.755 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgAccess
+15:42:36.755 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$org
+15:42:36.755 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$position
+15:42:36.756 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser$user
+15:42:36.756 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionOrgUser
+15:42:36.756 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PositionType
+15:42:36.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCode
+15:42:36.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubCodeType
+15:42:36.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSize
+15:42:36.757 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSizeDtl
+15:42:36.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$PubSuno
+15:42:36.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$Role
+15:42:36.758 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand$pubCode
+15:42:36.759 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand$role
+15:42:36.759 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleBrand
+15:42:36.759 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleClass$role
+15:42:36.759 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleClass
+15:42:36.760 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$menu
+15:42:36.760 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu$role
+15:42:36.760 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleMenu
+15:42:36.761 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$role
+15:42:36.761 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser$user
+15:42:36.761 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$RoleUser
+15:42:36.761 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleColth
+15:42:36.762 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesign
+15:42:36.762 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesignSizegp
+15:42:36.762 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleDesignStpr
+15:42:36.763 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SampleMate
+15:42:36.763 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePhoto
+15:42:36.764 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlan
+15:42:36.764 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$SamplePlanStpr
+15:42:36.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M$User
+15:42:36.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.M
+15:42:36.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.MapParams
+15:42:36.765 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.MyX509TrustManager
+15:42:36.766 [main] INFO  com.mawujun.utils.file.FileUtils - com.youngor.utils.SignUtil
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.CompPal
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - paltpy
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - psmpno
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - ormark
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.Ord
+15:42:36.767 [main] INFO  com.mawujun.utils.file.FileUtils - mtorno
+15:42:36.768 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.768 [main] INFO  com.mawujun.utils.file.FileUtils - ortyno
+15:42:36.768 [main] INFO  com.mawujun.utils.file.FileUtils - ordorg
+15:42:36.768 [main] INFO  com.mawujun.utils.file.FileUtils - channo
+15:42:36.768 [main] INFO  com.mawujun.utils.file.FileUtils - sampleVO
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - ordCheckInfo
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - ordMethod
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.Orddtl
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - mtorno
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.770 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - mlorno
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - mlorvn
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - ormtqs
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - ormtqt
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - ormtqt1
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - ormark
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.Ordhd
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - mtorno
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.771 [main] INFO  com.mawujun.utils.file.FileUtils - mlorno
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - mlorvn
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - sdtyno
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - orstat
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - szstat
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - orapdp
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - orapsp
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - orapdt
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - isfect
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.Ordszdtl
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - mtorno
+15:42:36.772 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - mlorno
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - orszqt
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - orszst
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - orbgqt
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - oritqt
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - ormark
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.order.Ordty
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - ortyno
+15:42:36.773 [main] INFO  com.mawujun.utils.file.FileUtils - ortynm
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ortyds
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ortymk
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - stat
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.Ordmt
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtnm
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtsn
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - pryear
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtst
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtfg
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - ormtmk
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.774 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtScde
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - channo
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - mtstdt
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - mtfidt
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - mtsttm
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - mtfitm
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - channo_name
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdmtSeason
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - seasno
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.775 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.ordmt.OrdOrg
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - ordorg
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - channo
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - sztype
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - print
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - channm
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Channo
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - channo
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - channm
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - chanso
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - stat
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Org
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - orgnm
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - orgsn
+15:42:36.776 [main] INFO  com.mawujun.utils.file.FileUtils - orgty
+15:42:36.777 [main] INFO  com.mawujun.utils.file.FileUtils - channo
+15:42:36.777 [main] INFO  com.mawujun.utils.file.FileUtils - orgst
+15:42:36.777 [main] INFO  com.mawujun.utils.file.FileUtils - orgso
+15:42:36.777 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.OrgOrg
+15:42:36.777 [main] INFO  com.mawujun.utils.file.FileUtils - parent
+15:42:36.783 [main] INFO  com.mawujun.utils.file.FileUtils - child
+15:42:36.784 [main] INFO  com.mawujun.utils.file.FileUtils - dim
+15:42:36.784 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.Position
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - name
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - accessRule
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - positionType_id
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionOrgAccess
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - position
+15:42:36.785 [main] INFO  com.mawujun.utils.file.FileUtils - org
+15:42:36.786 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionOrgUser
+15:42:36.786 [main] INFO  com.mawujun.utils.file.FileUtils - position
+15:42:36.786 [main] INFO  com.mawujun.utils.file.FileUtils - org
+15:42:36.786 [main] INFO  com.mawujun.utils.file.FileUtils - user
+15:42:36.786 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.org.PositionType
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - name
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Menu
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - code
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - name
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - url
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - menuType
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - sort
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.Role
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - name
+15:42:36.787 [main] INFO  com.mawujun.utils.file.FileUtils - roleType
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - parent_id
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleBrand
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - pubCode
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - role
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleClass
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - itno
+15:42:36.788 [main] INFO  com.mawujun.utils.file.FileUtils - role
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleMenu
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - menu
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - role
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.RoleUser
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - user
+15:42:36.789 [main] INFO  com.mawujun.utils.file.FileUtils - role
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.permission.User
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - name
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - loginName
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - pwd
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - remark
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.plan.PlanHd
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - orgno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - plmtqt
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - plmtam
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - plstat
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.plan.PlanOrg
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - plorno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - ordorg
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.790 [main] INFO  com.mawujun.utils.file.FileUtils - plstat
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.plan.PlanOrgdtl
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - plorno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - sptyno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - spseno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - qymtqt
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - qymtam
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - txmtqt
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - txmtam
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCode
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - fitno
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itnm
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itms
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itmk
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itso
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - itst
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - stat
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.791 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubCodeType
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - tyno
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - tynm
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - ftyno
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - tyms
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - tymk
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - tyst
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubcode.PubPlanrt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - sptyno
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - planrt
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - spclnm
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - sptynm
+15:42:36.792 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubsize.OrdSzrt
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - ordorg
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizegp
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - spseno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - versno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - szrate
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizeso
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubsize.PubSize
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizenm
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - szbrad
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - szclno
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizety1
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizeqt
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizemk
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizeso
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - sizest
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - szsast
+15:42:36.793 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.pubsize.PubSizeDtl
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - fszty
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - fszno
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - sizety
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - sizeno
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - sizeqt
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - sizemk
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - sizest
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - szsast
+15:42:36.794 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleColth
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spcotn
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spsuno
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - prsuno
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - sptapa
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spacry
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spclbd
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spnwpr
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - contqt
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - contam
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - contpr
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - ctdwdt
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - acsyam
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spctpr
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - sprmk
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spctst
+15:42:36.795 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - spsuno_name
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - prsuno_name
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sampleDesignStpres
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesign
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sampnm
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sampnm1
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - versno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - photno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - stseno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - desgno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - buspno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - spmtno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - gustno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - colrno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - pattno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - stylno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - stylgp
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - sexno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - slveno
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - suitty
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - desp
+15:42:36.796 [main] INFO  com.mawujun.utils.file.FileUtils - packqt
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - spltmk
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - print
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sampst
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - spstat
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - abstat
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sampleDesignSizegpes
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesignSizegp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sizegp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleDesignStpr
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.797 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SampleMate
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mateso
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtsuno
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mateno
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtbrad
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mttype
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtcomp
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - yarmct
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - gramwt
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - aftrmt
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - width
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtpupr
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtcnqt
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - matest
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - mtsuno_name
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePhoto
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - id
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - sampno
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - photnm
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - photms
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - imgnm
+15:42:36.798 [main] INFO  com.mawujun.utils.file.FileUtils - photst
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlan
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - plspnm
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - ormtno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - bradno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - spyear
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - spsean
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - spbseno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - sprseno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - spclno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - sptyno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - spseno
+15:42:36.799 [main] INFO  com.mawujun.utils.file.FileUtils - splcno
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - spbano
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - pldate
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - mldate
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - plstat
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - plspst
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.sample.SamplePlanStpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - plspno
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - suitno
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - spftpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - sprtpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - spplrd
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - plctpr
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - rgsp
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - rgdt
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - lmsp
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - lmdt
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - =============================================com.youngor.suno.PubSuno
+15:42:36.800 [main] INFO  com.mawujun.utils.file.FileUtils - idsuno
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - idsunm
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - idalsu
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iisucl
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iiclnm
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iiorty
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iiornm
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iicucd
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - iicdnm
+15:42:36.801 [main] INFO  com.mawujun.utils.file.FileUtils - idstat
+15:57:27.031 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:02:09.138 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:03:36.232 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:03:48.454 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:04:53.854 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7ce4e304
+16:04:56.549 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:05:11.532 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@82cf1e31
+16:05:13.148 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:15:27.363 [http-bio-8086-exec-11] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:32:29.574 [http-bio-8086-exec-15] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:36:06.364 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:40:23.028 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - ◊¢»ÎApplicationContextµΩSpringContextHolder:null
+16:42:33.571 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - µ±«∞¬∑æ∂/main/index.jsp∆•≈‰ '/main/**'. À˘“‘≤ªΩ¯––»®œﬁ—È÷§
+16:49:28.380 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:28.380 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:35.941 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:35.941 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:37.619 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:37.619 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:38.354 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:38.354 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:38.824 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:49:38.824 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:50:02.451 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:50:02.451 [http-bio-8086-exec-5] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: Œﬁ–ßµƒ¡–¿‡–Õ: 1111
+16:51:45.043 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@b27dfc2
+16:52:26.718 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@5062184b
+16:52:27.269 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@140dee75

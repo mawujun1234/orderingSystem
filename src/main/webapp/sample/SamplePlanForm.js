@@ -148,7 +148,17 @@ Ext.define('y.sample.SamplePlanForm',{
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"零售价不允许为空",
-	        xtype:'numberfield'   
+	        xtype:'numberfield',
+	        listeners:{
+	        	change:function( sprtprField, newValue, oldValue, eOpts ) {
+					var spplrdField=sprtprField.nextSibling("numberfield[name=spplrd]");
+					if(!spplrdField.getValue()){
+	        			return;
+	        		}
+	        		var plctprField=spplrdField.nextSibling("numberfield[name=plctpr]");
+	        		plctprField.setValue(newValue/spplrdField.getValue());
+	        	}
+	        }
 	    },
 		{
 	        fieldLabel: '企划倍率',
@@ -180,31 +190,32 @@ Ext.define('y.sample.SamplePlanForm',{
 //	        selectOnFocus:true,
 //            allowBlank: false,
 //            afterLabelTextTpl: Ext.required,
+	        fieldStyle:'background-color:#CDC9C9;',
 	        readOnly:true,
             blankText:"企划成本价不允许为空",
 	        xtype:'numberfield'   
 	    },
-		{
-            fieldLabel: '计划交货期',
-            name: 'pldate',
-            selectOnFocus:true,
-            editable:false,
-             allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"计划交货期不允许为空",
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        },
-		{
-            fieldLabel: '面料交货期',
-            name: 'mldate',
-            editable:false,
-             allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"面料交货期不允许为空",
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        },
+//		{
+//            fieldLabel: '计划交货期',
+//            name: 'pldate',
+//            selectOnFocus:true,
+//            editable:false,
+//             allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"计划交货期不允许为空",
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        },
+//		{
+//            fieldLabel: '面料交货期',
+//            name: 'mldate',
+//            editable:false,
+//             allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"面料交货期不允许为空",
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        },
 		{
 	        fieldLabel: '创建人',
 	        name: 'rgsp',
@@ -296,14 +307,14 @@ Ext.define('y.sample.SamplePlanForm',{
 					failure: function(record, operation) {
 				    },
 				    success: function(record, operation) {
-				    	formpanel.reset();
-				    	//samplePlanStprGrid.getStore().removeAll();
+				    	//formpanel.reset();
+				 
 				    	var tabpanel=formpanel.up("tabpanel");
-						//tabpanel.unmask();
+						
 						var samplePlanGrid=tabpanel.previousSibling("gridpanel#samplePlanGrid") ;
-						samplePlanGrid.getStore().reload();
+						//samplePlanGrid.getStore().reload();
 						Ext.Msg.alert("消息","保存成功!");
-						//button.up('window').close();
+						
 				    }
 				});			
 				

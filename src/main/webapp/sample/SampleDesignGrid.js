@@ -23,7 +23,7 @@ Ext.define('y.sample.SampleDesignGrid',{
         },
 		{dataIndex:'plspnm',header:'企划样衣编号'
         },
-        {dataIndex:'sampnm',header:'设计样衣编号'
+        {dataIndex:'sampnm',header:'订货样衣编号'
         },
         {dataIndex:'sampnm1',header:'出样样衣编号'
         },
@@ -523,7 +523,8 @@ Ext.define('y.sample.SampleDesignGrid',{
     	var samplePlanGridQuery=Ext.create('y.sample.SamplePlanGridQuery',{
     		tabpanel:tabpanel,
     		ormtno:toolbars[0].down("#ordmtcombo").getValue(),
-    		bradno:toolbars[0].down("#bradno").getValue()
+    		bradno:toolbars[0].down("#bradno").getValue(),
+    		spclno:toolbars[0].down("#spclno").getValue()
     	});
     	samplePlanGridQuery.on("itemdblclick",function(view, record, item, index, e, eOpts){
     		
@@ -540,7 +541,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 			var sampleDesign=Ext.create('y.sample.SampleDesign',{
 				sexno:'Z0',
 				plspno:record.get("plspno"),
-				plspnm:record.get("plspnm")
+				plspnm:record.get("plspnm"),
+				sampnm1:record.get("plspnm")
 			});
 			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;

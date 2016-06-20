@@ -6,13 +6,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.plan.PlanOrgRepository">
 	<!-- 查询语句，会自动分页-->
-    <select id="queryPage" resultType="com.youngor.plan.PlanOrg" parameterType="map">
-    	select * from ord_plan_org
+    <select id="queryPlanOrgdtlVO" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
+    	SELECT G.ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,D.QYMTQT,D.QYMTAM,D.TXMTQT,D.TXMTAM FROM
+		(SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,1),1,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
+		LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO
+		WHERE A.ORMTNO=#{ormtno} AND A.BRADNO=#{bradno}
+		)B
+		INNER JOIN ORD_PUB_CODE P0 ON P0.TYNO='0' AND B.SPCLNO=P0.ITNO
+		INNER JOIN ORD_PUB_CODE P2 ON P2.TYNO='2' AND B.SPCLNO=P2.FITNO AND B.SPTYNO=P2.ITNO
+		INNER JOIN ORD_PUB_CODE P5 ON P5.TYNO='5' AND B.SPCLNO=P5.FITNO AND B.SPSENO=P5.ITNO
+		LEFT JOIN V_ORD_ORG G ON 1=1 AND G.CHANNO='QY'
+		LEFT JOIN ORD_PLAN_ORG C ON C.ORMTNO=B.ORMTNO AND C.ORDORG=G.ORGNO AND C.BRADNO=B.BRADNO 
+		LEFT JOIN ORD_PLAN_ORGDTL D ON C.PLORNO=D.PLORNO AND D.SPCLNO=B.SPCLNO AND D.SPTYNO=B.SPTYNO AND NVL(D.SPSENO,' ')=B.SPSENO
+		WHERE B.ORMTNO=#{ormtno} AND G.ORGNO=#{qyno}
+		AND B.SPCLNO=#{spclno} 
+		<if test="sptyno!=null and sptyno!=''">
+			AND B.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and b.spseno=#{spseno}
+		</if>
+		ORDER BY G.ORGNO,B.SPCLNO,B.SPTYNO,B.SPSENO
+
     </select> 
-     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
-    <select id="queryPage_count" resultType="int" parameterType="map">
-    	select count(a.id)
-		from ord_plan_org a
-    </select>
+    
 </mapper>
 

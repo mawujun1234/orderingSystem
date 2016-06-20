@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.pubcode.PubPlanrtRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryGrid" resultType="com.youngor.pubcode.PubPlanrt" parameterType="map">
+    	   select '${bradno}' as bradno,a.*,b.planrt from (   
+		      SELECT  p0.itno as spclno,p0.itnm as spclnm,p2.itno as sptyno, p2.itnm as sptynm
+		      FROM ORD_pub_code p0,ORD_pub_code p2 
+		      where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'
+		      order by p0.itso,p2.itso
+		   ) a
+		   left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=#{bradno} 
+		   <where>
+			   <if test="spclno!=null and spclno!=''">
+			   	and a.spclno=#{spclno}
+			   </if>
+			   <if test="sptyno!=null and sptyno!=''">
+			   	and a.sptyno=#{sptyno}
+			   </if>
+		   </where>
+    </select> 
+   
+</mapper>
+

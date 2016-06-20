@@ -40,10 +40,10 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 		},
 		{dataIndex:'plctpr',header:'企划成本价',xtype: 'numbercolumn', format:'0.00',align : 'right'
 		},
-		{dataIndex:'pldate',header:'计划交货期',xtype: 'datecolumn', format:'Y-m-d',width:150
-		},
-		{dataIndex:'mldate',header:'面料交货期',xtype: 'datecolumn', format:'Y-m-d',width:150
-		},
+//		{dataIndex:'pldate',header:'计划交货期',xtype: 'datecolumn', format:'Y-m-d',width:150
+//		},
+//		{dataIndex:'mldate',header:'面料交货期',xtype: 'datecolumn', format:'Y-m-d',width:150
+//		},
 		{dataIndex:'rgsp',header:'创建人'
         },
 		{dataIndex:'rgdt',header:'创建日期',xtype: 'datecolumn', format:'Y-m-d H:i:s',width:150
@@ -100,6 +100,7 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
 	             selFirst:true,
+	             value:me.spclno,
 		        xtype:'pubcodecombo',
 		        tyno:'0',
 		        listeners:{

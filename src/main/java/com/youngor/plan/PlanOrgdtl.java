@@ -11,8 +11,8 @@ import com.mawujun.generator.model.FieldDefine;
 import com.youngor.plan.PlanOrgdtl.PK;
 
 
-//@Entity(name="ord_plan_orgdtl")
-//@IdClass(PK.class)
+@Entity(name="ord_plan_orgdtl")
+@IdClass(PK.class)
 public class PlanOrgdtl {
 	@Id
 	@Column(length=50)
@@ -24,16 +24,21 @@ public class PlanOrgdtl {
 	private String spclno;
 	@Id
 	@Column(length=50)
-	@FieldDefine(title="商品系列",sort=50,hidden=false)
-	private String spseno1;
+	@FieldDefine(title="小类",sort=50,hidden=false)
+	private String sptyno;
 	@Id
 	@Column(length=50)
-	@FieldDefine(title="指标分类",sort=50,hidden=false)
-	private String pltyno;//QY(区域)/TX（特许）
-	@FieldDefine(title="指标数量",sort=50,hidden=false)
-	private Double plmtqt;
-	@FieldDefine(title="指标金额",sort=50,hidden=false)
-	private Double plmtam;
+	@FieldDefine(title="系列",sort=50,hidden=false)
+	private String spseno;
+
+	@FieldDefine(title="区域指标数量",sort=50,hidden=false)
+	private Double qymtqt;
+	@FieldDefine(title="区域指标金额",sort=50,hidden=false)
+	private Double qymtam;
+	@FieldDefine(title="特许指标数量",sort=50,hidden=false)
+	private Double txmtqt;
+	@FieldDefine(title="特许指标金额",sort=50,hidden=false)
+	private Double txmtam;
 	
 	public static class PK implements Serializable {
 		/**
@@ -42,8 +47,8 @@ public class PlanOrgdtl {
 		private static final long serialVersionUID = 1L;
 		private String plorno;
 		private String spclno;
-		private String spseno1;
-		private String pltyno;
+		private String sptyno;
+		private String spseno;
 		public String getPlorno() {
 			return plorno;
 		}
@@ -56,20 +61,18 @@ public class PlanOrgdtl {
 		public void setSpclno(String spclno) {
 			this.spclno = spclno;
 		}
-		public String getSpseno1() {
-			return spseno1;
+		public String getSptyno() {
+			return sptyno;
 		}
-		public void setSpseno1(String spseno1) {
-			this.spseno1 = spseno1;
+		public void setSptyno(String sptyno) {
+			this.sptyno = sptyno;
 		}
-		public String getPltyno() {
-			return pltyno;
+		public String getSpseno() {
+			return spseno;
 		}
-		public void setPltyno(String pltyno) {
-			this.pltyno = pltyno;
+		public void setSpseno(String spseno) {
+			this.spseno = spseno;
 		}
-		
-
 	}
 
 	public String getPlorno() {
@@ -88,37 +91,53 @@ public class PlanOrgdtl {
 		this.spclno = spclno;
 	}
 
-	public String getSpseno1() {
-		return spseno1;
+	public String getSptyno() {
+		return sptyno;
 	}
 
-	public void setSpseno1(String spseno1) {
-		this.spseno1 = spseno1;
+	public void setSptyno(String sptyno) {
+		this.sptyno = sptyno;
 	}
 
-	public String getPltyno() {
-		return pltyno;
+	public String getSpseno() {
+		return spseno;
 	}
 
-	public void setPltyno(String pltyno) {
-		this.pltyno = pltyno;
+	public void setSpseno(String spseno) {
+		this.spseno = spseno;
 	}
 
-	public Double getPlmtqt() {
-		return plmtqt;
+	public Double getQymtqt() {
+		return qymtqt;
 	}
 
-	public void setPlmtqt(Double plmtqt) {
-		this.plmtqt = plmtqt;
+	public void setQymtqt(Double qymtqt) {
+		this.qymtqt = qymtqt;
 	}
 
-	public Double getPlmtam() {
-		return plmtam;
+	public Double getQymtam() {
+		return qymtam;
 	}
 
-	public void setPlmtam(Double plmtam) {
-		this.plmtam = plmtam;
+	public void setQymtam(Double qymtam) {
+		this.qymtam = qymtam;
 	}
 
+	public Double getTxmtqt() {
+		return txmtqt;
+	}
 
+	public void setTxmtqt(Double txmtqt) {
+		this.txmtqt = txmtqt;
+	}
+
+	public Double getTxmtam() {
+		return txmtam;
+	}
+
+	public void setTxmtam(Double txmtam) {
+		this.txmtam = txmtam;
+	}
+
+	
 }

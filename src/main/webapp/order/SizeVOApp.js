@@ -312,7 +312,7 @@ Ext.onReady(function(){
 				}
 		        
 		    },{
-		        fieldLabel: '样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:65,
 		        width:150,
 		        itemId: 'sampno',

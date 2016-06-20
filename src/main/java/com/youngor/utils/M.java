@@ -1,5 +1,12 @@
 package com.youngor.utils;
 public final class M {
+public static final class CompPal {
+	public static final String ormtno="ormtno";
+	public static final String sampno="sampno";
+	public static final String paltpy="paltpy";
+	public static final String psmpno="psmpno";
+	public static final String ormark="ormark";
+}
 public static final class Ord {
 	public static final String mtorno="mtorno";
 	public static final String ormtno="ormtno";
@@ -19,7 +26,6 @@ public static final class Ord {
 		public static final String spftpr="sampleVO.spftpr";
 		public static final String sprtpr="sampleVO.sprtpr";
 		public static final String spbseno="sampleVO.spbseno";
-		public static final String sprseno="sampleVO.sprseno";
 		public static final String splcno="sampleVO.splcno";
 		public static final String spbano="sampleVO.spbano";
 		public static final String spclno="sampleVO.spclno";
@@ -28,6 +34,7 @@ public static final class Ord {
 		public static final String sexno="sampleVO.sexno";
 		public static final String suitty="sampleVO.suitty";
 		public static final String spltmk="sampleVO.spltmk";
+		public static final String abstat="sampleVO.abstat";
 		public static final String ormtno="sampleVO.ormtno";
 		public static final String ordorg="sampleVO.ordorg";
 		public static final String mtorno="sampleVO.mtorno";
@@ -43,6 +50,25 @@ public static final class Ord {
 	* 这里一般是集合属性，返回的是ordCheckInfo
 	*/
 	public static final String ordCheckInfo="ordCheckInfo";
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class ordMethod {
+		public static final String ormtno="ordMethod.ormtno";
+		public static final String ordorg="ordMethod.ordorg";
+		public static final String channo="ordMethod.channo";
+		public static final String sztype="ordMethod.sztype";
+		public static final String print="ordMethod.print";
+		public static final String orgnm="ordMethod.orgnm";
+		public static final String channm="ordMethod.channm";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "ordMethod";
+	    }
+	}
 }
 public static final class Orddtl {
 	public static final String mtorno="mtorno";
@@ -83,6 +109,7 @@ public static final class Ordszdtl {
 	public static final String orszqt="orszqt";
 	public static final String orszst="orszst";
 	public static final String orbgqt="orbgqt";
+	public static final String oritqt="oritqt";
 	public static final String ormark="ormark";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
@@ -131,6 +158,15 @@ public static final class OrdmtSeason {
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+}
+public static final class OrdOrg {
+	public static final String ormtno="ormtno";
+	public static final String ordorg="ordorg";
+	public static final String channo="channo";
+	public static final String sztype="sztype";
+	public static final String print="print";
+	public static final String orgnm="orgnm";
+	public static final String channm="channm";
 }
 public static final class Channo {
 	public static final String channo="channo";
@@ -303,6 +339,7 @@ public static final class Menu {
 	public static final String url="url";
 	public static final String menuType="menuType";
 	public static final String parent_id="parent_id";
+	public static final String sort="sort";
 	public static final String remark="remark";
 }
 public static final class Role {
@@ -387,6 +424,7 @@ public static final class RoleMenu {
 		public static final String url="menu.url";
 		public static final String menuType="menu.menuType";
 		public static final String parent_id="menu.parent_id";
+		public static final String sort="menu.sort";
 		public static final String remark="menu.remark";
 			
 	    /**
@@ -476,10 +514,12 @@ public static final class PlanOrg {
 public static final class PlanOrgdtl {
 	public static final String plorno="plorno";
 	public static final String spclno="spclno";
-	public static final String spseno1="spseno1";
-	public static final String pltyno="pltyno";
-	public static final String plmtqt="plmtqt";
-	public static final String plmtam="plmtam";
+	public static final String sptyno="sptyno";
+	public static final String spseno="spseno";
+	public static final String qymtqt="qymtqt";
+	public static final String qymtam="qymtam";
+	public static final String txmtqt="txmtqt";
+	public static final String txmtam="txmtam";
 }
 public static final class PubCode {
 	public static final String itno="itno";
@@ -508,6 +548,14 @@ public static final class PubCodeType {
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
 }
+public static final class PubPlanrt {
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String sptyno="sptyno";
+	public static final String planrt="planrt";
+	public static final String spclnm="spclnm";
+	public static final String sptynm="sptynm";
+}
 public static final class OrdSzrt {
 	public static final String ormtno="ormtno";
 	public static final String ordorg="ordorg";
@@ -519,6 +567,7 @@ public static final class OrdSzrt {
 	public static final String spclno="spclno";
 	public static final String sizety="sizety";
 	public static final String szrate="szrate";
+	public static final String sizeso="sizeso";
 }
 public static final class PubSize {
 	public static final String sizety="sizety";
@@ -564,6 +613,10 @@ public static final class SampleColth {
 	public static final String spctpr="spctpr";
 	public static final String sprmk="sprmk";
 	public static final String spctst="spctst";
+	public static final String spftpr="spftpr";
+	public static final String sprtpr="sprtpr";
+	public static final String spsuno_name="spsuno_name";
+	public static final String prsuno_name="prsuno_name";
 	/**
 	* 这里一般是集合属性，返回的是sampleDesignStpres
 	*/
@@ -572,6 +625,7 @@ public static final class SampleColth {
 public static final class SampleDesign {
 	public static final String sampno="sampno";
 	public static final String sampnm="sampnm";
+	public static final String sampnm1="sampnm1";
 	public static final String plspno="plspno";
 	public static final String versno="versno";
 	public static final String photno="photno";
@@ -634,6 +688,7 @@ public static final class SampleMate {
 	public static final String mtpupr="mtpupr";
 	public static final String mtcnqt="mtcnqt";
 	public static final String matest="matest";
+	public static final String mtsuno_name="mtsuno_name";
 }
 public static final class SamplePhoto {
 	public static final String id="id";

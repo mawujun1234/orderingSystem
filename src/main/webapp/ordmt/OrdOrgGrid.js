@@ -20,7 +20,8 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		{dataIndex:'channm',header:'订货单位类型'
         },
 		{dataIndex:'sztype',header:'上报方式',align : 'right',width:160,
-			renderer:function(value){
+			renderer:function(value, metaData, record, rowIndex, colIndex, store){
+				metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 				if(value=="0"){
 					return "单规+整箱上报"
 				} else if(value=="1"){
@@ -28,6 +29,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 				} else if(value=="2"){
 					return "整箱上报";
 				}
+				
 				return "";
 			},
 			editor:Ext.create('Ext.form.ComboBox', {

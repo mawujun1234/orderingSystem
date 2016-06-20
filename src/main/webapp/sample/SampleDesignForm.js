@@ -41,22 +41,6 @@ Ext.define('y.sample.SampleDesignForm',{
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },{
-	        fieldLabel: '设计样衣编号',
-	        name: 'sampnm',
-            allowBlank: false,
-            //readOnly:sampnm_readOnly,
-            afterLabelTextTpl: Ext.required,
-            blankText:"设计样衣编号不允许为空",
-            selectOnFocus:true,
-	        xtype:'textfield',
-	        listeners:{
-	        	change:function(field, newValue, oldValue){
-	        		var sampnm1=field.nextSibling("#sampnm1");
-	        		sampnm1.setValue(newValue);
-	        	}
-	        }
-	    },
-		{
 	        fieldLabel: '出样样衣编号',
 	        name: 'sampnm1',
 	        itemId: 'sampnm1',
@@ -66,7 +50,23 @@ Ext.define('y.sample.SampleDesignForm',{
             blankText:"出样样衣编号不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
+	    },{
+	        fieldLabel: '订货样衣编号',
+	        name: 'sampnm',
+            allowBlank: false,
+            //readOnly:sampnm_readOnly,
+            afterLabelTextTpl: Ext.required,
+            blankText:"订货样衣编号不允许为空",
+            selectOnFocus:true,
+	        xtype:'textfield',
+	        listeners:{
+	        	change:function(field, newValue, oldValue){
+	        		//var sampnm1=field.nextSibling("#sampnm1");
+	        		//sampnm1.setValue(newValue);
+	        	}
+	        }
 	    },
+		
 	    
 		{
 	        fieldLabel: '版型',
