@@ -26,7 +26,9 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         		{
         			dataIndex:'qymtqt',header:'区域指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						if(record.get("plstat")==0){
+							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}
 		            	return value;
 		            },editor: {
 		                xtype: 'numberfield',
@@ -36,7 +38,9 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 				},{
 					dataIndex:'qymtam',header:'区域指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						if(record.get("plstat")==0){
+							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}
 		            	return value;
 		            },editor: {
 		                xtype: 'numberfield',
@@ -50,7 +54,9 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         	columns:[{
         		dataIndex:'txmtqt',header:'特许指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						if(record.get("plstat")==0){
+							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}
 		            	return value;
 		            },editor: {
 		                xtype: 'numberfield',
@@ -61,7 +67,9 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			{
 				dataIndex:'txmtam',header:'特许指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						if(record.get("plstat")==0){
+							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}
 		            	return value;
 		            },editor: {
 		                xtype: 'numberfield',
@@ -98,6 +106,12 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
       });     
 	  this.plugins = [this.cellEditing];
 	  
+	   this.cellEditing.on("beforeedit",function(editor, context){
+	   		var record=context.record;
+	   		if(record.get("plstat")!=0){
+	   			return false;
+	   		}
+	   });
 	  this.cellEditing.on("edit",function(editor, context){
 	    var record=context.record;
 	  	var grid=context.grid;
@@ -105,7 +119,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	  	var value=context.value;
 	  	
 	  	Ext.Ajax.request({
-						url:Ext.ContextPath+'/pubPlanrt/update.do',
+						url:Ext.ContextPath+'/planOrg/createOrUpdate.do',
 						jsonData:record.getData(),
 						success:function(response){
 							var obj=Ext.decode(response.responseText);
@@ -272,14 +286,14 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		  	items:[{
 				text: '通过',
 				handler: function(btn){
-					me.onCreate();
+					me.onPass();
 				},
 				iconCls: 'icon-ok'
 			},{
 			    text: '退回',
 			    itemId:'update',
 			    handler: function(){
-			    	me.onUpdate();
+			    	me.onBack();
 					
 			    },
 			    iconCls: 'icon-reply'
@@ -308,11 +322,65 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			"params['bradno']":toolbars[1].down("#bradno").getValue(),
 			"params['spclno']":toolbars[1].down("#spclno").getValue(),
 			//"params['sptyno']":toolbars[1].down("#sptyno").getValue(),
-			//"params['spseno']":toolbars[1].down("#spseno").getValue(),
+			"params['spseno']":toolbars[1].down("#spseno").getValue(),
 			//"params['suitno']":toolbars[1].down("#suitno").getValue(),
 			//"params['sampno']":toolbars[2].down("#sampno").getValue(),
 			"params['plstat']":toolbars[1].down("#plstat").getValue()
 		};
 		return params;
+	},
+	onPass:function(){
+		var me=this;
+	 	Ext.Msg.confirm("消息","确定通过，提交审批吗?",function(btn){
+	 		//console.log(btn);
+	 		if(btn=='yes'){
+				var toolbars=me.getDockedItems('toolbar[dock="top"]');
+	 			Ext.Ajax.request({
+	 				url:Ext.ContextPath+'/planOrg/onPass.do',
+	 				params:{
+	 					"ormtno":toolbars[0].down("#ordmtcombo").getValue(),
+	 					"ordorg":toolbars[0].down("#qyno").getValue(),
+	 					"bradno":toolbars[1].down("#bradno").getValue()
+	 				},
+					success:function(response){
+						var obj=Ext.decode(response.responseText);
+						if(obj.success==false){
+							Ext.Msg.alert("消息",obj.msg);
+							return;
+						}
+						me.getStore().reload();
+					}
+	 			});
+	 		}
+	 	});
+	},
+	onBack:function(){
+		var me=this;
+	 	Ext.Msg.confirm("消息","确定退回，重新让区域填写吗?",function(btn){
+	 		//console.log(btn);
+	 		if(btn=='yes'){
+//	 			//获取第一条记录
+//	 			var  record=me.getStore().getAt(0);
+//	 			if(record.get("plstat")){
+//	 			
+//	 			}
+	 			var toolbars=me.getDockedItems('toolbar[dock="top"]');
+	 			Ext.Ajax.request({
+	 				url:Ext.ContextPath+'/planOrg/onBack.do',
+	 				params:{
+	 					"ormtno":toolbars[0].down("#ordmtcombo").getValue(),
+	 					"ordorg":toolbars[0].down("#qyno").getValue(),
+	 					"bradno":toolbars[1].down("#bradno").getValue()
+	 				},
+					success:function(response){
+						var obj=Ext.decode(response.responseText);
+						if(obj.success==false){
+							Ext.Msg.alert("消息",obj.msg);
+							return;
+						}
+					}
+	 			});
+	 		}
+	 	});
 	}
 });

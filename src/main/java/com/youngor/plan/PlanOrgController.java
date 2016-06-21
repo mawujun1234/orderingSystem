@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,6 +42,25 @@ public class PlanOrgController {
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {	
 		List<PlanOrgdtlVO> planOrges=planOrgService.queryPlanOrgdtlVO(params);
 		return planOrges;
+	}
+	
+	@RequestMapping("/planOrg/createOrUpdate.do")
+	@ResponseBody
+	public  PlanOrgdtlVO createOrUpdate(@RequestBody PlanOrgdtlVO planOrgdtlVO) {
+		planOrgService.update(planOrgdtlVO);
+		return planOrgdtlVO;
+	}
+	@RequestMapping("/planOrg/onPass.do")
+	@ResponseBody
+	public  String onPass(String ormtno, String ordorg,String bradno) {
+		planOrgService.onPass(ormtno,ordorg,bradno);
+		return "success";
+	}
+	@RequestMapping("/planOrg/onBack.do")
+	@ResponseBody
+	public  String onBack(String ormtno, String ordorg,String bradno) {
+		planOrgService.onBack(ormtno,ordorg,bradno);
+		return "success";
 	}
 	
 

@@ -28,6 +28,22 @@ public class UserVO extends User {
 	public Org getFirstCurrentOrg(){
 		return currentOrges.get(0);
 	}
+	/**
+	 * 判断用户是否是在这个组织节点内
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Boolean inTheOrg(String orgno){
+		if(currentOrges==null){
+			return false;
+		}
+		for(Org org:currentOrges) {
+			if(org.getOrgno().equals(orgno)){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 
 	public Date getLoginDate() {

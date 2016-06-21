@@ -7,7 +7,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.plan.PlanOrgRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPlanOrgdtlVO" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
-    	SELECT G.ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,D.QYMTQT,D.QYMTAM,D.TXMTQT,D.TXMTAM FROM
+    	SELECT G.ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,D.QYMTQT,D.QYMTAM,D.TXMTQT,D.TXMTAM,
+    		#{ormtno} as ormtno,#{bradno} as bradno, #{qyno} as ordorg,nvl(plstat,0) as plstat,
+    		b.SPCLNO,b.SPTYNO,b.SPSENO FROM
 		(SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,1),1,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
 		LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO
 		WHERE A.ORMTNO=#{ormtno} AND A.BRADNO=#{bradno}
@@ -25,6 +27,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="spseno!=null and spseno!=''">
 			and b.spseno=#{spseno}
+		</if>
+		<if test="plstat!=null and plstat!=''">
+			and c.plstat=#{plstat}
 		</if>
 		ORDER BY G.ORGNO,B.SPCLNO,B.SPTYNO,B.SPSENO
 

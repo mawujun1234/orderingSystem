@@ -18128,3 +18128,375 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 16:51:45.043 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@b27dfc2
 16:52:26.718 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@5062184b
 16:52:27.269 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@140dee75
+09:12:04.777 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:17:26.373 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:17:52.571 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@6f8c2fb
+09:17:57.128 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@776bfa84
+09:17:57.165 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.update(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:17:57.165 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.update(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:17:57.165 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:17:57.165 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:17:57.166 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:17:57.166 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:17:57.166 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:17:57.166 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:17:57.166 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:17:57.166 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:21:19.396 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:21:36.962 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:22:06.478 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@648fcbb2
+09:22:11.270 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@6d4f7fbb
+09:22:11.298 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.createOrUpdate(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:11.298 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.createOrUpdate(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:11.298 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:11.298 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:11.299 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:22:11.299 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:22:11.299 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:22:11.299 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:22:11.299 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:22:11.299 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:22:35.955 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@1cf3c026
+09:22:50.672 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.createOrUpdate(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:50.672 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:22:50.672 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:22:50.672 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:22:50.672 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:23:01.055 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@60a2e846
+09:23:14.696 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanOrgdtlVO com.youngor.plan.PlanOrgController.createOrUpdate(com.youngor.plan.PlanOrgdtlVO)]: org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:23:14.696 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.MappingException: Unknown entity: com.youngor.plan.PlanOrgdtlVO
+09:23:14.696 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.MappingException], based on exception mapping [java.lang.Exception]
+09:23:14.696 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+09:23:14.696 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+09:23:46.356 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@291512ad
+09:23:47.602 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@92a61e0
+09:28:41.613 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:29:28.364 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:29:40.615 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrg@62272fcc
+09:30:05.140 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@50960ab2
+09:30:30.124 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:30:30.124 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:30:31.605 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:30:31.605 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:30:41.420 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@616b37b6
+09:31:42.668 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:31:42.668 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: Error attempting to get column 'PLSTAT' from result set.  Cause: java.sql.SQLException: 无法转换为内部表示
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17059]; 无法转换为内部表示; nested exception is java.sql.SQLException: 无法转换为内部表示
+09:34:46.919 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@41f77aea
+09:35:22.807 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@41011dcb
+09:35:55.996 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@151831bb
+09:36:01.602 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@52821e56
+09:39:47.663 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@2fe5e161
+09:39:51.235 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@2cb40a27
+09:40:07.699 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@5ba3be97
+09:40:11.022 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@3607e13a
+09:40:18.694 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@34701572
+09:40:31.202 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@4f3d650d
+09:43:30.902 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:44:26.015 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:44:40.436 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@63e9dcd6
+09:44:41.756 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@26258be1
+09:44:43.851 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanOrgdtl@223d54d3
+10:30:54.819 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:31:13.834 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:33:05.937 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:37:18.283 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:37:54.050 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanOrgController.onPass(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 你没有权限进行提交!
+10:37:54.050 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 你没有权限进行提交!
+10:39:04.486 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@6d2f6e1d
+10:39:05.675 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+10:39:15.846 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:40:35.396 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanOrgController.onPass(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 已经提交过了，你没有权限进行提交!
+10:40:35.396 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 已经提交过了，你没有权限进行提交!
+10:40:44.848 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanOrgController.onBack(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 你没有权限进行退回!
+10:40:44.848 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 你没有权限进行退回!
+10:40:48.384 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+10:40:55.139 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:19:44.487 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:22:32.123 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:23:13.365 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@13160a52
+12:23:30.896 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@95b2882a
+12:23:32.399 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:30:38.997 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:30:52.705 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:30:52.705 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:33:48.466 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:33:55.625 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:33:55.625 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:34:20.598 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:34:20.598 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:34:23.459 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:34:23.459 [http-bio-8086-exec-4] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:36:36.573 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:36:36.573 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:36:39.115 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd> com.youngor.plan.PlanHdController.queryPager(com.mawujun.utils.page.Pager<com.youngor.plan.PlanHd>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+12:36:39.116 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryPage_count-Inline
+### The error occurred while setting parameters
+### SQL: select count(a.id)   from ord_plan_hd a
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ID": invalid identifier
+
+13:06:42.851 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:12:39.141 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:12:46.937 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+13:12:46.937 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+13:12:51.194 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+13:12:51.194 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+15:12:49.410 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:13:01.292 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:13:07.135 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+15:13:07.135 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+15:13:12.593 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+15:13:12.593 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.plan.PlanHdRepository.queryHdGrid
+15:14:00.344 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'orgno' not found. Available parameters are [spclno, ormtno, yxgsno, bradno, param3, param4, param1, param2]
+15:14:00.344 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'orgno' not found. Available parameters are [spclno, ormtno, yxgsno, bradno, param3, param4, param1, param2]
+15:14:01.594 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'orgno' not found. Available parameters are [spclno, ormtno, yxgsno, bradno, param3, param4, param1, param2]
+15:14:01.594 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'orgno' not found. Available parameters are [spclno, ormtno, yxgsno, bradno, param3, param4, param1, param2]
+15:15:55.837 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:17:17.583 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:22:21.821 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo      WHERE   a.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+15:22:21.821 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo      WHERE   a.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+15:22:24.728 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:22:37.286 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo      WHERE   a.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+15:22:37.286 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo      WHERE   a.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."ORGNO": invalid identifier
+
+15:26:58.432 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:29:36.691 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:31:53.963 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@3e163d2f
+15:31:55.314 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@62367437
+15:31:56.508 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@34a8c657
+15:31:57.524 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@3a5410ed
+15:31:58.461 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@1667069b
+15:31:59.384 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@5dc273bc
+15:32:00.248 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@52a9a12f
+15:32:01.196 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@7ae629b
+15:32:02.010 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@9b6d08b
+15:32:05.764 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@4857fe50
+15:32:10.672 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@2d395e95
+15:32:20.819 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@72a53522
+15:32:23.251 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@30c6a636
+15:35:10.553 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@59e6fdea
+15:44:30.418 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:44:47.180 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:47:24.713 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanOrgController.onPass(java.lang.String,java.lang.String,java.lang.String)]: com.mawujun.exception.BusinessException: 你没有权限进行提交!
+15:47:24.713 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 你没有权限进行提交!
+15:49:39.274 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@2d107371
+15:49:39.482 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanHd com.youngor.plan.PlanHdController.update(com.youngor.plan.PlanHd)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:39.482 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:39.857 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@4f4e5941
+15:49:39.968 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanHd com.youngor.plan.PlanHdController.update(com.youngor.plan.PlanHd)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:39.968 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:43.471 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@4809c485
+15:49:43.522 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanHd com.youngor.plan.PlanHdController.update(com.youngor.plan.PlanHd)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:43.523 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:44.783 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@35a5aea2
+15:49:44.836 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.plan.PlanHd com.youngor.plan.PlanHdController.update(com.youngor.plan.PlanHd)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:49:44.836 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+15:51:09.481 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanHdController.onPass(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may involve com.youngor.plan.PlanHdRepository.onPass-Inline
+### The error occurred while setting parameters
+### SQL: update ord_plan_hd set plstat=1 where ormtno=? and bradno=? and plstat=0                     and  x.orgno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+15:51:09.481 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may involve com.youngor.plan.PlanHdRepository.onPass-Inline
+### The error occurred while setting parameters
+### SQL: update ord_plan_hd set plstat=1 where ormtno=? and bradno=? and plstat=0                     and  x.orgno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+15:51:33.623 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@365f98f3
+15:51:35.005 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@6aabe69b
+15:51:36.021 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@1c87c59e
+15:51:37.881 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@1b751c8c
+15:51:49.245 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanHdController.onPass(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may involve com.youngor.plan.PlanHdRepository.onPass-Inline
+### The error occurred while setting parameters
+### SQL: update ord_plan_hd set plstat=1 where ormtno=? and bradno=? and plstat=0                     and  x.orgno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+15:51:49.245 [http-bio-8086-exec-7] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may involve com.youngor.plan.PlanHdRepository.onPass-Inline
+### The error occurred while setting parameters
+### SQL: update ord_plan_hd set plstat=1 where ormtno=? and bradno=? and plstat=0                     and  x.orgno=?
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+15:53:34.845 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.plan.PlanHdController.onPass(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.plan.PlanHdRepository.onPass' has an unsupported return type: class java.lang.String
+15:53:34.845 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.plan.PlanHdRepository.onPass' has an unsupported return type: class java.lang.String
+15:55:22.053 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:56:19.984 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:30:20.008 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证

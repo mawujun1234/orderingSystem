@@ -34,6 +34,10 @@ public class PlanHd {
 	@FieldDefine(title="渠道代码",sort=50,hidden=false)
 	private String orgno;//营销公司代码
 	
+	
+	@Column(length=30)
+	@FieldDefine(title="渠道类型",sort=50,hidden=false)
+	private String channo;//营销公司代码  ‘YXGS’	
 	@FieldDefine(title="指标数量",sort=50,hidden=false)
 	private Double plmtqt;
 	@FieldDefine(title="指标金额",sort=50,hidden=false)
@@ -120,6 +124,12 @@ public class PlanHd {
 	}
 	public void setPlstat(Integer plstat) {
 		this.plstat = plstat;
+	}
+	public String getChanno() {
+		return channo;
+	}
+	public void setChanno(String channo) {
+		this.channo = channo;
 	}
 
 }

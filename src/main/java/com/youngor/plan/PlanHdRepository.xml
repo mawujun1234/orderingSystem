@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.plan.PlanHdRepository">
+	<!-- 查询语句，会自动分页-->
+    <select id="queryHdGrid" resultType="com.youngor.plan.PlanHdVO" parameterType="map">
+    	select '${ormtno}' as ormtno,'${bradno}' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (  
+		      select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b 
+		              cross join ORD_PUB_CODE P0 
+		             where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'
+		) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  
+		<where>
+    	<if test="spclno!=null and spclno!=''">
+    		and x.spclno=#{spclno}
+    	</if>
+    	<if test="yxgsno!=null and yxgsno!=''">
+    		and  x.orgno=#{yxgsno}
+    	</if>
+    	</where>
+    	order by x.orgso,x.itso
+    </select> 
+    
+    
+    <update id="onPass" parameterType="map">
+    	update ord_plan_hd a set a.plstat=1 where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.plstat=0
+    	<if test="spclno!=null and spclno!=''">
+    		and a.spclno=#{spclno}
+    	</if>
+    	<if test="yxgsno!=null and yxgsno!=''">
+    		and  a.orgno=#{yxgsno}
+    	</if> 
+    </update>
+</mapper>
+

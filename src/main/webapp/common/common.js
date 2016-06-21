@@ -278,6 +278,7 @@ Ext.define('y.common.OrgCombo',{
 	forceSelection:true,
 	displayField: 'orgnm',
 	valueField: 'orgno',
+	 selFirst:true,
 //    allowBlank: false,
 //    afterLabelTextTpl: Ext.required,
 //    blankText:"菜单类型不允许为空",
@@ -304,7 +305,7 @@ Ext.define('y.common.OrgCombo',{
 			},
 			listeners:{
 				load:function(myStore){
-					if(myStore.getCount( ) >0){
+					if(myStore.getCount( ) >0 && me.selFirst){
 			 			var r=myStore.getAt(0);
 			 			me.select( r );
 			 			me.fireEvent("select", me, r);
