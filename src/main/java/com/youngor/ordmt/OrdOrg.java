@@ -40,6 +40,10 @@ public class OrdOrg {
 	private String orgnm;
 	@Transient
 	private String channm;
+	@Transient
+	private String loginname;//这个订货单位赌赢的账号
+	@Transient
+	private String pwd;//密码
 	
 	public static class PK implements Serializable{
 		private String ormtno;
@@ -123,6 +127,22 @@ public class OrdOrg {
 
 	public void setChannm(String channm) {
 		this.channm = channm;
+	}
+
+	public String getLoginname() {
+		return loginname;
+	}
+
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 }

@@ -9,6 +9,9 @@ Ext.define('y.ordmt.OrdOrgGrid',{
           selType: 'checkboxmodel'
           //,checkOnly:true
     },
+    viewConfig:{
+    	enableTextSelection:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -18,6 +21,10 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		{dataIndex:'orgnm',header:'订货单位'
         },
 		{dataIndex:'channm',header:'订货单位类型'
+        },
+        {dataIndex:'loginname',header:'账号'
+        },
+        {dataIndex:'pwd',header:'密码'
         },
 		{dataIndex:'sztype',header:'上报方式',align : 'right',width:160,
 			renderer:function(value, metaData, record, rowIndex, colIndex, store){

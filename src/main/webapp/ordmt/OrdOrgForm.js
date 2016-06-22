@@ -192,6 +192,7 @@ Ext.define('y.ordmt.OrdOrgForm',{
 				var formpanel = button.up('form');
 				var values=formpanel.getForm().getValues();
 				//formpanel.updateRecord();
+				Ext.getBody().mask("正在执行，请稍候.....");
 				Ext.Ajax.request({
 					url:Ext.ContextPath+'/ordOrg/create.do',
 					method:'POST',
@@ -203,6 +204,7 @@ Ext.define('y.ordmt.OrdOrgForm',{
 					},
 					success:function(response){
 						var obj=Ext.decode(response.responseText);
+						Ext.getBody().unmask();
 						if(obj.success==false){
 							Ext.Msg.alert("消息",obj.msg);
 							return;

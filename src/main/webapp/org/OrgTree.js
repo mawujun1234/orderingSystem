@@ -147,11 +147,12 @@ Ext.define('y.org.OrgTree', {
     },
      onCreate:function(){
     	var me=this;
-
+		
     	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
 		
 		var child=Ext.create('y.org.Position',{
 		    'orgno':parent.get("id"),
+		    accessRule:'this_org',
 		    name:''
 		});
 		child.set("id",null);

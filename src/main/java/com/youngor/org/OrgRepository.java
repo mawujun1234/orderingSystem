@@ -23,5 +23,8 @@ public interface OrgRepository extends IRepository<Org, String>{
 	public List<Org> queryChildren(@Param("parent_no")String parent_no,@Param("dim")Dim dim);
 	
 	public void insert_positionorgaccess(@Param("position_id")String position_id,@Param("orgno")String orgno);
+	public void delete_positionorgaccess(@Param("position_id")String position_id,@Param("orgno")String orgno);
+	
+	public List<NodeVO> queryOrgAccess(@Param("parent_no")String parent_no,@Param("dim")Dim dim,@Param("position_id")String position_id);
 	
 }

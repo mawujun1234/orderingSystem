@@ -2,13 +2,15 @@ package com.youngor.org;
 
 public class NodeVO {
 	
-	private String id;
+	private String id;//职位id或者orgno
 	private String name;
 	//private Boolean leaf;
 	private String type;
 	private String remark;
 	
 	private String orgno;//所在节点的组织单元，如果是组织单元就是自身的orgno
+	
+	private Boolean checked;//在查看职位可以访问的组织单元的时候用的
 	
 	public String getIconCls(){
 		if("position".equals(this.getType())){
@@ -20,6 +22,8 @@ public class NodeVO {
 	
 	public Boolean getLeaf(){
 		if( "position".equals(this.getType())){
+			return true;
+		} if( "SHOP".equals(this.getType())){
 			return true;
 		} else {
 			return false;
@@ -61,6 +65,14 @@ public class NodeVO {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
 	}
 
 }

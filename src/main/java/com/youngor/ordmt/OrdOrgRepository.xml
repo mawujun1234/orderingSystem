@@ -7,8 +7,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.ordmt.OrdOrgRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPage" resultType="com.youngor.ordmt.OrdOrg" parameterType="map">
-    	select a.*,b.orgnm,c.channm from ORD_ORG a,t_org b,t_org_chancl c
-    	where a.ordorg=b.orgno and a.channo=c.channo and a.channo=#{channo} and a.ormtno=#{ormtno}
+    	select a.*,b.orgnm,c.channm,d.loginname,d.pwd from ORD_ORG a,t_org b,t_org_chancl c,t_user d
+    	where a.ordorg=b.orgno and a.channo=c.channo and lower(a.ordorg)=lower(d.loginname)  and a.channo=#{channo} and a.ormtno=#{ormtno}
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">

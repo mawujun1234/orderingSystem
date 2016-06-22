@@ -6,7 +6,8 @@ Ext.define("y.org.Org",{
 		{name:'orgsn',type:'string'},
 		{name:'orgty',type:'string'},
 		{name:'channo',type:'string'},
-		{name:'orgst',type:'string'}
+		{name:'orgst',type:'string'},
+		{name:'type',type:'string'}
 	],
 	proxy:{
 		type:'ajax',

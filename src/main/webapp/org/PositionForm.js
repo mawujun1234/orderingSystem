@@ -106,14 +106,14 @@ Ext.define('y.org.PositionForm',{
 //						button.up('window').close();
 //					}
 //				});
-				formpanel.mask("正在执行，请稍候.....");
+				Ext.getBody().mask("正在执行，请稍候.....");
 				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
-						formpanel.unmask();
+						Ext.getBody().unmask();
 				    },
 				    success: function(record, operation) {
 						button.up('window').close();
-						formpanel.unmask();
+						Ext.getBody().unmask();
 				    }
 				});			
 				

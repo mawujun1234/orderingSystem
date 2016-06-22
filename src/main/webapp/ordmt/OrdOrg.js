@@ -5,7 +5,10 @@ Ext.define("y.ordmt.OrdOrg",{
 		{name:'ordorg',type:'string'},
 		{name:'channo',type:'string'},
 		{name:'sztype',type:'string'},
-		{name:'print',type:'int'}
+		{name:'print',type:'int'},
+		
+		{name:'loginname',type:'string'},
+		{name:'pwd',type:'string'}
 	],
 	proxy:{
 		type:'ajax',

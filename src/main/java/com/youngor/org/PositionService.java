@@ -47,6 +47,8 @@ public class PositionService extends AbstractService<Position, String>{
 		return position.getId();
 	}
 	public void update(Position position,Dim dim) {
+		//先清空所有的权限，然后重新加载
+		positionOrgAccessRepository.deleteBatch(Cnd.delete().andEquals(M.PositionOrgAccess.position.id, position.getId()));
 		if(position.getAccessRule()==AccessRule.this_org){
 			this_org(position,dim);
 		} else {
@@ -55,10 +57,11 @@ public class PositionService extends AbstractService<Position, String>{
 		this.getRepository().update(position);
 	}
 	public void all_org(Position position,Dim dim){
-		
+		addChildren(position.getId(),"root",dim);
 	}
 	/**
-	 * 当选择的规则是  本级组织单元的时候，就选择本级所有的组织单元
+	 * 当选择的规则是  本级组织单元的时候，就选择本级和本级以下的所有的组织单元，
+	 * 选择上级单元的思路是  在查询每一级组织单元的时候，都要通过权限进行判断，这级可以看到哪些
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 */
 	public void this_org(Position position,Dim dim){
@@ -66,7 +69,7 @@ public class PositionService extends AbstractService<Position, String>{
 		addChildren(position.getId(),position.getOrgno(),dim);
 	}
 	
-	private void addParent(String position_id,String orgno,Dim dim){
+	protected void addParent(String position_id,String orgno,Dim dim){
 		orgRepository.insert_positionorgaccess(position_id, orgno);
 		if(orgno.equals("root")){
 			return;
@@ -77,12 +80,23 @@ public class PositionService extends AbstractService<Position, String>{
 		}
 	}
 	
-	private void addChildren(String position_id,String orgno,Dim dim) {
+	protected void addChildren(String position_id,String orgno,Dim dim) {
 		List<Org> children=orgRepository.queryChildren(orgno, dim);
 		for(Org child:children){
 			orgRepository.insert_positionorgaccess(position_id, child.getOrgno());
 			if(!child.getOrgty().equals("SHOP")) {
 				addChildren(position_id ,child.getOrgno(), dim);
+			}
+			
+		}
+	}
+	
+	protected void deleteChildren(String position_id,String orgno,Dim dim) {
+		List<Org> children=orgRepository.queryChildren(orgno, dim);
+		for(Org child:children){
+			orgRepository.delete_positionorgaccess(position_id, child.getOrgno());
+			if(!child.getOrgty().equals("SHOP")) {
+				deleteChildren(position_id ,child.getOrgno(), dim);
 			}
 			
 		}
