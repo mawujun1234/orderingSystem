@@ -26,8 +26,10 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         		{
         			dataIndex:'qymtqt',header:'区域指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}  else if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
 		            },editor: {
@@ -38,8 +40,10 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 				},{
 					dataIndex:'qymtam',header:'区域指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}  else if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
 		            },editor: {
@@ -54,8 +58,10 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         	columns:[{
         		dataIndex:'txmtqt',header:'特许指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						} else if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
 		            },editor: {
@@ -67,8 +73,10 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			{
 				dataIndex:'txmtam',header:'特许指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0 && record.get("canEdit")==true){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						}  else if(record.get("canEdit")==false){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
 		            },editor: {
@@ -108,7 +116,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	  
 	   this.cellEditing.on("beforeedit",function(editor, context){
 	   		var record=context.record;
-	   		if(record.get("plstat")!=0){
+	   		if(record.get("plstat")!=0 || record.get("isTotal")==true){
 	   			return false;
 	   		}
 	   });
@@ -136,12 +144,12 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	  });
 	  
 	  me.dockedItems=[];
-      me.dockedItems.push({
-	        xtype: 'pagingtoolbar',
-	        store: me.store,  
-	        dock: 'bottom',
-	        displayInfo: true
-	  });
+//      me.dockedItems.push({
+//	        xtype: 'pagingtoolbar',
+//	        store: me.store,  
+//	        dock: 'bottom',
+//	        displayInfo: true
+//	  });
 	  me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
@@ -277,6 +285,16 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 					grid.getStore().reload();
 				},
 				iconCls: 'icon-refresh'
+			},{
+				text: '刷新小计/合计',
+				//itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+    				grid.getStore().getProxy().extraParams=grid.getParams();
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
 			}]
 		});
 		
@@ -378,6 +396,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 							Ext.Msg.alert("消息",obj.msg);
 							return;
 						}
+						me.getStore().reload();
 					}
 	 			});
 	 		}

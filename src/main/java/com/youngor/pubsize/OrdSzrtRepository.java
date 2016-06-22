@@ -22,5 +22,7 @@ public interface OrdSzrtRepository extends IRepository<OrdSzrt, OrdSzrt.PK>{
 			@Param("spseno")String spseno,@Param("versno")String versno,@Param("sizegp")String sizegp,@Param("sizety")String sizety);
 	
 	public List<PubSize> queryPrdpkColumns(@Param("sizegp")String sizegp);
+	
+	public List<Map<String,Object>> querySaleHisGrid(Map<String,Object> params);
 
 }

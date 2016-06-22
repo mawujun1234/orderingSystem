@@ -21,7 +21,7 @@ public class Ordhd {
 	@Id
 	@Column(length=50)
 	@FieldDefine(title="订单号",sort=50,hidden=false)
-	private String mtorno;
+	private String mtorno;////ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();
 	@Id
 	@Column(length=50)
 	@FieldDefine(title="品牌",sort=50,hidden=false)
@@ -33,7 +33,7 @@ public class Ordhd {
 	
 	@Column(length=50)
 	@FieldDefine(title="审批订单号",sort=50,hidden=false)
-	private String mlorno;
+	private String mlorno;//a.mtorno||c.bradno||spclno
 	@FieldDefine(title="审批订单版本号",sort=50,hidden=false)
 	private Integer mlorvn;
 	@Column(length=50)

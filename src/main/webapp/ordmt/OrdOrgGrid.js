@@ -28,7 +28,10 @@ Ext.define('y.ordmt.OrdOrgGrid',{
         },
 		{dataIndex:'sztype',header:'上报方式',align : 'right',width:160,
 			renderer:function(value, metaData, record, rowIndex, colIndex, store){
-				metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+				if(!me.ormtst){
+					metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+				}
+				
 				if(value=="0"){
 					return "单规+整箱上报"
 				} else if(value=="1"){
@@ -93,17 +96,21 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	        dock: 'bottom',
 	        displayInfo: true
 	  });
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[]
-	  });
+
+	  me.ormtst=false;
 	  me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
 		  		itemId:'ordmtcombo',
-				xtype:'ordmtcombo'
+				xtype:'ordmtcombo',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						me.ormtst=record.get("ormtst");//订货会状态
+						var grid=combo.up("grid");
+						grid.onReload();			
+					}
+				}
 			},{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
@@ -130,14 +137,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 				disabled:me.disabledAction,
 				handler: function(btn){
 					var grid=btn.up("grid");
-					var channo_combo=btn.previousSibling("#channo");
-					var ordmtcombo=btn.previousSibling("#ordmtcombo");
-					grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,{
-							"params['ormtno']":ordmtcombo.getValue(),
-		        			"params['channo']":channo_combo.getValue()
-	        		});
-	        		
-					grid.getStore().reload();
+					grid.onReload();
 				},
 				iconCls: 'icon-refresh'
 			},{
@@ -169,7 +169,9 @@ Ext.define('y.ordmt.OrdOrgGrid',{
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
-	  
+	  this.cellEditing.on("beforeedit",function(editor, context){
+	   return !me.ormtst;
+	  })
 	  this.cellEditing.on("edit",function(editor, context){
 	  	var record=context.record;
 //	  	var grid=context.grid;
@@ -194,8 +196,24 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	  });
       me.callParent();
 	},
+	onReload:function(){
+		var toolbars=this.getDockedItems('toolbar[dock="top"]'); 
+		var channo_combo=toolbars[0].down("#channo");
+		var ordmtcombo=toolbars[0].down("#ordmtcombo");
+		this.getStore().getProxy().extraParams=Ext.apply(this.getStore().getProxy().extraParams,{
+			"params['ormtno']":ordmtcombo.getValue(),
+		     "params['channo']":channo_combo.getValue()
+	    });
+	        		
+		this.getStore().reload();
+		
+	},
 	onCreate:function(){
     	var me=this;
+    	if(me.ormtst){
+    		Ext.Msg.alert("消息","订货会已经结束，不能新增");	
+			return;
+    	}
 		var child=Ext.create('y.ordmt.OrdOrg',{
 
 		});
@@ -248,6 +266,10 @@ Ext.define('y.ordmt.OrdOrgGrid',{
     
     onDelete:function(){
     	var me=this;
+    	if(me.ormtst){
+    		Ext.Msg.alert("消息","订货会已经结束，不能删除");	
+			return;
+    	}
     	var node=me.getSelectionModel( ).getLastSelected( );
 
 		if(!node){
@@ -261,7 +283,12 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 					    failure: function(record, operation) {
 			            	me.getStore().reload();
 					    },
-					    success:function(){
+					    success:function(response){
+					    	var obj=Ext.decode(response.responseText);
+					    	if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+							}
 					    	me.getStore().reload();
 					    }
 				});

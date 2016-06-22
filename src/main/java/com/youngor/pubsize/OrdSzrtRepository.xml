@@ -56,6 +56,23 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        where a.sizeno=b.sizeno and NVL(b.SIZETY1,1)=1 and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
        order by b.sizeso
     </select> 
+    
+    <!--在设置规格比例的时候参考历史数据-->
+    <select id="querySaleHisGrid" resultType="map" parameterType="map">
+    	SELECT PRSENM,BANDNM,PRYEAR,SIZENM,SUM(SAQT) SAQT FROM ORD_SA_HIS 
+		WHERE 
+		ORMTNO=#{ormtno} AND ORGNO=#{ordorg}
+		<if test="spseno!=null and spseno!=''">
+			AND PRSENO=#{spseno}
+		</if>
+		<if test="versno!=null and versno!=''">
+			 AND BANDNO=#{versno}
+		</if>
+		AND bradno=#{bradno}
+		and prclno=#{spclno}
+		GROUP BY PRSENM,BANDNM,PRYEAR,SIZENM
+		ORDER BY PRSENM,BANDNM,PRYEAR 
+    </select>
 
 </mapper>
 

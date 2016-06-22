@@ -47,6 +47,9 @@ public class QyVO {
 	 * @return
 	 */
 	public Double getOrmtqs_zhes(){
+		if(ormtqs==null){
+			return 0d;
+		}
 		if("T00".equals(this.getSuitno())){
 			return ormtqs*1d;
 		} else if("T01".equals(this.getSuitno())){//上衣

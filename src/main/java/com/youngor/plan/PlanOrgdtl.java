@@ -40,6 +40,32 @@ public class PlanOrgdtl {
 	@FieldDefine(title="特许指标金额",sort=50,hidden=false)
 	private Double txmtam;
 	
+	public void addQymtqt(Double qymtqt){
+		if(this.qymtqt==null){
+			this.qymtqt=0d;
+		}
+		this.qymtqt=this.qymtqt+qymtqt;
+	}
+	public void addQymtam(Double qymtam){
+		if(this.qymtam==null){
+			this.qymtam=0d;
+		}
+		this.qymtam=this.qymtam+qymtam;
+	}
+	
+	public void addTxmtqt(Double txmtqt){
+		if(this.txmtqt==null){
+			this.txmtqt=0d;
+		}
+		this.txmtqt=this.txmtqt+txmtqt;
+	}
+	public void addTxmtam(Double txmtam){
+		if(this.txmtam==null){
+			this.txmtam=0d;
+		}
+		this.txmtam=this.txmtam+txmtam;
+	}
+	
 	public static class PK implements Serializable {
 		/**
 		 * @author mawujun qq:16064988 mawujun1234@163.com

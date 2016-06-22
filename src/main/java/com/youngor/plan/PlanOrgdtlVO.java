@@ -12,6 +12,8 @@ public class PlanOrgdtlVO extends PlanOrgdtl{
 	private String sptynm;
 	private String spsenm;
 	
+	private Boolean isTotal=false;
+	
 	public String getOrmtno() {
 		return ormtno;
 	}
@@ -60,6 +62,13 @@ public class PlanOrgdtlVO extends PlanOrgdtl{
 	public void setSpsenm(String spsenm) {
 		this.spsenm = spsenm;
 	}
+	public Boolean getIsTotal() {
+		return isTotal;
+	}
+	public void setIsTotal(Boolean isTotal) {
+		this.isTotal = isTotal;
+	}
+
 	
 
 

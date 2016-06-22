@@ -21,8 +21,10 @@ Ext.define('y.plan.PlanHdGrid',{
 		
 		{dataIndex:'plmtqt',header:'指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0 && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						} else if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 						
 		            	return value;
@@ -34,8 +36,10 @@ Ext.define('y.plan.PlanHdGrid',{
 		},
 		{dataIndex:'plmtam',header:'指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0){
+						if(record.get("plstat")==0 && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+						} else if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
 		            },editor: {
@@ -74,7 +78,7 @@ Ext.define('y.plan.PlanHdGrid',{
 	  
 	   this.cellEditing.on("beforeedit",function(editor, context){
 	   		var record=context.record;
-	   		if(record.get("plstat")!=0){
+	   		if(record.get("plstat")!=0 || record.get("isTotal")==true){
 	   			return false;
 	   		}
 	   });
@@ -102,12 +106,12 @@ Ext.define('y.plan.PlanHdGrid',{
 	  });
 
 	  me.dockedItems=[];
-      me.dockedItems.push({
-	        xtype: 'pagingtoolbar',
-	        store: me.store,  
-	        dock: 'bottom',
-	        displayInfo: true
-	  });
+//      me.dockedItems.push({
+//	        xtype: 'pagingtoolbar',
+//	        store: me.store,  
+//	        dock: 'bottom',
+//	        displayInfo: true
+//	  });
 	  
 	 me.dockedItems.push({
 	  		xtype: 'toolbar',

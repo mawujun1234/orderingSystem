@@ -43,10 +43,12 @@ Ext.define('y.ordmt.OrdOrgForm',{
                     checked:true
                 }, {
                     boxLabel  : '所有区域',
+                    hidden:true,
                     name      : 'addModel',
                     inputValue: 'allQY'
                 }, {
                     boxLabel  : '所有特许',
+                    hidden:true,
                     name      : 'addModel',
                     inputValue: 'allTX'
                 }

@@ -1,4 +1,5 @@
 package com.youngor.plan;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,72 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	}
 	
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {
-		return planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+		List<PlanOrgdtlVO> list= planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+		List<PlanOrgdtlVO> list_new= new ArrayList<PlanOrgdtlVO>();
+		//计算合计和小计
+		
+		
+		
+		//String subtotal_sptyno_temp=null;
+		PlanOrgdtlVO subtotal_sptyno=new PlanOrgdtlVO();//小类
+		PlanOrgdtlVO subtotal_spclno=new PlanOrgdtlVO();//大类
+		PlanOrgdtlVO subtotal_all=new PlanOrgdtlVO();//合计
+		for(PlanOrgdtlVO planOrgdtlVO:list){
+			list_new.add(planOrgdtlVO);
+			//添加小类合计
+			if(!planOrgdtlVO.getSptyno().equals(subtotal_sptyno.getSptyno())){
+				//排除把小计添加在第一行
+				if(subtotal_sptyno.getOrdorg()!=null){
+					list_new.add(subtotal_sptyno);
+				}
+				subtotal_sptyno=new PlanOrgdtlVO();
+				//subtotal_sptyno.setOrdorg("notedit");
+				subtotal_sptyno.setSptyno(planOrgdtlVO.getSptyno());
+				subtotal_sptyno.setSptynm("小计:");
+				subtotal_sptyno.setIsTotal(true);
+			}
+			
+			subtotal_sptyno.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_sptyno.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_sptyno.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_sptyno.addTxmtam(planOrgdtlVO.getTxmtam());
+			//添加大类小计
+			if(!planOrgdtlVO.getSpclno().equals(subtotal_spclno.getSpclno())){
+				//排除把小计添加在第一行
+				if(subtotal_spclno.getOrdorg()!=null){
+					list_new.add(subtotal_spclno);
+				}
+				subtotal_spclno=new PlanOrgdtlVO();
+				//subtotal_spclno.setOrdorg("notedit");
+				subtotal_spclno.setSpclno(planOrgdtlVO.getSpclno());
+				subtotal_spclno.setSpclnm("小计:");
+				subtotal_spclno.setIsTotal(true);
+			}
+			
+			subtotal_spclno.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_spclno.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_spclno.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_spclno.addTxmtam(planOrgdtlVO.getTxmtam());
+			if(!planOrgdtlVO.getOrdorg().equals(subtotal_all.getOrdorg())){
+				//排除把小计添加在第一行
+				if(subtotal_all.getOrdorg()!=null){
+					list_new.add(subtotal_all);
+				}
+				subtotal_all=new PlanOrgdtlVO();
+				subtotal_all.setOrdorg(planOrgdtlVO.getOrdorg());
+				subtotal_all.setOrgnm("合计:");
+				subtotal_all.setIsTotal(true);
+			}
+			
+			subtotal_all.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_all.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_all.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_all.addTxmtam(planOrgdtlVO.getTxmtam());
+		}
+		list_new.add(subtotal_sptyno);
+		list_new.add(subtotal_spclno);
+		list_new.add(subtotal_all);
+		return list_new;
 	}
 
 	public  void update(@RequestBody PlanOrgdtlVO planOrgdtlVO) {

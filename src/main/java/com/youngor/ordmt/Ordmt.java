@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
 import com.youngor.utils.BaseObject;

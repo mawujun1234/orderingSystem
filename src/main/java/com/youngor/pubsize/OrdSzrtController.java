@@ -6,12 +6,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mawujun.utils.page.Pager;
 import com.youngor.pubcode.PubCodeCache;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -76,6 +75,11 @@ public class OrdSzrtController {
 		//System.out.println(111);
 		ordSzrtService.create(ordSzrt);
 		
+	}
+	@RequestMapping("/ordSzrt/querySaleHisGrid.do")
+	@ResponseBody
+	public Map<String,Object> querySaleHisGrid(MapParams params) {
+		return ordSzrtService.querySaleHisGrid(params.getParams());
 	}
 
 //	/**

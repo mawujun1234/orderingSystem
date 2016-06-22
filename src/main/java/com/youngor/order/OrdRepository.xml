@@ -326,10 +326,27 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <update id="updateOrmtqt" parameterType="map"  >
      	update ORD_ORDDTL set ormtqt=#{ormtqt} where mtorno=#{mtorno} and sampno=#{sampno} and suitno=#{suitno}
      </update>
-     
+     <!-- 根据样衣编号获取企划样衣信息-->
+     <select id="getSamplePlanBySampno" resultType="com.youngor.sample.SamplePlan" parameterType="map">
+     	 select a.* from  ord_sample_plan a,ord_sample_design b
+          where a.plspno=b.plspno
+          and a.ormtno=#{ormtno} and b.sampno=#{sampno} 
+     </select>
+     <!-- 判断某个设计样衣名称 是不是套西 -->
+     <select id="checkIsS10" resultType="int" parameterType="map">
+     	 select count(a.plspno) from  ord_sample_plan a,ord_sample_design b
+          where a.plspno=b.plspno
+          and a.ormtno=#{ormtno} and b.sampnm=#{sampnm} and a.sptyno='S10'
+     </select>
+     <!-- 区域在后台手工增加样衣编号的时候 -->
      <select id="querySuitBySampnm" resultType="com.youngor.order.QyNewFormVO"  parameterType="map"  >
      	  select distinct c.* from  ord_sample_plan a,ord_sample_design b,ord_sample_design_sizegp c
           where a.plspno=b.plspno and b.sampno=c.sampno
+          and a.ormtno=#{ormtno} and b.sampnm=#{sampnm}
+     </select>
+     <select id="querySuitBySampnm_S10" resultType="com.youngor.order.QyNewFormVO"  parameterType="map"  >
+     	  select distinct c.* from  ord_sample_plan a,ord_sample_design b,ord_sample_design_sizegp c,ORD_SUIT_DC d
+          where a.plspno=b.plspno and b.sampno=c.sampno and a.sptyno=d.sptyno and a.bradno=d.bradno and b.sexno=d.sexno and b.suitty=d.suitty and b.spltmk=d.spltmk and c.suitno=d.suitno
           and a.ormtno=#{ormtno} and b.sampnm=#{sampnm}
      </select>
      
@@ -430,6 +447,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	select a.sizety,a.sizeno,b.sizenm from ORD_PUB_SIZEDTL a ,ORD_PUB_SIZE b
 		where  a.sizety=b.sizety and a.sizeno=b.sizeno  and 
 		a.fszty='PRDSZTY' and a.fszno=#{sizegp} 
+		 and NVL(b.SIZETY1,1)=1
 		<if test="sztype==1">
 			and a.sizety='STDSZ'
 		</if>
@@ -442,16 +460,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			     select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT
 				from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d
 				where a.plspno=b.plspno and b.sampno=c.sampno and c.sampno=d.sampno and c.suitno=d.suitno 
-			       and c.suitno='T00' and a.ormtno='201605'  AND A.BRADNO='Y' and a.spclno='01' and c.sizegp='121'
-			       and d.mtorno='201605_DZ_QY0003'
+			       and c.suitno=#{suitno} and a.ormtno=#{ormtno}  AND A.BRADNO=#{bradno} and a.spclno=#{spclno} and c.sizegp=#{sizegp}
+			       and d.mtorno=#{mtorno}
+			       <if test="sptyno!=null and sptyno!=''">
+			       		and a.sptyno=#{sptyno}
+			       </if>
+			       <if test="spseno!=null and spseno!=''">
+			       		and a.spseno=#{spseno}
+			       </if>
+			       <if test="versno!=null and versno!=''">
+			       		and b.versno=#{versno}
+			       </if>
+			       <if test="sampnm!=null and sampnm!=''">
+			       		and b.sampnm like '%${sampnm}%'
+			       </if>
 			 ) x left join (
 				 select b.sampno,c.SIZETY,c.SIZENO,c.ORSZQT,c.ORBGQT
 				 from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c
 				 where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno
 				       and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN 
-				 and b.suitno='T00'  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'
-				 AND a.BRADNO='Y' and a.SPCLNO='01'
-				 and a.mtorno='201605_DZ_QY0003' and a.SDTYNO='20'
+				 and b.suitno=#{suitno}  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'
+				 AND a.BRADNO=#{bradno} and a.SPCLNO=#{spclno}
+				 and a.mtorno=#{mtorno} and a.SDTYNO='20'
+				 <if test="szstat!=null and szstat!=''">
+			       		and a.szstat =#{szstat}
+			     </if>
 			 ) y on x.sampno=y.sampno
 			 left join ord_sample_prod z on x.sampno=z.sampno and x.ormtno=z.ormtno
 			 ORDER by x.sampno

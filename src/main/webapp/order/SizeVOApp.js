@@ -314,8 +314,8 @@ Ext.onReady(function(){
 		    },{
 		        fieldLabel: '订货样衣编号',
 		        labelWidth:65,
-		        width:150,
-		        itemId: 'sampno',
+		        width:165,
+		        itemId: 'sampnm',
 	            xtype:'textfield'
 		    },{
 				fieldLabel: '订货规格状态',
@@ -329,7 +329,7 @@ Ext.onReady(function(){
 			    valueField: 'id',
 			    store: {
 				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -412,7 +412,7 @@ Ext.onReady(function(){
 			
 			'versno':toolbars[2].down("#versno").getValue(),
 			'sizegp':toolbars[2].down("#sizegp").getValue(),
-			'sampno':toolbars[2].down("#sampno").getValue(),
+			'sampnm':toolbars[2].down("#sampnm").getValue(),
 			'szstat':toolbars[2].down("#szstat").getValue()
 		};
 		return params;

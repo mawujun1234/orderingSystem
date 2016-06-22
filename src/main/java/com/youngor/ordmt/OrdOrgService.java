@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.mawujun.exception.BusinessException;
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.youngor.order.Ord;
+import com.youngor.order.OrdRepository;
 import com.youngor.org.AccessRule;
 import com.youngor.org.Dim;
 import com.youngor.org.Org;
@@ -23,6 +26,7 @@ import com.youngor.permission.RoleUserRepository;
 import com.youngor.permission.User;
 import com.youngor.permission.UserService;
 import com.youngor.utils.ContextUtils;
+import com.youngor.utils.M;
 
 
 /**
@@ -50,6 +54,11 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 	private RoleRepository roleRepository;
 	@Autowired
 	private RoleUserRepository roleUserRepository;
+	@Autowired
+	private OrdRepository ordRepository;
+	@Autowired
+	private OrdmtRepository ordmtRepository;
+	
 	@Override
 	public OrdOrgRepository getRepository() {
 		return ordOrgRepository;
@@ -84,6 +93,9 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 				user.setPwd("0");
 				user.setName(org.getName());
 				userService.create(user);
+			} else {
+				//如果这个用户已经存在，就默认这个用户已经建立过了，就不需要进行再建立了
+				return;
 			}
 			//同时挂到这个组织的单元所在的“订货员”职位上，如果没有职员职位，就创建一个
 			List<Position> positiones=positionRepository.queryPositionByName(ordorg, "订货员");
@@ -126,11 +138,41 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 	public OrdOrg getOrdOrgByOrg(String ormtno,String orgno) {
 		return ordOrgRepository.getOrdOrgByOrg(ormtno, orgno);
 	}
-	
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param orgno
+	 * @return true表示已经开始订货了
+	 */
+	public Boolean checkIsOrding(String ormtno,String orgno) {
+		List<Ord> ordes=ordRepository.query(Cnd.select().andEquals(M.Ord.ordorg, orgno).andEquals(M.Ord.ormtno, ormtno).andEquals(M.Ord.ortyno, "DZ"));
+		if(ordes==null || ordes.size()==0){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	@Override
+	public  void update(OrdOrg ordOrg) {
+		if(checkIsOrding(ordOrg.getOrmtno(),ordOrg.getOrdorg())){
+			throw new BusinessException("更新失败,该订货单位已经开始订货，不能更新!");
+		}
+		super.update(ordOrg);
+	}
 	public void destroy(OrdOrg ordOrg) {
+		if(checkIsOrding(ordOrg.getOrmtno(),ordOrg.getOrdorg())) {
+			throw new BusinessException("该订货单位已经开始订货，不能删除!");
+		}
+		//如果订货会已经结束，不能删除，这个已经在前端判断过了，这里最好也加上
+		Ordmt ordmt=ordmtRepository.get(ordOrg.getOrmtno());
+		if(ordmt.getOrmtst()){
+			throw new BusinessException("订货会已经结束，不能删除!");
+		}
+		
 		super.delete(ordOrg);
 		
-		//删除这个用户
+		//删除这个用户,如果该订货单位还没有开始的话，就可以把相关的账号权限都删除
 		String loginName=ordOrg.getOrdorg().toLowerCase();
 		User user=userService.getByLoginName(loginName);
 		

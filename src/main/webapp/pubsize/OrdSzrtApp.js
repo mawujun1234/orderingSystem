@@ -255,7 +255,20 @@ Ext.onReady(function(){
 		}
 		return params;
 	}
-	
+	function getParams1(){
+		var params={
+			"params['ordorg']":tabpanel.down("#regioncombo").getValue() ,
+			"params['ormtno']":tabpanel.down("#ordmtcombo").getValue() ,
+			"params['bradno']":tabpanel.down("#bradno").getValue(),
+			"params['spclno']":tabpanel.down("#spclno").getValue(),
+			"params['spseno']":tabpanel.down("#spseno").getValue(),
+			"params['versno']":tabpanel.down("#versno").getValue(),
+			"params['sizegp']":tabpanel.down("#sizegp").getValue()
+			
+		}
+		return params;
+	}
+	//单规比例设置
 	function createOrdSzrtGrid(initColumns){
 		var params=getParams();
 //		if(!params.versno){
@@ -268,17 +281,26 @@ Ext.onReady(function(){
 		}
 		params.sizety='STDSZ';
 		var grid=Ext.create('y.pubsize.OrdSzrtGrid',{
-			title:'规格比例设置',
+			//title:'规格比例设置',
 			//activeTab :0,
+			region:'center',
 			params:params,
 			initColumns:initColumns
 		});
 		//alert(1);
 		
-		tabpanel.add(grid);
+		var container=Ext.create('Ext.panel.Panel',{
+			title:'规格比例设置',
+			layout:'border',
+			items:[grid]
+		});
+
+		tabpanel.add(container);
 		tabpanel.setActiveItem(0);
+		//alert(1);
+		showSaleHisGrid(container);
 	}
-	
+	//包装箱比例设置
 	function createPrdpkGrid(initColumns){
 		var params=getParams();
 //		if(!params.versno){
@@ -304,7 +326,24 @@ Ext.onReady(function(){
 		tabpanel.add(grid);
 	}
 	
-	
+	function showSaleHisGrid(container){
+		var params=getParams1();
+		Ext.Ajax.request({
+			url:Ext.ContextPath+"/ordSzrt/querySaleHisGrid.do",
+			params:params,
+			success:function(response){
+			 	//console.log(response.responseText);
+				var obj=Ext.decode(response.responseText);
+				var saleHisGrid=Ext.create("y.pubsize.SaleHisGrid",{
+					region:'south',
+					height:260,
+					initColumns:obj.list_columns
+				});
+				saleHisGrid.getStore().loadData(obj.list_data);
+				container.add(saleHisGrid);
+			}
+		});
+	}
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'fit',

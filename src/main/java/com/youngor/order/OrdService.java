@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,7 @@ import com.youngor.permission.UserVO;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
+import com.youngor.sample.SamplePlan;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 
@@ -363,7 +363,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 		if("QY".equals(org.getChanno().toString())){
 			//订单号
-			String mtorno=ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();
+			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
 			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
 			if(none_abstat!=null && none_abstat.size()>0){
 				StringBuilder builder=new StringBuilder();
@@ -530,7 +530,21 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	
 	public List<QyNewFormVO> querySuitBySampnm(String ormtno,String sampnm) {
-		return ordRepository.querySuitBySampnm(ormtno, sampnm);
+		int count=ordRepository.checkIsS10(ormtno, sampnm);
+		//如果是套西的话
+		if(count>0){
+			List<QyNewFormVO> list= ordRepository.querySuitBySampnm_S10(ormtno, sampnm);
+			return list;
+		} else {
+			List<QyNewFormVO> list= ordRepository.querySuitBySampnm(ormtno, sampnm);
+			return list;
+		}
+		 
+
+	}
+	private String getMtorno(String ormtno,String ortyno,String ordorg){
+		String mtorno=ormtno+"_"+ortyno+"_"+ordorg;
+		return mtorno;
 	}
 	public void createNew(ArrayList<Orddtl> orddtles,String ordorg,String ortyno,String channo,String ormtno) {
 		if(orddtles==null|| orddtles.size()==0){
@@ -545,14 +559,30 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//获取对应的订单号，审批订单号，审批订单版本号,这里已经确定了品牌和大类(样衣编号)
 		Ordhd ordhd=ordRepository.getOrdhd(sampno, ordorg, ortyno, channo, ormtno);
-		//判断状态，如果状态不对的话，就不能保存
-		if(ordhd.getOrstat()!=0 && ordhd.getOrstat()!=4){
-			throw new BusinessException("该订单已被提交审批，不能新建!");
+		// 如果这个样衣的这个品牌大类还没有订过，就创建订单副表的数据
+		if (ordhd == null) {
+			String mtorno=getMtorno( ormtno, ortyno, ordorg);
+			SamplePlan sampleDesign=ordRepository.getSamplePlanBySampno(ormtno, sampno);
+
+			ordhd=new Ordhd();
+			ordhd.setMtorno(mtorno);
+			ordhd.setBradno(sampleDesign.getBradno());
+			ordhd.setSpclno(sampleDesign.getSpclno());
+			ordhd.setMlorno(mtorno+ordhd.getBradno()+ordhd.getSpclno());
+			ordhd.setMlorvn(1);
+			ordhd.setSdtyno("20");
+			ordhd.setOrstat(0);
+			ordhd.setSzstat(0);
+			ordhd.setIsfect(1);
+			ordhdRepository.create(ordhd);
+		} else {
+			//判断状态，如果状态不对的话，就不能保存
+			if(ordhd.getOrstat()!=0 && ordhd.getOrstat()!=4){
+				throw new BusinessException("该订单已被提交审批，不能新建!");
+			}
+		
+			
 		}
-//		// 如果这个样衣的这个品牌大类还没有订过，就创建订单副表的数据
-//		if (ordhd == null) {
-//
-//		}	
 		//创建订单明细表
 		for(Orddtl orddtl:orddtles){
 			orddtl.setMtorno(ordhd.getMtorno());
@@ -562,6 +592,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			
 			orddtlRepository.create(orddtl);
 		}
+		
 	}
 	/**
 	 * 区域平衡 提交审批
@@ -780,6 +811,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @return
 	 */
 	public List<Map<String,Object>> sizeVO_querySizeVOData(Map<String,Object> params) {
+		params.put("mtorno", getMtorno(params.get("ormtno").toString(),params.get("ortyno").toString(),params.get("ordorg").toString()));
 		List<Map<String,Object>> list= ordRepository.sizeVO_querySizeVOData(params);
 		List<Map<String,Object>> result= new ArrayList<Map<String,Object>>();
 		
@@ -823,8 +855,11 @@ public class OrdService extends AbstractService<Ord, String>{
 					map=new HashMap<String,Object>();
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
 					map.put("SPSENO", listmap.get("SPSENO"));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
 					map.put("VERSNO", listmap.get("VERSNO"));
+					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
 					map.put("PLSPNO", listmap.get("PLSPNO"));
 					map.put("PLSPNM", listmap.get("PLSPNM"));
 					map.put("SAMPNO", listmap.get("SAMPNO"));
@@ -844,8 +879,11 @@ public class OrdService extends AbstractService<Ord, String>{
 					map=new HashMap<String,Object>();
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
 					map.put("SPSENO", listmap.get("SPSENO"));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
 					map.put("VERSNO", listmap.get("VERSNO"));
+					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
 					map.put("PLSPNO", listmap.get("PLSPNO"));
 					map.put("PLSPNM", listmap.get("PLSPNM"));
 					map.put("SAMPNO", listmap.get("SAMPNO"));

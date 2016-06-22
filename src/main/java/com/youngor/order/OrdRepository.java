@@ -12,7 +12,7 @@ import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
-import com.youngor.utils.MapParams;
+import com.youngor.sample.SamplePlan;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -73,8 +73,10 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void updateOrmtqt(@Param("mtorno")String mtorno,@Param("sampno")String sampno,@Param("suitno")String suitno,@Param("ormtqt")Integer ormtqt);
 	
-	
+	public int checkIsS10(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
+	public SamplePlan getSamplePlanBySampno(@Param("ormtno")String ormtno,@Param("sampno")String sampno);
 	public List<QyNewFormVO> querySuitBySampnm(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
+	public List<QyNewFormVO> querySuitBySampnm_S10(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
 	
 	public int checkSampnoOrded(@Param("sampno")String sampno,@Param("ordorg")String ordorg,@Param("ortyno")String ortyno,
 			@Param("channo")String channo,@Param("ormtno")String ormtno);

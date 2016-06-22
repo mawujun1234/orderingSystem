@@ -19,11 +19,11 @@ Ext.define('y.order.QyVOGrid',{
         		if(value==0){
         			return "编辑中";
         		} else if(value==1){
-        			return "审批中";
+        			return "大区审批中";
         		} else if(value==2){
-        			return "大区审批通过";
+        			return "总部审批中";
         		} else if(value==3){
-        			return "总部审批通过";
+        			return "审批通过";
         		} else if(value==4){
         			return "退回";
         		}
@@ -328,6 +328,9 @@ Ext.define('y.order.QyVOGrid',{
 		  		itemId:'ortyno',
 				xtype:'ordtycombo',
 				labelWidth:65,
+				allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            value:'DZ',
 				//selFirst:true,
 				width:150,
 				listeners:{
@@ -410,9 +413,9 @@ Ext.define('y.order.QyVOGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
-		        itemId: 'sampno',
+		        itemId: 'sampnm',
 	            xtype:'textfield'
 		    },{
 				fieldLabel: '订单状态',
@@ -426,7 +429,7 @@ Ext.define('y.order.QyVOGrid',{
 			    valueField: 'id',
 			    store: {
 				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				    data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -489,7 +492,7 @@ Ext.define('y.order.QyVOGrid',{
 			"params['sptyno']":toolbars[1].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[1].down("#spseno").getValue(),
 			"params['suitno']":toolbars[1].down("#suitno").getValue(),
-			"params['sampno']":toolbars[2].down("#sampno").getValue(),
+			"params['sampnm']":toolbars[2].down("#sampnm").getValue(),
 			"params['orstat']":toolbars[2].down("#orstat").getValue()
 		};
 		return params;

@@ -15,7 +15,7 @@ public class Ord {
 	@Id
 	@Column(length=30)
 	@FieldDefine(title="订单号",sort=50,hidden=false)
-	private String mtorno;
+	private String mtorno;//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();
 	@Column(length=30)
 	@FieldDefine(title="订货会编号",sort=50,hidden=false)
 	private String ormtno;

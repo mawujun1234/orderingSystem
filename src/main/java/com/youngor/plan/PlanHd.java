@@ -45,6 +45,25 @@ public class PlanHd {
 	@FieldDefine(title="生效状态",sort=50,hidden=false)
 	private Integer plstat;//0：编辑中；1：已确认；
 	
+	public void addPlmtqt(Double plmtqt){
+		if(this.plmtqt==null){
+			this.plmtqt=0d;
+		}
+		if(plmtqt==null){
+			return;
+		}
+		this.plmtqt=this.plmtqt+plmtqt;
+	}
+	public void addPlmtam(Double plmtam){
+		if(this.plmtam==null){
+			this.plmtam=0d;
+		}
+		if(plmtam==null){
+			return;
+		}
+		this.plmtam=this.plmtam+plmtam;
+	}
+	
 	
 	public static class PK implements Serializable{
 		/**
