@@ -26,7 +26,7 @@
   <div  id="tap_effect" >
   </div>
   <div id="od_closeing_info">离今日订货结束还差60分钟，注意数据保存！</div>
-  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;">
+  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;display:none;">
   	<a id="bottom_bar_od_info" class="tab-item active" href="#od_info">
     	<span class="icon icon-home"></span>
         <span class="tab-label">订货</span>
@@ -83,7 +83,7 @@
                 
                 <div class="content-block">
                     <div class="hi-icon-wrap-login hi-icon-effect-7-login">
-                        <a href="#" onClick="window.location.reload();" class="hi-icon-login hi-icon-scale">扫描登录</a>
+                        <a href="#" id="od_loginpage_scanQRCode_btn"  class="hi-icon-login hi-icon-scale">扫描登录</a>
                     </div>
                 </div>
             </div>
@@ -213,7 +213,7 @@
                  
                   <div id="od_info_saveAndclear_button" class="content-block" style="padding-bottom:2rem;display:none;" >
                     <div class="row">
-                      <div class="col-50"><a id="od_info_clear_button" href="#" class="button button-big button-fill button-danger">清除</a></div>
+                      <div class="col-50"><a id="od_info_clear_button" href="#" class="button button-big button-fill button-danger">清零</a></div>
                       <div class="col-50"><a id="od_info_save_button" href="#" class="button button-big button-fill button-success">保存</a></div>
                     </div>
                   </div>

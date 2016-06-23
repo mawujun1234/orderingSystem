@@ -23,6 +23,7 @@ import com.youngor.ordmt.OrdmtScde;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
+import com.youngor.plan.PlanOrgService;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
@@ -52,7 +53,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private CompPalService compPalService;
 	@Autowired
 	private OrdOrgService ordOrgService;
-	
+	@Autowired
+	private PlanOrgService planOrgService;
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
 	@Override
@@ -117,7 +119,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 		if("TX".equals(org.getChanno().toString())){
 			int count=	ordRepository.order_dl__order_can(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
-			if(count==1){
+			if(count==0){
 				throw new BusinessException("该样衣不可订!");
 			}
 		}
@@ -514,6 +516,17 @@ public class OrdService extends AbstractService<Ord, String>{
 		MyInfoVO myInfoVO= ordRepository.queryMyInfoVO(ord.getMtorno(),org.getChanno().toString());
 		
 		myInfoVO.setOrgnm(org.getOrgnm());
+		
+//		//如果是特许，获取特许所在的区域，然后获取特许定的金额
+//		//然后获取该区域的的特许指标数量
+//		String plorno=null;//指标单号
+//		if("TX".equals(org.getChanno().toString())){
+//			
+//		} else {
+//			plorno=planOrgService.getPlorno(ord.getOrmtno(), org.getOrgno(), ord.get)
+//		}
+		
+		
 		return myInfoVO;
 	}
 	

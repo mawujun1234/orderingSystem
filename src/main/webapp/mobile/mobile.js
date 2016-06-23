@@ -24,21 +24,7 @@ function show_od_closeing_info(){
 	setTimeout("show_od_closeing_info()",120*1000);
 }
 $(function(){
-//			$(".card .card-header .item-title.label").click(function(){
-//				var input_id=$(this).attr("id");
-//				//如果是订货信息的就不收缩
-//				if(input_id=='od_info_input'){
-//					return;
-//				}
-//				var car_content_id=input_id.substr(0,input_id.length-6);
-//				//$(".card .guig_content").toggle();
-//				var guig_content=$("#"+car_content_id+" .guig_content");
-//				guig_content.toggle();
-//				
-//				var icon=$(this).next().next();//alert(icon.length);
-//				icon.toggleClass("icon-up");
-//				icon.toggleClass("icon-down");
-//			});
+
 			window.card_card__header_item__title_label=function(obj){
 				var input_id=$(obj).attr("id");
 				//如果是订货信息的就不收缩
@@ -54,29 +40,7 @@ $(function(){
 				icon.toggleClass("icon-up");
 				icon.toggleClass("icon-down");
 			}
-			
-//			$(".card .card-header input").click(function(){
-//				//$(document).scrollTop();
-//				
-//				var input_id=$(this).attr("id");
-//				if(input_id=='od_info_input'){
-//					return;
-//				}
-//				var car_content_id=input_id.substr(0,input_id.length-6);
-//				alert(car_content_id);
-//				
-//				$(".card .guig_content").hide();
-//				$("#"+car_content_id+" .guig_content").show();
-//				
-//				//alert($(".card .card-header .item-content .icon").length);
-//				$(".card .card-header .item-content .icon").removeClass("icon-down");
-//				$(".card .card-header .item-content .icon").addClass("icon-up");
-//				var icon=$(this).parent().next(".icon");
-//				icon.removeClass("icon-up");
-//				icon.addClass("icon-down");
-//				
-//				
-//			});
+
 			window.card_header_input_click=function(obj){	
 				var input_id=$(obj).attr("id");
 				if(input_id=='od_info_input'){
@@ -153,17 +117,7 @@ $(function(){
 	});
 	
 	//alert(location.href)
-	//扫一扫
-	$("#od_info_scanQRCode_btn").click(function(){
-		wx.scanQRCode({
-			desc: 'scanQRCode desc',
-			needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-			scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-			success: function (res) {
-				var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-			}
-		});
-	});
+	
 
 });
 
@@ -175,7 +129,23 @@ $(function(){
 	
 	window.user=null;
 	if(!window.user){
-		$.router.load("#od_loginpage"); 
+		//$.router.load("#od_loginpage"); 
+		restoreuser();
+	}
+	function storeuser(user){
+		sessionStorage["user"]=JSON.stringify(user);
+	}
+	//从localstore中恢复用户的信息
+	function restoreuser(){
+		var user_str=sessionStorage["user"];
+		if(user_str){
+			window.user=JSON.parse(user_str);
+		}
+		//alert(sessionStorage["active_nav_id"]);
+		if(sessionStorage["active_nav_id"]){//alert(2);
+			$("#bottom_bar").show();
+			$(sessionStorage["active_nav_id"]).addClass("active");
+		}
 	}
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  window.nav_click_aaaa=false;
@@ -190,6 +160,8 @@ $(function(){
 		  
 		  $("#bottom_bar a.tab-item").removeClass("active");
 	      $("#bottom_bar_"+pageId).addClass("active");
+		  
+		  sessionStorage["active_nav_id"]="#bottom_bar_"+pageId;
 	  }
 	  
 	 
@@ -203,6 +175,28 @@ $(function(){
 //		
 //	});
 	
+	function login(loginname,password){
+		$.showPreloader("正在登录...");
+		$.post(Ext.ContextPath+"/user/mobile/login.do",
+			{
+				username:loginname,
+				password:password
+			},function(response){
+				$.hidePreloader();
+				if(response.success==false){
+					$.toast(response.msg);
+				} else {
+					window.user=response;
+					storeuser(window.user);
+					$.router.load("#od_info"); 
+					document.title = response.orgnm;
+					
+					show_od_closeing_info();
+				}
+				
+			}
+		)//$.post
+	}
 	$("#od_loginpage_login_btn").click(function(){
 		var od_loginpage_username=$("#od_loginpage_username").val();
 		var od_loginpage_password=$("#od_loginpage_password").val();
@@ -212,36 +206,62 @@ $(function(){
 		if(!od_loginpage_password){
 			$.toast("请输入密码!");return;
 		}
-		$.showPreloader("正在登录...");
-		$.post(Ext.ContextPath+"/user/mobile/login.do",
-			{
-				username:od_loginpage_username,
-				password:od_loginpage_password,
-				url:location.href.split('#')[0]
-			},function(response){
-				//console.log(response);
-				//var obj=response;//JSON.parse(response.responseText);
-				//console.log(obj);
-				//alert(1);
-				$.hidePreloader();
-				if(response.success==false){
-					$.toast(response.msg);
-				} else {
-					window.user=response;
-					$.router.load("#od_info"); 
-
-					response.wxConfig.debug=false;
-					response.wxConfig.jsApiList=['scanQRCode'];
-					wx.config(response.wxConfig);
-					//wx.hideAllNonBaseMenuItem();
-					
-					document.title = response.orgnm;
-					
-					show_od_closeing_info();
-				}
-				
+		login(od_loginpage_username,od_loginpage_password);
+	//	$.showPreloader("正在登录...");
+//		$.post(Ext.ContextPath+"/user/mobile/login.do",
+//			{
+//				username:od_loginpage_username,
+//				password:od_loginpage_password,
+//				url:location.href.split('#')[0]
+//			},function(response){
+//				//console.log(response);
+//				//var obj=response;//JSON.parse(response.responseText);
+//				//console.log(obj);
+//				//alert(1);
+//				$.hidePreloader();
+//				if(response.success==false){
+//					$.toast(response.msg);
+//				} else {
+//					window.user=response;
+//					$.router.load("#od_info"); 
+//
+//					//response.wxConfig.debug=false;
+//					//response.wxConfig.jsApiList=['scanQRCode'];
+//					//wx.config(response.wxConfig);
+//					////wx.hideAllNonBaseMenuItem();
+//					
+//					document.title = response.orgnm;
+//					
+//					show_od_closeing_info();
+//				}
+//				
+//			}
+//		)
+	});
+	
+	//注册微信的配置信息
+	$.post(Ext.ContextPath+'/user/mobile/getWxConfig.do', { url:location.href.split('#')[0] }, function(response){
+		//console.log(response);
+		response.debug=false;
+		response.jsApiList=['scanQRCode'];
+		wx.config(response);
+		//wx.hideAllNonBaseMenuItem();
+	},'json');
+	//扫描登录
+	$("#od_loginpage_scanQRCode_btn").click(function(){
+		wx.scanQRCode({
+			desc: 'scanQRCode desc',
+			needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+			scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+			success: function (res) {
+				var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+				//alert(result);
+				var str=result.split("+##+");
+				//alert(str[0]);
+				//alert(str[1]);
+				login(str[0],str[1]);
 			}
-		)
+		});
 	});
 	
 });	
@@ -289,10 +309,25 @@ $(function(){
 		}
 		
 	});
+	//扫一扫
+	$("#od_info_scanQRCode_btn").click(function(){
+		wx.scanQRCode({
+			desc: 'scanQRCode desc',
+			needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+			scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+			success: function (res) {
+				var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+
+				scan(result)
+			}
+		});
+	});
 	//开始扫描某个样衣
 	function scan(sampnm){
 		showOd_info_unsave_tips(false);
 				  //$.alert('You clicked Ok button');
+				  
+		
 		
 		$.showPreloader("正在获取样衣信息...");
 		$.post(Ext.ContextPath+"/ord/mobile/querySample.do",
@@ -302,6 +337,7 @@ $(function(){
 				if(response.success==false){
 					$.toast(response.msg);
 					$.hidePreloader();
+					clearSampleInfo();
 					return;
 				}
 				
@@ -410,21 +446,41 @@ $(function(){
 		this.value=parseInt(this.value);//.replace('.','')
 		//console.log(this.value+"====");
 	});
+	
+	function clearSampleInfo(){
+		if(window.vm_sampleVO){
+			window.vm_sampleVO.$data={};
+		}
+		if(window.vm_od_info_suitVOs){
+			window.vm_od_info_suitVOs.suitVOs=[];//splice
+		}
+	}
 
 	$("#od_info_clear_button").click(function(){
 		var sampno=window.vm_sampleVO.sampno
 		$.post(Ext.ContextPath+"/ord/mobile/clearSampno.do",{sampno:sampno},function(response){
-			window.vm_sampleVO.$data={};
-			window.vm_od_info_suitVOs.suitVOs=[];//splice
+			//clearSampleInfo();
+			//只是把数量全部清空0，不是清除数据
+			var suitVOs=window.vm_od_info_suitVOs.suitVOs;
+			for(var i=0;i<suitVOs.length;i++){
+				suitVOs[i].ormtqt=0;
+				var sizeVOs=suitVOs[i].sizeVOs;
+				for(var j=0;j<sizeVOs.length;j++){
+					sizeVOs[j].orszqt=0;
+				}
+				
+			}
 			
 			showOd_info_unsave_tips(false);
 		},"json");
 	});
 	$("#od_info_save_button").click(function(){
+		
 		$.showPreloader("正在保存订货信息...");
 		var suitVOs=window.vm_od_info_suitVOs.suitVOs;
 		//console.log(suitVOs);
 		//判断一个套件中的总量和各个规格加起来是否相等
+		var aa=0;
 		for(var i=0;i<suitVOs.length;i++){
 			if(!suitVOs[i].ormtqt){
 				continue;
@@ -440,6 +496,12 @@ $(function(){
 				$.hidePreloader();
 				return;
 			}
+			aa+=orszqt_sum;
+		}
+		if(window.vm_sampleVO.abstat==1 && aa==0){
+			alert("必定款的数量不能输入0");
+			$.hidePreloader();
+			return;
 		}
 		
 		//console.log(data["suitVOs"]);
@@ -485,6 +547,11 @@ $(function(){
 			}
 		},"json");
 	}
+	//当切换到我的页面，然后刷新页面的时候，也要重新获取这个数据
+	if( sessionStorage["active_nav_id"]=="#bottom_bar_od_mypage"){
+		queryMyInfoVO ();
+	}
+	//点击菜单切换过来的时候
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  if(pageId == "od_mypage") {
 		  queryMyInfoVO ();

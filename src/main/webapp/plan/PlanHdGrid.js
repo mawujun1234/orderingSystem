@@ -181,10 +181,16 @@ Ext.define('y.plan.PlanHdGrid',{
 		    },{
 				text: '查询',
 				itemId:'reload',
-				disabled:me.disabledAction,
 				handler: function(btn){
 					var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=grid.getParams();
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			},{
+				text: '刷新合计',
+				handler: function(btn){
+					var grid=btn.up("grid");
 					grid.getStore().reload();
 				},
 				iconCls: 'icon-refresh'

@@ -63,7 +63,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		WHERE 
 		ORMTNO=#{ormtno} AND ORGNO=#{ordorg}
 		<if test="spseno!=null and spseno!=''">
-			AND PRSENO=#{spseno}
+			AND PRSENO=#{spclno_spseno}
 		</if>
 		<if test="versno!=null and versno!=''">
 			 AND BANDNO=#{versno}

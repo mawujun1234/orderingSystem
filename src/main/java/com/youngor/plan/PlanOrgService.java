@@ -103,8 +103,11 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 		return list_new;
 	}
 
+	public String getPlorno(String ormtno,String ordorg,String bradno){
+		return ormtno+"_"+ordorg+"_"+bradno;
+	}
 	public  void update(@RequestBody PlanOrgdtlVO planOrgdtlVO) {
-		String plorno=planOrgdtlVO.getOrmtno()+"_"+planOrgdtlVO.getOrdorg()+"_"+planOrgdtlVO.getBradno();
+		String plorno=getPlorno(planOrgdtlVO.getOrmtno(),planOrgdtlVO.getOrdorg(),planOrgdtlVO.getBradno());//planOrgdtlVO.getOrmtno()+"_"+planOrgdtlVO.getOrdorg()+"_"+planOrgdtlVO.getBradno();
 		if(planOrgRepository.get(plorno)==null) {
 			PlanOrg planOrg=new PlanOrg();
 			planOrg.setPlorno(plorno);

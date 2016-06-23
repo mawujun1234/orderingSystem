@@ -30,7 +30,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        {call ORDER_DL.ORDER_CAN(?,?,?)}  
     </update>
     -->
-    
+    <!-- 判断特许是否可以订这个样衣编号，返回0表示不可以 -->
     <select id="order_dl__order_can" parameterType="map" resultType="int">
     	select ORDER_DL.ORDER_CAN(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO}) from dual
     </select>

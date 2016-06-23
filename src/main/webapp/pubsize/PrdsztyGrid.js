@@ -258,6 +258,7 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 		
 		var formpanel=Ext.create('y.pubsize.PrdsztyForm',{});
 		formpanel.loadRecord(child);
+		formpanel.down("#sizeno").setReadOnly(false);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
@@ -289,6 +290,7 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 			
 		});
 		formpanel.loadRecord(node);
+		formpanel.down("#sizeno").setReadOnly(true);
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

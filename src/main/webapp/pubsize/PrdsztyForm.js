@@ -30,6 +30,7 @@ Ext.define('y.pubsize.PrdsztyForm',{
 		{
 	        fieldLabel: '规格代码',
 	        name: 'sizeno',
+	        itemId: 'sizeno',
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },

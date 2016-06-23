@@ -44,11 +44,17 @@ public class PlanOrgdtl {
 		if(this.qymtqt==null){
 			this.qymtqt=0d;
 		}
+		if(qymtqt==null){
+			qymtqt=0d;
+		}
 		this.qymtqt=this.qymtqt+qymtqt;
 	}
 	public void addQymtam(Double qymtam){
 		if(this.qymtam==null){
 			this.qymtam=0d;
+		}
+		if(qymtam==null){
+			qymtam=0d;
 		}
 		this.qymtam=this.qymtam+qymtam;
 	}
@@ -57,11 +63,17 @@ public class PlanOrgdtl {
 		if(this.txmtqt==null){
 			this.txmtqt=0d;
 		}
+		if(txmtqt==null){
+			txmtqt=0d;
+		}
 		this.txmtqt=this.txmtqt+txmtqt;
 	}
 	public void addTxmtam(Double txmtam){
 		if(this.txmtam==null){
 			this.txmtam=0d;
+		}
+		if(txmtam==null){
+			txmtam=0d;
 		}
 		this.txmtam=this.txmtam+txmtam;
 	}

@@ -123,6 +123,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/user/login.do*", "anon");
 		filterChainDefinitionMap.put("/user/logout.do*", "anon");
 		filterChainDefinitionMap.put("/user/mobile/login.do*", "anon");
+		filterChainDefinitionMap.put("/user/mobile/getWxConfig.do*", "anon");
 		filterChainDefinitionMap.put("/ord/mobile/getOrdmt.do*", "anon");
 		filterChainDefinitionMap.put("/**/*.css", "anon");
 		filterChainDefinitionMap.put("/**/*.js", "anon");

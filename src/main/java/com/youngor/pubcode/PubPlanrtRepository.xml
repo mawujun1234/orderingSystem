@@ -10,7 +10,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	   select '${bradno}' as bradno,a.*,b.planrt from (   
 		      SELECT  p0.itno as spclno,p0.itnm as spclnm,p2.itno as sptyno, p2.itnm as sptynm
 		      FROM ORD_pub_code p0,ORD_pub_code p2 
-		      where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2'
+		      where p0.itno=p2.fitno and p0.tyno='0' and p2.tyno='2' AND P2.ITST=1 AND P2.STAT=1
 		      order by p0.itso,p2.itso
 		   ) a
 		   left join ORD_PUB_PLANRT b on a.spclno=b.spclno and a.sptyno=b.sptyno and b.bradno=#{bradno} 

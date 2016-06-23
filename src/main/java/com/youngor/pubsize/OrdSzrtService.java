@@ -43,6 +43,7 @@ public class OrdSzrtService extends AbstractService<OrdSzrt, OrdSzrt.PK>{
 	}
 	
 	public Map<String,Object> querySaleHisGrid(Map<String,Object> params) {
+		params.put("spclno_spseno", params.get("spclno")+"|"+params.get("spseno"));
 		List<Map<String,Object>> list=ordSzrtRepository.querySaleHisGrid(params);
 		Map<String,Object> result=new HashMap<String,Object>();
 		List<Map<String,Object>> list_data= new ArrayList<Map<String,Object>>();

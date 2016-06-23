@@ -11,7 +11,7 @@ public class PlanOrg {
 	@Id
 	@Column(length=50)
 	@FieldDefine(title="指标单号",sort=50,hidden=false)
-	private String plorno;
+	private String plorno;// ormtno+"_"+ordorg+"_"+bradno
 	@Column(length=36)
 	@FieldDefine(title="订货批号",sort=50,hidden=false)
 	private String ormtno;

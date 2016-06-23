@@ -18918,3 +18918,205 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 17:49:35.654 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.OrdSzrt@5db559ec
 17:50:14.381 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubsize.PubSizeVO> com.youngor.pubsize.PubSizeController.queryPRDSZTY4Ordmt(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='szbrad', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
 17:50:14.381 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='szbrad', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:11:08.896 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:11:29.510 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:11:46.774 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:11:46.775 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:49:01.421 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:55:49.719 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:24:39.158 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:48:16.720 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+10:48:16.720 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+12:17:34.714 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:22:48.847 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+12:22:48.847 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+12:23:45.823 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+12:23:45.823 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+12:24:23.121 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@6aa24c5d
+12:24:23.243 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@d83a6d6
+12:24:23.256 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@511449fb
+12:24:23.263 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4f423ef8
+12:24:23.292 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@61b04418
+12:24:23.304 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3e1cab4f
+12:24:23.313 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@365c7def
+12:24:23.321 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6c54e48a
+12:24:23.330 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@53b8779e
+12:24:23.339 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1e3e5424
+12:24:23.348 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@77f8d8a0
+12:24:23.357 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@64e54dcd
+12:24:23.365 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7e1e6f7f
+12:24:23.373 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@72b0b32
+12:24:23.382 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6eac633f
+12:24:23.390 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3f4d486a
+12:50:14.002 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:56:40.937 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.permission.UserController.mobile_login(java.lang.String,java.lang.String)]: java.lang.NullPointerException
+12:56:40.938 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:05.979 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:08:14.137 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:14.137 [http-bio-8086-exec-10] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:15.273 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:15.273 [http-bio-8086-exec-9] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:19.800 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:19.800 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:23.424 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:23.424 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:24.178 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:24.178 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:24.421 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:24.421 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:24.889 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:24.889 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:27.493 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:08:27.493 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:08:43.672 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@789a1acc
+13:09:03.937 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:03.937 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:09:04.678 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:04.678 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:09:05.273 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:05.273 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:09:17.919 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:17.919 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:09:59.060 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:59.060 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:09:59.783 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:09:59.783 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:10:00.038 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:10:00.040 [http-bio-8086-exec-2] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:12:03.786 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanOrgdtlVO> com.youngor.plan.PlanOrgController.queryPlanOrgdtlVO(com.youngor.utils.MapParams)]: java.lang.NullPointerException
+13:12:03.786 [http-bio-8086-exec-1] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+13:31:26.848 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:31:51.741 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@5bdef55f
+13:31:55.227 [http-bio-8086-exec-12] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubcode.PubPlanrt@44ff675c
+14:13:43.334 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [1]
+14:13:43.334 [http-bio-8086-exec-13] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [1]
+14:39:04.721 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:15:01.306 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:15:07.968 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+15:15:07.968 [http-bio-8086-exec-11] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:27:41.440 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:34:38.824 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1659c9a
+16:34:38.845 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@41a3b2b2
+16:34:38.848 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@53b46e74
+16:34:38.851 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6ca4f0f1
+16:34:38.854 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@13f47577
+16:34:38.862 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@15289952
+16:34:38.870 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@138f960b
+16:34:38.883 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@316379f4
+16:34:38.890 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@24bd9976
+16:34:38.897 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@42be7ed3
+16:34:38.904 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7eb6b527
+16:34:38.911 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@48914325
+16:34:38.918 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@74ee3719
+16:34:38.925 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@303fe7f5
+16:34:38.932 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@41961d31
+16:34:38.940 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@51b255f0
+16:35:09.793 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@66f76608
+16:35:09.801 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@379677b7
+16:35:09.805 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@54cbb18c
+16:35:09.808 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@63f3efb0
+16:35:09.812 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1bcc2034
+16:35:09.819 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2ce9dbcc
+16:35:09.826 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5a332419
+16:35:09.835 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7f12cc
+16:35:09.842 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@285e952a
+16:35:09.849 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@28efd701
+16:35:09.857 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6647e057
+16:35:09.864 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3f97a34c
+16:35:09.873 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4c5e89a4
+16:35:09.881 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4e42a48f
+16:35:09.889 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@286376e9
+16:35:09.897 [http-bio-8086-exec-11] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@71736dc0
+16:35:17.307 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [1]
+16:35:17.308 [http-bio-8086-exec-13] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [1]
+16:35:20.449 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [1]
+16:35:20.450 [http-bio-8086-exec-13] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [1]
+16:35:39.176 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [1]
+16:35:39.176 [http-bio-8086-exec-3] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [1]
+16:40:25.181 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+16:40:25.181 [http-bio-8086-exec-13] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+16:41:29.004 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@cf3437c
+16:41:29.012 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3740ed3
+16:41:29.015 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6f30afdf
+16:41:29.018 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6ef80f4
+16:41:29.020 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1c79c79b
+16:41:29.027 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1058fec2
+16:41:29.034 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3ba5920c
+16:41:29.041 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@518c413d
+16:41:29.048 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@469fa465
+16:41:29.055 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5de2dd2b
+16:41:29.060 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@586b8bbb
+16:41:29.067 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2aa5f667
+16:41:29.072 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@22e1f2d6
+16:41:29.078 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@45b21119
+16:41:29.083 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@70463039
+16:41:29.089 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@60ddddee
+17:03:14.905 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:04:19.720 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@622d765e
+17:04:19.800 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7d53667c
+17:04:19.814 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7048ca37
+17:04:19.822 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@b5a9d86
+17:04:19.831 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@70f695ba
+17:04:19.839 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@107ac0d0
+17:04:19.847 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6a3d159a
+17:04:19.856 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@ad24849
+17:04:19.866 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@13b7af5b
+17:04:19.873 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@c7eb078
+17:04:19.884 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2fc5db57
+17:04:19.893 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4c057ebf
+17:04:19.903 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6af8881b
+17:04:19.913 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@238b045f
+17:04:19.920 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@206fe86c
+17:04:19.929 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6039fff6
+17:04:58.541 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@216911
+17:04:58.549 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3d88289e
+17:04:58.557 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1ad0d68d
+17:04:58.563 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@79579b55
+17:04:58.569 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@50ac1201
+17:04:58.576 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@770b0d6d
+17:04:58.583 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3148f08d
+17:04:58.591 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@971d90e
+17:04:58.598 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@61406d2f
+17:04:58.608 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4edbcd3a
+17:04:58.618 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3093e190
+17:04:58.625 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@38b8df5a
+17:04:58.633 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2c731043
+17:04:58.640 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@632e70c7
+17:04:58.647 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@ced23fd
+17:04:58.653 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@757ad16e
+17:05:53.514 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3716cad3
+17:05:53.522 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7e5e28c3
+17:05:53.531 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@61af6d34
+17:05:53.539 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5ed123d9
+17:05:53.546 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@313010de
+17:05:53.554 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@32ca2dc8
+17:05:53.561 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3ea2d3b7
+17:05:53.570 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2ff87d81
+17:05:53.577 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@612a6c62
+17:05:53.584 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2865164b
+17:05:53.591 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7bd3522b
+17:05:53.598 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2a2d3696
+17:05:53.606 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@25f34aee
+17:05:53.615 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@36589fdb
+17:05:53.623 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6810b528
+17:05:53.632 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6282a02
+17:05:58.498 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+17:05:58.498 [http-bio-8086-exec-6] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+17:15:28.096 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@4a0503e5
+17:15:28.103 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7069e98c
+17:15:28.111 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1699681c
+17:15:28.116 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5fe09c14
+17:15:28.123 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@398d5f5
+17:15:28.130 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@591e64c4
+17:15:28.135 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@69a6a01c
+17:15:28.143 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@32753434
+17:15:28.149 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3d164154
+17:15:28.156 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@14980473
+17:15:28.163 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6f2629e5
+17:15:28.171 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@10e6f477
+17:15:28.179 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@9880760
+17:15:28.187 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@94659cd
+17:15:28.194 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@51519b6b
+17:15:28.201 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@52ad01b9
+17:17:46.525 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+17:17:46.525 [http-bio-8086-exec-8] INFO  com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!

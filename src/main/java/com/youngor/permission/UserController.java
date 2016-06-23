@@ -93,7 +93,7 @@ public class UserController {
 	
 	@RequestMapping("/user/mobile/login.do")
 	@ResponseBody
-	public Map<String,Object> mobile_login(String username,String password,String url) {
+	public Map<String,Object> mobile_login(String username,String password) {
 		
 		Map<String,Object> model=new HashMap<String,Object>();
 		Subject subject = SecurityUtils.getSubject(); 
@@ -130,25 +130,41 @@ public class UserController {
         } else {//登录成功  
    
              model.put("success", true);
-             //显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
-             //SecurityUtils.getSubject().hasRole("XXX") ;
-             //设置微信调用设想头的信息
-             Map<String,Object> wxConfig=new HashMap<String,Object>();
-             wxConfig.put("appId", SignUtil.APPID);
-             wxConfig.put("nonceStr", SignUtil.noncestr);
-             //如果不能访问外网，就不去获取签名,在测试库的时候
-             if(url.indexOf("192.168.188.69")==-1){
-            	 wxConfig.put("signature", SignUtil.getSignature(url));
-             }
-             wxConfig.put("timestamp", SignUtil.timestamp);
-             //wxConfig.put("jsApiList", new String[]{"scanQRCode"});
-             model.put("wxConfig", wxConfig);
+//             //显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
+//             //SecurityUtils.getSubject().hasRole("XXX") ;
+//             //设置微信调用设想头的信息
+//             Map<String,Object> wxConfig=new HashMap<String,Object>();
+//             wxConfig.put("appId", SignUtil.APPID);
+//             wxConfig.put("nonceStr", SignUtil.noncestr);
+//             //如果不能访问外网，就不去获取签名,在测试库的时候
+//             if(url.indexOf("192.168.188.69")==-1){
+//            	 wxConfig.put("signature", SignUtil.getSignature(url));
+//             }
+//             wxConfig.put("timestamp", SignUtil.timestamp);
+//             wxConfig.put("jsApiList", new String[]{"scanQRCode"});
+//             model.put("wxConfig", wxConfig);
              
              
              model.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
              
         }  
 		return model;
+	}
+	@RequestMapping("/user/mobile/getWxConfig.do")
+	@ResponseBody
+	public Map<String,Object> getWxConfig(String url) {
+		//设置微信调用设想头的信息
+        Map<String,Object> wxConfig=new HashMap<String,Object>();
+        wxConfig.put("appId", SignUtil.APPID);
+        wxConfig.put("nonceStr", SignUtil.noncestr);
+        //如果不能访问外网，就不去获取签名,在测试库的时候
+        if(url.indexOf("192.168.188.69")==-1){
+       	 wxConfig.put("signature", SignUtil.getSignature(url));
+        }
+        wxConfig.put("timestamp", SignUtil.timestamp);
+        //wxConfig.put("jsApiList", new String[]{"scanQRCode"});
+ 
+        return wxConfig;
 	}
 	
 
