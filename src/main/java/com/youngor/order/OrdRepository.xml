@@ -34,6 +34,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="order_dl__order_can" parameterType="map" resultType="int">
     	select ORDER_DL.ORDER_CAN(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO}) from dual
     </select>
+    <!-- 判断样衣所在区域是否订了这个货，如果没定，必须是整箱定--->
+    <select id="order_dl__order_isqy" parameterType="map" resultType="int">
+    	SELECT ORDER_DL.ORDER_ISQY(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO} ) FROM DUAL
+    </select>
 
      <!--移动端扫描，获取样衣的信息 -->
      <select id="querySample" resultType="com.youngor.order.SampleVO" parameterType="map">

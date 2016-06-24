@@ -1,5 +1,7 @@
 package com.youngor.plan;
 
+import com.youngor.pubcode.PubCodeCache;
+
 public class PlanOrgdtlVO extends PlanOrgdtl{
 	private String ormtno;//订货会批号
 	private String ordorg;
@@ -13,6 +15,10 @@ public class PlanOrgdtlVO extends PlanOrgdtl{
 	private String spsenm;
 	
 	private Boolean isTotal=false;
+	
+	public String getBradnm(){
+		return PubCodeCache.getBradno_name(this.getBradno());
+	}
 	
 	public String getOrmtno() {
 		return ormtno;

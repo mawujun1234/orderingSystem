@@ -122,6 +122,10 @@ public class OrdService extends AbstractService<Ord, String>{
 			if(count==0){
 				throw new BusinessException("该样衣不可订!");
 			}
+			count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
+			if(count==0){
+				throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求）订货！");
+			}
 		}
 		
 		

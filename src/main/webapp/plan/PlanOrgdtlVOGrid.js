@@ -73,9 +73,9 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			{
 				dataIndex:'txmtam',header:'特许指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
-						if(record.get("plstat")==0 && record.get("canEdit")==true){
+						if(record.get("plstat")==0 && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-						}  else if(record.get("canEdit")==false){
+						}  else if(record.get("isTotal")==true){
 							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 						}
 		            	return value;
@@ -171,6 +171,15 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 //		        			ormtno:record.get("ormtno")
 //		        		});
 //		        		channo.getStore().reload();
+						if(record.get("ormtst")==true){
+							var toolbars=me.getDockedItems('toolbar[dock="top"]');
+							var onImport=toolbars[2].down("#onImport");
+							onImport.disable();
+						} else {
+							var toolbars=me.getDockedItems('toolbar[dock="top"]');
+							var onImport=toolbars[2].down("#onImport");
+							onImport.enable();
+						}
 					}
 				}
 			},{
@@ -318,9 +327,16 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			},{
 			   text: '导出',
 				handler: function(btn){
-					me.createNew();
+					me.onExport();
 				},
 				iconCls: 'icon-download-alt'
+			},{
+			   text: '导入',
+			   itemId:'onImport',
+				handler: function(btn){
+					me.onImport();
+				},
+				iconCls: 'icon-upload-alt'
 			}]
 		});
 
@@ -401,5 +417,62 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	 			});
 	 		}
 	 	});
+	},
+	onExport:function(){
+		var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/planOrg/export.do?"+Ext.urlEncode(params);
+    	window.open(url);
+	},
+	onImport:function(){
+		var me=this;
+		var formpanel=Ext.create('Ext.form.Panel',{
+			items:[{
+		        xtype: 'filefield',
+		        name: 'imageFile',
+		       // id:'photo',
+		        labelWidth:60,
+		        fieldLabel: '文件名',
+		        allowBlank: false,
+		        anchor: '100%',
+		        buttonText: '选择文件...',
+		        listeners:{
+		        	change:function(field, value){
+	
+		        	}
+		        }
+		    }]
+		});
+		
+		var win=Ext.create('Ext.window.Window',{
+			items:[formpanel],
+			modal:true,
+			height:120,
+			width:320,
+			buttons:[{
+				text : '上传',
+				//formBind: true, //only enabled once the form is valid
+	       		//disabled: true,
+				glyph : 0xf0c7,
+				handler : function(button){
+					
+					formpanel.getForm().submit({
+						 waitMsg:'正在上传请稍候',  
+	                     waitTitle:'提示', 
+	                     url:Ext.ContextPath+'/planOrg/import.do', 
+	                     //method:'POST', 
+	                     success:function(form,action){   	
+	                     	button.up('window').close();
+	                     	me.getStore().reload();
+	                     },
+	                     failure:function(form,action){
+	                     	Ext.Msg.alert("警告",action.result.msg);                    
+	                     }
+					});	
+				
+				}
+			}]
+		});
+		win.show();
 	}
 });

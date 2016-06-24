@@ -73,5 +73,6 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	) x left join t_position_org_access y on x.orgno=y.orgno and y.position_id=#{position_id}
     </select> 
 
+	
 </mapper>
 

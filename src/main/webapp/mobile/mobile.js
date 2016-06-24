@@ -337,9 +337,11 @@ $(function(){
 				if(response.success==false){
 					$.toast(response.msg);
 					$.hidePreloader();
-					clearSampleInfo();
+					//clearSampleInfo();
+					window.vm_sampleVO.sampnm=window.last_query_sampnm;
 					return;
 				}
+				window.last_query_sampnm=sampnm;
 				
 				//样衣信息
 				if(window.vm_sampleVO){//alert(1);
@@ -458,7 +460,7 @@ $(function(){
 
 	$("#od_info_clear_button").click(function(){
 		var sampno=window.vm_sampleVO.sampno
-		$.post(Ext.ContextPath+"/ord/mobile/clearSampno.do",{sampno:sampno},function(response){
+		//$.post(Ext.ContextPath+"/ord/mobile/clearSampno.do",{sampno:sampno},function(response){
 			//clearSampleInfo();
 			//只是把数量全部清空0，不是清除数据
 			var suitVOs=window.vm_od_info_suitVOs.suitVOs;
@@ -471,8 +473,8 @@ $(function(){
 				
 			}
 			
-			showOd_info_unsave_tips(false);
-		},"json");
+			showOd_info_unsave_tips(true);
+		//},"json");
 	});
 	$("#od_info_save_button").click(function(){
 		

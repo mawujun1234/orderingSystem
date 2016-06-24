@@ -1,17 +1,37 @@
 package com.youngor.plan;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mawujun.exception.BusinessException;
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.bean.BeanUtils;
+import com.youngor.org.Chancl;
+import com.youngor.org.Org;
+import com.youngor.org.OrgService;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.pubcode.PubCode;
+import com.youngor.pubcode.PubCodeCache;
+import com.youngor.utils.ContextUtils;
+import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 
 
@@ -28,6 +48,8 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	private PlanOrgRepository planOrgRepository;
 	@Autowired
 	private PlanOrgdtlRepository planOrgdtlRepository;
+	@Autowired
+	private OrgService orgServcie;
 	
 	@Override
 	public PlanOrgRepository getRepository() {
@@ -106,7 +128,7 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	public String getPlorno(String ormtno,String ordorg,String bradno){
 		return ormtno+"_"+ordorg+"_"+bradno;
 	}
-	public  void update(@RequestBody PlanOrgdtlVO planOrgdtlVO) {
+	public  void update(PlanOrgdtlVO planOrgdtlVO) {
 		String plorno=getPlorno(planOrgdtlVO.getOrmtno(),planOrgdtlVO.getOrdorg(),planOrgdtlVO.getBradno());//planOrgdtlVO.getOrmtno()+"_"+planOrgdtlVO.getOrdorg()+"_"+planOrgdtlVO.getBradno();
 		if(planOrgRepository.get(plorno)==null) {
 			PlanOrg planOrg=new PlanOrg();
@@ -156,5 +178,100 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 		}
 		planOrg.setPlstat(planOrg.getPlstat()-1);
 		planOrgRepository.update(planOrg);
+	}
+	
+	public void onimport(MultipartFile imageFile) throws IOException, EncryptedDocumentException, InvalidFormatException {
+		// 获取订货会编号
+		String ormtno = ContextUtils.getFirstOrdmt().getOrmtno();
+		//准备品牌的cache
+		Map<String,PubCode> map=PubCodeCache.cache.get("1");
+		Map<String,PubCode> brandno_map=new HashMap<String,PubCode>();//换成以名称作为key的map
+		for(Entry<String,PubCode> entry:map.entrySet()) {
+			brandno_map.put(entry.getValue().getItnm(), entry.getValue());
+		}
+		map=PubCodeCache.cache.get("0");
+		Map<String,PubCode> spclno_map=new HashMap<String,PubCode>();
+		for(Entry<String,PubCode> entry:map.entrySet()) {
+			spclno_map.put(entry.getValue().getItnm(), entry.getValue());
+		}
+		map=PubCodeCache.cache.get("2");
+		Map<String,PubCode> sptyno_map=new HashMap<String,PubCode>();
+		for(Entry<String,PubCode> entry:map.entrySet()) {
+			sptyno_map.put(entry.getValue().getItnm(), entry.getValue());
+		}
+		map=PubCodeCache.cache.get("5");
+		Map<String,PubCode> spseno_map=new HashMap<String,PubCode>();
+		for(Entry<String,PubCode> entry:map.entrySet()) {
+			spseno_map.put(entry.getValue().getItnm(), entry.getValue());
+		}
+		//获取区域的list
+		List<Org> list=orgServcie.query(Cnd.select().andEquals(M.Org.channo, Chancl.QY));
+		Map<String,Org> org_map=new HashMap<String,Org>();
+		for(Org org:list){
+			org_map.put(org.getOrgnm(), org);
+		}
+		
+		
+		
+		InputStream stream = imageFile.getInputStream();
+		Workbook wb = WorkbookFactory.create(stream);
+		Sheet sheet = wb.getSheetAt(0);
+		int rownum=sheet.getLastRowNum();
+		for(int i=2;i<=rownum;i++){
+			PlanOrgdtlVO planOrgdtlVO=new PlanOrgdtlVO();
+			Row row = sheet.getRow(i);
+
+			
+			planOrgdtlVO.setOrmtno(ormtno);
+			Cell cell = row.getCell(0);
+			if(org_map.get(cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的区域不存在!");
+			}
+			planOrgdtlVO.setOrdorg(org_map.get(cell.getStringCellValue()).getOrgno());
+			cell = row.getCell(1);
+			if(brandno_map.get(cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的品牌不存在!");
+			}
+			planOrgdtlVO.setBradno(brandno_map.get(cell.getStringCellValue()).getItno());
+			cell = row.getCell(2);
+			if(spclno_map.get(cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的大类不存在!");
+			}
+			planOrgdtlVO.setSpclno(spclno_map.get(cell.getStringCellValue()).getItno());
+			cell = row.getCell(3);
+			if(sptyno_map.get(cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的小类不存在!");
+			}
+			planOrgdtlVO.setSptyno(sptyno_map.get(cell.getStringCellValue()).getItno());
+			cell = row.getCell(4);
+			if(spseno_map.get(cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的小类不存在!");
+			}
+			planOrgdtlVO.setSpseno(spseno_map.get(cell.getStringCellValue()).getItno());
+			cell = row.getCell(5);
+			if(cell!=null){
+				planOrgdtlVO.setQymtqt(cell.getNumericCellValue());
+			}
+			
+			cell = row.getCell(6);
+			if(cell!=null){
+				planOrgdtlVO.setQymtam(cell.getNumericCellValue());
+			}
+			cell = row.getCell(7);
+			if(cell!=null){
+				planOrgdtlVO.setTxmtqt(cell.getNumericCellValue());
+			}
+			cell = row.getCell(8);
+			if(cell!=null){
+				planOrgdtlVO.setTxmtam(cell.getNumericCellValue());
+			}
+			
+			this.update(planOrgdtlVO);
+		}
+		
+		
+
+		
+		stream.close();
 	}
 }

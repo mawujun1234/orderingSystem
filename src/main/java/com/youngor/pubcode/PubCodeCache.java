@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class PubCodeCache {
 
-	private static Map<String,Map<String,PubCode>> cache=new HashMap<String,Map<String,PubCode>>();
+	public static Map<String,Map<String,PubCode>> cache=new HashMap<String,Map<String,PubCode>>();
 	//private Map<String,Map<String,PubCode>> cache=new HashMap<String,Map<String,PubCode>>();
 	
 	public static void setPubCode(PubCodeType pubCodeType,List<PubCode> pubCodes) {
