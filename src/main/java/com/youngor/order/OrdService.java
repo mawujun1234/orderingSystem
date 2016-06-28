@@ -20,6 +20,7 @@ import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.OrdOrg;
 import com.youngor.ordmt.OrdOrgService;
 import com.youngor.ordmt.OrdmtScde;
+import com.youngor.org.Chancl;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
@@ -100,8 +101,12 @@ public class OrdService extends AbstractService<Ord, String>{
 			throw new BusinessException("不能进行订货!");
 		}
 
-		if(ord.getOrdCheckInfo().get("canConfirm")!=null && (Boolean)ord.getOrdCheckInfo().get("canConfirm")==false){
-			throw new BusinessException("订单已经确认,不能进行订货!");
+		//1:第一次订货 ， 2:大区审批中，这个时候不能订货。3:第二次订货 。4:手机订货完成
+		if(ord.getOrdCheckInfo().get("canConfirm")!=null && (Integer)ord.getOrdCheckInfo().get("canConfirm")==2){
+			throw new BusinessException("审批中,不能进行订货!");
+		}
+		if(ord.getOrdCheckInfo().get("canConfirm")!=null && (Integer)ord.getOrdCheckInfo().get("canConfirm")==4){
+			throw new BusinessException("订货已完成,不能进行订货!");
 		}
 
 		
@@ -329,7 +334,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					ordszdtl.setSizeno(sizeVO.getSizeno());
 					ordszdtl.setOrszqt(sizeVO.getOrszqt());
 					ordszdtl.setOritqt(ordszdtl.getOrszqt());//原始数量，备份现场定后数量
-					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt());//确认数量 报表要实时查看的数量
+					ordszdtl.setOrbgqt(ordszdtl.getOrszqt());//确认数量 报表要实时查看的数量
 					
 					ordszdtl.setRgsp(ShiroUtils.getAuthenticationInfo().getId());
 					ordszdtl.setRgdt(new Date());
@@ -392,7 +397,8 @@ public class OrdService extends AbstractService<Ord, String>{
 //		拷贝订单明细表中的确认数量-->原始数量,同时设置确认数量为0
 //		ordRepository.updateOrmtqtZeor(ord.getMtorno());
 		
-		//为订单副表 生成数据，根据订单明细表生成数据 
+		//为订单副表 生成数据，根据订单明细表生成数据 ,
+		
 		ordRepository.createOrd_ordhd(ord.getMtorno());
 	
 		//拷贝订单副表--》订单副表-历史
@@ -401,13 +407,22 @@ public class OrdService extends AbstractService<Ord, String>{
 		//拷贝订单明细表-->订单明细表历史
 		ordRepository.createOrd_orddtl_his(ord.getMtorno());
 		
-		//修改ordhd的订单节点类型为20，即区域平衡
-		ordRepository.update_ordhd_SDTYNO(ord.getMtorno());
+
+		if(org.getChanno()==Chancl.TX){
+			//如果是特许，节点类型 节点类型：尾箱调整40，状态：编辑中
+			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"40","0");
+		} else if(org.getChanno()==Chancl.ZY || org.getChanno()==Chancl.SC){
+			//如果是门店，节点类型：总公司平衡30，状态还是编辑中。
+			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"30","0");
+		} else {
+			//如果是区域，同时修改ordhd的订单节点类型为20，即区域平衡，订单状态变成“总部审批中”
+			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"20","2");
+		}
 		
 		//更新订单规格明细表中的“审批订单号”
 		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
 		
-		ord.getOrdCheckInfo().put("canConfirm", false);
+		ord.getOrdCheckInfo().put("canConfirm", 2);
 		//result.put("canConfirm", canConfirm);
 		
 	}
@@ -494,23 +509,42 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		
 		///判断该订单是否已经“确认”，
-		boolean canConfirm=check_is_confirm(ord.getMtorno());
+		int canConfirm=check_is_confirm(ord.getMtorno());
 		result.put("canConfirm", canConfirm);
+
 		return result;
 		
 	}
-	
-	private boolean check_is_confirm(String mtorno){
-		List<String> list=ordRepository.check_is_confirm(mtorno);
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mtorno
+	 * @return 1:第一次订货 ， 2:大区审批中，这个时候不能订货。3:第二次订货 。4:手机订货完成
+	 */
+	private int check_is_confirm(String mtorno){
+		List<Map<String,Object>> list=ordRepository.check_is_confirm(mtorno);
+		//表示还没有点击“订单完成”，也就是第一次订货还没有完成
 		if(list ==null || list.size()==0){
-			return true;
+			return 1;
 		}
 		if(list.size()==1 ){
-			if("10".equals(list.get(0))){
-				return true;
+			Map<String,Object> map=list.get(0);
+			//如果还是现场订货，并且状态是编辑中的话，就是显示“订单完成”按钮
+			if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+				return 1;
+			}  else if("20".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
+				//进入了大区审批中，只有审批过后，才能进行区域平衡
+				return 2;
+			}  else if("20".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+				//进入了区域平衡
+				return 3;
+			} else {
+				return 4;
 			}
+		} else {
+			throw new BusinessException("订单状态不一致，请联系管理员赶紧处理!");
 		}
-		return false;
+		
 	}
 	
 	public MyInfoVO queryMyInfoVO() {
@@ -521,14 +555,20 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		myInfoVO.setOrgnm(org.getOrgnm());
 		
-//		//如果是特许，获取特许所在的区域，然后获取特许定的金额
-//		//然后获取该区域的的特许指标数量
-//		String plorno=null;//指标单号
-//		if("TX".equals(org.getChanno().toString())){
-//			
-//		} else {
-//			plorno=planOrgService.getPlorno(ord.getOrmtno(), org.getOrgno(), ord.get)
-//		}
+		//如果是特许，不显示指标金额
+		
+		String plorno=null;//指标单号
+		if("TX".equals(org.getChanno().toString())){
+			
+		} else {
+			//然后获取该区域的的特许指标数量,默认都是获取雅戈尔品牌的指标数量，这个是暂时的
+			plorno=planOrgService.getPlorno(ord.getOrmtno(), org.getOrgno(), "Y");
+			MyInfoVO aaa=ordRepository.queryMyInfoVO_plan(plorno);
+			if(aaa!=null){
+				myInfoVO.setQymtqt(aaa.getQymtqt());
+				myInfoVO.setQymtam(aaa.getQymtam());
+			}
+		}
 		
 		
 		return myInfoVO;

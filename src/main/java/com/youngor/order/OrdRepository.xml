@@ -34,7 +34,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="order_dl__order_can" parameterType="map" resultType="int">
     	select ORDER_DL.ORDER_CAN(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO}) from dual
     </select>
-    <!-- 判断样衣所在区域是否订了这个货，如果没定，必须是整箱定--->
+    <!-- 判断样衣所在区域是否订了这个货，如果没定，必须是整箱定-->
     <select id="order_dl__order_isqy" parameterType="map" resultType="int">
     	SELECT ORDER_DL.ORDER_ISQY(#{P_ORMTNO},#{P_ORDORG},#{P_SAMPNO} ) FROM DUAL
     </select>
@@ -182,12 +182,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          where a.sampno=b.sampno and b.plspno=c.plspno
          and a.mtorno=#{mtorno}  
      </select>
+     <!-- 获取指标金额和指标数量-->
+     <select id="queryMyInfoVO_plan" resultType="com.youngor.order.MyInfoVO" parameterType="map">
+     	select sum(qymtqt) qymtqt,sum(qymtam) qymtam from ord_plan_orgdtl where plorno=#{plorno}
+     </select>
      <!-- 检查必定款是否已经全订 -->
      <select id="query_none_abstat" resultType="com.youngor.sample.SampleDesign" parameterType="map">
      	select a.* from ord_sample_design a,ORD_SAMPLE_PLAN b where a.PLSPNO=b.PLSPNO and b.ORMTNO=#{ormtno}
      	and abstat='1' and not exists (
      		select 1 from ORD_ORDDTL c where a.sampno=c.sampno and c.mtorno=#{mtorno}
      	)
+     	and a.sampst=1 and b.plstat=1
      </select>
      <!-- 生成版本订单号和版本号 -->
      <update id="updateMtornoMlorvn" parameterType="map">
@@ -209,6 +214,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        select distinct a.mtorno,a.mlorno ,a.MLORVN,c.BRADNO,c.SPCLNO,10,0,0,1
            from ord_orddtl a,ord_sample_design b,ord_sample_plan c
            where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+           and not exists (select 1 from ORD_ORDHD x where a.mtorno=x.mtorno and c.bradno=x.bradno and c.SPCLNO=x.SPCLNO)
      </insert>
      <!-- 创建订单副表的历史表 -->
      <insert id="createOrd_ordhd_his" parameterType="map">
@@ -221,8 +227,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
  		select * from Ord_orddtl where mtorno=#{mtorno}
      </insert>
      <!-- 更新订单的节点类型未“区域平衡”-->
-     <update id="update_ordhd_SDTYNO">
-     	update ORD_ORDHD set SDTYNO=20 where mtorno=#{mtorno} and SDTYNO=10
+     <update id="update_ordhd_SDTYNO" parameterType="map">
+     	update ORD_ORDHD set SDTYNO=#{sdtyno},ORSTAT=#{orstat} where mtorno=#{mtorno} and SDTYNO=10
      </update>
      <!-- 更新规格明细表的版本订单号-->
      <update id="update_ord_ordszdtl_MLORNO">
@@ -231,8 +237,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		where a.MTORNO=b.MTORNO and a.SAMPNO=b.SAMPNO and b.mtorno=#{mtorno})
      </update>
      
-     <select id="check_is_confirm" resultType="string" parameterType="map">
-     	select distinct SDTYNO  from ORD_ORDHD where mtorno=#{mtorno}
+     <select id="check_is_confirm" resultType="map" parameterType="map">
+     	select distinct sdtyno,ORSTAT  from ORD_ORDHD where mtorno=#{mtorno}
      </select>
      <!-- 
      <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">

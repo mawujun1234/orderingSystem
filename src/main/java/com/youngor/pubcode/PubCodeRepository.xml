@@ -6,14 +6,23 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.pubcode.PubCodeRepository">
 	<!-- 查询语句，会自动分页-->
-    <select id="queryPage" resultType="com.youngor.pubcode.PubCode" parameterType="map">
-    	select * from ord_pub_code
+    <select id="queryList" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select a.* from ORD_PUB_CODE a
+		where 1=1	
+		<if test="tyno!=1">
+			and exists (select 1 from ORD_PUB_CODEBRAD b
+			where a.tyno=b.tyno and a.itno=b.itno and b.bradno=#{bradno}) 
+		</if>
+		<if test="fitno==null or fitno==''">
+			and fitno is null
+		</if>
+		<if test="fitno!=null and fitno!=''">
+			and fitno =#{fitno}
+		</if>
+		 and a.tyno=#{tyno}
+		order by a.itso
     </select> 
-     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
-    <select id="queryPage_count" resultType="int" parameterType="map">
-    	select count(a.id)
-		from ord_pub_code a
-    </select>
+
     
     <!--  获取属性的时候   -->
     <select id="query" resultType="com.youngor.pubcode.PubCode" parameterType="map">

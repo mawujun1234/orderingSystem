@@ -4,6 +4,10 @@ Ext.ContextPath="";
 window.od_closeing_info=null;//提高性能
 window.canOrd=null;//判断是否可以订货
 function show_od_closeing_info(){
+	//刷新的时候调用
+	if(!sessionStorage["user"]){
+		return;
+	}
 	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', {  }, function(response){
 		window.canOrd=response.canOrd;
 		if(!window.od_closeing_info){
@@ -16,13 +20,35 @@ function show_od_closeing_info(){
 			window.od_closeing_info.hide();
 		}
 		//如果已经确认了的话
-		if(!response.canConfirm){
+		if(response.canConfirm==4){
+			//$("#od_mypage_confirm_button").hide();
+			//$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
 			$("#od_mypage_confirm_button").hide();
-			$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
+			$("#od_mypage_over_button").hide();
+			$("#od_info_cannot_order").show();
+			$("#od_info_cannot_order").html("订货已结束，不能扫描!");
+			$("#qrcode_button").hide();
+		} else if(response.canConfirm==3){
+			$("#od_mypage_confirm_button").hide();
+			$("#od_mypage_over_button").show().css("display","block");
+			$("#qrcode_button").show();
+			$("#od_info_cannot_order").hide();
+		} else if(response.canConfirm==2){
+			//$("#od_mypage_over_button").show().css("display","block");
+			$("#od_info_cannot_order").show();
+			$("#od_info_cannot_order").html("订单未审批，不能平衡!");
+			$("#qrcode_button").hide();
+			//$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单未审批，不能平衡!</div>");
+		} else {
+			$("#od_mypage_confirm_button").show().css("display","block");	
+			//$("#od_mypage_over_button").hide();
+			//$("#qrcode_button").show();
 		}
 	});
 	setTimeout("show_od_closeing_info()",120*1000);
 }
+show_od_closeing_info();
+
 $(function(){
 
 			window.card_card__header_item__title_label=function(obj){
@@ -596,9 +622,12 @@ $(function(){
   				$.popup(popupHTML);
 				return;
 			}
+			//$("#od_mypage_confirm_button").hide();
+			//$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
 			$("#od_mypage_confirm_button").hide();
-			$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
-			
+			$("#od_info_cannot_order").show();
+			$("#od_info_cannot_order").html("订单未审批，不能平衡!");
+			$("#qrcode_button").hide();
 		},"json");
 	});
 	

@@ -28,7 +28,7 @@ public class ContextUtils {
 		if(userVO.getBrandes()==null || userVO.getBrandes().size()==0){
 			throw new BusinessException("请先为用户授予可访问的品牌!");
 		} else {
-			return userVO.getBrandes().get(0);
+			return userVO.getBrandes().get(0).getItno();
 		}
 		
 	}

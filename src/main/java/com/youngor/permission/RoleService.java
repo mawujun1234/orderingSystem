@@ -95,7 +95,7 @@ public class RoleService extends AbstractService<Role, String>{
 	
 	
 	//-----------
-	public List<String> queryUserSelBrand(String user_id ) {
+	public List<PubCode> queryUserSelBrand(String user_id ) {
 		return roleRepository.queryUserSelBrand(user_id);
 	}
 	public List<String> queryUserSelClass(String user_id ) {

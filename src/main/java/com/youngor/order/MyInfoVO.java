@@ -2,13 +2,16 @@ package com.youngor.order;
 
 public class MyInfoVO {
 	private String orgnm;
-	private Double plmtam;//指标金额
-	private Integer plmtqt;//指标数量
+//	private Double plmtam;//指标金额
+//	private Integer plmtqt;//指标数量
 	
 	//private Double spftpr;//出厂价
 	//private Double sprtpr;//零售价
 	private Integer ormtam;//实订金额
 	private Integer ormtqt;//实订数量
+	
+	private Double qymtqt;//区域指标数量
+	private Double qymtam;//区域指标金额
 	
 	
 	public String getOrgnm() {
@@ -17,18 +20,7 @@ public class MyInfoVO {
 	public void setOrgnm(String orgnm) {
 		this.orgnm = orgnm;
 	}
-	public Double getPlmtam() {
-		return plmtam;
-	}
-	public void setPlmtam(Double plmtam) {
-		this.plmtam = plmtam;
-	}
-	public Integer getPlmtqt() {
-		return plmtqt;
-	}
-	public void setPlmtqt(Integer plmtqt) {
-		this.plmtqt = plmtqt;
-	}
+
 	public Integer getOrmtqt() {
 		return ormtqt;
 	}
@@ -40,6 +32,18 @@ public class MyInfoVO {
 	}
 	public void setOrmtam(Integer ormtam) {
 		this.ormtam = ormtam;
+	}
+	public Double getQymtqt() {
+		return qymtqt;
+	}
+	public void setQymtqt(Double qymtqt) {
+		this.qymtqt = qymtqt;
+	}
+	public Double getQymtam() {
+		return qymtam;
+	}
+	public void setQymtam(Double qymtam) {
+		this.qymtam = qymtam;
 	}
 
 

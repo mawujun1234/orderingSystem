@@ -1,5 +1,8 @@
 package com.youngor.pubcode;
+import java.util.List;
 import java.util.UUID;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,6 +31,10 @@ public class PubCodeTypeService extends AbstractService<PubCodeType, String>{
 	@Override
 	public PubCodeTypeRepository getRepository() {
 		return pubCodeTypeRepository;
+	}
+	
+	public List<PubCodeType> query(@Param("bradno")String bradno,@Param("bradno")String ftyno){
+		return pubCodeTypeRepository.query(bradno, ftyno);
 	}
 
 }

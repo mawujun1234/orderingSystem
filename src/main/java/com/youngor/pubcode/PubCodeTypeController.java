@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
@@ -32,10 +33,14 @@ public class PubCodeTypeController {
 	 */
 	@RequestMapping("/pubCodeType/query.do")
 	@ResponseBody
-	public List<PubCodeType> query(String parent_id) {
-		Cnd cnd=Cnd.select().andEquals(M.PubCodeType.ftyno, "root".equals(parent_id)?null:parent_id);
-		List<PubCodeType> pubCodeTypees=pubCodeTypeService.query(cnd);
-		return pubCodeTypees;
+	public List<PubCodeType> query(String bradno,String parent_id) {
+		//Cnd cnd=Cnd.select().andEquals(M.PubCodeType.ftyno, "root".equals(parent_id)?null:parent_id);
+		//List<PubCodeType> pubCodeTypees=pubCodeTypeService.query(cnd);
+		//return pubCodeTypees;
+		if(bradno==null){
+			bradno=ContextUtils.getFirstBradno();
+		}
+		return pubCodeTypeService.query(bradno, "root".equals(parent_id)?null:parent_id);
 	}
 
 

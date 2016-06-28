@@ -38,9 +38,9 @@ public class Ordhd {
 	private Integer mlorvn;
 	@Column(length=50)
 	@FieldDefine(title="订单节点类型",sort=50,hidden=false)
-	private String sdtyno;
+	private String sdtyno;//10:现场订货.20:区域平衡.30:总公司平衡.40:尾箱调整. //select * from ORD_SCDTY
 	@FieldDefine(title="总量状态",sort=50,hidden=false)
-	private Integer orstat;//0：编辑中；1：审批中；2：大区审批通过；3：总部审批通过；4：退回 // SELECT DEITNO,DEITNM  FROM ORD_PUB_DEFCODE WHERE DETYNO='ORDSTAT' 
+	private Integer orstat;//0：编辑中；1：大区审批中；2：总部审批中；3：审批通过；4：退回 // SELECT DEITNO,DEITNM  FROM ORD_PUB_DEFCODE WHERE DETYNO='ORDSTAT' 
 	@FieldDefine(title="",sort=50,hidden=false)
 	private Integer szstat;//0：编辑中；1：审批中；2：大区审批通过；3：总部审批通过；4：退回 // SELECT DEITNO,DEITNM  FROM ORD_PUB_DEFCODE WHERE DETYNO='ORDSTAT' 
 	@Column(length=50)

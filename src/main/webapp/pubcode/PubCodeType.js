@@ -1,5 +1,6 @@
 Ext.define("y.pubcode.PubCodeType",{
 	extend:"Ext.data.Model",
+	idProperty:'tyno',
 	fields:[
 		{name:'tyno',type:'string'},
 		{name:'tynm',type:'string'},

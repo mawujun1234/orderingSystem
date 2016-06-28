@@ -1,10 +1,11 @@
 package com.youngor.pubcode;
 
-import org.springframework.stereotype.Repository;
-import java.util.UUID;
-import com.mawujun.repository.IRepository;
+import java.util.List;
 
-import com.youngor.pubcode.PubCodeType;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import com.mawujun.repository.IRepository;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -12,6 +13,6 @@ import com.youngor.pubcode.PubCodeType;
  */
 @Repository
 public interface PubCodeTypeRepository extends IRepository<PubCodeType, String>{
-
+	public List<PubCodeType> query(@Param("bradno")String bradno,@Param("ftyno")String ftyno);
 
 }

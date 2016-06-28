@@ -5,12 +5,13 @@ import java.util.List;
 
 import com.youngor.order.Ord;
 import com.youngor.org.Org;
+import com.youngor.pubcode.PubCode;
 
 public class UserVO extends User {
 	
 	private Date loginDate;
 	
-	private List<String> brandes;//可访问的品牌
+	private List<PubCode> brandes;//可访问的品牌
 	private List<String> classes;//可访问的大类
 	
 	private List<Org> compes;//可访问的营销公司
@@ -54,11 +55,11 @@ public class UserVO extends User {
 		this.loginDate = loginDate;
 	}
 
-	public List<String> getBrandes() {
+	public List<PubCode> getBrandes() {
 		return brandes;
 	}
 
-	public void setBrandes(List<String> brandes) {
+	public void setBrandes(List<PubCode> brandes) {
 		this.brandes = brandes;
 	}
 

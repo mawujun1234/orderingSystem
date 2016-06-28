@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
@@ -46,8 +47,8 @@ public class PubCodeController {
 		if("1".equals(tyno)){
 			List<PubCode> list=new ArrayList<PubCode>();
 			for(PubCode pubCode:pubCodes){
-				for(String itno:ShiroUtils.getAuthenticationInfo().getBrandes()){
-					if(itno.equals(pubCode.getItno())){
+				for(PubCode itno:ShiroUtils.getAuthenticationInfo().getBrandes()){
+					if(itno.getItno().equals(pubCode.getItno())){
 						list.add(pubCode);
 					}
 				}
@@ -126,19 +127,19 @@ public class PubCodeController {
 	
 
 
-//	/**
-//	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
-//	 * @author mawujun email:16064988@163.com qq:16064988
-//	 * @param start
-//	 * @param limit
-//	 * @param userName
-//	 * @return
-//	 */
-//	@RequestMapping("/pubCode/query.do")
-//	@ResponseBody
-//	public Pager<PubCode> query(Pager<PubCode> pager){
-//		return pubCodeService.queryPage(pager);
-//	}
+	/**
+	 * 这是基于分页的几种写法,的例子，请按自己的需求修改
+	 * @author mawujun email:16064988@163.com qq:16064988
+	 * @param start
+	 * @param limit
+	 * @param userName
+	 * @return
+	 */
+	@RequestMapping("/pubCode/queryList.do")
+	@ResponseBody
+	public List<PubCode> queryList(String tyno,String fitno,String bradno){
+		return pubCodeService.queryList(tyno,fitno,bradno);
+	}
 
 	@RequestMapping("/pubCode/query.do")
 	@ResponseBody
@@ -147,6 +148,22 @@ public class PubCodeController {
 				pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, tyno).andEquals(M.PubCode.itst, 1)
 				.asc(M.PubCode.itso));
 		return pubCodees;
+	}
+	
+	/**
+	 * 更新状态的目的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param tyno
+	 * @param itno
+	 * @param itst
+	 * @param stat
+	 * @return
+	 */
+	@RequestMapping("/pubCode/updateSt.do")
+	@ResponseBody
+	public  String updateSt(String tyno,String itno,String itst,String stat) {
+		pubCodeService.update(Cnd.update().set(M.PubCode.itst, itst).set(M.PubCode.stat, stat).andEquals(M.PubCode.tyno, tyno).andEquals(M.PubCode.itno, itno));
+		return "success";
 	}
 	
 

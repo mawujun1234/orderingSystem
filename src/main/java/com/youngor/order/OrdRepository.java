@@ -51,6 +51,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public OrdmtScde get_ordmt_scde(@Param("ormtno")String ormtno,@Param("channo")String channo);
 	
 	public MyInfoVO queryMyInfoVO(@Param("mtorno")String mtorno,@Param("channo")String channo);
+	public MyInfoVO queryMyInfoVO_plan(@Param("plorno")String plorno);
 
 	public List<SampleDesign> query_none_abstat(@Param("ormtno")String ormtno,@Param("mtorno")String mtorno);
 	
@@ -62,9 +63,9 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void createOrd_ordhd_his(@Param("mtorno")String mtorno);
 	public void createOrd_orddtl_his(@Param("mtorno")String mtorno);
-	public void update_ordhd_SDTYNO(@Param("mtorno")String mtorno);
+	public void update_ordhd_SDTYNO(@Param("mtorno")String mtorno,@Param("sdtyno")String sdtyno,@Param("orstat")String orstat);
 	public void update_ord_ordszdtl_MLORNO(@Param("mtorno")String mtorno);
-	public List<String> check_is_confirm(@Param("mtorno")String mtorno);
+	public List<Map<String,Object>> check_is_confirm(@Param("mtorno")String mtorno);
 	
 	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
 	

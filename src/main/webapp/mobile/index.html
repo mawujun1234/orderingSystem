@@ -25,6 +25,7 @@
   <body>
   <div  id="tap_effect" >
   </div>
+  <!-- 离今日订货结束还差60分钟，注意数据保存！-->
   <div id="od_closeing_info">离今日订货结束还差60分钟，注意数据保存！</div>
   <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;display:none;">
   	<a id="bottom_bar_od_info" class="tab-item active" href="#od_info">
@@ -96,6 +97,7 @@
         	<div id="qrcode_button" class="hi-icon-wrap hi-icon-effect-7">
        			<a href="#"  id="od_info_scanQRCode_btn" class="hi-icon hi-icon-cycle external">扫一扫</a>
 			</div>  
+            <div id="od_info_cannot_order" ></div>
             <div id="od_info_unsave_tips">未保存</div>
              <div class="content" >                 
                  <div class="card" id="od_info_sample_info">
@@ -244,17 +246,18 @@
                     <div class="card-content">
                       <div class="card-content-inner">
                       		<div class="row">
-                              <div class="col-50">指标金额(万元):{{plmtam}}</div>
-                              <div class="col-50">指标数量(件):{{plmtqt}}</div>
+                              <div class="col-50">指标金额(万元):{{qymtam}}</div>
+                              <div class="col-50">指标数量(件):{{qymtqt}}</div>
                             </div>
                             <div class="row">
                               <div class="col-50">实订金额(万元):{{ormtam}}</div>
                               <div class="col-50">实订数量(件):{{ormtqt}}</div>
                             </div>
                             <div class="row">
-                              <div class="col-80">&nbsp; </div>
-                              <div class="col-20"><a href="#" id="od_mypage_confirm_button"  class="button button-fill button-success">确认</a></div>
+                              <div class="col-60">&nbsp; </div>
+                              <div class="col-40" ><a href="#" id="od_mypage_confirm_button" style="display:none;width:4rem;"  class="button button-fill button-success">订货完成</a><a href="#" id="od_mypage_over_button"  style="display:none;width:4rem;" class="button button-fill button-success">平衡完成</a></div>
                             </div>
+                           
                       </div>
                     </div>
                   </div><!--card -->

@@ -6,6 +6,7 @@
 Ext.define('y.pubcode.PubCodeTypeTree', {
     extend: 'Ext.tree.Panel',
     requires:['y.pubcode.PubCodeType'],
+    displayField:'tynm',
     initComponent: function () {
 		var me = this;
 
@@ -15,7 +16,8 @@ Ext.define('y.pubcode.PubCodeTypeTree', {
 	       	model:'y.pubcode.PubCodeType',
 			root: {
 			    expanded: true,
-			    text:"根节点" 
+			    tyno:'root',
+			    tynm:"属性类型" 
 			}
 		});
 		me.initAction();
@@ -27,142 +29,64 @@ Ext.define('y.pubcode.PubCodeTypeTree', {
      	var me = this;
      	var actions=[];
      	
-       var create = new Ext.Action({
-		    text: '新建',
-		    itemId:'create',
-		    handler: function(b){
-		    	me.onCreate(null,b);
-		    },
-		    iconCls: 'icon-plus'
+     	actions.push({
+		        fieldLabel: '品牌',
+		        itemId: 'bradno',
+		        labelWidth:40,
+		        width:160,
+	            allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+	            //value:'Y',
+	            selFirst:true,
+	            blankText:"品牌不允许为空",
+		        xtype:'pubcodecombo',
+		        tyno:'1',
+		        listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		var root=me.getRootNode()
+		        		root.set("tynm",record.get("itnm"));
+		        		root.commit();
+		        		me.getStore().getProxy().extraParams={
+		        			bradno:record.get("itno")
+		        		};
+		        		me.pubCodeGrid.mask();
+		        		me.getStore().reload();
+//		        		var toolbar=combo.up("toolbar");
+//		        		var suitno=toolbar.down("#suitno");
+//		        		suitno.changeBradno(record.get("itno"));
+//		        		suitno.getStore().reload();
+		        	}	
+		        }
 		});
-		//me.addAction(create);
-		actions.push(create);
 		
-		var update = new Ext.Action({
-		    text: '更新',
-		    itemId:'update',
-		    handler: function(){
-		    	me.onUpdate();
-				
-		    },
-		    iconCls: 'icon-edit'
-		});
-		actions.push(update);
+//		var reload = new Ext.Action({
+//		    text: '查询',
+//		    itemId:'reload',
+//		    handler: function(){
+//		    	me.onReload();
+//		    },
+//		    iconCls: 'icon-refresh'
+//		});
+//		//me.addAction(reload);
+//		actions.push(reload);
 		
-		var destroy = new Ext.Action({
-		    text: '删除',
-		    itemId:'destroy',
-		    handler: function(){
-		    	me.onDelete();    
-		    },
-		    iconCls: 'icon-trash'
-		});
-		//me.addAction(destroy);
-		actions.push(destroy)
-		
-		
-		var reload = new Ext.Action({
-		    text: '刷新',
-		    itemId:'reload',
-		    handler: function(){
-		    	me.onReload();
-		    },
-		    iconCls: 'icon-refresh'
-		});
-		//me.addAction(reload);
-		actions.push(reload);
+		me.dockedItems=[{
+	        xtype: 'toolbar',
+	        dock: 'top',
+	        items: actions
+	    }]
 
-		var menu=Ext.create('Ext.menu.Menu', {
-			items: actions
-		});	
-		me.on('itemcontextmenu',function(tree,record,item,index,e){
-			menu.showAt(e.getXY());
-			e.stopEvent();
-		});
-		me.contextMenu=menu;
+//		var menu=Ext.create('Ext.menu.Menu', {
+//			items: actions
+//		});	
+//		me.on('itemcontextmenu',function(tree,record,item,index,e){
+//			menu.showAt(e.getXY());
+//			e.stopEvent();
+//		});
+//		me.contextMenu=menu;
 		
     },
-    onCreate:function(){
-    	var me=this;
-
-    	var parent=me.getSelectionModel( ).getLastSelected( )||me.getRootNode( );    
-		
-		var child=Ext.create(parent.self.getName(),{
-		    'parent_id':parent.get("id"),
-		    text:''
-		});
-		child.set("id",null);
-		
-		var formpanel=Ext.create('y.pubcode.PubCodeTypeForm',{});
-		formpanel.loadRecord(child);
-		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'新增',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel],
-    		listeners:{
-    			close:function(){
-    				me.onReload(parent);
-    			}
-    		}
-    	});
-    	win.show();
-    },
-    
-     onUpdate:function(){
-    	var me=this;
-
-    	var node=me.getSelectionModel( ).getLastSelected();
-    	if(node==null || node.isRoot()){
-    		Ext.Msg.alert("提醒","请选择一个不是根节点的节点!");
-    		return;
-    	}
-
-		var formpanel=Ext.create('y.pubcode.PubCodeTypeForm',{});
-		formpanel.loadRecord(node);
-		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'更新',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel]
-    	});
-    	win.show();
-    },
-    
-    onDelete:function(){
-    	var me=this;
-    	var node=me.getSelectionModel( ).getLastSelected( );
-
-		if(!node){
-		    Ext.Msg.alert("消息","请先选择节点");	
-			return;
-		}
-		if(node.isRoot()){
-			Ext.Msg.alert("消息","根节点不能删除!");	
-			return;
-		}
-		var parent=node.parentNode;
-		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
-				if (btn == 'yes'){
-					node.erase({
-					    failure: function(record, operation) {
-			            	me.onReload(parent);
-					    },
-					    success:function(){
-					    	me.onReload(parent);
-					    }
-				});
-			}
-		});
-    },
+   
     onReload:function(node){
     	var me=this;
     	var parent=node||me.getSelectionModel( ).getLastSelected( );
@@ -174,9 +98,7 @@ Ext.define('y.pubcode.PubCodeTypeTree', {
     },
    
     
-    getContextMenu:function(){
-    	return this.contextMenu;
-    },
+    
     getLastSelected:function(){
     	return this.getSelectionModel( ).getLastSelected( );
     }
