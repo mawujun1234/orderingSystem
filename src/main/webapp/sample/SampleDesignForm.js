@@ -443,6 +443,7 @@ Ext.define('y.sample.SampleDesignForm',{
 				}
 				//record.set("sampleDesignStpres",aa);
 				var jsonData=formpanel.getForm().getFieldValues();
+				jsonData.ormtno=window.ormtno;
 				jsonData.sampleDesignSizegpes=aa;
 				
 				var url="/sampleDesign/create.do";

@@ -181,29 +181,29 @@ Ext.define('y.sample.SamplePlanFormQuery',{
             blankText:"企划成本价不允许为空",
 	        xtype:'numberfield'   
 	    },
-		{
-            fieldLabel: '计划交货期',
-            name: 'pldate',
-            readOnly:true,
-            selectOnFocus:true,
-            editable:false,
-             allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"计划交货期不允许为空",
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        },
-		{
-            fieldLabel: '面料交货期',
-            name: 'mldate',
-            readOnly:true,
-            editable:false,
-             allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"面料交货期不允许为空",
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        },
+//		{
+//            fieldLabel: '计划交货期',
+//            name: 'pldate',
+//            readOnly:true,
+//            selectOnFocus:true,
+//            editable:false,
+//             allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"计划交货期不允许为空",
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        },
+//		{
+//            fieldLabel: '面料交货期',
+//            name: 'mldate',
+//            readOnly:true,
+//            editable:false,
+//             allowBlank: false,
+//            afterLabelTextTpl: Ext.required,
+//            blankText:"面料交货期不允许为空",
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        },
 		{
 	        fieldLabel: '创建人',
 	        name: 'rgsp',

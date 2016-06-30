@@ -21,5 +21,7 @@ public interface PubCodeRepository extends IRepository<PubCode, String>{
 	public List<PubCode> querySpseno4Ordmt(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	
 	public List<PubCode> queryList(@Param("tyno")String tyno,@Param("fitno")String fitno,@Param("bradno")String bradno);
+	
+	public  void updateStat(@Param("bradno")String bradno,@Param("tyno")String tyno,@Param("itno")String itno,@Param("stat")String stat);
 
 }

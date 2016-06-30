@@ -55,6 +55,7 @@ Ext.define('y.common.PubCode',{
 	//		name: 'roleType',
 	//value:'rolegroup',
 	tyno:'',
+	
 	selFirst:false,
 	//fitno:'',
 	autoLoad:true,
@@ -88,8 +89,8 @@ Ext.define('y.common.PubCode',{
 			    
 			    type: 'ajax',
 			    extraParams:{
-			    	tyno:me.tyno
-			    	
+			    	tyno:me.tyno,
+			    	stat:1
 					//fitno:me.fitno
 			    },
 			    url: Ext.ContextPath+'/pubCode/query4Combo.do',

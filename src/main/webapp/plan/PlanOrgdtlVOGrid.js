@@ -255,9 +255,14 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		        	select:function( combo, record, eOpts ) {
 //		        		var sptyno=combo.nextSibling("#sptyno");
 //		        		sptyno.reload(record.get("itno"));
+		        		if(record.get("itno")){
+		        			var spseno=combo.nextSibling("#spseno");
+		        			spseno.reload(record.get("itno"));
+		        		} else {
+		        			var spseno=combo.nextSibling("#spseno");
+		        			spseno.getStore().removeAll();
+		        		}
 		        		
-		        		var spseno=combo.nextSibling("#spseno");
-		        		spseno.reload(record.get("itno"));
 		        	}	
 		        }
 		    },{
@@ -312,13 +317,15 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	  		dock:'top',
 		  	items:[{
 				text: '通过',
+				hidden:!Permision.canShow('plan_orgdtl_pass'),
 				handler: function(btn){
 					me.onPass();
 				},
 				iconCls: 'icon-ok'
 			},{
 			    text: '退回',
-			    itemId:'update',
+			    hidden:!Permision.canShow('plan_orgdtl_back'),
+			    //itemId:'update',
 			    handler: function(){
 			    	me.onBack();
 					

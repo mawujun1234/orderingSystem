@@ -295,6 +295,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 					
 					var tabpanel=grid.nextSibling("tabpanel");
 					var params=grid.getStore().getProxy().extraParams;
+					window.ormtno=params["params['ormtno']"];
 					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
 					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
 					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
@@ -325,13 +326,16 @@ Ext.define('y.sample.SampleDesignGrid',{
 			},{
 			    text: '必定款',
 			    iconCls: 'icon-magnet',
+			    hidden:!Permision.canShow('sample_design_abstat'),
 			    menu:[{
 			    	text: '指定',
+			    	hidden:!Permision.canShow('sample_design_abstat_confirm'),
 			    	handler: function(){
 				    	me.onMustOrder(1);    
 				    }
 			    },{
 			    	text: '取消',
+			    	hidden:!Permision.canShow('sample_design_abstat_cancel'),
 			    	handler: function(){
 				    	me.onMustOrder(0);    
 				    }

@@ -159,46 +159,47 @@ public class PubCodeController {
 	 * @param stat
 	 * @return
 	 */
-	@RequestMapping("/pubCode/updateSt.do")
+	@RequestMapping("/pubCode/updateStat.do")
 	@ResponseBody
-	public  String updateSt(String tyno,String itno,String itst,String stat) {
-		pubCodeService.update(Cnd.update().set(M.PubCode.itst, itst).set(M.PubCode.stat, stat).andEquals(M.PubCode.tyno, tyno).andEquals(M.PubCode.itno, itno));
-		return "success";
+	public  String updateStat(String bradno,String tyno,String itno,String stat) {
+		//pubCodeService.update(Cnd.update().set(M.PubCode.itst, itst).set(M.PubCode.stat, stat).andEquals(M.PubCode.tyno, tyno).andEquals(M.PubCode.itno, itno));
+		pubCodeService.updateStat(bradno, tyno, itno, stat);
+		return "{success:true}";
 	}
 	
 
-	@RequestMapping("/pubCode/load.do")
-	public PubCode load(String id) {
-		return pubCodeService.get(id);
-	}
-	
-	@RequestMapping("/pubCode/create.do")
-	//@ResponseBody
-	public PubCode create(@RequestBody PubCode pubCode) {
-		pubCodeService.create(pubCode);
-		return pubCode;
-	}
-	
-	@RequestMapping("/pubCode/update.do")
-	//@ResponseBody
-	public  PubCode update(@RequestBody PubCode pubCode) {
-		pubCodeService.update(pubCode);
-		return pubCode;
-	}
-	
-	@RequestMapping("/pubCode/deleteById.do")
-	//@ResponseBody
-	public String deleteById(String id) {
-		pubCodeService.deleteById(id);
-		return id;
-	}
-	
-	@RequestMapping("/pubCode/destroy.do")
-	//@ResponseBody
-	public PubCode destroy(@RequestBody PubCode pubCode) {
-		pubCodeService.delete(pubCode);
-		return pubCode;
-	}
+//	@RequestMapping("/pubCode/load.do")
+//	public PubCode load(String id) {
+//		return pubCodeService.get(id);
+//	}
+//	
+//	@RequestMapping("/pubCode/create.do")
+//	//@ResponseBody
+//	public PubCode create(@RequestBody PubCode pubCode) {
+//		pubCodeService.create(pubCode);
+//		return pubCode;
+//	}
+//	
+//	@RequestMapping("/pubCode/update.do")
+//	//@ResponseBody
+//	public  PubCode update(@RequestBody PubCode pubCode) {
+//		pubCodeService.update(pubCode);
+//		return pubCode;
+//	}
+//	
+//	@RequestMapping("/pubCode/deleteById.do")
+//	//@ResponseBody
+//	public String deleteById(String id) {
+//		pubCodeService.deleteById(id);
+//		return id;
+//	}
+//	
+//	@RequestMapping("/pubCode/destroy.do")
+//	//@ResponseBody
+//	public PubCode destroy(@RequestBody PubCode pubCode) {
+//		pubCodeService.delete(pubCode);
+//		return pubCode;
+//	}
 	
 	
 }

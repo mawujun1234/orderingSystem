@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Dinghhz_YXGS_Daxl" language="groovy" pageWidth="300" pageHeight="439" columnWidth="300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8db175a1-bb54-4340-9fa8-299fbe1ea52d">
+	<property name="ireport.zoom" value="2.000000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="9aa8727a-ce28-4a5a-8376-528382231789"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\chenjiahao\\Desktop\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_shul_title" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from (select '1' as leixdisp,t_faxltb.xilm as h_xilm,t_faxltb.xilmc as h_xilmc ,b.chucj_min || '-' || b.chucj_max as h_chucj ,b.lingsj_min || '-' || b.lingsj_max as h_lingsj ,pinz as h_pinz ,pinz-pinz_tq as h_pinz_tb  ,fahsl as h_fahsl  ,(case when fahsl_tq=0 then '0%'  else round(((fahsl-fahsl_tq)*100/fahsl_tq),0) || '%'  end) as h_fahsl_tb  ,xiaossl as h_xiaossl ,(case when xiaossl_tq=0 then '0%'  else round(((xiaossl-xiaossl_tq)*100/xiaossl_tq),0) || '%'  end) as h_xiaossl_tb ,kucsl as h_kucsl  ,(case when kucsl_tq=0 then '0%'  else round(((kucsl-kucsl_tq)*100/kucsl_tq),0) || '%'  end) as h_kucsl_tb  ,round(faxl*100,0) || '%' as h_faxl  ,round((faxl - faxl_tq)*100,0) || '%' as h_faxl_tb  ,zhekl as h_zhekl ,round((zhekl-zhekl_tq),2) as h_zhekl_tb   ,round(maoll*100,0) || '%' as h_maoll  ,round((maoll-maoll_tq)*100,0) || '%' as h_maoll_tb  from (select xilm,xilmc ,sum(pinz) as pinz ,sum(pinz_tq)  as pinz_tq ,sum(xiaossl) + sum(kucsl) as fahsl ,sum(xiaossl_tq) + sum(kucsl_tq) as fahsl_tq ,sum(xiaossl) as xiaossl ,sum(xiaossl_tq) as xiaossl_tq ,sum(kucsl) as kucsl ,sum(kucsl_tq) as kucsl_tq ,(case when sum(xiaossl) + sum(kucsl)=0 then 0  else sum(xiaossl)/(sum(xiaossl) + sum(kucsl))  end) as faxl ,(case when sum(xiaossl_tq) + sum(kucsl_tq)=0 then 0  else sum(xiaossl_tq)/(sum(xiaossl_tq) + sum(kucsl_tq))  end) as faxl_tq  ,(case when sum(lingsje)=0 then 0  else round(sum(xiaosje)/(sum(lingsje)),2)  end) as zhekl  ,(case when sum(lingsje_tq)=0 then 0  else round(sum(xiaosje_tq)/(sum(lingsje_tq)),2)  end) as zhekl_tq  ,(case when sum(xiaosje)=0 then 0  else (sum(xiaosje)-sum(xiaoscb))/sum(xiaosje)  end)  as maoll  ,(case when sum(xiaosje_tq)=0 then 0  else (sum(xiaosje_tq)-sum(xiaoscb_tq))/sum(xiaosje_tq)  end) as maoll_tq  from (select xilm,xilmc,count(distinct shangpjc)pinz,0 as pinz_tq ,round(sum(nvl(xiaosslzs,0)),0) xiaossl,0 as xiaossl_tq ,round(sum(nvl(kucslzs,0)),0) kucsl ,0 as kucsl_tq ,nvl(sum(xiaosje),0) as xiaosje,nvl(sum(lingsje),0) as lingsje,nvl(sum(xiaoscb),0) as xiaoscb,0 as xiaosje_tq,0 as lingsje_tq,0 as xiaoscb_tq  from dh_xingphg   where shengcnf='2013' and pinpm='Y' and dalm='02' group by  xilm,xilmc  union all  select xilm,xilmc ,0,count(distinct shangpjc)cshangpjc ,0,sum(nvl(xiaosslzs,0))xiaossl  ,0,sum(nvl(kucslzs,0))kucsl ,0 ,0 ,0 ,nvl(sum(xiaosje),0) as xiaosje ,nvl(sum(lingsje),0) as lingsje ,nvl(sum(xiaoscb),0) as xiaoscb_tq  from dh_xingphg   where shengcnf='2012' and pinpm='Y' and dalm='02' group by  xilm,xilmc ) fxtq_sql group by  xilm,xilmc ) t_faxltb  left join ( select xilm,xilmc,max(chucj) as chucj_max,min(chucj) as chucj_min,max(lingsj) as lingsj_max,min(lingsj) as lingsj_min  from dh_xingphg  where shengcnf='2013' and pinpm='Y' and dalm='02' group by xilm,xilmc ) b  on t_faxltb.xilm = b.xilm ) head_sql   left join (  select * from ( select * from (select xilm,xilmc,decode(1,1,'版型') as leix ,banxm as groupm,banxmc as groupmc,1 as groupsort ,( round(xiaossl,0) + round(kucsl,0)) fahsl ,round(xiaossl,0) as xiaossl,round(kucsl,0) as kucsl,decode(( xiaossl + kucsl),0,'0%'  ,round(xiaossl*100/( xiaossl + kucsl),0) || '%')  as faxl,decode(( xiaossl + kucsl),0,0  ,round(xiaossl*100/( xiaossl + kucsl),0))  as n_faxl,decode(sum(xiaossl)over(partition by xilm),0,'0%' ,round(xiaossl*100/sum(xiaossl)over(partition by xilm),0) || '%' ) as xiaoszb from ( select xilm,xilmc,banxm,banxmc,sum(nvl(xiaosslzs,0))xiaossl,sum(nvl(kucslzs,0))kucsl  from dh_xingphg  where shengcnf='2013' and pinpm='Y' and dalm='02' group by  xilm,xilmc,banxm,banxmc )a  order by n_faxl desc,fahsl desc ) a union all  select * from (select xilm,xilmc,decode(1,1,'花型') as leix,huaxm as groupm,huaxmc as groupmc,2 as groupsort,( round(xiaossl,0) + round(kucsl,0)) fahsl ,round(xiaossl,0) as xiaossl,round(kucsl,0) as kucsl,decode(( xiaossl + kucsl),0,'0%'  ,round(xiaossl*100/( xiaossl + kucsl),0) || '%')  as faxl,decode(( xiaossl + kucsl),0,0  ,round(xiaossl*100/( xiaossl + kucsl),0))  as n_faxl,decode(sum(xiaossl)over(partition by xilm),0,'0%',round(xiaossl*100/sum(xiaossl)over(partition by xilm),0) || '%') as xiaoszb from ( select xilm,xilmc,huaxm,huaxmc,sum(nvl(xiaosslzs,0))xiaossl,sum(nvl(kucslzs,0))kucsl from dh_xingphg b  where shengcnf='2013' and pinpm='Y' and dalm='02' group by  xilm,xilmc,huaxm,huaxmc )a  order by n_faxl desc,fahsl desc ) a union all  select * from (select xilm,xilmc,decode(1,1,'系列') as leix,xilm as groupm,xilmc as groupmc,3 as groupsort,( round(xiaossl,0) + round(kucsl,0)) fahsl ,round(xiaossl,0) as xiaossl,round(kucsl,0) as kucsl,decode(( xiaossl + kucsl),0,'0%'  ,round(xiaossl*100/( xiaossl + kucsl),0) || '%')  as faxl,decode(( xiaossl + kucsl),0,0  ,round(xiaossl*100/( xiaossl + kucsl),0))  as n_faxl,decode(sum(xiaossl)over(partition by xilm),0,'0%',round(xiaossl*100/sum(xiaossl)over(partition by xilm),0) || '%') as xiaoszb from (  select xilm,xilmc,sum(nvl(xiaosslzs,0))xiaossl,sum(nvl(kucslzs,0))kucsl  from dh_xingphg b  where shengcnf='2013' and pinpm='Y' and dalm='02' group by  xilm,xilmc  )a order by n_faxl desc,fahsl desc ) a union all  select * from (select xilm,xilmc,decode(1,1,'颜色') as leix,yansm as groupm,yansmc as groupmc,4 as groupsort,( round(xiaossl,0) + round(kucsl,0)) fahsl ,round(xiaossl,0) as xiaossl,round(kucsl,0) as kucsl,decode(( xiaossl + kucsl),0,'0%'  ,round(xiaossl*100/( xiaossl + kucsl),0) || '%')  as faxl,decode(( xiaossl + kucsl),0,0  ,round(xiaossl*100/( xiaossl + kucsl),0))  as n_faxl,decode(sum(xiaossl)over(partition by xilm),0,'0%',round(xiaossl*100/sum(xiaossl)over(partition by xilm),0) || '%') as xiaoszb from (   select xilm,xilmc,sx as yansm,sx as yansmc  ,sum(xiaossl)xiaossl,sum(kucsl)kucsl   from (  select xilm,xilmc  ,nvl(xiaosslzs,0)xiaossl,nvl(kucslzs,0)kucsl  ,(case     when yansm ='Y01' or yansm = 'Y02' or yansm = 'Y03' then '黑白系'     when yansm ='Y04' or yansm = 'Y05' or yansm = 'Y06' then '灰色系'     when yansm ='Y07' or yansm = 'Y08' or yansm = 'Y09' then '蓝色系'     when yansm ='Y10' or yansm = 'Y11' or yansm = 'Y12' then '紫色系'     when yansm ='Y13' or yansm = 'Y14' or yansm = 'Y15' then '红色系'     when yansm ='Y16' or yansm = 'Y17' or yansm = 'Y18' then '绿色系'     when yansm ='Y19' or yansm = 'Y20' or yansm = 'Y21' then '黄色系'     when yansm ='Y22' or yansm = 'Y23' or yansm = 'Y24' then '咖色系'     when yansm ='Y25' or yansm = 'Y26' or yansm = 'Y27' then '卡其系'     when yansm ='Y28' or yansm = 'Y29' or yansm = 'Y30' then '米色系'     else '其他系'   end) as sx  from dh_xingphg b  where shengcnf='2013' and pinpm='Y' and dalm='02'  ) a   group by  xilm,xilmc,sx )a  order by n_faxl desc,fahsl desc ) a) dt) detail_sql  on head_sql.h_xilm = detail_sql.xilm  where 1=1  and  detail_sql.leix in ('1','系列','花型','颜色','版型') and head_sql.h_pinz <> 0     order by h_xilmc,detail_sql.leix,detail_sql.n_faxl desc,detail_sql.fahsl desc]]>
+	</queryString>
+	<field name="xilmc" class="java.lang.String"/>
+	<field name="yangybh" class="java.lang.String"/>
+	<field name="yxgsmc" class="java.lang.String"/>
+	<field name="shul" class="java.lang.Integer"/>
+	<field name="beiz" class="java.lang.String"/>
+	<field name="tongpsl" class="java.lang.Integer"/>
+	<field name="yujsj" class="java.lang.String"/>
+	<field name="lingsj" class="java.lang.String"/>
+	<field name="daxlmc" class="java.lang.String"/>
+	<field name="xiaolmc" class="java.lang.String"/>
+	<field name="picmc" class="java.lang.String"/>
+	<field name="gongys" class="java.lang.String"/>
+	<variable name="v_yangybh_sum_shul" class="java.lang.Long" resetType="Group" resetGroup="yangybh_group" calculation="Sum">
+		<variableExpression><![CDATA[$F{shul}]]></variableExpression>
+	</variable>
+	<variable name="v_yangybh_sum_tongpsl" class="java.lang.Integer" resetType="Group" resetGroup="yangybh_group" calculation="Sum">
+		<variableExpression><![CDATA[$F{tongpsl}]]></variableExpression>
+	</variable>
+	<group name="yangybh_group" isStartNewPage="true" isResetPageNumber="true">
+		<groupExpression><![CDATA[$F{yangybh}.concat( $F{xilmc} )]]></groupExpression>
+		<groupHeader>
+			<band height="96">
+				<staticText>
+					<reportElement uuid="6db589f1-8699-4525-bf58-d38d94c1ed14" mode="Opaque" x="4" y="76" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[公司]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="418a8553-ca81-46a7-b7b6-80bb064ec2ac" mode="Opaque" x="4" y="36" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[编号]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="bee6912d-a97f-4f3f-a7db-f117bb04f742" mode="Opaque" x="99" y="36" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[系列]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="80efb468-f4fd-40e6-bcee-e38d4c6dc0aa" x="44" y="36" width="55" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{yangybh}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="610278a9-a094-41dd-b236-accb8010e525" x="139" y="36" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{xilmc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="5ce5aa55-922f-4a8d-9318-307912e45875" mode="Opaque" x="44" y="76" width="126" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{p_shul_title}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="375c139c-9255-4bad-b3a0-376088f5fb9a" mode="Opaque" x="4" y="16" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[大系列]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="fb11ecf7-0393-476b-8f71-263a66a5097d" x="44" y="16" width="55" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{daxlmc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="2bba06a0-ce43-4c84-9efe-3067540bd02f" mode="Opaque" x="99" y="16" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[小类]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="769aae2b-23f5-4b5c-942f-129698867c3d" x="139" y="16" width="72" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{xiaolmc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="37b4289a-3185-4892-9833-9ffaf92f4b4e" mode="Opaque" x="170" y="76" width="126" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[备注]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b48494f3-0d2f-4ad3-9792-292a17423008" mode="Opaque" x="211" y="36" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[零售价]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="21ae7b17-10a8-4590-93ec-54689f831297" x="251" y="36" width="45" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lingsj}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="92a4f236-f37c-4ab4-a4c3-33df4478e78e" mode="Opaque" x="211" y="16" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[批次]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5bd7ee7d-f625-40d1-8fe6-2e68c6158d8c" x="251" y="16" width="45" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{picmc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="bcd244c7-aabc-46df-98c7-94c1c54df63b" mode="Opaque" x="4" y="56" width="40" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[供应商]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="4b434d1a-82b6-4440-b9f0-33692ea00dbd" x="44" y="56" width="252" height="20"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{gongys}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<staticText>
+					<reportElement uuid="31d060de-0bd7-4b47-9ebf-96d84d2c816f" mode="Opaque" x="4" y="0" width="40" height="18" backcolor="#CCCCCC"/>
+					<box leftPadding="5">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[小计：]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="b550d7f0-f283-49fa-9c1b-61c8f82beef4" mode="Opaque" x="44" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{v_yangybh_sum_shul}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="0e825740-8d28-4335-96cc-5f11009064a4" mode="Opaque" x="170" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="宋体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="yangybh_group2" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{yangybh}.concat( $F{xilmc} )]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<printWhenExpression><![CDATA[$V{PAGE_NUMBER}>1]]></printWhenExpression>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="18">
+			<textField>
+				<reportElement uuid="b926cff2-5534-4ac0-8d75-b99c51962aca" x="44" y="0" width="126" height="18"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shul}==0?'':$F{shul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="feba903c-7966-4d50-8a34-f4ca5b368ace" x="4" y="0" width="40" height="18"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{yxgsmc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6282131c-83ce-4760-a730-e3c22ec3d443" mode="Transparent" x="170" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

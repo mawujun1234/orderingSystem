@@ -6,49 +6,66 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.order.TpRepository">
 	<!-- 查询语句，会自动分页-->
-	<sql id="tpAllQuery_where">
+	<sql id="zgs_tpAllQuery_where">
 			<if test="bradno!=null and bradno!=''">
-				and c.bradno=#{bradno}
+				and A.bradno=#{bradno}
 			</if>
 			<if test="spclno!=null and spclno!=''">
-				and c.spclno=#{spclno}
+				and A.spclno=#{spclno}
 			</if>
 			<if test="sptyno!=null and sptyno!=''">
-				and C.sptyno=#{sptyno}
+				and A.sptyno=#{sptyno}
 			</if> 
 			<if test="spseno!=null and spseno!=''">
-				and C.spseno=#{spseno}
+				and A.spseno=#{spseno}
 			</if> 
 			<if test="sampnm!=null and sampnm!=''">
 				and B.sampnm like '%${sampnm}%'
 			</if> 
      </sql>
-    <select id="tpAllQuery" resultType="map" parameterType="map">
-    	SELECT X.*,Y.ORMTQT_TP FROM (
-		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
-		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
-		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-		<include refid="tpAllQuery_where"></include> 
-		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
-		) X LEFT JOIN
-		(
-		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
-		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
-		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
-		<include refid="tpAllQuery_where"></include> 
-		GROUP BY A.SAMPNO,A.SUITNO
-		) Y
-		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+    <select id="zgs_tpAllQuery" resultType="map" parameterType="map">
+    	   select x.*,Y.ORMTQT_TP,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
+			    select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT
+			    from ord_sample_plan a
+			    inner join ord_sample_design b on a.plspno=b.plspno
+			    left join ORD_ORDDTL c on b.sampno=c.sampno
+			    inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+			    WHERE 1=1 <include refid="zgs_tpAllQuery_where"></include> 
+			    group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT
+		    ) x left join 
+		    (
+			    select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP 
+			    from ORD_ORD A,ORD_ORDDTL B 
+			    WHERE A.mtorno=B.mtorno AND A.ORMTNO=#{ormtno} and A.ORTYNO='TP'
+			    GROUP BY  B.SAMPNO,B.SUITNO
+		    ) 
+		    y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+		    ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
     </select> 
-    <select id="tpAllQuery_count" resultType="int" parameterType="map">
+    <select id="zgs_tpAllQuery_count" resultType="int" parameterType="map">
     	SELECT count(*) FROM (
-			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
-			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
-			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-			<include refid="tpAllQuery_where"></include> 
-			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
+			select B.SAMPNO
+		    from ord_sample_plan a
+		    inner join ord_sample_design b on a.plspno=b.plspno
+			<include refid="zgs_tpAllQuery_where"></include> 
 		) X
     </select> 
+    
+    <select id="zgs_getOrstat" resultType="int" parameterType="map">
+    	select sum(orstat) orstat from ord_ordhd  where mtorno=#{mtorno} 
+    </select> 
+    <!-- 当输入统配数量后，更新所有定制订单中的确认数量 -->
+    <update id="zgs_update_DZ_ormtqt">
+    	update ORD_ORDDTL set ormtqs=ormtqt,ormtqt=0,ormark='已统配'
+		where sampno=#{sampno} and mtorno!=#{mtorno}
+    </update>
+    <update id="zgs_restoreDZ">
+    	update ORD_ORDDTL set ormtqt=ormtqs,ormark=null
+		where sampno=#{sampno} and mtorno!=#{mtorno}
+    </update>
+    <update id="zgs_over">
+    	update ord_ordhd set orstat=3 where mtorno=#{mtorno} and orstat=0
+    </update>
     
     <select id="queryTpYxgsColumns" resultType="map">
     	select * from t_org where orgty='COMP'AND ORGST='KQ' AND ORGNO!='08' ORDER BY ORGSO
@@ -59,14 +76,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
 		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-		<include refid="tpAllQuery_where"></include> 
+		<include refid="zgs_tpAllQuery_where"></include> 
 		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
 		) X LEFT JOIN
 		(
 		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
 		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
-		<include refid="tpAllQuery_where"></include> 
+		<include refid="zgs_tpAllQuery_where"></include> 
 		GROUP BY A.SAMPNO,A.SUITNO
 		) Y
 		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
@@ -76,7 +93,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
 			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
 			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-			<include refid="tpAllQuery_where"></include> 
+			<include refid="zgs_tpAllQuery_where"></include> 
 			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
 		) X
     </select> 
@@ -92,14 +109,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
 		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-		<include refid="tpAllQuery_where"></include> 
+		<include refid="zgs_tpAllQuery_where"></include> 
 		GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
 		) X LEFT JOIN
 		(
 		select A.SAMPNO,A.SUITNO,SUM(ORMTQT) ORMTQT_TP
 		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
-		<include refid="tpAllQuery_where"></include> 
+		<include refid="zgs_tpAllQuery_where"></include> 
 		GROUP BY A.SAMPNO,A.SUITNO
 		) Y
 		ON X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
@@ -109,7 +126,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			select C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT,SUM(ORMTQT) ORMTQT
 			from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c,ORD_ORD d
 			where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-			<include refid="tpAllQuery_where"></include> 
+			<include refid="zgs_tpAllQuery_where"></include> 
 			GROUP BY C.sptyno,C.spseno,A.SAMPNO,B.SAMPNM,A.SUITNO,B.PACKQT
 		) X
     </select> 

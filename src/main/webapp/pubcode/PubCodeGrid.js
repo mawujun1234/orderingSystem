@@ -18,17 +18,17 @@ Ext.define('y.pubcode.PubCodeGrid',{
         },
 		{dataIndex:'itso',header:'排序'
 		},
-		{dataIndex:'itst',header:'状态',xtype: 'checkcolumn'		
-            ,listeners:{
-				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
-					var grid=checkcolumn.up("grid");
-					//console.log(grid);
-					var record=grid.getStore().getAt(rowIndex);
-					record.set('itst',checked?1:0);
-					record.save();
-				}
-			}
-		},
+//		{dataIndex:'itst',header:'状态',xtype: 'checkcolumn'		
+//            ,listeners:{
+//				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+//					var grid=checkcolumn.up("grid");
+//					//console.log(grid);
+//					var record=grid.getStore().getAt(rowIndex);
+//					record.set('itst',checked?1:0);
+//					record.save();
+//				}
+//			}
+//		},
 		{dataIndex:'stat',header:'当季状态',xtype: 'checkcolumn'	
             ,listeners:{
 				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
@@ -36,7 +36,22 @@ Ext.define('y.pubcode.PubCodeGrid',{
 					//console.log(grid);
 					var record=grid.getStore().getAt(rowIndex);
 					record.set('stat',checked?1:0);
-					record.save();
+					//record.save();
+					 Ext.Ajax.request({
+						url:Ext.ContextPath+'/pubCode/updateStat.do',
+						params:{
+							bradno:grid.getStore().getProxy().extraParams.bradno,
+							itno:record.get("itno"),
+							tyno:record.get("tyno"),
+							//itst:record.get("itst"),
+							stat:checked?1:0//record.get("stat")
+						},
+						success:function(){
+							//me.getStore().reload();
+							record.commit();
+						}
+						
+					});
 				}
 			}
 		},
@@ -97,32 +112,34 @@ Ext.define('y.pubcode.PubCodeGrid',{
 				iconCls: 'icon-refresh'
 			}]
 		});
-	this.cellEditing = new Ext.grid.plugin.CellEditing({  
-            clicksToEdit : 1  
-      });  
-	this.plugins = [this.cellEditing];
-	this.cellEditing.on("edit",function(editor, context){
-	  	var record=context.record;
-	  	var grid=context.grid;
-	  	var field =context.field ;
-	  	var value=context.value;
-	  	
-
-	  	Ext.Ajax.request({
-						url:Ext.ContextPath+'/pubCode/updateSt.do',
-						params:{
-							itno:record.get("itno"),
-							tyno:record.get("tyno"),
-							itst:record.get("itst"),
-							stat:record.get("stat")
-						},
-						success:function(){
-							//me.getStore().reload();
-						}
-						
-					});
-	  	
-	  });
+//	this.cellEditing = new Ext.grid.plugin.CellEditing({  
+//            clicksToEdit : 1  
+//      });  
+//	this.plugins = [this.cellEditing];
+//	this.cellEditing.on("edit",function(editor, context){
+//	  	var record=context.record;
+//	  	var grid=context.grid;
+//	  	var field =context.field ;
+//	  	var value=context.value;
+//	  	
+//
+//	  	Ext.Ajax.request({
+//						url:Ext.ContextPath+'/pubCode/updateStat.do',
+//						params:{
+//							bradno:grid.getStore().getProxy().extraParams.bradno,
+//							itno:record.get("itno"),
+//							tyno:record.get("tyno"),
+//							//itst:record.get("itst"),
+//							stat:record.get("stat")
+//						},
+//						success:function(){
+//							//me.getStore().reload();
+//							record.commit();
+//						}
+//						
+//					});
+//	  	
+//	  });
        
       me.callParent();
 	},

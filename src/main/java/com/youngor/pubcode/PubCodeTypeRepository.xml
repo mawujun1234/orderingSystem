@@ -9,17 +9,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="query" resultType="com.youngor.pubcode.PubCodeType" parameterType="map">
     	select a.* from ORD_PUB_CODE_TYPE a
 		where 
-		(exists (select 1 from ORD_PUB_CODEBRAD b
+		exists (select 1 from ORD_PUB_CODEBRAD b
 		where a.tyno=b.tyno and b.bradno=#{bradno}) 
+		 
 		<if test="ftyno==null">
-			or a.tyno='1'
-		</if>
-		) and 
-		<if test="ftyno==null">
-			ftyno is null
+			and ftyno is null
 		</if>
 		<if test="ftyno!=null">
-			ftyno =#{ftyno}
+			and ftyno =#{ftyno}
 		</if>
 		order by to_number(a.tyno) asc
     </select> 

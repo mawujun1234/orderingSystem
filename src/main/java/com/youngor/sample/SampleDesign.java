@@ -18,8 +18,8 @@ public class SampleDesign extends BaseObject{
 	@Id
 	@FieldDefine(title="设计样衣代码",sort=50,hidden=true)
 	@Column(length=36,nullable=false,updatable=false)
-	private String sampno;
-	@FieldDefine(title="设计样衣编号",sort=50)
+	private String sampno;//plspno+sampnm
+	@FieldDefine(title="订货样衣编号",sort=50)
 	@Column(length=36,nullable=false,updatable=false,unique=true)
 	private String sampnm;
 	@FieldDefine(title="出样样衣编号",sort=50)
@@ -92,6 +92,8 @@ public class SampleDesign extends BaseObject{
 	
 	@Transient
 	private List<SampleDesignSizegp> sampleDesignSizegpes;
+	@Transient
+	private String ormtno;
 	
 	public String getSampno() {
 		return sampno;
@@ -249,6 +251,12 @@ public class SampleDesign extends BaseObject{
 	}
 	public void setSampnm1(String sampnm1) {
 		this.sampnm1 = sampnm1;
+	}
+	public String getOrmtno() {
+		return ormtno;
+	}
+	public void setOrmtno(String ormtno) {
+		this.ormtno = ormtno;
 	}
 
 }

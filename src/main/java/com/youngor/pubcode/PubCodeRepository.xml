@@ -5,7 +5,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.pubcode.PubCodeRepository">
-	<!-- 查询语句，会自动分页-->
+	<!-- 查询语句，会自动分页
     <select id="queryList" resultType="com.youngor.pubcode.PubCode" parameterType="map">
     	select a.* from ORD_PUB_CODE a
 		where 1=1	
@@ -21,22 +21,33 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</if>
 		 and a.tyno=#{tyno}
 		order by a.itso
+    </select> -->
+    <select id="queryList" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select a.*,B.STAT from ORD_PUB_CODE a,ORD_PUB_CODEBRAD B
+		where 
+			 a.tyno=b.tyno and a.itno=b.itno and b.bradno=#{bradno}
+		<if test="fitno==null or fitno==''">
+			and fitno is null
+		</if>
+		<if test="fitno!=null and fitno!=''">
+			and fitno =#{fitno}
+		</if>
+		 and a.tyno=#{tyno}
+		order by a.itso
     </select> 
 
     
     <!--  获取属性的时候   -->
     <select id="query" resultType="com.youngor.pubcode.PubCode" parameterType="map">
-    	select distinct a.* from ord_pub_code a,ord_pub_codebrad b
-    	where 
+    	select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b
+    	where a.tyno=b.tyno and a.itno=b.itno and
     	a.tyno=#{tyno} and b.bradno=#{bradno}
     	<if test="fitno!=null">
     		and a.fitno=#{fitno}
     	</if>
     	<if test="stat!=null and stat!=''">
-    		and a.stat=#{stat}
+    		and b.stat=#{stat}
     	</if>
-    	and b.stat=1
-    	and a.itst=1
     	order by a.itso
     </select> 
     
@@ -62,5 +73,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and b.stat=1
     	order by a.itso
     </select> 
+    
+    <update id="updateStat" parameterType="map">
+    	update ORD_PUB_CODEBRAD set stat=#{stat} where bradno=#{bradno} and tyno=#{tyno} and itno=#{itno}
+    </update>
 </mapper>
 

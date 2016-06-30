@@ -14,7 +14,11 @@ import com.mawujun.utils.page.Pager;
  */
 @Repository
 public interface TpRepository {
-	public  Pager<Map<String,Object>> tpAllQuery( Pager<Map<String,Object>> pager);
+	public  Pager<Map<String,Object>> zgs_tpAllQuery( Pager<Map<String,Object>> pager);
+	public void zgs_update_DZ_ormtqt(@Param("sampno")String sampno,@Param("mtorno")String mtorno);
+	public void zgs_restoreDZ(@Param("sampno")String sampno,@Param("mtorno")String mtorno);
+	public void zgs_over(@Param("mtorno")String mtorno);
+	public Integer zgs_getOrstat(@Param("mtorno")String mtorno);
 	
 	public  List<Map<String,Object>> queryTpYxgsColumns();
 	public  Pager<Map<String,Object>> tpYxgsQuery( Pager<Map<String,Object>> pager) ;

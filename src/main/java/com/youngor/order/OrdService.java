@@ -710,7 +710,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		 
 
 	}
-	private String getMtorno(String ormtno,String ortyno,String ordorg){
+	public String getMtorno(String ormtno,String ortyno,String ordorg){
 		String mtorno=ormtno+"_"+ortyno+"_"+ordorg;
 		return mtorno;
 	}

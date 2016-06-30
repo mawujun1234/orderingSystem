@@ -6,7 +6,7 @@ Ext.define("y.pubcode.PubCode",{
 		{name:'itms',type:'string'},
 		{name:'itmk',type:'string'},
 		{name:'itso',type:'int'},
-		{name:'itst',type:'bool'},
+		//{name:'itst',type:'bool'},
 		{name:'stat',type:'bool'},
 		{name:'tyno',type:'string'},
 		{name:'fitno',type:'string'},

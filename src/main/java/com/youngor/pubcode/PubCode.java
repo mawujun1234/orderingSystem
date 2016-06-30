@@ -3,6 +3,7 @@ package com.youngor.pubcode;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import com.mawujun.generator.model.FieldDefine;
 import com.mawujun.generator.model.ShowType;
@@ -35,9 +36,10 @@ public class PubCode extends BaseObject{
 	private String itmk;
 	@FieldDefine(title="排序",sort=40,hidden=false)
 	private Integer itso;
-	@FieldDefine(title="状态",sort=40,hidden=false,showType=ShowType.radio)
-	private Boolean itst=true;//0：作废；1：有效；
-	@FieldDefine(title="当季状态",sort=40,hidden=false,showType=ShowType.radio)
+//	@FieldDefine(title="状态",sort=40,hidden=false,showType=ShowType.radio)
+//	private Boolean itst=true;//0：作废；1：有效；
+	//@FieldDefine(title="当季状态",sort=40,hidden=false,showType=ShowType.radio)
+	@Transient
 	private Boolean stat=true;//1：当季；0：非当季
 	
 	
@@ -83,12 +85,7 @@ public class PubCode extends BaseObject{
 	public void setItso(Integer itso) {
 		this.itso = itso;
 	}
-	public Boolean getItst() {
-		return itst;
-	}
-	public void setItst(Boolean itst) {
-		this.itst = itst;
-	}
+
 	public Boolean getStat() {
 		return stat;
 	}

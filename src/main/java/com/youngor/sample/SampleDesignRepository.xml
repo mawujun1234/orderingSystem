@@ -101,8 +101,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	update ord_sample_design set photno=#{photno} where plspno=#{plspno} and sampno=#{sampno} 
     </update>-->
     <!-- 判断样衣编号在一次订货会中是否是唯一的-->
-     <select id="checkOnlyOne" resultType="int" parameterType="string">
-     	select count(sampno) from  ord_sample_design where sampnm=#{sampnm}
+     <select id="checkOnlyOne" resultType="int" parameterType="map">
+     	select count(sampno) from  ord_sample_design a where sampnm=#{sampnm} 
+     	and  exists(select 1 from ord_sample_plan b where a.plspno=b.plspno and b.ormtno=#{ormtno}) 
      </select>
      
      <insert id="copy_ord_sample_mate"  parameterType="map">

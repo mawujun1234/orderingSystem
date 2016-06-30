@@ -19921,3 +19921,820 @@ PL/SQL: Statement ignored
 09:48:05.864 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'spsuno' of 'class com.youngor.report.OrderPrint1' with value 'SZJ00658' Cause: java.lang.NullPointerException
 09:50:43.825 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export2(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: E:\eclipse\aaa\orderingSystem\src\main\webapp\report\ireport\Dinghhz_YXGS_Daxl_gongys.jasper
 09:50:43.826 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: E:\eclipse\aaa\orderingSystem\src\main\webapp\report\ireport\Dinghhz_YXGS_Daxl_gongys.jasper
+10:08:21.358 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:08:21.359 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:08:21.384 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:08:21.384 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:17:13.897 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:17:13.897 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:17:13.945 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:17:13.945 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:18:18.547 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:18:18.548 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.* from ord_pub_code a,ord_pub_codebrad b      where       a.tyno=? and b.bradno=?                     and a.stat=?             and b.stat=1      and a.itst=1      order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."STAT": invalid identifier
+
+10:18:18.606 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:18:18.607 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:24:26.283 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:25:40.513 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:26:00.813 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:26:08.360 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:26:08.360 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:29:24.755 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:29:24.755 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:29:35.335 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:29:35.335 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:30:36.195 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:30:36.195 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:42:08.009 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:42:08.009 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:49:54.874 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:49:54.874 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:51:26.859 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:51:35.014 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:51:43.459 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:51:43.461 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:12:05.823 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:21:44.778 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:21:54.904 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:21:54.904 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:23:07.195 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:23:07.195 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:23:53.733 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:23:53.734 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:24:46.557 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:24:46.557 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:25:45.613 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:25:45.613 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:25:50.290 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.pubcode.PubCodeController.updateStat(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may involve com.youngor.pubcode.PubCodeRepository.updateStat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_PUB_CODEBRAD set stat=? where bradno=? and tyno=? and itno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+11:25:50.290 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may involve com.youngor.pubcode.PubCodeRepository.updateStat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_PUB_CODEBRAD set stat=? where bradno=? and tyno=? and itno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+11:25:56.163 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.pubcode.PubCodeController.updateStat(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may involve com.youngor.pubcode.PubCodeRepository.updateStat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_PUB_CODEBRAD set stat=? where bradno=? and tyno=? and itno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+11:25:56.163 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may involve com.youngor.pubcode.PubCodeRepository.updateStat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_PUB_CODEBRAD set stat=? where bradno=? and tyno=? and itno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+11:27:10.065 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:27:10.065 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:28:19.526 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:28:19.526 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:28:46.916 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:28:46.916 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:32:38.859 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-01007: variable not in select list
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.queryList-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,B.STAT from ORD_PUB_CODE a,ORD_PUB_CODEBRAD B   where      a.tyno=b.tyno and a.itno=b.itno and b.bradno=?        and fitno is null            and a.tyno=?   order by a.itso
+### Cause: java.sql.SQLException: ORA-01007: variable not in select list
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [1007]; ORA-01007: variable not in select list
+; nested exception is java.sql.SQLException: ORA-01007: variable not in select list
+
+11:32:38.859 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-01007: variable not in select list
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.queryList-Inline
+### The error occurred while setting parameters
+### SQL: select a.*,B.STAT from ORD_PUB_CODE a,ORD_PUB_CODEBRAD B   where      a.tyno=b.tyno and a.itno=b.itno and b.bradno=?        and fitno is null            and a.tyno=?   order by a.itso
+### Cause: java.sql.SQLException: ORA-01007: variable not in select list
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [1007]; ORA-01007: variable not in select list
+; nested exception is java.sql.SQLException: ORA-01007: variable not in select list
+
+11:49:46.940 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:50:06.916 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:07:46.608 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:46.609 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:53.203 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:53.203 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:54.120 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:54.121 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:54.682 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:07:54.683 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+12:09:49.031 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:32:17.371 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+12:32:17.371 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+12:32:45.491 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+12:32:45.491 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+12:32:46.298 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+12:32:46.298 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO1
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO1": invalid identifier
+
+12:32:58.882 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+12:32:58.882 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ORMTQT) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'                   and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY a.sptyno,a.spseno,B.SAMPNM,c.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SUITNO": invalid identifier
+
+13:32:25.363 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:36:45.121 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:36:45.121 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:43:41.541 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:41.542 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:41.602 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:41.602 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:46.194 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:46.195 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:46.239 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.query4Combo(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+13:43:46.239 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+### The error may exist in com/youngor/pubcode/PubCodeRepository.xml
+### The error may involve com.youngor.pubcode.PubCodeRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select distinct a.*,b.stat from ord_pub_code a,ord_pub_codebrad b      where a.tyno==b.tyno and a.itno=b.itno      a.tyno=? and b.bradno=?              and a.fitno=?                     and b.stat=?             order by a.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00936: missing expression
+
+14:26:53.725 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:30:26.048 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:33:51.984 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:33:56.935 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:37:59.560 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@741ed70c
+14:37:59.655 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@1bf98bce
+14:43:35.406 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@7b14dd0d
+15:08:09.301 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3edb791e
+15:11:15.553 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@4253f792
+15:15:44.656 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@e5c3fd5
+15:45:43.070 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [null]: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'tpController' method 
+public java.lang.String com.youngor.order.TpController.zgs_restoreDZ(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+to {[/tp/zgs_updateOrmtqt_tp.do]}: There is already 'tpController' bean method
+public java.lang.String com.youngor.order.TpController.zgs_updateOrmtqt_tp(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer) mapped.
+15:45:43.070 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'tpController' method 
+public java.lang.String com.youngor.order.TpController.zgs_restoreDZ(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+to {[/tp/zgs_updateOrmtqt_tp.do]}: There is already 'tpController' bean method
+public java.lang.String com.youngor.order.TpController.zgs_updateOrmtqt_tp(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer) mapped.
+15:49:36.541 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:49:45.026 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:50:45.672 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT,sum(c.orstat) orstat        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:50:45.672 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT,sum(c.orstat) orstat        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:50:48.133 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT,sum(c.orstat) orstat        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:50:48.134 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT,sum(c.orstat) orstat        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:32.328 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:32.328 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:53.609 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:53.609 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:59.208 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:51:59.208 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,y.orstat,'Y' bradno ,'01' spclno,'201605' ormtno from (        select a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT,SUM(c.ormtqs) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        left join ORD_ORDDTL c on b.sampno=c.sampno        inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO='201605'  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,c.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP ,sum(c.orstat) orstat        from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO='201605'  and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."ORSTAT": invalid identifier
+
+15:59:54.302 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@5aa2c624
+16:00:48.743 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3e89a622
+16:01:21.271 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@29ea2e2
+16:01:36.824 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@51a0d6e7
+16:01:39.160 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@7fc76526
+16:01:41.180 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@96a0680
+16:01:57.292 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_restoreDZ(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.order.Orddtl#com.youngor.order.Orddtl$PK@7b180c88]
+16:01:57.292 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.order.Orddtl#com.youngor.order.Orddtl$PK@7b180c88]
+16:01:59.299 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_restoreDZ(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.order.Orddtl#com.youngor.order.Orddtl$PK@5b3599c0]
+16:01:59.299 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.order.Orddtl#com.youngor.order.Orddtl$PK@5b3599c0]
+16:02:52.241 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@652ab77d
+16:02:55.474 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@51c92d0e
+16:02:55.490 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@4a51cc11
+16:03:13.867 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@792014d
+16:03:23.309 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@24b9611d
+16:03:36.507 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.order.Orddtl@3479c0d9
+16:03:51.616 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@77aa5dac
+16:04:36.376 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3023ac6f
+16:21:39.875 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:21:39.876 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:23:32.855 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:23:32.856 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:23:36.953 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:23:36.954 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:03.795 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:03.795 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:30.209 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:30.210 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:40.842 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:25:40.842 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select sum(orstat) orstat ord_ordhd  where mtorno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+16:26:30.062 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.order.TpRepository.zgs_getOrstat attempted to return null from a method with a primitive return type (int).
+16:26:30.062 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.order.TpRepository.zgs_getOrstat attempted to return null from a method with a primitive return type (int).
+16:26:38.560 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:27:40.676 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.zgs_getOrstat(java.lang.String,java.lang.String)]: org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.order.TpRepository.zgs_getOrstat attempted to return null from a method with a primitive return type (int).
+16:27:40.676 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Mapper method 'com.youngor.order.TpRepository.zgs_getOrstat attempted to return null from a method with a primitive return type (int).
+16:29:38.210 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@2a158131
+16:29:38.219 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@7842ba9a
+16:29:38.237 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@7f0f6620
+16:29:41.250 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@6cb21f4f
+16:32:58.896 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@5329b933
+16:32:58.904 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@4dbb979
+16:32:58.912 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1ae9b32c
+16:33:02.442 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@2eae0b46
+16:59:44.397 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:00:55.261 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:02:23.114 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.checkOnlyOne-Inline
+### The error occurred while setting parameters
+### SQL: select count(sampno) from  ord_sample_design where sampnm=?        and  not exists(select 1 from ord_sample_plan b where a.plspno=b.plspno and b.ormtno=?)
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+17:02:23.114 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.checkOnlyOne-Inline
+### The error occurred while setting parameters
+### SQL: select count(sampno) from  ord_sample_design where sampnm=?        and  not exists(select 1 from ord_sample_plan b where a.plspno=b.plspno and b.ormtno=?)
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."PLSPNO": invalid identifier
+
+17:02:23.117 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.springframework.jdbc.BadSqlGrammarException], based on exception mapping [java.lang.Exception]
+17:02:23.117 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+17:02:23.117 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+17:02:58.857 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@366c325c
+17:02:58.884 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@366c325c
+17:02:58.927 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@1b27e507
+17:06:49.058 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:34:55.665 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:38:33.398 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@6887e89a
+17:39:16.772 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7de96276
+17:39:33.806 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@38b2deae
+17:41:28.808 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@2ef725b6
+17:42:01.434 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@7c0824c

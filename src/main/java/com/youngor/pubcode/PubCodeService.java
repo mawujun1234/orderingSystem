@@ -40,4 +40,8 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 	public List<PubCode> queryList(String tyno,String fitno,String bradno) {
 		return pubCodeRepository.queryList(tyno,fitno, bradno);
 	}
+	
+	public  void updateStat(String bradno,String tyno,String itno,String stat) {
+		pubCodeRepository.updateStat(bradno,tyno, itno, stat);
+	}
 }

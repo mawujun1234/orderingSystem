@@ -19,7 +19,7 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	
 	public void lock(Map<String,Object> params);
 	public void unlock(Map<String,Object> params);
-	public int checkOnlyOne(@Param("sampnm")String sampnm);
+	public int checkOnlyOne(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
 	
 	//public SampleDesign getSampleDesignBySampno(@Param("ormtno")String ormtno,@Param("sampno")String sampno);
 	
