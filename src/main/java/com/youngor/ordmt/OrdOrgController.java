@@ -55,7 +55,7 @@ public class OrdOrgController {
 	@ResponseBody
 	public String create(String addModel,String ordorg,Integer sztype,String role_id) {
 		 ordOrgService.create(addModel, ordorg, sztype, role_id);
-		 return "success";
+		 return "{success:true}";
 	}
 	
 	@RequestMapping("/ordOrg/update.do")

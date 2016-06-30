@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.OrdOrg;
@@ -30,6 +31,7 @@ import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.sample.SamplePlan;
 import com.youngor.utils.ContextUtils;
+import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 
 
@@ -300,12 +302,13 @@ public class OrdService extends AbstractService<Ord, String>{
 				if(T02_ormtqt>T01_ormtqt){
 					throw new BusinessException(" 拆套男套西 的裤子数量必须是  : 上衣<=裤子<=上衣*115%");
 				}
-			} else if("Z1".equals(sampleVO.getSexno()) && "S10".equals(sampleVO.getSptyno())){
-				// 女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
-				if(T01_ormtqt!=T02_ormtqt || T01_ormtqt!=T04_ormtqt || T02_ormtqt!=T04_ormtqt){
-					throw new BusinessException("女 套西:上衣=裤子=裙子");
-				}
-			}
+			} 
+//			else if("Z1".equals(sampleVO.getSexno()) && "S10".equals(sampleVO.getSptyno())){
+//				// 女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
+//				if(T01_ormtqt!=T02_ormtqt || T01_ormtqt!=T04_ormtqt || T02_ormtqt!=T04_ormtqt){
+//					throw new BusinessException("女 套西:上衣=裤子=裙子");
+//				}
+//			}
 		}
 
 		//进行保存
@@ -398,14 +401,13 @@ public class OrdService extends AbstractService<Ord, String>{
 //		ordRepository.updateOrmtqtZeor(ord.getMtorno());
 		
 		//为订单副表 生成数据，根据订单明细表生成数据 ,
-		
 		ordRepository.createOrd_ordhd(ord.getMtorno());
 	
-		//拷贝订单副表--》订单副表-历史
-		ordRepository.createOrd_ordhd_his(ord.getMtorno());
-		
-		//拷贝订单明细表-->订单明细表历史
-		ordRepository.createOrd_orddtl_his(ord.getMtorno());
+//		//拷贝订单副表--》订单副表-历史
+//		ordRepository.createOrd_ordhd_his(ord.getMtorno());
+//		
+//		//拷贝订单明细表-->订单明细表历史
+//		ordRepository.createOrd_orddtl_his(ord.getMtorno());
 		
 
 		if(org.getChanno()==Chancl.TX){
@@ -415,8 +417,8 @@ public class OrdService extends AbstractService<Ord, String>{
 			//如果是门店，节点类型：总公司平衡30，状态还是编辑中。
 			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"30","0");
 		} else {
-			//如果是区域，同时修改ordhd的订单节点类型为20，即区域平衡，订单状态变成“总部审批中”
-			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"20","2");
+			//如果是区域，同时修改ordhd的订单节点类型为10，还是现场订货，订单状态变成“总部审批中”
+			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"10","2");
 		}
 		
 		//更新订单规格明细表中的“审批订单号”
@@ -424,6 +426,76 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		ord.getOrdCheckInfo().put("canConfirm", 2);
 		//result.put("canConfirm", canConfirm);
+	}
+	
+	/**
+	 * 二次订货后订单完成的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void confirm2() {
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		//Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		//订单号
+		String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());
+		//获取已有品牌大类的审批版本号
+		String mlorvn=ordRepository.confirm2_get_mlorvn(mtorno);
+		//为订单明细表生成审批订单号，和版本号
+		ordRepository.confirm2_updateMtornoMlorvn(mtorno,mlorvn);
+		//为订单规格明细更新审批订单号
+		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
+		//生成订单副表数据，同时更新订单审批号，版本号
+		ordRepository.confirm2_createOrd_ordhd(mtorno, mlorvn, "10", "0");
+		//订单状态改成"大区审批中“
+		ordRepository.confirm2_update_orstat(mtorno, "1");
+	}
+	
+	
+	/**
+	 * 总部进行审批,是按大类，品牌进行审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public void process2(String[] mlornoes) {
+		//检查订单状态是不是“总部审批中”，如果不是，就不能进行审批
+		
+		//订单状态改成“审批通过”，订单节点改成“总公司平衡”
+		if(mlornoes!=null && mlornoes.length>0){
+			for(String mlorno:mlornoes){
+				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
+			}
+		}
+		
+	}
+	/**
+	 * 订单退回
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mlornoes
+	 */
+	public void back(String[] mlornoes) {
+		
+		if(mlornoes!=null && mlornoes.length>0){
+			for(String mlorno:mlornoes){
+				//把订单状态修改为“编辑中”
+				ordhdRepository.update(Cnd.update().set(M.Ordhd.orstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
+				
+			}
+		}
+		
+	}
+	/**
+	 * 订单作废
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mlornoes
+	 */
+	public void isfect_no(String[] mlornoes) {
+		
+		if(mlornoes!=null && mlornoes.length>0){
+			for(String mlorno:mlornoes){
+				//把订单作废
+				ordhdRepository.update(Cnd.update().set(M.Ordhd.isfect, 0).andEquals(M.Ordhd.mlorno, mlorno));
+				
+			}
+		}
 		
 	}
 	
@@ -529,23 +601,25 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		if(list.size()==1 ){
 			Map<String,Object> map=list.get(0);
-			//如果还是现场订货，并且状态是编辑中的话，就是显示“订单完成”按钮
-			if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
-				return 1;
-			}  else if("20".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
+//			//如果还是现场订货，并且状态是编辑中的话，就是显示“订单完成”按钮
+//			if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+//				return 1;
+//			}  else 
+			if("10".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
 				//进入了大区审批中，只有审批过后，才能进行区域平衡
 				return 2;
-			}  else if("20".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+			}  else if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
 				//进入了区域平衡
 				return 3;
 			} else {
 				return 4;
 			}
 		} else {
-			throw new BusinessException("订单状态不一致，请联系管理员赶紧处理!");
+			throw new BusinessException("订单状态不一致，某些大类未审批!");
 		}
 		
 	}
+	
 	
 	public MyInfoVO queryMyInfoVO() {
 		UserVO userVO=ShiroUtils.getAuthenticationInfo();
@@ -559,6 +633,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		String plorno=null;//指标单号
 		if("TX".equals(org.getChanno().toString())){
+			//特许不显示指标数量
 			
 		} else {
 			//然后获取该区域的的特许指标数量,默认都是获取雅戈尔品牌的指标数量，这个是暂时的
@@ -572,6 +647,42 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		
 		return myInfoVO;
+	}
+	/**
+	 * 只修改区域的数据，其他节点的数据不修改
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public void process1(Map<String,Object> params) {
+		//首先判断，该营销公司下的所有区域的订单的订单节点是不是i“区域平衡”，订单状态是不是“总部审批中”，如果不是，就报错错误
+		List<Map<String,Object>> list=ordRepository.process1_check_stats(params);
+		if(list!=null && list.size()>0){
+			StringBuilder builder=new StringBuilder("");
+			for(Map<String,Object> map:list){
+				builder.append(","+map.get("QYNM"));
+			}
+			throw new BusinessException("下列区域的订单状态不对，不能审批通过："+builder.substring(1));
+		}
+		//订货汇总条码打印-审批通过（订货批号,品牌,大类，操作用户）
+		ordRepository.order_dl__print_ps(params.get("ormtno").toString(), params.get("bradno").toString(),
+				 params.get("spclno").toString(), ShiroUtils.getLoginName());
+//		String ormtno=params.get("ormtno").toString();
+//		String yxgsno=params.get("yxgsno").toString();
+//		//先备份数据
+//		//拷贝订单副表--》订单副表-历史
+//		ordRepository.createOrd_ordhd_hiss_by_yxgsno(ormtno,yxgsno);	
+//		//拷贝订单明细表-->订单明细表历史
+//		ordRepository.createOrd_orddtl_hiss_by_yxgsno(ormtno,yxgsno);
+//		
+//		
+//		//然后把该营销公司下所有"区域"的订单状态改成“编辑中”
+//		ordRepository.process1_update_ordhd_stats_0(ormtno, yxgsno);
+//		
+//		//对该营销公司下，所有的订货单位的版本号+1，包括订单副表，订单明细表
+//		ordRepository.process1_update_ordhd_mlorvn(ormtno, yxgsno);
+//		ordRepository.process1_update_orddtl_mlorvn(ormtno, yxgsno);
+		
+		
 	}
 	
 	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
@@ -651,118 +762,94 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		
 	}
-	/**
-	 * 区域平衡 提交审批
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @param qyno
-	 * @param channo
-	 * @param ordorg
-	 * @param ormtno
-	 * @param bradno
-	 * @param spclno
-	 */
-	public void updateApprove_org(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno) {
-		
-		if(ordorg!=null && !"".equals(ordorg)){
-			check_S10_rule(ormtno, ordorg, spclno, bradno);
-			//提交某个指定的订单
-			//ordRepository.updateApprove_org(ordorg, ormtno, bradno, spclno);
-		} else {
-			//提交当前区域下的所有订单
-			//获取所有的订货单位
-			List<Org> orgs=queryOrdorg( ormtno, qyno, channo, "DZ");
-			for(Org org:orgs){
-				check_S10_rule(ormtno, org.getOrgno(), spclno, bradno);
-				//ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
-			}
-		}
-		
-
-		
-		
-//	            拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
-//		select b.sampno,b.sampnm
-//		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
-//		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
-//		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
-//		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
-//		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno='201605_DZ_QY0010'
-//		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=0
-//		group by  b.sampno,b.sampnm
-		
-//	    女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
-//		select b.sampno,b.sampnm
-//		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
-//		,sum(decode(a.suitno,'T01',ormtqt,0)) T01_ormtqt
-//		,sum(decode(a.suitno,'T02',ormtqt,0)) T02_ormtqt
-//		,sum(decode(a.suitno,'T04',ormtqt,0)) T04_ormtqt
-//		from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
-//		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno='201605_DZ_QY0010'
-//		and c.sptyno='S10' and b.sexno='Z1' --and b.spltmk=0
-//		group by  b.sampno,b.sampnm
-
-	}
-	/**
-	 * 只检查套西，那么也就是只有西服大类提交的时候才会检查
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @param ordorg
-	 * @param ormtno
-	 * @param spclno
-	 */
-	public void check_S10_rule(String ormtno,String ordorg,String spclno,String bradno){
-		//如果当前提交的不是西服大类，就不进行检查
-		if(!"02".equals(spclno)){
-			return;
-		}
-		String mtorno=ormtno+"_DZ_"+ordorg;
-//		不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准)
-
-		//List<String> sampnoes=new ArrayList<String>();
-		StringBuilder builder=new StringBuilder();
-
-		List<Map<String,Object>> check_S10_Z0_0=ordRepository.check_S10_Z0_0(mtorno);
-		for(Map<String,Object> map:check_S10_Z0_0){
-			BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ORMTQT");
-			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
-			if(T02_ormtqt.compareTo(T00_ormtqt.multiply(new BigDecimal(0.15)).setScale(2, RoundingMode.HALF_UP))==1){
-				//sampnoes.add(map.get("SAMPNM").toString());
-				builder.append(","+map.get("SAMPNM"));
-			}
-		}
-		if(builder.length()>0) {
-			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是： 裤子<=15%*标准");
-		}
-//      拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
-		List<Map<String,Object>> check_S10_Z0_1=ordRepository.check_S10_Z0_1(mtorno);
-		for(Map<String,Object> map:check_S10_Z0_1){
-			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
-			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
-			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
-			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)).setScale(2, RoundingMode.HALF_UP))==1 || T02_ormtqt.compareTo(T01_ormtqt)==-1){
-				//sampnoes.add(map.get("SAMPNM").toString());
-				builder.append(","+map.get("SAMPNM"));
-			}
-		}
-		if(builder.length()>0){
-			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=<裤子<=115%*上衣");
-		}
-		
-		//	    女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
-		List<Map<String,Object>> check_S10_Z1=ordRepository.check_S10_Z1(mtorno);
-		for(Map<String,Object> map:check_S10_Z1){
-			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
-			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
-			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
-			BigDecimal T04_ormtqt=(BigDecimal)map.get("T04_ORMTQT");
-			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)))!=0 && T02_ormtqt.compareTo(T04_ormtqt)!=0 ){
-				//sampnoes.add(map.get("SAMPNM").toString());
-				builder.append(","+map.get("SAMPNM"));
-			}
-		}
-		if(builder.length()>0){
-			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=裤子=裙子");
-		}
-	}
+//	/**
+//	 * 区域平衡 提交审批
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @param qyno
+//	 * @param channo
+//	 * @param ordorg
+//	 * @param ormtno
+//	 * @param bradno
+//	 * @param spclno
+//	 */
+//	public void updateApprove_org(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno) {
+//		
+//		if(ordorg!=null && !"".equals(ordorg)){
+//			check_S10_rule(ormtno, ordorg, spclno, bradno);
+//			//提交某个指定的订单
+//			//ordRepository.updateApprove_org(ordorg, ormtno, bradno, spclno);
+//		} else {
+//			//提交当前区域下的所有订单
+//			//获取所有的订货单位
+//			List<Org> orgs=queryOrdorg( ormtno, qyno, channo, "DZ");
+//			for(Org org:orgs){
+//				check_S10_rule(ormtno, org.getOrgno(), spclno, bradno);
+//				//ordRepository.updateApprove_org(org.getOrgno(), ormtno, bradno, spclno);
+//			}
+//		}
+//
+//	}
+//	/**
+//	 * 只检查套西，那么也就是只有西服大类提交的时候才会检查
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @param ordorg
+//	 * @param ormtno
+//	 * @param spclno
+//	 */
+//	public void check_S10_rule(String ormtno,String ordorg,String spclno,String bradno){
+//		//如果当前提交的不是西服大类，就不进行检查
+//		if(!"02".equals(spclno)){
+//			return;
+//		}
+//		String mtorno=ormtno+"_DZ_"+ordorg;
+////		不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准)
+//
+//		//List<String> sampnoes=new ArrayList<String>();
+//		StringBuilder builder=new StringBuilder();
+//
+//		List<Map<String,Object>> check_S10_Z0_0=ordRepository.check_S10_Z0_0(mtorno);
+//		for(Map<String,Object> map:check_S10_Z0_0){
+//			BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ORMTQT");
+//			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+//			if(T02_ormtqt.compareTo(T00_ormtqt.multiply(new BigDecimal(0.15)).setScale(2, RoundingMode.HALF_UP))==1){
+//				//sampnoes.add(map.get("SAMPNM").toString());
+//				builder.append(","+map.get("SAMPNM"));
+//			}
+//		}
+//		if(builder.length()>0) {
+//			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是： 裤子<=15%*标准");
+//		}
+////      拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
+//		List<Map<String,Object>> check_S10_Z0_1=ordRepository.check_S10_Z0_1(mtorno);
+//		for(Map<String,Object> map:check_S10_Z0_1){
+//			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
+//			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
+//			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+//			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)).setScale(2, RoundingMode.HALF_UP))==1 || T02_ormtqt.compareTo(T01_ormtqt)==-1){
+//				//sampnoes.add(map.get("SAMPNM").toString());
+//				builder.append(","+map.get("SAMPNM"));
+//			}
+//		}
+//		if(builder.length()>0){
+//			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=<裤子<=115%*上衣");
+//		}
+//		
+////		//	    女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
+////		List<Map<String,Object>> check_S10_Z1=ordRepository.check_S10_Z1(mtorno);
+////		for(Map<String,Object> map:check_S10_Z1){
+////			//BigDecimal T00_ormtqt=(BigDecimal)map.get("T00_ormtqt");
+////			BigDecimal T01_ormtqt=(BigDecimal)map.get("T01_ORMTQT");
+////			BigDecimal T02_ormtqt=(BigDecimal)map.get("T02_ORMTQT");
+////			BigDecimal T04_ormtqt=(BigDecimal)map.get("T04_ORMTQT");
+////			if(T02_ormtqt.compareTo(T01_ormtqt.multiply(new BigDecimal(1.15)))!=0 && T02_ormtqt.compareTo(T04_ormtqt)!=0 ){
+////				//sampnoes.add(map.get("SAMPNM").toString());
+////				builder.append(","+map.get("SAMPNM"));
+////			}
+////		}
+////		if(builder.length()>0){
+////			throw new BusinessException(builder.substring(1)+"样衣<br/>的规则是：上衣=裤子=裙子");
+////		}
+//	}
 	
 	
 	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager) {
@@ -978,5 +1065,67 @@ public class OrdService extends AbstractService<Ord, String>{
 	
 	public ReloadTotal reloadTotal(MapParams params) {
 		return ordRepository.reloadTotal(params.getParams());
+	}
+	
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return 0:表示没有满足条件，不需要看到这个按钮。.1:表示还有区域没有 平衡完成. 2:表示可以进行“确认”了  .3:订单已经确认了
+	 */
+	public Integer yxgs_getOrstat() {
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		
+		
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		String yxgsno=org.getOrgno();
+		//检查该营销公司下是否所有的订单都已经按过“平衡完成”，即判断该营销公司下面的所有订单的状态是否是“大区审批中”
+		List<Integer> list=ordRepository.yxgs_getOrstat(ormtno, yxgsno);
+		if(list!=null && list.size()>0){
+//			StringBuilder builder=new StringBuilder("");
+//			for(Map<String,Object> map:list){
+//				builder.append(","+map.get("QYNM"));
+//			}
+//			throw new BusinessException("下列区域平衡未完成:"+builder.substring(1));
+			//素有区域都已经是“大区审批中”的话，表示可以按确认按钮了
+			if(list.size()==1 && list.get(0)==1){
+				return 2;
+			} else if(list.size()==1 && list.get(0)==2){
+				return 3;
+			} else {
+				return 1;
+			}
+		} else {
+			return 0;
+		}
+	}
+	
+	/**
+	 * 营销公司确认，确认该区域下所有订单都提交
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public void yxgs_confirm() {
+		//UserVO userVO=ShiroUtils.getAuthenticationInfo();
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		if(org.getChanno()!=Chancl.YXGS){
+			throw new BusinessException("你不是大区账号，没有权限进行确认!");
+		}
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+
+		String ormtno=ord.getOrmtno();
+		String yxgsno=org.getOrgno();
+		//检查该营销公司下是否所有的订单都已经按过“平衡完成”，即判断该营销公司下面的所有订单的状态是否是“大区审批中”
+		List<Map<String,Object>> list=ordRepository.yxgs_confirm_check_stats(ormtno, yxgsno);
+		if(list!=null && list.size()>0){
+			StringBuilder builder=new StringBuilder("");
+			for(Map<String,Object> map:list){
+				builder.append(","+map.get("QYNM"));
+			}
+			throw new BusinessException("下列区域平衡未完成:"+builder.substring(1));
+		}
+		
+		//把订单状态变成“总部审批”中
+		ordRepository.yxgs_confirm_update_orstat(ormtno, yxgsno);
+		
 	}
 }

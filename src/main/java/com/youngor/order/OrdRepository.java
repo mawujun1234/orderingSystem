@@ -61,11 +61,29 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void createOrd_ordhd(@Param("mtorno")String mtorno);
 	
-	public void createOrd_ordhd_his(@Param("mtorno")String mtorno);
-	public void createOrd_orddtl_his(@Param("mtorno")String mtorno);
+	//public void createOrd_ordhd_his(@Param("mtorno")String mtorno);
+	//public void createOrd_orddtl_his(@Param("mtorno")String mtorno);
+	//public void createOrd_ordhd_hiss_by_yxgsno(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	//public void createOrd_orddtl_hiss_by_yxgsno(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
 	public void update_ordhd_SDTYNO(@Param("mtorno")String mtorno,@Param("sdtyno")String sdtyno,@Param("orstat")String orstat);
 	public void update_ord_ordszdtl_MLORNO(@Param("mtorno")String mtorno);
 	public List<Map<String,Object>> check_is_confirm(@Param("mtorno")String mtorno);
+	public  List<Map<String,Object>> process1_check_stats(Map<String,Object> params);
+	public void order_dl__print_ps(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	//public void process1_update_ordhd_stats_0(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	//public void process1_update_ordhd_mlorvn(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	//public void process1_update_orddtl_mlorvn(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	public String confirm2_get_mlorvn(@Param("mtorno")String mtorno);
+	public void confirm2_updateMtornoMlorvn(@Param("mtorno")String mtorno,@Param("mlorvn")String mlorvn);
+	public void confirm2_createOrd_ordhd(@Param("mtorno")String mtorno,@Param("mlorvn")String mlorvn,@Param("sdtyno")String sdtyno,@Param("orstat")String orstat);
+	public void confirm2_update_orstat(@Param("mtorno")String mtorno,@Param("orstat")String orstat);
+	
+	
+	public List<Integer> yxgs_getOrstat(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	public List<Map<String,Object>> yxgs_confirm_check_stats(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	public void yxgs_confirm_update_orstat(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	
+	public void order_dl__process(@Param("P_MLORNO")String P_MLORNO,@Param("P_TYPE")String P_TYPE,@Param("P_RESP")String P_RESP);
 	
 	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
 	
@@ -104,9 +122,9 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager);
 	
-	public List<Map<String,Object>> check_S10_Z0_0(@Param("mtorno")String mtorno);
-	public List<Map<String,Object>> check_S10_Z0_1(@Param("mtorno")String mtorno);
-	public List<Map<String,Object>> check_S10_Z1(@Param("mtorno")String mtorno);
+//	public List<Map<String,Object>> check_S10_Z0_0(@Param("mtorno")String mtorno);
+//	public List<Map<String,Object>> check_S10_Z0_1(@Param("mtorno")String mtorno);
+//	public List<Map<String,Object>> check_S10_Z1(@Param("mtorno")String mtorno);
 	
 	public ReloadTotal reloadTotal(Map<String,Object> params);
 }

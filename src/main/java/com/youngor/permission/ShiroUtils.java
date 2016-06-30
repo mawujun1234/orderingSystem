@@ -36,5 +36,16 @@ public class ShiroUtils {
 		return (UserVO)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 	}
 	
+	/**
+	 * 判断是否已经登录的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public static Boolean isLogon(){
+		if(SecurityUtils.getSubject().getPrincipals()==null){
+			return false;
+		}
+		return true;
+	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 /**
@@ -91,14 +92,88 @@ public class OrdController {
 		ordService.confirm();
 		return "{success:true}";
 	}
+	/**
+	 * 二次订货后，订单完成的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/mobile/confirm2.do")
+	@ResponseBody
+	public String confirm2() {
+		ordService.confirm2();
+		return "{success:true}";
+	}
 	
 	
+	
+	
+	
+	/**
+	 * 当移动端第一次提交后。总公司在后台进行审批过后，移动端才可以进行二次定后,第一次审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/process1.do")
+	@ResponseBody
+	public String process1(MapParams params) {
+		ordService.process1(params.getParams());
+		return "{success:true}";
+	}
+	
+	/**
+	 * 总部进行审批，第二次审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/process2.do")
+	@ResponseBody
+	public String process2(String[] mlornoes ) {
+		ordService.process2(mlornoes);
+		return "{success:true}";
+	}
+	
+	@RequestMapping("/ord/back.do")
+	@ResponseBody
+	public String back(String[] mlornoes ) {
+		ordService.back(mlornoes);
+		return "{success:true}";
+	}
+	@RequestMapping("/ord/isfect_no.do")
+	@ResponseBody
+	public String isfect_no(String[] mlornoes ) {
+		ordService.isfect_no(mlornoes);
+		return "{success:true}";
+	}
 	@RequestMapping("/ord/ordty/queryAll.do")
 	@ResponseBody
 	public List<Ordty> queryAll() {
 		List<Ordty> list=ordtyService.queryAll();
 		return list;
 	}
+	
+	
+	/**
+	 * 营销公司登录后，获取订单状态，如果下面所有的区域都已经提交了的话，
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/mobile/yxgs/getOrstat.do")
+	@ResponseBody
+	public Map<String,Object> yxgs_getOrstat() {
+		Integer  canConfirm=ordService.yxgs_getOrstat();
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("canConfirm", canConfirm);
+		result.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
+		return result;
+		//return "{success:true}";
+	}
+	@RequestMapping("/ord/mobile/confirm_yxgs.do")
+	@ResponseBody
+	public String confirm_yxgs() {
+		ordService.yxgs_confirm();
+		return "{success:true}";
+	}
+	
 	/**
 	 * 查询这次订货会当前区域下的订货单位
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -156,18 +231,18 @@ public class OrdController {
 		ordService.createNew(orddtles, ordorg, ortyno, channo, ormtno);
 		return "{success:true}";
 	}
-	/**
-	 * 提交审批,某个订货单位下的指定品牌，大类的订单都提交
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @return
-	 */
-	@RequestMapping("/ord/qyVO/updateApprove.do")
-	@ResponseBody
-	public String updateApprove(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno){
-		//System.out.println(orddtles);
-		ordService.updateApprove_org(qyno, channo, ordorg, ormtno, bradno, spclno);
-		return "{success:true}";
-	}
+//	/**
+//	 * 提交审批,某个订货单位下的指定品牌，大类的订单都提交
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @return
+//	 */
+//	@RequestMapping("/ord/qyVO/updateApprove.do")
+//	@ResponseBody
+//	public String updateApprove(String qyno,String channo,String ordorg,String ormtno,String bradno,String spclno){
+//		//System.out.println(orddtles);
+//		ordService.updateApprove_org(qyno, channo, ordorg, ormtno, bradno, spclno);
+//		return "{success:true}";
+//	}
 	@RequestMapping("/ord/qyVO/reloadTotal.do")
 	@ResponseBody
 	public ReloadTotal reloadTotal(MapParams params){

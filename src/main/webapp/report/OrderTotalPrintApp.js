@@ -66,6 +66,14 @@ Ext.onReady(function(){
 				value:'QY',
 				listeners:{
 					select:function( combo, record, eOpts ) {
+						var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+						var shenp_btn=toolbars[2].down("#shenp_btn");
+						if(record.get("channo")=='QY'){
+							shenp_btn.enable();
+						} else {
+							shenp_btn.disable();
+						}
+						
 //		        		
 //						var ordorg=combo.nextSibling("#ordorg");
 //		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
@@ -141,19 +149,41 @@ Ext.onReady(function(){
 		  	items:[{
 		  		text: '打印1',
 				handler: function(btn){
-					me.createNew();
+			    	var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/report/orderTotalPrint/export1.do?"+Ext.urlEncode(params);
+			    	window.open(url);
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
 		  		text: '打印2',
 				handler: function(btn){
-					me.createNew();
+					var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/report/orderTotalPrint/export2.do?"+Ext.urlEncode(params);
+			    	window.open(url);
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
 		  		text: '审批通过',
+		  		itemId:'shenp_btn',
+		  		//disabled:true,
 				handler: function(btn){
-					me.createNew();
+					Ext.Msg.confirm("消息","确定要提交<span style='color:red;'>品牌+大类</span>下所有区域的订单状态吗?",function(btn){
+						if(btn=='yes'){
+							Ext.Ajax.request({
+								url:Ext.ContextPath+'/ord/process1.do',
+								method:'POST',
+								params:grid.getStore().getProxy().extraParams,
+								success:function(response){
+									var obj=Ext.decode(response.responseText);
+									if(!obj.success){
+										Ext.Msg.alert("消息",obj.msg);
+										return;
+									}
+									Ext.Msg.alert("消息","成功");
+								}
+							});
+						}
+					})
 				},
 				iconCls: 'icon-edit'
 		  	}]
@@ -189,11 +219,11 @@ Ext.onReady(function(){
 			pageSize:50,
 			autoLoad:false,
 			fields:['SPCLNM','SPTYNM','SPSENM','SPRSENM','SPSEANM','SPBANM','SAMPNM',
-			'PRODNM','GUSTNO','COLRNM','MTTYPE','MTCOMP','YARMCT','GRAMWT',
-			'DESP','SPCTPR','aaaa','SPFTPR','SPRTPR','PLDTCT','PLDATE','IDSUNM','SPMTNM','ORMTQT'],
+			
+			'SPCTPR','ORMTQT'],
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/report/queryClothPurePlan.do',
+			    url : Ext.ContextPath+'/report/orderTotalPrint/query.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
@@ -219,30 +249,16 @@ Ext.onReady(function(){
 		//plugins : [cellEditing],
 		columns:[
 			{xtype: 'rownumberer'},
+			{dataIndex:'SAMPNM',header:'设计样衣编号'},
+			{dataIndex:'BRADNM',header:'品牌'},
 			{dataIndex:'SPCLNM',header:'大类'},
 			{dataIndex:'SPTYNM',header:'小类'},
 			{dataIndex:'SPSENM',header:'系列'},
-			{dataIndex:'SPRSENM',header:'风格'},
-			{dataIndex:'SPSEANM',header:'季节'},
 			{dataIndex:'SPBANM',header:'上市批次'},
-			{dataIndex:'SAMPNM',header:'设计样衣编号'},
-			{dataIndex:'PRODNM',header:'成品货号'},
-			{dataIndex:'GUSTNO',header:'客供编号'},
-			{dataIndex:'COLRNM',header:'颜色'},
-			{dataIndex:'MTTYPE',header:'进口/国产'},
-			{dataIndex:'MTCOMP',header:'面料成分'},
-			{dataIndex:'YARMCT',header:'纱支'},
-			{dataIndex:'GRAMWT',header:'克重'},
-			{dataIndex:'DESP',header:'规格版型特殊说明'},
-			{dataIndex:'SPCTPR',header:'成衣原价'},
-			{dataIndex:'aaaa',header:'新成本价'},
-			{dataIndex:'SPFTPR',header:'出厂价'},
 			{dataIndex:'SPRTPR',header:'零售价'},
-			{dataIndex:'PLDTCT',header:'交货批次'},
-			{dataIndex:'PLDATE',header:'成衣交期'},
-			{dataIndex:'IDSUNM',header:'生产单位'},
-			{dataIndex:'SPMTNM',header:'生产类型'},
-			{dataIndex:'ORMTQT',header:'订货总量'}
+			{dataIndex:'YXGSNM',header:'营销公司'},
+			{dataIndex:'ORMTQT',header:'订货总量'},
+			{dataIndex:'CHANNM',header:'渠道类型'}
 		]
 		
 	});

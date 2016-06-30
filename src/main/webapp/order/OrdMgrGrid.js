@@ -5,7 +5,10 @@ Ext.define('y.order.OrdMgrGrid',{
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	selModel: {
+          selType: 'checkboxmodel'
+          //,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -65,36 +68,32 @@ Ext.define('y.order.OrdMgrGrid',{
         },
         {dataIndex:'ORSTAT',header:'总量状态'
         	,renderer:function(value){
-      			if(value=='0'){
-      				return "编辑中";
-      			} else if(value=='1'){
-      				return "审批中";
-      			}  else if(value=='2'){
-      				return "大区审批通过";
-      			}  else if(value=='3'){
-      				return "总部审批通过";
-      			}  else if(value=='4'){
-      				return "退回";
-      			}  else {
-      				return "";
-      			}
+      			if(value==0){
+        			return "编辑中";
+        		} else if(value==1){
+        			return "大区审批中";
+        		} else if(value==2){
+        			return "总部审批中";
+        		} else if(value==3){
+        			return "审批通过";
+        		} else if(value==4){
+        			return "退回";
+        		}
       		}
         },
         {dataIndex:'SZSTAT',header:'规格状态'
         	,renderer:function(value){
-      			if(value=='0'){
-      				return "编辑中";
-      			} else if(value=='1'){
-      				return "审批中";
-      			}  else if(value=='2'){
-      				return "大区审批通过";
-      			}  else if(value=='3'){
-      				return "总部审批通过";
-      			}  else if(value=='4'){
-      				return "退回";
-      			}  else {
-      				return "";
-      			}
+      			if(value==0){
+        			return "编辑中";
+        		} else if(value==1){
+        			return "大区审批中";
+        		} else if(value==2){
+        			return "总部审批中";
+        		} else if(value==3){
+        			return "审批通过";
+        		} else if(value==4){
+        			return "退回";
+        		}
       		}
         },
         {dataIndex:'ORAPDT',header:'处理日期'
@@ -331,7 +330,7 @@ Ext.define('y.order.OrdMgrGrid',{
 			    valueField: 'id',
 			    store: {
 				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -347,7 +346,7 @@ Ext.define('y.order.OrdMgrGrid',{
 			    valueField: 'id',
 			    store: {
 				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -383,32 +382,106 @@ Ext.define('y.order.OrdMgrGrid',{
 	  		dock:'top',
 		  	items:[{
 			    text: '审批',
+			    hidden:!Permision.canShow('ord_mgr_process2'),
 			    handler: function(btn){
-			    	
+			    	Ext.Msg.confirm("消息","确定要'审批'?",function(btn1){
+						if(btn1=='yes'){
+					    	var grid=btn.up("grid");
+					    	var records=grid.getSelectionModel().getSelection();
+					    	if(records==null || records.length==0){
+					    		Ext.Msg.alert("消息","请先选择行!");
+					    		return;
+					    	}
+					    	var mlornoes=[];
+					    	for(var i=0;i<records.length;i++){
+					    		mlornoes.push(records[i].get("MLORNO"));
+					    	}
+					    	Ext.Ajax.request({
+					    		url:Ext.ContextPath+'/ord/process2.do',
+					    		params:{mlornoes:mlornoes},
+					    		method:'POST',
+					    		success:function(response){
+					    			var obj=Ext.decode(response.responseText);
+					    			grid.getStore().reload();
+					    		}
+					    	});
+				    	}
+					});
 			    },
 			    iconCls: 'icon-edit'
 			},{
 				text: '退回',
+				hidden:!Permision.canShow('ord_mgr_back'),
 				handler: function(btn){
-					
+					Ext.Msg.confirm("消息","确定要'退回'?",function(btn1){
+						if(btn1=='yes'){	
+						
+							var grid=btn.up("grid");
+					    	var records=grid.getSelectionModel().getSelection();
+					    	if(records==null || records.length==0){
+					    		Ext.Msg.alert("消息","请先选择行!");
+					    		return;
+					    	}
+					    	var mlornoes=[];
+					    	for(var i=0;i<records.length;i++){
+					    		mlornoes.push(records[i].get("MLORNO"));
+					    	}
+					    	Ext.Ajax.request({
+					    		url:Ext.ContextPath+'/ord/back.do',
+					    		params:{mlornoes:mlornoes},
+					    		method:'POST',
+					    		success:function(response){
+					    			var obj=Ext.decode(response.responseText);
+					    			grid.getStore().reload();
+					    		}
+					    	});
+				    	}
+					});
 				},
 				iconCls: 'icon-reply'
 			},{
 				text: '作废',
+				hidden:!Permision.canShow('ord_mgr_isfect_no'),
 				handler: function(btn){
-					
+					Ext.Msg.confirm("消息","确定要'作废'?",function(btn1){
+						if(btn1=='yes'){
+						
+						
+							var grid=btn.up("grid");
+					    	var records=grid.getSelectionModel().getSelection();
+					    	if(records==null || records.length==0){
+					    		Ext.Msg.alert("消息","请先选择行!");
+					    		return;
+					    	}
+					    	var mlornoes=[];
+					    	for(var i=0;i<records.length;i++){
+					    		mlornoes.push(records[i].get("MLORNO"));
+					    	}
+					    	Ext.Ajax.request({
+					    		url:Ext.ContextPath+'/ord/isfect_no.do',
+					    		params:{mlornoes:mlornoes},
+					    		method:'POST',
+					    		success:function(response){
+					    			var obj=Ext.decode(response.responseText);
+					    			grid.getStore().reload();
+					    		}
+					    	});
+					    }
+					});
 				},
 				iconCls: 'icon-trash'
 			},{
 				text: '新建',
+				hidden:true,
 				handler: function(btn){
 					
 				},
 				iconCls: 'icon-plus'
 			},{
 				text: '订单流转',
+				hidden:!Permision.canShow('ord_mgr_ordercircle'),
 				handler: function(btn){
-					
+					alert("还没有做!");
 				},
 				iconCls: 'icon-exchange'
 			}]

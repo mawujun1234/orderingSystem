@@ -19507,3 +19507,417 @@ public com.youngor.pubsize.OrdSzrt com.youngor.pubsize.OrdSzrtController.update(
 12:33:23.643 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@763bae32
 12:33:35.106 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@e5224bee
 12:33:36.699 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:07:04.773 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:07:19.700 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:11:11.341 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+14:11:11.341 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+15:34:59.587 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:28:26.127 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:28:30.853 [http-bio-8086-exec-14] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:28:30.853 [http-bio-8086-exec-14] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:29:06.925 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@6f71c889
+16:29:06.970 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@9863312
+16:29:06.984 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@17b5fe28
+16:29:07.131 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@16ddfd19
+16:29:07.315 [http-bio-8086-exec-14] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@8a7b551
+16:29:33.636 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@4efd805c
+16:29:46.921 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3cc762c4
+16:29:46.970 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@79d8bf4d
+16:29:46.994 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@a669bf1
+16:29:47.006 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@29b71973
+16:29:47.016 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@234ba177
+16:29:47.028 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3b8abfad
+16:29:47.035 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@7891ae7f
+16:29:47.046 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@2bda7326
+16:29:47.053 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@b580ccc
+16:29:47.063 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3f015740
+16:29:47.070 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@71f58092
+16:29:47.077 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@776f9d5
+16:29:47.085 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@433cf107
+16:29:56.909 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣不可订!
+16:29:56.910 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣不可订!
+16:30:02.169 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣不可订!
+16:30:02.169 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣不可订!
+16:50:29.498 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:51:02.397 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:52:11.559 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:52:11.559 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:52:27.164 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+16:52:27.164 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+16:52:54.426 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.order.OrdRepository.createOrd_ordhd_hiss_by_yxgsno
+16:52:54.426 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.youngor.order.OrdRepository.createOrd_ordhd_hiss_by_yxgsno
+16:54:41.740 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:55:16.535 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:55:58.026 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+16:55:58.027 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+16:58:07.926 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+16:58:07.926 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+16:58:15.767 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+16:58:15.767 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+17:00:35.199 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:00:47.983 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:06:48.110 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.SpringContextHolder - 清除SpringContextHolder中的ApplicationContext:WebApplicationContext for namespace 'dispatcher-servlet': startup date [Tue Jun 28 17:00:07 CST 2016]; root of context hierarchy
+17:06:48.634 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:08:09.087 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:08:24.805 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:20:50.247 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:22:30.534 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:25:34.369 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:28:40.481 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+09:28:40.481 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+09:28:52.313 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+09:28:52.313 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域
+09:29:15.619 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:29:15.619 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:43:22.925 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:43:22.925 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:44:47.237 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.createOrddtl(com.youngor.order.SuitVO[])]: com.mawujun.exception.BusinessException: 不拆套 男套西 的裤子数量必须小于标准套的15%
+09:44:47.237 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 不拆套 男套西 的裤子数量必须小于标准套的15%
+09:44:55.468 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.createOrddtl(com.youngor.order.SuitVO[])]: com.mawujun.exception.BusinessException: 不拆套 男套西 的裤子数量必须小于标准套的15%
+09:44:55.468 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 不拆套 男套西 的裤子数量必须小于标准套的15%
+09:45:05.419 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@4d090913
+09:45:05.545 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@393dc8c
+09:45:05.555 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@185cbd4a
+09:45:05.562 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@6ebbbc95
+09:45:05.571 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@69bf1910
+09:45:05.584 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@557c3bf
+09:45:05.592 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@a4b367a
+09:45:05.597 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1e2b56df
+09:45:05.604 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@416849e9
+09:45:05.611 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3066353a
+09:45:05.616 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@10f15467
+09:45:05.622 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@207f5a7f
+09:45:05.628 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5ce6d55
+09:45:05.633 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@180fd7b5
+09:45:05.640 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@7e79f65
+09:45:05.646 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@26a27566
+09:45:05.652 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@ff1294e
+09:45:05.658 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@5cae1933
+09:45:05.664 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@53eea825
+09:45:05.672 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@30c7665a
+09:45:05.678 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@15f54560
+09:45:05.685 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@41226433
+09:45:05.692 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@518039a3
+09:45:05.700 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@25c5d576
+09:45:05.709 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@4961b8d0
+09:45:05.722 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@1688958e
+09:45:05.729 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3e6b7cfa
+09:45:22.940 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:45:22.940 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:46:14.086 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePlan@7dd806f0
+09:47:11.841 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@7f4c8893
+09:47:11.856 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@7f4c8893
+09:47:11.866 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@49700aae
+09:47:22.966 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:47:22.966 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:48:35.321 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleColth@6dc78710
+09:48:35.326 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleColth@6dc78710
+09:48:35.433 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignStpr@365efa9d
+09:48:50.887 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@76045c2d
+09:49:22.992 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:49:22.992 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:50:22.561 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@29d231
+09:50:23.536 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@42e90669
+09:50:34.927 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@26140a09
+09:50:34.935 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@3942f6b3
+09:50:34.941 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordszdtl@11385841
+09:51:23.014 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:51:23.014 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:53:24.208 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:53:24.208 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:55:23.068 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:55:23.068 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:57:23.095 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:57:23.096 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:59:23.106 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+09:59:23.106 [http-bio-8086-exec-11] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:01:23.554 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:01:23.554 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:03:23.589 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:03:23.590 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:05:23.592 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:05:23.592 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:07:03.348 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:07:03.349 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:09:03.391 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:09:03.391 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:09:20.617 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:09:20.617 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:11:12.322 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:11:12.322 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，请联系管理员赶紧处理!
+10:12:01.179 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+10:12:01.179 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:07:32.976 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:20:12.981 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:20:26.325 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.zgs_tongguo(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:20:26.325 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:29:28.477 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.over()]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'mtorno' not found. Available parameters are [mlorvn, param1]
+11:29:28.483 [http-bio-8086-exec-11] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'mtorno' not found. Available parameters are [mlorvn, param1]
+11:31:38.013 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:38:00.004 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:38:26.572 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.RoleMenu@f381ba1
+11:39:15.149 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@afe43417
+11:41:25.305 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:36:00.766 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:19:17.655 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:01:28.328 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@28de0a37
+14:01:29.975 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:01:35.704 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/unauthorized.jsp匹配 '/main/**'. 所以不进行权限验证
+15:05:37.876 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:06:00.445 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:08:49.015 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@184af943
+15:09:21.645 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@3d3db4c0
+15:09:50.180 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@dab0e3a
+15:12:06.857 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@5d15744f
+15:20:35.770 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@3dea22fb
+15:20:36.557 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@116e95f4
+15:20:37.118 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@efcb5db2
+15:20:37.995 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@1739e15f
+15:20:39.934 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:33:57.057 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:38:51.586 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:40:02.498 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:41:54.420 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process2(java.lang.String[])]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+15:41:54.420 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+16:04:20.043 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:04:29.761 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:04:29.762 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:05:00.097 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@47663cb9
+16:05:00.187 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@bdb1ea8
+16:05:00.232 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@236984e8
+16:05:02.993 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@52c3d7af
+16:05:03.085 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@f5f678f9
+16:05:16.222 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:05:16.222 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+16:05:47.552 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@2d2cd390
+16:06:09.379 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+16:06:09.379 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+16:07:59.391 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+16:07:59.391 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+16:08:09.477 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+16:08:09.477 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+16:19:17.367 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+16:19:17.367 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+16:19:26.396 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+16:19:26.396 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:02:01.010 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:05:14.294 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.yxgs_getOrstat()]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.yxgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select distinct orstat from ORD_ORDHD                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and  SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+17:05:14.299 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.yxgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select distinct orstat from ORD_ORDHD                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and  SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+17:05:46.624 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.yxgs_getOrstat()]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.yxgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select distinct orstat from ORD_ORDHD                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and  SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+17:05:46.624 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.yxgs_getOrstat-Inline
+### The error occurred while setting parameters
+### SQL: select distinct orstat from ORD_ORDHD                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and  SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+17:46:48.752 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:47:15.564 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:47:15.564 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:47:35.264 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@4a8be828
+17:47:35.340 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@4ebcbf48
+17:47:35.358 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@a030826
+17:47:36.388 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@3fb5888b
+17:47:36.480 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@f7c254f9
+17:48:04.442 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:48:04.442 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:48:37.922 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@712acaf0
+17:49:04.063 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@262877d0
+17:49:04.072 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@78f7337d
+17:49:04.079 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@a247c03
+17:49:06.590 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@182232cc
+17:49:06.595 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@a08d0cf0
+17:51:31.873 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@5383920
+17:51:31.929 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.ordmt.OrdOrgController.create(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:51:31.929 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+17:51:38.465 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.ordmt.OrdOrg@5ce69d12
+17:51:38.473 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.User@64ac50dc
+17:51:38.481 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.Position@7a89a195
+17:51:39.978 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.org.PositionOrgUser@269b1d65
+17:51:39.983 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleUser@4096442b
+17:52:30.130 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:52:30.130 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:52:50.759 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@4003f824
+17:57:40.875 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may involve com.youngor.order.OrdRepository.yxgs_confirm_update_orstat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_ORDHD set orstat=2                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and orstat='1' and SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+17:57:40.875 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+### The error may involve com.youngor.order.OrdRepository.yxgs_confirm_update_orstat-Inline
+### The error occurred while setting parameters
+### SQL: update ORD_ORDHD set orstat=2                     where mtorno in (                            select a.mtorno from ORD_ORD a,v_ord_org b                                    where a.ordorg=b.orgno                                          and a.ormtno=? and c.yxgsno=? and a.channo='QY'                     ) and orstat='1' and SDTYNO='20'
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."YXGSNO": invalid identifier
+
+18:04:13.394 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process2(java.lang.String[])]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+18:04:13.395 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+18:12:28.593 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:14:21.780 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:16:31.156 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:16:58.498 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:23:07.010 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:23:41.789 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:24:27.761 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:32:41.429 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:32:59.734 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:33:26.322 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.JRRuntimeException: Unknown hyperlink target 0
+19:33:26.323 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.JRRuntimeException: Unknown hyperlink target 0
+19:39:47.686 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:40:06.366 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:45:34.661 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:45:47.626 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:46:11.298 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.JRException: Error retrieving field value from bean : beiz
+19:46:11.299 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.JRException: Error retrieving field value from bean : beiz
+19:47:34.073 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:48:13.344 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:03:44.092 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:05:27.304 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:12:58.969 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SamplePlanController.export(com.youngor.utils.MapParams,javax.servlet.http.HttpServletResponse) throws java.lang.Exception]: org.apache.poi.openxml4j.exceptions.OpenXML4JRuntimeException: Fail to save: an error occurs while saving the package : The part /docProps/core.xml fail to be saved in the stream with marshaller org.apache.poi.openxml4j.opc.internal.marshallers.ZipPackagePropertiesMarshaller@4f0c014c
+08:12:58.970 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.apache.poi.openxml4j.exceptions.OpenXML4JRuntimeException: Fail to save: an error occurs while saving the package : The part /docProps/core.xml fail to be saved in the stream with marshaller org.apache.poi.openxml4j.opc.internal.marshallers.ZipPackagePropertiesMarshaller@4f0c014c
+09:00:03.601 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:08:58.280 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:10:59.655 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export2(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/report/ReportRepository.xml
+### The error may involve com.youngor.report.ReportRepository.orderTotalPrint_export2-Inline
+### The error occurred while setting parameters
+### SQL: select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul,c.spsuno               from ORD_SAMPLE_PLAN a           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO            inner join ord_sample_colth c on b.sampno=c.sampno            inner join (             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT             from ORD_ORD a,ORD_ORDDTL c, v_ord_org org             where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno              and a.ORTYNO='DZ' and a.ORMTNO=? and org.yxgsno=?                               and a.channo=?                             group by org.yxgsno ,org.yxgsnm,c.SAMPNO           ) c on b.sampno=c.sampno           where 1=1                                  and a.bradno=? and a.spclno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+09:10:59.656 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+### The error may exist in com/youngor/report/ReportRepository.xml
+### The error may involve com.youngor.report.ReportRepository.orderTotalPrint_export2-Inline
+### The error occurred while setting parameters
+### SQL: select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul,c.spsuno               from ORD_SAMPLE_PLAN a           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO            inner join ord_sample_colth c on b.sampno=c.sampno            inner join (             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT             from ORD_ORD a,ORD_ORDDTL c, v_ord_org org             where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno              and a.ORTYNO='DZ' and a.ORMTNO=? and org.yxgsno=?                               and a.channo=?                             group by org.yxgsno ,org.yxgsnm,c.SAMPNO           ) c on b.sampno=c.sampno           where 1=1                                  and a.bradno=? and a.spclno=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: column ambiguously defined
+
+09:11:50.301 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export2(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'spsuno' of 'class com.youngor.report.OrderPrint1' with value 'SZJ00658' Cause: java.lang.NullPointerException
+09:11:50.301 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'spsuno' of 'class com.youngor.report.OrderPrint1' with value 'SZJ00658' Cause: java.lang.NullPointerException
+09:13:12.857 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:47:23.047 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:48:05.863 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export2(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'spsuno' of 'class com.youngor.report.OrderPrint1' with value 'SZJ00658' Cause: java.lang.NullPointerException
+09:48:05.864 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'spsuno' of 'class com.youngor.report.OrderPrint1' with value 'SZJ00658' Cause: java.lang.NullPointerException
+09:50:43.825 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.ReportController.orderTotalPrint_export2(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: E:\eclipse\aaa\orderingSystem\src\main\webapp\report\ireport\Dinghhz_YXGS_Daxl_gongys.jasper
+09:50:43.826 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: E:\eclipse\aaa\orderingSystem\src\main\webapp\report\ireport\Dinghhz_YXGS_Daxl_gongys.jasper

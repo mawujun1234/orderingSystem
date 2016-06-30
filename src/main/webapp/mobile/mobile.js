@@ -3,12 +3,24 @@ Ext.ContextPath="";
 //显示和隐藏今日订货会快结束的信息
 window.od_closeing_info=null;//提高性能
 window.canOrd=null;//判断是否可以订货
+window.setTimeout_id=null;
 function show_od_closeing_info(){
 	//刷新的时候调用
 	if(!sessionStorage["user"]){
 		return;
 	}
+	if(window.setTimeout_id){
+		clearTimeout(window.setTimeout_id) ;
+	}
+	//
 	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', {  }, function(response){
+		if(response.success==false){
+			if(response.msg){
+				alert(response.msg);return;
+			} else {
+				return;
+			}
+		}
 		window.canOrd=response.canOrd;
 		if(!window.od_closeing_info){
 				window.od_closeing_info=$("#od_closeing_info");
@@ -28,6 +40,9 @@ function show_od_closeing_info(){
 			$("#od_info_cannot_order").show();
 			$("#od_info_cannot_order").html("订货已结束，不能扫描!");
 			$("#qrcode_button").hide();
+			
+			//大区领导进来的界面，要显示现场订货完成
+			$("#od_yxgs_ordering_over").show();
 		} else if(response.canConfirm==3){
 			$("#od_mypage_confirm_button").hide();
 			$("#od_mypage_over_button").show().css("display","block");
@@ -45,7 +60,7 @@ function show_od_closeing_info(){
 			//$("#qrcode_button").show();
 		}
 	});
-	setTimeout("show_od_closeing_info()",120*1000);
+	window.setTimeout_id=setTimeout("show_od_closeing_info()",120*1000);
 }
 show_od_closeing_info();
 
@@ -179,6 +194,7 @@ $(function(){
 		 $.router.load("#od_loginpage"); 
 		 return;
 	  }
+
 	  if(pageId == "od_loginpage") {
 		  $("#bottom_bar").hide();
 	  } else {
@@ -214,7 +230,14 @@ $(function(){
 				} else {
 					window.user=response;
 					storeuser(window.user);
-					$.router.load("#od_info"); 
+					//如果是营销公司，就进入到营销公司的界面
+					if(window.user.channo=='YXGS'){
+						//$.router.load("#od_yxgs"); 
+						window.location.href="./yxgs.html";
+					} else {
+						$.router.load("#od_info"); 
+					}
+					
 					document.title = response.orgnm;
 					
 					show_od_closeing_info();
@@ -629,6 +652,16 @@ $(function(){
 			$("#od_info_cannot_order").html("订单未审批，不能平衡!");
 			$("#qrcode_button").hide();
 		},"json");
+	});
+	$("#od_mypage_over_button").click(function(){
+		 $.showPreloader('正在处理...');
+		$.post(Ext.ContextPath+"/ord/mobile/confirm2.do",{},function(response){
+			$.hidePreloader();
+			if(response.success==false){
+				return;
+			}
+			show_od_closeing_info();
+		});
 	});
 	
 });

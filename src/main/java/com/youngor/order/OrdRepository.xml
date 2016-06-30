@@ -216,16 +216,34 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
            where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
            and not exists (select 1 from ORD_ORDHD x where a.mtorno=x.mtorno and c.bradno=x.bradno and c.SPCLNO=x.SPCLNO)
      </insert>
-     <!-- 创建订单副表的历史表 -->
+     <!-- 创建订单副表的历史表 
      <insert id="createOrd_ordhd_his" parameterType="map">
      	 insert into Ord_ordhd_his
  		 select * from Ord_ordhd where mtorno=#{mtorno}
-     </insert>
-      <!-- 创建订单明细表的历史表 -->
+     </insert> -->
+      <!-- 创建订单明细表的历史表 
      <insert id="createOrd_orddtl_his" parameterType="map">
      	 insert into Ord_orddtl_his
  		select * from Ord_orddtl where mtorno=#{mtorno}
-     </insert>
+     </insert>-->
+      <!-- 创建订单副表的历史表 
+     <insert id="createOrd_ordhd_hiss_by_yxgsno" parameterType="map">
+     	 insert into Ord_ordhd_his
+ 		 select * from ORD_ORDHD x where exists (
+              select * from ORD_ORD a,v_ord_org b 
+              where a.ordorg=b.orgno and x.mtorno=a.mtorno 
+                    and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
+       )
+     </insert>-->
+      <!-- 创建订单明细表的历史表
+     <insert id="createOrd_orddtl_hiss_by_yxgsno" parameterType="map">
+     	 insert into Ord_orddtl_his
+ 		select * from Ord_orddtl x where exists (
+              select * from ORD_ORD a,v_ord_org b 
+              where a.ordorg=b.orgno and x.mtorno=a.mtorno 
+                    and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
+       )
+     </insert> -->
      <!-- 更新订单的节点类型未“区域平衡”-->
      <update id="update_ordhd_SDTYNO" parameterType="map">
      	update ORD_ORDHD set SDTYNO=#{sdtyno},ORSTAT=#{orstat} where mtorno=#{mtorno} and SDTYNO=10
@@ -240,6 +258,114 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="check_is_confirm" resultType="map" parameterType="map">
      	select distinct sdtyno,ORSTAT  from ORD_ORDHD where mtorno=#{mtorno}
      </select>
+     
+    <!-- 在按审批通过按钮的时候，检查该营销公司下的所有区域是否已经都提交确认了-->
+    <select id="process1_check_stats" resultType="map" parameterType="map">
+    	 select distinct c.qyno,c.qynm
+       from ORD_ORD a,ORD_ORDHD b,v_ord_org c
+       where a.MTORNO=b.MTORNO and a.ordorg=c.qyno
+       and a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
+       and (b.SDTYNO!='10' or b.ORSTAT!=2)
+       and b.bradno=#{bradno} and b.spclno=#{spclno}
+    </select>
+    <!-- 订货审批的时候 -->
+    <parameterMap type="map" id="order_dl__print_ps_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>   
+	 </parameterMap>  
+	 <update id="order_dl__print_ps" parameterMap="order_dl__print_ps_params" statementType="CALLABLE">  
+       {call ORDER_DL.PRINT_PS(?,?,?,?)}  
+    </update>
+    <!-- 获取最新的版本号 -->
+    <select id="confirm2_get_mlorvn" parameterType="map" resultType="string" >
+    	select distinct mlorvn from ORD_ORDHD where mtorno=#{mtorno}
+    </select>
+    <!-- 点击订单完成的时候，生成版本订单号和版本号 -->
+    <update id="confirm2_updateMtornoMlorvn" parameterType="map">
+     	  update ord_orddtl a set ORMTQS=ORMTQT,mlorvn=#{mlorvn},mlorno=(select mlorno from (
+           select a.mtorno,a.sampno,a.suitno,a.mtorno||c.bradno||spclno as mlorno 
+           from ord_orddtl a,ord_sample_design b,ord_sample_plan c
+           where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+           and a.mlorno is null
+           ) b where a.mtorno=b.mtorno and a.sampno=b.sampno and a.suitno=b.suitno
+          ) 
+          where a.mtorno=#{mtorno}  and a.mlorno is null
+    </update>
+    <!-- 二次订货的时候，为还没有生成订单副表的数据生成订单副表-->
+    <insert id="confirm2_createOrd_ordhd" parameterType="map">
+     	   insert into ORD_ORDHD(mtorno,mlorno,MLORVN,BRADNO,SPCLNO,SDTYNO,ORSTAT,SZSTAT,ISFECT) 
+       select distinct a.mtorno,a.mlorno ,'${mlorvn}',c.BRADNO,c.SPCLNO,'${sdtyno}','${orstat}',0,1
+           from ord_orddtl a,ord_sample_design b,ord_sample_plan c
+           where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
+           and not exists (select 1 from ORD_ORDHD x where a.mtorno=x.mtorno and c.bradno=x.bradno and c.SPCLNO=x.SPCLNO)
+     </insert>
+     <!-- 更新订单状态-->
+     <update id="confirm2_update_orstat" parameterType="map">
+     	update ORD_ORDHD set orstat=#{orstat} where mtorno=#{mtorno} and orstat=0 and SDTYNO='20'
+     </update>
+     
+     <!-- 营销公司再移动端登录，判断是否要显示 确认按钮 -->
+     <select id="yxgs_getOrstat" parameterType="map" resultType="int">
+     	                   select distinct orstat from ORD_ORDHD
+                    where mtorno in (
+                           select a.mtorno from ORD_ORD a,v_ord_org b 
+                                  where a.ordorg=b.orgno 
+                                        and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno} and a.channo='QY'
+                    ) and  SDTYNO='20'
+     </select>
+     <!-- 在在大区审批的时候，判断所有的区域是否都已经 平衡完成了-->
+    <select id="yxgs_confirm_check_stats" resultType="map" parameterType="map">
+    	      select distinct c.qyno,c.qynm from ORD_ORD a,ORD_ORDHD b,v_ord_org c 
+              where a.mtorno=b.mtorno and a.ordorg=c.orgno 
+                    and a.ormtno=#{ormtno} and c.yxgsno=#{yxgsno} and a.channo='QY'and b.orstat!='1' and SDTYNO='20'
+    </select>
+    <!-- 在大区审批的时候，订单状态改成“总部审批中” -->
+    <update id="yxgs_confirm_update_orstat" parameterType="map">
+     	             update ORD_ORDHD set orstat=2
+                    where mtorno in (
+                           select a.mtorno from ORD_ORD a,v_ord_org b 
+                                  where a.ordorg=b.orgno 
+                                        and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno} and a.channo='QY'
+                    ) and orstat='1' and SDTYNO='20'
+    </update>
+    <!-- 总部对现场订货进行审批的时候 -->
+    <parameterMap type="map" id="order_dl__process_params">  
+	   <parameter property="P_MLORNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_TYPE" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>   
+	 </parameterMap>  
+	 <update id="order_dl__process" parameterMap="order_dl__process_params" statementType="CALLABLE">  
+       {call order_dl__process_params(?,?,?)}  
+    </update>
+    <!-- 把该营销公司下面的所有区域的状态变成编辑中
+    <update id="process1_update_ordhd_stats_0" parameterType="map">
+     	update ORD_ORDHD x set ORSTAT='0'
+       where exists (
+              select * from ORD_ORD a,v_ord_org b 
+              where a.ordorg=b.orgno and x.mtorno=a.mtorno 
+                    and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno} and a.channo='QY'
+       )
+       and x.SDTYNO='20' and x.ORSTAT=2
+     </update>
+     <update id="process1_update_ordhd_mlorvn" parameterType="map">
+     	 update ORD_ORDHD x set mlorvn=mlorvn+1
+       where exists (
+              select * from ORD_ORD a,v_ord_org b 
+              where a.ordorg=b.orgno and x.mtorno=a.mtorno 
+                   and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
+       )
+     </update>
+     <update id="process1_update_orddtl_mlorvn" parameterType="map">
+     	 update ORD_ORDDTL x set mlorvn=mlorvn+1
+       where exists (
+              select * from ORD_ORD a,v_ord_org b 
+              where a.ordorg=b.orgno and x.mtorno=a.mtorno 
+                    and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
+       )
+     </update>
+     -->
      <!-- 
      <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
      	select b.* from ORD_ORD a,t_org b
@@ -526,7 +652,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        	 </if>
      </select>
      
-     <!--  不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准) -->
+     <!--  不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准) 
      <select id="check_S10_Z0_0" resultType="map" parameterType="map">
      	select b.sampnm
 		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
@@ -535,8 +661,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
 		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=0
 		group by b.sampnm
-     </select>
-     <!--   拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣) -->
+     </select>-->
+     <!--   拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣) 
      <select id="check_S10_Z0_1" resultType="map" parameterType="map">
      	select b.sampno,b.sampnm
 		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
@@ -546,8 +672,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
 		and c.sptyno='S10' and b.sexno='Z0' and b.spltmk=1
 		group by  b.sampno,b.sampnm
-     </select>
-     <!-- 女 套西：上衣，裤子，裙子      (上衣=裤子=裙子) -->
+     </select>-->
+     <!-- 女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
      <select id="check_S10_Z1" resultType="map" parameterType="map">
      	select b.sampno,b.sampnm
 		,sum(decode(a.suitno,'T00',ormtqt,0)) T00_ormtqt
@@ -558,6 +684,6 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		where a.sampno=b.sampno and b.plspno=c.plspno and a.mtorno=#{mtorno}
 		and c.sptyno='S10' and b.sexno='Z1' 
 		group by  b.sampno,b.sampnm
-     </select>
+     </select> -->
 </mapper>
 

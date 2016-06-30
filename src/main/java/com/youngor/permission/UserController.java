@@ -146,6 +146,7 @@ public class UserController {
              
              
              model.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
+             model.put("channo",ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getChanno().toString());
              
         }  
 		return model;

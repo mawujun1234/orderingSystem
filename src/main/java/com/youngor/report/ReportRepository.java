@@ -18,6 +18,12 @@ public interface ReportRepository {
 	
 	public  Pager<Map<String,Object>> queryMatePurePlan( Pager<Map<String,Object>> pager);
 	public  List<Map<String,Object>> query_mate_podtl(@Param("ormtno")String ormtno,@Param("htitno")String htitno);
+	
+	public  Pager<Map<String,Object>> queryOrderTotalPrint( Pager<Map<String,Object>> pager);
+	public  List<OrderPrint1> orderTotalPrint_export1( Map<String,Object> params);
+	public  List<OrderPrint1> orderTotalPrint_export2( Map<String,Object> params);
+	
+	
 
 	
 }

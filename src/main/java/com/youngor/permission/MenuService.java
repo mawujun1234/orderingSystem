@@ -1,6 +1,7 @@
 package com.youngor.permission;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -8,10 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.permission.Menu;
-import com.youngor.permission.MenuRepository;
 import com.youngor.utils.M;
 
 
@@ -54,6 +51,7 @@ public class MenuService extends AbstractService<Menu, String>{
 	 * @return
 	 */
 	public List<MenuVO> queryByUser(String parent_id,String user_id) {
+		
 		List<MenuVO> parent_list= menuRepository.queryByUser(parent_id,user_id);
 		for(MenuVO parent:parent_list){
 			//parent.setChecked(null);
@@ -65,6 +63,9 @@ public class MenuService extends AbstractService<Menu, String>{
 	}
 	
 	public List<Menu> queryElement(String jsp_url) {
+		if(!ShiroUtils.isLogon()){
+			return new ArrayList<Menu>();
+		}
 		return  menuRepository.queryElement(jsp_url, ShiroUtils.getUserId());
 	}
 	@Override
