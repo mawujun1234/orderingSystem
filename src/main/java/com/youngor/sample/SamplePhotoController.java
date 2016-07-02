@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -72,24 +73,25 @@ public class SamplePhotoController {
 		return map;
 	}
 	
-	@RequestMapping("/samplePhoto/update.do")
-	//@ResponseBody
-	public  SamplePhoto update(@RequestBody SamplePhoto samplePhoto) {
-		samplePhotoService.update(samplePhoto);
-		return samplePhoto;
-	}
-	
-	@RequestMapping("/samplePhoto/deleteById.do")
-	//@ResponseBody
-	public String deleteById(String id) {
-		samplePhotoService.deleteById(id);
-		return id;
-	}
+//	@RequestMapping("/samplePhoto/update.do")
+//	//@ResponseBody
+//	public  SamplePhoto update(@RequestBody SamplePhoto samplePhoto) {
+//		samplePhotoService.update(samplePhoto);
+//		return samplePhoto;
+//	}
+//	
+//	@RequestMapping("/samplePhoto/deleteById.do")
+//	//@ResponseBody
+//	public String deleteById(String id) {
+//		samplePhotoService.deleteById(id);
+//		return id;
+//	}
 	
 	@RequestMapping("/samplePhoto/destroy.do")
 	//@ResponseBody
-	public SamplePhoto destroy(@RequestBody SamplePhoto samplePhoto) {
-		samplePhotoService.delete(samplePhoto);
+	public SamplePhoto destroy(HttpServletRequest request,@RequestBody SamplePhoto samplePhoto) throws FileNotFoundException {
+		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
+		samplePhotoService.delete(samplePhoto,contextPath);
 		return samplePhoto;
 	}
 	

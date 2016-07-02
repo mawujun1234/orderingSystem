@@ -62,17 +62,23 @@ public class PlanOrgController {
 		planOrgService.update(planOrgdtlVO);
 		return planOrgdtlVO;
 	}
+	@RequestMapping("/planOrg/onSubmit.do")
+	@ResponseBody
+	public  String onSubmit(String ormtno,String yxgsno, String ordorg,String bradno) {
+		planOrgService.onSubmit(ormtno,yxgsno,ordorg,bradno);
+		return "{success:true}";
+	}
 	@RequestMapping("/planOrg/onPass.do")
 	@ResponseBody
-	public  String onPass(String ormtno, String ordorg,String bradno) {
-		planOrgService.onPass(ormtno,ordorg,bradno);
-		return "success";
+	public  String onPass(String ormtno,String yxgsno, String ordorg,String bradno) {
+		planOrgService.onPass(ormtno,yxgsno,ordorg,bradno);
+		return "{success:true}";
 	}
 	@RequestMapping("/planOrg/onBack.do")
 	@ResponseBody
-	public  String onBack(String ormtno, String ordorg,String bradno) {
-		planOrgService.onBack(ormtno,ordorg,bradno);
-		return "success";
+	public  String onBack(String ormtno, String yxgsno,String ordorg,String bradno) {
+		planOrgService.onBack(ormtno,yxgsno,ordorg,bradno);
+		return "{success:true}";
 	}
 	
 	

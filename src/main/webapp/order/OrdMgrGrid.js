@@ -176,22 +176,22 @@ Ext.define('y.order.OrdMgrGrid',{
 		  		fieldLabel: '营销公司',
 		  		labelWidth:65,
 		  		width:160,
-		  		allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
+//		  		allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var regioncombo=combo.nextSibling("#qyno");
-		        		regioncombo.reload(record.get("orgno"));
+		        		regioncombo.reload(record.get("orgno"),"QY");
 					}
 				}
 			},{
 		  		fieldLabel: '区域',
 		  		labelWidth:45,
 		  		width:170,
-		  		allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
+//		  		allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
 		  		itemId:'qyno',
 				xtype:'orgcombo',
 				autoLoad:false,
@@ -209,8 +209,8 @@ Ext.define('y.order.OrdMgrGrid',{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
 				width:150,
-				allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
+//				allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
 				itemId: 'channo',
 				xtype:'channocombo',
 				value:'QY',
@@ -257,7 +257,25 @@ Ext.define('y.order.OrdMgrGrid',{
 				},
 	            hidden:false,
 				xtype:'combobox'
-			 }]
+			 }
+//			 ,{
+//				fieldLabel: '代办',
+//				labelWidth:65,
+//		        width:165,
+//				itemId: '',
+//				queryMode: 'local',
+//				editable:false,
+//				forceSelection:true,
+//			    displayField: 'name',
+//			    valueField: 'id',
+//			    store: {
+//				    fields: ['id', 'name'],
+//				     data:[{id:'all',name:'全部'},{id:'ready',name:'待审'}]
+//				},
+//	            hidden:false,
+//				xtype:'combobox'
+//			 }
+			 ]
 	  });
 	  
 	   me.dockedItems.push({

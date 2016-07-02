@@ -475,12 +475,11 @@ Ext.define('y.sample.SampleDesignForm',{
 						var sampleDesignGrid=tabpanel.previousSibling("gridpanel#sampleDesignGrid") ;
 						
 						if(url=="/sampleDesign/create.do"){//如果是新建的时候，就只查出这个一个
-//							sampleDesignGrid.getStore().reload({
+//							sampleDesignGrid.getStore().getProxy().extraParams={
 //								params:{"params['sampno']":obj.sampleDesign.sampno}
-//							});
-							sampleDesignGrid.getStore().getProxy().extraParams={
-								params:{"params['sampno']":obj.sampleDesign.sampno}
-							}
+//							}
+							sampleDesignGrid.getStore().iscreate=true;
+							sampleDesignGrid.getStore().reload();
 						}
 						
 						//用于后面的面料信息
@@ -585,7 +584,7 @@ Ext.define('y.sample.SampleDesignForm',{
 			me.down("#save").show();
 		}
 	},
-	reloadPubcode:function(bradno,stat_xtrydeeeeeeeee){
+	reloadPubcode:function(bradno,spstat){
 		if(!bradno){
 			alert("请传递品牌参数");
 			return;
@@ -593,6 +592,8 @@ Ext.define('y.sample.SampleDesignForm',{
 		
 		var me=this;
 		
+		
+		var stat_xtrydeeeeeeeee=spstat==1?0:1;
 		
 		if(this.temp_bradno!=bradno || window.stat_xtrydeeeeeeeee!=stat_xtrydeeeeeeeee){//alert(stat_xtrydeeeeeeeee);
 			window.stat_xtrydeeeeeeeee=stat_xtrydeeeeeeeee;

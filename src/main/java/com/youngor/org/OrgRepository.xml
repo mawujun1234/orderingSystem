@@ -29,6 +29,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	where a.orgno=b.child_no  and a.orgst='KQ'
     	and b.parent_no=#{parent_no}
     	and b.dim=#{dim}
+    	<if test="channo!=null and channo!=''">
+    		and a.channo=#{channo}
+    	</if>
     	and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.orgno and d.user_id=#{user_id})
     	order by orgso
 	</select>

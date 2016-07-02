@@ -103,7 +103,7 @@ Ext.define('y.common.PubCode',{
 				beforeload:function(store){
 					//添加是否当季
 					store.getProxy().extraParams=Ext.apply(store.getProxy().extraParams,{
-						stat:window.stat_xtrydeeeeeeeee!=0?1:null
+						stat:window.stat_xtrydeeeeeeeee
 					});
 				}
 			}
@@ -318,14 +318,15 @@ Ext.define('y.common.OrgCombo',{
 		});
 		me.callParent();
 	},
-	reload:function(parent_no){
+	reload:function(parent_no,channo){
 		if(!parent_no){
-			alert("请先选择上级组织节点!");
+			//alert("请先选择上级组织节点!");
 			return;
 		}
 		var me=this;
 		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
-			parent_no:parent_no
+			parent_no:parent_no,
+			channo:channo
 		});
 		me.getStore().reload();
 	}

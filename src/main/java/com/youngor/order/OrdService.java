@@ -1051,6 +1051,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager) {
 		//
+		((Map<String,Object>)pager.getParams()).put("user_id", ShiroUtils.getUserId());
 		
 		pager= ordRepository.ordMgr_queryOrdMgr(pager);
 		List<Map<String,Object>> list=pager.getRoot();//new ArrayList<Map<String,Object>>();

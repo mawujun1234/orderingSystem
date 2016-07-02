@@ -633,8 +633,18 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        	 select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT
 		 from ORD_ORD a,ORD_ORDHD b,v_ord_org c
 		 where a.MTORNO=b.MTORNO and a.ordorg=c.orgno
-       	 and a.ormtno=#{ormtno}   and c.yxgsno=#{yxgsno}   and c.qyno=#{qyno}   and a.channo=#{channo}   
+		 and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=#{user_id})
+       	 and a.ormtno=#{ormtno}          
        	 and b.bradno=#{bradno} and b.spclno=#{spclno} 
+       	 <if test="yxgsno!=null and yxgsno!=''">
+       	 	 and c.yxgsno=#{yxgsno} 
+       	 </if>
+       	 <if test="qyno!=null and qyno!=''">
+       	 	 and c.qyno=#{qyno}
+       	 </if>
+       	 <if test="channo!=null and channo!=''">
+       	 	and a.channo=#{channo}
+       	 </if>
        	 <if test="ordorg!=null and ordorg!=''">
        	 	and a.ordorg=#{ordorg} 
        	 </if>

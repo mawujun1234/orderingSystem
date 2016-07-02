@@ -59,12 +59,12 @@ public class OrgController {
 	 */
 	@RequestMapping("/org/query4Combo.do")
 	@ResponseBody
-	public List<Org> query4Combo(String parent_no,Dim dim,Boolean allowBlank) {
+	public List<Org> query4Combo(String parent_no,String channo,Dim dim,Boolean allowBlank) {
 		if(dim==null){
 			dim=Dim.SALE;
 		}
 
-		List<Org> orges=orgService.query4Combo(parent_no,dim,ShiroUtils.getUserId());
+		List<Org> orges=orgService.query4Combo(parent_no, channo,dim,ShiroUtils.getUserId());
 		if(allowBlank!=null && allowBlank==true){
 			Org blank=new Org();
 			blank.setOrgno("");

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.youngor.order.Ord;
+import com.youngor.org.Chancl;
 import com.youngor.org.Org;
 import com.youngor.pubcode.PubCode;
 
@@ -34,12 +35,29 @@ public class UserVO extends User {
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	public Boolean inTheOrg(String orgno){
+	public Boolean hasTheOrg(String orgno){
 		if(currentOrges==null){
 			return false;
 		}
 		for(Org org:currentOrges) {
 			if(org.getOrgno().equals(orgno)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断用户是否拥有某个组织类型
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Boolean hasChanno(Chancl chancl){
+		if(currentOrges==null){
+			return false;
+		}
+		for(Org org:currentOrges) {
+			if(org.getChanno()==chancl){
 				return true;
 			}
 		}

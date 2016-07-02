@@ -23,9 +23,9 @@ Ext.define('y.sample.SampleDesignGrid',{
         },
 		{dataIndex:'plspnm',header:'企划样衣编号'
         },
-        {dataIndex:'sampnm',header:'订货样衣编号'
-        },
         {dataIndex:'sampnm1',header:'出样样衣编号'
+        },
+        {dataIndex:'sampnm',header:'订货样衣编号'
         },
         {dataIndex:'matest',header:'状态',
         	renderer:function(value, metaData, record, rowIndex, colIndex, store, view){
@@ -168,8 +168,9 @@ Ext.define('y.sample.SampleDesignGrid',{
 				},
 				load:function(store, records, successful){
 					var tabpanel=me.nextSibling("tabpanel");
-					if(!store.getProxy().extraParams.sampno){
-						tabpanel.mask();
+					if(!store.iscreate){
+						//tabpanel.mask();
+						store.iscreate=false;
 					}
 					
 				}
@@ -319,6 +320,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			},{
 			    text: '复制',
 			    itemId:'copy',
+			    hidden:!Permision.canShow('sample_design_copy'),
 			    handler: function(){
 			    	me.onCopy();    
 			    },
@@ -534,7 +536,7 @@ Ext.define('y.sample.SampleDesignGrid',{
     		
 			tabpanel.setTitle("新增样衣:"+record.get("plspnm"));
 			tabpanel.setActiveTab( 1 );
-			tabpanel.unmask();
+			//tabpanel.unmask();
 			var samplePlanFormQuery=tabpanel.child("form#samplePlanFormQuery") ;
 			samplePlanFormQuery.loadRecord(record);
 			

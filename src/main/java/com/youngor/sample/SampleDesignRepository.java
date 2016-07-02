@@ -28,4 +28,6 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	public void copy_ord_sample_mate(@Param("sampno")String sampno,@Param("old_sampno")String old_sampno);
 	public void copy_ord_sample_colth(@Param("sampno")String sampno,@Param("old_sampno")String old_sampno);
 	public void copy_ord_sample_design_stpr(@Param("sampno")String sampno,@Param("old_sampno")String old_sampno);
+	
+	public Integer count_sampleDesign_photo_num(@Param("sampno")String sampno);
 }

@@ -23,19 +23,23 @@ Ext.onReady(function(){
 				}
 			},{
 		  		fieldLabel: '营销公司',
-		  		labelWidth:60,
-		  		width:160,
+		  		labelWidth:75,
+		  		width:175,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 		  		itemId:'compcombo',
 				xtype:'orgcombo',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var regioncombo=combo.nextSibling("#regioncombo");
-		        		regioncombo.reload(record.get("orgno"));
+		        		regioncombo.reload(record.get("orgno"),"QY");
 					}
 				}
 			},{
 		  		fieldLabel: '区域',
 		  		labelWidth:50,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
 		  		itemId:'regioncombo',
 				xtype:'orgcombo',
 				autoLoad:false,

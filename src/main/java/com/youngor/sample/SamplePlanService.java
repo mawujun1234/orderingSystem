@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
@@ -53,8 +54,13 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 	
 	@Override
 	public  void delete(SamplePlan samplePlan) {
+		int count=samplePlanRepository.checkPlanInDesign(samplePlan.getPlspno());
+		if(count>0){
+			throw new BusinessException("该企划样衣已被使用，不能删除!");
+		}
+		
 		samplePlan=samplePlanRepository.get(samplePlan.getPlspno());
-		samplePlan.setPlspst(0);
+		samplePlan.setPlstat(0);
 		samplePlanRepository.update(samplePlan);
 	}
 	

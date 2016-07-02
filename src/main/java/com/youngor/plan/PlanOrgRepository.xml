@@ -20,7 +20,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN V_ORD_ORG G ON 1=1 AND G.CHANNO='QY'
 		LEFT JOIN ORD_PLAN_ORG C ON C.ORMTNO=B.ORMTNO AND C.ORDORG=G.ORGNO AND C.BRADNO=B.BRADNO 
 		LEFT JOIN ORD_PLAN_ORGDTL D ON C.PLORNO=D.PLORNO AND D.SPCLNO=B.SPCLNO AND D.SPTYNO=B.SPTYNO AND NVL(D.SPSENO,' ')=B.SPSENO
-		WHERE B.ORMTNO=#{ormtno} 
+		WHERE B.ORMTNO=#{ormtno} and g.yxgsno=#{yxgsno}
 		<if test="qyno!=null and qyno!=''">
 			AND G.ORGNO=#{qyno}
 		</if>
@@ -41,7 +41,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
     </select> 
     
-   
+
     
 </mapper>
 

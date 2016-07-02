@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,6 +26,7 @@ import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.bean.BeanUtils;
 import com.youngor.org.Chancl;
+import com.youngor.org.Dim;
 import com.youngor.org.Org;
 import com.youngor.org.OrgService;
 import com.youngor.permission.ShiroUtils;
@@ -58,56 +60,100 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {
 		List<PlanOrgdtlVO> list= planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+		if(list.size()==0){
+			return list;
+		}
 		List<PlanOrgdtlVO> list_new= new ArrayList<PlanOrgdtlVO>();
 		//计算合计和小计
 		
 		
 		
 		//String subtotal_sptyno_temp=null;
-		PlanOrgdtlVO subtotal_sptyno=new PlanOrgdtlVO();//小类
-		PlanOrgdtlVO subtotal_spclno=new PlanOrgdtlVO();//大类
-		PlanOrgdtlVO subtotal_all=new PlanOrgdtlVO();//合计
+		//PlanOrgdtlVO subtotal_sptyno=new PlanOrgdtlVO();//小类
+		//PlanOrgdtlVO subtotal_spclno=new PlanOrgdtlVO();//大类
+		////合计
+		Map<String,PlanOrgdtlVO> map_sptyno=new HashMap<String,PlanOrgdtlVO>();
+		Map<String,PlanOrgdtlVO> map_spclno=new HashMap<String,PlanOrgdtlVO>();
+		Map<String,PlanOrgdtlVO> map_quy=new HashMap<String,PlanOrgdtlVO>();
+		PlanOrgdtlVO subtotal_all=null;//new PlanOrgdtlVO();//合计
+		int list_size=list.size();
+		int i=0;
 		for(PlanOrgdtlVO planOrgdtlVO:list){
+			i++;
 			list_new.add(planOrgdtlVO);
-			//添加小类合计
-			if(!planOrgdtlVO.getSptyno().equals(subtotal_sptyno.getSptyno())){
-				//排除把小计添加在第一行
-				if(subtotal_sptyno.getOrdorg()!=null){
-					list_new.add(subtotal_sptyno);
-				}
-				subtotal_sptyno=new PlanOrgdtlVO();
-				//subtotal_sptyno.setOrdorg("notedit");
-				subtotal_sptyno.setSptyno(planOrgdtlVO.getSptyno());
-				subtotal_sptyno.setSptynm("小计:");
-				subtotal_sptyno.setIsTotal(true);
+			//如果不是区域进去，是不准修改的
+			if(!ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.QY) && planOrgdtlVO.getPlstat()==0){
+				planOrgdtlVO.setPlstat(5);
 			}
 			
-			subtotal_sptyno.addQymtqt(planOrgdtlVO.getQymtqt());
-			subtotal_sptyno.addQymtam(planOrgdtlVO.getQymtam());
-			subtotal_sptyno.addTxmtqt(planOrgdtlVO.getTxmtqt());
-			subtotal_sptyno.addTxmtam(planOrgdtlVO.getTxmtam());
+			//区域的小计
+			PlanOrgdtlVO subtotal_qy=map_quy.get(planOrgdtlVO.getOrdorg());
+			if(subtotal_qy==null){
+				subtotal_qy=new PlanOrgdtlVO();
+				subtotal_qy.setOrdorg(planOrgdtlVO.getOrdorg());
+				subtotal_qy.setOrgnm(planOrgdtlVO.getOrgnm()+"小计:");
+				subtotal_qy.setIsTotal(true);
+				map_quy.put(planOrgdtlVO.getOrdorg(), subtotal_qy);
+			}	
+			subtotal_qy.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_qy.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_qy.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_qy.addTxmtam(planOrgdtlVO.getTxmtam());
+			
+			
 			//添加大类小计
-			if(!planOrgdtlVO.getSpclno().equals(subtotal_spclno.getSpclno())){
-				//排除把小计添加在第一行
-				if(subtotal_spclno.getOrdorg()!=null){
-					list_new.add(subtotal_spclno);
-				}
+			String key_spclno=subtotal_qy.getOrdorg()+planOrgdtlVO.getSpclno();
+			PlanOrgdtlVO subtotal_spclno=map_spclno.get(key_spclno);
+			if(subtotal_spclno==null){	
 				subtotal_spclno=new PlanOrgdtlVO();
 				//subtotal_spclno.setOrdorg("notedit");
 				subtotal_spclno.setSpclno(planOrgdtlVO.getSpclno());
-				subtotal_spclno.setSpclnm("小计:");
+				subtotal_spclno.setSpclnm(planOrgdtlVO.getSpclnm()+"小计:");
 				subtotal_spclno.setIsTotal(true);
+				map_spclno.put(key_spclno, subtotal_spclno);
 			}
-			
 			subtotal_spclno.addQymtqt(planOrgdtlVO.getQymtqt());
 			subtotal_spclno.addQymtam(planOrgdtlVO.getQymtam());
 			subtotal_spclno.addTxmtqt(planOrgdtlVO.getTxmtqt());
 			subtotal_spclno.addTxmtam(planOrgdtlVO.getTxmtam());
-			if(!planOrgdtlVO.getOrdorg().equals(subtotal_all.getOrdorg())){
-				//排除把小计添加在第一行
-				if(subtotal_all.getOrdorg()!=null){
-					list_new.add(subtotal_all);
-				}
+			
+			//添加小类合计
+			String key_sptyno=subtotal_qy.getOrdorg()+planOrgdtlVO.getSpclno()+planOrgdtlVO.getSptyno();
+			PlanOrgdtlVO subtotal_sptyno=map_sptyno.get(key_sptyno);
+			if(subtotal_sptyno==null){
+				subtotal_sptyno=new PlanOrgdtlVO();
+				//subtotal_sptyno.setOrdorg("notedit");
+				subtotal_sptyno.setSptyno(planOrgdtlVO.getSptyno());
+				subtotal_sptyno.setSptynm(planOrgdtlVO.getSptynm()+"小计:");
+				subtotal_sptyno.setIsTotal(true);
+				map_sptyno.put(key_sptyno, subtotal_sptyno);
+			}
+			subtotal_sptyno.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_sptyno.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_sptyno.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_sptyno.addTxmtam(planOrgdtlVO.getTxmtam());
+			
+			
+			
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !(list.get(i).getOrdorg()+list.get(i).getSpclno()+list.get(i).getSptyno()).equals(key_sptyno)){
+				list_new.add(subtotal_sptyno);
+			}
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !(list.get(i).getOrdorg()+list.get(i).getSpclno()).equals(key_spclno)){
+				list_new.add(subtotal_spclno);
+			}
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !list.get(i).getOrdorg().equals(subtotal_qy.getOrdorg())){
+				list_new.add(subtotal_qy);
+			}
+			
+			
+			//添加合计
+			if(subtotal_all==null){
 				subtotal_all=new PlanOrgdtlVO();
 				subtotal_all.setOrdorg(planOrgdtlVO.getOrdorg());
 				subtotal_all.setOrgnm("合计:");
@@ -119,8 +165,6 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 			subtotal_all.addTxmtqt(planOrgdtlVO.getTxmtqt());
 			subtotal_all.addTxmtam(planOrgdtlVO.getTxmtam());
 		}
-		list_new.add(subtotal_sptyno);
-		list_new.add(subtotal_spclno);
 		list_new.add(subtotal_all);
 		return list_new;
 	}
@@ -147,37 +191,130 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 		
 	}
 	
-	public  void onPass(String ormtno, String ordorg,String bradno) {
-		//如果状态是编辑中，但是不是当前组织单元 就不能提交审批
-		if(!ShiroUtils.getAuthenticationInfo().inTheOrg(ordorg)){
-			throw new BusinessException("你没有权限进行提交!");
+	public  void onSubmit(String ormtno,String yxgsno, String ordorg,String bradno) {
+		//只有编辑中的状态可以提交审批
+		if(StringUtils.hasText(ordorg)){
+			String plorno=ormtno+"_"+ordorg+"_"+bradno;
+			PlanOrg planOrg=planOrgRepository.get(plorno);
+			//如果不是编辑状态，就不提交
+			if(planOrg==null || planOrg.getPlstat()!=0){
+				return;
+			}
+			planOrg.setPlstat(1);
+			planOrgRepository.update(planOrg);
+
+		} else {
+			List<Org> quyes=orgServcie.query4Combo(yxgsno,Chancl.QY.toString(), Dim.SALE, ShiroUtils.getUserId());
+			for(Org org:quyes){
+				String plorno=ormtno+"_"+org.getOrgno()+"_"+bradno;
+				PlanOrg planOrg=planOrgRepository.get(plorno);
+				//如果不是编辑状态，就不提交
+				if(planOrg==null || planOrg.getPlstat()!=0){
+					break;
+				}
+				planOrg.setPlstat(1);
+				planOrgRepository.update(planOrg);
+			}
 		}
-		
-		String plorno=ormtno+"_"+ordorg+"_"+bradno;
-		PlanOrg planOrg=planOrgRepository.get(plorno);
-		if(planOrg.getPlstat()==3){
-			return;
-		}
-		if(ShiroUtils.getAuthenticationInfo().inTheOrg(ordorg)  && planOrg.getPlstat()!=0){
-			throw new BusinessException("已经提交过了，你没有权限进行提交!");
-		}
-		planOrg.setPlstat(planOrg.getPlstat()+1);
-		planOrgRepository.update(planOrg);
 	}
 	
-	public  void onBack(String ormtno, String ordorg,String bradno) {
-		//如果状态是编辑中，但是不是当前组织单元 就不能提交审批
-		if(ShiroUtils.getAuthenticationInfo().inTheOrg(ordorg)){
-			throw new BusinessException("你没有权限进行退回!");
-		}
+	public  void onPass(String ormtno,String yxgsno, String ordorg,String bradno) {
+//		//如果状态是编辑中，但是不是当前组织单元 就不能提交审批
+//		if(!ShiroUtils.getAuthenticationInfo().inTheOrg(ordorg)){
+//			throw new BusinessException("你没有权限进行提交!");
+//		}
+//		
+//		String plorno=ormtno+"_"+ordorg+"_"+bradno;
+//		PlanOrg planOrg=planOrgRepository.get(plorno);
+//		if(planOrg.getPlstat()==3){
+//			return;
+//		}
+//		if(ShiroUtils.getAuthenticationInfo().inTheOrg(ordorg)  && planOrg.getPlstat()!=0){
+//			throw new BusinessException("已经提交过了，你没有权限进行提交!");
+//		}
+//		planOrg.setPlstat(planOrg.getPlstat()+1);
+//		planOrgRepository.update(planOrg);
 		
-		String plorno=ormtno+"_"+ordorg+"_"+bradno;
-		PlanOrg planOrg=planOrgRepository.get(plorno);
-		if(planOrg.getPlstat()==0){
-			return;
+		//int need_stat=2;
+		
+		if(StringUtils.hasText(ordorg)){
+			String plorno=ormtno+"_"+ordorg+"_"+bradno;
+			PlanOrg planOrg=planOrgRepository.get(plorno);
+			if(planOrg==null){
+				return;
+			}
+			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
+				planOrg.setPlstat(2);
+				planOrgRepository.update(planOrg);
+			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+				planOrg.setPlstat(3);
+				planOrgRepository.update(planOrg);
+			}
+			
+			
+		} else {
+			List<Org> quyes=orgServcie.query4Combo(yxgsno,Chancl.QY.toString(), Dim.SALE, ShiroUtils.getUserId());
+			for(Org org:quyes){
+				String plorno=ormtno+"_"+org.getOrgno()+"_"+bradno;
+				PlanOrg planOrg=planOrgRepository.get(plorno);
+				if(planOrg==null){
+					break;
+				}
+				if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
+					planOrg.setPlstat(2);
+					planOrgRepository.update(planOrg);
+				} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+					planOrg.setPlstat(3);
+					planOrgRepository.update(planOrg);
+				}
+				
+			}
 		}
-		planOrg.setPlstat(planOrg.getPlstat()-1);
-		planOrgRepository.update(planOrg);
+	}
+	
+	public  void onBack(String ormtno, String yxgsno,String ordorg,String bradno) {
+		if(StringUtils.hasText(ordorg)){
+			String plorno=ormtno+"_"+ordorg+"_"+bradno;
+			PlanOrg planOrg=planOrgRepository.get(plorno);
+			if(planOrg==null){
+				return;
+			}
+			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
+				planOrg.setPlstat(0);
+				planOrgRepository.update(planOrg);
+			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+				planOrg.setPlstat(1);
+				planOrgRepository.update(planOrg);
+			}
+		} else {
+			List<Org> quyes=orgServcie.query4Combo(yxgsno, Chancl.QY.toString(),Dim.SALE, ShiroUtils.getUserId());
+			for(Org org:quyes){
+				String plorno=ormtno+"_"+org.getOrgno()+"_"+bradno;
+				PlanOrg planOrg=planOrgRepository.get(plorno);
+				if(planOrg==null){
+					break;
+				}
+				if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
+					planOrg.setPlstat(0);
+					planOrgRepository.update(planOrg);
+				} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+					planOrg.setPlstat(1);
+					planOrgRepository.update(planOrg);
+				}
+			}
+		}
+//		//如果状态是编辑中，但是不是当前组织单元 就不能提交审批
+//		if(ShiroUtils.getAuthenticationInfo().hasTheOrg(ordorg)){
+//			throw new BusinessException("你没有权限进行退回!");
+//		}
+//		
+//		String plorno=ormtno+"_"+ordorg+"_"+bradno;
+//		PlanOrg planOrg=planOrgRepository.get(plorno);
+//		if(planOrg.getPlstat()==0){
+//			return;
+//		}
+//		planOrg.setPlstat(planOrg.getPlstat()-1);
+//		planOrgRepository.update(planOrg);
 	}
 	
 	public void onimport(MultipartFile imageFile) throws IOException, EncryptedDocumentException, InvalidFormatException {

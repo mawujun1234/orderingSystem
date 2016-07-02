@@ -81,6 +81,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<include refid="queryPage_where"></include> 
     </select>
     
+    <select id="checkPlanInDesign" resultType="int" parameterType="map">
+    	select count(a.plspno)
+		from ord_sample_design a where a.plspno=#{plspno}
+    </select>
+    
     <!-- 在设计资料管理的时候，获取样衣资料内容的时候
     <resultMap type="com.youngor.sample.SamplePlanDesignVO" id="samplePlanDesignVO">
      	<id property="plspno" column="plspno"/>

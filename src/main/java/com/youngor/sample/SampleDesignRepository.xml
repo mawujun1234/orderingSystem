@@ -122,5 +122,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      		select '${sampno}',suitno,spftpr,sprtpr,plctpr
      		from ord_sample_design_stpr where sampno=#{old_sampno}  	
      </insert>
+     
+     <!-- 照片删除后，更新设计样衣的照片上传-->
+     <select id="count_sampleDesign_photo_num" resultType="int" parameterType="map">
+     	select count(id) from ord_sample_photo where sampno=#{sampno}
+     </select>
 </mapper>
 

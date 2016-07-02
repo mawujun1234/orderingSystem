@@ -12,13 +12,40 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-      	{dataIndex:'orgnm',header:'区域'
+      	{dataIndex:'orgnm',header:'区域',
+      		renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+							 return "<span style='font-weight:bold;'>"+value+"</span>";
+						}
+		            	return value;
+		            }
         },
-        {dataIndex:'spclnm',header:'大类'
+        {dataIndex:'spclnm',header:'大类',
+        	renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+							 return "<span style='font-weight:bold;'>"+value+"</span>";
+						}
+		            	return value;
+		            }
         },
-		{dataIndex:'sptynm',header:'小类'
+		{dataIndex:'sptynm',header:'小类',
+			renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+							 return "<span style='font-weight:bold;'>"+value+"</span>";
+						}
+		            	return value;
+		            }
         },
-		{dataIndex:'spsenm',header:'系列'
+		{dataIndex:'spsenm',header:'系列',
+					renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						if(record.get("isTotal")==true){
+							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+						}
+		            	return value;
+		            }
         },
         {
         	header:'区域',
@@ -282,10 +309,10 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 				editable:false,
 				forceSelection:true,
 			    displayField: 'name',
-			    valueField: 'id',
+			    valueField: 'value',
 			    store: {
-				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'编辑中'},{id:'1',name:'审批中'},{id:'2',name:'大区审批通过'},{id:'3',name:'总部审批通过'},{id:'4',name:'退回'}]
+				    fields: ['value', 'name'],
+				    data:[{value:'',name:'无'},{value:'0',name:'编辑中'},{value:'1',name:'审批中'},{value:'2',name:'大区审批通过'},{value:'3',name:'总部审批通过'},{value:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -323,6 +350,13 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 				},
 				iconCls: 'icon-ok'
 			},{
+				text: '提交审批',
+				hidden:!Permision.canShow('plan_orgdtl_submit'),
+				handler: function(btn){
+					me.onSubmit();
+				},
+				iconCls: 'icon-ok'
+			},{
 			    text: '退回',
 			    hidden:!Permision.canShow('plan_orgdtl_back'),
 			    //itemId:'update',
@@ -340,6 +374,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 			},{
 			   text: '导入',
 			   itemId:'onImport',
+			   hidden:!Permision.canShow('plan_orgdtl_import'),
 				handler: function(btn){
 					me.onImport();
 				},
@@ -370,9 +405,35 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		};
 		return params;
 	},
+	onSubmit:function(){
+		var me=this;
+	 	Ext.Msg.confirm("消息","确定要提交审批吗?",function(btn){
+	 		//console.log(btn);
+	 		if(btn=='yes'){
+				var toolbars=me.getDockedItems('toolbar[dock="top"]');
+	 			Ext.Ajax.request({
+	 				url:Ext.ContextPath+'/planOrg/onSubmit.do',
+	 				params:{
+	 					"ormtno":toolbars[0].down("#ordmtcombo").getValue(),
+	 					"yxgsno":toolbars[0].down("#yxgsno").getValue(),
+	 					"ordorg":toolbars[0].down("#qyno").getValue(),
+	 					"bradno":toolbars[1].down("#bradno").getValue()
+	 				},
+					success:function(response){
+						var obj=Ext.decode(response.responseText);
+						if(obj.success==false){
+							Ext.Msg.alert("消息",obj.msg);
+							return;
+						}
+						me.getStore().reload();
+					}
+	 			});
+	 		}
+	 	});
+	},
 	onPass:function(){
 		var me=this;
-	 	Ext.Msg.confirm("消息","确定通过，提交审批吗?",function(btn){
+	 	Ext.Msg.confirm("消息","确定通过吗?",function(btn){
 	 		//console.log(btn);
 	 		if(btn=='yes'){
 				var toolbars=me.getDockedItems('toolbar[dock="top"]');
@@ -380,6 +441,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	 				url:Ext.ContextPath+'/planOrg/onPass.do',
 	 				params:{
 	 					"ormtno":toolbars[0].down("#ordmtcombo").getValue(),
+	 					"yxgsno":toolbars[0].down("#yxgsno").getValue(),
 	 					"ordorg":toolbars[0].down("#qyno").getValue(),
 	 					"bradno":toolbars[1].down("#bradno").getValue()
 	 				},
@@ -410,6 +472,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	 				url:Ext.ContextPath+'/planOrg/onBack.do',
 	 				params:{
 	 					"ormtno":toolbars[0].down("#ordmtcombo").getValue(),
+	 					"yxgsno":toolbars[0].down("#yxgsno").getValue(),
 	 					"ordorg":toolbars[0].down("#qyno").getValue(),
 	 					"bradno":toolbars[1].down("#bradno").getValue()
 	 				},

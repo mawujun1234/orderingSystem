@@ -312,7 +312,7 @@ Ext.define('y.sample.SamplePlanForm',{
 				    	var tabpanel=formpanel.up("tabpanel");
 						
 						var samplePlanGrid=tabpanel.previousSibling("gridpanel#samplePlanGrid") ;
-						//samplePlanGrid.getStore().reload();
+						samplePlanGrid.getStore().reload();
 						Ext.Msg.alert("消息","保存成功!");
 						
 				    }

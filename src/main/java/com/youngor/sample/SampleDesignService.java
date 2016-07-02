@@ -46,7 +46,7 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	@Override
 	public String create(SampleDesign sampleDesign) {
 		//判断在本次订货会中，样衣编号是否唯一
-		if(sampleDesignRepository.checkOnlyOne(sampleDesign.getSampnm(),sampleDesign.getOrmtno())>0){
+		if(sampleDesignRepository.checkOnlyOne(sampleDesign.getOrmtno(),sampleDesign.getSampnm())>0){
 			throw new BusinessException("样衣编号已存在");
 		}
 		

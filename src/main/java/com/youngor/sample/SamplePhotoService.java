@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.repository.idEntity.UUIDGenerator;
 import com.mawujun.service.AbstractService;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
+import com.youngor.utils.M;
 
 
 /**
@@ -84,6 +87,21 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		
 		super.create(samplePhoto);
 		return id;
+		
+	}
+	
+	public void delete(SamplePhoto samplePhoto,String contextPath) {
+		super.delete(samplePhoto);
+		//如果全部删除了，修改样衣的照片上传状态为不可以上传
+		Integer count=sampleDesignRepository.count_sampleDesign_photo_num(samplePhoto.getSampno());
+		if(count==null || count==0){
+			sampleDesignRepository.update(Cnd.update().set(M.SampleDesign.photno, null).andEquals(M.SampleDesign.sampno, samplePhoto.getSampno()));
+		}
+		String filepath=contextPath+samplePhoto.getImgnm();
+		File file=new File(filepath);
+		if(file.exists()){
+			file.delete();
+		}
 		
 	}
 
