@@ -8,7 +8,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<!-- 查询语句，会自动分页-->
     <select id="queryPlanOrgdtlVO" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
     	SELECT G.ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,D.QYMTQT,D.QYMTAM,D.TXMTQT,D.TXMTAM,
-    		#{ormtno} as ormtno,#{bradno} as bradno, #{qyno} as ordorg,nvl(plstat,0) as plstat,
+    		'${ormtno}' as ormtno,'${bradno}' as bradno, G.ORGNO as ordorg,nvl(plstat,0) as plstat,
     		b.SPCLNO,b.SPTYNO,b.SPSENO FROM
 		(SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,2),2,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
 		LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO
@@ -20,7 +20,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN V_ORD_ORG G ON 1=1 AND G.CHANNO='QY'
 		LEFT JOIN ORD_PLAN_ORG C ON C.ORMTNO=B.ORMTNO AND C.ORDORG=G.ORGNO AND C.BRADNO=B.BRADNO 
 		LEFT JOIN ORD_PLAN_ORGDTL D ON C.PLORNO=D.PLORNO AND D.SPCLNO=B.SPCLNO AND D.SPTYNO=B.SPTYNO AND NVL(D.SPSENO,' ')=B.SPSENO
-		WHERE B.ORMTNO=#{ormtno} AND G.ORGNO=#{qyno}
+		WHERE B.ORMTNO=#{ormtno} 
+		<if test="qyno!=null and qyno!=''">
+			AND G.ORGNO=#{qyno}
+		</if>
 		<if test="spclno!=null and spclno!=''">
 			AND B.SPCLNO=#{spclno} 
 		</if>

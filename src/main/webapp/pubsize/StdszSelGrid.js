@@ -40,7 +40,7 @@ Ext.define('y.pubsize.StdszSelGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.pubsize.PubSize',
 			proxy:{
 				type: 'ajax',
@@ -60,7 +60,7 @@ Ext.define('y.pubsize.StdszSelGrid',{
 			listeners:{
 				beforeload:function(store){
 					var grid=me;//Ext.getCmp("sampleDesignGrid");
-    				grid.getStore().getProxy().extraParams=grid.getParams();
+    				grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,grid.getParams());
 				}
 			}
 	  });

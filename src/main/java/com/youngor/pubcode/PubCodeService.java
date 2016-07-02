@@ -34,6 +34,9 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 	}
 
 	public List<PubCode> query(String tyno,String fitno,String bradno,String stat) {
+		if("1".equals(tyno)){
+			return pubCodeRepository.query1(tyno, fitno, bradno, stat);
+		}
 		return pubCodeRepository.query(tyno,fitno, bradno,stat);
 	}
 	

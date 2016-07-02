@@ -87,4 +87,8 @@ public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno)  {
 		return pubSizeRepository.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno);
 	}
+	
+	public List<PubSizeDtlVO> querySizegpPrdszty(String szbrad,String szclno,String sizety) {
+		return pubSizeRepository.querySizegpPrdszty(szbrad, szclno, sizety);
+	}
 }

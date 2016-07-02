@@ -48,23 +48,7 @@ Ext.onReady(function(){
 				listeners:{
 					select:function( combo, record, eOpts ) {	
 //						
-	    				Ext.Ajax.request({
-							url:Ext.ContextPath+'/tp/zgs_getOrstat.do',
-							params:{
-								ordorg:spb_orgno,
-								ormtno:record.get("ormtno")//toolbars[0].down("#ordmtcombo").getValue()
-							},
-							success:function(response){
-								var obj=Ext.decode(response.responseText);
-								window.orstat=obj.orstat;
-								if(obj.orstat!=0){
-									var toolbars=grid.getDockedItems('toolbar[dock="top"]');
-									var over_btn=toolbars[2].down("#over_btn");
-									over_btn.disable();
-								}
-								//grid.getStore().reload();
-							}
-						});
+	    				grid.query_stat();
 					}
 				}
 			},{
@@ -151,6 +135,8 @@ Ext.onReady(function(){
 	  		dock:'top',
 		  	items:[{
 		  		text: '恢复定制',
+		  		disabled:true,
+		  		itemId:'restoreDZ_btn',
 				handler: function(btn){
 					grid.restoreDZ();
 				},
@@ -158,6 +144,7 @@ Ext.onReady(function(){
 		  	},{
 		  		text: '订单完成',
 		  		itemId:'over_btn',
+		  		disabled:true,
 				handler: function(btn){
 					grid.over();
 				},
@@ -204,7 +191,7 @@ Ext.onReady(function(){
 	  	Ext.Ajax.request({
 						url:Ext.ContextPath+'/tp/zgs_updateOrmtqt_tp.do',
 						params:{
-							ordorg:spb_orgno,
+							//ordorg:spb_orgno,
 							ormtno:record.get("ORMTNO"),
 							sampno:record.get("SAMPNO"),
 							bradno:record.get("BRADNO"),
@@ -257,7 +244,7 @@ Ext.onReady(function(){
 		]
 		
 	});
-	var spb_orgno='10206030000';//商品部的id
+	//var spb_orgno='10206030000';//商品部的id
 	grid.getParams=function(){
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		var params={
@@ -266,13 +253,45 @@ Ext.onReady(function(){
 			"params['spclno']":toolbars[0].down("#spclno").getValue(),
 			"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[0].down("#spseno").getValue(),
-			"params['mtorno']":toolbars[0].down("#ordmtcombo").getValue()+"_TP_"+spb_orgno,
+			//"params['mtorno']":toolbars[0].down("#ordmtcombo").getValue()+"_TP_"+spb_orgno,
 			"params['sampnm']":toolbars[1].down("#sampnm").getValue()
 			//"params['orstat']":toolbars[1].down("#orstat").getValue()
 		};
 		return params;
 	}
+	grid.query_stat=function(){
+		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+		
+		Ext.Ajax.request({
+							url:Ext.ContextPath+'/tp/zgs_getOrstat.do',
+							params:{
+								//ordorg:spb_orgno,
+								ormtno:toolbars[0].down("#ordmtcombo").getValue()
+							},
+							success:function(response){
+								var obj=Ext.decode(response.responseText);
+								window.orstat=obj.orstat;
+								if(obj.orstat!=0){
+									//var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+									var over_btn=toolbars[2].down("#over_btn");
+									over_btn.disable();
+									var restoreDZ_btn=toolbars[2].down("#restoreDZ_btn");
+									restoreDZ_btn.disable();
+									
+								} else {
+									//var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+									var over_btn=toolbars[2].down("#over_btn");
+									over_btn.enable();
+									var restoreDZ_btn=toolbars[2].down("#restoreDZ_btn");
+									restoreDZ_btn.enable();
+								}
+								//grid.getStore().reload();
+							}
+						});
+	}
 	grid.restoreDZ=function(){
+		Ext.Msg.confirm("消息","确定要回复定制吗?",function(btn){
+			if(btn=='yes'){
 		var records=grid.getSelectionModel().getSelection();
 		if(records==null || records.length==0){
 			Ext.Msg.alert("消息","请先选择行!");
@@ -282,7 +301,7 @@ Ext.onReady(function(){
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/tp/zgs_restoreDZ.do',
 			params:{
-				ordorg:spb_orgno,
+				//ordorg:spb_orgno,
 				ormtno:record.get("ORMTNO"),
 				sampno:record.get("SAMPNO"),
 				bradno:record.get("BRADNO"),
@@ -293,23 +312,32 @@ Ext.onReady(function(){
 				grid.getStore().reload();
 			}
 		});
+			}
+		});
 	
 	}
 	
 	grid.over=function(){
+		Ext.Msg.confirm("消息","确定要完成吗?",function(btn){
+			if(btn=='yes'){
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/tp/zgs_over.do',
 			params:{
-				ordorg:spb_orgno,
+				//ordorg:spb_orgno,
 				ormtno:toolbars[0].down("#ordmtcombo").getValue()
 			},
 			success:function(){
 				
-				var over_btn=toolbars[2].down("#over_btn");
-				over_btn.disable();
-				window.orstat=3;
+//				var over_btn=toolbars[2].down("#over_btn");
+//				over_btn.disable();
+//				var restoreDZ_btn=toolbars[2].down("#restoreDZ_btn");
+//				restoreDZ_btn.disable();
+//				window.orstat=3;
+				grid.query_stat();
 				grid.getStore().reload();
+			}
+		});
 			}
 		});
 	}

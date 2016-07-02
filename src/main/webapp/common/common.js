@@ -288,6 +288,7 @@ Ext.define('y.common.OrgCombo',{
 		var me=this;
 		var params={
 			dim:me.dim,
+			allowBlank:me.allowBlank,
 			parent_no:'root'
 		};
 		

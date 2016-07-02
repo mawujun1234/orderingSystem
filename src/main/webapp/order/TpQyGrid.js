@@ -20,7 +20,7 @@ Ext.define('y.order.TpQyGrid',{
 	        },
 	        {dataIndex:'PACKQT',header:'包装要求'
 	        },
-	        {dataIndex:'ORMTQT_ALL',header:'统配总数'
+	        {dataIndex:'ORMTQT_TP_YXGS',header:'统配总数'
 	        	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 	            	 return value;
@@ -28,13 +28,17 @@ Ext.define('y.order.TpQyGrid',{
 	        },
 	        {dataIndex:'ORMTQT_TOTAL',header:'合计'
 	        	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	            	 if(record.get("ORMTQT_TP_YXGS")!=record.get("ORMTQT_TOTAL")){
+	        			metaData.tdStyle = 'color:red;background-color:#FFFF66;' ;
+	        		} else {
+	        			metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	        		}
 	            	 return value;
             	}
 	        }
       ];
       var fields=[
-		'SPTYNO','SPSENO','SAMPNM','SUITNO','PACKQT','ORMTQT_ALL'
+		'ORMTNO','BRADNO','SPCLNO','SPTYNO','SPSENO','SAMPNM','SUITNO','PACKQT','ORMTQT_TP_YXGS'
 	  ];
       
 
@@ -62,7 +66,9 @@ Ext.define('y.order.TpQyGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	            	if(window.stat!=0){
+	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	            	}
 	            	 return value;
             	}
       		 },{
@@ -74,7 +80,9 @@ Ext.define('y.order.TpQyGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	            	if(window.stat!=0){
+	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	            	}
 	            	 return value;
             	}
       		 }
@@ -119,33 +127,78 @@ Ext.define('y.order.TpQyGrid',{
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
-	  this.cellEditing.on("edit",function(editor, context){
-	  	var record=context.record;
-	  	var grid=context.grid;
-	  	var field =context.field ;
-	  	var value=context.value;
-	  	
+	  this.cellEditing.on("beforeedit",function(editor, context){
+	  	if(window.stat==0){
+	  		return false;
+	  	}
 
-//	  	Ext.Ajax.request({
-//			url:Ext.ContextPath+'/ordSzrt/create.do',
-//			params:{
-//				ormtno:record.get("ORMTNO"),
-//				ordorg:record.get("ORDORG"),
-//				sizegp:record.get("SIZEGP"),
-//				sizeno:field ,
-//				bradno:record.get("BRADNO"),
-//				spclno:record.get("SPCLNO"),
-//				versno:record.get("VERSNO"),
-//				spseno:record.get("SPSENO"),
-//				sizety:'STDSZ',
-//				szrate:value
-//			},
-//			success:function(){
-//				//me.getStore().reload();
-//				record.commit();
-//			}
-//						
-//		});
+      });
+	  this.cellEditing.on("edit",function(editor, context){
+	  	if(window.stat==0){
+		  		return false;
+		  	}
+	  var record=context.record;
+		  	var grid=context.grid;
+		  	var field =context.field ;
+		  	var value=context.value;	
+		  	var originalValue=context.originalValue;
+		  	
+			var PACKQT=record.get("PACKQT");
+	
+		  	//商品部录入统配总量，要求统配总量为包装要求的整数倍
+		  	if(record.get("SUITNO")!='T02' && (value/PACKQT-parseInt(value/PACKQT))!=0){
+		  		Ext.Msg.alert("消息","统配数量必须是包装数量的整数倍!");
+		  		return false;
+		  	}
+		  	//判断新的值加进去后，会不会超过 总公司的统配数量
+		  	var ORMTQT_TOTAL=record.get("ORMTQT_TOTAL");
+		  	//alert(originalValue);
+		  	if(typeof(originalValue)=='undefined'){
+		  		originalValue=0;
+		  	}
+		  	ORMTQT_TOTAL=ORMTQT_TOTAL-originalValue+value;
+		 
+		  	if(ORMTQT_TOTAL>record.get("ORMTQT_TP_YXGS")){
+		  		Ext.Msg.alert("消息","合计超过了营销公司统配总数!");
+		  		record.set(field,originalValue);
+		  		record.commit();
+		  		return false;
+		  	}
+		  	//return;
+		  	//获取定制的column
+		  	//var column_dz=grid.getHeaderContainer().getHeaderAtIndex(context.colIdx-1);
+		  	//alert(column_dz.getInitialConfig ("dataIndex") );
+		  	var ordorg=field.split("_")[0];
+		  	//var column_dz_qy=;
+		  	var ormtqs=((typeof(record.get(ordorg+"_DZ_QY"))=='undefined')?0:record.get(ordorg+"_DZ_QY"))+((typeof(record.get(ordorg+"_DZ_TX"))=='undefined')?0:record.get(ordorg+"_DZ_TX"));
+		  	var ormtqt=((typeof(record.get(ordorg+"_TP_QY"))=='undefined')?0:record.get(ordorg+"_TP_QY"))+((typeof(record.get(ordorg+"_TP_TX"))=='undefined')?0:record.get(ordorg+"_TP_TX"));
+		  	var ormtqt1=(typeof(record.get(ordorg+"_TP_TX"))=='undefined')?0:record.get(ordorg+"_TP_TX");
+//		  	alert(ormtqs);
+//		  	alert(ormtqt);
+//		  	alert(ormtqt1);
+//		  	return;
+		  	Ext.Ajax.request({
+							url:Ext.ContextPath+'/tp/tpQy_updateOrmtqt_tp.do',
+							params:{
+								ordorg:ordorg,
+								ormtno:record.get("ORMTNO"),
+								sampno:record.get("SAMPNO"),
+								bradno:record.get("BRADNO"),
+								spclno:record.get("SPCLNO"),
+								suitno:record.get("SUITNO"),
+								ormtqs:ormtqs,
+								ormtqt:ormtqt,
+								ormtqt1:ormtqt1
+							},
+							success:function(){
+								
+								//修改合计的值
+								
+								record.set("ORMTQT_TOTAL",ORMTQT_TOTAL);
+								record.commit();
+							}
+							
+			});
 	  	
 	  });
        

@@ -8,6 +8,7 @@ Ext.onReady(function(){
 	var grid=Ext.create('y.pubsize.PrdsztyGrid',{
 		region:'center'
 	});
+	window.prdsztyGrid=grid;
 	
 	var prdsztyStdszGrid=Ext.create('y.pubsize.PrdsztyStdszGrid',{
 		title:'单规规格',	

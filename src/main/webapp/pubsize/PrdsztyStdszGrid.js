@@ -189,7 +189,7 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 //		});
 //		child.set("id",null);
 		
-		var stdszSelGrid=Ext.create('y.pubsize.StdszSelGrid',{
+		var stdszSelGrid=Ext.create('y.pubsize.SizegpStdszQueryGrid',{
 			sizety:'STDSZ',
 			fszno:me.getStore().getProxy().extraParams.fszno,
 			fszty:me.getStore().getProxy().extraParams.fszty,
@@ -212,6 +212,13 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 				}
 			}
 		});
+		
+		stdszSelGrid.getStore().getProxy().extraParams={
+			"szbrad":window.prdsztyGrid.getStore().getProxy().extraParams["params['szbrad']"],
+			"szclno":window.prdsztyGrid.getStore().getProxy().extraParams["params['szclno']"],
+			sizety:"STDSZ"
+		}
+		stdszSelGrid.getStore().reload();
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',

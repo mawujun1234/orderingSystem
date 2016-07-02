@@ -84,7 +84,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      
      
-    <!-- 获取某个规格池中的所有(单规，包赚高规格)-->
+    <!-- 获取某个规格池中的所有(单规，包装规格)-->
     <select id="querySizegp" resultType="com.youngor.pubsize.PubSizeDtlVO">
     	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 
     	where a.sizety=b.sizety and a.sizeno=b.sizeno
@@ -102,6 +102,32 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	where a.sizety=b.sizety and a.sizeno=b.sizeno
     	and a.fszty=#{fszty} and a.fszno=#{fszno} and b.sizety=#{sizety} 
     </select>
+    <!--
+    <select id="queryStdsz4Sel_Prdszty" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
+    	SELECT A.SIZETY,A.SIZENO,C.SIZENM FROM ORD_PUB_SIZEDTL A
+	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO
+	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
+	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
+	    AND A.SIZETY='STDSZ' 
+    	and not exists(
+    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
+    		and b.fszty=#{fszty} and b.fszno=#{fszno}
+    	)
+    	ORDER BY C.SIZESO
+    </select> -->
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能
+    <select id="queryStdsz4Sel_Prdszty_count" resultType="int" parameterType="map">
+    	SELECT count(A.SIZETY,A.SIZENO,C.SIZENM) FROM ORD_PUB_SIZEDTL A
+	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO
+	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
+	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
+	    AND A.SIZETY='STDSZ' 
+    	and not exists(
+    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
+    		and b.fszty=#{fszty} and b.fszno=#{fszno}
+    	)
+    	ORDER BY C.SIZESO
+    </select>-->
     
     <!--  获取这次订货会用到的规格范围 -->
     <select id="queryPRDSZTY4Ordmt" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
@@ -111,5 +137,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and exists (select 1 from ord_sample_design c,ord_sample_plan d,ord_sample_design_sizegp e where c.sampno=e.sampno and c.plspno=d.plspno  and a.sizeno=e.sizegp and d.ormtno=#{ormtno})
     	order by a.sizeso
     </select> 
+    
+    <select id="querySizegpPrdszty" resultType="com.youngor.pubsize.PubSizeDtlVO">
+    	 SELECT A.SIZETY,A.SIZENO,C.SIZENM FROM ORD_PUB_SIZEDTL A
+	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO
+	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
+	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
+	    AND A.SIZETY=#{sizety}
+	    ORDER BY C.SIZESO
+    </select>
 </mapper>
 

@@ -134,6 +134,8 @@ public class PubSizeController {
 		return pubSizeService.querySizegp("SIZEGP",szbrad+szclno, "STDSZ");
 		
 	}
+	
+	
 	/**
 	 * 创建单规的规格池
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -235,6 +237,19 @@ public class PubSizeController {
 	@ResponseBody
 	public List<PubSizeDtlVO> queryPrdsztyPrdpk(String fszno,String fszty){
 		return pubSizeService.queryPrdszty("PRDSZTY",fszno, "PRDPK");
+		
+	}
+	/**
+	 * 规格范围选取 -- 规格池里的--单规和规格范围的时候,用的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param szbrad
+	 * @param szclno
+	 * @return
+	 */
+	@RequestMapping("/pubSize/querySizegpPrdszty.do")
+	@ResponseBody
+	public List<PubSizeDtlVO> querySizegpPrdszty(String szbrad,String szclno,String sizety){
+		return pubSizeService.querySizegpPrdszty(szbrad,szclno, sizety);
 		
 	}
 	/**

@@ -40,9 +40,9 @@ public class Orddtl extends BaseObject{
 	@FieldDefine(title="原始数量",sort=50,hidden=false)
 	private Integer ormtqs;
 	@FieldDefine(title="确认数量",sort=50,hidden=false)
-	private Integer ormtqt;
+	private Integer ormtqt;//在统配时，如果是区域 这里的值=区域统配+特许统配，总部和营销公司的统配数量，就是统配数量
 	@FieldDefine(title="数量1",sort=50,hidden=false)
-	private Integer ormtqt1;
+	private Integer ormtqt1;//存放的是 特许统配 数量，只有在统配的时候会有值
 	
 	@Column(length=100)
 	@FieldDefine(title="备注",sort=50,hidden=false)

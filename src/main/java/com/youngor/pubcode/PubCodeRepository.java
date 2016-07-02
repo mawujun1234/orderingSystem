@@ -15,6 +15,7 @@ import com.mawujun.repository.IRepository;
 public interface PubCodeRepository extends IRepository<PubCode, String>{
 
 	public List<PubCode> query(@Param("tyno")String tyno,@Param("fitno")String fitno,@Param("bradno")String bradno,@Param("stat")String stat);
+	public List<PubCode> query1(@Param("tyno")String tyno,@Param("fitno")String fitno,@Param("bradno")String bradno,@Param("stat")String stat);
 	
 	public List<PubCode> queryVersno4Ordmt(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 

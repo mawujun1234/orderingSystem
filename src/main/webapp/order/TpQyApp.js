@@ -14,7 +14,8 @@ Ext.onReady(function(){
 	            afterLabelTextTpl: Ext.required,
 				listeners:{
 					select:function( combo, record, eOpts ) {	
-//						
+						window.query_stat_ready++;
+						panel.query_stat();
 					}
 				}
 			},{
@@ -87,6 +88,9 @@ Ext.onReady(function(){
 						//var regioncombo=combo.nextSibling("#regioncombo");
 		        		//regioncombo.reload(record.get("orgno"));
 						queryColumns(record.get("orgno"));
+						
+						window.query_stat_ready++;
+						panel.query_stat();
 					}
 				}
 			},{
@@ -112,8 +116,10 @@ Ext.onReady(function(){
 	  		dock:'top',
 		  	items:[{
 		  		text: '订单完成',
+		  		itemId:'over_btn',
+		  		disabled:true,
 				handler: function(btn){
-					me.meger_all();
+					panel.over();
 				},
 				iconCls: ' icon-coffee'
 		  	},{
@@ -125,7 +131,7 @@ Ext.onReady(function(){
 		  	}]
 	});
 	   
-	var spb_orgno='10206030000';//商品部的id
+	
 	panel.getParams=function(){
 		var toolbars=panel.getDockedItems('toolbar[dock="top"]');
 		var params={
@@ -134,7 +140,7 @@ Ext.onReady(function(){
 			"params['spclno']":toolbars[0].down("#spclno").getValue(),
 			"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[0].down("#spseno").getValue(),
-			"params['mtorno']":toolbars[0].down("#ordmtcombo").getValue()+"_TP_"+spb_orgno,
+			"params['yxgsno']":toolbars[1].down("#compcombo").getValue(),
 			"params['sampnm']":toolbars[1].down("#sampnm").getValue()
 			//"params['orstat']":toolbars[1].down("#orstat").getValue()
 		};
@@ -153,14 +159,70 @@ Ext.onReady(function(){
 				var obj=Ext.decode(response.responseText);
 				//panel.removeAll(true);
 				viewPort.remove(grid,true);
-				grid=createTpYxgsGrid(obj);
+				grid=createTpQyGrid(obj);
 				viewPort.add(grid);
 			}
 		});
 	 }
 	 
-	 
-	 function createTpYxgsGrid(initColumns){
+	 window.query_stat_ready=0;
+	 panel.query_stat=function(){
+	 	
+	 	if(window.query_stat_ready<2){
+	 		return;
+	 	}
+	 	var toolbars=panel.getDockedItems('toolbar[dock="top"]');
+	 	Ext.Ajax.request({
+							url:Ext.ContextPath+'/tp/tpQy_getStat.do',
+							params:{
+								yxgsno:toolbars[1].down("#compcombo").getValue(),
+								ormtno:toolbars[0].down("#ordmtcombo").getValue()
+							},
+							success:function(response){
+								var obj=Ext.decode(response.responseText);
+								window.stat=obj.stat;
+								
+								if(obj.stat==0){
+									var toolbars=panel.getDockedItems('toolbar[dock="top"]');
+									var over_btn=toolbars[2].down("#over_btn");
+									over_btn.disable();
+								} else {
+									var toolbars=panel.getDockedItems('toolbar[dock="top"]');
+									var over_btn=toolbars[2].down("#over_btn");
+									over_btn.enable();
+								}
+								//grid.getStore().reload();
+							}
+						});
+	 	
+	 }
+	 panel.over=function(){
+	 	Ext.Msg.confirm("消息","确定要完成吗?",function(btn){
+	 		if(btn=='yes'){
+		var toolbars=panel.getDockedItems('toolbar[dock="top"]');
+		Ext.Ajax.request({
+			url:Ext.ContextPath+'/tp/tpQy_over.do',
+			params:{
+				yxgsno:toolbars[1].down("#compcombo").getValue(),
+				ormtno:toolbars[0].down("#ordmtcombo").getValue()
+			},
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+					Ext.Msg.alert("消息",obj.msg);
+					return;
+				}
+				var over_btn=toolbars[2].down("#over_btn");
+				over_btn.disable();
+				window.stat=0;
+				grid.getStore().reload();
+			}
+		});
+	 		}
+		});
+	}
+	
+	 function createTpQyGrid(initColumns){
 	 	var params=panel.getParams();
 		var　grid=Ext.create('y.order.TpQyGrid',{
 			region:'center',

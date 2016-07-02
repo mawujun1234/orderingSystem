@@ -50,6 +50,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	</if>
     	order by a.itso
     </select> 
+    <!--  获取品牌属性-->
+    <select id="query1" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select distinct a.* from ord_pub_code a
+    	where 
+    	a.tyno='1'
+    	order by a.itso
+    </select> 
     
     
     <!--  获取这次订货会用到的属版型   -->
