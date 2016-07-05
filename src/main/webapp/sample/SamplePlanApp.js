@@ -37,6 +37,8 @@ Ext.onReady(function(){
 		samplePlanForm.reset();
 		samplePlanForm.loadRecord(record);
 		
+		samplePlanForm.down("#plspnm").setReadOnly(true);
+		
 		tabpanel.unmask();
 		
 		

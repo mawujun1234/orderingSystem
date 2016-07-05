@@ -103,7 +103,7 @@ Ext.define('y.common.PubCode',{
 				beforeload:function(store){
 					//添加是否当季
 					store.getProxy().extraParams=Ext.apply(store.getProxy().extraParams,{
-						stat:window.stat_xtrydeeeeeeeee
+						stat:window.stat_xtrydeeeeeeeee?window.stat_xtrydeeeeeeeee:1
 					});
 				}
 			}

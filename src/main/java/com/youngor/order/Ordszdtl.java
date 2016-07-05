@@ -45,19 +45,29 @@ public class Ordszdtl  extends BaseObject{
 	@FieldDefine(title="审批订单号",sort=50,hidden=false)
 	private String mlorno;
 	
-	
-	@FieldDefine(title="数量",sort=50,hidden=false)
-	private Integer orszqt;
 	@FieldDefine(title="规格状态",sort=50,hidden=false)
 	private Integer orszst;//0：未确认；1：已确认
-	@FieldDefine(title="包装数量",sort=50,hidden=false)
-	private Integer orbgqt;
-	@FieldDefine(title="包装数量",sort=50,hidden=false)
+	
+	@FieldDefine(title="原始数量",sort=50,hidden=false)
 	private Integer oritqt;
+	@FieldDefine(title="数量",sort=50,hidden=false)
+	private Integer orszqt;
+	@FieldDefine(title="包装数量",sort=50,hidden=false)
+	private Integer orbgqt;//一开始都相同，只有在“整箱+单规”的上报方式的时候，并且在规格平衡之后这个数据就是自动成箱计算出来的数据,如果是其他上报方式的时候，这个数据永远都要等于数量
+	
 	@Column(length=100)
 	@FieldDefine(title="备注",sort=50,hidden=false)
 	private String ormark;
 	
+	public Ordszdtl.PK geetPK(){
+		Ordszdtl.PK pk=new Ordszdtl.PK();
+		pk.setMtorno(mtorno);
+		pk.setSampno(sampno);
+		pk.setSuitno(suitno);
+		pk.setSizety(sizety);
+		pk.setSizeno(sizeno);
+		return pk;
+	}
 	public static class PK implements Serializable {
 		private String mtorno;
 		private String sampno;

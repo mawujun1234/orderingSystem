@@ -22,6 +22,7 @@ Ext.define('y.sample.SamplePlanForm',{
 		{
 	        fieldLabel: '企划样衣编号',
 	        name: 'plspnm',
+	        itemId: 'plspnm',
             allowBlank: false,
             selectOnFocus:true,
             afterLabelTextTpl: Ext.required,

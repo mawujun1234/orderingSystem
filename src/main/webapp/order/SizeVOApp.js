@@ -19,7 +19,7 @@ Ext.onReady(function(){
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			ormtno:record.get("ormtno")
 		        		});
-		        		//ordorg.getStore().reload();
+		        		ordorg.getStore().reload();
 		        		
 		        		window.load_num++;
 						reloadSizegp();
@@ -52,8 +52,10 @@ Ext.onReady(function(){
 					select:function( combo, record, eOpts ) {
 		        		
 						var ordorg=combo.nextSibling("#ordorg");
+						var channo=combo.nextSibling("#channo");
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
-		        			qyno:record.get("orgno")
+		        			qyno:record.get("orgno"),
+		        			channo:channo.getValue()
 		        		});
 		        		ordorg.getStore().reload();
 					}
@@ -346,13 +348,39 @@ Ext.onReady(function(){
 			},{
 				text: '自动成箱',
 				handler: function(btn){
-
+					alert("存储过程还没写!");
+					return;
+					Ext.Ajax.request({
+						url:Ext.ContextPath+"/ord/sizeVO/autoPRDPK.do",
+						params:{
+							sizegp:sizegp.getValue(),
+							sztype:sztype
+						},
+						success:function(response){
+						 	//console.log(response.responseText);
+							var obj=Ext.decode(response.responseText);
+							grid.getStore().reload();
+						}
+					});
 				},
 				iconCls: 'icon-suitcase'
 			},{
 				text: '提交审批',
 				handler: function(btn){
-	
+					alert("存储过程还没写!");
+					return;
+					Ext.Ajax.request({
+						url:Ext.ContextPath+"/ord/sizeVO/approve.do",
+						params:{
+							sizegp:sizegp.getValue(),
+							sztype:sztype
+						},
+						success:function(response){
+						 	//console.log(response.responseText);
+							var obj=Ext.decode(response.responseText);
+							grid.getStore().reload();
+						}
+					});
 				},
 				iconCls: 'icon-edit'
 			}]

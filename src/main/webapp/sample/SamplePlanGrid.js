@@ -281,6 +281,8 @@ Ext.define('y.sample.SamplePlanGrid',{
 		tabpanel.unmask();
 		var formpanel=tabpanel.child("form#samplePlanForm") ;
 		formpanel.loadRecord(child);
+		
+		formpanel.down("#plspnm").setReadOnly(false);
 	     
 		
     },

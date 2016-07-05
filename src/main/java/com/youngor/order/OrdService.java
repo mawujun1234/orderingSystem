@@ -1,4 +1,5 @@
 package com.youngor.order;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,11 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
@@ -159,7 +160,7 @@ public class OrdService extends AbstractService<Ord, String>{
 //			ordOrg=ordOrgService.get(new OrdOrg.PK(ord.getOrmtno(),org.getOrgno()));
 //		}
 		
-		//如果是包装箱上报，就显示包装箱
+		//如果是包装箱上报，就显示包装箱+单规
 		if(ordOrg.getSztype()==2){
 			if(sampleVO.getSptyno().equals("S10")){
 				//获取各个套件的价格
@@ -1029,8 +1030,10 @@ public class OrdService extends AbstractService<Ord, String>{
 			for(Map<String,Object> map:columns){
 				if("STDSZ".equals(map.get("SIZETY"))){//如果是单规，就生成单规的规格组
 					Map<String,Object> map_new = new HashMap<String,Object>();
-					map_new.put("SIZETY", "STDSZPRDPK");//变成包装箱组的单规
-					map_new.put("SIZENO", "STDSZPRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
+					//map_new.put("SIZETY", "STDSZPRDPK");//变成包装箱组的单规
+					//map_new.put("SIZENO", "STDSZPRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
+					map_new.put("SIZETY", "STDSZ");//变成包装箱组的单规
+					map_new.put("SIZENO", "STDSZ___"+map.get("SIZENO"));//通过三条下划线来分隔
 					map_new.put("SIZENM", map.get("SIZENM"));
 					columns_new.add(map_new);
 				}
@@ -1048,6 +1051,33 @@ public class OrdService extends AbstractService<Ord, String>{
 			return null;
 		}
 	}
+	
+	public void sizeVO_updateOrdszdtl(OrdszdtlVO ordszdtlVO) {
+		if(ordszdtlVO.getValue()==null){
+			return;
+		}
+		Ordszdtl ordszdtl=ordszdtlRepository.get(ordszdtlVO.geetPK());
+		if(ordszdtl==null){
+			ordszdtl=new Ordszdtl();
+			BeanUtils.copyProperties(ordszdtlVO, ordszdtl);
+		}
+		//获取包装上报方式：
+		if(ordszdtlVO.getSztype()==0){//如果是整箱+单规的上报方式，并且输入的是是单规的话，就只修改orszqt，否则就修改orbgqt
+			//是不是单规箱的数据
+			if(ordszdtlVO.getIsSTDSZPRDPK()==true){
+				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+			} else {
+				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+			}
+		} else {
+			//否则orszqt和orbgqt的数量就是一致的
+			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+			ordszdtl.setOrszqt(ordszdtlVO.getValue());
+			
+		}
+		
+		ordszdtlRepository.createOrUpdate(ordszdtl);
+	}
 	/**
 	 * 规格平衡查询数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -1060,8 +1090,9 @@ public class OrdService extends AbstractService<Ord, String>{
 		List<Map<String,Object>> result= new ArrayList<Map<String,Object>>();
 		
 		//String temp_sampno="";
-		
+		//规格上报方式
 		Integer sztype=Integer.parseInt(params.get("sztype").toString());
+		//整箱+单规
 		if(sztype==0){//数组组装成规格，标准箱，剩余单规三种
 			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
 			for(Map<String,Object> listmap:list){
@@ -1080,19 +1111,82 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					
+					map.put("PACKQT", listmap.get("PACKQT"));
+					map.put("SUITNO", listmap.get("SUITNO"));
+					map.put("MTORNO", listmap.get("MTORNO"));
+					map.put("MLORNO", listmap.get("MLORNO"));
+					map.put("SZTYPE", sztype);
 					result.add(map);
 					key_map.put(listmap.get("SAMPNO").toString(), map);
+					
+					map.put("STDSZ___SUBTOTAL", new BigDecimal(0));
+					map.put("PRDPK___SUBTOTAL", new BigDecimal(0));
+					map.put("STDSZPRDPK___SUBTOTAL", new BigDecimal(0));
+					map.put("ORMTQT_NOW", new BigDecimal(0));//兑现数量
 				}
 				//接下来是行列转换
 				if("STDSZ".equals(listmap.get("SIZETY"))){//如果是单规
-					map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（确认数量）作为单规剩余数量
+					map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（包装数量）作为单规剩余数量，就是手机端订的数量
 					map.put("STDSZ___"+listmap.get("SIZENO"), listmap.get("ORSZQT"));//如果是单规，就取ORSZQT(数量)作为单规的值
+					
+					//添加小计,手机输入的那段单规规格数量
+					if(listmap.get("ORSZQT")!=null){
+						BigDecimal aaa=(BigDecimal)map.get("STDSZ___SUBTOTAL");
+						BigDecimal ORSZQT=(BigDecimal)listmap.get("ORSZQT");
+						if(ORSZQT==null){
+							ORSZQT=new BigDecimal(0);
+						}
+						aaa=aaa.add(ORSZQT);
+						map.put("STDSZ___SUBTOTAL",aaa);
+						//兑现数量
+						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORSZQT));
+					}
+					
+					//添加小计，单规箱的单规
+					if(listmap.get("ORBGQT")!=null){
+						BigDecimal aaa=(BigDecimal)map.get("STDSZPRDPK___SUBTOTAL");
+						BigDecimal ORBGQT=(BigDecimal)listmap.get("ORBGQT");
+						if(ORBGQT==null){
+							ORBGQT=new BigDecimal(0);
+						}
+						aaa=aaa.add(ORBGQT);
+						map.put("STDSZPRDPK___SUBTOTAL",aaa);
+						
+						//兑现数量
+						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT));
+
+					}
+					
+					
+					
 				} else if("PRDPK".equals(listmap.get("SIZETY"))){
-					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
-				}
+					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（包装数量）作为 标准箱的数量
+					
+					//添加 标准箱小计
+					if(listmap.get("ORBGQT")!=null){
+						BigDecimal aaa=(BigDecimal)map.get("PRDPK___SUBTOTAL");
+						BigDecimal ORBGQT=(BigDecimal)listmap.get("ORBGQT");
+						if(ORBGQT==null){
+							ORBGQT=new BigDecimal(0);
+						}
+
+						aaa=aaa.add(ORBGQT);
+						map.put("PRDPK___SUBTOTAL",aaa);
+						
+						//兑现数量
+						BigDecimal packqt=(BigDecimal)listmap.get("PACKQT");
+						if(packqt==null){
+							packqt=new BigDecimal(1);
+						}
+						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT.multiply(packqt)));
+					}
+				} 
 			}
 		} else if(sztype==1){//单规上报
 			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
+			
+			//BigDecimal STDSZ___SUBTOTAL=new BigDecimal(0);
 			for(Map<String,Object> listmap:list){
 				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
 				if(map==null) {
@@ -1109,13 +1203,33 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					
+					map.put("PACKQT", listmap.get("PACKQT"));
+					map.put("SUITNO", listmap.get("SUITNO"));
+					map.put("MTORNO", listmap.get("MTORNO"));
+					map.put("MLORNO", listmap.get("MLORNO"));
+					map.put("SZTYPE", sztype);
+					
+
 					result.add(map);
 					key_map.put(listmap.get("SAMPNO").toString(), map);
+					
+					map.put("STDSZ___SUBTOTAL", new BigDecimal(0));
+					map.put("ORMTQT_NOW", new BigDecimal(0));//兑现数量
 				}
 				//接下来是行列转换
 				map.put(map.get("SIZETY")+"___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+				//添加小计
+				if(listmap.get("ORBGQT")!=null){
+					BigDecimal STDSZ___SUBTOTAL=(BigDecimal)map.get("STDSZ___SUBTOTAL");
+					STDSZ___SUBTOTAL=STDSZ___SUBTOTAL.add((BigDecimal)listmap.get("ORBGQT"));
+					map.put("STDSZ___SUBTOTAL",STDSZ___SUBTOTAL);
+					
+					//兑现数量
+					map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add((BigDecimal)listmap.get("ORBGQT")));
+				}
 			}
-		} else if(sztype==2){
+		} else if(sztype==2){//整箱上报
 			Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
 			for(Map<String,Object> listmap:list){
 				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
@@ -1133,15 +1247,61 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					
+					map.put("PACKQT", listmap.get("PACKQT"));
+					map.put("SUITNO", listmap.get("SUITNO"));
+					map.put("MTORNO", listmap.get("MTORNO"));
+					map.put("MLORNO", listmap.get("MLORNO"));
+					map.put("SZTYPE", sztype);
 					result.add(map);
-					key_map.put(listmap.get("SAMPNO").toString(), map);
+					key_map.put(listmap.get("SAMPNO").toString(), map);	
+					
+					map.put("STDSZ___SUBTOTAL", new BigDecimal(0));
+					map.put("PRDPK___SUBTOTAL", new BigDecimal(0));
+					map.put("ORMTQT_NOW", new BigDecimal(0));//兑现数量
 				}
 				//接下来是行列转换
 				if("STDSZ".equals(listmap.get("SIZETY"))){//如果是单规
-					map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（确认数量）作为单规剩余数量
+					//map.put("STDSZPRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+					map.put("STDSZ___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+					//添加小计
+					if(listmap.get("ORBGQT")!=null){
+						BigDecimal aaa=(BigDecimal)map.get("STDSZ___SUBTOTAL");
+						aaa=aaa.add((BigDecimal)listmap.get("ORBGQT"));
+						map.put("STDSZ___SUBTOTAL",aaa);
+						
+						//兑现数量
+						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add((BigDecimal)listmap.get("ORBGQT")));
+					}
+					
 				} else if("PRDPK".equals(listmap.get("SIZETY"))){
 					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+					//添加小计
+					if(listmap.get("ORBGQT")!=null){
+						BigDecimal aaa=(BigDecimal)map.get("PRDPK___SUBTOTAL");
+						BigDecimal ORBGQT=(BigDecimal)listmap.get("ORBGQT");
+						if(ORBGQT==null){
+							ORBGQT=new BigDecimal(0);
+						}
+						aaa=aaa.add(ORBGQT);
+						map.put("PRDPK___SUBTOTAL",aaa);
+						
+						//兑现数量
+						BigDecimal packqt=(BigDecimal)listmap.get("PACKQT");
+						if(packqt==null){
+							packqt=new BigDecimal(1);
+						}
+						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT.multiply(packqt)));
+						
+//						aaa=aaa.add((BigDecimal)listmap.get("ORBGQT"));
+//						BigDecimal packqt=(BigDecimal)listmap.get("PACKQT");
+//						if(packqt==null){
+//							packqt=new BigDecimal(1);
+//						}
+//						map.put("PRDPK___SUBTOTAL",aaa.multiply(packqt));
+					}
 				}
+				
 			}
 		}
 		

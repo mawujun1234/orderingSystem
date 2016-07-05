@@ -536,7 +536,7 @@ Ext.define('y.sample.SampleDesignGrid',{
     		
 			tabpanel.setTitle("新增样衣:"+record.get("plspnm"));
 			tabpanel.setActiveTab( 1 );
-			//tabpanel.unmask();
+			tabpanel.unmask();
 			var samplePlanFormQuery=tabpanel.child("form#samplePlanFormQuery") ;
 			samplePlanFormQuery.loadRecord(record);
 			

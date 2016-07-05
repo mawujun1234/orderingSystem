@@ -400,15 +400,44 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/sizeVO/querySizeVOColumns.do")
 	@ResponseBody
-	public List<Map<String,Object>> querySizeVOColumns(String sizegp,Integer sztype){
+	public List<Map<String,Object>> sizeVO_querySizeVOColumns(String sizegp,Integer sztype){
 		
 		return ordService.sizeVO_querySizeVOColumns( sizegp, sztype);
 	}
 	
 	@RequestMapping("/ord/sizeVO/querySizeVOData.do")
 	@ResponseBody
-	public List<Map<String,Object>> querySizeVOData(@RequestBody Map<String,Object> params){
+	public List<Map<String,Object>> sizeVO_querySizeVOData(@RequestBody Map<String,Object> params){
 		return ordService.sizeVO_querySizeVOData(params);
+	}
+	
+	@RequestMapping("/ord/sizeVO/updateOrdszdtl.do")
+	@ResponseBody
+	public String sizeVO_updateOrdszdtl(OrdszdtlVO ordszdtlVO){
+		ordService.sizeVO_updateOrdszdtl(ordszdtlVO);
+		return "{success:true}";
+	}
+	/**
+	 * 自动成箱
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/sizeVO/autoPRDPK.do")
+	@ResponseBody
+	public String sizeVO_autoPRDPK(){
+		//ordService.updateOrdszdtl(ordszdtlVO);
+		return "{success:true}";
+	}
+	/**
+	 * 提交审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/ord/sizeVO/approve.do")
+	@ResponseBody
+	public String sizeVO_approve(){
+		//ordService.updateOrdszdtl(ordszdtlVO);
+		return "{success:true}";
 	}
 	
 	//=====================================================================

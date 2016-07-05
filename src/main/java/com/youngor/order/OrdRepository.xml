@@ -706,8 +706,38 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		order by a.sizety desc,a.sizeno
 		
      </select>
-     
-      <select id="sizeVO_querySizeVOData" resultType="map" parameterType="string">
+	<select id="sizeVO_querySizeVOData" resultType="map" parameterType="map">
+     	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,b.packqt,d.ORMTQT
+     		,d.mtorno ,d.mlorno
+            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,z.PRODNM
+        from  
+        ORD_SAMPLE_PLAN a 
+        inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno
+        inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
+        inner join  ORD_ORDDTL d on c.sampno=d.sampno and c.suitno=d.suitno 
+        inner join  ORD_ORDHD e on d.mtorno=e.mtorno
+        left join ORD_ORDSZDTL f on d.sampno=f.sampno and d.mtorno=f.mtorno and d.suitno=f.suitno 
+        left join ord_sample_prod z on b.sampno=z.sampno and a.ormtno=z.ormtno
+        where c.suitno=#{suitno} and a.ormtno=#{ormtno}  AND A.BRADNO=#{bradno} and a.spclno=#{spclno} and c.sizegp=#{sizegp}
+			       and d.mtorno=#{mtorno}
+		<if test="sptyno!=null and sptyno!=''">
+			       		and a.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			       		and a.spseno=#{spseno}
+		</if>
+		<if test="versno!=null and versno!=''">
+			       		and b.versno=#{versno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			       		and b.sampnm like '%${sampnm}%'
+		</if>
+		<if test="szstat!=null and szstat!=''">
+			       		and e.szstat =#{szstat}
+		</if>
+	</select>
+     <!--
+      <select id="sizeVO_querySizeVOData" resultType="map" parameterType="map">
       		select x.*,y.SIZETY,y.SIZENO,y.ORSZQT,y.ORBGQT,z.PRODNM from (
 			     select a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,d.ORMTQT
 				from  ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b,ORD_SAMPLE_DESIGN_SIZEGP c,ORD_ORDDTL d
@@ -733,7 +763,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				       and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN 
 				 and b.suitno=#{suitno}  and a.mtorno=#{mtorno}
 				 AND a.BRADNO=#{bradno} and a.SPCLNO=#{spclno}
-				 and a.mtorno=#{mtorno} and a.SDTYNO='20'
+				 and a.mtorno=#{mtorno} and a.SDTYNO='40'
 				 <if test="szstat!=null and szstat!=''">
 			       		and a.szstat =#{szstat}
 			     </if>
@@ -741,7 +771,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			 left join ord_sample_prod z on x.sampno=z.sampno and x.ormtno=z.ormtno
 			 ORDER by x.sampno
       </select>
-      
+      -->
       
       
       

@@ -24,9 +24,20 @@ Ext.define('y.order.SizeVOGrid',{
         },
          {dataIndex:'PRODNM',header:'产品货号'
         },
-         {dataIndex:'ORMTQT',header:'平衡数量',width:75
+        {dataIndex:'ORMTQT',header:'平衡数量',width:75
          	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	            	 return value;
+            }
+        },
+        {dataIndex:'ORMTQT_NOW',header:'兑现数量',width:75
+         	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	 //metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	            	 if(record.get("ORMTQT_NOW")!=record.get("ORMTQT")){
+	        			metaData.tdStyle = 'color:red;background-color:#FFFF66;' ;
+	        		} else {
+	        			metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	        		}
 	            	 return value;
             }
         }
@@ -42,7 +53,12 @@ Ext.define('y.order.SizeVOGrid',{
 		{name:'VERSNO_NAME',type:'string'},
 		{name:'PLSPNM',type:'string'},
 		{name:'SAMPNM',type:'string'},
-		{name:'ORMTQT',type:'string'}
+		{name:'SUITNO',type:'string'},
+		{name:'ORMTQT',type:'string'},
+		{name:'MTORNO',type:'string'},
+		{name:'MLORNO',type:'string'},
+		{name:'MLORVN',type:'string'}
+		
 	  ];
       
 	  var STDSZ_columns=[];//单规
@@ -109,24 +125,13 @@ Ext.define('y.order.SizeVOGrid',{
 
       	 fields.push({name:initColumn["SIZENO"],type:'int'});
       }
-      if(STDSZ_columns.length!=0){
-      		STDSZ_columns.unshift({
-      		 	header:"小计",
-      		 	dataIndex:"STDSZ_SUBTOTL"
-      		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
-	            	 return value;
-            	}
-      		 });
-      		me.columns.push({
-      			header:'规格合计',
-      			columns:STDSZ_columns
-      		});
-      	}
-      	if(PRDPK_columns.length!=0){
+      
+      
+      
+      if(PRDPK_columns.length!=0){
       		PRDPK_columns.unshift({
       		 	header:"小计",
-      		 	dataIndex:"PRDPK_SUBTOTL"
+      		 	dataIndex:"PRDPK___SUBTOTAL"
       		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 	            	 return value;
@@ -137,10 +142,25 @@ Ext.define('y.order.SizeVOGrid',{
       			columns:PRDPK_columns
       		});
       	}
+      if(STDSZ_columns.length!=0){
+      		STDSZ_columns.unshift({
+      		 	header:"小计",
+      		 	dataIndex:"STDSZ___SUBTOTAL"
+      		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	            	 return value;
+            	}
+      		 });
+      		me.columns.push({
+      			header:'规格合计',
+      			columns:STDSZ_columns
+      		});
+      	}
+      	
       	if(STDSZPRDPK_columns.length!=0){
       		STDSZPRDPK_columns.unshift({
       		 	header:"小计",
-      		 	dataIndex:"STDSZPRDPK_SUBTOTL"
+      		 	dataIndex:"STDSZPRDPK___SUBTOTAL"
       		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 	            	 return value;
@@ -190,28 +210,78 @@ Ext.define('y.order.SizeVOGrid',{
 	  	var grid=context.grid;
 	  	var field =context.field ;
 	  	var value=context.value;
+	  	var originalValue =context.originalValue 
+	  	if(typeof(originalValue)=='undefined'){
+			originalValue=0;
+		}
 	  	
-
-//	  	Ext.Ajax.request({
-//			url:Ext.ContextPath+'/ordSzrt/create.do',
-//			params:{
-//				ormtno:record.get("ORMTNO"),
-//				ordorg:record.get("ORDORG"),
-//				sizegp:record.get("SIZEGP"),
-//				sizeno:field ,
-//				bradno:record.get("BRADNO"),
-//				spclno:record.get("SPCLNO"),
-//				versno:record.get("VERSNO"),
-//				spseno:record.get("SPSENO"),
-//				sizety:'STDSZ',
-//				szrate:value
-//			},
-//			success:function(){
-//				//me.getStore().reload();
-//				record.commit();
-//			}
-//						
-//		});
+		//var params=grid.getStore().getProxy().extraParams;
+		//params.sizeno=field;
+		//params.value=value;
+	  	var aaa=field.split("___");
+	  	
+	  	Ext.Ajax.request({
+			url:Ext.ContextPath+'/ord/sizeVO/updateOrdszdtl.do',
+			params:{
+				mtorno:record.get("MTORNO"),
+				sampno:record.get("SAMPNO"),
+				suitno:record.get("SUITNO"),
+				// ,
+				//sizety:record.get("SIZETY"),
+				//sizeno:record.get("SIZENO"),
+				mlorno:record.get("MLORNO"),
+				sztype:record.get("SZTYPE"),
+				orszst:0,
+				sizety:aaa[0]=='STDSZPRDPK'?"STDSZ":aaa[0],
+				sizeno:aaa[1],
+				isSTDSZPRDPK:aaa[0]=='STDSZPRDPK'?true:false,
+				value:value
+				//orbgqt:
+				//orszqt:
+	
+			},
+			success:function(){
+				//me.getStore().reload();
+				
+				
+				//更新小计
+				//ORMTQT_NOW兑现数量
+				var ORMTQT_NOW=record.get("ORMTQT_NOW");
+				if(typeof(ORMTQT_NOW)=='undefined'){
+					ORMTQT_NOW=0;
+				}
+				if(aaa[0]=="STDSZ" || aaa[0]=="STDSZPRDPK"){
+					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+					if(typeof(subtotal)=='undefined'){
+						subtotal=0;
+					}
+	
+					subtotal=subtotal-originalValue+value;
+					record.set(aaa[0]+"___SUBTOTAL",subtotal);
+					
+					ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+					record.set("ORMTQT_NOW",ORMTQT_NOW);
+				} else if(aaa[0]=="PRDPK"){
+					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+					if(typeof(subtotal)=='undefined'){
+						subtotal=0;
+					}
+					
+					subtotal=subtotal-(originalValue)+(value);
+					record.set(aaa[0]+"___SUBTOTAL",subtotal);
+					
+					var packqt=record.get("PACKQT");
+					if(typeof(packqt)=='undefined'){
+						subtotal=1;
+					}
+					ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
+					record.set("ORMTQT_NOW",ORMTQT_NOW);
+					record.commit();
+				}
+				
+			}
+						
+		});
 	  	
 	  });
        
