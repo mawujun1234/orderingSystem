@@ -127,5 +127,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="count_sampleDesign_photo_num" resultType="int" parameterType="map">
      	select count(id) from ord_sample_photo where sampno=#{sampno}
      </select>
+     
+     <select id="getSampleDesignBySampnm" parameterType="map" resultType="com.youngor.sample.SampleDesign">
+     	 select b.* from ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b
+    	where a.plspno=b.plspno and b.sampnm=#{sampnm} and a.ormtno=#{ormtno}
+     </select>
 </mapper>
 

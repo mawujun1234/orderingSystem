@@ -71,7 +71,7 @@ Ext.define('y.main.MainController', {
 			hiddenTopBottom : function() {
 				// 如果要操纵控件，最好的办法是根据相对路径来找到该控件，用down或up最好，尽量少用getCmp()函数。
 				this.getView().down('maintop').hide();
-				this.getView().down('mainbottom').hide();
+				//this.getView().down('mainbottom').hide();
 				if (!this.showButton) { // 显示顶部和底部的一个控件，在顶部和底部隐藏了以后，显示在页面的最右上角
 					this.showButton = Ext.widget('component', {
 								glyph : 0xf013,
@@ -81,13 +81,14 @@ Ext.define('y.main.MainController', {
 								y : 0,
 								height : 8,
 								width : 26,
-								style : 'background-color:#cde6c7',
+								//style : 'background-color:#cde6c7',
+								style : 'background-color:blue;',
 								listeners : {
 									el : {
 										click : function(el) {
 											var c = Ext.getCmp(el.target.id); // 取得component的id值
 											c.view.down('maintop').show();
-											c.view.down('mainbottom').show();
+											//c.view.down('mainbottom').show();
 											c.hide();
 										}
 									}

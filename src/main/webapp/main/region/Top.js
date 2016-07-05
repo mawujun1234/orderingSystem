@@ -99,6 +99,15 @@ Ext.define('y.main.region.Top', {
 //					}, 
 					{
 
+						xtype : 'label',
+						style : 'color:grey;',
+						bind : {
+							text : '{user.userName}({user.loginName})'
+						}
+					}, 
+					
+					{
+
 						text : '修改密码',
 						glyph : 0xf044,
 						handler:function(){

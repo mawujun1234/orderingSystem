@@ -108,8 +108,20 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager);
 	
-	public void clearnum_orddtl(@Param("sampno")String sampno);
-	public void clearnum_ordszdtl(@Param("sampno")String sampno);
+	//public void clearnum_orddtl(@Param("sampno")String sampno);
+	//public void clearnum_ordszdtl(@Param("sampno")String sampno);
+	
+	public void order_dl__comp_canc(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__comp_comb(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_PSMPNO")String P_PSMPNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__comp_comc(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_COMP")String P_COMP,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_PSMPNO")String P_PSMPNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__comp_comd(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_DEAL")String P_DEAL,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__comp_pass(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	
+	public List<String> wxtz_check_stat(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager);
+	public void order_dl__comp_wx(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__comp_wxps(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	
 	
 	public Map<String,Object> zgs_check_canedit(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	public List<Map<String,Object>> zgs_queryOrderState(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);

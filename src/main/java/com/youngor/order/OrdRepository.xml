@@ -265,7 +265,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        from ORD_ORD a,ORD_ORDHD b,v_ord_org c
        where a.MTORNO=b.MTORNO and a.ordorg=c.qyno
        and a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
-       and (b.SDTYNO!='10' or b.ORSTAT!=2)
+       and (b.SDTYNO!='20' or b.ORSTAT!=2)
        and b.bradno=#{bradno} and b.spclno=#{spclno}
     </select>
     <!-- 订货审批的时候 -->
@@ -512,7 +512,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      
      <select id="queryZgsVO" resultType="map" parameterType="map">
-     	SELECT P.PALTPY,DECODE(M.SDTYNO,0,'总公司平衡','非总公司平衡')SDTYNO,DECODE(M.ORSTAT,1,'已提交','未提交审批')ORSTAT,
+     	SELECT P.PALTPY,DECODE(M.SDTYNO,0,'总公司平衡','非总公司平衡')SDTYNO,DECODE(M.ORSTAT,1,'编辑中','平衡完成')ORSTAT,
 		       M.SPTYNM,M.SPSENM,M.SAMPNO,M.SAMPNM,M.ORMTQS00,M.ORMTQS01,M.ORMTQS02,M.ORMTQS04,
 		       M.ORMTQT00,M.ORMTQT01,M.ORMTQT02,M.ORMTQT04,P1.SAMPNM PLSPNM
 		 FROM
@@ -524,7 +524,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04
 		 FROM ORD_ORD A
 		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
-		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
 		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
 		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
 		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
@@ -562,14 +562,130 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		WHERE A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' 
 			AND B.BRADNO=#{bradno} AND B.SPCLNO=#{spclno}
      </select>
-     <!--对订单明细表的确认数量清0-->
+     <!--对订单明细表的确认数量清0，不需要加上定会后编号了，因为sampno就是全局唯一的，里面就包含了订货会编号
      <update id="clearnum_orddtl" parameterType="string">
      	update ORD_ORDDTL set ORMTQS=ORMTQT,ORMTQT=0 where sampno=#{sampno}
-     </update>
-     <!--对订单规格明细表的确认数量清0-->
+     </update>-->
+     <!--对订单规格明细表的确认数量清0
      <update id="clearnum_ordszdtl" parameterType="string">
      	update ORD_ORDSZDTL set ORSZQT=0,ORBGQT=0,ORITQT=0 where sampno=#{sampno}
-     </update>
+     </update>-->
+     
+     <!--总公司平衡-取消 -->
+     <parameterMap type="map" id="order_dl__comp_canc_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SAMPNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_canc" parameterMap="order_dl__comp_canc_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_CANC(?,?,?)}  
+    </update>
+    <!--总公司平衡-合并 -->
+    <parameterMap type="map" id="order_dl__comp_comb_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SAMPNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_PSMPNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_comb" parameterMap="order_dl__comp_comb_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_COMB(?,?,?,?)}  
+    </update>
+    <!--总公司平衡-拆分-->
+    <parameterMap type="map" id="order_dl__comp_comc_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_COMP" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SAMPNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_PSMPNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_comc" parameterMap="order_dl__comp_comc_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_COMC(?,?,?,?,?)}  
+    </update>
+    <!--总公司平衡-恢复-->
+    <parameterMap type="map" id="order_dl__comp_comd_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_DEAL" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SAMPNO" jdbcType="VARCHAR" mode="IN"/>    
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_comd" parameterMap="order_dl__comp_comd_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_COMD(?,?,?,?)}  
+    </update>
+     <!--总公司平衡-平衡完成-->
+    <parameterMap type="map" id="order_dl__comp_pass_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>    
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_pass" parameterMap="order_dl__comp_pass_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_PASS(?,?,?,?)}  
+    </update>
+    
+    <!--尾箱调整-尾箱调整-->
+    <parameterMap type="map" id="order_dl__comp_wx_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>    
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_wx" parameterMap="order_dl__comp_wx_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_WX(?,?,?,?)}  
+    </update>
+     <!--尾箱调整-调整完成-->
+    <parameterMap type="map" id="order_dl__comp_wxps_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>    
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_wxps" parameterMap="order_dl__comp_wxps_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_WXPS(?,?,?,?)}  
+    </update>
+    
+    <!-- 判断费否可以做尾箱调整了-->
+    <select id="wxtz_check_stat" resultType="string" parameterType="map">
+    	SELECT DEITNM FROM
+		(SELECT MAX(B.ORSTAT)ORSTAT FROM ORD_ORD A
+		INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO
+		WHERE A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' AND B.SDTYNO='40'
+		AND B.BRADNO=#{bradno} AND B.SPCLNO=#{spclno}) A
+		INNER JOIN ORD_PUB_DEFCODE ON DETYNO='ORDSTAT' AND ORSTAT=DEITNO
+
+    </select>
+    
+    <select id="wxtz_queryWx" resultType="map" parameterType="map">
+    	SELECT A.ORMTNO,E0.Itnm as SPCLNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,D.PACKQT,
+		   SUM(DECODE(C.SUITNO,'T00',C.ORMTQS,0))ORMTQS00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQS,0))ORMTQS01,
+		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQS,0))ORMTQS02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQS,0))ORMTQS04,
+		   SUM(DECODE(C.SUITNO,'T00',C.ORMTQT,0))ORMTQT00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQT,0))ORMTQT01,
+		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04
+		 FROM ORD_ORD A
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO
+		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
+		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
+		WHERE
+		--订货批号,订单类型(固定参数  ‘DZ’)
+		A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' AND B.SDTYNO='40'
+		--品牌 ，大类,小类，系列,样衣编号 
+		AND E.BRADNO='Y' AND E.SPCLNO=#{spclno}
+		<if test="sptyno!=null and sptyno!=''">
+			 and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			 and e.spseno=#{spseno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			and d.sampnm=#{sampnm}
+		</if>
+		GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,D.PACKQT
+
+    </select>
+    
      <!--获取某个样衣编号按照营销公司的汇总数据-->
      <select id="query_meger_comp" resultType="map" parameterType="string">
      	select C.YXGSNO,c.YXGSNM,B.SAMPNO,SUM(B.ORMTQT) ORMTQT from
@@ -615,7 +731,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				 from ORD_ORDHD a,ORD_ORDDTL b,ORD_ORDSZDTL c
 				 where a.MTORNO=b.MTORNO and a.MTORNO=c.MTORNO and b.SAMPNO=c.SAMPNO and b.SUITNO=c.Suitno
 				       and a.MLORNO=b.MLORNO and a.MLORVN=b.MLORVN 
-				 and b.suitno=#{suitno}  -- and a.ormtno='201605'  and a.ORTYNO='DZ' and a.ordorg='QY0003'
+				 and b.suitno=#{suitno}  and a.mtorno=#{mtorno}
 				 AND a.BRADNO=#{bradno} and a.SPCLNO=#{spclno}
 				 and a.mtorno=#{mtorno} and a.SDTYNO='20'
 				 <if test="szstat!=null and szstat!=''">
@@ -636,6 +752,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=#{user_id})
        	 and a.ormtno=#{ormtno}          
        	 and b.bradno=#{bradno} and b.spclno=#{spclno} 
+       	 <if test="stat!=null and stat!=''">
+       	 	and (b.orstat=#{stat} or b.szstat=#{stat})
+       	 </if>
        	 <if test="yxgsno!=null and yxgsno!=''">
        	 	 and c.yxgsno=#{yxgsno} 
        	 </if>
@@ -661,6 +780,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        	 	and b.isfect=#{isfect}
        	 </if>
      </select>
+     
+     
+     
      
      <!--  不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准) 
      <select id="check_S10_Z0_0" resultType="map" parameterType="map">

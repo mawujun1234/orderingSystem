@@ -258,23 +258,24 @@ Ext.define('y.order.OrdMgrGrid',{
 	            hidden:false,
 				xtype:'combobox'
 			 }
-//			 ,{
-//				fieldLabel: '代办',
-//				labelWidth:65,
-//		        width:165,
-//				itemId: '',
-//				queryMode: 'local',
-//				editable:false,
-//				forceSelection:true,
-//			    displayField: 'name',
-//			    valueField: 'id',
-//			    store: {
-//				    fields: ['id', 'name'],
-//				     data:[{id:'all',name:'全部'},{id:'ready',name:'待审'}]
-//				},
-//	            hidden:false,
-//				xtype:'combobox'
-//			 }
+			 ,{
+				fieldLabel: '代办',
+				labelWidth:40,
+		        width:125,
+				itemId: 'readyHandling',
+				queryMode: 'local',
+				editable:false,
+				forceSelection:true,
+			    displayField: 'name',
+			    valueField: 'id',
+			    value:'ready',
+			    store: {
+				    fields: ['id', 'name'],
+				     data:[{id:'all',name:'全部'},{id:'ready',name:'待审'}]
+				},
+	            hidden:false,
+				xtype:'combobox'
+			 }
 			 ]
 	  });
 	  
@@ -345,10 +346,10 @@ Ext.define('y.order.OrdMgrGrid',{
 				editable:false,
 				forceSelection:true,
 			    displayField: 'name',
-			    valueField: 'id',
+			    valueField: 'value',
 			    store: {
-				    fields: ['id', 'name'],
-				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
+				    fields: ['value', 'name'],
+				     data:[{value:'',name:'所有'},{value:'0',name:'编辑中'},{value:'1',name:'大区审批中'},{value:'2',name:'总部审批中'},{value:'3',name:'审批通过'},{value:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -361,10 +362,10 @@ Ext.define('y.order.OrdMgrGrid',{
 				editable:false,
 				forceSelection:true,
 			    displayField: 'name',
-			    valueField: 'id',
+			    valueField: 'value',
 			    store: {
-				    fields: ['id', 'name'],
-				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
+				    fields: ['value', 'name'],
+				    data:[{value:'',name:'所有'},{value:'0',name:'编辑中'},{value:'1',name:'大区审批中'},{value:'2',name:'总部审批中'},{value:'3',name:'审批通过'},{value:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -377,10 +378,10 @@ Ext.define('y.order.OrdMgrGrid',{
 				editable:false,
 				forceSelection:true,
 			    displayField: 'name',
-			    valueField: 'id',
+			    valueField: 'value',
 			    store: {
-				    fields: ['id', 'name'],
-				    data:[{id:'0',name:'无效'},{id:'1',name:'有效'}]
+				    fields: ['value', 'name'],
+				    data:[{value:'',name:'所有'},{value:'0',name:'无效'},{value:'1',name:'有效'}]
 				},
 	            hidden:false,
 				xtype:'combobox'
@@ -516,6 +517,7 @@ Ext.define('y.order.OrdMgrGrid',{
 			"params['qyno']":toolbars[0].down("#qyno").getValue(),
 			"params['channo']":toolbars[0].down("#channo").getValue(),	
 			"params['ordorg']":toolbars[0].down("#ordorg").getValue(),
+			"params['readyHandling']":toolbars[0].down("#readyHandling").getValue(),
 			
 			"params['ortyno']":toolbars[1].down("#ortyno").getValue(),
 			"params['bradno']":toolbars[1].down("#bradno").getValue(),

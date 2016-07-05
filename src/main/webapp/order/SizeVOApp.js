@@ -326,10 +326,10 @@ Ext.onReady(function(){
 				editable:false,
 				forceSelection:true,
 			    displayField: 'name',
-			    valueField: 'id',
+			    valueField: 'value',
 			    store: {
-				    fields: ['id', 'name'],
-				     data:[{id:'0',name:'编辑中'},{id:'1',name:'大区审批中'},{id:'2',name:'总部审批中'},{id:'3',name:'审批通过'},{id:'4',name:'退回'}]
+				    fields: ['value', 'name'],
+				    data:[{value:'',name:'所有'},{value:'0',name:'编辑中'},{value:'1',name:'大区审批中'},{value:'2',name:'总部审批中'},{value:'3',name:'审批通过'},{value:'4',name:'退回'}]
 				},
 	            hidden:false,
 				xtype:'combobox'

@@ -21154,3 +21154,351 @@ public java.lang.String com.youngor.order.TpController.zgs_updateOrmtqt_tp(java.
 12:45:34.487 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 12:45:44.762 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='user_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
 12:45:44.762 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='user_id', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+08:43:07.347 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:43:24.422 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:45:06.060 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+08:45:11.461 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:47:13.622 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat=? or b.szstat=?)                                                       and a.channo=?                                                                             and b.isfect=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:47:13.623 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat=? or b.szstat=?)                                                       and a.channo=?                                                                             and b.isfect=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:48:26.612 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:48:26.631 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:48:29.860 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:48:29.860 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:52:26.258 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:52:26.258 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.dao.DataIntegrityViolationException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select * from ( select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                                                        and a.channo=?                                                        and b.orstat=? ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+; SQL []; ORA-01722: invalid number
+; nested exception is java.sql.SQLSyntaxErrorException: ORA-01722: invalid number
+
+08:58:23.194 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+08:58:29.886 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:12:48.416 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:13:36.403 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:13:55.415 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+09:14:04.194 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:15:04.929 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:15:43.331 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:16:03.070 [http-bio-8086-exec-15] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:16:41.265 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+09:16:46.107 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:26:54.811 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:26:54.812 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='channo', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+10:35:48.004 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: com.mawujun.exception.BusinessException: 下列区域平衡未完成:宁波区域,温州区域
+10:35:48.004 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域平衡未完成:宁波区域,温州区域
+10:35:53.219 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: com.mawujun.exception.BusinessException: 下列区域平衡未完成:宁波区域,温州区域
+10:35:53.220 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域平衡未完成:宁波区域,温州区域
+10:36:54.929 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:36:54.929 [http-bio-8086-exec-13] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:37:40.687 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:37:40.687 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:38:11.012 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:38:11.012 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:39:57.248 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:39:57.248 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:42:47.016 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+10:42:47.016 [http-bio-8086-exec-13] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:15:40.192 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:15:40.193 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:16:00.743 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:16:00.743 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:17:01.679 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:17:01.679 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：宁波区域,温州区域,深圳
+11:18:18.250 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+11:18:18.250 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:18:24.253 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:18:24.253 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:18:34.622 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [qqq]
+11:18:34.622 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [qqq]
+11:20:02.147 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [qqq]
+11:20:02.147 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [qqq]
+11:20:04.020 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [qqq]
+11:20:04.020 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [qqq]
+11:20:04.834 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: [qqq]
+11:20:04.835 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: [qqq]
+11:20:25.227 [http-bio-8086-exec-12] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:20:25.227 [http-bio-8086-exec-12] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:21:01.745 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: ['qqq']
+11:21:01.745 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: ['qqq']
+11:21:02.742 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm()]: com.mawujun.exception.BusinessException: ['qqq']
+11:21:02.742 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: ['qqq']
+11:21:34.048 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:21:34.048 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:21:51.271 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+11:21:51.271 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：深圳
+11:23:34.081 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.checked_closeing_info()]: com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:23:34.081 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订单状态不一致，某些大类未审批!
+11:24:52.007 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:24:52.007 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:24:56.048 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:24:56.048 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:25:18.904 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.confirm_yxgs()]: com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:25:18.904 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域平衡未完成:深圳
+11:25:31.796 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域,深圳
+11:25:31.796 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域,深圳
+11:26:54.416 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process1(com.youngor.utils.MapParams)]: com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域,深圳
+11:26:54.416 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列区域的订单状态不对，不能审批通过：温州区域,宁波区域,深圳
+11:28:41.257 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.process2(java.lang.String[])]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+11:28:41.257 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+### The error may involve com.youngor.order.OrdRepository.order_dl__process_params
+### The error occurred while setting parameters
+### SQL: {call order_dl__process_params(?,?,?)}
+### Cause: java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'ORDER_DL__PROCESS_PARAMS' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+15:02:57.871 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:54:18.810 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+07:46:25.798 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:04:09.293 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:08:45.520 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:09:52.235 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:15:47.703 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:17:46.033 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.check_stat(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:17:46.034 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:17:46.217 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:17:46.217 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:34:22.701 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.check_stat(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:34:22.702 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:34:22.767 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:34:22.768 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:35:04.063 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.check_stat(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:35:04.063 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:35:04.132 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:35:04.132 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: select * from (  ) where rownum <= 50
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00903: invalid table name
+
+08:36:28.678 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:36:57.786 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.OrdController.check_stat(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:36:57.786 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.binding.BindingException: Parameter 'ormtno' not found. Available parameters are [0, 1, 2, param3, param1, param2]
+08:36:57.876 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx
+### The error occurred while executing a query
+### SQL: 
+### Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17104]; 要执行的 SQL 语句不得为空白或空值; nested exception is java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+08:36:57.876 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx
+### The error occurred while executing a query
+### SQL: 
+### Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17104]; 要执行的 SQL 语句不得为空白或空值; nested exception is java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+08:39:55.721 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx
+### The error occurred while executing a query
+### SQL: 
+### Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17104]; 要执行的 SQL 语句不得为空白或空值; nested exception is java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+08:39:55.721 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.UncategorizedSQLException: 
+### Error querying database.  Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx
+### The error occurred while executing a query
+### SQL: 
+### Cause: java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+; uncategorized SQLException for SQL []; SQL state [99999]; error code [17104]; 要执行的 SQL 语句不得为空白或空值; nested exception is java.sql.SQLException: 要执行的 SQL 语句不得为空白或空值
+08:42:20.906 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@228a12c8
+08:42:20.995 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.pubsize.PubSizeController.createPrdsztyStdsz(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+08:42:20.995 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+08:42:23.102 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.PubSizeDtl@30b201
+08:59:39.095 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:01:24.332 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:18:48.076 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:21:17.856 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: SELECT A.ORMTNO,E0.Itnm as SPCLNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,D.PACKQT,      SUM(DECODE(C.SUITNO,'T00',C.ORMTQS,0))ORMTQS00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQS,0))ORMTQS01,      SUM(DECODE(C.SUITNO,'T02',C.ORMTQS,0))ORMTQS02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQS,0))ORMTQS04,      SUM(DECODE(C.SUITNO,'T00',C.ORMTQT,0))ORMTQT00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQT,0))ORMTQT01,      SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04    FROM ORD_ORD A   INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO    LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN   INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO   INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO   INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO   INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO   INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO   WHERE   --订货批号,订单类型(固定参数  ‘DZ’)   A.ORMTNO=? AND A.ORTYNO='DZ' --AND B.SDTYNO='40'   --品牌 ，大类,小类，系列,样衣编号    AND E.BRADNO='Y' AND E.SPCLNO=?               GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:21:17.857 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.wxtz_queryWx-Inline
+### The error occurred while setting parameters
+### SQL: SELECT A.ORMTNO,E0.Itnm as SPCLNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,D.PACKQT,      SUM(DECODE(C.SUITNO,'T00',C.ORMTQS,0))ORMTQS00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQS,0))ORMTQS01,      SUM(DECODE(C.SUITNO,'T02',C.ORMTQS,0))ORMTQS02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQS,0))ORMTQS04,      SUM(DECODE(C.SUITNO,'T00',C.ORMTQT,0))ORMTQT00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQT,0))ORMTQT01,      SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04    FROM ORD_ORD A   INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO    LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN   INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO   INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO   INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO   INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO   INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO   WHERE   --订货批号,订单类型(固定参数  ‘DZ’)   A.ORMTNO=? AND A.ORTYNO='DZ' --AND B.SDTYNO='40'   --品牌 ，大类,小类，系列,样衣编号    AND E.BRADNO='Y' AND E.SPCLNO=?               GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+

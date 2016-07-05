@@ -69,7 +69,7 @@ public class OrdController {
 	@ResponseBody
 	public String clearSampno(String sampno) {
 		//System.out.println(suitVOs.length);
-		ordService.clearSampno(sampno);
+		ordService.mobile_clearSampno(sampno);
 		return "success";
 	}
 	
@@ -273,7 +273,7 @@ public class OrdController {
 		} else {
 			BigDecimal SDTYNO=(BigDecimal)map.get("SDTYNO");
 			BigDecimal ORSTAT=(BigDecimal)map.get("ORSTAT");
-			if(SDTYNO.intValue()>0 && ORSTAT.intValue()>0){
+			if(SDTYNO.intValue()>0 && ORSTAT.intValue()==0){
 				map.put("canedit", true);
 			} else {
 				map.put("canedit", false);
@@ -288,7 +288,7 @@ public class OrdController {
 		return ordService.zgs_queryOrderState(ormtno, bradno, spclno);
 	}
 	/**
-	 * 清零
+	 * 清零,取消
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param sampnos
 	 * @return
@@ -297,19 +297,33 @@ public class OrdController {
 	@ResponseBody
 	public String clearNum(String[] sampnos,String ormtno){
 		ordService.clearNum(sampnos,ormtno);
-		return "success";
+		return "{success:true}";
 	}
+	/**
+	 * 合并
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param data
+	 * @param ormtno
+	 * @return
+	 */
 	@RequestMapping("/ord/zgsVO/meger_all.do")
 	@ResponseBody
-	public String meger_all(@RequestBody ArrayList<Map<String,Object>> data) {
-		ordService.meger_all(data);
-		return "success";
+	public String meger_all(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.meger_all(data,ormtno);
+		return "{success:true}";
 	}
+	/**
+	 * 拆分
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param data
+	 * @param ormtno
+	 * @return
+	 */
 	@RequestMapping("/ord/zgsVO/meger_comp.do")
 	@ResponseBody
-	public String meger_comp(@RequestBody ArrayList<Map<String,Object>> data) {
-		ordService.meger_comp(data);
-		return "success";
+	public String meger_comp(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.meger_comp(data,ormtno);
+		return "{success:true}";
 	}
 	@RequestMapping("/ord/zgsVO/query_meger_comp.do")
 	@ResponseBody
@@ -318,9 +332,61 @@ public class OrdController {
 	}
 	@RequestMapping("/ord/zgsVO/recover.do")
 	@ResponseBody
-	public String recover(String[] sampnos,String ormtno) {
-		ordService.recover(sampnos,ormtno);
-		return "success";
+	public String recover(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.recover(data,ormtno);
+		return "{success:true}";
+	}
+	@RequestMapping("/ord/zgsVO/balanceOver.do")
+	@ResponseBody
+	public String balanceOver(String ormtno,String bradno,String spclno) {
+		ordService.balanceOver(ormtno, bradno, spclno);
+		return "{success:true}";
+	}
+	
+	/**
+	 * 尾箱调整的时候判断，是否可以进行尾箱调整
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param bradno
+	 * @param spclno
+	 * @return
+	 */
+	@RequestMapping("/ord/wxtz/check_stat.do")
+	@ResponseBody
+	public String check_stat(String ormtno,String bradno,String spclno){
+		return "{success:true,stat:'"+ordService.wxtz_check_stat(ormtno, bradno, spclno)+"'}";
+	}
+	@RequestMapping("/ord/wxtz/queryWx.do")
+	@ResponseBody
+	public Pager<Map<String,Object>> queryWx(Pager<Map<String,Object>> pager){
+		return ordService.wxtz_queryWx(pager);
+	}
+	
+	/**
+	 * 尾箱调整完成
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param bradno
+	 * @param spclno
+	 */
+	@RequestMapping("/ord/wxtz/comp_wx.do")
+	@ResponseBody
+	public String comp_wx(String ormtno,String bradno,String spclno){
+		ordService.wxtz_comp_wx(ormtno, bradno, spclno);
+		return "{success:true}";
+	}
+	/**
+	 * 尾箱调整完成
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param bradno
+	 * @param spclno
+	 */
+	@RequestMapping("/ord/wxtz/comp_wxps.do")
+	@ResponseBody
+	public String comp_wxps(String ormtno,String bradno,String spclno){
+		ordService.wxtz_comp_wxps(ormtno, bradno, spclno);
+		return "{success:true}";
 	}
 
 	

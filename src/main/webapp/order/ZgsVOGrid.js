@@ -18,7 +18,7 @@ Ext.define('y.order.ZgsVOGrid',{
 	      {xtype: 'rownumberer'},
 	      {dataIndex:'PALTPY',header:'状态'},
 	      {dataIndex:'SDTYNO',header:'订单节点'},
-	      {dataIndex:'ORSTAT',header:'区域提交状态',renderer:function(value){
+	      {dataIndex:'ORSTAT',header:'区域提交状态',hidden:true,renderer:function(value){
 	      	if(value=="已提交"){
 	      		return value;
 	      	} else {
@@ -27,7 +27,7 @@ Ext.define('y.order.ZgsVOGrid',{
 	      }},
 	      {dataIndex:'SPTYNM',header:'小类'},
 	      {dataIndex:'SPSENM',header:'系列'},
-	      {dataIndex:'SAMPNM',header:'设计样衣编号'},
+	      {dataIndex:'SAMPNM',header:'订货样衣编号'},
 	      {
            header: '原始数量',columns:[
 		      {dataIndex:'ORMTQS00',header:'标准',width: 80,renderer:function(value){
@@ -115,16 +115,16 @@ Ext.define('y.order.ZgsVOGrid',{
 			}
 	  });
 	  
-	  me.on("cellclick",function(view, td, cellIndex, record, tr, rowIndex, e, eOpts){
-	  	if(cellIndex!=4){
-	  		return;
-	  	}
-	  	if(record.get("ORSTAT")=="已提交"){
-	      	return ;
-	    }
-	  	me.showZgsOrderState();
-	  	
-	  });
+//	  me.on("cellclick",function(view, td, cellIndex, record, tr, rowIndex, e, eOpts){
+//	  	if(cellIndex!=4){
+//	  		return;
+//	  	}
+//	  	if(record.get("ORSTAT")=="已提交"){
+//	      	return ;
+//	    }
+//	  	me.showZgsOrderState();
+//	  	
+//	  });
 	   me.on("rowdblclick",function(view, record, tr, rowIndex, e, eOpts){
 //	  	if(record.get("ORSTAT")=="已提交"){
 //	      	return ;
@@ -372,6 +372,11 @@ Ext.define('y.order.ZgsVOGrid',{
 						    },
 						    method:'POST',
 						    success:function(){
+						    	var obj=Ext.decode(response.responseText);
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
 						    	grid.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
 						    }
@@ -388,7 +393,7 @@ Ext.define('y.order.ZgsVOGrid',{
 		}
 		
 		var store=Ext.create('Ext.data.Store', {
-		    fields:[ 'SAMPNO', 'SAMPNM', 'PSMPNO'],
+		    fields:[ 'SAMPNO', 'SAMPNM', 'PSMPNM'],
 		    data: [
 		    ]
 		});
@@ -411,7 +416,7 @@ Ext.define('y.order.ZgsVOGrid',{
 			plugins : [cellEditing],
 			columns: [
 		        { text: '源样衣编号', dataIndex: 'SAMPNM', flex: 1 },
-		        { text: '目标样衣编号', dataIndex: 'PSMPNO', flex: 1 ,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+		        { text: '目标样衣编号', dataIndex: 'PSMPNM', flex: 1 ,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 					metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	return value;
 	            },editor: {
@@ -437,19 +442,26 @@ Ext.define('y.order.ZgsVOGrid',{
 						if(aaa[i].get("PSMPNO")){
 							data.push({
 								SAMPNO:aaa[i].get("SAMPNO"),
-								PSMPNO:aaa[i].get("PSMPNO")
+								PSMPNM:aaa[i].get("PSMPNM")
 							});
 						}
 					}
 					Ext.Ajax.request({
 						url:Ext.ContextPath+'/ord/zgsVO/meger_all.do',
 						method:'POST',
-//						params:{
-//							data:data
-//						},
+						params:{
+							ormtno:me.getStore().getProxy().extraParams["params['ormtno']"]
+						},
 						jsonData:data,
 						success:function(response){
-						
+							var obj=Ext.decode(response.responseText);
+							if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+							}
+							grid.getStore().reload();
+						    Ext.Msg.alert("消息","成功");
+						    win.close();
 						}
 					});
 				}
@@ -477,7 +489,7 @@ Ext.define('y.order.ZgsVOGrid',{
 		}
 		var store=Ext.create('Ext.data.Store', {
 			autoLoad:true,
-		    fields:[ 'SAMPNO','PSMPNO','YXGSNO','YXGSNM','ORMTQT'],
+		    fields:[ 'SAMPNO','PSMPNM','YXGSNO','YXGSNM','ORMTQT'],
 		    proxy:{
 		    	url:Ext.ContextPath+'/ord/zgsVO/query_meger_comp.do',
 		    	type:'ajax',
@@ -499,7 +511,7 @@ Ext.define('y.order.ZgsVOGrid',{
 			columns: [
 		        { text: '营销公司', dataIndex: 'YXGSNM', flex: 1 },
 		        { text: '数量', dataIndex: 'ORMTQT', flex: 1 },
-		        { text: '目标样衣编号', dataIndex: 'PSMPNO', flex: 1 ,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+		        { text: '目标样衣编号', dataIndex: 'PSMPNM', flex: 1 ,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 					metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	return value;
 	            },editor: {
@@ -522,10 +534,10 @@ Ext.define('y.order.ZgsVOGrid',{
 					var data=[];
 					var aaa=store.getRange();
 					for(var i=0;i<aaa.length;i++){
-						if(aaa[i].get("PSMPNO")){
+						if(aaa[i].get("PSMPNM")){
 							data.push({
 								SAMPNO:aaa[i].get("SAMPNO"),
-								PSMPNO:aaa[i].get("PSMPNO"),
+								PSMPNM:aaa[i].get("PSMPNM"),
 								YXGSNO:aaa[i].get("YXGSNO")
 							});
 						}
@@ -533,12 +545,19 @@ Ext.define('y.order.ZgsVOGrid',{
 					Ext.Ajax.request({
 						url:Ext.ContextPath+'/ord/zgsVO/meger_comp.do',
 						method:'POST',
-//						params:{
-//							data:data
-//						},
+						params:{
+							ormtno:me.getStore().getProxy().extraParams["params['ormtno']"]
+						},
 						jsonData:data,
 						success:function(response){
-						
+							var obj=Ext.decode(response.responseText);
+							if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+							}
+							grid.getStore().reload();
+						    Ext.Msg.alert("消息","成功");
+						     win.close();
 						}
 					});
 				}
@@ -552,13 +571,78 @@ Ext.define('y.order.ZgsVOGrid',{
 		win.show();
 	},
 	recover:function(){
+		var grid=this;
+		var modles=grid.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}
 		
+		Ext.Msg.confirm("消息","是否确定对选中的样衣数据恢复?",function(val){
+				if(val=='yes'){
+					//var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+					//var ormtno=toolbars[0].down("#ordmtcombo").getValue();
+					var data=[];
+					for(var i=0;i<modles.length;i++){
+						if(modles[i].get("PALTPY")){
+								//Ext.Msg.alert("消息","样衣编号"+modles[i].get("SAMPNM")+"已经平衡过不能再平衡!");
+								//return;
+							data.push({
+								SAMPNO:modles[i].get("SAMPNO"),
+								PALTPY:modles[i].get("PALTPY")
+							});
+						}
+						
+					}
+					Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ord/zgsVO/recover.do',
+						    params:{
+								ormtno:me.getStore().getProxy().extraParams["params['ormtno']"]
+							},
+						    jsonData:data,
+						    method:'POST',
+						    success:function(){
+						    	var obj=Ext.decode(response.responseText);
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	grid.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    }
+						   });
+					} 
+				});
 	},
 	/**
 	 * 平衡完成
-	 * @type 
+	 * 
+	 * @type
 	 */
-	balanceOver:{
-	
+	balanceOver:function(){
+		Ext.Msg.alert("消息","确定平衡完成了吗?",function(btn){
+			if(btn=='yes'){
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ord/zgsVO/balanceOver.do',
+						    params:{
+								ormtno:me.getStore().getProxy().extraParams["params['ormtno']"],
+								bradno:me.getStore().getProxy().extraParams["params['bradno']"],
+								spclno:me.getStore().getProxy().extraParams["params['spclno']"]
+							},
+						    jsonData:data,
+						    method:'POST',
+						    success:function(){
+						    	var obj=Ext.decode(response.responseText);
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	grid.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    }
+						   });
+			}
+		});
+			
 	}
 });

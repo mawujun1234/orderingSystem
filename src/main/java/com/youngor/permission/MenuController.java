@@ -73,9 +73,15 @@ public class MenuController {
 	 */
 	@RequestMapping("/menu/queryByUser.do")
 	@ResponseBody
-	public List<MenuVO> queryByUser() {	
+	public Map<String,Object> queryByUser() {	
 		List<MenuVO> menues=menuService.queryByUser(null,ShiroUtils.getUserId());
-		return menues;
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("systemMenu", menues);
+		Map<String,Object> user=new HashMap<String,Object>();
+		user.put("loginName", ShiroUtils.getLoginName());
+		user.put("userName", ShiroUtils.getUserName());
+		result.put("user", user);
+		return result;
 	}
 
 	@RequestMapping("/menu/queryAll.do")

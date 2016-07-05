@@ -12,10 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
 
-	
+	<title>尾箱调整</title>
 	<%@include file="../common/init.jsp" %>
-
-	<script type="text/javascript" src="indexApp.js"></script>
+	<script type="text/javascript" src="WxtzApp.js"></script>
   </head>
   
   <body>

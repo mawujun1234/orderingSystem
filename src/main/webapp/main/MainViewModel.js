@@ -20,7 +20,8 @@ Ext.define('y.main.MainViewModel', {
 								// 将字段串转换成本地变量
 						var applicationInfo = Ext.decode(text, true);
 								// 把从后台传过来的参数加入到data中去
-						Ext.apply(me.data.systemMenu, applicationInfo);
+						Ext.apply(me.data.systemMenu, applicationInfo.systemMenu);
+						Ext.apply(me.data.user, applicationInfo.user);
 					}
 				});
 			},
@@ -50,9 +51,8 @@ Ext.define('y.main.MainViewModel', {
 
 				// 用户单位信息和用户信息
 				user : {
-					company : '武当太极公司',
-					department : '工程部',
-					name : '张三丰'
+					loginName : '',
+					userName : ''
 				},
 
 				// 服务单位和服务人员信息

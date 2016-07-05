@@ -1,6 +1,4 @@
 package com.youngor.order;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
@@ -28,6 +27,7 @@ import com.youngor.permission.UserVO;
 import com.youngor.plan.PlanOrgService;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesign;
+import com.youngor.sample.SampleDesignRepository;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.sample.SamplePlan;
 import com.youngor.utils.ContextUtils;
@@ -58,6 +58,9 @@ public class OrdService extends AbstractService<Ord, String>{
 	private OrdOrgService ordOrgService;
 	@Autowired
 	private PlanOrgService planOrgService;
+	@Autowired
+	private SampleDesignRepository sampleDesignRepository;
+	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
 	@Override
@@ -359,7 +362,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param sampno
 	 * @return
 	 */
-	public void clearSampno(String sampno) {
+	public void mobile_clearSampno(String sampno) {
 		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
 		ordRepository.clearOrddtl(ord.getMtorno(), sampno);
 		ordRepository.clearOrdszdtl(ord.getMtorno(), sampno);
@@ -390,7 +393,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					i++;
 				}
 				
-				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+				throw new BusinessException("['"+builder.substring(1)+"']");//+none_abstat.get(0).getSampnm()
 			}
 		}
 
@@ -451,7 +454,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	
 	
 	/**
-	 * 总部进行审批,是按大类，品牌进行审批
+	 * 总部审批,是按大类，品牌进行审批,审批完后进入到 总公司平衡中
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
@@ -461,7 +464,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		//订单状态改成“审批通过”，订单节点改成“总公司平衡”
 		if(mlornoes!=null && mlornoes.length>0){
 			for(String mlorno:mlornoes){
-				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
+				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getUserId());
 			}
 		}
 		
@@ -608,7 +611,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			if("10".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
 				//进入了大区审批中，只有审批过后，才能进行区域平衡
 				return 2;
-			}  else if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+			}  else if("20".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
 				//进入了区域平衡
 				return 3;
 			} else {
@@ -665,7 +668,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		//订货汇总条码打印-审批通过（订货批号,品牌,大类，操作用户）
 		ordRepository.order_dl__print_ps(params.get("ormtno").toString(), params.get("bradno").toString(),
-				 params.get("spclno").toString(), ShiroUtils.getLoginName());
+				 params.get("spclno").toString(), ShiroUtils.getUserId());
 //		String ormtno=params.get("ormtno").toString();
 //		String yxgsno=params.get("yxgsno").toString();
 //		//先备份数据
@@ -856,24 +859,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		return ordRepository.queryZgsVO(pager);
 	}
 	
-	public void clearNum(String[] sampnos,String ormtno) {
-		if(sampnos==null || sampnos.length==0){
-			return;
-		}
-		for(String sampno:sampnos){
-			//清空明细表
-			ordRepository.clearnum_orddtl(sampno);
-			////清空规格明细,放到后面的时候清零，发现明细表里的数量为0，就把规格明细表中的数据清零
-			//ordRepository.clearnum_ordszdtl(sampno);
-			//插入总公司平衡主表
-			CompPal compPay=new CompPal();
-			compPay.setOrmtno(ormtno);
-			compPay.setSampno(sampno);
-			compPay.setPaltpy("取消");
-			compPalService.create(compPay);
-			
-		}
-	}
+	
 	
 	public Map<String,Object> zgs_check_canedit(String ormtno,String bradno,String spclno) {
 		return ordRepository.zgs_check_canedit(ormtno, bradno, spclno);
@@ -882,17 +868,131 @@ public class OrdService extends AbstractService<Ord, String>{
 		return ordRepository.zgs_queryOrderState(ormtno, bradno, spclno);
 	}
 	
-	public void meger_all(ArrayList<Map<String,Object>> data) {
+	public void clearNum(String[] sampnos,String ormtno) {
+		if(sampnos==null || sampnos.length==0){
+			return;
+		}
+		for(String sampno:sampnos){
+			ordRepository.order_dl__comp_canc(ormtno, sampno, ShiroUtils.getUserId());
+//			//清空明细表
+//			ordRepository.clearnum_orddtl(sampno);
+//			////清空规格明细,放到后面的时候清零，发现明细表里的数量为0，就把规格明细表中的数据清零
+//			//ordRepository.clearnum_ordszdtl(sampno);
+//			//插入总公司平衡主表
+//			CompPal compPay=new CompPal();
+//			compPay.setOrmtno(ormtno);
+//			compPay.setSampno(sampno);
+//			compPay.setPaltpy("取消");
+//			compPalService.create(compPay);
+			
+			
+		}
+	}
+	/**
+	 * 总公司平衡--合并
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param data 第一个参数源样衣编号，第二个参数是设计样衣名称
+	 * @param ormtno
+	 */
+	public void meger_all(ArrayList<Map<String,Object>> data,String ormtno) {
+		if(data==null || data.size()==0){
+			return;
+		}
+		//根据目标样衣名称获取目标样衣编号
+		for(Map<String,Object> map:data){
+			String P_SAMPNO=(String)map.get("SAMPNO");//源样衣编号
+			String PSMPNM=(String)map.get("PSMPNM");//目标样衣名称
+			SampleDesign sampleDesign=sampleDesignRepository.getSampleDesignBySampnm(ormtno, PSMPNM);
+			if(sampleDesign==null){
+				throw new BusinessException(PSMPNM+":这个目标样衣编号没有找到!");
+			}
+			
+			ordRepository.order_dl__comp_comb(ormtno, P_SAMPNO, sampleDesign.getSampno(), ShiroUtils.getUserId());
+		}
+		
 		
 	}
 	public List<Map<String,Object>> query_meger_comp(String SAMPNO) {
 		return ordRepository.query_meger_comp(SAMPNO);
 	}
-	public void meger_comp(ArrayList<Map<String,Object>> data) {
+	/**
+	 * 总公司平衡--拆分
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param data
+	 * @param ormtno
+	 */
+	public void meger_comp(ArrayList<Map<String,Object>> data,String ormtno) {
 		
+		if(data==null || data.size()==0){
+			return;
+		}
+		// 根据目标样衣名称获取目标样衣编号
+		for (Map<String, Object> map : data) {
+			String P_SAMPNO = (String) map.get("SAMPNO");// 源样衣编号
+			String P_YXGSNO = (String) map.get("YXGSNO");
+			String PSMPNM = (String) map.get("PSMPNM");// 目标样衣名称
+			SampleDesign sampleDesign = sampleDesignRepository.getSampleDesignBySampnm(ormtno, PSMPNM);
+			if (sampleDesign == null) {
+				throw new BusinessException(PSMPNM + ":这个目标样衣编号没有找到!");
+			}
+
+			ordRepository.order_dl__comp_comc(ormtno, P_YXGSNO, P_SAMPNO,sampleDesign.getSampno(), ShiroUtils.getUserId());
+		}
 	}
-	public void recover(String[] sampnos,String ormtno) {
-		
+	/**
+	 * 总公司平衡-恢复
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sampnos
+	 * @param ormtno
+	 */
+	public void recover(ArrayList<Map<String,Object>> data,String ormtno) {
+		if(data==null || data.size()==0){
+			return;
+		}
+		for (Map<String, Object> map : data) {
+			ordRepository.order_dl__comp_comd(ormtno, (String)map.get("PALTPY"), (String)map.get("SAMPNO"), ShiroUtils.getUserId());
+		}
+	}
+	/**
+	 * 总公司平衡-平衡完成
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sampnos
+	 * @param ormtno
+	 */
+	public void balanceOver(String ormtno,String bradno,String spclno) {
+		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getUserId());
+	}
+	
+	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
+		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);
+		if(list==null || list.size()==0 || list.size()>1){
+			//throw new BusinessException("订单的状态不对，请先检查!");
+			return "不可操作";
+		}
+		return list.get(0);
+	}
+	/**
+	 * 查询尾箱调整的数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param pager
+	 * @return
+	 */
+	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager) {
+		return ordRepository.wxtz_queryWx(pager);
+	}
+	/**
+	 * 尾箱调整
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void wxtz_comp_wx(String ormtno,String bradno,String spclno){
+		ordRepository.order_dl__comp_wx(ormtno, bradno, spclno, ShiroUtils.getUserId());
+	}
+	/**
+	 * 尾箱调整完成
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void wxtz_comp_wxps(String ormtno,String bradno,String spclno){
+		ordRepository.order_dl__comp_wxps(ormtno, bradno, spclno, ShiroUtils.getUserId());
 	}
 	
 	//==========================================================
@@ -1050,8 +1150,19 @@ public class OrdService extends AbstractService<Ord, String>{
 	
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager) {
+		Map<String,Object> params=(Map<String,Object>)pager.getParams();
 		//
-		((Map<String,Object>)pager.getParams()).put("user_id", ShiroUtils.getUserId());
+		params.put("user_id", ShiroUtils.getUserId());
+		//如果条件是待审
+		if("ready".equals(params.get("readyHandling"))){
+			//如果是大区，就取总量状态或规格状态为1的订单
+			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)){
+				params.put("stat", "1");
+			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB)){
+				params.put("stat", "2");
+			}
+			
+		}
 		
 		pager= ordRepository.ordMgr_queryOrdMgr(pager);
 		List<Map<String,Object>> list=pager.getRoot();//new ArrayList<Map<String,Object>>();
