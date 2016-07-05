@@ -40,11 +40,11 @@ public class OrdmtScde extends BaseObject{
 	@Column(length=10,nullable=false,updatable=true)
 	private String mtfitm;
 	
-	@FieldDefine(title="修改人",sort=40)
-	@Column(length=30,nullable=true)
-	private String lmsp;
-	@FieldDefine(title="修改日期",sort=40)
-	private Date lmdt;
+//	@FieldDefine(title="修改人",sort=40)
+//	@Column(length=30,nullable=true)
+//	private String lmsp;
+//	@FieldDefine(title="修改日期",sort=40)
+//	private Date lmdt;
 	
 	
 	@Transient
@@ -120,17 +120,6 @@ public class OrdmtScde extends BaseObject{
 	public void setMtfitm(String mtfitm) {
 		this.mtfitm = mtfitm;
 	}
-	public String getLmsp() {
-		return lmsp;
-	}
-	public void setLmsp(String lmsp) {
-		this.lmsp = lmsp;
-	}
-	public Date getLmdt() {
-		return lmdt;
-	}
-	public void setLmdt(Date lmdt) {
-		this.lmdt = lmdt;
-	}
+
 	
 }

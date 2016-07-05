@@ -30,7 +30,7 @@ public class MenuService extends AbstractService<Menu, String>{
 	public MenuRepository getRepository() {
 		return menuRepository;
 	}
-	
+	@Transactional(readOnly=true)
 	public List<MenuVO> query_checkbox(String parent_id) {
 		List<MenuVO> parent_list= menuRepository.query_checkbox(parent_id);
 		for(MenuVO parent:parent_list){
@@ -40,7 +40,7 @@ public class MenuService extends AbstractService<Menu, String>{
 		}
 		return parent_list;
 	}
-	
+	@Transactional(readOnly=true)
 	public List<RoleMenu> query_checked_node(String role_id) {
 		return roleMenuRepository.query(Cnd.select().andEquals(M.RoleMenu.role.id, role_id));
 	}
@@ -50,6 +50,7 @@ public class MenuService extends AbstractService<Menu, String>{
 	 * @param parent_id
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public List<MenuVO> queryByUser(String parent_id,String user_id) {
 		
 		List<MenuVO> parent_list= menuRepository.queryByUser(parent_id,user_id);
@@ -61,7 +62,7 @@ public class MenuService extends AbstractService<Menu, String>{
 		}
 		return parent_list;
 	}
-	
+	@Transactional(readOnly=true)
 	public List<Menu> queryElement(String jsp_url) {
 		if(!ShiroUtils.isLogon()){
 			return new ArrayList<Menu>();

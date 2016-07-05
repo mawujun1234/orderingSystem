@@ -249,14 +249,20 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 	},
 	onCreate:function(){
     	var me=this;
+    	var toolbars=this.getDockedItems('toolbar[dock="top"]');
 		var child=Ext.create('y.pubsize.PubSize',{
 			sizety:'PRDSZTY',
 			szsast:1,
-			sizest:1
+			sizest:1,
+			szbrad:toolbars[0].down("#szbrad").getValue(),
+			szclno:toolbars[0].down("#szclno").getValue()
 		});
 		child.set("id",null);
+		//alert(1);
 		
-		var formpanel=Ext.create('y.pubsize.PrdsztyForm',{});
+		var formpanel=Ext.create('y.pubsize.PrdsztyForm',{
+			
+		});
 		formpanel.loadRecord(child);
 		formpanel.down("#sizeno").setReadOnly(false);
 		

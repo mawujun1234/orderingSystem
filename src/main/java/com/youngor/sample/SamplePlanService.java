@@ -1,4 +1,6 @@
 package com.youngor.sample;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -8,6 +10,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.M;
 
 
@@ -61,6 +64,8 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 		
 		samplePlan=samplePlanRepository.get(samplePlan.getPlspno());
 		samplePlan.setPlstat(0);
+		samplePlan.setLmdt(new Date());
+		samplePlan.setLmsp(ShiroUtils.getLoginName());
 		samplePlanRepository.update(samplePlan);
 	}
 	

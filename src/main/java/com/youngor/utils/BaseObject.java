@@ -3,9 +3,10 @@ package com.youngor.utils;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
 import com.mawujun.generator.model.FieldDefine;
-
+@MappedSuperclass
 public class BaseObject {
 	@FieldDefine(title="创建人",sort=40,hidden=true)
 	@Column(length=30,nullable=true,updatable=false)

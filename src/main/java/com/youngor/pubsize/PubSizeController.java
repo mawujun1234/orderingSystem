@@ -248,8 +248,8 @@ public class PubSizeController {
 	 */
 	@RequestMapping("/pubSize/querySizegpPrdszty.do")
 	@ResponseBody
-	public List<PubSizeDtlVO> querySizegpPrdszty(String szbrad,String szclno,String sizety){
-		return pubSizeService.querySizegpPrdszty(szbrad,szclno, sizety);
+	public List<PubSizeDtlVO> querySizegpPrdszty(String szbrad,String szclno,String sizety,String fszty,String fszno){
+		return pubSizeService.querySizegpPrdszty(szbrad,szclno, sizety,fszty,fszno);
 		
 	}
 	/**
@@ -262,15 +262,18 @@ public class PubSizeController {
 	 */
 	@RequestMapping("/pubSize/createPrdsztyDtl.do")
 	@ResponseBody
-	public void createPrdsztyStdsz(String fszno,String fszty,String sizeno,String sizety) {
+	public void createPrdsztyStdsz(String fszno,String fszty,String[] sizenos,String sizety) {
 
 		//pubSizeService.createSizegp(szbrad, szclno, sizeno, "PRDSZTY");
-		PubSizeDtl dtl=new PubSizeDtl();
-		dtl.setFszty(fszty);
-		dtl.setFszno(fszno);
-		dtl.setSizety(sizety);
-		dtl.setSizeno(sizeno);
-		pubSizeDtlService.create(dtl);
+		for(String sizeno:sizenos){
+			PubSizeDtl dtl=new PubSizeDtl();
+			dtl.setFszty(fszty);
+			dtl.setFszno(fszno);
+			dtl.setSizety(sizety);
+			dtl.setSizeno(sizeno);
+			pubSizeDtlService.create(dtl);
+		}
+		
 		
 	}
 	/**

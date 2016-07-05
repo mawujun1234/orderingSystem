@@ -465,7 +465,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		//订单状态改成“审批通过”，订单节点改成“总公司平衡”
 		if(mlornoes!=null && mlornoes.length>0){
 			for(String mlorno:mlornoes){
-				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getUserId());
+				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
 			}
 		}
 		
@@ -669,7 +669,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		//订货汇总条码打印-审批通过（订货批号,品牌,大类，操作用户）
 		ordRepository.order_dl__print_ps(params.get("ormtno").toString(), params.get("bradno").toString(),
-				 params.get("spclno").toString(), ShiroUtils.getUserId());
+				 params.get("spclno").toString(), ShiroUtils.getLoginName());
 //		String ormtno=params.get("ormtno").toString();
 //		String yxgsno=params.get("yxgsno").toString();
 //		//先备份数据
@@ -874,7 +874,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			return;
 		}
 		for(String sampno:sampnos){
-			ordRepository.order_dl__comp_canc(ormtno, sampno, ShiroUtils.getUserId());
+			ordRepository.order_dl__comp_canc(ormtno, sampno, ShiroUtils.getLoginName());
 //			//清空明细表
 //			ordRepository.clearnum_orddtl(sampno);
 //			////清空规格明细,放到后面的时候清零，发现明细表里的数量为0，就把规格明细表中的数据清零
@@ -908,7 +908,7 @@ public class OrdService extends AbstractService<Ord, String>{
 				throw new BusinessException(PSMPNM+":这个目标样衣编号没有找到!");
 			}
 			
-			ordRepository.order_dl__comp_comb(ormtno, P_SAMPNO, sampleDesign.getSampno(), ShiroUtils.getUserId());
+			ordRepository.order_dl__comp_comb(ormtno, P_SAMPNO, sampleDesign.getSampno(), ShiroUtils.getLoginName());
 		}
 		
 		
@@ -937,7 +937,7 @@ public class OrdService extends AbstractService<Ord, String>{
 				throw new BusinessException(PSMPNM + ":这个目标样衣编号没有找到!");
 			}
 
-			ordRepository.order_dl__comp_comc(ormtno, P_YXGSNO, P_SAMPNO,sampleDesign.getSampno(), ShiroUtils.getUserId());
+			ordRepository.order_dl__comp_comc(ormtno, P_YXGSNO, P_SAMPNO,sampleDesign.getSampno(), ShiroUtils.getLoginName());
 		}
 	}
 	/**
@@ -951,7 +951,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			return;
 		}
 		for (Map<String, Object> map : data) {
-			ordRepository.order_dl__comp_comd(ormtno, (String)map.get("PALTPY"), (String)map.get("SAMPNO"), ShiroUtils.getUserId());
+			ordRepository.order_dl__comp_comd(ormtno, (String)map.get("PALTPY"), (String)map.get("SAMPNO"), ShiroUtils.getLoginName());
 		}
 	}
 	/**
@@ -961,7 +961,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param ormtno
 	 */
 	public void balanceOver(String ormtno,String bradno,String spclno) {
-		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getUserId());
+		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	
 	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
@@ -986,14 +986,14 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 */
 	public void wxtz_comp_wx(String ormtno,String bradno,String spclno){
-		ordRepository.order_dl__comp_wx(ormtno, bradno, spclno, ShiroUtils.getUserId());
+		ordRepository.order_dl__comp_wx(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	/**
 	 * 尾箱调整完成
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 */
 	public void wxtz_comp_wxps(String ormtno,String bradno,String spclno){
-		ordRepository.order_dl__comp_wxps(ormtno, bradno, spclno, ShiroUtils.getUserId());
+		ordRepository.order_dl__comp_wxps(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	
 	//==========================================================

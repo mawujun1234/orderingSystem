@@ -40,6 +40,8 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	public void deleteById(String sampno) {
 		SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
 		sampleDesign.setSampst(0);
+		sampleDesign.setLmdt(new Date());
+		sampleDesign.setLmsp(ShiroUtils.getLoginName());
 		sampleDesignRepository.update(sampleDesign);
 	}
 	

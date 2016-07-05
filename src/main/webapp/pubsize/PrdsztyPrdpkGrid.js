@@ -112,14 +112,18 @@ Ext.define('y.pubsize.PrdsztyPrdpkGrid',{
 			fszno:me.getStore().getProxy().extraParams.fszno,
 			fszty:me.getStore().getProxy().extraParams.fszty,
 			listeners:{
-				itemdblclick:function(view, record, item, index, e, eOpts){
+				selRecord:function(view, records){
+					var sizenos=[];
+					for(var i=0;i<records.length;i++){
+						sizenos[i]=records[i].get("sizeno")
+					}
 					Ext.Ajax.request({
 						url:Ext.ContextPath+'/pubSize/createPrdsztyDtl.do',
 						params:{
 							fszno:me.getStore().getProxy().extraParams.fszno,
 							fszty:me.getStore().getProxy().extraParams.fszty,
-							sizeno:record.get("sizeno"),
-							sizety:record.get("sizety")
+							sizenos:sizenos,//record.get("sizeno"),
+							sizety:'PRDPK'
 						},
 						success:function(){
 							me.getStore().reload();
@@ -135,6 +139,8 @@ Ext.define('y.pubsize.PrdsztyPrdpkGrid',{
 		stdszSelGrid.getStore().getProxy().extraParams={
 			"szbrad":window.prdsztyGrid.getStore().getProxy().extraParams["params['szbrad']"],
 			"szclno":window.prdsztyGrid.getStore().getProxy().extraParams["params['szclno']"],
+			fszno:me.getStore().getProxy().extraParams.fszno,
+			fszty:me.getStore().getProxy().extraParams.fszty,
 			 sizety:'PRDPK'
 		}
 		stdszSelGrid.getStore().reload();

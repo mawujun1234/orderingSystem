@@ -89,6 +89,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 
     	where a.sizety=b.sizety and a.sizeno=b.sizeno
     	and a.fszty=#{fszty} and a.fszno=#{fszno} and b.sizety=#{sizety} 
+    	 ORDER BY b.SIZESO
     </select>
      <!-- 获取某个规格池中的所有(包装规格)
     <select id="querySizegpPrdpk" resultType="com.youngor.pubsize.PubSizeDtlVO">
@@ -101,6 +102,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 
     	where a.sizety=b.sizety and a.sizeno=b.sizeno
     	and a.fszty=#{fszty} and a.fszno=#{fszno} and b.sizety=#{sizety} 
+    	 ORDER BY b.SIZESO
     </select>
     <!--
     <select id="queryStdsz4Sel_Prdszty" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
@@ -144,6 +146,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
 	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
 	    AND A.SIZETY=#{sizety}
+	    and not exists (select 1 from ord_pub_sizedtl x where A.SIZENO=x.sizeno and x.fszty=#{fszty} and x.fszno=#{fszno})
 	    ORDER BY C.SIZESO
     </select>
 </mapper>

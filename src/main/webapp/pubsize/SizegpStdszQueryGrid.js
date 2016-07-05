@@ -11,6 +11,10 @@ Ext.define('y.pubsize.SizegpStdszQueryGrid',{
 	viewConfig:{
 		enableTextSelection:true
 	},
+	selModel: {
+          selType: 'checkboxmodel'
+          //,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -57,8 +61,8 @@ Ext.define('y.pubsize.SizegpStdszQueryGrid',{
 			    url : Ext.ContextPath+'/pubSize/querySizegpPrdszty.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
-			    extraParams:{limit:50
-			    	//"params['']"
+			    extraParams:{
+				    limit:50
 			    },
 			    reader:{
 					type:'json'//如果没有分页，那么可以把后面三行去掉，而且后台只需要返回一个数组就行了
@@ -78,7 +82,26 @@ Ext.define('y.pubsize.SizegpStdszQueryGrid',{
 	  me.dockedItems=[];
 
 	  
-
+	me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+		  		text: '选择',
+				handler: function(btn){
+					var records=btn.up("grid").getSelectionModel().getSelection();
+					if(records==null || records.length==0){
+						Ext.Msg.alert("消息","请先选择行!");
+						return;
+					}
+					me.fireEvent("selRecord",me,records);
+				},
+				iconCls: 'icon-check'
+			}]
+	});
+	
+	me.on("itemdblclick",function(view, record, item, index, e, eOpts){
+		me.fireEvent("selRecord",me,[record]);
+	});
 
 
        
