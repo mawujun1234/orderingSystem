@@ -141,6 +141,7 @@ Ext.define('y.sample.SamplePlanGrid',{
 		        itemId: 'sptyno',
 		        labelWidth:40,
 		        width:140,
+		        //allowBlank: true,
 	            autoLoad:false,
 		        xtype:'pubcodecombo',
 		        tyno:'2'

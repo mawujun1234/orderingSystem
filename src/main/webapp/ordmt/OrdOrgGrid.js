@@ -243,12 +243,33 @@ Ext.define('y.ordmt.OrdOrgGrid',{
     onPrintQrcode:function(){
     	var me=this;
 
-    	var node=me.getSelectionModel( ).getLastSelected();
-    	if(node==null){
+    	var records=me.getSelectionModel( ).getSelection();
+    	if(records==null || records.length==0){
     		Ext.Msg.alert("提醒","请选择一行数据!");
     		return;
     	}
+    	//var data=[];
+    	var params="ormtno="+me.getStore().getProxy().extraParams["params['ormtno']"];
+    	for(var i=0;i<records.length;i++){
+//    		data.push({
+//    			ordorg:records[i].get("ordorg"),
+//    			ormtno:records[i].get("ormtno")
+//    		});
+    		//data.push({ordorg:records[i].get("ordorg")});
+    		params+="&ordorgs="+records[i].get("ordorg");
+    	}
+    	
+    	var url=Ext.ContextPath+"/ordOrg/print.do?"+params;
+    	//alert(url);return;
+    	window.open(url);
 
+//    	Ext.Ajax.request({
+//    		url:Ext.ContextPath+'/ordOrg/print.do',
+//    		jsonData:data,
+//    		success:function(){
+//    		
+//    		}
+//    	});
 //		var formpanel=Ext.create('y.ordmt.OrdOrgForm',{});
 //		formpanel.loadRecord(node);
 //		

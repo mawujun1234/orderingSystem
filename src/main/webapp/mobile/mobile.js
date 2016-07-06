@@ -298,6 +298,7 @@ $(function(){
 	},'json');
 	//扫描登录
 	$("#od_loginpage_scanQRCode_btn").click(function(){
+		//alert(1);
 		wx.scanQRCode({
 			desc: 'scanQRCode desc',
 			needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
@@ -387,7 +388,9 @@ $(function(){
 					$.toast(response.msg);
 					$.hidePreloader();
 					//clearSampleInfo();
-					window.vm_sampleVO.sampnm=window.last_query_sampnm;
+					if(window.last_query_sampnm ){
+						window.vm_sampleVO.sampnm=window.last_query_sampnm;
+					}
 					return;
 				}
 				window.last_query_sampnm=sampnm;

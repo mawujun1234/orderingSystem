@@ -35,6 +35,14 @@ public class PubCodeController {
 	@RequestMapping("/pubCode/query4Combo.do")
 	@ResponseBody
 	public List<PubCode> query4Combo(String tyno,String fitno,String bradno,String stat) {
+		if("none".equals(fitno)){
+			List<PubCode> pubCodes=new ArrayList<PubCode>();
+			PubCode wu=new PubCode();
+			wu.setItno(null);
+			wu.setItnm("无");
+			pubCodes.add(0, wu);
+			return pubCodes;
+		}
 
 		//默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
 		if(bradno==null){

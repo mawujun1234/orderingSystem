@@ -6,7 +6,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SamplePlanRepository">
 	<sql id="queryPage_where">  
-        where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.plstat=1
+        where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.plstat=1
+        <if test="spclno!=null and spclno!=''">
+    		and a.spclno=#{spclno} 
+    	</if>
     	<if test="sptyno!=null and sptyno!=''">
     		and a.sptyno=#{sptyno}
     	</if>

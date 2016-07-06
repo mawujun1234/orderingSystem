@@ -17,15 +17,28 @@
 package com.youngor.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.alibaba.druid.support.http.StatViewServlet;
 
 
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		super.onStartup(servletContext);
+		//registerDispatcherServlet(servletContext);
+		StatViewServlet statViewServlet=new StatViewServlet();
+		ServletRegistration.Dynamic dynamic = servletContext.addServlet("DruidStatView", statViewServlet);  
+        dynamic.setLoadOnStartup(2);  
+        dynamic.addMapping("/druid/*");
+	}
 	/**
 	 * 加载service层的application
 	 */
@@ -62,6 +75,8 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setInitParameter("dispatchOptionsRequest", "true");
+		
+		
 	}
 
 }

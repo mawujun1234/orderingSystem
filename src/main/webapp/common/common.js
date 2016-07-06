@@ -127,16 +127,19 @@ Ext.define('y.common.PubCode',{
 	        bradno:bradno
 	    });
 	},
+	/**
+	 * 调用这个的都是说明有父节点的
+	 * @param {} fitno
+	 */
 	reload:function(fitno){
 		var me=this;
 		me.reloaded=false;
-//		if(!bradno){
-//			alert("请输入bradno参数!");//
-//			return;
-//		}
+
 		if(!fitno){
-			alert("请输入fitno参数!");
-			return;
+//			alert("请输入fitno参数!");
+//			return;
+			
+			fitno="none";
 		}
 		
 		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{

@@ -22,5 +22,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ORD_ORG a
 		where a.ordorg=#{orgno} and a.ormtno=#{ormtno}
     </select>
+    
+    
+     <select id="queryForPrint" resultType="com.youngor.ordmt.OrdOrg" parameterType="map">
+    	select a.*,b.orgnm,d.loginname,d.pwd from ORD_ORG a,t_org b,t_user d
+    	where a.ordorg=b.orgno and lower(a.ordorg)=lower(d.loginname)  and a.ormtno=#{ormtno}
+    	and b.orgno in (${in_param})
+    </select> 
 </mapper>
 

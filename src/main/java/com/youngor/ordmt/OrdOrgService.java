@@ -183,4 +183,25 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 		userService.deleteUserByLoginName(loginName);
 		
 	}
+	
+	public List<OrdOrg> queryForPrint(String ormtno,String[] ordorgs){
+		StringBuilder in=new StringBuilder();
+		for (int i = 0; i < ordorgs.length; i++) {
+			in.append(",'");
+			in.append(ordorgs[i]);
+			in.append("'");
+		}
+		return ordOrgRepository.queryForPrint(ormtno,in.substring(1).toString());
+	}
+	/**
+	 * 更新打印状态
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param list
+	 */
+	public void updatePrint(List<OrdOrg> list){
+		for(OrdOrg ordOrg:list){
+			ordOrg.setPrint(1);
+			ordOrgRepository.update(ordOrg);
+		}
+	}
 }
