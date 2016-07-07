@@ -37,6 +37,8 @@ public class OrdOrg {
 	private Integer print=0;//0：未打印；1：已打印
 	
 	@Transient
+	private String yxgsnm;
+	@Transient
 	private String orgnm;
 	@Transient
 	private String channm;
@@ -143,6 +145,14 @@ public class OrdOrg {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	public String getYxgsnm() {
+		return yxgsnm;
+	}
+
+	public void setYxgsnm(String yxgsnm) {
+		this.yxgsnm = yxgsnm;
 	}
 
 }

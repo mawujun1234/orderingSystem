@@ -394,6 +394,7 @@ Ext.define('y.common.ChannoCombo',{
 	autoLoad:true,
 	queryMode: 'local',
 	editable:true,
+	showBlank:false,
 	forceSelection:true,
 	displayField: 'channm',
 	valueField: 'channo',
@@ -408,6 +409,9 @@ Ext.define('y.common.ChannoCombo',{
 			autoLoad:me.autoLoad,
 			proxy: {  	
 				type: 'ajax',
+				extraParams:{
+					showBlank:me.showBlank
+				},
 				 url: Ext.ContextPath+'/ordmtScde/queryChanncl.do'
 			},
 			listeners:{

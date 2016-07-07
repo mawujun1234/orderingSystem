@@ -58,6 +58,33 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	
     	<include refid="queryPlanDesign_where"></include> 
     </select>
+    <!--产品资料导出-->
+    <select id="query_exportSample" parameterType="map" resultType="map">
+     	SELECT * FROM V_ORD_SAMPLE a
+     	where  a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} and suitno='T00'
+     	<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="spbseno!=null and spbseno!=''">
+    		and a.spbseno=#{spbseno}
+    	</if>
+    	<if test="spmtno!=null and spmtno!=''">
+    		and a.spmtno=#{spmtno}
+    	</if>
+    	<if test="sampno!=null and sampno!=''">
+    		and a.sampno=#{sampno}
+    	</if>
+    	<if test="sampnm!=null and sampnm!=''">
+    		and a.sampnm like '%${sampnm}%'
+    	</if>
+    	<if test="spsuno!=null and spsuno!=''">
+    		and a.spsuno=#{spsuno}
+    	</if>
+    	
+     </select>
     
     
     <sql id="lock_unlock_where">  
@@ -132,5 +159,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	 select b.* from ORD_SAMPLE_PLAN a,ORD_SAMPLE_DESIGN b
     	where a.plspno=b.plspno and b.sampnm=#{sampnm} and a.ormtno=#{ormtno}
      </select>
+     
+     
 </mapper>
 

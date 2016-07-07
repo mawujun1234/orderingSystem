@@ -61,7 +61,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="querySaleHisGrid" resultType="map" parameterType="map">
     	SELECT PRSENM,BANDNM,PRYEAR,SIZENM,SUM(SAQT) SAQT FROM ORD_SA_HIS 
 		WHERE 
-		ORMTNO=#{ormtno} AND ORGNO=#{ordorg}
+		ORMTNO=#{ormtno} 
+		<if test="ordorg!='QY0071'">
+			AND ORGNO=#{ordorg}
+		</if>
+		
 		<if test="spseno!=null and spseno!=''">
 			AND PRSENO=#{spclno_spseno}
 		</if>

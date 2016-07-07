@@ -299,14 +299,15 @@ public class PubSizeController {
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	@RequestMapping("/pubSize/queryPRDSZTY.do")
+	@RequestMapping("/pubSize/queryPRDSZTY4SampleDesign.do")
 	@ResponseBody
-	public List<PubSize> queryPRDSZTY(String szbrad,String szclno) {	
+	public List<PubSize> queryPRDSZTY4SampleDesign(String szbrad,String szclno) {
 		List<PubSize> pubSizees=pubSizeService.query(Cnd.select()
 				.andEquals(M.PubSize.sizety, "PRDSZTY")
 				.andEquals(M.PubSize.szbrad, szbrad)
 				.andEquals(M.PubSize.szclno, szclno)
 				.andEquals(M.PubSize.sizest, 1)
+				.andEquals(M.PubSize.szsast, 1)
 				.asc(M.PubSize.sizeso));
 		return pubSizees;
 	}
@@ -318,8 +319,8 @@ public class PubSizeController {
 	 */
 	@RequestMapping("/pubSize/queryPRDSZTY4Ordmt.do")
 	@ResponseBody
-	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno) {	
-		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno);
+	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno) {	
+		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);
 		return pubSizees;
 	}
 	

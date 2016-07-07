@@ -15,7 +15,7 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 				    proxy:{
 				    	type:'ajax',
 				    	//extraParams:{szbrad:'sjs'},
-				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY.do'
+				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY4SampleDesign.do'
 				    }
 				}  );
       me.columns=[

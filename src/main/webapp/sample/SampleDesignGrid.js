@@ -618,12 +618,18 @@ Ext.define('y.sample.SampleDesignGrid',{
 		var parent=node.parentNode;
 		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
 			if (btn == 'yes'){
-				Ext.Ajax.request({
+				Ext.Ajax.request({//
 					url:Ext.ContextPath+'/sampleDesign/deleteById.do',
 					params:{
+						ormtno:me.getStore().getProxy().extraParams["params['ormtno']"],
 						sampno:node.get("sampno")
 					},
-					success:function(){
+					success:function(response){
+						var obj=Ext.decode(response.responseText);
+						if(obj.success==false){
+							Ext.Msg.alert("消息",obj.msg);
+							return;
+						}
 						me.getStore().reload();
 					}
 					
@@ -655,7 +661,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		var sampleDesignForm=tabpanel.down("form#sampleDesignForm") ;
 		var new_record=record.copy(null);
 		new_record.set("sampnm","");
-		new_record.set("sampnm1","");
+		//new_record.set("sampnm1","");
 		//new_record.set("sampno","");故意保存，用来复制原始的数据
 		new_record.set("spstat",0);
 		new_record.set("photno",null);
@@ -742,19 +748,19 @@ Ext.define('y.sample.SampleDesignGrid',{
     onExportSample:function(){
     	var me=this;
     	var params=me.getParams();
-    	var url=Ext.ContextPath+"/samplePlan/exportSample.do?"+Ext.urlEncode(params);
+    	var url=Ext.ContextPath+"/sampleDesign/exportSample.do?"+Ext.urlEncode(params);
     	window.open(url);
     },
     onExportSampleMate:function(){
     	var me=this;
     	var params=me.getParams();
-    	var url=Ext.ContextPath+"/samplePlan/exportSampleMate.do?"+Ext.urlEncode(params);
+    	var url=Ext.ContextPath+"/sampleDesign/exportSampleMate.do?"+Ext.urlEncode(params);
     	window.open(url);
     },
     onExportSampleMate_other:function(){
     	var me=this;
     	var params=me.getParams();
-    	var url=Ext.ContextPath+"/samplePlan/exportSampleMate_other.do?"+Ext.urlEncode(params);
+    	var url=Ext.ContextPath+"/sampleDesign/exportSampleMate_other.do?"+Ext.urlEncode(params);
     	window.open(url);
     }
 });

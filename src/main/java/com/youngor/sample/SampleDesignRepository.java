@@ -1,5 +1,6 @@
 package com.youngor.sample;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mawujun.repository.IRepository;
 import com.mawujun.utils.page.Pager;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -32,4 +34,6 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	public Integer count_sampleDesign_photo_num(@Param("sampno")String sampno);
 	
 	public SampleDesign getSampleDesignBySampnm(@Param("ormtno")String ormtno,@Param("sampnm")String sampnm);
+	
+	public List<Map<String,Object>> query_exportSample(Map<String,Object> params);
 }

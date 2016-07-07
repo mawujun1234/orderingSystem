@@ -259,14 +259,14 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/zgsVO/queryZgsVO.do")
 	@ResponseBody
-	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager){
-		return ordService.queryZgsVO(pager);
+	public Pager<Map<String,Object>> zgsVO_queryZgsVO(Pager<Map<String,Object>> pager){
+		return ordService.zgsVO_queryZgsVO(pager);
 	}
 	
 	@RequestMapping("/ord/zgsVO/zgs_check_canedit.do")
 	@ResponseBody
-	public Map<String,Object> zgs_check_canedit(String ormtno,String bradno,String spclno){
-		Map<String,Object> map= ordService.zgs_check_canedit(ormtno, bradno, spclno);
+	public Map<String,Object> zgsVO_check_canedit(String ormtno,String bradno,String spclno){
+		Map<String,Object> map= ordService.zgsVO_check_canedit(ormtno, bradno, spclno);
 		if(map==null || map.size()==0){
 			map=new HashMap<String,Object>();
 			map.put("canedit", false);
@@ -284,8 +284,8 @@ public class OrdController {
 	
 	@RequestMapping("/ord/zgsVO/queryOrderState.do")
 	@ResponseBody
-	public List<Map<String,Object>> zgs_queryOrderState(String ormtno,String bradno,String spclno){
-		return ordService.zgs_queryOrderState(ormtno, bradno, spclno);
+	public List<Map<String,Object>> zgsVO_queryOrderState(String ormtno,String bradno,String spclno){
+		return ordService.zgsVO_queryOrderState(ormtno, bradno, spclno);
 	}
 	/**
 	 * 清零,取消
@@ -295,8 +295,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/zgsVO/clearNum.do")
 	@ResponseBody
-	public String clearNum(String[] sampnos,String ormtno){
-		ordService.clearNum(sampnos,ormtno);
+	public String zgsVO_clearNum(String[] sampnos,String ormtno){
+		ordService.zgsVO_clearNum(sampnos,ormtno);
 		return "{success:true}";
 	}
 	/**
@@ -308,8 +308,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/zgsVO/meger_all.do")
 	@ResponseBody
-	public String meger_all(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
-		ordService.meger_all(data,ormtno);
+	public String zgsVO_meger_all(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.zgsVO_meger_all(data,ormtno);
 		return "{success:true}";
 	}
 	/**
@@ -321,25 +321,25 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/zgsVO/meger_comp.do")
 	@ResponseBody
-	public String meger_comp(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
-		ordService.meger_comp(data,ormtno);
+	public String zgsVO_meger_comp(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.zgsVO_meger_comp(data,ormtno);
 		return "{success:true}";
 	}
 	@RequestMapping("/ord/zgsVO/query_meger_comp.do")
 	@ResponseBody
-	public List<Map<String,Object>> query_meger_comp(String SAMPNO) {
-		return ordService.query_meger_comp(SAMPNO);
+	public List<Map<String,Object>> zgsVO_query_meger_comp(String SAMPNO) {
+		return ordService.zgsVO_query_meger_comp(SAMPNO);
 	}
 	@RequestMapping("/ord/zgsVO/recover.do")
 	@ResponseBody
-	public String recover(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
-		ordService.recover(data,ormtno);
+	public String zgsVO_recover(@RequestBody ArrayList<Map<String,Object>> data,String ormtno) {
+		ordService.zgsVO_recover(data,ormtno);
 		return "{success:true}";
 	}
 	@RequestMapping("/ord/zgsVO/balanceOver.do")
 	@ResponseBody
-	public String balanceOver(String ormtno,String bradno,String spclno) {
-		ordService.balanceOver(ormtno, bradno, spclno);
+	public String zgsVO_balanceOver(String ormtno,String bradno,String spclno) {
+		ordService.zgsVO_balanceOver(ormtno, bradno, spclno);
 		return "{success:true}";
 	}
 	
@@ -353,12 +353,12 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/wxtz/check_stat.do")
 	@ResponseBody
-	public String check_stat(String ormtno,String bradno,String spclno){
+	public String wxtz_check_stat(String ormtno,String bradno,String spclno){
 		return "{success:true,stat:'"+ordService.wxtz_check_stat(ormtno, bradno, spclno)+"'}";
 	}
 	@RequestMapping("/ord/wxtz/queryWx.do")
 	@ResponseBody
-	public Pager<Map<String,Object>> queryWx(Pager<Map<String,Object>> pager){
+	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager){
 		return ordService.wxtz_queryWx(pager);
 	}
 	
@@ -371,7 +371,7 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/wxtz/comp_wx.do")
 	@ResponseBody
-	public String comp_wx(String ormtno,String bradno,String spclno){
+	public String wxtz_comp_wx(String ormtno,String bradno,String spclno){
 		ordService.wxtz_comp_wx(ormtno, bradno, spclno);
 		return "{success:true}";
 	}
@@ -384,7 +384,7 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/wxtz/comp_wxps.do")
 	@ResponseBody
-	public String comp_wxps(String ormtno,String bradno,String spclno){
+	public String wxtz_comp_wxps(String ormtno,String bradno,String spclno){
 		ordService.wxtz_comp_wxps(ormtno, bradno, spclno);
 		return "{success:true}";
 	}

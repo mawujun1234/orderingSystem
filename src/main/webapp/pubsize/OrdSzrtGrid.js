@@ -36,7 +36,7 @@ Ext.define('y.pubsize.OrdSzrtGrid',{
       	 	header:me.initColumns[i]["sizenm"]
       	 	,editor: {
                 xtype: 'numberfield',
-                allowDecimals:false,
+                //allowDecimals:false,
                 selectOnFocus:true 
             },renderer:function(value, metaData, record, rowIndex, colIndex, store){
             	 metaData.tdStyle = 'color:red;background-color:#98FB98;' ;

@@ -45,7 +45,7 @@ public class OrdmtScdeController {
 		List<OrdmtScde> ordmtScdees=ordmtScdeService.query(Cnd.select().andEquals(M.OrdmtScde.ormtno, ormtno));
 		
 		if(orgChancl==null){
-			orgChancl=queryChanncl(null);
+			orgChancl=queryChanncl(null,false);
 		}
 		
 		for(OrdmtScde aaa:ordmtScdees){
@@ -57,6 +57,7 @@ public class OrdmtScdeController {
 			}
 			
 		}
+		
 		return ordmtScdees;
 	}
 	
@@ -64,11 +65,17 @@ public class OrdmtScdeController {
 	
 	@RequestMapping("/ordmtScde/queryChanncl.do")
 	@ResponseBody
-	public List<OrgChancl> queryChanncl(String ormtno) {	
+	public List<OrgChancl> queryChanncl(String ormtno,Boolean showBlank) {	
 		List<OrgChancl> orgChancles=ordmtScdeService.queryChanncl(ormtno);
 //		OrgChancl all=new OrgChancl();
 //		all.setChanno("");
 //		all.setChannm("不限");
+		if(showBlank!=null && showBlank==true){
+			OrgChancl blank=new OrgChancl();
+			blank.setChanno("");
+			blank.setChannm("所有");
+			orgChancles.add(0, blank);
+		}
 		return orgChancles;
 	}
 	

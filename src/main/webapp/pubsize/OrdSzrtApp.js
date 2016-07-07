@@ -124,7 +124,13 @@ Ext.onReady(function(){
 				    	//extraParams:{szbrad:'sjs'},
 				    	url:Ext.ContextPath+'/pubCodeType/queryVersno4Ordmt.do'
 				    }
-				}
+				},
+				listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		//window.load_num++;
+						reloadSizegp1();
+		        	}	
+		        }
 		    },{
 		        fieldLabel: '规格范围',
 		        labelWidth:70,
@@ -181,7 +187,13 @@ Ext.onReady(function(){
 				    	//extraParams:{szbrad:'sjs'},
 				    	url:Ext.ContextPath+'/pubCodeType/querySpseno4Ordmt.do'
 				    }
-				}
+				},
+				listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		//window.load_num++;
+						reloadSizegp1();
+		        	}	
+		        }
 		    },{
 		    	xtype:'button',
 		    	text:'查询',
@@ -204,7 +216,8 @@ Ext.onReady(function(){
 			spseno.getStore().getProxy().extraParams={
 				bradno:tabpanel.down("#bradno").getValue(),
 				spclno:tabpanel.down("#spclno").getValue(),
-				ormtno:tabpanel.down("#ordmtcombo").getValue() 
+				ormtno:tabpanel.down("#ordmtcombo").getValue()
+				
 			};
 			spseno.getStore().reload();
 			
@@ -227,6 +240,21 @@ Ext.onReady(function(){
 			};
 			sizegp.getStore().reload();
 		}
+	}
+	function reloadSizegp1(){
+		//versno,spseno
+		var sizegp=tabpanel.down("#sizegp");
+		sizegp.clearValue( );
+//			sizegp.getStore().getProxy().extraParams={
+//				szbrad:tabpanel.down("#bradno").getValue(),
+//				szclno:tabpanel.down("#spclno").getValue(),
+//				ormtno:tabpanel.down("#ordmtcombo").getValue() 
+//			};
+		sizegp.getStore().getProxy().extraParams=Ext.apply(sizegp.getStore().getProxy().extraParams,{
+				versno:tabpanel.down("#versno").getValue(),
+				spseno:tabpanel.down("#spseno").getValue()
+		});
+		sizegp.getStore().reload();
 	}
 	
 	function show(){

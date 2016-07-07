@@ -18,6 +18,8 @@ Ext.define('y.ordmt.OrdOrgGrid',{
       	{xtype: 'rownumberer'},
 		{dataIndex:'ormtno',header:'订货会编号'
         },
+        {dataIndex:'yxgsnm',header:'营销公司'
+        },
 		{dataIndex:'orgnm',header:'订货单位'
         },
 		{dataIndex:'channm',header:'订货单位类型'
@@ -112,14 +114,30 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 					}
 				}
 			},{
+		  		fieldLabel: '营销公司',
+		  		labelWidth:75,
+		  		width:175,
+		  		allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+		  		itemId:'yxgscombo',
+				xtype:'orgcombo',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						//var regioncombo=combo.nextSibling("#regioncombo");
+		        		//regioncombo.reload(record.get("orgno"),"QY");
+					}
+				}
+			},{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
-				width:150,
-				allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
+				width:165,
+//				allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
 				itemId: 'channo',
 				xtype:'channocombo',
-				value:'QY',
+				selFirst:false,
+				showBlank:true,
+				//value:'QY',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 		        		
@@ -200,8 +218,10 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		var toolbars=this.getDockedItems('toolbar[dock="top"]'); 
 		var channo_combo=toolbars[0].down("#channo");
 		var ordmtcombo=toolbars[0].down("#ordmtcombo");
+		var yxgscombo=toolbars[0].down("#yxgscombo");
 		this.getStore().getProxy().extraParams=Ext.apply(this.getStore().getProxy().extraParams,{
 			"params['ormtno']":ordmtcombo.getValue(),
+			"params['yxgsno']":yxgscombo.getValue(),
 		     "params['channo']":channo_combo.getValue()
 	    });
 	        		

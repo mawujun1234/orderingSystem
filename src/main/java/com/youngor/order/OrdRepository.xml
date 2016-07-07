@@ -545,6 +545,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		)M 
 		LEFT JOIN ORD_COMP_PAL P ON M.ORMTNO=P.ORMTNO AND M.SAMPNO=P.SAMPNO
 		LEFT JOIN ORD_SAMPLE_DESIGN P1 ON P.PSMPNO=P1.SAMPNO
+		order by M.SAMPNO
      </select>
      <!-- 判断这个品牌和大类下的订单是否可以处理了 -->
      <select id="zgs_check_canedit" resultType="map" parameterType="map">

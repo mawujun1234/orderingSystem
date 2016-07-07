@@ -856,20 +856,20 @@ public class OrdService extends AbstractService<Ord, String>{
 //	}
 	
 	
-	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager) {
+	public Pager<Map<String,Object>> zgsVO_queryZgsVO(Pager<Map<String,Object>> pager) {
 		return ordRepository.queryZgsVO(pager);
 	}
 	
 	
 	
-	public Map<String,Object> zgs_check_canedit(String ormtno,String bradno,String spclno) {
+	public Map<String,Object> zgsVO_check_canedit(String ormtno,String bradno,String spclno) {
 		return ordRepository.zgs_check_canedit(ormtno, bradno, spclno);
 	}
-	public List<Map<String,Object>> zgs_queryOrderState(String ormtno,String bradno,String spclno){
+	public List<Map<String,Object>> zgsVO_queryOrderState(String ormtno,String bradno,String spclno){
 		return ordRepository.zgs_queryOrderState(ormtno, bradno, spclno);
 	}
 	
-	public void clearNum(String[] sampnos,String ormtno) {
+	public void zgsVO_clearNum(String[] sampnos,String ormtno) {
 		if(sampnos==null || sampnos.length==0){
 			return;
 		}
@@ -895,7 +895,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param data 第一个参数源样衣编号，第二个参数是设计样衣名称
 	 * @param ormtno
 	 */
-	public void meger_all(ArrayList<Map<String,Object>> data,String ormtno) {
+	public void zgsVO_meger_all(ArrayList<Map<String,Object>> data,String ormtno) {
 		if(data==null || data.size()==0){
 			return;
 		}
@@ -913,7 +913,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		
 	}
-	public List<Map<String,Object>> query_meger_comp(String SAMPNO) {
+	public List<Map<String,Object>> zgsVO_query_meger_comp(String SAMPNO) {
 		return ordRepository.query_meger_comp(SAMPNO);
 	}
 	/**
@@ -922,7 +922,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param data
 	 * @param ormtno
 	 */
-	public void meger_comp(ArrayList<Map<String,Object>> data,String ormtno) {
+	public void zgsVO_meger_comp(ArrayList<Map<String,Object>> data,String ormtno) {
 		
 		if(data==null || data.size()==0){
 			return;
@@ -946,7 +946,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param sampnos
 	 * @param ormtno
 	 */
-	public void recover(ArrayList<Map<String,Object>> data,String ormtno) {
+	public void zgsVO_recover(ArrayList<Map<String,Object>> data,String ormtno) {
 		if(data==null || data.size()==0){
 			return;
 		}
@@ -960,7 +960,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param sampnos
 	 * @param ormtno
 	 */
-	public void balanceOver(String ormtno,String bradno,String spclno) {
+	public void zgsVO_balanceOver(String ormtno,String bradno,String spclno) {
 		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	

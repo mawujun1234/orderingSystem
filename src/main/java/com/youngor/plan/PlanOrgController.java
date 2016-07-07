@@ -103,12 +103,14 @@ public class PlanOrgController {
 	
 	private void createData(XSSFWorkbook wb,Sheet sheet1,MapParams params){
 		List<PlanOrgdtlVO> planOrges=planOrgService.queryPlanOrgdtlVO(params);
+		int row_index=0;
 		for(int i=0;i<planOrges.size();i++){
 			PlanOrgdtlVO planOrgdtlVO=planOrges.get(i);
 			if(planOrgdtlVO.getIsTotal()){
 				continue;
 			}
-			Row row = sheet1.createRow((short)(i+2));
+			Row row = sheet1.createRow((short)(row_index+2));
+			row_index++;
 			
 			Cell cell0 = row.createCell(0);
 			cell0.setCellValue(planOrgdtlVO.getOrgnm());

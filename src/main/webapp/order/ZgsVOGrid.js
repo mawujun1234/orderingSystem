@@ -213,7 +213,7 @@ Ext.define('y.order.ZgsVOGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
 		        itemId: 'sampno',
 	            xtype:'textfield'
@@ -345,8 +345,8 @@ Ext.define('y.order.ZgsVOGrid',{
 	  	win.show();
 	},
 	clearNum:function(){
-		var grid=this;
-		var modles=grid.getSelection( ) ;
+		var me=this;
+		var modles=me.getSelection( ) ;
 		if(!modles || modles.length==0){
 			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
@@ -354,7 +354,7 @@ Ext.define('y.order.ZgsVOGrid',{
 		
 		Ext.Msg.confirm("消息","是否确定对选中的样衣数据清零?",function(val){
 				if(val=='yes'){
-					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+					var toolbars=me.getDockedItems('toolbar[dock="top"]');
 					var ormtno=toolbars[0].down("#ordmtcombo").getValue();
 					var sampnos=[];
 					for(var i=0;i<modles.length;i++){
@@ -371,13 +371,13 @@ Ext.define('y.order.ZgsVOGrid',{
 						    	 ormtno:ormtno
 						    },
 						    method:'POST',
-						    success:function(){
+						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
 									Ext.Msg.alert("消息",obj.msg);
 									return;
 								}
-						    	grid.getStore().reload();
+						    	me.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
 						    }
 						   });
@@ -439,7 +439,7 @@ Ext.define('y.order.ZgsVOGrid',{
 					var data=[];
 					var aaa=store.getRange();
 					for(var i=0;i<aaa.length;i++){
-						if(aaa[i].get("PSMPNO")){
+						if(aaa[i].get("PSMPNM")){
 							data.push({
 								SAMPNO:aaa[i].get("SAMPNO"),
 								PSMPNM:aaa[i].get("PSMPNM")
@@ -459,7 +459,7 @@ Ext.define('y.order.ZgsVOGrid',{
 								Ext.Msg.alert("消息",obj.msg);
 								return;
 							}
-							grid.getStore().reload();
+							me.getStore().reload();
 						    Ext.Msg.alert("消息","成功");
 						    win.close();
 						}
@@ -555,7 +555,7 @@ Ext.define('y.order.ZgsVOGrid',{
 								Ext.Msg.alert("消息",obj.msg);
 								return;
 							}
-							grid.getStore().reload();
+							me.getStore().reload();
 						    Ext.Msg.alert("消息","成功");
 						     win.close();
 						}
@@ -571,8 +571,8 @@ Ext.define('y.order.ZgsVOGrid',{
 		win.show();
 	},
 	recover:function(){
-		var grid=this;
-		var modles=grid.getSelection( ) ;
+		var me=this;
+		var modles=me.getSelection( ) ;
 		if(!modles || modles.length==0){
 			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
@@ -601,13 +601,13 @@ Ext.define('y.order.ZgsVOGrid',{
 							},
 						    jsonData:data,
 						    method:'POST',
-						    success:function(){
+						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
 									Ext.Msg.alert("消息",obj.msg);
 									return;
 								}
-						    	grid.getStore().reload();
+						    	me.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
 						    }
 						   });
@@ -620,7 +620,8 @@ Ext.define('y.order.ZgsVOGrid',{
 	 * @type
 	 */
 	balanceOver:function(){
-		Ext.Msg.alert("消息","确定平衡完成了吗?",function(btn){
+		var me=this;
+		Ext.Msg.confirm("消息","平衡完成后将进入 尾箱调整 节点！确定平衡完成了吗？",function(btn){
 			if(btn=='yes'){
 				Ext.Ajax.request({
 						    url:Ext.ContextPath+'/ord/zgsVO/balanceOver.do',
@@ -629,15 +630,16 @@ Ext.define('y.order.ZgsVOGrid',{
 								bradno:me.getStore().getProxy().extraParams["params['bradno']"],
 								spclno:me.getStore().getProxy().extraParams["params['spclno']"]
 							},
-						    jsonData:data,
+						    //jsonData:data,
 						    method:'POST',
-						    success:function(){
+						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
 									Ext.Msg.alert("消息",obj.msg);
 									return;
 								}
-						    	grid.getStore().reload();
+						    	me.getStore().reload();
+						    	me.check_canedit();
 						    	Ext.Msg.alert("消息","成功");
 						    }
 						   });

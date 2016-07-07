@@ -1,5 +1,5 @@
 package com.youngor.sample;
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,11 +7,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
-import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
-import com.mawujun.utils.page.Pager;
-import com.youngor.permission.ShiroUtils;
-import com.youngor.utils.M;
+import com.youngor.utils.MapParams;
 
 
 /**
@@ -63,16 +60,24 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 		}
 		
 		samplePlan=samplePlanRepository.get(samplePlan.getPlspno());
-		samplePlan.setPlstat(0);
-		samplePlan.setLmdt(new Date());
-		samplePlan.setLmsp(ShiroUtils.getLoginName());
-		samplePlanRepository.update(samplePlan);
+		if(samplePlan.getPlspst()==1){
+			throw new BusinessException("已经锁定,不能删除!");
+		}
+		samplePlanRepository.delete(samplePlan);
+//		samplePlan.setPlstat(0);
+//		samplePlan.setLmdt(new Date());
+//		samplePlan.setLmsp(ShiroUtils.getLoginName());
+//		samplePlanRepository.update(samplePlan);
 	}
 	
 	public void lockOrunlock(String plspno,Integer plspst) {
 		SamplePlan samplePlan=samplePlanRepository.get(plspno);
 		samplePlan.setPlspst(plspst);
 		samplePlanRepository.update(samplePlan);
+	}
+	
+	public List<SamplePlanVO> queryList4Export(MapParams params){
+		return samplePlanRepository.queryPage(params.getParams());
 	}
 	
 

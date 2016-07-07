@@ -352,6 +352,8 @@ Ext.define('y.sample.SamplePlanGrid',{
 		formpanel.reset();
 		formpanel.loadRecord(rec);
 		
+		formpanel.down("#plspnm").setReadOnly(false);
+		
     },
     getSiblingForm:function(){
     	var me=this;
@@ -385,6 +387,7 @@ Ext.define('y.sample.SamplePlanGrid',{
 				//me.getStore().reload();
 				record.set("plspst",bool?1:0);
 				me.getSiblingForm().lockOrUnlock(record.get("plspst"));
+				record.commit();
 			}
 		});
     },

@@ -8,7 +8,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<!-- 查询语句，会自动分页-->
     <select id="queryPlanOrgdtlVO" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
     	SELECT G.ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,D.QYMTQT,D.QYMTAM,D.TXMTQT,D.TXMTAM,
-    		'${ormtno}' as ormtno,'${bradno}' as bradno, G.ORGNO as ordorg,nvl(plstat,0) as plstat,
+    		'${ormtno}' as ormtno,'${bradno}' as bradno, G.ORGNO as ordorg,nvl(c.plstat,0) as plstat,
     		b.SPCLNO,b.SPTYNO,b.SPSENO FROM
 		(SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,2),2,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
 		LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO

@@ -146,6 +146,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	   		if(record.get("plstat")!=0 || record.get("isTotal")==true){
 	   			return false;
 	   		}
+	   		return true;
 	   });
 	  this.cellEditing.on("edit",function(editor, context){
 	    var record=context.record;

@@ -77,8 +77,8 @@ Ext.define('y.ordmt.OrdmtScdeForm',{
             format:'H:i',
             submitFormat :'H:i',
             editable:false,
-            minValue: '06:00',
-        	maxValue: '20:00',
+            //minValue: '06:00',
+        	//maxValue: '20:00',
 	        xtype:'timefield'
 	    },
 		{
@@ -90,8 +90,8 @@ Ext.define('y.ordmt.OrdmtScdeForm',{
             format:'H:i',
             submitFormat :'H:i',
             editable:false,
-             minValue: '06:00',
-        	maxValue: '20:00',
+            // minValue: '06:00',
+        	//maxValue: '20:00',
 	        xtype:'timefield'
 	    },
 		{
