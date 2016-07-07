@@ -213,7 +213,13 @@ Ext.define('y.order.WxtzGrid',{
 					me.check_stat();
 				},
 				iconCls: 'icon-refresh'
-			}]
+			},{
+		  		text: '导出',
+				handler: function(btn){
+					me.onExport();
+				},
+				iconCls: ' icon-download-alt'
+		  	}]
 	   });
 	   
 	    me.dockedItems.push({
@@ -232,12 +238,6 @@ Ext.define('y.order.WxtzGrid',{
 					me.comp_wxps();
 				},
 				iconCls: ' icon-legal'
-		  	},{
-		  		text: '导出',
-				handler: function(btn){
-					me.createNew();
-				},
-				iconCls: ' icon-download-alt'
 		  	}]
 	    });
 	  
@@ -350,5 +350,10 @@ Ext.define('y.order.WxtzGrid',{
 			}
 		});
 			
-	}
+	},
+	onExport:function(){
+    	var params=this.getParams();
+    	var url=Ext.ContextPath+"/ord/wxtz/export.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    }
 });

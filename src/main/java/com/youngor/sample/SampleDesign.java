@@ -94,169 +94,173 @@ public class SampleDesign extends BaseObject{
 	private List<SampleDesignSizegp> sampleDesignSizegpes;
 	@Transient
 	private String ormtno;
-	
-	public String getSampno() {
-		return sampno;
-	}
 	public void setSampno(String sampno) {
 		this.sampno = sampno;
-	}
-	public String getSampnm() {
-		return sampnm;
 	}
 	public void setSampnm(String sampnm) {
 		this.sampnm = sampnm;
 	}
-	public String getPlspno() {
-		return plspno;
+	public void setSampnm1(String sampnm1) {
+		this.sampnm1 = sampnm1;
 	}
 	public void setPlspno(String plspno) {
 		this.plspno = plspno;
 	}
-	public String getVersno() {
-		return versno;
-	}
 	public void setVersno(String versno) {
+		if(versno==null){
+			versno="";
+			return;
+		}
 		this.versno = versno;
-	}
-	public String getPhotno() {
-		return photno;
 	}
 	public void setPhotno(String photno) {
 		this.photno = photno;
 	}
-	public String getStseno() {
-		return stseno;
-	}
 	public void setStseno(String stseno) {
+		
 		this.stseno = stseno;
-	}
-	public String getDesgno() {
-		return desgno;
 	}
 	public void setDesgno(String desgno) {
 		this.desgno = desgno;
 	}
-	public String getBuspno() {
-		return buspno;
-	}
 	public void setBuspno(String buspno) {
 		this.buspno = buspno;
-	}
-	public String getSpmtno() {
-		return spmtno;
 	}
 	public void setSpmtno(String spmtno) {
 		this.spmtno = spmtno;
 	}
-	public String getGustno() {
-		return gustno;
-	}
 	public void setGustno(String gustno) {
 		this.gustno = gustno;
-	}
-	public String getColrno() {
-		return colrno;
 	}
 	public void setColrno(String colrno) {
 		this.colrno = colrno;
 	}
-	public String getPattno() {
-		return pattno;
-	}
 	public void setPattno(String pattno) {
 		this.pattno = pattno;
-	}
-	public String getStylno() {
-		return stylno;
 	}
 	public void setStylno(String stylno) {
 		this.stylno = stylno;
 	}
-	public String getStylgp() {
-		return stylgp;
-	}
 	public void setStylgp(String stylgp) {
 		this.stylgp = stylgp;
-	}
-	public String getSexno() {
-		return sexno;
 	}
 	public void setSexno(String sexno) {
 		this.sexno = sexno;
 	}
-	public String getSlveno() {
-		return slveno;
-	}
 	public void setSlveno(String slveno) {
 		this.slveno = slveno;
-	}
-	public String getSuitty() {
-		return suitty;
 	}
 	public void setSuitty(String suitty) {
 		this.suitty = suitty;
 	}
-	public String getDesp() {
-		return desp;
-	}
 	public void setDesp(String desp) {
 		this.desp = desp;
-	}
-
-	public Integer getPackqt() {
-		return packqt;
 	}
 	public void setPackqt(Integer packqt) {
 		this.packqt = packqt;
 	}
-	public Integer getSpltmk() {
-		return spltmk;
-	}
 	public void setSpltmk(Integer spltmk) {
 		this.spltmk = spltmk;
-	}
-	public Integer getPrint() {
-		return print;
 	}
 	public void setPrint(Integer print) {
 		this.print = print;
 	}
-	public Integer getSampst() {
-		return sampst;
-	}
 	public void setSampst(Integer sampst) {
 		this.sampst = sampst;
-	}
-	public Integer getSpstat() {
-		return spstat;
 	}
 	public void setSpstat(Integer spstat) {
 		this.spstat = spstat;
 	}
-	public List<SampleDesignSizegp> getSampleDesignSizegpes() {
-		return sampleDesignSizegpes;
+	public void setAbstat(Integer abstat) {
+		this.abstat = abstat;
 	}
 	public void setSampleDesignSizegpes(List<SampleDesignSizegp> sampleDesignSizegpes) {
 		this.sampleDesignSizegpes = sampleDesignSizegpes;
 	}
-	public Integer getAbstat() {
-		return abstat;
+	public void setOrmtno(String ormtno) {
+		this.ormtno = ormtno;
 	}
-	public void setAbstat(Integer abstat) {
-		this.abstat = abstat;
+	public String getSampno() {
+		return sampno;
+	}
+	public String getSampnm() {
+		return sampnm;
 	}
 	public String getSampnm1() {
 		return sampnm1;
 	}
-	public void setSampnm1(String sampnm1) {
-		this.sampnm1 = sampnm1;
+	public String getPlspno() {
+		return plspno;
+	}
+	public String getVersno() {
+		return versno;
+	}
+	public String getPhotno() {
+		return photno;
+	}
+	public String getStseno() {
+		return stseno;
+	}
+	public String getDesgno() {
+		return desgno;
+	}
+	public String getBuspno() {
+		return buspno;
+	}
+	public String getSpmtno() {
+		return spmtno;
+	}
+	public String getGustno() {
+		return gustno;
+	}
+	public String getColrno() {
+		return colrno;
+	}
+	public String getPattno() {
+		return pattno;
+	}
+	public String getStylno() {
+		return stylno;
+	}
+	public String getStylgp() {
+		return stylgp;
+	}
+	public String getSexno() {
+		return sexno;
+	}
+	public String getSlveno() {
+		return slveno;
+	}
+	public String getSuitty() {
+		return suitty;
+	}
+	public String getDesp() {
+		return desp;
+	}
+	public Integer getPackqt() {
+		return packqt;
+	}
+	public Integer getSpltmk() {
+		return spltmk;
+	}
+	public Integer getPrint() {
+		return print;
+	}
+	public Integer getSampst() {
+		return sampst;
+	}
+	public Integer getSpstat() {
+		return spstat;
+	}
+	public Integer getAbstat() {
+		return abstat;
+	}
+	public List<SampleDesignSizegp> getSampleDesignSizegpes() {
+		return sampleDesignSizegpes;
 	}
 	public String getOrmtno() {
 		return ormtno;
 	}
-	public void setOrmtno(String ormtno) {
-		this.ormtno = ormtno;
-	}
-
+	
+	
 }

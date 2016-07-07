@@ -33,6 +33,8 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	@Autowired
 	private SampleDesignSizegpRepository sampleDesignSizegpRepository;
 	@Autowired
+	private SampleDesignStprRepository sampleDesignStprRepository;
+	@Autowired
 	private OrdmtRepository ordmtRepository;
 	
 	
@@ -55,6 +57,11 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			throw new BusinessException("订货会已经开始，不能删除!");
 		}
 		sampleDesignRepository.delete(sampleDesign);
+		
+		//同时删除规格范围
+		sampleDesignSizegpRepository.deleteBySampno(sampno);
+		//同时删除按套件的价格
+		sampleDesignStprRepository.deleteBySampno(sampno);
 		
 		
 		

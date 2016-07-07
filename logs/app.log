@@ -22124,3 +22124,84 @@ PL/SQL: Statement ignored
 13:41:20.433 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
 13:42:56.774 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
 13:52:49.714 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:19:04.304 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:19:47.600 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:46:17.565 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+14:48:09.820 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:50:19.387 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:52:07.029 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@6690cf41
+14:52:07.173 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@a641042
+15:36:28.258 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:36:49.482 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.order.TpController.tpYxgsExport(com.youngor.utils.MapParams,javax.servlet.http.HttpServletResponse) throws java.io.IOException]: java.lang.IllegalStateException: Cannot add merged region H1:J1 to sheet because it overlaps with an existing merged region (F1:H1).
+15:36:49.482 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.IllegalStateException: Cannot add merged region H1:J1 to sheet because it overlaps with an existing merged region (F1:H1).
+15:48:40.629 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@6ea599f0
+15:49:08.764 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@19b4b4b3
+15:49:25.044 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3743d165
+15:52:17.390 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@49590f38
+15:52:17.399 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@c65cf5
+15:52:17.406 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@6f46364d
+15:52:18.623 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1947413b
+15:52:19.541 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@83c81b3
+15:52:20.626 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@648d5001
+15:52:22.360 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@790edd32
+15:52:22.366 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@10b38722
+15:52:22.372 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@2602183a
+15:52:23.103 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@948f462
+15:52:23.707 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1ff82f12
+15:52:25.743 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@519f24a2
+15:54:29.206 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@1aeccd92
+15:54:29.206 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@1aeccd92
+15:54:29.301 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6a03477
+15:57:57.489 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@349dedfb
+15:57:57.489 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@349dedfb
+15:57:57.495 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@4e14aa2c
+16:10:55.591 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:16:30.441 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@1493f33
+16:18:25.660 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleColth com.youngor.sample.SampleColthController.load(java.lang.String)]: java.lang.NullPointerException
+16:18:25.660 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+16:22:49.055 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@25e2aaa3
+16:22:49.056 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@25e2aaa3
+16:22:49.079 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3086acfd
+16:22:49.253 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:22:49.253 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+16:22:49.253 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+16:22:49.254 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+16:22:49.254 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+16:25:49.233 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@782c712f
+16:25:49.233 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@782c712f
+16:25:49.238 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6a39d931
+16:40:17.025 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@34e138f0
+16:42:45.778 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:43:10.988 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:31:52.156 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:33:03.746 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@1955e038
+17:33:03.845 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@1955e038
+17:33:04.040 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@4764d98
+17:33:27.787 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6aaacbd9
+17:34:53.117 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@4d8b81d0
+17:34:53.138 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@1686ec
+17:34:53.152 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@576a15df
+17:34:55.470 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@356150bb
+17:34:56.876 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@3d563f5b
+17:34:58.356 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1158e293
+17:35:36.877 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.order.TpController.tpYxgs_over(java.lang.String)]: com.mawujun.exception.BusinessException: 下列样衣未分配完:111,2221
+17:35:36.878 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 下列样衣未分配完:111,2221
+17:37:21.998 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@41feb441
+17:37:22.005 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@17df5dac
+17:37:22.012 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1c02f916
+17:37:27.090 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@25f96712
+17:37:32.601 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@4db68ba5
+17:37:40.381 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@59ec142c
+17:37:40.388 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@6f0a643d
+17:37:40.394 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1f13e5a8
+17:37:44.937 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@1cb9cc88
+17:38:02.769 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@2cd004f6
+17:38:02.775 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@196b1736
+17:38:02.780 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@2323137a
+17:55:54.455 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:56:22.071 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.wxtz_queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 10
+17:56:22.071 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 10
+17:56:29.255 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.wxtz_queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
+17:56:29.255 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
+17:56:30.527 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.wxtz_queryWx(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
+17:56:30.527 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2

@@ -544,12 +544,30 @@ Ext.define('y.sample.SampleDesignGrid',{
 			
 			window.sampleDesign=record;
 			//设计开发form填充
-			var sampleDesign=Ext.create('y.sample.SampleDesign',{
-				sexno:'Z0',
-				plspno:record.get("plspno"),
-				plspnm:record.get("plspnm"),
-				sampnm1:record.get("plspnm")
-			});
+			var sampleDesign=null;
+			if(record.get("bradno")=='Y'){
+				sampleDesign=Ext.create('y.sample.SampleDesign',{
+					sexno:'Z0',
+					plspno:record.get("plspno"),
+					plspnm:record.get("plspnm"),
+					sampnm1:record.get("plspnm"),
+					versno:"none",
+					stseno:"none",
+					spmtno:"none",
+					colrno:"none",
+					pattno:"none",
+					stylno:"none",
+					sexno:"none",
+					slveno:"none"
+				});
+			} else {
+				sampleDesign=Ext.create('y.sample.SampleDesign',{
+					sexno:'Z0',
+					plspno:record.get("plspno"),
+					plspnm:record.get("plspnm"),
+					sampnm1:record.get("plspnm")
+				});
+			}
 			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;
 			

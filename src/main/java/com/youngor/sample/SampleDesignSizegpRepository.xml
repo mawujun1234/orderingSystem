@@ -15,6 +15,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_design_sizegp a
     </select>
     
+    <delete id="deleteBySampno">
+    	delete ord_sample_design_sizegp where sampno=#{sampno}
+    </delete>
+    
     
      <select id="querySampleDesignSizegp_T00" resultType="com.youngor.sample.SampleDesignSizegp" parameterType="map">
     	SELECT  *

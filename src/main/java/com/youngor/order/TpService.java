@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mawujun.exception.BusinessException;
 import com.mawujun.utils.page.Pager;
 import com.youngor.org.Chancl;
+import com.youngor.utils.MapParams;
 
 
 /**
@@ -40,6 +40,10 @@ public class TpService {
 
 	public  Pager<Map<String,Object>> zgs_tpAllQuery( Pager<Map<String,Object>> pager) {
 		return tpRepository.zgs_tpAllQuery(pager);
+	}
+	
+	public  List<Map<String,Object>> zgs_tpAllExport(MapParams params) {
+		return tpRepository.zgs_tpAllQuery(params.getParams());
 	}
 	
 	public  void zgs_updateOrmtqt_tp(String ormtno,String sampno,String bradno,String spclno,String suitno,Integer ormtqs,Integer ormtqt) {

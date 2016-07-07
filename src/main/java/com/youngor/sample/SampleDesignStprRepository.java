@@ -17,4 +17,6 @@ public interface SampleDesignStprRepository extends IRepository<SampleDesignStpr
 	//public List<SampleDesignStpr> querySampleDesignStpr(@Param("suitty")String suitty,@Param("sampno")String sampno);
 	public List<SampleDesignStpr> querySampleDesignStpr(@Param("sampno")String sampno,@Param("suitty")String suitty);
 	public List<SampleDesignStpr> querySampleDesignStpr_T00(@Param("sampno")String sampno);
+	
+	public void deleteBySampno(@Param("sampno")String sampno);
 }

@@ -127,7 +127,21 @@ Ext.define('y.order.SizeVOGrid',{
       }
       
       
-      
+       if(STDSZ_columns.length!=0){
+      		STDSZ_columns.unshift({
+      		 	header:"小计",
+      		 	dataIndex:"STDSZ___SUBTOTAL"
+      		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
+	            	 return value;
+            	}
+      		 });
+      		me.columns.push({
+      			header:'规格合计',
+      			columns:STDSZ_columns
+      		});
+      	}
+      	
       if(PRDPK_columns.length!=0){
       		PRDPK_columns.unshift({
       		 	header:"小计",
@@ -142,20 +156,7 @@ Ext.define('y.order.SizeVOGrid',{
       			columns:PRDPK_columns
       		});
       	}
-      if(STDSZ_columns.length!=0){
-      		STDSZ_columns.unshift({
-      		 	header:"小计",
-      		 	dataIndex:"STDSZ___SUBTOTAL"
-      		 	,width: 80,renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
-	            	 return value;
-            	}
-      		 });
-      		me.columns.push({
-      			header:'规格合计',
-      			columns:STDSZ_columns
-      		});
-      	}
+     
       	
       	if(STDSZPRDPK_columns.length!=0){
       		STDSZPRDPK_columns.unshift({

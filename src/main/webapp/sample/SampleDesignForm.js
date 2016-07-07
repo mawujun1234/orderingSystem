@@ -115,7 +115,6 @@ Ext.define('y.sample.SampleDesignForm',{
 			    	url:Ext.ContextPath+'/user/querySjs.do'
 			    }
 			},
-            allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"职位类型不允许为空",
 			xtype:'combobox'
@@ -360,37 +359,37 @@ Ext.define('y.sample.SampleDesignForm',{
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield'   
-	    },
-		{
-	        fieldLabel: '创建人',
-	        name: 'rgsp',
-            hidden:true,
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
-		{
-            fieldLabel: '创建日期',
-            name: 'rgdt',
-            hidden:true,
-            editable:false,
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        },
-		{
-	        fieldLabel: '修改人',
-	        name: 'lmsp',
-            hidden:true,
-            selectOnFocus:true,
-	        xtype:'textfield'
-	    },
-		{
-            fieldLabel: '修改日期',
-            name: 'lmdt',
-            hidden:true,
-            editable:false,
-            xtype: 'datefield',
-            format: 'Y-m-d'   
-        }
+	    }
+//		{
+//	        fieldLabel: '创建人',
+//	        name: 'rgsp',
+//            hidden:true,
+//            selectOnFocus:true,
+//	        xtype:'textfield'
+//	    },
+//		{
+//            fieldLabel: '创建日期',
+//            name: 'rgdt',
+//            hidden:true,
+//            editable:false,
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        },
+//		{
+//	        fieldLabel: '修改人',
+//	        name: 'lmsp',
+//            hidden:true,
+//            selectOnFocus:true,
+//	        xtype:'textfield'
+//	    },
+//		{
+//            fieldLabel: '修改日期',
+//            name: 'lmdt',
+//            hidden:true,
+//            editable:false,
+//            xtype: 'datefield',
+//            format: 'Y-m-d'   
+//        }
 	  ];   
 	  
 	 var sampleDesignSizegpGrid=Ext.create('y.sample.SampleDesignSizegpGrid',{
@@ -421,10 +420,10 @@ Ext.define('y.sample.SampleDesignForm',{
 			glyph : 0xf0c7,
 			handler : function(button){
 				var formpanel = button.up('form');
-//				if(!formpanel.isValid()){
-//					alert("请先填写必填项!");
-//					return;
-//				}
+				if(!formpanel.isValid()){
+					alert("请先填写必填项!");
+					return;
+				}
 				//formpanel.updateRecord();
 				//var record=button.up('form').getForm().getRecord();
 				var sampleDesignSizegpes=sampleDesignSizegpGrid.getStore().getRange();

@@ -130,8 +130,8 @@ Ext.define('y.plan.PlanHdGrid',{
 		  		fieldLabel: '营销公司',
 		  		labelWidth:75,
 		  		width:175,
-		  		allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
+		  		allowBlank: true,
+	            //afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
 				selFirst:false,
@@ -209,7 +209,7 @@ Ext.define('y.plan.PlanHdGrid',{
 			},{
 			   text: '导出',
 				handler: function(btn){
-					me.createNew();
+					me.onExport();
 				},
 				iconCls: 'icon-download-alt'
 			}]
@@ -250,6 +250,12 @@ Ext.define('y.plan.PlanHdGrid',{
 	 			});
 	 		}
 	 	});
-	}
+	},
+	onExport:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/planHd/exportHdGrid.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    }
 	
 });

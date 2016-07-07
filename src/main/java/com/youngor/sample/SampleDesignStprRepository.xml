@@ -15,6 +15,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_design_stpr a
     </select>
     
+     <delete id="deleteBySampno">
+    	delete ord_sample_design_stpr where sampno=#{sampno}
+    </delete>
+    
     <select id="querySampleDesignStpr_T00" resultType="com.youngor.sample.SampleDesignStpr" parameterType="map">
     	SELECT  *
     	 FROM ord_sample_design_sizegp b

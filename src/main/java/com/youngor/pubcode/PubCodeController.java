@@ -38,7 +38,7 @@ public class PubCodeController {
 		if("none".equals(fitno)){
 			List<PubCode> pubCodes=new ArrayList<PubCode>();
 			PubCode wu=new PubCode();
-			wu.setItno(null);
+			wu.setItno("");
 			wu.setItnm("无");
 			pubCodes.add(0, wu);
 			return pubCodes;
@@ -75,7 +75,7 @@ public class PubCodeController {
 			pubCodes=list;
 		}
 		PubCode wu=new PubCode();
-		wu.setItno(null);
+		wu.setItno("");
 		wu.setItnm("无");
 		pubCodes.add(0, wu);
 		return pubCodes;

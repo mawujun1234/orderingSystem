@@ -125,7 +125,7 @@ Ext.onReady(function(){
 		  	},{
 		  		text: '导出',
 				handler: function(btn){
-					me.createNew();
+					panel.onExport();
 				},
 				iconCls: 'icon-download-alt'
 		  	}]
@@ -222,6 +222,12 @@ Ext.onReady(function(){
 		});
 	}
 	
+	panel.onExport=function(){
+    	var params=panel.getParams();
+    	var url=Ext.ContextPath+"/tp/tpQy_export.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    }
+    
 	 function createTpQyGrid(initColumns){
 	 	var params=panel.getParams();
 		var　grid=Ext.create('y.order.TpQyGrid',{

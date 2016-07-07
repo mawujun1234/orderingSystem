@@ -152,7 +152,7 @@ Ext.onReady(function(){
 		  	},{
 		  		text: '导出',
 				handler: function(btn){
-					me.createNew();
+					grid.onExport();
 				},
 				iconCls: 'icon-download-alt'
 		  	}]
@@ -343,6 +343,13 @@ Ext.onReady(function(){
 			}
 		});
 	}
+	
+	grid.onExport=function(){
+    	//var me=this;
+    	var params=grid.getParams();
+    	var url=Ext.ContextPath+"/tp/zgs_tpAllExport.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    }
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'border',

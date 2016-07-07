@@ -1,4 +1,5 @@
 package com.youngor.order;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -489,6 +490,38 @@ public class OrdController {
 	public String wxtz_comp_wxps(String ormtno,String bradno,String spclno){
 		ordService.wxtz_comp_wxps(ormtno, bradno, spclno);
 		return "{success:true}";
+	}
+	
+	
+	@RequestMapping("/ord/wxtz/export.do")
+	@ResponseBody
+	public  void wxtz_export(MapParams params,HttpServletResponse response) throws IOException {
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("统配到大区");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		
+		titles.put("SPTYNO_NAME", "小类");
+		titles.put("SPSENO_NAME", "系列");
+		titles.put("SAMPNM", "设计样衣编号");
+		titles.put("SUITNO_NAME", "套件");
+		titles.put("PACKQT", "包装要求");
+		titles.put("ORMTQT_TP_GSBB", "统配总数");
+		titles.put("ORMTQT_TOTAL", "合计");
+		这里要做
+//		List<Map<String,Object>> columns=tpService.queryTpYxgsColumns();
+//		
+//
+//		crreateTitle_tpYxgsExport(wb,sheet1,titles,columns);
+//		
+//		crreateData_tpYxgsExport(wb,sheet1,titles,params);
+
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("统配到大区".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();   
+		
 	}
 
 	

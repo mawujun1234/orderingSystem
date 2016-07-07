@@ -16,4 +16,6 @@ public interface SampleDesignSizegpRepository extends IRepository<SampleDesignSi
 
 	public List<SampleDesignSizegp> querySampleDesignSizegp(@Param("sampno")String sampno,@Param("suitty")String suitty);
 	public List<SampleDesignSizegp> querySampleDesignSizegp_T00(@Param("sampno")String sampno);
+	
+	public void deleteBySampno(@Param("sampno")String sampno);
 }
