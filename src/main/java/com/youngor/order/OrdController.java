@@ -1,12 +1,24 @@
 package com.youngor.order;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -341,6 +353,96 @@ public class OrdController {
 	public String zgsVO_balanceOver(String ormtno,String bradno,String spclno) {
 		ordService.zgsVO_balanceOver(ormtno, bradno, spclno);
 		return "{success:true}";
+	}
+	
+	@RequestMapping("/ord/zgsVO/exportZgsVO.do")
+	@ResponseBody
+	public void zgsVO_exportZgsVO(MapParams params,HttpServletResponse response) throws Exception {
+		//samplePlanService.lockOrunlock(plspno, plspst);
+		//System.out.println(params);
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("总公司平衡");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		
+		titles.put("PALTPY", "状态");
+		titles.put("SDTYNO", "订单节点");
+		titles.put("SPTYNM", "小类");
+		titles.put("SPSENM", "系列");
+		titles.put("SAMPNM", "订货样衣编号");
+		
+		titles.put("ORMTQS00", "标准");
+		titles.put("ORMTQS01", "上衣");
+		titles.put("ORMTQS02", "裤子");
+		titles.put("ORMTQS04", "裙子");
+		
+		titles.put("ORMTQT00", "标准");
+		titles.put("ORMTQT01", "上衣");
+		titles.put("ORMTQT02", "裤子");
+		titles.put("ORMTQT04", "裙子");
+		
+		titles.put("PLSPNM", "目标样衣编号");
+
+		zgsVO_crreateTitle_exportZgsVO(wb,sheet1,titles);
+		
+		zgsVO_crreateData_exportZgsVO(wb,sheet1,titles,params);
+
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("总公司平衡".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	private void zgsVO_crreateTitle_exportZgsVO(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    //font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+	    
+	    Row title0 = sheet1.createRow((short)0);
+	    Cell cell5 = title0.createCell(5);
+	    cell5.setCellValue("原始数量");
+	    cell5.setCellStyle(cellStyle);
+	    Cell cell9 = title0.createCell(9);
+	    cell9.setCellValue("确认数量");
+	    cell9.setCellStyle(cellStyle);
+	    sheet1.addMergedRegion(new CellRangeAddress(0, 0, 5, 8));
+	    sheet1.addMergedRegion(new CellRangeAddress(0, 0, 9, 12));
+		 
+	    Row title = sheet1.createRow((short)1);
+		
+		int i=0;
+		for(Entry<String,String> entry:titles.entrySet()){
+			Cell cell = title.createCell(i);
+			cell.setCellValue(entry.getValue());
+			cell.setCellStyle(cellStyle);
+			i++;
+		}
+	}
+	
+	private void zgsVO_crreateData_exportZgsVO(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params){
+		List<Map<String,Object>> list=ordService.zgsVO_query_exportZgsVO(params);
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			Map<String,Object> map=list.get(i);
+			Row row = sheet1.createRow((short)i+2);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				if(map.get(entry.getKey())!=null){
+					cell.setCellValue(map.get(entry.getKey()).toString());
+				}
+			}
+		}
 	}
 	
 	/**

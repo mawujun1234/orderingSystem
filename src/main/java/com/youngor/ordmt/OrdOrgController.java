@@ -87,7 +87,7 @@ public class OrdOrgController {
         hints.put(EncodeHintType.MARGIN, 0);
         for(OrdOrg ordOrg:list){
         	String fileName = ordOrg.getOrdorg()+".png"; 
-        	 BitMatrix bitMatrix = new MultiFormatWriter().encode(ordOrg.getLoginname()+"+##+"+ordOrg.getPwd(),BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵  
+        	 BitMatrix bitMatrix = new MultiFormatWriter().encode(ordOrg.getLoginname()+"+##+"+ordOrg.getLoginname(),BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵  
              Path path = FileSystems.getDefault().getPath(filePath, fileName);  
              MatrixToImageWriter.writeToPath(bitMatrix, format, path);// 输出图像  
              System.out.println("输出成功.");  

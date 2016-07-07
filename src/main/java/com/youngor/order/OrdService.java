@@ -859,7 +859,9 @@ public class OrdService extends AbstractService<Ord, String>{
 	public Pager<Map<String,Object>> zgsVO_queryZgsVO(Pager<Map<String,Object>> pager) {
 		return ordRepository.queryZgsVO(pager);
 	}
-	
+	public List<Map<String,Object>> zgsVO_query_exportZgsVO(MapParams params) {
+		return ordRepository.queryZgsVO(params.getParams());
+	}
 	
 	
 	public Map<String,Object> zgsVO_check_canedit(String ormtno,String bradno,String spclno) {

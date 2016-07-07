@@ -13,6 +13,7 @@ import com.youngor.org.Org;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignStpr;
 import com.youngor.sample.SamplePlan;
+import com.youngor.utils.MapParams;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -107,6 +108,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	
 	public Pager<Map<String,Object>> queryZgsVO(Pager<Map<String,Object>> pager);
+	public List<Map<String,Object>> queryZgsVO(Map<String,Object> params);
 	
 	//public void clearnum_orddtl(@Param("sampno")String sampno);
 	//public void clearnum_ordszdtl(@Param("sampno")String sampno);

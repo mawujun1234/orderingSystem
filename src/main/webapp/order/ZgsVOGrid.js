@@ -18,13 +18,13 @@ Ext.define('y.order.ZgsVOGrid',{
 	      {xtype: 'rownumberer'},
 	      {dataIndex:'PALTPY',header:'状态'},
 	      {dataIndex:'SDTYNO',header:'订单节点'},
-	      {dataIndex:'ORSTAT',header:'区域提交状态',hidden:true,renderer:function(value){
-	      	if(value=="已提交"){
-	      		return value;
-	      	} else {
-	      		return "<a href='#'>"+value+"</a>";
-	      	}
-	      }},
+//	      {dataIndex:'ORSTAT',header:'区域提交状态',hidden:true,renderer:function(value){
+//	      	if(value=="已提交"){
+//	      		return value;
+//	      	} else {
+//	      		return "<a href='#'>"+value+"</a>";
+//	      	}
+//	      }},
 	      {dataIndex:'SPTYNM',header:'小类'},
 	      {dataIndex:'SPSENM',header:'系列'},
 	      {dataIndex:'SAMPNM',header:'订货样衣编号'},
@@ -237,7 +237,13 @@ Ext.define('y.order.ZgsVOGrid',{
 					me.check_canedit();
 				},
 				iconCls: 'icon-refresh'
-			}]
+			},{
+		  		text: '导出',
+				handler: function(btn){
+					me.onExport();
+				},
+				iconCls: ' icon-download-alt'
+		  	}]
 	   });
 	   
 	    me.dockedItems.push({
@@ -273,12 +279,6 @@ Ext.define('y.order.ZgsVOGrid',{
 					me.balanceOver();
 				},
 				iconCls: ' icon-legal'
-		  	},{
-		  		text: '导出',
-				handler: function(btn){
-					me.createNew();
-				},
-				iconCls: ' icon-download-alt'
 		  	}]
 	    });
 	  
@@ -646,5 +646,11 @@ Ext.define('y.order.ZgsVOGrid',{
 			}
 		});
 			
-	}
+	},
+	onExport:function(){
+    	var me=this;
+    	var params=me.getParams();
+    	var url=Ext.ContextPath+"/ord/zgsVO/exportZgsVO.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    }
 });

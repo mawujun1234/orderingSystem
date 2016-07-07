@@ -68,6 +68,12 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
 	    		  this.setUserService(SpringContextHolder.getBean(UserService.class));
 	    	  }
 	    	  UserVO user = userService.getByLoginName( username ); 
+	    	  if(token instanceof UsernamePasswordToken1){
+	    		  //移动端扫描登录的时候
+	    		  if(((UsernamePasswordToken1)token).getIsscan()==true){
+	    			  user.setPwd(user.getLoginName().toLowerCase());
+	    		  }
+	    	  }
 	    	  if(user == null) {  
 	              throw new BusinessException("该账号不存在!");//没找到帐号  
 	          }  

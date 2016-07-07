@@ -217,12 +217,13 @@ $(function(){
 //		
 //	});
 	
-	function login(loginname,password){
+	function login(loginname,password,isscan){
 		$.showPreloader("正在登录...");
 		$.post(Ext.ContextPath+"/user/mobile/login.do",
 			{
 				username:loginname,
-				password:password
+				password:password,
+				isscan:isscan
 			},function(response){
 				$.hidePreloader();
 				if(response.success==false){
@@ -255,7 +256,7 @@ $(function(){
 		if(!od_loginpage_password){
 			$.toast("请输入密码!");return;
 		}
-		login(od_loginpage_username,od_loginpage_password);
+		login(od_loginpage_username,od_loginpage_password,false);
 	//	$.showPreloader("正在登录...");
 //		$.post(Ext.ContextPath+"/user/mobile/login.do",
 //			{
@@ -309,7 +310,7 @@ $(function(){
 				var str=result.split("+##+");
 				//alert(str[0]);
 				//alert(str[1]);
-				login(str[0],str[1]);
+				login(str[0],str[1],true);
 			}
 		});
 	});

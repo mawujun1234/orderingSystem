@@ -90,15 +90,23 @@ public class UserController {
         }  
        // return model;
 	}
-	
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param username
+	 * @param password
+	 * @param isscan true表示是通过扫描登录的
+	 * @return
+	 */
 	@RequestMapping("/user/mobile/login.do")
 	@ResponseBody
-	public Map<String,Object> mobile_login(String username,String password) {
+	public Map<String,Object> mobile_login(String username,String password,Boolean isscan) {
 		
 		Map<String,Object> model=new HashMap<String,Object>();
 		Subject subject = SecurityUtils.getSubject(); 
 		
-		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
+		UsernamePasswordToken1 token = new UsernamePasswordToken1(username, password); 
+		token.setIsscan(isscan==null?false:isscan);
 		//subject.login(token);
 		String error=null;
 		try {  
