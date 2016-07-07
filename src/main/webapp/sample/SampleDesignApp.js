@@ -86,6 +86,7 @@ Ext.onReady(function(){
 	    split:true,
 	    collapsible : true,
 	    collapsed :true,
+	    deferredRender:false,
 	    items: [samplePlanForm,sampleDesignForm,sampleMatePanel,sampleColthForm,samplePhotoShow],
 	    listeners:{
 	    	render:function(){

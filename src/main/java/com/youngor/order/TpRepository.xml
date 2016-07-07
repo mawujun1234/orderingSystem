@@ -25,14 +25,18 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </sql>
     <select id="zgs_tpAllQuery" resultType="map" parameterType="map">
     	   select x.*,Y.ORMTQT_TP,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
-			    select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT
+    	     select a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT,sum(ORMTQT) ORMTQT from (
+			    select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,decode(c.ormark,'已统配',c.ormtqs,c.ormtqt) ORMTQT
 			    from ord_sample_plan a
 			    inner join ord_sample_design b on a.plspno=b.plspno
 			    inner join ord_sample_design_sizegp e on b.sampno=e.sampno
+			    left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno
 			    left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno
 			    left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
 			    WHERE 1=1 <include refid="zgs_tpAllQuery_where"></include> 
-			    group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT
+			    --group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,bb.SUITNO,B.PACKQT
+			 ) a
+             group by a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT
 		    ) x left join 
 		    (
 			    select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP 
@@ -45,13 +49,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select> 
     <select id="zgs_tpAllQuery_count" resultType="int" parameterType="map">
     	SELECT count(*) FROM (
-			 select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT
+    		select a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT,sum(ORMTQT) ORMTQT from (
+			 select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,decode(c.ormark,'已统配',c.ormtqs,c.ormtqt) ORMTQT
 			    from ord_sample_plan a
 			    inner join ord_sample_design b on a.plspno=b.plspno
 			    inner join ord_sample_design_sizegp e on b.sampno=e.sampno
+			    left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno
 			    left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno
 			    left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
 			    WHERE 1=1 <include refid="zgs_tpAllQuery_where"></include> 
+			  ) a
+             group by a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT
 		) X
     </select> 
     <!-- 获取总部订单的状态 -->

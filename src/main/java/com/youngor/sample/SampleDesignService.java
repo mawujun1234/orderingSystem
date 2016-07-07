@@ -133,4 +133,11 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	public List<Map<String,Object>> query_exportSample(MapParams params) {
 		return sampleDesignRepository.query_exportSample(params.getParams());
 	}
+	
+	public List<Map<String,Object>> query_exportSampleMate(MapParams params) {
+		return sampleDesignRepository.query_exportSampleMate(params.getParams());
+	}
+	public List<Map<String,Object>> query_exportSampleMate_other(MapParams params) {
+		return sampleDesignRepository.query_exportSampleMate_other(params.getParams());
+	}
 }

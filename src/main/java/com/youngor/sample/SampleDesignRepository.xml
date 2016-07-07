@@ -85,6 +85,64 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	</if>
     	
      </select>
+     <!--导出主面料信息-->
+     <select id="query_exportSampleMate" parameterType="map" resultType="map">
+     	  SELECT a.plspnm,b.sampnm,c.*
+          from ord_sample_plan a
+          inner join ord_sample_design b on a.plspno=b.plspno 
+          inner join ord_sample_mate c on b.sampno=c.sampno
+          where c.mateso=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          	<if test="sptyno!=null and sptyno!=''">
+	    		and a.sptyno=#{sptyno}
+	    	</if>
+	    	<if test="spseno!=null and spseno!=''">
+	    		and a.spseno=#{spseno}
+	    	</if>
+	    	<if test="spbseno!=null and spbseno!=''">
+	    		and a.spbseno=#{spbseno}
+	    	</if>
+	    	<if test="spmtno!=null and spmtno!=''">
+	    		and a.spmtno=#{spmtno}
+	    	</if>
+	    	<if test="sampno!=null and sampno!=''">
+	    		and a.sampno=#{sampno}
+	    	</if>
+	    	<if test="sampnm!=null and sampnm!=''">
+	    		and a.sampnm like '%${sampnm}%'
+	    	</if>
+	    	<if test="spsuno!=null and spsuno!=''">
+	    		and a.spsuno=#{spsuno}
+	    	</if>
+     </select>
+     <!--导出其他面料信息-->
+     <select id="query_exportSampleMate_other" parameterType="map" resultType="map">
+     	  SELECT a.plspnm,b.sampnm,c.*
+          from ord_sample_plan a
+          inner join ord_sample_design b on a.plspno=b.plspno 
+          inner join ord_sample_mate c on b.sampno=c.sampno
+          where c.mateso!=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          	<if test="sptyno!=null and sptyno!=''">
+	    		and a.sptyno=#{sptyno}
+	    	</if>
+	    	<if test="spseno!=null and spseno!=''">
+	    		and a.spseno=#{spseno}
+	    	</if>
+	    	<if test="spbseno!=null and spbseno!=''">
+	    		and a.spbseno=#{spbseno}
+	    	</if>
+	    	<if test="spmtno!=null and spmtno!=''">
+	    		and a.spmtno=#{spmtno}
+	    	</if>
+	    	<if test="sampno!=null and sampno!=''">
+	    		and a.sampno=#{sampno}
+	    	</if>
+	    	<if test="sampnm!=null and sampnm!=''">
+	    		and a.sampnm like '%${sampnm}%'
+	    	</if>
+	    	<if test="spsuno!=null and spsuno!=''">
+	    		and a.spsuno=#{spsuno}
+	    	</if>
+     </select>
     
     
     <sql id="lock_unlock_where">  

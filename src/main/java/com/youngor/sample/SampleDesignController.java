@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 /**
@@ -194,22 +195,23 @@ public class SampleDesignController {
 		titles.put("PRINT", "吊牌打印标志");
 		//titles.put("ABSTAT", "必订款标志");
 		
-		titles.put("MTSUNO", "供应商");
+		//titles.put("MTSUNO", "供应商");
 		titles.put("MATENO", "供应商面料货号");
-		titles.put("MTBRAD", "面料品牌");
-		titles.put("MTTYPE", "进口/国产");
-		titles.put("MTCOMP", "面料成分");
-		titles.put("YARMCT", "纱支规格");
-		titles.put("GRAMWT", "克重/密度");
-		titles.put("AFTRMT", "后整理");
-		titles.put("WIDTH", "门幅");
-		titles.put("MTPUPR", "面料单价");
-		titles.put("MTCNQT", "单件用料");
+//		titles.put("MTBRAD", "面料品牌");
+//		titles.put("MTTYPE", "进口/国产");
+//		titles.put("MTCOMP", "面料成分");
+//		titles.put("YARMCT", "纱支规格");
+//		titles.put("GRAMWT", "克重/密度");
+//		titles.put("AFTRMT", "后整理");
+//		titles.put("WIDTH", "门幅");
+//		titles.put("MTPUPR", "面料单价");
+//		titles.put("MTCNQT", "单件用料");
 
 		
 		titles.put("SPCOTN", "纱厂");
-		titles.put("SPSUNO", "开发供应商代码");
-		titles.put("PRSUNO", "货号采购供应商代码");
+		//titles.put("SPSUNO", "开发供应商代码");
+		//titles.put("PRSUNO", "货号采购供应商代码");
+		titles.put("IDSUNM", "货号采购供应商代码");
 		titles.put("SPTAPA", "含税工缴");
 		titles.put("SPACRY", "含税辅料");
 		titles.put("SPCLBD", "服饰配料");
@@ -221,10 +223,7 @@ public class SampleDesignController {
 		titles.put("ACSYAM", "包装辅料费");
 		titles.put("SPCTPR", "预计成本价");
 		titles.put("SPRMK", "备注");
-//		titles.put("", "");
-//		titles.put("", "");
-//		titles.put("", "");
-//		titles.put("", "");
+
 		
 		crreateTitle_exportSample(wb,sheet1,titles);
 		
@@ -285,12 +284,27 @@ public class SampleDesignController {
 	@ResponseBody
 	public void exportSampleMate(MapParams params,HttpServletResponse response) throws Exception {
 		//samplePlanService.lockOrunlock(plspno, plspst);
-		System.out.println(params);
+		//System.out.println(params);
 		XSSFWorkbook wb = new XSSFWorkbook();    
 		Sheet sheet1 = wb.createSheet("资料");
-		crreateTitle_exportSampleMate(wb,sheet1);
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
 		
+		titles.put("PLSPNM", "企划样衣编号");
+		titles.put("SAMPNM", "订货样衣编号");
+		titles.put("MTSUNO", "供应商");
+		titles.put("MATENO", "供应商面料货号");
+		titles.put("MTBRAD", "面料品牌");
+		titles.put("MTTYPE", "进口/国产");
+		titles.put("MTCOMP", "面料成分");
+		titles.put("YARMCT", "纱支规格");
+		titles.put("GRAMWT", "克重/密度");
+		titles.put("AFTRMT", "后整理");
+		titles.put("WIDTH", "门幅");
+		titles.put("MTPUPR", "面料单价");
+		titles.put("MTCNQT", "单件用料");
+		crreateTitle_exportSampleMate(wb,sheet1,titles);
 		
+		crreateData_exportSampleMate(wb,sheet1,titles,params);
 
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
         response.setHeader("Content-disposition", "attachment;filename="+new String("主面料信息".getBytes(),"ISO8859-1")+".xlsx");    
@@ -299,7 +313,7 @@ public class SampleDesignController {
         ouputStream.flush();    
         ouputStream.close();    
 	}
-	private void crreateTitle_exportSampleMate(XSSFWorkbook wb,Sheet sheet1){
+	private void crreateTitle_exportSampleMate(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
 		CellStyle cellStyle = wb.createCellStyle();
 		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
 	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
@@ -311,10 +325,42 @@ public class SampleDesignController {
 	    font.setFontName("Courier New");
 	    cellStyle.setFont(font);
 		 
-		Row title = sheet1.createRow((short)0);
-		Cell cell0 = title.createCell(0);
-		cell0.setCellValue(1);
-		cell0.setCellStyle(cellStyle);
+	    Row title = sheet1.createRow((short)0);
+		
+		int i=0;
+		for(Entry<String,String> entry:titles.entrySet()){
+			Cell cell = title.createCell(i);
+			cell.setCellValue(entry.getValue());
+			cell.setCellStyle(cellStyle);
+			i++;
+		}
+	}
+	
+	private void crreateData_exportSampleMate(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params){
+		List<Map<String,Object>> list=sampleDesignService.query_exportSampleMate(params);
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			Map<String,Object> map=list.get(i);
+			Row row = sheet1.createRow((short)i+1);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				if(map.get(entry.getKey())!=null){
+					if("MTSUNO".equals(entry.getKey())){
+						if(ContextUtils.getPubSuno(entry.getValue())!=null){
+							cell.setCellValue(ContextUtils.getPubSuno(entry.getValue()).getIdsunm());
+						}
+						
+					} else {
+						cell.setCellValue(map.get(entry.getKey()).toString());
+					}
+					
+				}
+			}
+		}
 	}
 	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -326,7 +372,24 @@ public class SampleDesignController {
 		System.out.println(params);
 		XSSFWorkbook wb = new XSSFWorkbook();    
 		Sheet sheet1 = wb.createSheet("资料");
-		crreateTitle_exportSampleMate_other(wb,sheet1);
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		
+		titles.put("PLSPNM", "企划样衣编号");
+		titles.put("SAMPNM", "订货样衣编号");
+		titles.put("MTSUNO", "供应商");
+		titles.put("MATENO", "供应商面料货号");
+		titles.put("MTBRAD", "面料品牌");
+		titles.put("MTTYPE", "进口/国产");
+		titles.put("MTCOMP", "面料成分");
+		titles.put("YARMCT", "纱支规格");
+		titles.put("GRAMWT", "克重/密度");
+		titles.put("AFTRMT", "后整理");
+		titles.put("WIDTH", "门幅");
+		titles.put("MTPUPR", "面料单价");
+		titles.put("MTCNQT", "单件用料");
+		crreateTitle_exportSampleMate_other(wb,sheet1,titles);
+		
+		crreateData_exportSampleMate_other(wb,sheet1,titles,params);
 		
 		
 
@@ -337,7 +400,7 @@ public class SampleDesignController {
         ouputStream.flush();    
         ouputStream.close();    
 	}
-	private void crreateTitle_exportSampleMate_other(XSSFWorkbook wb,Sheet sheet1){
+	private void crreateTitle_exportSampleMate_other(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
 		CellStyle cellStyle = wb.createCellStyle();
 		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
 	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
@@ -345,14 +408,46 @@ public class SampleDesignController {
 		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
 		
 		Font font = wb.createFont();
-	    font.setFontHeightInPoints((short)18);
+	    //font.setFontHeightInPoints((short)18);
 	    font.setFontName("Courier New");
 	    cellStyle.setFont(font);
 		 
-		Row title = sheet1.createRow((short)0);
-		Cell cell0 = title.createCell(0);
-		cell0.setCellValue(1);
-		cell0.setCellStyle(cellStyle);
+	    Row title = sheet1.createRow((short)0);
+		
+		int i=0;
+		for(Entry<String,String> entry:titles.entrySet()){
+			Cell cell = title.createCell(i);
+			cell.setCellValue(entry.getValue());
+			cell.setCellStyle(cellStyle);
+			i++;
+		}
+	}
+	
+	private void crreateData_exportSampleMate_other(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params){
+		List<Map<String,Object>> list=sampleDesignService.query_exportSampleMate_other(params);
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			Map<String,Object> map=list.get(i);
+			Row row = sheet1.createRow((short)i+1);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				if(map.get(entry.getKey())!=null){
+					if("MTSUNO".equals(entry.getKey())){
+						if(ContextUtils.getPubSuno(entry.getValue())!=null){
+							cell.setCellValue(ContextUtils.getPubSuno(entry.getValue()).getIdsunm());
+						}
+						
+					} else {
+						cell.setCellValue(map.get(entry.getKey()).toString());
+					}
+					
+				}
+			}
+		}
 	}
 	
 }

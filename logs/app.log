@@ -21836,3 +21836,259 @@ PL/SQL: Statement ignored
 19:24:53.123 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@61b5bdff
 19:24:53.189 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@57f7e83a
 19:24:53.240 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@171e5aed
+09:11:33.003 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:11:55.132 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:23:42.691 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty= and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:23:42.691 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty= and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:24:22.059 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty= and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:24:22.060 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty= and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:26:55.028 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:26:55.028 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptynoand bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=b.bradno           )        group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+09:29:11.938 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery_count-Inline
+### The error occurred while setting parameters
+### SQL: SELECT count(*) FROM (     select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptyno and bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno           )   ) X
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+09:29:11.938 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery_count-Inline
+### The error occurred while setting parameters
+### SQL: SELECT count(*) FROM (     select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptyno and bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno           )   ) X
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+09:29:12.933 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery_count-Inline
+### The error occurred while setting parameters
+### SQL: SELECT count(*) FROM (     select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptyno and bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno           )   ) X
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+09:29:12.933 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery_count-Inline
+### The error occurred while setting parameters
+### SQL: SELECT count(*) FROM (     select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,c.SUITNO,B.PACKQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                        and exists (select 1 from ORD_SUIT_DC bb where e.suitno=bb.suitno              and bb.sptyno=b.sptyno and bb.sexno=b.sexno  and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno           )   ) X
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPTYNO": invalid identifier
+
+09:32:48.575 [http-bio-8086-exec-11] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:32:48.575 [http-bio-8086-exec-11] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:44:41.646 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00'),B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+09:44:41.646 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00'),B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+09:44:43.456 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00'),B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+09:44:43.456 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00'),B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-06553: PLS-306: wrong number or types of arguments in call to 'OGC_X'
+
+09:45:11.590 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:11.590 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:12.912 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:12.912 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'02' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:34.994 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:34.994 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:37.289 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.TpController.zgs_tpAllQuery(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+09:45:37.289 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+### The error may exist in com/youngor/order/TpRepository.xml
+### The error may involve com.youngor.order.TpRepository.zgs_tpAllQuery-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,Y.ORMTQT_TP,'Y' bradno ,'01' spclno,'201607' ormtno from (        select a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,SUM(decode(c.ormark,'已统配',c.ormtqs,c.ormtqt)) ORMTQT        from ord_sample_plan a        inner join ord_sample_design b on a.plspno=b.plspno        inner join ord_sample_design_sizegp e on b.sampno=e.sampno        left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno        left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno        left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=?  and d.ORTYNO='DZ'        WHERE 1=1            and A.bradno=?               and A.spclno=?                                       group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,e.SUITNO,B.PACKQT       ) x left join        (        select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP         from ORD_ORD A,ORD_ORDDTL B         WHERE A.mtorno=B.mtorno AND A.ORMTNO=? and A.ORTYNO='TP'        GROUP BY  B.SAMPNO,B.SUITNO       )        y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO       ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00979: not a GROUP BY expression
+
+10:01:34.652 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@50ace2df
+10:01:34.809 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ordhd@78d84f0b
+10:01:34.900 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@7bbb71a1
+11:19:19.395 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:31:27.186 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@a591b9b
+11:34:28.362 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.sample.SampleDesignController.exportSampleMate(com.youngor.utils.MapParams,javax.servlet.http.HttpServletResponse) throws java.lang.Exception]: java.lang.NullPointerException
+11:34:28.362 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:42:34.637 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:42:54.237 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:44:56.614 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleMate@34b13ab0

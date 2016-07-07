@@ -180,11 +180,13 @@ Ext.onReady(function(){
 	  	var grid=context.grid;
 	  	var field =context.field ;
 	  	var value=context.value;
+	  	var originalValue=context.originalValue;
 	  	var PACKQT=record.get("PACKQT");
 
 	  	//商品部录入统配总量，要求统配总量为包装要求的整数倍
 	  	if(record.get("SUITNO")!='T02' && (value/PACKQT-parseInt(value/PACKQT))!=0){
 	  		Ext.Msg.alert("消息","统配数量必须是包装数量的整数倍!");
+	  		record.set(field,originalValue);
 	  		return false;
 	  	}
 	  	

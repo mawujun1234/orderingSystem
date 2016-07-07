@@ -128,7 +128,7 @@ Ext.define('y.order.TpYxgsGrid',{
 		  	//商品部录入统配总量，要求统配总量为包装要求的整数倍
 		  	if(record.get("SUITNO")!='T02' && (value/PACKQT-parseInt(value/PACKQT))!=0){
 		  		Ext.Msg.alert("消息","统配数量必须是包装数量的整数倍!");
-		  		//record.set(field,originalValue);
+		  		record.set(field,originalValue);
 		  		return false;
 		  	}
 		  	//判断新的值加进去后，会不会超过 总公司的统配数量
