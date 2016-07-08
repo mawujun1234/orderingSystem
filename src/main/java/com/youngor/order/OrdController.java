@@ -497,31 +497,91 @@ public class OrdController {
 	@ResponseBody
 	public  void wxtz_export(MapParams params,HttpServletResponse response) throws IOException {
 		XSSFWorkbook wb = new XSSFWorkbook();    
-		Sheet sheet1 = wb.createSheet("统配到大区");
+		Sheet sheet1 = wb.createSheet("尾箱调整");
 		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
 		
-		titles.put("SPTYNO_NAME", "小类");
-		titles.put("SPSENO_NAME", "系列");
-		titles.put("SAMPNM", "设计样衣编号");
-		titles.put("SUITNO_NAME", "套件");
+		titles.put("SPCLNM", "大类");
+		titles.put("SPTYNM", "小类");
+		titles.put("SPSENM", "系列");
+		titles.put("SAMPNM", "订货样衣编号");
 		titles.put("PACKQT", "包装要求");
-		titles.put("ORMTQT_TP_GSBB", "统配总数");
-		titles.put("ORMTQT_TOTAL", "合计");
-		这里要做
+		
+		titles.put("ORMTQS00", "标准");
+		titles.put("ORMTQS01", "上衣");
+		titles.put("ORMTQS02", "裤子");
+		titles.put("ORMTQS04", "裙子");
+		
+		titles.put("ORMTQT00", "标准");
+		titles.put("ORMTQT01", "上衣");
+		titles.put("ORMTQT02", "裤子");
+		titles.put("ORMTQT04", "裙子");
+
+		//这里要做
 //		List<Map<String,Object>> columns=tpService.queryTpYxgsColumns();
 //		
 //
-//		crreateTitle_tpYxgsExport(wb,sheet1,titles,columns);
-//		
-//		crreateData_tpYxgsExport(wb,sheet1,titles,params);
+		wxtz_crreateTitle_export(wb,sheet1,titles);
+		
+		wxtz_crreateData_export(wb,sheet1,titles,params);
 
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
-        response.setHeader("Content-disposition", "attachment;filename="+new String("统配到大区".getBytes(),"ISO8859-1")+".xlsx");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("尾箱调整".getBytes(),"ISO8859-1")+".xlsx");    
         OutputStream ouputStream = response.getOutputStream();    
         wb.write(ouputStream);    
         ouputStream.flush();    
         ouputStream.close();   
 		
+	}
+	private void wxtz_crreateTitle_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    //font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+	    
+	    Row title0 = sheet1.createRow((short)0);
+	    Cell cell5 = title0.createCell(5);
+	    cell5.setCellValue("原始数量");
+	    cell5.setCellStyle(cellStyle);
+	    Cell cell9 = title0.createCell(9);
+	    cell9.setCellValue("确认数量");
+	    cell9.setCellStyle(cellStyle);
+	    sheet1.addMergedRegion(new CellRangeAddress(0, 0, 5, 8));
+	    sheet1.addMergedRegion(new CellRangeAddress(0, 0, 9, 12));
+		 
+	    Row title = sheet1.createRow((short)1);
+		
+		int i=0;
+		for(Entry<String,String> entry:titles.entrySet()){
+			Cell cell = title.createCell(i);
+			cell.setCellValue(entry.getValue());
+			cell.setCellStyle(cellStyle);
+			i++;
+		}
+	}
+	
+	private void wxtz_crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params){
+		List<Map<String,Object>> list=ordService.wxtz_exportWx(params);
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			Map<String,Object> map=list.get(i);
+			Row row = sheet1.createRow((short)i+2);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				if(map.get(entry.getKey())!=null){
+					cell.setCellValue(map.get(entry.getKey()).toString());
+				}
+			}
+		}
 	}
 
 	

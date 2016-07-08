@@ -121,6 +121,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public List<String> wxtz_check_stat(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager);
+	public List<Map<String,Object>> wxtz_queryWx(Map<String,Object> params);
 	public void order_dl__comp_wx(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
 	public void order_dl__comp_wxps(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
 	

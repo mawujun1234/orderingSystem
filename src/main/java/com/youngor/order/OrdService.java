@@ -983,6 +983,9 @@ public class OrdService extends AbstractService<Ord, String>{
 	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager) {
 		return ordRepository.wxtz_queryWx(pager);
 	}
+	public List<Map<String,Object>> wxtz_exportWx(MapParams params) {
+		return ordRepository.wxtz_queryWx(params.getParams());
+	}
 	/**
 	 * 尾箱调整
 	 * @author mawujun qq:16064988 mawujun1234@163.com

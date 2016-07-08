@@ -686,6 +686,38 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,D.PACKQT
 
     </select>
+    <select id="wxtz_queryWx_count" resultType="int" parameterType="map">
+    	select count(*) from (
+    	SELECT A.ORMTNO,E0.Itnm as SPCLNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,D.PACKQT,
+		   SUM(DECODE(C.SUITNO,'T00',C.ORMTQS,0))ORMTQS00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQS,0))ORMTQS01,
+		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQS,0))ORMTQS02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQS,0))ORMTQS04,
+		   SUM(DECODE(C.SUITNO,'T00',C.ORMTQT,0))ORMTQT00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQT,0))ORMTQT01,
+		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04
+		 FROM ORD_ORD A
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO
+		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
+		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
+		WHERE
+		--订货批号,订单类型(固定参数  ‘DZ’)
+		A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' AND B.SDTYNO='40'
+		--品牌 ，大类,小类，系列,样衣编号 
+		AND E.BRADNO='Y' AND E.SPCLNO=#{spclno}
+		<if test="sptyno!=null and sptyno!=''">
+			 and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			 and e.spseno=#{spseno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			and d.sampnm=#{sampnm}
+		</if>
+		GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,D.PACKQT
+		)
+    </select>
     
      <!--获取某个样衣编号按照营销公司的汇总数据-->
      <select id="query_meger_comp" resultType="map" parameterType="string">

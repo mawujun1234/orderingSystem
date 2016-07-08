@@ -73,8 +73,7 @@ Ext.define('y.order.WxtzGrid',{
 		      	}
 		      	return value;
 		      }}
-	      ]},
-	      {dataIndex:'PLSPNM',header:'目标样衣编号'}
+	      ]}
       ];
       var fields=['SDTYNO','ORSTAT','SPTYNM','SPSENM','SAMPNO','SAMPNM','PACKQT','ORMTQS00',
       	'ORMTQS01','ORMTQS02','ORMTQS04','ORMTQT00','ORMTQT01','ORMTQT02','ORMTQT04','PLSPNM']
