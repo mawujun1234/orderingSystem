@@ -5,7 +5,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SampleColthRepository">
-
+	<!-- 更新预计成本价,是在面料信息中点击保存后，更新成衣信息中的预计成本价-->
+	<update id="updateSpctpr" parameterType="map">
+    	update ord_sample_colth d set d.spctpr=#{spctpr}  where sampno=#{sampno}
+    </update>
+    
+    
     <sql id="lock_unlock_where">  
     	exists (select 1 from ord_sample_plan a,ord_sample_design b where a.plspno=b.plspno	and b.sampno=d.sampno and
     		 a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}

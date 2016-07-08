@@ -78,6 +78,18 @@ public class SampleColthController {
 		sampleColthService.update(sampleColth);
 		return sampleColth;
 	}
+	/**
+	 * 更新预计成本价,是在面料信息中点击保存后，更新成衣信息中的预计成本价
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param sampleColth
+	 * @return
+	 */
+	@RequestMapping("/sampleColth/updateSpctpr.do")
+	@ResponseBody
+	public  String updateSpctpr(String sampno,Double spctpr) {
+		sampleColthService.updateSpctpr(sampno, spctpr);
+		return "{success:true}";
+	}
 	
 	@RequestMapping("/sampleColth/lock.do")
 	@ResponseBody

@@ -56,6 +56,10 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 //		}
 //	}
 	
+	public  void updateSpctpr(String sampno,Double spctpr) {
+		sampleColthRepository.updateSpctpr(sampno, spctpr);
+	}
+	
 	public void lock(Map<String,Object> params) {
 		sampleColthRepository.lock(params);
 	}

@@ -396,7 +396,7 @@ Ext.define('y.sample.SampleColthForm',{
 			sprtpr_spctpr.setValue(sprtpr.getValue()/value);
 		}
 		
-
+		return value;
 
 	},
 	loadRecord:function(record){

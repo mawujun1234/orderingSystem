@@ -71,6 +71,7 @@ Ext.onReady(function(){
 					sampno:null
 	});
 	sampleColthForm.getForm().loadRecord(sampleColth);
+	window.sampleColthForm=sampleColthForm;
 	
 	//图片信息
 	var samplePhotoShow=Ext.create('y.sample.SamplePhotoShow',{
