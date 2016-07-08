@@ -183,14 +183,20 @@ Ext.define('y.sample.SampleDesignGrid',{
 	        dock: 'bottom',
 	        displayInfo: true
 	  });
-	  
+	 me.initReloadSampleDesign_index=1,
 	 me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
 	  		//enableOverflow:true,
 		  	items:[{
 		  		itemId:'ordmtcombo',
-				xtype:'ordmtcombo'
+				xtype:'ordmtcombo',
+				listeners:{
+					select:function(combo , record , eOpts){
+						me.initReloadSampleDesign_index++;
+						me.reload();
+					}
+				}
 			},{
 		        fieldLabel: '品牌',
 		        itemId: 'bradno',
@@ -202,7 +208,13 @@ Ext.define('y.sample.SampleDesignGrid',{
 	            selFirst:true,
 	            blankText:"品牌不允许为空",
 		        xtype:'pubcodecombo',
-		        tyno:'1'
+		        tyno:'1',
+		        listeners:{
+					select:function(combo , record , eOpts){
+						me.initReloadSampleDesign_index++;
+						me.reload();
+					}
+				}
 		    },{
 		        fieldLabel: '大类',
 		        itemId: 'spclno',
@@ -221,6 +233,9 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        		
 		        		var spseno=combo.nextSibling("#spseno");
 		        		spseno.reload(record.get("itno"));
+		        		
+		        		me.initReloadSampleDesign_index++;
+						me.reload();
 		        	}	
 		        }
 		    },{
@@ -290,16 +305,17 @@ Ext.define('y.sample.SampleDesignGrid',{
 				handler: function(btn){
 
     				var grid=btn.up("grid");
-    				grid.getStore().getProxy().extraParams=grid.getParams();
-					grid.getStore().reload();
-					
-					
-					var tabpanel=grid.nextSibling("tabpanel");
-					var params=grid.getStore().getProxy().extraParams;
-					window.ormtno=params["params['ormtno']"];
-					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
-					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
-					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
+    				grid.reload();
+//    				grid.getStore().getProxy().extraParams=grid.getParams();
+//					grid.getStore().reload();
+//					
+//					
+//					var tabpanel=grid.nextSibling("tabpanel");
+//					var params=grid.getStore().getProxy().extraParams;
+//					window.ormtno=params["params['ormtno']"];
+//					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
+//					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
+//					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
 					
 					
 				},
@@ -431,6 +447,27 @@ Ext.define('y.sample.SampleDesignGrid',{
 
        
       me.callParent();
+	},
+	
+	reload:function(){
+		//当3个必须条件都初始化结束，就自动进行查询
+		//alert(this.initReloadSampleDesign_index);
+		var grid=this;
+		if(this.initReloadSampleDesign_index>=3){
+			grid.getStore().getProxy().extraParams=grid.getParams();
+					grid.getStore().reload();
+					
+					
+					var tabpanel=grid.nextSibling("tabpanel");
+					var params=grid.getStore().getProxy().extraParams;
+					window.ormtno=params["params['ormtno']"];
+					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
+					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
+					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
+					
+//			this.getStore().getProxy().extraParams=this.getParams();
+//			this.getStore().reload();
+		}
 	},
 	lockOrUblock:function(type,lockOrUnlock){
 		var url='';

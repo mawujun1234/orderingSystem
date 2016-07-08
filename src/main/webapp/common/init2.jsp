@@ -11,9 +11,36 @@ if("localhost".equals(ip) ||"127.0.0.1".equals(ip)){
 
 String contextPath = request.getContextPath();
 String requestURI=request.getRequestURI();
-String aa=requestURI.replaceAll("/"+contextPath+"/", "/");
+MenuService menuService=SpringContextHolder.getBean(MenuService.class);
+List<Menu> elements=menuService.queryElement(requestURI.replaceAll("/"+contextPath+"/", "/"));
+StringBuilder builder=new StringBuilder("{");
+for(Menu menu:elements){
+	builder.append(menu.getCode()+":true,");
+}
+String aa="{}";
+if(builder.length()>1){
+	aa=builder.substring(0,builder.length()-1);
+	aa=aa+"}";
+}
+
+
 %>
-<script src="<%=request.getContextPath()%>/menu/queryElementPermission.do?url=<%=aa %>&timestamp="+new Date().getTime()></script>
+<script>
+		var Permision = {
+    		elements:<%=aa%>,
+   			canShow: function(code) {
+   				if(!code){
+   					alert("请输入界面元素的code!");
+   					return;
+   				}
+				if(this.elements[code]){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}; 
+	</script>
     <!-- <link rel="stylesheet" type="text/css" href="./ext6/build/classic/theme-neptune/resources/theme-neptune-all.css">
     <script type="text/javascript" src="./ext6/build/classic/theme-neptune/theme-neptune.js"></script>
     <link rel="stylesheet" type="text/css" href="./ext6/build/classic/theme-triton/resources/theme-triton-all.css">

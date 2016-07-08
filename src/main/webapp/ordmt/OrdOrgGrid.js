@@ -222,7 +222,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 		this.getStore().getProxy().extraParams=Ext.apply(this.getStore().getProxy().extraParams,{
 			"params['ormtno']":ordmtcombo.getValue(),
 			"params['yxgsno']":yxgscombo.getValue(),
-		     "params['channo']":channo_combo.getValue()
+		    "params['channo']":channo_combo.getValue()
 	    });
 	        		
 		this.getStore().reload();

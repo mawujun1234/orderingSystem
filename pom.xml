@@ -78,7 +78,7 @@
 			<properties>
 				<profiles.active>prod</profiles.active>
 				<log4j2.level>warn</log4j2.level>
-				<finalName>ROOT</finalName>
+				<finalName>od</finalName>
 				<jdbc.dbType>oracle</jdbc.dbType>
 				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
 				<jdbc.url>jdbc:oracle:thin:@192.168.188.129:1521:xxb</jdbc.url>
@@ -202,6 +202,11 @@
             <artifactId>javase</artifactId>  
             <version>3.2.1</version>  
         </dependency>  
+        <dependency>
+		    <groupId>com.jcraft</groupId>
+		    <artifactId>jsch</artifactId>
+		    <version>0.1.53</version>
+		</dependency>
 		
 	</dependencies>
 	<build>

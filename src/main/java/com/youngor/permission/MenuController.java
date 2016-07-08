@@ -1,9 +1,12 @@
 package com.youngor.permission;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -128,5 +131,27 @@ public class MenuController {
 		return menu;
 	}
 	
-	
+	@RequestMapping("/menu/queryElementPermission.do")
+	//@ResponseBody
+	public void queryElementPermission(String url,HttpServletResponse response) throws IOException {
+		if(url==null || "".equals(url)){
+			return;
+		}
+		response.setContentType("application/json");
+		List<Menu> elements=menuService.queryElement(url);
+		StringBuilder builder=new StringBuilder("{");
+		for(Menu menu:elements){
+			builder.append(menu.getCode()+":true,");
+		}
+		String aa="{}";
+		if(builder.length()>1){
+			aa=builder.substring(0,builder.length()-1);
+			aa=aa+"}";
+		}
+		aa="var Permision = {elements:"+aa+",canShow: function(code) {if(!code){alert('请输入界面元素的code!');return;}if(this.elements[code]){return true;} else {return false;}}};";
+		PrintWriter out = response.getWriter();  
+		out.write(aa);
+		out.flush();
+		out.close();
+	}
 }
