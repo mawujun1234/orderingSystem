@@ -44,6 +44,25 @@ public class ContextUtils {
 		
 	}
 	
+	/**
+	 * 获取当前正在使用的订货会
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	private static Map<String,Ordmt> ormtno_map=new HashMap<String,Ordmt>();
+	public static Ordmt getOrdmt(String ormtno){
+		
+		if(ormtno_map==null || ormtno_map.size()==0){
+			OrdmtController ordmtService=SpringContextHolder.getBean(OrdmtController.class);
+			List<Ordmt> ordmtes=ordmtService.query4Combo();
+			for(Ordmt ordmt:ordmtes){
+				ormtno_map.put(ordmt.getOrmtno(), ordmt);
+			}
+		}
+		return ormtno_map.get(ormtno);
+		
+	}
+	
 	
 	/**
 	 * 获取订单类型

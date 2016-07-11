@@ -59,8 +59,11 @@ public static final class Ord {
 		public static final String channo="ordMethod.channo";
 		public static final String sztype="ordMethod.sztype";
 		public static final String print="ordMethod.print";
+		public static final String yxgsnm="ordMethod.yxgsnm";
 		public static final String orgnm="ordMethod.orgnm";
 		public static final String channm="ordMethod.channm";
+		public static final String loginname="ordMethod.loginname";
+		public static final String pwd="ordMethod.pwd";
 			
 	    /**
 	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
@@ -106,10 +109,10 @@ public static final class Ordszdtl {
 	public static final String sizety="sizety";
 	public static final String sizeno="sizeno";
 	public static final String mlorno="mlorno";
-	public static final String orszqt="orszqt";
 	public static final String orszst="orszst";
-	public static final String orbgqt="orbgqt";
 	public static final String oritqt="oritqt";
+	public static final String orszqt="orszqt";
+	public static final String orbgqt="orbgqt";
 	public static final String ormark="ormark";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
@@ -145,11 +148,11 @@ public static final class OrdmtScde {
 	public static final String mtfidt="mtfidt";
 	public static final String mtsttm="mtsttm";
 	public static final String mtfitm="mtfitm";
-	public static final String lmsp="lmsp";
-	public static final String lmdt="lmdt";
 	public static final String channo_name="channo_name";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
 }
 public static final class OrdmtSeason {
 	public static final String ormtno="ormtno";
@@ -165,8 +168,11 @@ public static final class OrdOrg {
 	public static final String channo="channo";
 	public static final String sztype="sztype";
 	public static final String print="print";
+	public static final String yxgsnm="yxgsnm";
 	public static final String orgnm="orgnm";
 	public static final String channm="channm";
+	public static final String loginname="loginname";
+	public static final String pwd="pwd";
 }
 public static final class Channo {
 	public static final String channo="channo";
@@ -361,7 +367,6 @@ public static final class RoleBrand {
 		public static final String itms="pubCode.itms";
 		public static final String itmk="pubCode.itmk";
 		public static final String itso="pubCode.itso";
-		public static final String itst="pubCode.itst";
 		public static final String stat="pubCode.stat";
 		public static final String rgsp="pubCode.rgsp";
 		public static final String rgdt="pubCode.rgdt";
@@ -495,11 +500,22 @@ public static final class User {
 	public static final String pwd="pwd";
 	public static final String remark="remark";
 }
+public static final class OrdDwdt {
+	public static final String ormtno="ormtno";
+	public static final String ortyno="ortyno";
+	public static final String ordorg="ordorg";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String ormtqt="ormtqt";
+	public static final String mldate="mldate";
+	public static final String pldate="pldate";
+}
 public static final class PlanHd {
 	public static final String ormtno="ormtno";
 	public static final String bradno="bradno";
 	public static final String spclno="spclno";
 	public static final String orgno="orgno";
+	public static final String channo="channo";
 	public static final String plmtqt="plmtqt";
 	public static final String plmtam="plmtam";
 	public static final String plstat="plstat";
@@ -529,7 +545,6 @@ public static final class PubCode {
 	public static final String itms="itms";
 	public static final String itmk="itmk";
 	public static final String itso="itso";
-	public static final String itst="itst";
 	public static final String stat="stat";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
@@ -596,6 +611,28 @@ public static final class PubSizeDtl {
 	public static final String sizest="sizest";
 	public static final String szsast="szsast";
 }
+public static final class Size {
+	public static final String sizeno="sizeno";
+	public static final String sizenm="sizenm";
+	public static final String ormtno="ormtno";
+	public static final String sizety="sizety";
+	public static final String ysizety="ysizety";
+	public static final String ysizeno="ysizeno";
+	public static final String szbrad="szbrad";
+	public static final String szclno="szclno";
+	public static final String sizeso="sizeso";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class SizeDtl {
+	public static final String fszty="fszty";
+	public static final String fszno="fszno";
+	public static final String sizety="sizety";
+	public static final String sizeno="sizeno";
+	public static final String ormtno="ormtno";
+}
 public static final class SampleColth {
 	public static final String sampno="sampno";
 	public static final String spcotn="spcotn";
@@ -652,6 +689,7 @@ public static final class SampleDesign {
 	* 这里一般是集合属性，返回的是sampleDesignSizegpes
 	*/
 	public static final String sampleDesignSizegpes="sampleDesignSizegpes";
+	public static final String ormtno="ormtno";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";

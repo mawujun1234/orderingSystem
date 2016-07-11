@@ -38,8 +38,20 @@ public class Ordmt extends BaseObject{
 	@Column(length=100,nullable=true)
 	private String ormtmk;
 	
-	
-	
+	/**
+	 * 判断当前日期是否是早于订货会的开始日期
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return true表示订货会还没有开始
+	 */
+	public Boolean isBeforeMtstdt(){
+		if(mtstdt==null){
+			return true;
+		}
+		if(mtstdt.getTime()>((new Date())).getTime()){
+			return true;
+		}
+		return false;
+	}
 	public String getOrmtst_name(){
 		if(this.getOrmtst()){
 			return "完成";

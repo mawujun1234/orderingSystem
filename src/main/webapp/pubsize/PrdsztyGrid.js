@@ -20,25 +20,28 @@ Ext.define('y.pubsize.PrdsztyGrid',{
         },
 		{dataIndex:'sizeno',header:'规格代码'
         },
-		{dataIndex:'sizenm',header:'规格名称'
+		{dataIndex:'sizenm',header:'规格名称',flex:1
         },
 
-//      	{dataIndex:'sizety1_name',header:'包装类型'
-//        },
-//		{dataIndex:'sizeqt',header:'数量',xtype: 'numbercolumn', format:'0',align : 'right'
+//
+//		{dataIndex:'sizest',header:'状态',xtype:'checkcolumn',listeners:{
+//				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+//					var grid=checkcolumn.up("grid");
+//					//console.log(grid);
+//					var record=grid.getStore().getAt(rowIndex);
+//					record.set('sizest',checked?1:0);
+//					record.save();
+//				}
+//			}
 //		},
-		{dataIndex:'sizest',header:'状态',xtype:'checkcolumn',listeners:{
-				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
-					var grid=checkcolumn.up("grid");
-					//console.log(grid);
-					var record=grid.getStore().getAt(rowIndex);
-					record.set('sizest',checked?1:0);
-					record.save();
-				}
-			}
-		},
-		{dataIndex:'szsast',header:'当季状态',xtype:'checkcolumn',listeners:{
-				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){
+		{dataIndex:'szsast',header:'当季状态',xtype:'checkcolumn',
+			processEvent : function(type) {  
+            	if (type == 'click' && Permision.canShow('PRDSZTY_szsast_edit'))  
+                   return false;  
+            },
+
+			listeners:{
+				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){//Permision.canShow('sample_design_unlock'),
 					var grid=checkcolumn.up("grid");
 					//console.log(grid);
 					var record=grid.getStore().getAt(rowIndex);
@@ -48,9 +51,9 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 			}
 		},
 		{dataIndex:'sizemk',header:'备注'
-        },
-		{dataIndex:'sizeso',header:'排序',xtype: 'numbercolumn', format:'0',align : 'right'
-		}
+        }
+//		{dataIndex:'sizeso',header:'排序',xtype: 'numbercolumn', format:'0',align : 'right'
+//		}
 
       ];
       
@@ -138,24 +141,26 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 	  me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
-		  	items:[{
-				fieldLabel: '状态',
-				labelWidth:40,
-				width:140,
-			    queryMode: 'local',
-			    xtype:'combobox',
-			    itemId:'sizest',
-			    displayField: 'name',
-			    valueField: 'id',
-			    value:'1',
-				store:Ext.create('Ext.data.Store', {
-				    fields: ['id', 'name'],
-				    data : [
-				        {"id":"0", "name":"作废"},
-				        {"id":"1", "name":"有效"}
-				    ]
-				})
-			},{
+		  	items:[
+//		  		{
+//				fieldLabel: '状态',
+//				labelWidth:40,
+//				width:140,
+//			    queryMode: 'local',
+//			    xtype:'combobox',
+//			    itemId:'sizest',
+//			    displayField: 'name',
+//			    valueField: 'id',
+//			    value:'1',
+//				store:Ext.create('Ext.data.Store', {
+//				    fields: ['id', 'name'],
+//				    data : [
+//				        {"id":"0", "name":"作废"},
+//				        {"id":"1", "name":"有效"}
+//				    ]
+//				})
+//			},
+			{
 				fieldLabel: '当季',
 				labelWidth:40,
 				width:140,
@@ -183,26 +188,26 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 				iconCls: 'icon-refresh'
 			}]
 	   });
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
-				text: '新增',
-				itemId:'create',
-				handler: function(btn){
-					me.onCreate();
-				},
-				iconCls: 'icon-plus'
-			},{
-			    text: '更新',
-			    itemId:'update',
-			    handler: function(){
-			    	me.onUpdate();
-					
-			    },
-			    iconCls: 'icon-edit'
-			}]
-		});
+//	  me.dockedItems.push({
+//	  		xtype: 'toolbar',
+//	  		dock:'top',
+//		  	items:[{
+//				text: '新增',
+//				itemId:'create',
+//				handler: function(btn){
+//					me.onCreate();
+//				},
+//				iconCls: 'icon-plus'
+//			},{
+//			    text: '更新',
+//			    itemId:'update',
+//			    handler: function(){
+//			    	me.onUpdate();
+//					
+//			    },
+//			    iconCls: 'icon-edit'
+//			}]
+//		});
 		
 		
 	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
@@ -242,7 +247,7 @@ Ext.define('y.pubsize.PrdsztyGrid',{
     		"params['szclno']":toolbars[0].down("#szclno").getValue(),
 			"params['sizeno']":toolbars[0].down("#sizeno").getValue(),
 			"params['sizenm']":toolbars[0].down("#sizenm").getValue(),
-			"params['sizest']":toolbars[1].down("#sizest").getValue(),
+			//"params['sizest']":toolbars[1].down("#sizest").getValue(),
 			"params['szsast']":toolbars[1].down("#szsast").getValue()
 		};
 		return params;

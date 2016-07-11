@@ -73,103 +73,29 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 	  });
 
 	  me.dockedItems=[];
-//      me.dockedItems.push({
-//	        xtype: 'pagingtoolbar',
-//	        store: me.store,  
-//	        dock: 'bottom',
-//	        displayInfo: true
-//	  });
-//	   me.dockedItems.push({
+
+	  
+	  
+//	  me.dockedItems.push({
 //	  		xtype: 'toolbar',
 //	  		dock:'top',
 //		  	items:[{
-//		  		itemId:'sizeno',
-//		  		fieldLabel:'代码',
-//		  		labelWidth:40,
-//		  		width:140,
-//				xtype:'textfield'
-//			},{
-//		  		itemId:'sizenm',
-//		  		fieldLabel:'名称',
-//		  		labelWidth:40,
-//		  		width:140,
-//				xtype:'textfield'
-//			},{
-//				fieldLabel: '状态',
-//				labelWidth:40,
-//				width:140,
-//			    queryMode: 'local',
-//			    xtype:'combobox',
-//			    itemId:'sizest',
-//			    displayField: 'name',
-//			    valueField: 'id',
-//			    value:'1',
-//				store:Ext.create('Ext.data.Store', {
-//				    fields: ['id', 'name'],
-//				    data : [
-//				        {"id":"0", "name":"作废"},
-//				        {"id":"1", "name":"有效"}
-//				    ]
-//				})
-//			},{
-//				text: '查询',
-//				itemId:'reload',
-//				disabled:me.disabledAction,
+//				text: '新增',
+//				itemId:'create',
 //				handler: function(btn){
-//					var grid=btn.up("grid");
-//					grid.getStore().reload();
+//					me.onCreate();
 //				},
-//				iconCls: 'icon-refresh'
+//				iconCls: 'icon-plus'
+//			},{
+//			    text: '删除',
+//			    itemId:'destroy',
+//			    handler: function(){
+//			    	me.onDelete();    
+//			    },
+//			    iconCls: 'icon-trash'
 //			}]
-//	   });
-	  
-	  
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
-				text: '新增',
-				itemId:'create',
-				handler: function(btn){
-					me.onCreate();
-				},
-				iconCls: 'icon-plus'
-			},{
-			    text: '删除',
-			    itemId:'destroy',
-			    handler: function(){
-			    	me.onDelete();    
-			    },
-			    iconCls: 'icon-trash'
-			}]
-		});
+//		});
 
-//	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
-//            clicksToEdit : 1  
-//      });  
-//	  this.plugins = [this.cellEditing];
-//	  this.cellEditing.on("edit",function(editor, context){
-//	  	var record=context.record;
-//	  	var grid=context.grid;
-//	  	var field =context.field ;
-//	  	var value=context.value;
-//	  	
-//
-//	  	Ext.Ajax.request({
-//						url:Ext.ContextPath+'/pubSize/updatePrdpStdszSizeqt.do',
-//						params:{
-//							fszno:me.getStore().getProxy().extraParams.fszno,
-//							sizety:record.get("sizety"),
-//							sizeno:record.get("sizeno"),
-//							sizeqt:value
-//						},
-//						success:function(){
-//							me.getStore().reload();
-//						}
-//						
-//					});
-//	  	
-//	  });
        
       me.callParent();
 	},
@@ -216,22 +142,6 @@ Ext.define('y.pubsize.PrdsztyStdszGrid',{
 						
 					});
 				}
-//				itemdblclick:function(view, record, item, index, e, eOpts){
-//					Ext.Ajax.request({
-//						url:Ext.ContextPath+'/pubSize/createPrdsztyDtl.do',
-//						params:{
-//							fszno:me.getStore().getProxy().extraParams.fszno,
-//							fszty:me.getStore().getProxy().extraParams.fszty,
-//							sizeno:record.get("sizeno"),
-//							sizety:record.get("sizety")
-//						},
-//						success:function(){
-//							me.getStore().reload();
-//							stdszSelGrid.getStore().reload();
-//						}
-//						
-//					});
-//				}
 			}
 		});
 		

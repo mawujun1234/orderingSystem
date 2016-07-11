@@ -83,6 +83,10 @@ public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 		return pubSizeRepository.queryPrdszty(fszty,fszno,sizety);
 	}
 	
+	public List<PubSizeDtlVO> queryPrdsztyStdsz4Size(String fszty,String fszno,String sizety,String ormtno,String fszty_size,String fszno_size) {
+		return pubSizeRepository.queryPrdsztyStdsz4Size(fszty,fszno,sizety,ormtno,fszty_size,fszno_size);
+	}
+	
 	
 	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno)  {
 		return pubSizeRepository.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);

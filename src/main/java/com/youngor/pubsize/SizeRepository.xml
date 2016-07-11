@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.pubsize.SizeRepository">
+   
+	<select id="getCountByYsizeno" parameterType="map" resultType="int">
+		 select count(*) from OD.ORD_SIZE
+ 		where ormtno=#{ormtno} and ysizety=#{ysizety} and ysizeno=#{ysizeno}
+	</select>
+</mapper>
+

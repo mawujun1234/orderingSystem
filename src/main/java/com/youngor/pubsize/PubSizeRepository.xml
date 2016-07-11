@@ -131,6 +131,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	ORDER BY C.SIZESO
     </select>-->
     
+    <select id="queryPrdsztyStdsz4Size" resultType="com.youngor.pubsize.PubSizeDtlVO">
+    	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 
+    	where a.sizety=b.sizety and a.sizeno=b.sizeno
+    	and a.fszty=#{fszty} and a.fszno=#{fszno} and b.sizety=#{sizety} 
+    	and not exists (select 1 from ORD_SIZEDTL x where a.sizeno=x.sizeno and x.ormtno=#{ormtno} 
+    		and x.fszty=#{fszty_size} and x.fszno=#{fszno_size} and x.sizety=#{sizety})
+    	 ORDER BY b.SIZESO
+    </select>
+    
     <!--  获取这次订货会用到的规格范围 -->
     <select id="queryPRDSZTY4Ordmt" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
     	select distinct a.* from ord_pub_size a

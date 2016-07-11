@@ -153,7 +153,7 @@ public class PubCodeController {
 	@ResponseBody
 	public List<PubCode> query(String tyno) {	
 		List<PubCode> pubCodees=
-				pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, tyno).andEquals(M.PubCode.itst, 1)
+				pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, tyno)
 				.asc(M.PubCode.itso));
 		return pubCodees;
 	}

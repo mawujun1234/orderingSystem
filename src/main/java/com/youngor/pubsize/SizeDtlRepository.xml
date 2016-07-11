@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.pubsize.SizeDtlRepository">
+	 <select id="query" resultType="com.youngor.pubsize.SizeDtlVO" parameterType="map">
+    	 select a.*,b.sizenm from OD.ORD_SIZEDTL a,ord_pub_size b
+ 		where a.sizety=b.sizety and a.sizeno=b.sizeno and a.ormtno=#{ormtno} and a.fszty=#{fszty} and a.fszno=#{fszno}
+ 		and a.sizety=#{sizety}
+    </select> 
+    
+    <delete id="deleteByFszno">
+    	delete ord_sizedtl where fszty=#{fszty} and fszno=#{fszno}
+    </delete>
+</mapper>
+

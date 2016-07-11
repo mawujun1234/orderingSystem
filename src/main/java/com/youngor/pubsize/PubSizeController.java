@@ -240,6 +240,38 @@ public class PubSizeController {
 		
 	}
 	/**
+	 * 在为规格范围新增单规的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param fszno
+	 * @param fszty
+	 * @param ormtno
+	 * @param fszty_size
+	 * @param fszno_size
+	 * @return
+	 */
+	@RequestMapping("/pubSize/queryPrdsztyStdsz4Size.do")
+	@ResponseBody
+	public List<PubSizeDtlVO> queryPrdsztyStdsz4Size(String fszno,String fszty,String ormtno,String fszty_size,String fszno_size){
+		return pubSizeService.queryPrdsztyStdsz4Size("PRDSZTY",fszno, "STDSZ",ormtno,fszty_size,fszno_size);
+		
+	}
+	/**
+	 * 在为规格范围新增包装规格的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param fszno
+	 * @param fszty
+	 * @param ormtno
+	 * @param fszty_size
+	 * @param fszno_size
+	 * @return
+	 */
+	@RequestMapping("/pubSize/queryPrdsztyPrdpk4Size.do")
+	@ResponseBody
+	public List<PubSizeDtlVO> queryPrdsztyPrdpk4Size(String fszno,String fszty,String ormtno,String fszty_size,String fszno_size){
+		return pubSizeService.queryPrdsztyStdsz4Size("PRDSZTY",fszno,  "PRDPK",ormtno,fszty_size,fszno_size);
+		
+	}
+	/**
 	 * 规格范围选取 -- 规格池里的--单规和规格范围的时候,用的
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param szbrad
