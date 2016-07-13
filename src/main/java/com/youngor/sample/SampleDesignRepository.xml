@@ -17,7 +17,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
 
     <sql id="queryPlanDesign_where">  
-        and b.sampst=1  and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+        and b.sampst=1  and a.ormtno=#{ormtno} and a.bradno=#{bradno} 
+        <if test="spclno!=null and spclno!=''">
+    		and a.spclno=#{spclno}
+    	</if>
     	<if test="sptyno!=null and sptyno!=''">
     		and a.sptyno=#{sptyno}
     	</if>

@@ -297,4 +297,25 @@ public class PubCodeCache {
 		}
 	}
 	
+	
+	/**
+	 * 获取颜色
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getColrno(String itno){
+		if(itno!=null && cache.get("9").get(itno)==null) {
+			refreshPubCode("9");
+		}
+		return cache.get("9").get(itno);
+	}
+	public static String getColrno_name(String itno){
+		PubCode pubCode=getColrno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
 }

@@ -64,6 +64,7 @@ public class Ftp2Linux69 {
 			execCmd(session,"rm -rf "+linux_dir+"/ROOT");
 			log.info("成功删除文件夹："+linux_dir_od);
 			
+			Thread.sleep(10000);//暂停10s，再启动试试
 			//启动服务器
 			log.info("正在启动服务器："+map.get("host"));
 			execCmd(session,start_tomcat);

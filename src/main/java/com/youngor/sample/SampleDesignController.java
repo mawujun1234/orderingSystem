@@ -150,7 +150,7 @@ public class SampleDesignController {
 	@ResponseBody
 	public void exportSample(MapParams params,HttpServletResponse response) throws Exception {
 		//samplePlanService.lockOrunlock(plspno, plspst);
-		System.out.println(params);
+		//System.out.println(params);
 		XSSFWorkbook wb = new XSSFWorkbook();    
 		Sheet sheet1 = wb.createSheet("资料");
 		

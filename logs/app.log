@@ -24850,3 +24850,371 @@ PL/SQL: Statement ignored
 08:53:44.574 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Orddtl@315c353e
 09:23:52.460 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
 09:23:52.461 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:32:13.932 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.Menu@2c29ba7f
+09:32:39.815 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.permission.RoleMenu@2a3df7c7
+09:33:44.237 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.permission.Menu@4ca9f1a0
+09:33:53.937 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:46:23.150 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:46:39.515 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:38:19.706 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:38:59.392 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:39:14.074 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query_count-Inline
+### The error occurred while setting parameters
+### SQL: select count (*) from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   LEFT JOIN (SELECT ORMTNO,SAMPNO,MAX(PRODNM)PRODNM FROM ORD_SAMPLE_PROD                  WHERE ORMTNO='201605'                GROUP BY  ORMTNO,SAMPNO) f ON a.ORMTNO=f.ORMTNO AND c.SAMPNO=f.SAMPNO   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+11:39:14.075 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query_count-Inline
+### The error occurred while setting parameters
+### SQL: select count (*) from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   LEFT JOIN (SELECT ORMTNO,SAMPNO,MAX(PRODNM)PRODNM FROM ORD_SAMPLE_PROD                  WHERE ORMTNO='201605'                GROUP BY  ORMTNO,SAMPNO) f ON a.ORMTNO=f.ORMTNO AND c.SAMPNO=f.SAMPNO   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+11:47:09.565 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:51:31.325 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:53:29.389 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.pubcode.PubCode> com.youngor.pubcode.PubCodeController.queryList(java.lang.String,java.lang.String,java.lang.String)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+11:53:29.390 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='bradno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+12:14:14.194 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:14.194 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:16.755 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:16.755 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:19.764 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:19.764 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:22.736 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:22.736 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:27.354 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:27.354 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:29.934 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:29.934 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:32.917 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:14:32.917 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.quyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                                order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:29.275 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:29.275 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:34.453 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:34.453 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:40.251 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:40.251 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:42.767 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:42.768 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:45.503 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:45.503 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:50.280 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.report.OrderNumTotalController.queryClothPurePlan(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:17:50.280 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr      from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? ane e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?                                         order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+12:52:09.468 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:02:00.414 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+13:02:52.805 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:05:05.056 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:05:05.057 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:08:09.303 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@3d478b8c
+13:10:24.222 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+13:10:24.222 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+13:12:19.287 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.order.Ord@aa2bb16
+13:17:32.799 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+13:17:32.800 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+13:18:58.329 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: com.mawujun.exception.BusinessException: 该样衣编号不存在!
+13:18:58.329 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 该样衣编号不存在!
+14:28:06.149 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.OrderNumTotalController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+14:28:06.149 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+14:28:50.198 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.OrderNumTotalController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression : 
+	Source text : $F{sprtpr_jine_wan}
+14:28:50.198 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression : 
+	Source text : $F{sprtpr_jine_wan}
+14:35:26.358 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.OrderNumTotalController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+14:35:26.358 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+14:35:45.863 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.OrderNumTotalController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression : 
+	Source text : $F{sprtpr_jine_wan}
+14:35:45.863 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression : 
+	Source text : $F{sprtpr_jine_wan}
+14:55:40.281 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public void com.youngor.report.OrderNumTotalController.orderTotalPrint_export1(com.youngor.utils.MapParams,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,net.sf.jasperreports.engine.JRException]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr  sprtpr_jine   from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? and e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?             and a.spclno=?               and a.ordorg=?                                      order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+14:55:40.282 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/report/OrderNumTotalRepository.xml
+### The error may involve com.youngor.report.OrderNumTotalRepository.query-Inline
+### The error occurred while setting parameters
+### SQL: select e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,   f.PRODNM,c.sampnm,b.suitno,   ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr  sprtpr_jine   from ord_ord a   inner join ord_orddtl b on a.mtorno=b.mtorno   inner join ord_sample_design c on b.sampno=c.sampno   inner join ord_sample_plan d on c.plspno=d.plspno   inner join v_ord_org e on a.ordorg=e.orgno   left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod                  where ormtno=?                group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno   where a.ormtno=? and d.ormtno=? and e.yxgsno=? and e.qyno=?    and a.channo=?  and a.ortyno=?     and d.bradno=?             and a.spclno=?               and a.ordorg=?                                      order by e.yxgsnm ,e.qynm,e.orgnm,   d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
+
+15:04:27.620 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@325a6c90

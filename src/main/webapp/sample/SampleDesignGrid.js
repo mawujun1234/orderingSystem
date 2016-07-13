@@ -222,7 +222,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        itemId: 'spclno',
 		        labelWidth:40,
 		        width:120,
-		        showBlank:false,
+		        showBlank:true,
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",

@@ -321,7 +321,7 @@ Ext.define('y.sample.SampleDesignForm',{
 //	        listeners:{
 //	        	select:function(combo, record){
 //	        		var form=combo.up("form");
-//	        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
+//	        		var sampleDesignSizegpGrid_store=form.getSampleDesignSizegpGrid().getStore();
 //	        		sampleDesignSizegpGrid_store.removeAll();
 ////					sampleDesignSizegpGrid_store.getProxy().extraParams={
 ////						suitty:record.get("itno"),
@@ -539,7 +539,7 @@ Ext.define('y.sample.SampleDesignForm',{
 		}
 		
 		//if(me.showsampleDesignSizegpGrid_bool){
-			var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+			var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();
 			sampleDesignSizegpGrid_store.removeAll();
 //			sampleDesignSizegpGrid_store.getProxy().extraParams={
 //				suitty:record.get("suitty"),
@@ -569,8 +569,15 @@ Ext.define('y.sample.SampleDesignForm',{
 	reloadEditor:function(ormtno,bradno,spclno){
 		//刷新规格组的数据
 		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
-			this.down("grid#sampleDesignSizegpGrid").reloadEditor(ormtno,bradno,spclno);
+			this.getSampleDesignSizegpGrid().reloadEditor(ormtno,bradno,spclno);
 		}
+	},
+	getSampleDesignSizegpGrid:function(){
+		if(this.sampleDesignSizegpGrid){
+			return this.sampleDesignSizegpGrid;
+		}
+		this.sampleDesignSizegpGrid=this.down("grid#sampleDesignSizegpGrid");
+		return this.sampleDesignSizegpGrid;
 	},
 	/**
 	 * 显示或隐藏按钮，
@@ -645,7 +652,7 @@ Ext.define('y.sample.SampleDesignForm',{
 	},
 	reset:function(){
 		this.getForm().reset();
-		var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+		var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();
 		sampleDesignSizegpGrid_store.removeAll();
 	},
 	//如果小类是套西的时候，就显示套装种类
@@ -710,7 +717,7 @@ Ext.define('y.sample.SampleDesignForm',{
 			        listeners:{
 			        	select:function(combo, record){
 			        		var form=combo.up("form");
-			        		var sampleDesignSizegpGrid_store=form.down("grid#sampleDesignSizegpGrid").getStore();
+			        		var sampleDesignSizegpGrid_store=form.getSampleDesignSizegpGrid().getStore();
 			        		sampleDesignSizegpGrid_store.removeAll();
 		//					sampleDesignSizegpGrid_store.getProxy().extraParams={
 		//						suitty:record.get("itno"),
@@ -737,7 +744,7 @@ Ext.define('y.sample.SampleDesignForm',{
 
 		}
 		
-		var sampleDesignSizegpGrid_store=this.down("grid#sampleDesignSizegpGrid").getStore();
+		var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();
 		sampleDesignSizegpGrid_store.removeAll();
 		sampleDesignSizegpGrid_store.reload();
 	}
