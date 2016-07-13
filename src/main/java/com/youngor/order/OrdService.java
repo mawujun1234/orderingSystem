@@ -915,6 +915,19 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		
 	}
+	/**
+	 * 订单流转
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void order_dl__order_to(String[] mlornoes,String sdtyno) {
+		if(mlornoes==null){
+			return;
+		}
+		for(String mlorno:mlornoes){
+			ordRepository.order_dl__order_to(mlorno, sdtyno, ShiroUtils.getLoginName());
+		}
+		
+	}
 	public List<Map<String,Object>> zgsVO_query_meger_comp(String SAMPNO) {
 		return ordRepository.query_meger_comp(SAMPNO);
 	}

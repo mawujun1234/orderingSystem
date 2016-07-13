@@ -34,7 +34,7 @@ public class PubCodeController {
 
 	@RequestMapping("/pubCode/query4Combo.do")
 	@ResponseBody
-	public List<PubCode> query4Combo(String tyno,String fitno,String bradno,String stat) {
+	public List<PubCode> query4Combo(String tyno,String fitno,String bradno,String stat_stat,Boolean showBlank) {
 		if("none".equals(fitno)){
 			List<PubCode> pubCodes=new ArrayList<PubCode>();
 			PubCode wu=new PubCode();
@@ -50,7 +50,7 @@ public class PubCodeController {
 		}
 		
 		
-		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno,stat);
+		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno,stat_stat);
 		//如果返回的是品牌大类，就过滤成用户可访问的品牌大类
 		if("1".equals(tyno)){
 			List<PubCode> list=new ArrayList<PubCode>();
@@ -74,10 +74,13 @@ public class PubCodeController {
 			}
 			pubCodes=list;
 		}
-		PubCode wu=new PubCode();
-		wu.setItno("");
-		wu.setItnm("无");
-		pubCodes.add(0, wu);
+		if(showBlank!=null && showBlank==true){
+			PubCode wu=new PubCode();
+			wu.setItno("");
+			wu.setItnm("无");
+			pubCodes.add(0, wu);
+		}
+		
 		return pubCodes;
 		
 //		List<PubCode> list=new ArrayList<PubCode>();
@@ -92,7 +95,7 @@ public class PubCodeController {
 	
 	@RequestMapping("/pubCodeType/queryVersno4Ordmt.do")
 	@ResponseBody
-	public List<PubCode> queryVersno4Ordmt(String ormtno,String bradno,String spclno) {
+	public List<PubCode> queryVersno4Ordmt(String ormtno,String bradno,String spclno,Boolean showBlank) {
 		// 默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
 		if (bradno == null) {
 			bradno = ContextUtils.getFirstBradno();
@@ -103,13 +106,21 @@ public class PubCodeController {
 			ormtno=ordmt.getOrmtno();
 		}
 		
-		return pubCodeRepository.queryVersno4Ordmt(ormtno, bradno,spclno);
+		
+		List<PubCode> list= pubCodeRepository.queryVersno4Ordmt(ormtno, bradno,spclno);
+		if(showBlank!=null && showBlank==true){
+			PubCode pubCode=new PubCode();
+			pubCode.setItno("");
+			pubCode.setItnm("所有");
+			list.add(0,pubCode);
+		}
+		return list;
 		
 	}
 	
 	@RequestMapping("/pubCodeType/querySpseno4Ordmt.do")
 	@ResponseBody
-	public List<PubCode> querySpseno4Ordmt(String ormtno,String bradno,String spclno) {
+	public List<PubCode> querySpseno4Ordmt(String ormtno,String bradno,String spclno,Boolean showBlank) {
 		// 默认是所有课访问品牌中的第一个品牌，和前端的品牌combobox要对应起来
 		if (bradno == null) {
 			bradno = ContextUtils.getFirstBradno();
@@ -120,12 +131,21 @@ public class PubCodeController {
 			ormtno=ordmt.getOrmtno();
 		}
 		
-		return pubCodeRepository.querySpseno4Ordmt(ormtno, bradno,spclno);
+		//return pubCodeRepository.querySpseno4Ordmt(ormtno, bradno,spclno);
+		List<PubCode> list= pubCodeRepository.querySpseno4Ordmt(ormtno, bradno,spclno);
+		if(showBlank!=null && showBlank==true){
+			PubCode pubCode=new PubCode();
+			pubCode.setItno("");
+			pubCode.setItnm("所有");
+			list.add(0,pubCode);
+		}
+		return list;
 		
 	}
 	
 	@PostConstruct
 	public void initPubCodeCache(){
+		//PubCodeCache.refreshPubCode();
 		List<PubCodeType> pubCodeTypes=pubCodeTypeService.queryAll();
 		for(PubCodeType pubCodeType:pubCodeTypes){
 			List<PubCode> pubCodes=pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, pubCodeType.getTyno()));

@@ -179,6 +179,7 @@ Ext.define('y.order.OrdMgrGrid',{
 //		  		allowBlank: false,
 //	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
+		  		showBlank:true,
 				xtype:'orgcombo',
 				listeners:{
 					select:function( combo, record, eOpts ) {
@@ -194,6 +195,7 @@ Ext.define('y.order.OrdMgrGrid',{
 //	            afterLabelTextTpl: Ext.required,
 		  		itemId:'qyno',
 				xtype:'orgcombo',
+				showBlank:true,
 				autoLoad:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
@@ -500,7 +502,70 @@ Ext.define('y.order.OrdMgrGrid',{
 				text: '订单流转',
 				hidden:!Permision.canShow('ord_mgr_ordercircle'),
 				handler: function(btn){
-					alert("还没有做!");
+					//alert("订单的审批版本号，还没有获取，一些规则还没有加进去");
+					//return;
+					var grid=btn.up("grid");
+					var records=grid.getSelectionModel().getLastSelected();
+					if(records==null || records.length==0){
+					    Ext.Msg.alert("消息","请先选择审批订单号!");
+					    return;
+					}
+					var mlornoes = [];
+					for (var i = 0; i < records.length; i++) {
+						//总量状态为审批通过，规格状态 为编辑中的订单才允许流转 
+						if(records[i].get("ORSTAT")!=3 || records[i].get("ORSTAT")!=0){
+							Ext.Msg.alert("消息","总量状态为审批通过，规格状态 为编辑中的订单才允许流转 ,"+records[i].get("MLORNO")+"不符合条件。");
+							return;
+						}
+						mlornoes.push(records[i].get("MLORNO"));
+					}
+					
+					var grid=Ext.create('Ext.grid.Panel', {
+					    store: Ext.create('Ext.data.Store', {
+						    fields:[ 'sdtyno', 'sdtynm'],
+						    data: [
+						        { sdtyno: '10', sdtynm: '现场订货' },
+						        { sdtyno: '20', sdtynm: '区域平衡' },
+						        { sdtyno: '30', sdtynm: '总公司平衡' },
+						        { sdtyno: '40', sdtynm: '尾箱调整' }
+						    ]
+						}),
+					    columns: [
+					        //{ text: 'Name', dataIndex: 'sdtyno' },
+					    	{xtype: 'rownumberer'},
+					        { text: '订货节点', dataIndex: 'sdtynm', flex: 1 }
+					    ],
+					    listeners:{
+					    	itemdblclick:function( view , record , item , index , e , eOpts){
+					    		Ext.Ajax.request({
+						    		url:Ext.ContextPath+'/ord/ordercircle.do',
+						    		params:{
+						    			mlornoes:mlornoes,
+						    			sdtyno:record.get("sdtyno")
+						    		},
+						    		method:'POST',
+						    		success:function(response){
+						    			var obj=Ext.decode(response.responseText);
+						    			if(obj.success==false){
+						    				Ext.Msg.alert("消息",obj.msg);
+						    			}
+						    			grid.getStore().reload();
+						    		}
+						    	});
+					    	}
+					    }
+					});
+					
+					var win=Ext.create("Ext.window.Window",{
+						layout:'fit',
+						modal:true,
+						title:'双击选择新节点',
+						items:[grid],
+						width:160,
+						height:300
+					});
+					win.show();
+					
 				},
 				iconCls: 'icon-exchange'
 			}]

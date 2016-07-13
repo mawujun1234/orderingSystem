@@ -121,6 +121,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgscombo',
 				xtype:'orgcombo',
+				showBlank:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						//var regioncombo=combo.nextSibling("#regioncombo");
@@ -322,6 +323,8 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 				if (btn == 'yes'){
 					node.erase({
 					    failure: function(record, operation) {
+					    	var obj=Ext.decode(operation._response.responseText);
+							Ext.Msg.alert('失败', obj.msg);
 			            	me.getStore().reload();
 					    },
 					    success:function(response){

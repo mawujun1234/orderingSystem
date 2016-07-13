@@ -50,14 +50,20 @@ public class ContextUtils {
 	 * @return
 	 */
 	private static Map<String,Ordmt> ormtno_map=new HashMap<String,Ordmt>();
+	private static Boolean ormtno_bool=false;
 	public static Ordmt getOrdmt(String ormtno){
 		
-		if(ormtno_map==null || ormtno_map.size()==0){
+		if(ormtno_map==null || ormtno_map.size()==0 || ormtno_map.get(ormtno)==null){
+			if(ormtno_bool){
+				return null;
+			}
+			ormtno_bool=true;
 			OrdmtController ordmtService=SpringContextHolder.getBean(OrdmtController.class);
 			List<Ordmt> ordmtes=ordmtService.query4Combo();
 			for(Ordmt ordmt:ordmtes){
 				ormtno_map.put(ordmt.getOrmtno(), ordmt);
 			}
+			ormtno_bool=false;
 		}
 		return ormtno_map.get(ormtno);
 		
@@ -74,7 +80,7 @@ public class ContextUtils {
 		if(ortyno==null || "".equals(ortyno)){
 			return null;
 		}
-		if(ordty_map==null || ordty_map.size()==0){
+		if(ordty_map==null || ordty_map.size()==0 || ordty_map.get(ortyno)==null){
 			OrdtyRepository ordtyRepository=SpringContextHolder.getBean(OrdtyRepository.class);
 			List<Ordty> ordtyes=ordtyRepository.queryAll();
 			for(Ordty ordty:ordtyes){
@@ -96,7 +102,7 @@ public class ContextUtils {
 		if(channo==null || "".equals(channo)){
 			return null;
 		}
-		if(channo_map==null || channo_map.size()==0){
+		if(channo_map==null || channo_map.size()==0 || channo_map.get(channo)==null){
 			ChannoService channoService=SpringContextHolder.getBean(ChannoService.class);
 			List<Channo> ordtyes=channoService.queryAll();
 			for(Channo chan:ordtyes){
@@ -111,16 +117,22 @@ public class ContextUtils {
 	 * 所有供应商
 	 */
 	private static Map<String,PubSuno> pubSuno_map=new HashMap<String,PubSuno>();
+	private static Boolean pubSuno_bool=false;
 	public static PubSuno getPubSuno(String idsuno){
 		if(idsuno==null || "".equals(idsuno)){
 			return null;
 		}
-		if(pubSuno_map==null || pubSuno_map.size()==0){
+		if(pubSuno_map==null || pubSuno_map.size()==0 || pubSuno_map.get(idsuno)==null){
+			if(pubSuno_bool){
+				return null;
+			}
+			pubSuno_bool=true;
 			PubSunoService pubSunoService=SpringContextHolder.getBean(PubSunoService.class);
 			List<PubSuno> pubSunoes=pubSunoService.queryAll();
 			for(PubSuno pubSuno:pubSunoes){
 				pubSuno_map.put(pubSuno.getIdsuno(), pubSuno);
 			}
+			pubSuno_bool=false;
 		}
 		
 		return pubSuno_map.get(idsuno);

@@ -35,12 +35,11 @@ Ext.define('y.pubsize.PrdsztyGrid',{
 //			}
 //		},
 		{dataIndex:'szsast',header:'当季状态',xtype:'checkcolumn',
-			processEvent : function(type) {  
-            	if (type == 'click' && Permision.canShow('PRDSZTY_szsast_edit'))  
-                   return false;  
-            },
 
 			listeners:{
+				beforecheckchange:function(checkcolumn , rowIndex , checked , record , eOpts){
+					return  Permision.canShow('PRDSZTY_szsast_edit');
+				},
 				checkchange:function( checkcolumn, rowIndex, checked, eOpts ){//Permision.canShow('sample_design_unlock'),
 					var grid=checkcolumn.up("grid");
 					//console.log(grid);

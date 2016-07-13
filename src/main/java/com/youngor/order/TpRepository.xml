@@ -23,6 +23,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and B.sampnm like '%${sampnm}%'
 			</if> 
      </sql>
+     <!--
     <select id="zgs_tpAllQuery" resultType="map" parameterType="map">
     	   select x.*,Y.ORMTQT_TP,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
     	     select a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT,sum(ORMTQT) ORMTQT from (
@@ -33,8 +34,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			    left join ORD_SUIT_DC bb on e.suitno=bb.suitno and bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno
 			    left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=e.suitno
 			    left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
-			    WHERE 1=1 <include refid="zgs_tpAllQuery_where"></include> 
-			    --group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,bb.SUITNO,B.PACKQT
+			    WHERE a.ORMTNO=#{ormtno} <include refid="zgs_tpAllQuery_where"></include> 
+			    
 			 ) a
              group by a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT
 		    ) x left join 
@@ -47,6 +48,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		    y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
 		    ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
     </select> 
+    -->
+        <select id="zgs_tpAllQuery" resultType="map" parameterType="map">
+    	   select x.*,Y.ORMTQT_TP,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
+    	     select a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT,sum(ORMTQT) ORMTQT from (
+			    select distinct a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,nvl(bb.SUITNO,'T00') SUITNO,B.PACKQT,decode(c.ormark,'已统配',c.ormtqs,c.ormtqt) ORMTQT
+			    from ord_sample_plan a
+			    inner join ord_sample_design b on a.plspno=b.plspno
+			    --inner join ord_sample_design_sizegp e on b.sampno=e.sampno
+			    left join ORD_SUIT_DC bb on  bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno
+			    left join ORD_ORDDTL c on b.sampno=c.sampno and c.suitno=nvl(bb.SUITNO,'T00')
+			    left join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ'
+			    WHERE a.ORMTNO=#{ormtno} <include refid="zgs_tpAllQuery_where"></include> 
+			    --group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,bb.SUITNO,B.PACKQT
+			 ) a
+             group by a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT
+		    ) x left join 
+		    (
+			    select B.SAMPNO,B.SUITNO,sum(ORMTQT) ORMTQT_TP 
+			    from ORD_ORD A,ORD_ORDDTL B 
+			    WHERE A.mtorno=B.mtorno AND A.ORMTNO=#{ormtno} and A.ORTYNO='TP'
+			    GROUP BY  B.SAMPNO,B.SUITNO
+		    ) 
+		    y on  X.SAMPNO=Y.SAMPNO AND X.SUITNO=Y.SUITNO
+		    ORDER BY X.sptyno,X.spseno,X.SAMPNM,X.SUITNO
+    </select>
     <select id="zgs_tpAllQuery_count" resultType="int" parameterType="map">
     	SELECT count(*) FROM (
     		select a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT,sum(ORMTQT) ORMTQT from (
@@ -95,7 +121,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	          inner join ORD_ORDDTL B on A.mtorno=B.mtorno 
 	          inner join ord_sample_design c on b.sampno=c.sampno
 	          inner join ord_sample_plan d on c.plspno=d.plspno 
-			  WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='TP' and a.channo='GSBB'
+			  WHERE  A.ORMTNO=#{ormtno} and d.ormtno=#{ormtno} and A.ORTYNO='TP' and a.channo='GSBB'
 			  <if test="bradno!=null and bradno!=''">
 				and d.bradno=#{bradno}
 			</if>
@@ -184,7 +210,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		          inner join ORD_ORDDTL B on A.mtorno=B.mtorno 
 		          inner join ord_sample_design c on b.sampno=c.sampno
 		          inner join ord_sample_plan d on c.plspno=d.plspno 
-					    WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='TP' and a.channo='YXGS' AND A.ORDORG=#{yxgsno}
+					    WHERE  A.ORMTNO=#{ormtno} and d.ormtno=#{ormtno} and A.ORTYNO='TP' and a.channo='YXGS' AND A.ORDORG=#{yxgsno}
 					    GROUP BY  B.SAMPNO,c.sampnm,B.SUITNO,d.sptyno,d.spseno,c.PACKQT
 		) x left join (
 		          select SAMPNO,QYNO,SUITNO,sum(ORMTQT_TP_QY) ORMTQT_TP_QY,sum(ORMTQT_TP_TX) ORMTQT_TP_TX,sum(ORMTQT_DZ_QY) ORMTQT_DZ_QY,sum(ORMTQT_DZ_TX) ORMTQT_DZ_TX from (

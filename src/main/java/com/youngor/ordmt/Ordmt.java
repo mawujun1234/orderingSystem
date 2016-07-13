@@ -31,7 +31,7 @@ public class Ordmt extends BaseObject{
 	@FieldDefine(title="结束日期",sort=50)
 	private Date mtfidt;
 	@FieldDefine(title="状态",sort=50,showType=ShowType.radio)
-	private Boolean ormtst=false;
+	private Boolean ormtst=false;//true完成，false：进行中
 	@FieldDefine(title="跟踪状态",sort=50,showType=ShowType.radio)
 	private Boolean ormtfg=true;
 	@FieldDefine(title="备注",sort=40)

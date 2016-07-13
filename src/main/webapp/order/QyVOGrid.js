@@ -235,6 +235,7 @@ Ext.define('y.order.QyVOGrid',{
 		  		allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
+		  		showBlank:false,
 				xtype:'orgcombo',
 				listeners:{
 					select:function( combo, record, eOpts ) {
@@ -247,6 +248,7 @@ Ext.define('y.order.QyVOGrid',{
 		  		labelWidth:45,
 		  		width:170,
 		  		allowBlank: false,
+		  		showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'qyno',
 				xtype:'orgcombo',

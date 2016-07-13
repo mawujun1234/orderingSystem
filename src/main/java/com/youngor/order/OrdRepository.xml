@@ -72,14 +72,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </resultMap>  
      <!--查询不是套西之外的小类，即表中套中拥有的规格 -->
      <select id="querySuitVO_T00" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,1) szrate,c.orszqt from (
-     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
-	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
 	    ) a left join (
 	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+            <if test="versno==null or versno==''">
+            	and versno is null
+            </if>
+            <if test="versno!=null and versno!=''">
+            	and versno=#{versno} 
+            </if>
              and sizety='STDSZ'
 	    ) b
 	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
@@ -91,15 +97,21 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <!-- 当上报方式为  包装箱的时候  包装箱只显示标准箱(即单规箱)-->
      <select id="querySuitVO_T00_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
      	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
-     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c 
-	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c 
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and NVL(a.SIZETY1,1)=1
 	      and  c.sampno=#{sampno}
 	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
 	    ) a 
 	    left join (
 	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+            <if test="versno==null or versno==''">
+            	and versno is null
+            </if>
+            <if test="versno!=null and versno!=''">
+            	and versno=#{versno} 
+            </if>
              and sizety='PRDPK'
 	    ) b
 	    on a.sizegp=b.sizegp and a.sizeno=b.sizeno
@@ -111,9 +123,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
      <select id="querySuitVO" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,1) szrate,c.orszqt from (
-     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
-	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
 	      and exists (select 1 from ORD_SUIT_DC bb where c.suitno=bb.suitno 
@@ -121,7 +133,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        )
 	     ) a left join (
 	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+            <if test="versno==null or versno==''">
+            	and versno is null
+            </if>
+            <if test="versno!=null and versno!=''">
+            	and versno=#{versno} 
+            </if>
              and sizety='STDSZ'
 	    ) b on a.sizegp=b.sizegp and a.sizeno=b.sizeno
 	    left join (<!-- 获取已经定了的数量-->
@@ -131,8 +149,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      <select id="querySuitVO_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
      	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
-     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_pub_sizedtl b,ord_sample_design_sizegp c  
-	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZTY'
+     	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
+	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and NVL(a.SIZETY1,1)=1
 	      and  c.sampno=#{sampno}
 	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
@@ -141,7 +159,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        )
 	     ) a left join (
 	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} and versno=#{versno}
+            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+            <if test="versno==null or versno==''">
+            	and versno is null
+            </if>
+            <if test="versno!=null and versno!=''">
+            	and versno=#{versno} 
+            </if>
              and sizety='PRDPK'
 	    ) b on a.sizegp=b.sizegp and a.sizeno=b.sizeno
 	    left join (
@@ -644,6 +668,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        {call ORDER_DL.COMP_WXPS(?,?,?,?)}  
     </update>
     
+    <!--尾箱调整-调整完成-->
+    <parameterMap type="map" id="order_dl__order_to_params">  
+	   <parameter property="P_MLORNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_SDTYNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__order_to" parameterMap="order_dl__order_to_params" statementType="CALLABLE">  
+       {call ORDER_DL.ORDER_TO(?,?,?)}  
+    </update>
+    
     <!-- 判断费否可以做尾箱调整了-->
     <select id="wxtz_check_stat" resultType="string" parameterType="map">
     	SELECT DEITNM FROM
@@ -729,9 +763,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      <!--查询某个规格组的内容,sztype==1:规格上报，sztype==2：包装箱上报-->
      <select id="sizeVO_querySizeVOColumns" resultType="map" parameterType="string">
-     	select a.sizety,a.sizeno,b.sizenm from ORD_PUB_SIZEDTL a ,ORD_PUB_SIZE b
+     	select a.sizety,a.sizeno,b.sizenm from ORD_SIZEDTL a ,ORD_PUB_SIZE b
 		where  a.sizety=b.sizety and a.sizeno=b.sizeno  and 
-		a.fszty='PRDSZTY' and a.fszno=#{sizegp} 
+		a.fszty='PRDSZFW' and a.fszno=#{sizegp} 
 		 and NVL(b.SIZETY1,1)=1
 		<if test="sztype==1">
 			and a.sizety='STDSZ'

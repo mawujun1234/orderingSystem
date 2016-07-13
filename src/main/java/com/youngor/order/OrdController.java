@@ -151,6 +151,19 @@ public class OrdController {
 		ordService.back(mlornoes);
 		return "{success:true}";
 	}
+	/**
+	 * 订单流转
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mlorno
+	 * @param sdtyno
+	 * @return
+	 */
+	@RequestMapping("/ord/ordercircle.do")
+	@ResponseBody
+	public String ordercircle( String[] mlornoes,String sdtyno) {
+		ordService.order_dl__order_to(mlornoes,sdtyno);
+		return "{success:true}";
+	}
 	@RequestMapping("/ord/isfect_no.do")
 	@ResponseBody
 	public String isfect_no(String[] mlornoes ) {

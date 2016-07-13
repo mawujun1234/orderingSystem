@@ -427,7 +427,7 @@ $(function(){
 							
 							var ormtqt=suitVO.ormtqt;//输入的总的数量
 							var used_orszqt=0;//已经使用掉的数量
-							var max_szrate_sizeVO=null;//持有最大比率的规格
+							var max_szrate_sizeVO=sizeVOs[0];//持有最大比率的规格,默认是第一个
 							var max_szrate=0;//最大的比率
 							for(var i=0;i<sizeVOs.length;i++){
 								//如果是标准箱的时候

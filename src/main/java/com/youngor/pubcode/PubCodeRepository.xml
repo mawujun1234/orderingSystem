@@ -45,8 +45,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="fitno!=null">
     		and a.fitno=#{fitno}
     	</if>
-    	<if test="stat!=null and stat!=''">
-    		and b.stat=#{stat}
+    	<if test="stat_stat==1">
+    		and b.stat=#{stat_stat}
     	</if>
     	order by a.itso
     </select> 

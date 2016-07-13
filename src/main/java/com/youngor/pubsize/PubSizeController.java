@@ -27,6 +27,8 @@ public class PubSizeController {
 	private PubSizeService pubSizeService;
 	@Resource
 	private PubSizeDtlService pubSizeDtlService;
+	@Resource
+	private SizeService sizeService;
 
 
 
@@ -272,7 +274,8 @@ public class PubSizeController {
 		
 	}
 	/**
-	 * 规格范围选取 -- 规格池里的--单规和规格范围的时候,用的
+	 * 规格系列选取 -- 规格池里的--单规和规格范围的时候,用的
+	 * 已经报废，暂时没用了
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param szbrad
 	 * @param szclno
@@ -326,33 +329,63 @@ public class PubSizeController {
 	
 	
 	//-------------------------------------------------------------------------
+//	/**
+//	 * 查询规格范围,查询条件是品牌+大类,在样衣管理的时候使用
+//	 * z
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @return
+//	 */
+//	@RequestMapping("/pubSize/queryPRDSZTY4SampleDesign.do")
+//	@ResponseBody
+//	public List<PubSize> queryPRDSZTY4SampleDesign(String szbrad,String szclno) {
+//		List<PubSize> pubSizees=pubSizeService.query(Cnd.select()
+//				.andEquals(M.PubSize.sizety, "PRDSZTY")
+//				.andEquals(M.PubSize.szbrad, szbrad)
+//				.andEquals(M.PubSize.szclno, szclno)
+//				.andEquals(M.PubSize.sizest, 1)
+//				.andEquals(M.PubSize.szsast, 1)
+//				.asc(M.PubSize.sizeso));
+//		return pubSizees;
+//	}
+	
 	/**
 	 * 查询规格范围,查询条件是品牌+大类,在样衣管理的时候使用
+	 * 这是新版的，以前的规格范围变成了规格系列
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	@RequestMapping("/pubSize/queryPRDSZTY4SampleDesign.do")
+	@RequestMapping("/pubSize/queryPRDSZFW4SampleDesign.do")
 	@ResponseBody
-	public List<PubSize> queryPRDSZTY4SampleDesign(String szbrad,String szclno) {
-		List<PubSize> pubSizees=pubSizeService.query(Cnd.select()
-				.andEquals(M.PubSize.sizety, "PRDSZTY")
-				.andEquals(M.PubSize.szbrad, szbrad)
-				.andEquals(M.PubSize.szclno, szclno)
-				.andEquals(M.PubSize.sizest, 1)
-				.andEquals(M.PubSize.szsast, 1)
+	public List<Size> queryPRDSZFW4SampleDesign(String ormtno,String szbrad,String szclno) {
+		List<Size> pubSizees=sizeService.query(Cnd.select()
+				.andEquals(M.Size.sizety, "PRDSZFW")
+				.andEquals(M.Size.szbrad, szbrad)
+				.andEquals(M.Size.szclno, szclno)
+				.andEquals(M.Size.ormtno, ormtno)
 				.asc(M.PubSize.sizeso));
 		return pubSizees;
 	}
 	
+//	/**
+//	 * 查询规格范围,查寻某次订货会使用的规格范围
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @return
+//	 */
+//	@RequestMapping("/pubSize/queryPRDSZTY4Ordmt.do")
+//	@ResponseBody
+//	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno) {	
+//		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);
+//		return pubSizees;
+//	}
 	/**
 	 * 查询规格范围,查寻某次订货会使用的规格范围
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	@RequestMapping("/pubSize/queryPRDSZTY4Ordmt.do")
+	@RequestMapping("/pubSize/queryPRDSZFW4Ordmt.do")
 	@ResponseBody
-	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno) {	
-		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);
+	public List<PubSizeVO> queryPRDSZFW4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno) {	
+		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZFW4Ordmt(szbrad, szclno, ormtno,versno,spseno);
 		return pubSizees;
 	}
 	

@@ -86,7 +86,7 @@ Ext.define('y.pubsize.SizegpStdszQueryGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		  		text: '选择',
+		  		text: '确认',
 				handler: function(btn){
 					var records=btn.up("grid").getSelectionModel().getSelection();
 					if(records==null || records.length==0){

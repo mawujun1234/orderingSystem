@@ -29,6 +29,7 @@ Ext.onReady(function(){
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'compcombo',
 				xtype:'orgcombo',
+				showBlank:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var regioncombo=combo.nextSibling("#regioncombo");
@@ -42,6 +43,7 @@ Ext.onReady(function(){
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'regioncombo',
 				xtype:'orgcombo',
+				showBlank:false,
 				autoLoad:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
@@ -116,6 +118,7 @@ Ext.onReady(function(){
 		        queryMode: 'local',
 		        displayField: 'itnm',
 			    valueField: 'itno',
+			     editable:false,
 			    store: {
 			    	autoLoad:false,
 				    fields: ['itno', 'itnm'],
@@ -152,7 +155,7 @@ Ext.onReady(function(){
 				    proxy:{
 				    	type:'ajax',
 				    	//extraParams:{szbrad:'sjs'},
-				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY4Ordmt.do'
+				    	url:Ext.ContextPath+'/pubSize/queryPRDSZFW4Ordmt.do'
 				    },
 				    listeners:{
 				    	load:function(myStore){
@@ -179,6 +182,7 @@ Ext.onReady(function(){
 		        queryMode: 'remote',
 		        displayField: 'itnm',
 			    valueField: 'itno',
+			    editable:false,
 			    store: {
 			    	autoLoad:false,
 				    fields: ['itno', 'itnm'],
@@ -214,6 +218,7 @@ Ext.onReady(function(){
 			var spseno=tabpanel.down("#spseno");
 			spseno.clearValue( );
 			spseno.getStore().getProxy().extraParams={
+				showBlank:true,
 				bradno:tabpanel.down("#bradno").getValue(),
 				spclno:tabpanel.down("#spclno").getValue(),
 				ormtno:tabpanel.down("#ordmtcombo").getValue()
@@ -225,6 +230,7 @@ Ext.onReady(function(){
 			var versno=tabpanel.down("#versno");
 			versno.clearValue( );
 			versno.getStore().getProxy().extraParams={
+				showBlank:true,
 				bradno:tabpanel.down("#bradno").getValue(),
 				spclno:tabpanel.down("#spclno").getValue(),
 				ormtno:tabpanel.down("#ordmtcombo").getValue() 

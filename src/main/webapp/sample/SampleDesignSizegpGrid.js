@@ -15,7 +15,7 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 				    proxy:{
 				    	type:'ajax',
 				    	//extraParams:{szbrad:'sjs'},
-				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY4SampleDesign.do'
+				    	url:Ext.ContextPath+'/pubSize/queryPRDSZFW4SampleDesign.do'
 				    }
 				}  );
       me.columns=[
@@ -100,10 +100,11 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 	  
       me.callParent();
 	},
-	reloadEditor:function(bradno,spclno){
+	reloadEditor:function(ormtno,bradno,spclno){
 		
 		//var sizegpField=this.sizegp_editor;
 			this.sizegp_editor_store.getProxy().extraParams={
+				ormtno:ormtno,
 				szbrad:bradno,
 				szclno:spclno
 			};

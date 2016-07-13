@@ -12,7 +12,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-      	{dataIndex:'orgnm',header:'区域',
+      	{dataIndex:'orgnm',header:'区域',sortable:false,
       		renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("isTotal")==true){
 							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
@@ -21,7 +21,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		            	return value;
 		            }
         },
-        {dataIndex:'spclnm',header:'大类',
+        {dataIndex:'spclnm',header:'大类',sortable:false,
         	renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("isTotal")==true){
 							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
@@ -30,7 +30,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		            	return value;
 		            }
         },
-		{dataIndex:'sptynm',header:'小类',
+		{dataIndex:'sptynm',header:'小类',sortable:false,
 			renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("isTotal")==true){
 							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
@@ -39,7 +39,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		            	return value;
 		            }
         },
-		{dataIndex:'spsenm',header:'系列',
+		{dataIndex:'spsenm',header:'系列',sortable:false,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("isTotal")==true){
 							 metaData.tdStyle = 'background-color:#CD9B9B;' ;
@@ -51,7 +51,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         	header:'区域',
         	columns:[
         		{
-        			dataIndex:'qymtqt',header:'区域指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
+        			dataIndex:'qymtqt',header:'区域指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,sortable:false,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -65,7 +65,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		                selectOnFocus:true 
 		            }
 				},{
-					dataIndex:'qymtam',header:'区域指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
+					dataIndex:'qymtam',header:'区域指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,sortable:false,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -83,7 +83,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
         {
         	header:'特许',
         	columns:[{
-        		dataIndex:'txmtqt',header:'特许指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
+        		dataIndex:'txmtqt',header:'特许指标数量',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,sortable:false,
         			renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("plstat")==0  && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -98,7 +98,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		            }
 			},
 			{
-				dataIndex:'txmtam',header:'特许指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,
+				dataIndex:'txmtam',header:'特许指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',width:120,sortable:false,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("plstat")==0 && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -218,6 +218,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
+				showBlank:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var regioncombo=combo.nextSibling("#qyno");
@@ -233,6 +234,7 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		  		itemId:'qyno',
 				xtype:'orgcombo',
 				autoLoad:false,
+				showBlank:true,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 		        		

@@ -104,33 +104,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and a.fszty=#{fszty} and a.fszno=#{fszno} and b.sizety=#{sizety} 
     	 ORDER BY b.SIZESO
     </select>
-    <!--
-    <select id="queryStdsz4Sel_Prdszty" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
-    	SELECT A.SIZETY,A.SIZENO,C.SIZENM FROM ORD_PUB_SIZEDTL A
-	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO
-	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
-	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
-	    AND A.SIZETY='STDSZ' 
-    	and not exists(
-    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
-    		and b.fszty=#{fszty} and b.fszno=#{fszno}
-    	)
-    	ORDER BY C.SIZESO
-    </select> -->
-     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能
-    <select id="queryStdsz4Sel_Prdszty_count" resultType="int" parameterType="map">
-    	SELECT count(A.SIZETY,A.SIZENO,C.SIZENM) FROM ORD_PUB_SIZEDTL A
-	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO
-	    INNER JOIN ORD_PUB_SIZE C ON A.SIZETY=C.SIZETY AND A.SIZENO=C.SIZENO
-	    WHERE A.FSZTY='SIZEGP' AND B.SZBRAD=#{szbrad} AND B.SZCLNO=#{szclno}
-	    AND A.SIZETY='STDSZ' 
-    	and not exists(
-    		select 1 from ord_pub_sizedtl b where a.sizeno=b.sizeno and a.sizety=b.sizety
-    		and b.fszty=#{fszty} and b.fszno=#{fszno}
-    	)
-    	ORDER BY C.SIZESO
-    </select>-->
+
+  
     
+    <!-- 在规格范围 选取 单规的时候，从规格系列中获取 -->
     <select id="queryPrdsztyStdsz4Size" resultType="com.youngor.pubsize.PubSizeDtlVO">
     	select a.*,b.sizenm from ord_pub_sizedtl a,ord_pub_size b 
     	where a.sizety=b.sizety and a.sizeno=b.sizeno
@@ -140,11 +117,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	 ORDER BY b.SIZESO
     </select>
     
-    <!--  获取这次订货会用到的规格范围 -->
-    <select id="queryPRDSZTY4Ordmt" resultType="com.youngor.pubsize.PubSizeVO" parameterType="map">
-    	select distinct a.* from ord_pub_size a
+
+    <!-- 查询规格范围-查询某个订货会下用到的规格范围-->
+    <select id="queryPRDSZFW4Ordmt" resultType="com.youngor.pubsize.Size" parameterType="map">
+    	select distinct a.* from ord_size a
     	where 
-    	a.sizety='PRDSZTY' and a.szbrad=#{szbrad} and a.szclno=#{szclno} and a.sizest=1
+    	a.sizety='PRDSZFW' and a.szbrad=#{szbrad} and a.szclno=#{szclno} 
     	and exists (select 1 from ord_sample_design c,ord_sample_plan d,ord_sample_design_sizegp e 
     	where c.sampno=e.sampno and c.plspno=d.plspno  and a.sizeno=e.sizegp and d.ormtno=#{ormtno}
     		<if test="versno!=null and versno!=''">
@@ -155,8 +133,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		</if>
     	)
     	order by a.sizeso
-    </select> 
-    
+    </select>
+    <!-- 从规格池中选取单规和包装规格用于规格系列，这个功能已经不使用，，，已经取消掉了  -->
     <select id="querySizegpPrdszty" resultType="com.youngor.pubsize.PubSizeDtlVO">
     	 SELECT A.SIZETY,A.SIZENO,C.SIZENM FROM ORD_PUB_SIZEDTL A
 	    INNER JOIN ORD_PUB_SIZE B ON A.FSZTY=B.SIZETY AND A.FSZNO=B.SIZENO

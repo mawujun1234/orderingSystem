@@ -126,6 +126,7 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"外买样衣编号不允许为空",
             selectOnFocus:true,
+            value:'无',
 	        xtype:'textfield'
 	    },
 		{
@@ -178,7 +179,7 @@ Ext.define('y.sample.SampleDesignForm',{
 	        name: 'colrno',
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
-            blankText:"大系列不允许为空",
+            blankText:"颜色不允许为空",
 	        xtype:'pubcodecombo',
 	        tyno:'9'
 	    },
@@ -565,10 +566,10 @@ Ext.define('y.sample.SampleDesignForm',{
 	 * @param {} spclno 大类
 	 */
 	temp_bradno:'Y',//这是临时解决的
-	reloadEditor:function(bradno,spclno){
+	reloadEditor:function(ormtno,bradno,spclno){
 		//刷新规格组的数据
 		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
-			this.down("grid#sampleDesignSizegpGrid").reloadEditor(bradno,spclno);
+			this.down("grid#sampleDesignSizegpGrid").reloadEditor(ormtno,bradno,spclno);
 		}
 	},
 	/**
@@ -583,7 +584,8 @@ Ext.define('y.sample.SampleDesignForm',{
 			me.down("#save").show();
 		}
 	},
-	reloadPubcode:function(bradno,spstat){
+	stat_xtrydeeeeeeeee:1,
+	reloadPubcode:function(bradno){
 		if(!bradno){
 			alert("请传递品牌参数");
 			return;
@@ -592,10 +594,10 @@ Ext.define('y.sample.SampleDesignForm',{
 		var me=this;
 		
 		
-		var stat_xtrydeeeeeeeee=spstat==1?0:1;
+		//var stat_xtrydeeeeeeeee=spstat==1?0:1;
 		
-		if(this.temp_bradno!=bradno || window.stat_xtrydeeeeeeeee!=stat_xtrydeeeeeeeee){//alert(stat_xtrydeeeeeeeee);
-			window.stat_xtrydeeeeeeeee=stat_xtrydeeeeeeeee;
+		if(this.temp_bradno!=bradno || me.stat_xtrydeeeeeeeee!=window.stat_xtrydeeeeeeeee){//alert(stat_xtrydeeeeeeeee);
+			me.stat_xtrydeeeeeeeee=window.stat_xtrydeeeeeeeee;
 			var versnoField=me.getForm().findField("versno");
 			versnoField.changeBradno(bradno);
 			versnoField.getStore().reload();

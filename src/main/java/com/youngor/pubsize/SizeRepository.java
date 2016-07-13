@@ -11,7 +11,7 @@ import com.mawujun.repository.IRepository;
  */
 @Repository
 public interface SizeRepository extends IRepository<Size, String>{
-	public int getCountByYsizeno(@Param("ormtno")String ormtno,@Param("ysizety")String ysizety,@Param("ysizeno")String ysizeno);
+	public String getCountByYsizeno(@Param("ormtno")String ormtno,@Param("ysizety")String ysizety,@Param("ysizeno")String ysizeno);
 
 
 }

@@ -6,8 +6,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.pubsize.SizeRepository">
    
-	<select id="getCountByYsizeno" parameterType="map" resultType="int">
-		 select count(*) from OD.ORD_SIZE
+	<select id="getCountByYsizeno" parameterType="map" resultType="string">
+		 select max(sizeno) from OD.ORD_SIZE
  		where ormtno=#{ormtno} and ysizety=#{ysizety} and ysizeno=#{ysizeno}
 	</select>
 </mapper>

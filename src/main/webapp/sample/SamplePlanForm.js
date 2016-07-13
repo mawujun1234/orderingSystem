@@ -349,9 +349,16 @@ Ext.define('y.sample.SamplePlanForm',{
 	},
 	
 	temp_bradno:'Y',//这是临时解决方案
+	stat_xtrydeeeeeeeee:1,
 	reloadPubcode:function(bradno){
 		var me=this;
-		if(this.temp_bradno!=bradno){
+		
+		//var stat_xtrydeeeeeeeee=spstat==1?0:1;
+		
+		if(this.temp_bradno!=bradno || me.stat_xtrydeeeeeeeee!=window.stat_xtrydeeeeeeeee){
+			me.stat_xtrydeeeeeeeee=window.stat_xtrydeeeeeeeee;
+			//window.stat_xtrydeeeeeeeee=stat_xtrydeeeeeeeee;
+			
 			var spseanField=me.getForm().findField("spsean");
 			spseanField.changeBradno(bradno);
 			spseanField.getStore().reload();

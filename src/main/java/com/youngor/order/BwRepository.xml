@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.BwRepository">
+	<select id="queryQyColumns" resultType="map" parameterType="map">
+    	select A.* from t_org A,T_ORG_ORG B 
+		where A.ORGNO=B.CHILD_NO AND orgty='REGN' AND ORGST='KQ' AND B.DIM='SALE' AND B.PARENT_NO=#{yxgsno} 
+		ORDER BY ORGSO
+    </select>
+    
+    <select id="queryQyData" resultType="map" parameterType="map">
+    	select x.*,y.QYNO,y.ORMTQT_BW_QY
+    		,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
+		          select c.SAMPNO,c.sampnm,e.SUITNO,d.sptyno,d.spseno
+					    from 
+		         	ord_sample_design c 
+		          inner join ord_sample_plan d on c.plspno=d.plspno 
+		          inner join ord_sample_design_sizegp E on c.sampno=e.sampno 
+					    WHERE   d.ormtno=#{ormtno} 
+		) x left join (
+		      select SAMPNO,QYNO,SUITNO,sum(ORMTQT_BW_QY) ORMTQT_BW_QY  FROM(
+		            select B.SAMPNO,a.ordorg as QYNO,B.SUITNO,sum(b.ORMTQT) ORMTQT_BW_QY
+		            from ORD_ORD A 
+		            inner join ORD_ORDDTL B on A.mtorno=B.mtorno
+		            inner join (SELECT DISTINCT QYNO FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C on A.ORDORG=C.QYNO
+		            WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='BW' and a.channo='QY'
+		            GROUP BY  B.SAMPNO,a.ordorg,B.SUITNO
+		      ) GROUP BY  SAMPNO,QYNO,SUITNO
+		) y on x.SAMPNO=y.SAMPNO and x.suitno=y.suitno
+		order by x.SAMPNO,x.suitno,y.QYNO
+    </select>
+    
+    <select id="qy_getStat" resultType="int" parameterType="map">
+    	select MAX(orstat) orstat from ORD_ORDhd where mtorno in (
+	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
+     		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
+	    )
+    </select>
+    
+    <update id="qy_approve">
+    	update ORD_ORDhd set orstat=2 where mtorno in (
+	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
+     		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
+	    )
+    </update>
+    
+    <update id="qy_over">
+    	update ORD_ORDhd set orstat=3 where mtorno in (
+	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
+     		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
+	    )
+    </update>
+</mapper>
+

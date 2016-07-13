@@ -268,6 +268,11 @@ public class UserController {
 	@ResponseBody
 	public List<User> querySjs(String positionType_id) {	
 		List<User> useres=userService.querySjs(positionType_id);
+		User wu=new User();
+		wu.setId("");
+		wu.setLoginName("");
+		wu.setName("无");
+		useres.add(0, wu);
 		return useres;
 	}
 	

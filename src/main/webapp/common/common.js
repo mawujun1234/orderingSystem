@@ -57,6 +57,7 @@ Ext.define('y.common.PubCode',{
 	tyno:'',
 	
 	selFirst:false,
+	showBlank:true,//是否显示“无”的数据
 	//fitno:'',
 	autoLoad:true,
 	
@@ -90,6 +91,7 @@ Ext.define('y.common.PubCode',{
 			    type: 'ajax',
 			    extraParams:{
 			    	tyno:me.tyno,
+			    	showBlank:me.showBlank,
 			    	stat:1
 					//fitno:me.fitno
 			    },
@@ -102,8 +104,12 @@ Ext.define('y.common.PubCode',{
 			listeners:{
 				beforeload:function(store){
 					//添加是否当季
+					//console.log(window.stat_xtrydeeeeeeeee);
+					if(typeof(window.stat_xtrydeeeeeeeee)=='undefined' || window.stat_xtrydeeeeeeeee==null){
+						window.stat_xtrydeeeeeeeee=1;
+					}
 					store.getProxy().extraParams=Ext.apply(store.getProxy().extraParams,{
-						stat:window.stat_xtrydeeeeeeeee?window.stat_xtrydeeeeeeeee:1
+						stat_stat:window.stat_xtrydeeeeeeeee
 					});
 				}
 			}
@@ -113,9 +119,14 @@ Ext.define('y.common.PubCode',{
 		if(!me.value && me.selFirst){
 			me.store.on("load",function(myStore){
 				if(myStore.getCount( ) >0){
-			 		var r=myStore.getAt(1);//第一行是无
+					var r=null;
+					if(me.showBlank==true){
+						r=myStore.getAt(1);//第一行是无
+					} else {
+						r=myStore.getAt(0);//第一行是,正确的数据
+					}
 			 		me.select( r );
-			 		me.fireEvent("select", me, r);
+				 	me.fireEvent("select", me, r);
 			 	}
 			})
 		}
@@ -283,6 +294,7 @@ Ext.define('y.common.OrgCombo',{
 	displayField: 'orgnm',
 	valueField: 'orgno',
 	 selFirst:true,
+	 showBlank:true,
 //    allowBlank: false,
 //    afterLabelTextTpl: Ext.required,
 //    blankText:"菜单类型不允许为空",
@@ -291,7 +303,7 @@ Ext.define('y.common.OrgCombo',{
 		var me=this;
 		var params={
 			dim:me.dim,
-			allowBlank:me.allowBlank,
+			showBlank:me.showBlank,
 			parent_no:'root'
 		};
 		
@@ -310,11 +322,21 @@ Ext.define('y.common.OrgCombo',{
 			},
 			listeners:{
 				load:function(myStore){
-					if(myStore.getCount( ) >0 && me.selFirst){
-			 			var r=myStore.getAt(0);
-			 			me.select( r );
-			 			me.fireEvent("select", me, r);
-			 		}
+					if(myStore.getCount( ) >0){
+						var r=null;
+						if(me.showBlank==true){
+							r=myStore.getAt(1);//第一行是无
+						} else {
+							r=myStore.getAt(0);//第一行是,正确的数据
+						}
+				 		me.select( r );
+					 	me.fireEvent("select", me, r);
+				 	}
+//					if(myStore.getCount( ) >0 && me.selFirst){
+//			 			var r=myStore.getAt(0);
+//			 			me.select( r );
+//			 			me.fireEvent("select", me, r);
+//			 		}
 				}
 			}
 			

@@ -59,6 +59,7 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	}
 	
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {
+		params.getParams().put("user_id", ShiroUtils.getUserId());
 		List<PlanOrgdtlVO> list= planOrgRepository.queryPlanOrgdtlVO(params.getParams());
 		if(list.size()==0){
 			return list;
@@ -334,12 +335,16 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 		map=PubCodeCache.cache.get("2");
 		Map<String,PubCode> sptyno_map=new HashMap<String,PubCode>();
 		for(Entry<String,PubCode> entry:map.entrySet()) {
-			sptyno_map.put(entry.getValue().getItnm(), entry.getValue());
+			//大类名称
+			String spclnm=PubCodeCache.getSpclno_name(entry.getValue().getFitno());
+			sptyno_map.put(spclnm+entry.getValue().getItnm(), entry.getValue());
 		}
 		map=PubCodeCache.cache.get("5");
 		Map<String,PubCode> spseno_map=new HashMap<String,PubCode>();
 		for(Entry<String,PubCode> entry:map.entrySet()) {
-			spseno_map.put(entry.getValue().getItnm(), entry.getValue());
+			//大类名称
+			String spclnm=PubCodeCache.getSpclno_name(entry.getValue().getFitno());
+			spseno_map.put(spclnm+entry.getValue().getItnm(), entry.getValue());
 		}
 		//获取区域的list
 		List<Org> list=orgServcie.query(Cnd.select().andEquals(M.Org.channo, Chancl.QY));
@@ -370,21 +375,23 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 				throw new BusinessException("第"+(i+1)+"行的品牌不存在!");
 			}
 			planOrgdtlVO.setBradno(brandno_map.get(cell.getStringCellValue()).getItno());
-			cell = row.getCell(2);
-			if(spclno_map.get(cell.getStringCellValue())==null){
+			Cell cell_spclno = row.getCell(2);
+			if(spclno_map.get(cell_spclno.getStringCellValue())==null){
 				throw new BusinessException("第"+(i+1)+"行的大类不存在!");
 			}
-			planOrgdtlVO.setSpclno(spclno_map.get(cell.getStringCellValue()).getItno());
+			planOrgdtlVO.setSpclno(spclno_map.get(cell_spclno.getStringCellValue()).getItno());
+			
 			cell = row.getCell(3);
-			if(sptyno_map.get(cell.getStringCellValue())==null){
+			if(sptyno_map.get(cell_spclno.getStringCellValue()+cell.getStringCellValue())==null){
 				throw new BusinessException("第"+(i+1)+"行的小类不存在!");
 			}
-			planOrgdtlVO.setSptyno(sptyno_map.get(cell.getStringCellValue()).getItno());
+			planOrgdtlVO.setSptyno(sptyno_map.get(cell_spclno.getStringCellValue()+cell.getStringCellValue()).getItno());
+			
 			cell = row.getCell(4);
-			if(spseno_map.get(cell.getStringCellValue())==null){
-				throw new BusinessException("第"+(i+1)+"行的小类不存在!");
+			if(spseno_map.get(cell_spclno.getStringCellValue()+cell.getStringCellValue())==null){
+				throw new BusinessException("第"+(i+1)+"行的系列不存在!");
 			}
-			planOrgdtlVO.setSpseno(spseno_map.get(cell.getStringCellValue()).getItno());
+			planOrgdtlVO.setSpseno(spseno_map.get(cell_spclno.getStringCellValue()+cell.getStringCellValue()).getItno());
 			cell = row.getCell(5);
 			if(cell!=null){
 				planOrgdtlVO.setQymtqt(cell.getNumericCellValue());

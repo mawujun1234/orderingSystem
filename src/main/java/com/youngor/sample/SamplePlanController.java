@@ -88,7 +88,7 @@ public class SamplePlanController {
 	@RequestMapping("/samplePlan/update.do")
 	//@ResponseBody
 	public  SamplePlan update(@RequestBody SamplePlan samplePlan) {
-		if(samplePlan.getPlstat()==1){
+		if(samplePlan.getPlspst()==1){
 			throw new BusinessException("已经锁定,不能更新!");
 		}
 		samplePlan.setLmdt(new Date());

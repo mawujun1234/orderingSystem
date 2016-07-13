@@ -103,7 +103,12 @@ Ext.define('y.sample.SamplePlanGrid',{
 	  		//enableOverflow:true,
 		  	items:[{
 		  		itemId:'ordmtcombo',
-				xtype:'ordmtcombo'
+				xtype:'ordmtcombo',
+				listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		window.ordmt_record=record;
+		        	}	
+		        }
 			},{
 		        fieldLabel: '品牌',
 		        itemId: 'bradno',

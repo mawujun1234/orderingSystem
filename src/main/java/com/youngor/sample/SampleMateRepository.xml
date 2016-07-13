@@ -5,6 +5,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SampleMateRepository">
+	
+	<delete id="deleteBySampno">
+    	delete ord_sample_mate where sampno=#{sampno}
+    </delete>
+    
      <sql id="lock_unlock_where">  
     	exists (select 1 from ord_sample_plan a ,ord_sample_design b where a.plspno=b.plspno	and b.sampno=d.sampno and 
     		 a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 

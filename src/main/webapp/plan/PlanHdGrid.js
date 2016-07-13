@@ -134,6 +134,7 @@ Ext.define('y.plan.PlanHdGrid',{
 	            //afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
+				showBlank:true,
 				selFirst:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {

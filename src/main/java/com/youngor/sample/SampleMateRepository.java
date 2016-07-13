@@ -1,5 +1,6 @@
 package com.youngor.sample;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import com.youngor.sample.SampleMate;
  */
 @Repository
 public interface SampleMateRepository extends IRepository<SampleMate,  SampleMate.PK>{
-
+	public void deleteBySampno(@Param("sampno")String sampno);
 	public void lock(Map<String,Object> params);
 	public void unlock(Map<String,Object> params);
 	

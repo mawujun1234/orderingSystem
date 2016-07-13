@@ -5,6 +5,7 @@ Ext.require('y.pubsize.PrdsztyPrdpkGrid');
 Ext.require('y.pubsize.PrdsztyStdszGrid');
 Ext.require('y.pubsize.PrdsztyGrid');
 Ext.onReady(function(){
+	//规格系列和规格范文的维护
 	//现在变成了规格系列
 	var grid=Ext.create('y.pubsize.PrdsztyGrid',{
 		region:'center'
@@ -65,7 +66,8 @@ Ext.onReady(function(){
 	//规格范围
 	var sizeGrid=Ext.create('y.pubsize.SizeGrid',{
 		region:"south",
-		height:350,
+		split:true,
+		height:300,
 		listeners:{
 			render:function(panel){
 				panel.mask();

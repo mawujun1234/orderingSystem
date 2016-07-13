@@ -193,6 +193,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 				xtype:'ordmtcombo',
 				listeners:{
 					select:function(combo , record , eOpts){
+						window.ordmt_record=record;
 						me.initReloadSampleDesign_index++;
 						me.reload();
 					}
@@ -205,6 +206,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            //value:'Y',
+	            showBlank:false,
 	            selFirst:true,
 	            blankText:"品牌不允许为空",
 		        xtype:'pubcodecombo',
@@ -220,6 +222,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        itemId: 'spclno',
 		        labelWidth:40,
 		        width:120,
+		        showBlank:false,
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
@@ -463,7 +466,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 					window.ormtno=params["params['ormtno']"];
 					var sampleDesignForm=tabpanel.down("form#sampleDesignForm")
 					//sampleDesignForm.reloadPubcode(params["params['bradno']"]);
-					sampleDesignForm.reloadEditor(params["params['bradno']"],params["params['spclno']"]);
+					//alert(params["params['spclno']"]);
+					sampleDesignForm.reloadEditor(params["params['ormtno']"],params["params['bradno']"],params["params['spclno']"]);
 					
 //			this.getStore().getProxy().extraParams=this.getParams();
 //			this.getStore().reload();
@@ -614,12 +618,12 @@ Ext.define('y.sample.SampleDesignGrid',{
 			//sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
 			//sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 			//获取当季的属性
-			sampleDesignForm.reloadPubcode(record.get("bradno"),1);
+			sampleDesignForm.reloadPubcode(record.get("bradno"));
 		
 			win.hide();
 			
 			var sampleDesignSizegpGrid=tabpanel.down("form#sampleDesignForm").down("grid#sampleDesignSizegpGrid");
-			sampleDesignSizegpGrid.reloadEditor(record.get("bradno"),record.get("spclno"));
+			sampleDesignSizegpGrid.reloadEditor(record.get("ormtno"),record.get("bradno"),record.get("spclno"));
 			if(record.get("sptyno")=='S10'){
 				//me.showsampleDesignSizegpGrid_bool=true;
 				sampleDesignForm.showsampleDesignSizegpGrid(true);
@@ -664,20 +668,23 @@ Ext.define('y.sample.SampleDesignGrid',{
     
     onDelete:function(){
     	var me=this;
-    	var node=me.getSelectionModel( ).getLastSelected( );
+    	var records=me.getSelectionModel( ).getSelection( );
 
-		if(!node){
+		if(!records || records.length==0){
 		    Ext.Msg.alert("消息","请先选择一行数据");	
 			return;
 		}
-		var parent=node.parentNode;
+		var sampnos=[];
+		for(var i=0;i<records.length;i++){
+			sampnos.push(records[i].get("sampno"));
+		}
 		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
 			if (btn == 'yes'){
 				Ext.Ajax.request({//
 					url:Ext.ContextPath+'/sampleDesign/deleteById.do',
 					params:{
 						ormtno:me.getStore().getProxy().extraParams["params['ormtno']"],
-						sampno:node.get("sampno")
+						sampnos:sampnos
 					},
 					success:function(response){
 						var obj=Ext.decode(response.responseText);

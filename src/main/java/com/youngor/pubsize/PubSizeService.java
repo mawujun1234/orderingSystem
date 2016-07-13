@@ -88,8 +88,11 @@ public class PubSizeService extends AbstractService<PubSize, PubSize.PK>{
 	}
 	
 	
-	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno)  {
-		return pubSizeRepository.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);
+//	public List<PubSizeVO> queryPRDSZTY4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno)  {
+//		return pubSizeRepository.queryPRDSZTY4Ordmt(szbrad, szclno, ormtno,versno,spseno);
+//	}
+	public List<PubSizeVO> queryPRDSZFW4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno)  {
+		return pubSizeRepository.queryPRDSZFW4Ordmt(szbrad, szclno, ormtno,versno,spseno);
 	}
 	
 	public List<PubSizeDtlVO> querySizegpPrdszty(String szbrad,String szclno,String sizety,String fszty,String fszno) {

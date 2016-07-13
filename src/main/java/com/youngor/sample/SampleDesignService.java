@@ -35,7 +35,13 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	@Autowired
 	private SampleDesignStprRepository sampleDesignStprRepository;
 	@Autowired
+	private SamplePhotoRepository samplePhotoRepository;
+	@Autowired
 	private OrdmtRepository ordmtRepository;
+	@Autowired
+	private SampleMateRepository sampleMateRepository;
+	@Autowired
+	private SampleColthRepository sampleColthRepository;
 	
 	
 	
@@ -45,25 +51,38 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 	
 	//@Override
-	public void deleteById(String ormtno,String sampno) {
-		SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
-		if(sampleDesign.getSpstat() !=null && sampleDesign.getSpstat()!=0){
-			throw new BusinessException("已经锁定,不能删除!");
+	public void deleteById(String ormtno,String[] sampnos) {
+		if(sampnos==null){
+			return;
 		}
 		//再判断订货会是否已经开始了，如果已经开始了，就不能删除了
 		Ordmt ordmt=ordmtRepository.get(ormtno);
 		Date start=ordmt.getMtstdt();
-		if(start.getTime()<(new Date()).getTime()){
-			throw new BusinessException("订货会已经开始，不能删除!");
+		if(start.getTime()<(new Date()).getTime() || ordmt.getOrmtst()){
+			throw new BusinessException("订货会已经开始或结束，不能删除!");
 		}
-		sampleDesignRepository.delete(sampleDesign);
 		
-		//同时删除规格范围
-		sampleDesignSizegpRepository.deleteBySampno(sampno);
-		//同时删除按套件的价格
-		sampleDesignStprRepository.deleteBySampno(sampno);
+		for(String sampno:sampnos){
+
+			SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
+			if(sampleDesign.getSpstat() !=null && sampleDesign.getSpstat()!=0){
+				throw new BusinessException("已经锁定,不能删除!");
+			}
+
+			sampleDesignRepository.delete(sampleDesign);
+			
+			//同时删除规格范围
+			sampleDesignSizegpRepository.deleteBySampno(sampno);
+			//同时删除按套件的价格
+			sampleDesignStprRepository.deleteBySampno(sampno);
+			//删除照片的数据
+			samplePhotoRepository.deleteBySampno(sampno);
+			//删除面料信息
+			sampleMateRepository.deleteBySampno(sampno);
+			//删除成衣信息
+			sampleColthRepository.deleteById(sampno);
 		
-		
+		}
 		
 //		sampleDesign.setSampst(0);
 //		sampleDesign.setLmdt(new Date());

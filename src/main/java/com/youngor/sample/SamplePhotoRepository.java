@@ -1,5 +1,6 @@
 package com.youngor.sample;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import java.util.UUID;
 import com.mawujun.repository.IRepository;
@@ -12,6 +13,6 @@ import com.youngor.sample.SamplePhoto;
  */
 @Repository
 public interface SamplePhotoRepository extends IRepository<SamplePhoto, String>{
-
+	public void deleteBySampno(@Param("sampno")String sampno);
 
 }

@@ -105,8 +105,15 @@ Ext.onReady(function(){
 		};//当前选中的设计样衣编号
 		window.sampleDesign=record;
 		
+		if(record.get("spstat")==1){
+			window.stat_xtrydeeeeeeeee=0;
+		} else {
+			if(window.ordmt_record.get("ormtst")==true){
+				window.stat_xtrydeeeeeeeee=0;
+			}
+		}
 //		//用于获取设计样衣的当季属性
-		sampleDesignForm.reloadPubcode(record.get("bradno"),record.get("spstat"));
+		sampleDesignForm.reloadPubcode(record.get("bradno"));
 		
 //		if(sampleDesignGrid.sampno==record.get("sampno")){
 //			return;

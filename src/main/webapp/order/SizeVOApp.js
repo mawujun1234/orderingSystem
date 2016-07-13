@@ -31,6 +31,7 @@ Ext.onReady(function(){
 		  		width:160,
 		  		allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
+	            showBlank:false,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
 				listeners:{
@@ -45,6 +46,7 @@ Ext.onReady(function(){
 		  		width:170,
 		  		allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
+	            showBlank:false,
 		  		itemId:'qyno',
 				xtype:'orgcombo',
 				autoLoad:false,
@@ -269,6 +271,7 @@ Ext.onReady(function(){
 		        queryMode: 'local',
 		        displayField: 'itnm',
 			    valueField: 'itno',
+			    editable:false,
 			    store: {
 			    	autoLoad:false,
 				    fields: ['itno', 'itnm'],
@@ -277,7 +280,13 @@ Ext.onReady(function(){
 				    	//extraParams:{szbrad:'sjs'},
 				    	url:Ext.ContextPath+'/pubCodeType/queryVersno4Ordmt.do'
 				    }
-				}
+				},
+				listeners:{
+		        	select:function( combo, record, eOpts ) {
+		        		//window.load_num++;
+						reloadSizegp1();
+		        	}	
+		        }
 		    },{
 		        fieldLabel: '规格范围',
 		        labelWidth:70,
@@ -299,7 +308,7 @@ Ext.onReady(function(){
 				    proxy:{
 				    	type:'ajax',
 				    	//extraParams:{szbrad:'sjs'},
-				    	url:Ext.ContextPath+'/pubSize/queryPRDSZTY4Ordmt.do'
+				    	url:Ext.ContextPath+'/pubSize/queryPRDSZFW4Ordmt.do'
 				    },
 				    listeners:{
 				    	load:function(myStore){
@@ -403,6 +412,7 @@ Ext.onReady(function(){
 			var versno=panel.down("#versno");
 			versno.clearValue( );
 			versno.getStore().getProxy().extraParams={
+				showBlank:true,
 				bradno:panel.down("#bradno").getValue(),
 				spclno:panel.down("#spclno").getValue(),
 				ormtno:panel.down("#ordmtcombo").getValue() 
@@ -418,6 +428,20 @@ Ext.onReady(function(){
 			};
 			sizegp.getStore().reload();
 		}
+	}
+	function reloadSizegp1(){
+		//versno,spseno
+		var sizegp=panel.down("#sizegp");
+		sizegp.clearValue( );
+//			sizegp.getStore().getProxy().extraParams={
+//				szbrad:tabpanel.down("#bradno").getValue(),
+//				szclno:tabpanel.down("#spclno").getValue(),
+//				ormtno:tabpanel.down("#ordmtcombo").getValue() 
+//			};
+		sizegp.getStore().getProxy().extraParams=Ext.apply(sizegp.getStore().getProxy().extraParams,{
+				versno:panel.down("#versno").getValue()
+		});
+		sizegp.getStore().reload();
 	}
 	
 	panel.getParams=function(){

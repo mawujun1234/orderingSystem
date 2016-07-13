@@ -17,8 +17,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     <!-- 获取单规的规格系列 -->
    <select id="queryStdszColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
-    	select b.* from ord_pub_sizedtl a ,ord_pub_size b
-       where a.sizeno=b.sizeno and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='STDSZ' and b.sizety='STDSZ'
+    	select b.* from ord_sizedtl a ,ord_pub_size b
+       where a.sizeno=b.sizeno and a.fszty='PRDSZFW' and a.fszno=#{sizegp} and a.sizety='STDSZ' and b.sizety='STDSZ'
        order by b.sizeso
     </select> 
     
@@ -33,6 +33,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         	<if test="versno!=null and versno!=''">
         		and b.versno=#{versno}
         	</if>
+        	and exists (SELECT 1 from ord_sample_design_sizegp x where b.sampno=x.sampno and x.sizegp=#{sizegp})
         order by a.spseno, b.versno
     </select>
      <!-- 获取指定版型和系列的规格比例-->
@@ -50,10 +51,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     
     
-    <!-- 获取包装规格的列 -->
+    <!-- 获取包装规格的列 :SIZETY1是混装还是单规装的数据如果是1：表示是混装，也就是说是标准箱-->
     <select id="queryPrdpkColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
-    	select b.* from ord_pub_sizedtl a ,ord_pub_size b
-       where a.sizeno=b.sizeno and NVL(b.SIZETY1,1)=1 and a.fszty='PRDSZTY' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
+    	select b.* from ord_sizedtl a ,ord_pub_size b
+       where a.sizeno=b.sizeno and NVL(b.SIZETY1,1)=1 and a.fszty='PRDSZFW' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'
        order by b.sizeso
     </select> 
     
