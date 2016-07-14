@@ -12,9 +12,12 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
+<!--
     <link rel="stylesheet" href="./css/sm.min.css">
-    <link rel="stylesheet" href="./css/sm-extend.min.css">
+    <link rel="stylesheet" href="./css/sm-extend.min.css">-->
+    <!--<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">-->
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">
      <link rel="stylesheet" href="mobile.css" >
 	<style>
 
@@ -265,31 +268,33 @@
                   <div class="content-block-title">报表清单</div>
                   <div class="list-block">
                     <ul>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                      <li>
+                        <a href="#" class="item-link item-content">
                         <div class="item-inner">
                           <div class="item-title">未定的必定款样衣</div>
                         </div>
+                        </a>
                       </li>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                      <li>
+                        <a href="#" class="item-link item-content">
                         <div class="item-inner">
-                          <div class="item-title">订货统计-按实订样衣</div>
+                          <div class="item-title">订货统计-已定样衣</div>
                         </div>
+                        </a>
                       </li>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                          <div class="item-title">订货统计-按商品类
-</div>
+                      <li>
+                        <a href="#report_spclno" class="item-link item-content">
+                        <div class="item-inner">    
+                          <div class="item-title">订货统计-按商品类</div>
                         </div>
+                        </a>
                       </li>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                      <li>
+                        <a href="#" class="item-link item-content">
                         <div class="item-inner">
-                          <div class="item-title">订货统计-按价位
-</div>
+                          <div class="item-title">订货统计-按价位</div>
                         </div>
+                        </a>
                       </li>
                     </ul>
                   </div><!-- 报表清单-->
@@ -298,9 +303,77 @@
         
         
         
-
+		<div class="page" id="report_spclno"> 
+        	<header class="bar bar-nav">
+              <a class="pull-left icon icon-search open-panel " data-panel='#report_query_params'><span style="font-weight:normal;font-size:0.7rem;">筛选</span>&nbsp;|</a> 
+              <h1 class='title'>条件简述</h1>
+            </header>
+            <div class="content" style="padding-right:8px;">
+                  <table class="report_table"> 
+                   <thead>
+                    <tr> 
+                     <th>Company</th> 
+                     <th>Contact</th> 
+                     <th>Country</th>
+                    </tr> 
+                   </thead>
+                   <tbody> 
+                    <tr> 
+                     <td>Alfreds Futterkiste</td> 
+                     <td>Maria Anders</td> 
+                     <td>Germany</td>
+                    </tr> 
+                    <tr class="alt"> 
+                     <td>Berglunds snabbk&ouml;p</td> 
+                     <td>Christina Berglund</td> 
+                     <td>Sweden</td>
+                    </tr> 
+                    <tr> 
+                     <td>Centro comercial Moctezuma</td> 
+                     <td>Francisco Chang</td> 
+                     <td>Mexico</td>
+                    </tr> 
+                    <tr class="alt"> 
+                     <td>Ernst Handel</td> 
+                     <td>Roland Mendel</td> 
+                     <td>Austria</td>
+                    </tr> 
+                    <tr> 
+                     <td>Island Trading</td> 
+                     <td>Helen Bennett</td> 
+                     <td>UK</td>
+                    </tr> 
+                   </tbody> 
+                  </table>
+              
+            </div>
+        </div>
+        
         
 	</div><!-- page-group -->
+    
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-left panel-cover theme-white" id='report_query_params'>
+    
+      <div class="card">
+        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">大类</div>
+        <div class="card-content">
+          <div class="card-content-inner">
+            <a href="#" class="button button-light param-btn button-success button-fill" >衬衫</a>
+            <a href="#" class="button button-light param-btn ">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <a href="#" class="button button-light param-btn" >衬衫</a>
+            <a href="#" class="button button-light param-btn">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <div style="clear:both;"></div>
+     	  </div>
+        </div>
+      </div><!--card-->
+      
+     
+    </div>
+
     
 
 

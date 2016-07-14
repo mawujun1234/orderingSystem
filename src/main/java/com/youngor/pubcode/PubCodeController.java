@@ -32,9 +32,20 @@ public class PubCodeController {
 	@Resource
 	private PubCodeTypeService pubCodeTypeService;
 
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param tyno
+	 * @param fitno
+	 * @param bradno
+	 * @param stat_stat
+	 * @param showBlank
+	 * @param query 输入的查询参数
+	 * @return
+	 */
 	@RequestMapping("/pubCode/query4Combo.do")
 	@ResponseBody
-	public List<PubCode> query4Combo(String tyno,String fitno,String bradno,String stat_stat,Boolean showBlank) {
+	public List<PubCode> query4Combo(String tyno,String fitno,String bradno,String stat_stat,Boolean showBlank,String query) {
 		if("none".equals(fitno)){
 			List<PubCode> pubCodes=new ArrayList<PubCode>();
 			PubCode wu=new PubCode();
@@ -50,7 +61,7 @@ public class PubCodeController {
 		}
 		
 		
-		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno,stat_stat);
+		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno,stat_stat,query);
 		//如果返回的是品牌大类，就过滤成用户可访问的品牌大类
 		if("1".equals(tyno)){
 			List<PubCode> list=new ArrayList<PubCode>();

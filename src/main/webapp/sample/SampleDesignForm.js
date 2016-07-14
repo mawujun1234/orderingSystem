@@ -91,6 +91,7 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"工作室系列不允许为空",
             selectOnFocus:true,
+            queryMode: 'remote',
 	        xtype:'pubcodecombo',
 	        tyno:'21'
 	    },
@@ -184,6 +185,7 @@ Ext.define('y.sample.SampleDesignForm',{
             afterLabelTextTpl: Ext.required,
             blankText:"颜色不允许为空",
 	        xtype:'pubcodecombo',
+	        queryMode: 'remote',
 	        tyno:'9'
 	    },
 		{

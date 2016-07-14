@@ -302,3 +302,61 @@
 	color:red;
 	background-color:rgba(204, 204, 204,0.70);
 }
+
+#report_query_params .param-btn {
+	float:left;
+	margin:0 5px 5px 0px;
+}
+
+
+table.report_table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 14px;
+	
+}
+
+table.report_table tbody tr:nth-child(odd) {
+	background-color: #f6f4f0
+}
+
+table.report_table tbody tr:nth-child(even) {
+	background-color: #fff
+}
+
+table.report_table tr.fixzebra {
+	background-color: #f6f4f0
+}
+
+table.report_table th {
+	
+	background-color:rgba(106,248,118,0.5);
+	border: 1px solid #fff;
+	font-size: 0.8rem;
+	padding: 3px;
+	vertical-align: top;
+	text-align: left
+}
+
+table.report_table th a:link,table.report_table th a:visited {
+	color: #fff
+}
+
+table.report_table th a:active,table.report_table th a:hover {
+	color: #ee872a
+}
+
+table.report_table td {
+	border: 1px solid #d4d4d4;
+	padding: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	vertical-align: top
+}
+
+table.report_table td.example_code {
+	vertical-align: bottom
+}

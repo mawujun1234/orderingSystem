@@ -276,6 +276,17 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'17'
 		    },{
+		        //fieldLabel: '工作室系列',
+		    	emptyText:'工作室系列',
+		        itemId: 'stseno',
+	            //allowBlank: false,
+	            //afterLabelTextTpl: Ext.required,
+	            //blankText:"工作室系列不允许为空",
+	            //selectOnFocus:true,
+		        queryMode: 'remote',
+		        xtype:'pubcodecombo',
+		        tyno:'21'
+		    },{
 		       // fieldLabel: '生产类型',
 		        emptyText:'生产类型',
 		         width:90,
@@ -541,6 +552,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 					    					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 					    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
 					    					"params['spbseno']":toolbars[1].down("#spbseno").getValue(),
+					    					"params['stseno']":toolbars[1].down("#stseno").getValue(),
 					    					"params['spsuno']":toolbars[1].down("#spsuno").getValue(),
 					    					"params['spmtno']":toolbars[1].down("#spmtno").getValue(),
 					    					"params['sampnm']":toolbars[1].down("#sampnm").getValue(),

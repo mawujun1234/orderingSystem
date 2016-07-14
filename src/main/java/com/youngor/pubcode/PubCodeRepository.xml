@@ -48,6 +48,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="stat_stat==1">
     		and b.stat=#{stat_stat}
     	</if>
+    	<if test="query!=null and query!=''">
+    		and a.itnm like '%${query}%'
+    	</if>
     	order by a.itso
     </select> 
     <!--  获取品牌属性-->

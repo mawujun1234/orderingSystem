@@ -60,9 +60,7 @@ Ext.define('y.common.PubCode',{
 	showBlank:true,//是否显示“无”的数据
 	//fitno:'',
 	autoLoad:true,
-	
-	
-	
+
 	queryMode: 'local',
 	editable:true,
 	forceSelection:true,
@@ -78,16 +76,19 @@ Ext.define('y.common.PubCode',{
 			alert("设置tyno属性！");
 			return;
 		}
-//		if(!me.allowBlank){
-//			me.afterLabelTextTpl=Ext.required;
-//			me.blankText=me.fieldLabel+"不允许为空";
-//		}
+		
+		if(me.queryMode=='remote'){
+			me.editable=true;
+			me.typeAhead= true;
+			me.queryDelay=1000;
+			me.minChars=2;
+		}
 		
 		me.store=Ext.create('Ext.data.Store',{
 			fields: ['itno', 'itnm'],
 			autoLoad:me.autoLoad,
 			proxy: {
-			    
+			    actionMethods :{read: 'POST'},
 			    type: 'ajax',
 			    extraParams:{
 			    	tyno:me.tyno,

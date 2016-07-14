@@ -546,8 +546,8 @@ $(function(){
 			}
 			//console.log(suitVOs[i].ormtqt+"===="+orszqt_sum);
 			if(suitVOs[i].ormtqt!=orszqt_sum){
-				alert("<"+suitVOs[i].suitno_name+">的数据不一致!");
-				//$.toast("<"+suitVOs[i].suitno_name+">的数据不一致!", 2345, 'success top');
+				//alert("<"+suitVOs[i].suitno_name+">的数据不一致!");
+				$.alert("<"+suitVOs[i].suitno_name+">的数据不一致!");
 				$.hidePreloader();
 				return;
 			}

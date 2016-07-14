@@ -82,8 +82,8 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 	  me.dockedItems=[];
       
 	   this.cellEditing = new Ext.grid.plugin.CellEditing({  
-            clicksToEdit : 1 
-//            listeners:{
+            clicksToEdit : 1 ,
+            listeners:{
 //            	beforeedit:function( editor, context, eOpts ) {
 //            		var record=context.record;
 //            		//标准套件不准修改
@@ -93,8 +93,19 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 //            			return true;
 //            		}
 //            		
-//            	}          		
-//            }       
+//            	}   
+            	edit:function(editor , context ){
+            		var value=context.value;
+            		var grid=context.grid;
+            		var store=grid.getStore();
+            		var records=store.getRange ();
+            		for(var i=0;i<records.length;i++){
+            			if(records[i].get("suitno_name")=="上衣"){
+            				records[i].set("sizegp",value);
+            			}
+            		}
+            	}
+            }       
       });  
 	  this.plugins = [this.cellEditing];
 	  

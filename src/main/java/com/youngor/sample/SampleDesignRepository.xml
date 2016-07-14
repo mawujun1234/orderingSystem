@@ -30,6 +30,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="spbseno!=null and spbseno!=''">
     		and a.spbseno=#{spbseno}
     	</if>
+    	<if test="stseno!=null and stseno!=''">
+    		and a.stseno=#{stseno}
+    	</if>
     	<if test="spmtno!=null and spmtno!=''">
     		and b.spmtno=#{spmtno}
     	</if>

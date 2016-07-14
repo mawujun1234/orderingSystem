@@ -33,7 +33,7 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 		return pubCodeRepository;
 	}
 
-	public List<PubCode> query(String tyno,String fitno,String bradno,String stat_stat) {
+	public List<PubCode> query(String tyno,String fitno,String bradno,String stat_stat,String query) {
 		//表示取当季的数据
 		if("1".equals(tyno)){
 			return pubCodeRepository.query1(tyno, fitno, bradno, stat_stat);
@@ -43,7 +43,7 @@ public class PubCodeService extends AbstractService<PubCode, String>{
 		}
 		//表示取所有的数据
 		//stat_stat=0取所有当季和非当季的数据，stat_stat=1取当季的数据
-		return pubCodeRepository.query(tyno,fitno, bradno,stat_stat);
+		return pubCodeRepository.query(tyno,fitno, bradno,stat_stat,query);
 	}
 	
 	public List<PubCode> queryList(String tyno,String fitno,String bradno) {
