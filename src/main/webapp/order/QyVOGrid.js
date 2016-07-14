@@ -35,7 +35,7 @@ Ext.define('y.order.QyVOGrid',{
         },
 		{dataIndex:'plspnm',header:'企划样衣编号',hidden:true
         },
-		{dataIndex:'sampnm',header:'设计样衣编号'
+		{dataIndex:'sampnm',header:'订货样衣编号'
         },
         {dataIndex:'spftpr',header:'出厂价'
         },

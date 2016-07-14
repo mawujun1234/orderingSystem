@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -6,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.util.HSSFColor;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
@@ -89,9 +92,10 @@ public class SampleDesignController {
 	
 	@RequestMapping("/sampleDesign/deleteById.do")
 	@ResponseBody
-	public String deleteById(String ormtno,String[] sampnos) {
-		sampleDesignService.deleteById(ormtno,sampnos);
-		return "{success:ture}";
+	public String deleteById(HttpServletRequest request,String ormtno,String[] sampnos) throws FileNotFoundException {
+		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
+		sampleDesignService.deleteById(ormtno,sampnos,contextPath);
+		return "{success:true}";
 	}
 	
 	/**

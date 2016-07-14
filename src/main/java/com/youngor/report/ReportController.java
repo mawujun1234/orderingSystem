@@ -98,7 +98,7 @@ public class ReportController {
 				.getSession()
 				.getServletContext()
 				.getRealPath(
-						"/report/ireport/Dinghhz_YXGS_Daxl.jasper");
+						File.separator+"report"+File.separator+"ireport"+File.separator+"Dinghhz_YXGS_Daxl.jasper");
 
 		Map<String, Object> rpt_params = new HashMap<String, Object>();
 		rpt_params.put("p_shul_title", "订货数量");
@@ -133,7 +133,7 @@ public class ReportController {
 				.getSession()
 				.getServletContext()
 				.getRealPath(
-						"/report/ireport/Dinghhz_YXGS_Daxl _gongys.jasper");
+						File.separator+"report"+File.separator+"ireport"+File.separator+"Dinghhz_YXGS_Daxl _gongys.jasper");
 
 		Map<String, Object> rpt_params = new HashMap<String, Object>();
 		rpt_params.put("p_shul_title", "订货数量");

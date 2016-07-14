@@ -130,6 +130,12 @@ Ext.define('y.sample.SamplePlanGridQuery',{
 		        xtype:'pubcodecombo',
 		        tyno:'5'
 		    },{
+		    	emptyText:'请输入企划样衣编号',
+		    	itemId: 'plspnm',
+		    	width:90,
+		    	xtype:'textfield'
+		    	
+		    },{
 				text: '查询',
 				itemId:'reload',
 				disabled:me.disabledAction,
@@ -143,8 +149,8 @@ Ext.define('y.sample.SamplePlanGridQuery',{
     					"params['bradno']":toolbars[0].down("#bradno").getValue(),
     					"params['spclno']":toolbars[0].down("#spclno").getValue(),
     					"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
-    					"params['spseno']":toolbars[0].down("#spseno").getValue()
-    					//"params['spbseno']":toolbars[1].down("#spbseno").getValue()
+    					"params['spseno']":toolbars[0].down("#spseno").getValue(),
+    					"params['plspnm']":toolbars[0].down("#plspnm").getValue()
     				};
     	
 					grid.getStore().reload();

@@ -1,5 +1,6 @@
 package com.youngor.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,8 +22,6 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,7 @@ import com.mawujun.repository.DialectEnum;
 import com.mawujun.repository.MySqlSessionFactoryBean;
 import com.mawujun.repository.mybatis.DatabaseIdProviderCustom;
 import com.mawujun.repository.mybatis.PageInterceptor;
+import com.youngor.utils.ContextUtils;
 
 //http://10176523.cn/archives/36/ 改成整合成使用hibernate5 试试，看看有没有问题
 @Configuration
@@ -63,6 +63,8 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 	private Integer jdbc_maxIdle = 20;
 	@Value("${hibernate.hbm2ddl.auto}")
 	private String hibernate_hbm2ddl_auto = "update";
+	@Value("${photoBakDir}")
+	private String photoBakDir = "";
 
 	// To resolve ${} in @Value
 	@Bean
@@ -97,6 +99,13 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 
 	@Bean
 	public DataSource dataSource() throws SQLException {
+		//建立样衣图片上传的备份目录
+		ContextUtils.setPhotoBakDir(photoBakDir);
+//		File dir=new File(photoBakDir);
+//		if(!dir.exists()){
+//			dir.mkdirs();
+//		}
+		
 		// https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE
 		DruidDataSource datasource = new DruidDataSource();
 		// BasicDataSource datasource=new BasicDataSource();

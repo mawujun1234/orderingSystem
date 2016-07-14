@@ -18,6 +18,14 @@ import com.youngor.suno.PubSuno;
 import com.youngor.suno.PubSunoService;
 
 public class ContextUtils {
+	
+	private static String photoBakDir="";
+	public static String getPhotoBakDir(){
+		return photoBakDir;//"";
+	}
+	public static void setPhotoBakDir(String photoBakDir){
+		ContextUtils.photoBakDir=photoBakDir;//"";
+	}
 	/**
 	 * 获取可访问品牌中的第一个品牌
 	 * @author mawujun qq:16064988 mawujun1234@163.com

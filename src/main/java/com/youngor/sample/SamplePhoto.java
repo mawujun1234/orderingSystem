@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,6 +33,10 @@ public class SamplePhoto extends BaseObject {
 	private String imgnm;
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer photst=0;//：1：锁定；0：未锁定
+	
+	@Transient
+	private String ormtno;
+	
 	public String getId() {
 		return id;
 	}
@@ -67,6 +72,12 @@ public class SamplePhoto extends BaseObject {
 	}
 	public void setPhotst(Integer photst) {
 		this.photst = photst;
+	}
+	public String getOrmtno() {
+		return ormtno;
+	}
+	public void setOrmtno(String ormtno) {
+		this.ormtno = ormtno;
 	}
 
 

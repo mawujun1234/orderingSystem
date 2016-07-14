@@ -127,7 +127,7 @@ Ext.onReady(function(){
 		        xtype:'pubcodecombo',
 		        tyno:'5'
 		    },{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
 		        width:185,
 		        itemId: 'sampnm',
@@ -250,7 +250,7 @@ Ext.onReady(function(){
 		//plugins : [cellEditing],
 		columns:[
 			{xtype: 'rownumberer'},
-			{dataIndex:'SAMPNM',header:'设计样衣编号'},
+			{dataIndex:'SAMPNM',header:'订货样衣编号'},
 			{dataIndex:'BRADNM',header:'品牌'},
 			{dataIndex:'SPCLNM',header:'大类'},
 			{dataIndex:'SPTYNM',header:'小类'},

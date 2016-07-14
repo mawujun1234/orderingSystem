@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.ordmt.OrdmtRepository;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 import com.youngor.utils.MapParams;
 
@@ -51,7 +53,7 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 	
 	//@Override
-	public void deleteById(String ormtno,String[] sampnos) {
+	public void deleteById(String ormtno,String[] sampnos,String contextPath) {
 		if(sampnos==null){
 			return;
 		}
@@ -68,6 +70,8 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			if(sampleDesign.getSpstat() !=null && sampleDesign.getSpstat()!=0){
 				throw new BusinessException("已经锁定,不能删除!");
 			}
+			
+			List<SamplePhoto> photoes=samplePhotoRepository.query(Cnd.select().andEquals(M.SamplePhoto.sampno, sampno));
 
 			sampleDesignRepository.delete(sampleDesign);
 			
@@ -80,8 +84,18 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			//删除面料信息
 			sampleMateRepository.deleteBySampno(sampno);
 			//删除成衣信息
-			sampleColthRepository.deleteById(sampno);
-		
+			sampleColthRepository.deleteBySampno(sampno);
+			
+			//删除照片的时候，同时删除目录中的照片
+			contextPath=ContextUtils.getPhotoBakDir();
+			for(SamplePhoto samplePhoto:photoes){
+				String filepath=contextPath+samplePhoto.getImgnm();
+				File file=new File(filepath);
+				if(file.exists()){
+					file.delete();
+				}
+			}
+			
 		}
 		
 //		sampleDesign.setSampst(0);

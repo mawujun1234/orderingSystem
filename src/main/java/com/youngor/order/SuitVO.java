@@ -21,6 +21,28 @@ public class SuitVO {
 
 	//private String suitno_name;
 	private List<SizeVO> sizeVOs;//=new ArrayList<SizeVO>();
+	/**
+	 * 检查这个套件下面的所有规格的比例是否设置过，如果这个比例都没有设置过，那就默认比例为1
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void checkSzrateZero(){
+		if(sizeVOs==null){
+			return;
+		}
+		Double temp=0d;
+		for(SizeVO sizevo:sizeVOs){
+			if(sizevo.getSzrate()!=null){
+				temp+=sizevo.getSzrate();
+			}
+		}
+		if(temp>0d){
+			
+		} else {
+			for(SizeVO sizevo:sizeVOs){
+				sizevo.setSzrate(1d);
+			}
+		}
+	}
 	
 	public SuitVO(){
 		super();

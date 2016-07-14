@@ -64,7 +64,7 @@ Ext.define('y.sample.SampleMateForm',{
 //            
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"供应商面料货号不允许为空",
-	        maxLength:20,
+	        maxLength:30,
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },

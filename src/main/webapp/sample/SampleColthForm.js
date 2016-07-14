@@ -169,7 +169,7 @@ Ext.define('y.sample.SampleColthForm',{
             //afterLabelTextTpl: Ext.required,
             //blankText:"预计成本价不允许为空",
             //selectOnFocus:true,
-            editable:false,
+            //editable:false,
 	        xtype:'numberfield'   
 	    },
 	    {

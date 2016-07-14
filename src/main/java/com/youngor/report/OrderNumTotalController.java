@@ -171,8 +171,7 @@ public class OrderNumTotalController {
 		reportFilePath = request
 				.getSession()
 				.getServletContext()
-				.getRealPath(
-						"/report/ireport/OrderNumTotal.jasper");
+				.getRealPath(File.separator+"report"+File.separator+"ireport"+File.separator+"OrderNumTotal.jasper");
 
 		Map<String, Object> rpt_params = new HashMap<String, Object>();
 		

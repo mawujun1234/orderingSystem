@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.naming.Context;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.repository.idEntity.UUIDGenerator;
 import com.mawujun.service.AbstractService;
@@ -45,8 +47,9 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 	
 	public String create(SamplePhoto samplePhoto,MultipartFile imageFile,String contextPath) throws IOException {
 		//获取订货会编号
-		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();// samplePlanRepository.queryOrmtno(samplePhoto.getSampno());
-		String id=ormtno+"_"+samplePhoto.getSampno();//UUIDGenerator.generate();
+		String ormtno=samplePhoto.getOrmtno();
+		//String id=ormtno+"_"+samplePhoto.getSampno();//UUIDGenerator.generate();
+		String id=samplePhoto.getSampno();
 		SampleDesign sampleDesign=sampleDesignRepository.get(samplePhoto.getSampno());//.getSampleDesignBySampno(ormtno, samplePhoto.getSampno());
 		if(sampleDesign.getPhotno() ==null || "".equals(sampleDesign.getPhotno())){
 			sampleDesign.setPhotno("1");
@@ -70,13 +73,23 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		String imgnm=id+"."+aa[aa.length-1];
 		
 		
-		samplePhoto.setImgnm("/" +ormtno+"/"+imgnm);
-		File dir=new File(contextPath + File.separator +ormtno);
+		//samplePhoto.setImgnm("/" +ormtno+"/"+imgnm);
+		//这个是网页访问的地址
+		samplePhoto.setImgnm("/photoes/"+ormtno+"/"+imgnm);
+		
+		//直接保存在另一个项目中，项目名称是photoes
+		contextPath=ContextUtils.getPhotoBakDir();
+		File dir=new File(contextPath + File.separator+"photoes"+File.separator+ormtno);
+		//直接保存在另一个项目中，项目名称是photoes
+		//File dir=new File(ContextUtils.getPhotoBakDir() + File.separator+"photoes");
 		if(!dir.exists()){
 			dir.mkdirs();
 		}
-		
-		FileOutputStream outputStream = new FileOutputStream(dir.getAbsolutePath() + File.separator + imgnm);
+		File file=new File(dir.getAbsolutePath() + File.separator + imgnm);
+		if(file.exists()){
+			file.delete();
+		}
+		FileOutputStream outputStream = new FileOutputStream(file);
 		int byteCount = 0;
 		byte[] bytes = new byte[1024];
 		while ((byteCount = stream.read(bytes)) != -1) {
@@ -85,17 +98,42 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		outputStream.close();
 		stream.close();
 		
+		//对上传文件进行备份
+		File photo_bak=new File(contextPath+ File.separator+"photoes_bak"+File.separator+ormtno);
+		if(!photo_bak.exists()){
+			photo_bak.mkdirs();
+		}
+		if(!photo_bak.exists()){
+			throw new BusinessException("上传备份目录不存在，上传失败!");
+		}
+		try {
+			FileUtils.copyFile(file, new File(contextPath+ File.separator+"photoes_bak"+File.separator+ormtno+File.separator+imgnm));
+			//FileUtils.copyf
+		} catch(Exception e) {
+			throw new BusinessException("上传到备份目录失败!");
+		}
 		super.create(samplePhoto);
 		return id;
 		
 	}
-	
+	/**
+	 * SampleDesignService中也有相应的文件删除
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param samplePhoto
+	 * @param contextPath
+	 */
 	public void delete(SamplePhoto samplePhoto,String contextPath) {
+		
+		contextPath=ContextUtils.getPhotoBakDir();
+		
+		
 		super.delete(samplePhoto);
 		//如果全部删除了，修改样衣的照片上传状态为不可以上传
 		Integer count=sampleDesignRepository.count_sampleDesign_photo_num(samplePhoto.getSampno());
 		if(count==null || count==0){
 			sampleDesignRepository.update(Cnd.update().set(M.SampleDesign.photno, null).andEquals(M.SampleDesign.sampno, samplePhoto.getSampno()));
+		} else {
+			sampleDesignRepository.update(Cnd.update().set(M.SampleDesign.photno, count).andEquals(M.SampleDesign.sampno, samplePhoto.getSampno()));
 		}
 		String filepath=contextPath+samplePhoto.getImgnm();
 		File file=new File(filepath);

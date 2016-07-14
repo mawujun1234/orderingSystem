@@ -46,9 +46,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPlanDesign" resultType="com.youngor.sample.SamplePlanDesignVO" parameterType="map">
     	select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst 
     	from (
-    	select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,a.* 
-    	from ord_sample_plan a,ord_sample_design b 
-    	where a.plspno=b.plspno	
+    	select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,c.name as rgsp,b.rgdt,d.name as lmsp,b.lmdt,
+    		a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno
+			,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst
+    	from ord_sample_plan a,ord_sample_design b ,t_user c,t_user d
+    	where a.plspno=b.plspno	and b.rgsp=c.loginname and b.lmsp=d.loginname
     	<include refid="queryPlanDesign_where"></include> 
     	) x 
     	left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno

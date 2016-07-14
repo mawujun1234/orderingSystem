@@ -155,11 +155,14 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				form.remove(gustnoField,true);
 	       				//form.add(aa);
 	       				form.moveAfter( aa, field );
-	       				
-	       				//var tabpanel=field.up("tabpanel");
-	       				//tabpanel.items.getAt(2).disable();//面料信息
+	       				//外购的时候，预计成本价是自己填写，而不是计算出来的
+	       				var tabpanel=field.up("tabpanel");
+	       				tabpanel.down("form#sampleColthForm").getForm().findField("spctpr").setReadOnly(false);
 	       			} else if(newValue=='ZC') {
 	       				form.remove(gustnoField,true);
+	       				
+	       				var tabpanel=field.up("tabpanel");
+	       				tabpanel.down("form#sampleColthForm").getForm().findField("spctpr").setReadOnly(true);
 	       			}
 	       		}
 	        
@@ -351,7 +354,8 @@ Ext.define('y.sample.SampleDesignForm',{
             hidden:true,
             allowDecimals:false,
             selectOnFocus:true,
-	        xtype:'numberfield'   
+	        xtype:'numberfield'  ,
+	        value:1
 	    },
 		{
 	        fieldLabel: '锁定状态',
@@ -445,6 +449,7 @@ Ext.define('y.sample.SampleDesignForm',{
 				var jsonData=formpanel.getForm().getFieldValues();
 				jsonData.ormtno=window.ormtno;
 				jsonData.sampleDesignSizegpes=aa;
+				var plspnm=jsonData.plspnm;
 				
 				var url="/sampleDesign/create.do";
 		       //var sampnm_readOnly=false;
@@ -513,10 +518,16 @@ Ext.define('y.sample.SampleDesignForm',{
 				       	
 				       	//这里需要测试，当新建成功后，成衣里面能不能出现标准的套件
 				       	//formpanel.getForm().updateRecord();
+				       	obj.sampleDesign.plspnm=plspnm;
 				       	var user = Ext.create('y.sample.SampleDesign', obj.sampleDesign);
+				       	user.set("sampst",1);
 				       	tabpanel.down("#sampleColthForm").loadGrid(user);
 				       	window.sampleDesign=user;
 				       	
+				       	//formpanel.getForm().findField("sampno").setValue(obj.sampleDesign.sampno);
+				       	formpanel.getForm().findField("sampnm").setReadOnly(true);
+				       	
+				       	me.loadRecord(user);
 				       	me.fireEvent("create",user);
 					}
 					

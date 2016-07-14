@@ -102,7 +102,7 @@ Ext.onReady(function(){
 		window.sampno={
 			sampno:record.get("sampno"),
 			sampnm:record.get("sampnm")
-		};//当前选中的设计样衣编号
+		};//当前选中的订货样衣编号
 		window.sampleDesign=record;
 		
 		if(record.get("spstat")==1){

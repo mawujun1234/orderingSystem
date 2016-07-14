@@ -52,24 +52,29 @@
 				<jdbc.username>OD</jdbc.username>
 				<jdbc.password>OrD007YK</jdbc.password>
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<photoBakDir>/opt/apache-tomcat-8.0.33/webapps</photoBakDir>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
 		<profile>
-			<id>dev_home</id>
+			<id>dev_window</id>
 			<properties>
-				<profiles.active>dev_host</profiles.active>
+				<profiles.active>dev</profiles.active>
 				<log4j2.level>debug</log4j2.level>
 				<finalName>ROOT</finalName>
 				<jdbc.dbType>oracle</jdbc.dbType>
 				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
-				<jdbc.url>jdbc:oracle:thin:@10.211.55.6:1521:knpcrm</jdbc.url>
+				<jdbc.url>jdbc:oracle:thin:@192.168.188.129:1521:xxb</jdbc.url>
 				<jdbc.username>OD</jdbc.username>
 				<jdbc.password>OrD007YK</jdbc.password>
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<photoBakDir>E:\eclipse\aaa\orderingSystem\src\main\webapp</photoBakDir>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 		
 
@@ -85,6 +90,7 @@
 				<jdbc.username>OD</jdbc.username>
 				<jdbc.password>OrD007YK</jdbc.password>
 				<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
+				<photoBakDir>/usr/local/tomcat/webapps</photoBakDir>
 			</properties>
 		</profile>
 
@@ -189,6 +195,11 @@
 		    <groupId>org.codehaus.groovy</groupId>
 		    <artifactId>groovy-all</artifactId>
 		    <version>2.4.7</version>
+		</dependency>
+		<dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>1.4.01</version>
 		</dependency>
 		
 		

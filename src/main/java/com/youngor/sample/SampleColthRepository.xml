@@ -5,6 +5,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SampleColthRepository">
+	<delete id="deleteBySampno">
+    	delete ord_sample_colth where sampno=#{sampno}
+    </delete>
+    
 	<!-- 更新预计成本价,是在面料信息中点击保存后，更新成衣信息中的预计成本价-->
 	<update id="updateSpctpr" parameterType="map">
     	update ord_sample_colth d set d.spctpr=#{spctpr}  where sampno=#{sampno}

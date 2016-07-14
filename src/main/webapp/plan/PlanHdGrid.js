@@ -34,7 +34,7 @@ Ext.define('y.plan.PlanHdGrid',{
 		                selectOnFocus:true 
 		            }
 		},
-		{dataIndex:'plmtam',header:'指标金额',xtype: 'numbercolumn', format:'0.00',align : 'right',
+		{dataIndex:'plmtam',header:'指标金额(万元)',xtype: 'numbercolumn', format:'0.00',align : 'right',width:150,
 					renderer:function(value, metaData, record, rowIndex, colIndex, store){
 						if(record.get("plstat")==0 && record.get("isTotal")==false){
 							metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
@@ -44,7 +44,7 @@ Ext.define('y.plan.PlanHdGrid',{
 		            	return value;
 		            },editor: {
 		                xtype: 'numberfield',
-		                allowDecimals:false,
+		                allowDecimals:true,
 		                selectOnFocus:true 
 		            }
 		}
@@ -150,6 +150,7 @@ Ext.define('y.plan.PlanHdGrid',{
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            //value:'Y',
+	            showBlank:false,
 	            selFirst:true,
 	            blankText:"品牌不允许为空",
 		        xtype:'pubcodecombo',

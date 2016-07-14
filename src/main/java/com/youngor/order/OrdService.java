@@ -170,6 +170,7 @@ public class OrdService extends AbstractService<Ord, String>{
 				List<SuitVO> suitVOs_PRDPK=ordRepository.querySuitVO_PRDPK(sampleVO);
 				
 				List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
+				checkSzrateZero(suitVOs);
 				
 				//把规格数量进行合并，合并
 				for(SuitVO suitVO:suitVOs){
@@ -190,6 +191,7 @@ public class OrdService extends AbstractService<Ord, String>{
 				
 				//获取单规的数据
 				List<SuitVO> suitVOs_T00=ordRepository.querySuitVO_T00(sampleVO);
+				checkSzrateZero(suitVOs_T00);
 				//把规格数量进行合并，合并
 				for(SuitVO suitVO:suitVOs_T00){
 					for(SuitVO suitVO_prdpk:suitVOs_T00_PRDPK){
@@ -211,15 +213,30 @@ public class OrdService extends AbstractService<Ord, String>{
 				
 				List<SuitVO> suitVOs=ordRepository.querySuitVO(sampleVO);
 				result.put("suitVOs", suitVOs);
+				checkSzrateZero(suitVOs);
 				//sampleVO.setSuitVOs(suitVOs);
 			} else {
 				//获取标准条件中的规格范围，价格，具有的规格
 				List<SuitVO> suitVOs=ordRepository.querySuitVO_T00(sampleVO);
 				result.put("suitVOs", suitVOs);
+				checkSzrateZero(suitVOs);
 				//sampleVO.setSuitVOs(suitVOs);
 			}
 		}
 		return result;
+	}
+	/**
+	 * 检查单规的规格比例，如果没有设置过，就全部设置为1，也就是说是平分
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param suitVOs
+	 */
+	public void checkSzrateZero(List<SuitVO> suitVOs){
+		if(suitVOs==null){
+			return;
+		}
+		for(SuitVO suitVO:suitVOs){
+			suitVO.checkSzrateZero();
+		}
 	}
 	/**
 	 * 获取各个套件的价格
@@ -1331,20 +1348,21 @@ public class OrdService extends AbstractService<Ord, String>{
 		Map<String,Object> params=(Map<String,Object>)pager.getParams();
 		//
 		params.put("user_id", ShiroUtils.getUserId());
-		//如果条件是待审
-		if("ready".equals(params.get("readyHandling"))){
-			//如果是大区，就取总量状态或规格状态为1的订单
-			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)){
-				params.put("stat", "1");
-			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB)){
-				params.put("stat", "2");
-			}
-			
-		}
+//		//如果条件是待审
+//		if("ready".equals(params.get("readyHandling"))){
+//			//如果是大区，就取总量状态或规格状态为1的订单
+//			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)){
+//				params.put("stat", "1");
+//			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB)){
+//				params.put("stat", "2");
+//			}
+//			
+//		}
 		
 		pager= ordRepository.ordMgr_queryOrdMgr(pager);
 		List<Map<String,Object>> list=pager.getRoot();//new ArrayList<Map<String,Object>>();
 		for(Map<String,Object> map:list){
+			map.put("ORTYNM", ContextUtils.getOrdty(map.get("ORTYNO").toString()).getOrtynm());
 			map.put("CHANNO_NAME", ContextUtils.getChanno(map.get("CHANNO").toString()).getChannm());
 			map.put("BRADNO_NAME", PubCodeCache.getBradno_name(map.get("BRADNO").toString()));
 			map.put("SPCLNO_NAME", PubCodeCache.getSpclno_name(map.get("SPCLNO").toString()));

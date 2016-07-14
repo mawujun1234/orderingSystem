@@ -35,7 +35,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
         },
         {dataIndex:'prodnm',header:'产品货号'
         },
-		{dataIndex:'sampnm',header:'设计样衣编号'
+		{dataIndex:'sampnm',header:'订货样衣编号'
         },
         {dataIndex:'suitno_name',header:'套件'
         },
@@ -100,6 +100,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			ormtno:record.get("ormtno")
 		        		});
+		        		ordorg.reload();
 		        		//ordorg.getStore().reload();
 		        		
 		        		var channo=combo.nextSibling("#channo");
@@ -141,7 +142,8 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			qyno:record.get("orgno")
 		        		});
-		        		ordorg.getStore().reload();
+		        		ordorg.reload();
+		        		//ordorg.getStore().reload();
 					}
 				}
 			},{
@@ -160,7 +162,8 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			channo:record.get("channo")
 		        		});
-		        		ordorg.getStore().reload();
+		        		ordorg.reload();
+		        		//ordorg.getStore().reload();
 					}
 				}
 			 },{
@@ -200,7 +203,15 @@ Ext.define('y.report.OrderNumTotalGrid',{
 //				    }
 				},
 	            hidden:false,
-				xtype:'combobox'
+				xtype:'combobox',
+				reload_flag:0,
+				reload:function(){
+					var me=this;
+					me.reload_flag++;
+					if(me.reload_flag>=3){
+						me.getStore().reload();
+					}
+				}
 			 }]
 	  });
 	  

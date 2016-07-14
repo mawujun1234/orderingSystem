@@ -188,7 +188,7 @@ Ext.define('y.order.WxtzGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
 		        itemId: 'sampno',
 	            xtype:'textfield'

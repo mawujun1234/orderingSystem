@@ -651,7 +651,7 @@ public class OrdController {
 	//=====================================================================
 	@RequestMapping("/ord/ordMgr/queryOrdMgr.do")
 	@ResponseBody
-	public Pager<Map<String,Object>> queryOrdMgr(Pager<Map<String,Object>> pager){
+	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager){
 		return ordService.ordMgr_queryOrdMgr(pager);
 	}
 	

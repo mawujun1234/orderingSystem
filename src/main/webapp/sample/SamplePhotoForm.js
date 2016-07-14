@@ -122,11 +122,18 @@ Ext.define('y.sample.SamplePhotoForm',{
 	        xtype:'textfield'
 	    },
 		{
-	        fieldLabel: '设计样衣编号',
+	        fieldLabel: '订货样衣编号',
 	        name: 'sampno',
             hidden:true,
             selectOnFocus:true,
 	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '订货会批号',
+	        name: 'ormtno',
+            hidden:true,
+            selectOnFocus:true,
+	        xtype:'hiddenfield'
 	    }
 	  ];   
 	  
@@ -150,6 +157,9 @@ Ext.define('y.sample.SamplePhotoForm',{
                      	
                      	button.up('window').close();
                      	button.up("form").nextSibling("image#prevImage").setSrc("");
+                     },
+                     failure:function(form,action){
+                     	Ext.Msg.alert("消息",action.result.msg);
                      }
 				});
 				

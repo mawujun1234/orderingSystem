@@ -14,7 +14,7 @@ Ext.define('y.order.TpYxgsGrid',{
 	        },
 	        {dataIndex:'SPSENO_NAME',header:'系列'
 	        },
-	        {dataIndex:'SAMPNM',header:'设计样衣编号'
+	        {dataIndex:'SAMPNM',header:'订货样衣编号'
 	        },
 	        {dataIndex:'SUITNO_NAME',header:'套件'
 	        },

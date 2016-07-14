@@ -7,11 +7,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.plan.PlanHdRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryHdGrid" resultType="com.youngor.plan.PlanHdVO" parameterType="map">
-    	select '${ormtno}' as ormtno,'${bradno}' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (  
-		      select b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b 
+    	select  '${ormtno}' as ormtno,'${bradno}' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (  
+		      select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b 
 		              cross join ORD_PUB_CODE P0 
 		             where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'
-		) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  
+		             and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=#{ormtno}
+		             	and x.bradno=#{bradno}
+		             )
+		             <if test="spclno!=null and spclno!=''">
+			    		and b.spclno=#{spclno}
+			    	</if>
+		) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=#{ormtno} and y.bradno=#{bradno} and y.channo='YXGS'
 		<where>
     	<if test="spclno!=null and spclno!=''">
     		and x.spclno=#{spclno}

@@ -13,14 +13,7 @@ Ext.define('y.order.OrdMgrGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-      	{dataIndex:'ORTYNO',header:'订单类型'
-      		,renderer:function(value){
-      			if(value=='DZ'){
-      				return "定制";
-      			} else if(value=='TP'){
-      				return "统配";
-      			}
-      		}
+      	{dataIndex:'ORTYNM',header:'订单类型'
         },
         {dataIndex:'YXGSNM',header:'营销公司'
         },
@@ -30,20 +23,9 @@ Ext.define('y.order.OrdMgrGrid',{
         },
         {dataIndex:'CHANNO_NAME',header:'订货单位类型'
         },
-        {dataIndex:'MLORNO',header:'审批订单号'
+        {dataIndex:'BRADNO_NAME',header:'品牌'
         },
-        {dataIndex:'MLORVN',header:'版本号'
-        },
-        {dataIndex:'ISFECT',header:'有效'
-        	,renderer:function(value){
-      			if(value=='0'){
-      				return "无效";
-      			} else if(value=='1'){
-      				return "有效";
-      			}  else {
-      				return "";
-      			}
-      		}
+        {dataIndex:'SPCLNO_NAME',header:'大类'
         },
         {dataIndex:'SDTYNO',header:'订单节点'
         	,renderer:function(value){
@@ -60,9 +42,20 @@ Ext.define('y.order.OrdMgrGrid',{
       			}
       		}
         },
-        {dataIndex:'BRADNO_NAME',header:'品牌'
+        {dataIndex:'MLORNO',header:'审批订单号'
         },
-        {dataIndex:'SPCLNO_NAME',header:'大类'
+        {dataIndex:'MLORVN',header:'版本号'
+        },
+        {dataIndex:'ISFECT',header:'有效'
+        	,renderer:function(value){
+      			if(value=='0'){
+      				return "无效";
+      			} else if(value=='1'){
+      				return "有效";
+      			}  else {
+      				return "";
+      			}
+      		}
         },
         {dataIndex:'ORAPDP',header:'审批部门'
         },
@@ -169,6 +162,7 @@ Ext.define('y.order.OrdMgrGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			ormtno:record.get("ormtno")
 		        		});
+		        		ordorg.reload();
 		        		//ordorg.getStore().reload();
 					}
 				}
@@ -204,7 +198,8 @@ Ext.define('y.order.OrdMgrGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			qyno:record.get("orgno")
 		        		});
-		        		ordorg.getStore().reload();
+		        		ordorg.reload();
+		        		//ordorg.getStore().reload();
 					}
 				}
 			},{
@@ -223,7 +218,8 @@ Ext.define('y.order.OrdMgrGrid',{
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			channo:record.get("channo")
 		        		});
-		        		ordorg.getStore().reload();
+		        		ordorg.reload();
+		        		//ordorg.getStore().reload();
 					}
 				}
 			 },{
@@ -258,7 +254,15 @@ Ext.define('y.order.OrdMgrGrid',{
 				    }
 				},
 	            hidden:false,
-				xtype:'combobox'
+				xtype:'combobox',
+				reload_flag:0,
+				reload:function(){
+					var me=this;
+					me.reload_flag++;
+					if(me.reload_flag>=3){
+						me.getStore().reload();
+					}
+				}
 			 }
 			 ,{
 				fieldLabel: '代办',

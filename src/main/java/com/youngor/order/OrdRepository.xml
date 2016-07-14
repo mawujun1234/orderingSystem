@@ -195,12 +195,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          and a.mtorno=#{mtorno}  
      </select>-->
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
-     	select sum(a.ormtqt)ormtqt
+     	select sum(a.ormtqt) ormtqt
      	<if test="channo=='TX'">
-     		,sum(a.ormtqt*c.spftpr) ormtam
+     		,sum(a.ormtqt*c.spftpr)/10000 ormtam
      	</if>
      	<if test="channo!='TX'">
-     		,sum(a.ormtqt*c.sprtpr) ormtam
+     		,sum(a.ormtqt*c.sprtpr)/10000 ormtam
      	</if>
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno
@@ -849,8 +849,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=#{user_id})
        	 and a.ormtno=#{ormtno}          
        	 and b.bradno=#{bradno} and b.spclno=#{spclno} 
-       	 <if test="stat!=null and stat!=''">
-       	 	and (b.orstat=#{stat} or b.szstat=#{stat})
+       	 <if test="readyHandling=='ready'">
+       	 	and (b.orstat in ('1','2') or b.szstat in ('1','2'))
        	 </if>
        	 <if test="yxgsno!=null and yxgsno!=''">
        	 	 and c.yxgsno=#{yxgsno} 

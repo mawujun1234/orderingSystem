@@ -13,6 +13,7 @@ import com.mawujun.repository.IRepository;
  */
 @Repository
 public interface SampleColthRepository extends IRepository<SampleColth, String>{
+	public void deleteBySampno(@Param("sampno")String sampno);
 	public  void updateSpctpr(@Param("sampno")String sampno,@Param("spctpr")Double spctpr);
 	
 	public void lock(Map<String,Object> params);

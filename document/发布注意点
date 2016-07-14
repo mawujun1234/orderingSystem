@@ -1,0 +1,13 @@
+1:要在tomcat的webapps目录下面建立photoes，photoes_bak目录，并且设置权限为777
+2：如果订货数量报表打印如果不能正确的打开，请修改：
+ tomcat的/usr/local/tomcat/bin/catalina.sh
+   加上：JAVA_OPTS=-Djava.awt.headless=true 
+   在这个位置：
+    # Uncomment the following line to make the umask available when using the
+	# org.apache.catalina.security.SecurityListener
+	#JAVA_OPTS="$JAVA_OPTS -Dorg.apache.catalina.security.SecurityListener.UMASK=`umask`"
+	JAVA_OPTS=-Djava.awt.headless=true 
+	# ----- Execute The Requested Command -----------------------------------------
+	
+	# Bugzilla 37848: only output this if we have a TTY
+	if [ $have_tty -eq 1 ]; then

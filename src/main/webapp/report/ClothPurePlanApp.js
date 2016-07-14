@@ -85,7 +85,7 @@ Ext.onReady(function(){
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
 		        width:185,
 		        itemId: 'sampnm',
@@ -201,7 +201,7 @@ Ext.onReady(function(){
 			{dataIndex:'SPRSENM',header:'风格'},
 			{dataIndex:'SPSEANM',header:'季节'},
 			{dataIndex:'SPBANM',header:'上市批次'},
-			{dataIndex:'SAMPNM',header:'设计样衣编号'},
+			{dataIndex:'SAMPNM',header:'订货样衣编号'},
 			{dataIndex:'PRODNM',header:'成品货号'},
 			{dataIndex:'GUSTNO',header:'客供编号'},
 			{dataIndex:'COLRNM',header:'颜色'},

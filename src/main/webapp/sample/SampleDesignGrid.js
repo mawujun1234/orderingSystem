@@ -296,7 +296,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 //	            blankText:"供应商不允许为空",
 	            xtype:'pubsunocombo'
 		    },{
-		    	emptyText:'请输入样衣编号',
+		    	emptyText:'请输入订货样衣编号',
 		    	itemId: 'sampnm',
 		    	width:90,
 		    	xtype:'textfield'
@@ -592,6 +592,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 					plspno:record.get("plspno"),
 					plspnm:record.get("plspnm"),
 					sampnm1:record.get("plspnm"),
+					sampst:1,
 					versno:"none",
 					stseno:"none",
 					spmtno:"none",
@@ -606,7 +607,12 @@ Ext.define('y.sample.SampleDesignGrid',{
 					sexno:'Z0',
 					plspno:record.get("plspno"),
 					plspnm:record.get("plspnm"),
-					sampnm1:record.get("plspnm")
+					sampnm1:record.get("plspnm"),
+					sampst:1,
+					//desgno:"",
+					buspno:"无",
+					stylgp:"无",
+					desp:"无"
 				});
 			}
 			
@@ -693,6 +699,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 							return;
 						}
 						me.getStore().reload();
+						me.nextSibling("tabpanel").mask();
 					}
 					
 				})
@@ -717,8 +724,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 //		formpanel.reset();
 //		formpanel.loadRecord(rec);
 		
-		//跳转到设计样衣 把设计样衣编号名称和设计样衣编号设置为null
-		//当点保存后，就把所有form中的设计样衣编号改成新的
+		//跳转到设计样衣 把订货样衣编号名称和订货样衣编号设置为null
+		//当点保存后，就把所有form中的订货样衣编号改成新的
 		var tabpanel=me.nextSibling("tabpanel");
 		var sampleDesignForm=tabpanel.down("form#sampleDesignForm") ;
 		var new_record=record.copy(null);

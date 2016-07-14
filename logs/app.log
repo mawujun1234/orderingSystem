@@ -25218,3 +25218,675 @@ PL/SQL: Statement ignored
 ; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "A"."SPCLNO": invalid identifier
 
 15:04:27.620 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@325a6c90
+15:08:36.387 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@8a6ab18
+16:00:53.483 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:00:53.484 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:10.933 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:10.933 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:11.947 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:11.947 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:14.295 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:14.295 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:16.406 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:16.406 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:17.104 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:17.104 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:36.576 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:36.577 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:37.559 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:37.560 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:38.248 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:38.248 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:42.549 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:42.549 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:44.851 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:44.851 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:45.723 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:45.723 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:46.208 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:46.208 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:46.448 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:01:46.448 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                        and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:23.003 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:23.003 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:23.750 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:23.750 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:55.456 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.ordMgr_queryOrdMgr(com.mawujun.utils.page.Pager<java.util.Map<java.lang.String, java.lang.Object>>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:02:55.457 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+### The error may exist in com/youngor/order/OrdRepository.xml
+### The error may involve com.youngor.order.OrdRepository.ordMgr_queryOrdMgr-Inline
+### The error occurred while setting parameters
+### SQL: select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT    from ORD_ORD a,ORD_ORDHD b,v_ord_org c    where a.MTORNO=b.MTORNO and a.ordorg=c.orgno    and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=?)          and a.ormtno=?                    and b.bradno=? and b.spclno=?                       and (b.orstat in ('1','2') or b.szstat in (''1,'2'))                                             and c.yxgsno=?                                   and c.qyno=?                                 and a.channo=?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00907: missing right parenthesis
+
+16:25:37.581 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.sample.SampleDesignController.deleteById(java.lang.String,java.lang.String[])]: com.mawujun.exception.BusinessException: 订货会已经开始或结束，不能删除!
+16:25:37.581 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 订货会已经开始或结束，不能删除!
+16:30:06.152 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@3bb1aeeb
+16:30:06.153 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@3bb1aeeb
+16:30:06.202 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3fc89fb1
+16:30:36.025 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@2fbe6dc9
+16:30:58.268 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.lang.String com.youngor.sample.SampleDesignController.deleteById(java.lang.String,java.lang.String[])]: org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.sample.SampleColth#201607CL034test]
+16:30:58.269 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.ObjectNotFoundException: No row with the given identifier exists: [com.youngor.sample.SampleColth#201607CL034test]
+16:32:54.460 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@516d8201
+16:43:14.546 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@29dd873a
+16:46:30.476 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:46:54.573 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:47:37.179 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@71981fb0
+16:47:56.550 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6b56c40b
+16:48:32.093 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@2415d5ab
+16:49:02.128 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@66750155
+16:59:25.250 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@667c86a6
+17:32:15.962 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:33:02.533 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@230042c2
+17:33:17.343 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@6ff9c3f3
+17:34:14.166 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@11c8a454
+17:35:16.257 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@69a95607
+17:41:13.420 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:41:37.091 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:43:18.409 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:50:30.968 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@4ad7af1f
+17:58:55.404 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@41cca2ac
+17:59:01.654 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@11ea7bb3
+18:20:50.491 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@16b73965
+18:20:51.730 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@29c92eec
+18:20:52.499 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@36aeb47b
+18:20:53.560 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@5e33aed2
+18:20:54.446 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@3b05e56e
+18:20:55.236 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@354584be
+18:20:56.004 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@62902562
+18:20:56.871 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@369e5874
+18:20:57.581 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@6267e8e9
+18:21:00.397 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.plan.PlanHd@31c38e9f
+18:26:38.850 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:26:38.850 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:27:02.960 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:27:59.804 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+18:28:09.729 [http-bio-8086-exec-8] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:28:35.173 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+18:28:59.564 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:32:12.742 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:34:01.855 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:50:28.824 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.order.OrdController.querySample(java.lang.String)]: java.lang.NullPointerException
+18:50:28.824 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:54:12.405 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:54:12.405 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:54:33.309 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:54:33.311 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:54:38.341 [http-bio-8086-exec-10] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:54:38.342 [http-bio-8086-exec-10] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:56:50.455 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:14:16.054 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:14:42.920 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:36:47.394 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:38:17.239 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:38:48.396 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6041beba
+19:38:57.362 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@14c4d436
+19:39:23.332 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@4b7ef5fc
+19:39:23.332 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@667f26f4
+19:39:42.491 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@4020c436
+19:41:40.886 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@2a0e3513
+19:51:29.985 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+19:51:44.246 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+19:52:13.132 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@63bf20c5
+19:52:16.312 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@f12020a
+19:52:56.167 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@17b4cfc1
+19:53:39.671 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@501e0bda
+20:14:49.866 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+20:15:11.458 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+20:15:40.008 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@7812033
+20:16:00.792 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:16:00.793 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:16:46.236 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:16:46.236 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:20:44.911 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@35b59081
+20:20:48.325 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6a8405b3
+20:20:57.560 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:20:57.561 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:22:06.544 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:22:06.544 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:22:33.325 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:22:33.325 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+20:23:04.504 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@7a6eddcf
+20:45:49.943 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+20:46:30.633 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+20:46:58.434 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@50f25a6a
+20:47:06.793 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@69d54ad8
+20:51:16.871 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@2c863cf4
+20:57:57.980 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+20:59:34.475 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+21:00:01.931 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+07:26:27.314 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+07:42:29.326 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+07:44:24.413 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+07:54:56.454 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+07:57:48.953 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+07:58:13.059 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@2c94ac03
+07:58:26.916 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.Map<java.lang.String, java.lang.Object> com.youngor.sample.SamplePhotoController.create(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.multipart.MultipartFile,com.youngor.sample.SamplePhoto) throws java.io.IOException]: com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+07:58:26.916 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 上传目录不存在，上传失败!
+07:58:54.966 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@6b7e2f97
+09:07:07.804 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:11:31.598 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+09:11:54.933 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@5330c275
+09:12:07.967 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@4fdae2b9
+09:50:04.124 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+09:53:08.713 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:07:02.410 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+10:07:28.986 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+10:10:18.004 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@2c7f11d7
+10:10:18.067 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@2c7f11d7
+10:10:18.247 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@7626ee8b
+10:10:38.319 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@70b13390
+10:10:38.420 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.update(com.youngor.sample.SampleDesign)]: org.hibernate.exception.ConstraintViolationException: could not execute batch
+10:10:38.421 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.hibernate.exception.ConstraintViolationException: could not execute batch
+10:10:38.421 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [org.hibernate.exception.ConstraintViolationException], based on exception mapping [org.hibernate.exception.ConstraintViolationException]
+10:10:38.421 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:10:38.421 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:14:56.435 [http-bio-8086-exec-10] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@1d25ddc8
+10:20:08.706 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@3b0d6421
+10:20:08.707 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@3b0d6421
+10:20:08.736 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@1b603120
+10:20:52.311 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@70600a17
+10:29:58.829 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@7a0de932
+10:29:58.830 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@7a0de932
+10:29:58.837 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@484f9f60
+10:30:08.235 [http-bio-8086-exec-5] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@4c8be1e4
+10:30:28.744 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@18f5a385
+10:31:20.542 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@380f5d87
+10:32:06.782 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@119cc26f
+10:32:06.783 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@119cc26f
+10:32:06.792 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@53697d62
+10:32:35.661 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@63948be1
+10:33:15.416 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@529a6f78
+10:33:15.417 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@529a6f78
+10:33:15.423 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@15470921
+10:33:27.829 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@498792f0
+10:33:33.417 [http-bio-8086-exec-8] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@726e0fc3
+10:36:06.044 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SampleDesign com.youngor.sample.SampleDesignController.create(com.youngor.sample.SampleDesign)]: com.mawujun.exception.BusinessException: 样衣编号已存在
+10:36:06.045 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - com.mawujun.exception.BusinessException: 样衣编号已存在
+10:36:06.045 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [com.mawujun.exception.BusinessException], based on exception mapping [com.mawujun.exception.BusinessException]
+10:36:06.045 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+10:36:06.045 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+10:41:03.636 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@49ce8530
+10:41:33.193 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@6835225d
+10:41:33.198 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@6835225d
+10:41:33.204 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@3ec0986e
+10:41:39.581 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6f8c8b06
+10:44:20.842 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@5f0be80e
+10:45:24.219 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@5716ddbe
+10:45:24.220 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@5716ddbe
+10:45:24.225 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@393d33be
+10:45:28.520 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@2da589dd
+10:47:17.967 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@36e5f68d
+10:48:02.737 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@2f233781
+10:48:02.737 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesign@2f233781
+10:48:02.747 [http-bio-8086-exec-9] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@54e94f58
+10:48:10.967 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@26cef298
+10:48:27.983 [http-bio-8086-exec-4] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SampleDesign@71a73d5b
+12:01:40.029 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:01:49.186 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:07:33.148 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:07:33.148 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:07:49.224 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:07:49.224 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:06.778 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                                                                       ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:06.778 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                                                                       ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:06.874 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:06.875 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:14.406 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:14.406 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:21.060 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO> com.youngor.sample.SampleDesignController.queryPlanDesign(com.mawujun.utils.page.Pager<com.youngor.sample.SamplePlanDesignVO>)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+12:08:21.060 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+### The error may exist in com/youngor/sample/SampleDesignRepository.xml
+### The error may involve com.youngor.sample.SampleDesignRepository.queryPlanDesign-Inline
+### The error occurred while setting parameters
+### SQL: select x.*,decode(y.matest,null,0,y.matest) matest,decode(z.spctst,null,0,z.spctst) spctst       from (      select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,b.rgsp,b.rgdt,b.lmsp,b.lmdt       a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno    ,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst      from ord_sample_plan a,ord_sample_design b       where a.plspno=b.plspno                   and b.sampst=1  and a.ormtno=? and a.bradno=?                  and a.spclno=?                                                                   ) x       left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno      left join ord_sample_colth z on x.sampno=z.sampno      order by x.sampno
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00923: FROM keyword not found where expected
+

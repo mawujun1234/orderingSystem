@@ -111,7 +111,8 @@ Ext.define('y.sample.SamplePhotoShow', {
 			return;
 		}
 		var child=Ext.create('y.sample.SamplePhoto',{
-			sampno:window.sampno.sampno
+			sampno:window.sampno.sampno,
+			ormtno:window.ordmt_record.get("ormtno")
 		});
 		child.set("id",null);
 		

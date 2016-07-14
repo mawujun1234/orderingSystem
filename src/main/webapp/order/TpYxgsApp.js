@@ -77,7 +77,7 @@ Ext.onReady(function(){
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '设计样衣编号',
+		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
 		        itemId: 'sampnm',
 	            xtype:'textfield'
