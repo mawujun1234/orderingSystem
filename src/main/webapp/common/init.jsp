@@ -11,7 +11,7 @@ if("localhost".equals(ip) ||"127.0.0.1".equals(ip)){
 
 String contextPath = request.getContextPath();
 String requestURI=request.getRequestURI();
-String aa=requestURI.replaceAll("/"+contextPath+"/", "/");
+String aa=requestURI.replaceAll(contextPath+"/", "/");
 %>
 <script src="<%=request.getContextPath()%>/menu/queryElementPermission.do?url=<%=aa %>&timestamp="+new Date().getTime()></script>
     <!-- <link rel="stylesheet" type="text/css" href="./ext6/build/classic/theme-neptune/resources/theme-neptune-all.css">

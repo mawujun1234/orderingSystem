@@ -20,7 +20,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and A.spseno=#{spseno}
 			</if> 
 			<if test="sampnm!=null and sampnm!=''">
-				and B.sampnm like '%${sampnm}%'
+				and lower(B.sampnm) like lower('%${sampnm}%')
 			</if> 
      </sql>
      <!--
@@ -135,7 +135,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and d.spseno=#{spseno}
 			</if> 
 			<if test="sampnm!=null and sampnm!=''">
-				and c.sampnm like '%${sampnm}%'
+				and lower(c.sampnm) like lower('%${sampnm}%')
 			</if> 
 			  GROUP BY  B.SAMPNO,c.sampnm,B.SUITNO,d.sptyno,d.spseno,c.PACKQT
 		) x left join (

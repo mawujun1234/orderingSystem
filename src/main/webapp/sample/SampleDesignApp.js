@@ -19,6 +19,7 @@ Ext.onReady(function(){
 		//title:'XXX表格'
 	});
 	
+	
 	var samplePlanForm=Ext.create('y.sample.SamplePlanFormQuery',{
 		title:'商品企划',
 		id:'samplePlanFormQuery',
@@ -29,6 +30,7 @@ Ext.onReady(function(){
 		title:'设计开发',
 		itemId:'sampleDesignForm'
 	});
+	window.sampleDesignForm=sampleDesignForm;
 	//面料信息
 	var sampleMateGrid=Ext.create('y.sample.SampleMateGrid',{
 		region:'north',

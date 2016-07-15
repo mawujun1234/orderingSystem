@@ -370,9 +370,9 @@ Ext.define('y.report.OrderNumTotalGrid',{
 			    	}
 			    	
 			    	var params=grid.getParams();
-			    	params["params['yxgsnm']"]=toolbars[0].down("#yxgsno").getRawValue();
-			    	params["params['qynm']"]=toolbars[0].down("#qyno").getRawValue();
-			    	params["params['orgnm']"]=toolbars[0].down("#ordorg").getRawValue();
+			    	//params["params['yxgsnm']"]=toolbars[0].down("#yxgsno").getRawValue();
+			    	//params["params['qynm']"]=toolbars[0].down("#qyno").getRawValue();
+			    	//params["params['orgnm']"]=toolbars[0].down("#ordorg").getRawValue();
 			    	
 			    	var url=Ext.ContextPath+"/ordernumtotal/export_print.do?"+Ext.urlEncode(params);
 			    	window.open(url);

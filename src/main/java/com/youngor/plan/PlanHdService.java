@@ -8,8 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.mawujun.service.AbstractService;
-
-
+import com.youngor.permission.ShiroUtils;
 import com.youngor.plan.PlanHd;
 import com.youngor.plan.PlanHdRepository;
 
@@ -32,7 +31,7 @@ public class PlanHdService extends AbstractService<PlanHd, com.youngor.plan.Plan
 	}
 
 	public List<PlanHdVO> queryHdGrid(String ormtno,String yxgsno,String bradno,String spclno){
-		List<PlanHdVO> list= planHdRepository.queryHdGrid(ormtno, yxgsno, bradno, spclno);
+		List<PlanHdVO> list= planHdRepository.queryHdGrid(ormtno, yxgsno, bradno, spclno,ShiroUtils.getUserId());
 		PlanHdVO total=new PlanHdVO();
 		total.setOrgnm("合计:");
 		total.setIsTotal(true);

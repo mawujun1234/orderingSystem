@@ -407,11 +407,11 @@ public class OrdService extends AbstractService<Ord, String>{
 //					if(i>=4){//一次最多显示4个样衣编号
 //						break;
 //					}
-					builder.append(","+sampleDesign.getSampnm());
+					builder.append(",\""+sampleDesign.getSampnm1()+"\"");
 					i++;
 				}
 				
-				throw new BusinessException("['"+builder.substring(1)+"']");//+none_abstat.get(0).getSampnm()
+				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
 			}
 		}
 

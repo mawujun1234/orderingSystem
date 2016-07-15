@@ -35,6 +35,7 @@ Ext.define('y.pubcode.PubCodeTypeTree', {
 		        labelWidth:40,
 		        width:160,
 	            allowBlank: false,
+	             showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 	            //value:'Y',
 	            selFirst:true,

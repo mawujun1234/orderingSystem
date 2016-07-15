@@ -44,18 +44,27 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 	public SamplePhotoRepository getRepository() {
 		return samplePhotoRepository;
 	}
-	
-	public String create(SamplePhoto samplePhoto,MultipartFile imageFile,String contextPath) throws IOException {
+	/**
+	 * 返回照片的序号，一共几张照片了
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param samplePhoto
+	 * @param imageFile
+	 * @param contextPath
+	 * @return
+	 * @throws IOException
+	 */
+	public Integer create(SamplePhoto samplePhoto,MultipartFile imageFile,String contextPath) throws IOException {
 		//获取订货会编号
 		String ormtno=samplePhoto.getOrmtno();
 		//String id=ormtno+"_"+samplePhoto.getSampno();//UUIDGenerator.generate();
 		String id=samplePhoto.getSampno();
 		SampleDesign sampleDesign=sampleDesignRepository.get(samplePhoto.getSampno());//.getSampleDesignBySampno(ormtno, samplePhoto.getSampno());
+		Integer photno=1;
 		if(sampleDesign.getPhotno() ==null || "".equals(sampleDesign.getPhotno())){
-			sampleDesign.setPhotno("1");
+			sampleDesign.setPhotno(photno+"");
 			id=id+"_"+sampleDesign.getPhotno();
 		} else {
-			Integer photno=Integer.parseInt(sampleDesign.getPhotno());
+			photno=Integer.parseInt(sampleDesign.getPhotno());
 			photno++;
 			id=id+"_"+photno;
 			sampleDesign.setPhotno(photno+"");
@@ -113,7 +122,7 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 			throw new BusinessException("上传到备份目录失败!");
 		}
 		super.create(samplePhoto);
-		return id;
+		return photno;
 		
 	}
 	/**
@@ -122,7 +131,7 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 	 * @param samplePhoto
 	 * @param contextPath
 	 */
-	public void delete(SamplePhoto samplePhoto,String contextPath) {
+	public Integer delete(SamplePhoto samplePhoto,String contextPath) {
 		
 		contextPath=ContextUtils.getPhotoBakDir();
 		
@@ -140,6 +149,7 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		if(file.exists()){
 			file.delete();
 		}
+		return count;
 		
 	}
 

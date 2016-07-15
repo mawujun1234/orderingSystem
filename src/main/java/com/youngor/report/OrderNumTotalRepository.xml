@@ -42,7 +42,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and c.spmtno=#{spmtno}
 			</if>
 			<if test="sampnm!=null and sampnm!=''">
-				and c.sampnm like '%${sampnm}%'
+				and lower(c.sampnm) like lower('%${sampnm}%')
 			</if>	
 			
 		order by e.yxgsnm ,e.qynm,e.orgnm,
@@ -88,7 +88,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and c.spmtno=#{spmtno}
 			</if>
 			<if test="sampnm!=null and sampnm!=''">
-				and c.sampnm like '%${sampnm}%'
+				and lower(c.sampnm) like lower('%${sampnm}%')
 			</if>	
 		
 		)

@@ -1,5 +1,9 @@
 Ext={};
-Ext.ContextPath="";
+Ext.ContextPath="/od";
+if(location.pathname.indexOf("/od")==-1){
+	Ext.ContextPath="";
+}
+
 //显示和隐藏今日订货会快结束的信息
 window.od_closeing_info=null;//提高性能
 window.canOrd=null;//判断是否可以订货
@@ -620,6 +624,7 @@ $(function(){
 				//$.toast(response.msg);
 				//$.popup('.popup_abstat');
 				var sampnms=JSON.parse(response.msg);
+				//var sampnms=response.msg;
 				var html="";
 				for(var i=0;i<sampnms.length;i++){
 					html+='<li class="item-content">'+
@@ -631,7 +636,7 @@ $(function(){
 				 '<div class="popup">'+
 				 	''+
                     '<div class="content-block">'+
-                      '<div class="content-block-title">下列样衣是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
+                      '<div class="content-block-title">下列出样样衣编号是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
                       '<div class="list-block">'+
 					  '<ul>'+
 					  //'<li class="item-content">'+

@@ -82,7 +82,7 @@
 			<id>prod</id>
 			<properties>
 				<profiles.active>prod</profiles.active>
-				<log4j2.level>warn</log4j2.level>
+				<log4j2.level>info</log4j2.level>
 				<finalName>od</finalName>
 				<jdbc.dbType>oracle</jdbc.dbType>
 				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
@@ -90,7 +90,7 @@
 				<jdbc.username>OD</jdbc.username>
 				<jdbc.password>OrD007YK</jdbc.password>
 				<hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
-				<photoBakDir>/usr/local/tomcat/webapps</photoBakDir>
+				<photoBakDir>/opt/apache-tomcat-8.0.36/webapps</photoBakDir>
 			</properties>
 		</profile>
 
@@ -226,6 +226,13 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/webapp/mobile</directory>
+				<includes>
+					<include>**.js</include>
+				</includes>
 				<filtering>true</filtering>
 			</resource>
 			<resource>

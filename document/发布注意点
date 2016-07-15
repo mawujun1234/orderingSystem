@@ -11,3 +11,7 @@
 	
 	# Bugzilla 37848: only output this if we have a TTY
 	if [ $have_tty -eq 1 ]; then
+	
+3：指定jre，放在catalina.sh：最前面：  JAVA_HOME=/opt/jre1.8.0_91
+4：修改server.xml端口为8086
+   

@@ -1,5 +1,6 @@
 package com.youngor.sample;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.MapParams;
 
 
@@ -77,6 +79,7 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 	}
 	
 	public List<SamplePlanVO> queryList4Export(MapParams params){
+		((Map<String,Object>)params.getParams()).put("user_id", ShiroUtils.getUserId());
 		return samplePlanRepository.queryPage(params.getParams());
 	}
 	

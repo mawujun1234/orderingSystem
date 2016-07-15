@@ -53,16 +53,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			and b.spseno=#{spseno}
 		</if>
 		<if test="sampnm!=null and sampnm!=''">
-			and a.sampnm like '%${sampnm}%'
+			and lower(a.sampnm) like lower('%${sampnm}%')
 		</if>
 		<if test="prodnm!=null and prodnm!=''">
-			and h.prodnm like '%${prodnm}%'
+			and lower(h.prodnm) like lower('%${prodnm}%')
 		</if>
 		<if test="spmtno!=null and spmtno!=''">
 			and a.spmtno =#{spmtno}
 		</if>
 		<if test="idsunm!=null and idsunm!=''">
-			and s.idsunm like '%${idsunm}%'
+			and lower(s.idsunm) like lower('%${idsunm}%')
 		</if>
     </select> 
     <!--
@@ -115,7 +115,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			and b.spseno=#{spseno}
 		</if> 
 		<if test="sampnm!=null and sampnm!=''">
-			and a.sampnm like '%${sampnm}%'
+			and lower(a.sampnm) like lower('%${sampnm}%')
 		</if>
 		<if test="prodnm!=null and prodnm!=''">
 			and h.prodnm like '%${prodnm}%'
@@ -157,7 +157,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
-          	and b.sampnm like '%${sampnm}%' 
+          	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
           and a.bradno=#{bradno} and a.spclno=#{spclno} 
@@ -184,7 +184,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
-          	and b.sampnm like '%${sampnm}%' 
+          	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
           and a.bradno=#{bradno} and a.spclno=#{spclno} 
@@ -212,7 +212,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
-          	and b.sampnm like '%${sampnm}%' 
+          	and lower(b.sampnm0 like lower('%${sampnm}%')
           </if>
           
           and a.bradno=#{bradno} and a.spclno=#{spclno} 

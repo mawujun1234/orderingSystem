@@ -64,9 +64,10 @@ public class SamplePhotoController {
 		//保存文件
 		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
 		
-		samplePhotoService.create(samplePhoto, imageFile, contextPath);
+		Integer photno=samplePhotoService.create(samplePhoto, imageFile, contextPath);
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("success", true);
+		map.put("photno", photno);
 		
 		//response.setContentType("text/html");
 		//response.getWriter().write("{\"success\":true}");
@@ -88,11 +89,18 @@ public class SamplePhotoController {
 //	}
 	
 	@RequestMapping("/samplePhoto/destroy.do")
-	//@ResponseBody
-	public SamplePhoto destroy(HttpServletRequest request,@RequestBody SamplePhoto samplePhoto) throws FileNotFoundException {
+	@ResponseBody
+	public  Map<String,Object> destroy(HttpServletRequest request,@RequestBody SamplePhoto samplePhoto) throws FileNotFoundException {
 		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
-		samplePhotoService.delete(samplePhoto,contextPath);
-		return samplePhoto;
+		Integer photno=samplePhotoService.delete(samplePhoto,contextPath);
+		//return samplePhoto;
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("success", true);
+		map.put("photno", photno);
+		
+		//response.setContentType("text/html");
+		//response.getWriter().write("{\"success\":true}");
+		return map;
 	}
 	
 	

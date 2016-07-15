@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.utils.page.Pager;
+import com.youngor.org.OrgService;
 import com.youngor.pubcode.PubCodeCache;
-import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 
 import net.sf.jasperreports.engine.JRException;
@@ -45,6 +45,8 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class OrderNumTotalController {
 	@Autowired
 	private OrderNumTotalRepository orderNumTotalRepository;
+	@Autowired
+	private OrgService orgService;
 	
 	@RequestMapping("/ordernumtotal/query.do")
 	@ResponseBody
@@ -153,6 +155,7 @@ public class OrderNumTotalController {
 		}
 	}
 	
+	
 	/**
 	 * 特许打印
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -175,12 +178,12 @@ public class OrderNumTotalController {
 
 		Map<String, Object> rpt_params = new HashMap<String, Object>();
 		
-		String yxgsnm=params.getParams().get("yxgsnm").toString();
-		yxgsnm= new String(yxgsnm.getBytes("iso-8859-1"),"utf-8");
-		String qynm=params.getParams().get("qynm").toString();
-		qynm= new String(qynm.getBytes("iso-8859-1"),"utf-8");
-		String orgnm=params.getParams().get("orgnm").toString();
-		orgnm= new String(orgnm.getBytes("iso-8859-1"),"utf-8");
+		String yxgsnm=orgService.get(params.getParams().get("yxgsno").toString()).getOrgnm();////params.getParams().get("yxgsnm").toString();
+		//yxgsnm= new String(yxgsnm.getBytes("iso-8859-1"),"utf-8");
+		String qynm=orgService.get(params.getParams().get("qyno").toString()).getOrgnm();//params.getParams().get("qynm").toString();
+		//qynm= new String(qynm.getBytes("iso-8859-1"),"utf-8");
+		String orgnm=orgService.get(params.getParams().get("ordorg").toString()).getOrgnm();;//params.getParams().get("orgnm").toString();
+		//orgnm= new String(orgnm.getBytes("iso-8859-1"),"utf-8");
 		rpt_params.put("bradno_name", PubCodeCache.getBradno_name(params.getParams().get("bradno").toString()));
 		rpt_params.put("yxgsnm",yxgsnm);
 		rpt_params.put("qynm",qynm);
@@ -198,7 +201,7 @@ public class OrderNumTotalController {
 		response.reset();
 		response.setCharacterEncoding("GBK");
 		response.setHeader("Content-Disposition", "attachment;filename="
-				+ new String((orgnm+"总量报表").getBytes("GBK"), "iso8859-1")
+				+ new String((orgnm+"_总量报表").getBytes("GBK"), "iso8859-1")
 				+ ".xls");
 
 		expoertReportToExcelStream(jasperprint, httpOut);

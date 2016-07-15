@@ -6,7 +6,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SamplePlanRepository">
 	<sql id="queryPage_where">  
-        where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.plstat=1
+        where 
+         exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      	and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+        and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.plstat=1
         <if test="spclno!=null and spclno!=''">
     		and a.spclno=#{spclno} 
     	</if>
@@ -20,7 +25,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		and a.spbseno=#{spbseno}
     	</if>
     	<if test="plspnm!=null and plspnm!=''">
-    		and a.plspnm like '%${plspnm}%'
+    		and lower(a.plspnm) like lower('%${plspnm}%')
     	</if>
  	</sql> 
 	<!-- 查询语句，会自动分页
@@ -76,6 +81,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select a.*
     	from ord_sample_plan a
     	<include refid="queryPage_where"></include>  
+    	order by a.plspno
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage_count" resultType="int" parameterType="map">

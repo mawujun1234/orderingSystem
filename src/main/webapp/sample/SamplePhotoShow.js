@@ -150,8 +150,20 @@ Ext.define('y.sample.SamplePhotoShow', {
 	onDelete:function(){
 		if(this.dv_nodes){
 			this.dv_nodes[0].erase({
-				success:function(){
+				success:function(record, operation){
+					//console.log(record);operation._response
+					
+					//更新“设计开发”中photno字段的值，防止再去更新设计开发资料的表单的时候，photno这个值变成null
+					var obj=Ext.decode(operation.getResponse().responseText);
+					if(obj.success==false){
+						Ext.Msg.alert("消息",obj.msg);return;
+					}
 					Ext.Msg.alert("消息","删除成功!");
+                     	var photno=obj.photno;
+                     	window.sampleDesignForm.getForm().findField("photno").setValue(photno);
+                     	if(window.sampleDesign){
+                     		window.sampleDesign.set("photno",photno);
+                     	}
 				}
 			});
 //			Ext.Ajax.request({

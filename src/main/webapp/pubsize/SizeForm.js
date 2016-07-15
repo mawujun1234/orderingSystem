@@ -119,7 +119,7 @@ Ext.define('y.pubsize.SizeForm',{
 				formpanel.getForm().getRecord().save({
 					failure: function(record, operation) {
 						//console.log(operation._response.responseText);
-						var obj=Ext.decode(operation._response.responseText);
+						var obj=Ext.decode(operation.getResponse().responseText);
 						Ext.Msg.alert('失败', obj.msg);
 				    },
 				    success: function(record, operation) {

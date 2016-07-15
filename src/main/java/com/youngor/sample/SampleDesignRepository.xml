@@ -40,7 +40,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		and b.sampno=#{sampno}
     	</if>
     	<if test="sampnm!=null and sampnm!=''">
-    		and b.sampnm like '%${sampnm}%'
+    		and lower(b.sampnm) like lower('%${sampnm}%')
     	</if>
     	<if test="spsuno!=null and spsuno!=''">
     		and exists (select 1 from ord_sample_colth c where b.sampno=c.sampno and c.spsuno=#{spsuno})
@@ -54,6 +54,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst
     	from ord_sample_plan a,ord_sample_design b ,t_user c,t_user d
     	where a.plspno=b.plspno	and b.rgsp=c.loginname and b.lmsp=d.loginname
+    	and exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      	and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
     	<include refid="queryPlanDesign_where"></include> 
     	) x 
     	left join (select distinct sampno,matest from ord_sample_mate) y on x.sampno=y.sampno
@@ -69,7 +73,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <!--产品资料导出-->
     <select id="query_exportSample" parameterType="map" resultType="map">
      	SELECT * FROM V_ORD_SAMPLE a
-     	where  a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} and suitno='T00'
+     	where  
+     	exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      	and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+     	and a.ormtno=#{ormtno} and a.bradno=#{bradno} and suitno='T00'
+     	<if test="spclno!=null and spclno!=''">
+    		 and a.spclno=#{spclno}
+    	</if>
      	<if test="sptyno!=null and sptyno!=''">
     		and a.sptyno=#{sptyno}
     	</if>
@@ -86,7 +98,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		and a.sampno=#{sampno}
     	</if>
     	<if test="sampnm!=null and sampnm!=''">
-    		and a.sampnm like '%${sampnm}%'
+    		and lower(a.sampnm) like lower('%${sampnm}%')
     	</if>
     	<if test="spsuno!=null and spsuno!=''">
     		and a.spsuno=#{spsuno}
@@ -99,7 +111,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           from ord_sample_plan a
           inner join ord_sample_design b on a.plspno=b.plspno 
           inner join ord_sample_mate c on b.sampno=c.sampno
-          where c.mateso=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          where 
+          exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      	  and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+          and c.mateso=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} 
+          	<if test="spclno!=null and spclno!=''">
+	    		and a.spclno=#{spclno} 
+	    	</if>
           	<if test="sptyno!=null and sptyno!=''">
 	    		and a.sptyno=#{sptyno}
 	    	</if>
@@ -116,7 +136,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    		and a.sampno=#{sampno}
 	    	</if>
 	    	<if test="sampnm!=null and sampnm!=''">
-	    		and a.sampnm like '%${sampnm}%'
+	    		and lower(a.sampnm) like lower('%${sampnm}%')
 	    	</if>
 	    	<if test="spsuno!=null and spsuno!=''">
 	    		and a.spsuno=#{spsuno}
@@ -128,7 +148,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           from ord_sample_plan a
           inner join ord_sample_design b on a.plspno=b.plspno 
           inner join ord_sample_mate c on b.sampno=c.sampno
-          where c.mateso!=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          where 
+          exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      	  and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+          and c.mateso!=1 and b.sampst=1 and a.ormtno=#{ormtno} and a.bradno=#{bradno} 
+          	<if test="spclno!=null and spclno!=''">
+	    		and a.spclno=#{spclno} 
+	    	</if>
           	<if test="sptyno!=null and sptyno!=''">
 	    		and a.sptyno=#{sptyno}
 	    	</if>
@@ -145,7 +173,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    		and a.sampno=#{sampno}
 	    	</if>
 	    	<if test="sampnm!=null and sampnm!=''">
-	    		and a.sampnm like '%${sampnm}%'
+	    		and lower(a.sampnm) like lower('%${sampnm}%')
 	    	</if>
 	    	<if test="spsuno!=null and spsuno!=''">
 	    		and a.spsuno=#{spsuno}

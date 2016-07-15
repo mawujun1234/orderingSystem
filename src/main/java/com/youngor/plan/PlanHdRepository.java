@@ -16,6 +16,6 @@ import com.youngor.plan.PlanHd;
 @Repository
 public interface PlanHdRepository extends IRepository<PlanHd, com.youngor.plan.PlanHd.PK>{
 
-	public List<PlanHdVO> queryHdGrid(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	public List<PlanHdVO> queryHdGrid(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("bradno")String bradno,@Param("spclno")String spclno,@Param("user_id")String user_id);
 	public  void onPass(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 }

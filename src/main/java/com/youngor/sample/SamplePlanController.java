@@ -2,6 +2,7 @@ package com.youngor.sample;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,7 @@ public class SamplePlanController {
 	@RequestMapping("/samplePlan/query.do")
 	@ResponseBody
 	public Pager<SamplePlan> query(Pager<SamplePlan> pager){
-		
+		((Map<String,Object>)pager.getParams()).put("user_id", ShiroUtils.getUserId());
 		return samplePlanService.queryPage(pager);
 	}
 

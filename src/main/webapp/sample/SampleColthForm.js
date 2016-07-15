@@ -336,24 +336,7 @@ Ext.define('y.sample.SampleColthForm',{
 						}
 					}
 					
-				});
-				
-				
-//				formpanel.getForm().getRecord().save({
-//					failure: function(record, operation) {
-//				    },
-//				    success: function(record, operation) {
-//						Ext.Msg.alert("消息","保存成功!");
-//						
-//						//如果是锁定状态，就隐藏这个按钮
-//						//hidden:!Permision.canShow('sample_design_designsave'),
-//						if(sampleDesign.get("spctst")==1){
-//							me.down("#save").hide();		
-//						} else if(Permision.canShow('sample_design_designsave')){
-//							me.down("#save").show();
-//						}
-//				    }
-//				});			
+				});		
 				
 				}
 			});

@@ -12,7 +12,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		b.SPCLNO,b.SPTYNO,b.SPSENO FROM
 		(SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,2),2,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
 		LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO
-		WHERE A.ORMTNO=#{ormtno} AND A.BRADNO=#{bradno}
+		WHERE 
+			 exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+      		and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+			and A.ORMTNO=#{ormtno} AND A.BRADNO=#{bradno}
 		)B
 		INNER JOIN ORD_PUB_CODE P0 ON P0.TYNO='0' AND B.SPCLNO=P0.ITNO
 		INNER JOIN ORD_PUB_CODE P2 ON P2.TYNO='2' AND B.SPCLNO=P2.FITNO AND B.SPTYNO=P2.ITNO
@@ -21,6 +26,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN ORD_PLAN_ORG C ON C.ORMTNO=B.ORMTNO AND C.ORDORG=G.ORGNO AND C.BRADNO=B.BRADNO 
 		LEFT JOIN ORD_PLAN_ORGDTL D ON C.PLORNO=D.PLORNO AND D.SPCLNO=B.SPCLNO AND D.SPTYNO=B.SPTYNO AND NVL(D.SPSENO,' ')=B.SPSENO
 		WHERE B.ORMTNO=#{ormtno} and g.yxgsno=#{yxgsno}
+		
 		and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=g.orgno and d.user_id=#{user_id})
 		<if test="qyno!=null and qyno!=''">
 			AND G.ORGNO=#{qyno}

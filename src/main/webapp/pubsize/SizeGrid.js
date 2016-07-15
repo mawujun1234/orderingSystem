@@ -192,7 +192,7 @@ Ext.define('y.pubsize.SizeGrid',{
 				if (btn == 'yes'){
 					node.erase({
 					    failure: function(record, operation) {
-					    	var obj=Ext.decode(operation._response.responseText);
+					    	var obj=Ext.decode(operation.getResponse().responseText);
 							Ext.Msg.alert('失败', obj.msg);
 			            	me.getStore().reload();
 					    },

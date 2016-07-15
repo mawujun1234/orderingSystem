@@ -61,7 +61,7 @@ Ext.define('y.main.MainController', {
 					xtype : 'modulepanel',
 					menu_id:menuitem.get("id"),
 					title:menuitem.get("name"),
-					url:menuitem.get("url"),
+					url:Ext.ContextPath+menuitem.get("url"),
 					closable : true,
 					reorderable : true
 				}));

@@ -160,6 +160,7 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 
 	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {
+		((Map<String,Object>)pager.getParams()).put("user_id", ShiroUtils.getUserId());
 		return sampleDesignRepository.queryPlanDesign(pager);
 	}
 	
@@ -171,13 +172,18 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	}
 	
 	public List<Map<String,Object>> query_exportSample(MapParams params) {
-		return sampleDesignRepository.query_exportSample(params.getParams());
+		((Map<String,Object>)params.getParams()).put("user_id", ShiroUtils.getUserId());
+		List<Map<String,Object>> list= sampleDesignRepository.query_exportSample(params.getParams());
+		
+		return list;
 	}
 	
 	public List<Map<String,Object>> query_exportSampleMate(MapParams params) {
+		((Map<String,Object>)params.getParams()).put("user_id", ShiroUtils.getUserId());
 		return sampleDesignRepository.query_exportSampleMate(params.getParams());
 	}
 	public List<Map<String,Object>> query_exportSampleMate_other(MapParams params) {
+		((Map<String,Object>)params.getParams()).put("user_id", ShiroUtils.getUserId());
 		return sampleDesignRepository.query_exportSampleMate_other(params.getParams());
 	}
 }

@@ -21,7 +21,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     <select id="querySampleDesignStpr_T00" resultType="com.youngor.sample.SampleDesignStpr" parameterType="map">
     	SELECT  *
-    	 FROM ord_sample_design_sizegp b
+    	 FROM ord_sample_design_stpr b
     	 <where>
         <if test="sampno!=null and sampno!=''">
 		 	 b.sampno=#{sampno}

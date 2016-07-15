@@ -184,7 +184,7 @@ public class SampleDesignController {
 		titles.put("SPMTNM", "生产类型");
 		titles.put("GUSTNO", "客供编号");
 		titles.put("COLRNM", "颜色");
-		titles.put("PATTNO", "花型");
+		titles.put("PATTNM", "花型");
 		titles.put("STYLNM", "款式");
 		titles.put("STYLGP", "款式组");
 		titles.put("SEXNM", "性别");
@@ -354,10 +354,16 @@ public class SampleDesignController {
 				j++;
 				if(map.get(entry.getKey())!=null){
 					if("MTSUNO".equals(entry.getKey())){
-						if(ContextUtils.getPubSuno(entry.getValue())!=null){
-							cell.setCellValue(ContextUtils.getPubSuno(entry.getValue()).getIdsunm());
+						if(ContextUtils.getPubSuno(map.get(entry.getKey()).toString())!=null){
+							cell.setCellValue(ContextUtils.getPubSuno(map.get(entry.getKey()).toString()).getIdsunm());
 						}
 						
+					} else if("MTTYPE".equals(entry.getKey())){
+						if("gc".equals(map.get("MTTYPE"))){
+							cell.setCellValue("国产");
+						} else if("jk".equals(map.get("MTTYPE"))){
+							cell.setCellValue("进口");
+						}
 					} else {
 						cell.setCellValue(map.get(entry.getKey()).toString());
 					}
@@ -441,10 +447,16 @@ public class SampleDesignController {
 				j++;
 				if(map.get(entry.getKey())!=null){
 					if("MTSUNO".equals(entry.getKey())){
-						if(ContextUtils.getPubSuno(entry.getValue())!=null){
-							cell.setCellValue(ContextUtils.getPubSuno(entry.getValue()).getIdsunm());
+						if(ContextUtils.getPubSuno(map.get(entry.getKey()).toString())!=null){
+							cell.setCellValue(ContextUtils.getPubSuno(map.get(entry.getKey()).toString()).getIdsunm());
 						}
 						
+					}  else if("MTTYPE".equals(entry.getKey())){
+						if("gc".equals(map.get("MTTYPE"))){
+							cell.setCellValue("国产");
+						} else if("jk".equals(map.get("MTTYPE"))){
+							cell.setCellValue("进口");
+						}
 					} else {
 						cell.setCellValue(map.get(entry.getKey()).toString());
 					}

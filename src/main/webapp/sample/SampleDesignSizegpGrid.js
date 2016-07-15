@@ -100,6 +100,7 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
             		var store=grid.getStore();
             		var records=store.getRange ();
             		for(var i=0;i<records.length;i++){
+            			//上衣的规格范围默认等于标准的规格范围
             			if(records[i].get("suitno_name")=="上衣"){
             				records[i].set("sizegp",value);
             			}

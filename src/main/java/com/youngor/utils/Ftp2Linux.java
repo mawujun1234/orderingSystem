@@ -22,8 +22,8 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 public class Ftp2Linux {
-	private static Log log = LogFactory.getLog(Ftp2Linux69.class);
-	private static String linux_tomcat_install_dir="/usr/local/tomcat";
+	private static Log log = LogFactory.getLog(Ftp2Linux.class);
+	private static String linux_tomcat_install_dir="/opt/apache-tomcat-8.0.36";
 	private static String linux_webapps_dir=linux_tomcat_install_dir+"/webapps";
 	private static String od_file_local="E:\\eclipse\\aaa\\orderingSystem\\target\\od.war";
 	private static String od_file_remote=linux_webapps_dir+"/od.war";
@@ -103,6 +103,10 @@ public class Ftp2Linux {
 			session.disconnect();
 			log.info("执行：sftp.disconnect()");
 			sftp.disconnect();
+			log.info("=============================================================================================");
+			log.info("=============================================================================================");
+			log.info("=============================================================================================");
+			log.info("=============================================================================================");
 		}
 		
 		
@@ -123,7 +127,7 @@ public class Ftp2Linux {
 
 				channel.connect();
 				InputStream in = channel.getInputStream();
-				reader = new BufferedReader(new InputStreamReader(in,Charset.forName("UTF-8")));
+				reader = new BufferedReader(new InputStreamReader(in,Charset.forName("GBK")));
 				String buf = null;
 				while ((buf = reader.readLine()) != null) {
 					//System.out.println(buf);

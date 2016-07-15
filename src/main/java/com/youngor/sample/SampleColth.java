@@ -56,10 +56,10 @@ public class SampleColth {
 	@Column(nullable=true,updatable=true)
 	private Integer acsyam;
 	@FieldDefine(title="预计成本价",sort=50,hidden=false)
-	@Column(nullable=true,updatable=true)
+	@Column(nullable=true,updatable=true,insertable=true)
 	private Double spctpr;
 	@FieldDefine(title="备注",sort=50,hidden=false)
-	@Column(length=100,nullable=true,updatable=true)
+	@Column(length=100,nullable=true,updatable=true,insertable=true)
 	private String sprmk;
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer spctst=0;//：1：锁定；0：未锁定

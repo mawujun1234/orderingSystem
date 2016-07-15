@@ -224,7 +224,7 @@ public class UserController {
 		Subject subject = SecurityUtils.getSubject(); 
 		subject.logout();
 		//return "/main/login";
-		response.sendRedirect("/main/login.jsp");
+		response.sendRedirect(request.getContextPath()+"/main/login.jsp");
 		//response.getRequestDispatcher("/main/login").forward(request, response);
 	}
 	/**

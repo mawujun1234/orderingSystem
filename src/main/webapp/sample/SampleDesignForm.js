@@ -722,6 +722,7 @@ Ext.define('y.sample.SampleDesignForm',{
 			        name: 'suitty',
 			        itemId:'suitty',
 		            allowBlank: false,
+		            showBlank:false,
 		            afterLabelTextTpl: Ext.required,
 		            blankText:"套装种类不允许为空",
 		            xtype:'pubcodecombo',
