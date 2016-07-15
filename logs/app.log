@@ -26455,3 +26455,47 @@ PL/SQL: Statement ignored
 15:57:49.268 [http-bio-8086-exec-1] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6e90b9e9
 15:59:50.809 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SamplePhoto@75f6d189
 15:59:53.543 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - delete entity: com.youngor.sample.SamplePhoto@6e31e730
+17:29:15.100 [http-bio-8086-exec-3] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:29:15.128 [http-bio-8086-exec-3] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:30:30.950 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:30:30.950 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:56:17.939 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:56:17.940 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:56:18.340 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:56:18.341 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:56:24.375 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:56:24.375 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:56:31.536 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:56:31.536 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:56:38.011 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:56:38.012 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:58:40.136 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:58:40.137 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:58:43.902 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:58:43.902 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:58:50.407 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:58:50.407 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:58:57.129 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:58:57.130 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:59:05.248 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:59:05.249 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:59:11.750 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:59:11.751 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:59:23.095 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:59:23.095 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:59:31.536 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:59:31.537 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+17:59:46.765 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+17:59:46.766 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:00:44.236 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:00:44.237 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:00:49.823 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:00:49.824 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:01:02.172 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:01:02.172 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:01:05.427 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:01:05.428 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:03:11.458 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:03:11.458 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+18:03:17.229 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+18:03:17.229 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
