@@ -207,13 +207,16 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/queryOrdorg.do")
 	@ResponseBody
-	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
+	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno,Boolean showBlank) {
 		//return null;
 		List<Org> orges= ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
-		Org org=new Org();
-		org.setOrgno("");
-		org.setOrgnm("不限");
-		orges.add(0, org);
+		if(showBlank!=null && showBlank==true){
+			Org org=new Org();
+			org.setOrgno("");
+			org.setOrgnm("不限");
+			orges.add(0, org);
+		}
+		
 		return orges;
 	}
 	
@@ -630,10 +633,10 @@ public class OrdController {
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	@RequestMapping("/ord/sizeVO/autoPRDPK.do")
+	@RequestMapping("/ord/sizeVO/sizeVO_auto_box.do")
 	@ResponseBody
-	public String sizeVO_autoPRDPK(){
-		//ordService.updateOrdszdtl(ordszdtlVO);
+	public String sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno){
+		ordService.sizeVO_auto_box(ormtno, ordtyno, ordorg, bradno, spclno);
 		return "{success:true}";
 	}
 	/**
@@ -643,8 +646,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/sizeVO/approve.do")
 	@ResponseBody
-	public String sizeVO_approve(){
-		//ordService.updateOrdszdtl(ordszdtlVO);
+	public String sizeVO_size_ap(String ormtno,String ordtyno,String ordorg,String bradno,String spclno){
+		ordService.sizeVO_size_ap(ormtno, ordtyno, ordorg, bradno, spclno);
 		return "{success:true}";
 	}
 	

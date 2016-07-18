@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mawujun.utils.page.Pager;
 import com.youngor.org.OrgService;
 import com.youngor.pubcode.PubCodeCache;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 
 import net.sf.jasperreports.engine.JRException;
@@ -188,6 +189,8 @@ public class OrderNumTotalController {
 		rpt_params.put("yxgsnm",yxgsnm);
 		rpt_params.put("qynm",qynm);
 		rpt_params.put("orgnm",orgnm);
+		String ormtnm=ContextUtils.getOrdmt(params.getParams().get("ormtno").toString()).getOrmtnm();
+		rpt_params.put("ormtnm",ormtnm);
 
 
 		File reportFile = new File(reportFilePath);

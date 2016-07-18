@@ -24,9 +24,10 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 
 	@Autowired
 	private SamplePlanRepository samplePlanRepository;
+//	@Autowired
+//	private SamplePlanStprRepository samplePlanStprRepository;
 	@Autowired
-	private SamplePlanStprRepository samplePlanStprRepository;
-	
+	private SampleDesignStprRepository sampleDesignStprRepository;
 	@Override
 	public SamplePlanRepository getRepository() {
 		return samplePlanRepository;
@@ -53,6 +54,14 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 //			}
 //		}
 //	}
+	
+	@Override
+	public  void update(SamplePlan samplePlan) {
+		this.getRepository().update(samplePlan);
+		
+		//同时更新设计 样衣中的标准套件的 出厂价，零售价
+		sampleDesignStprRepository.update_T00_stpr_by_plspno(samplePlan.getPlspno(), samplePlan.getSpftpr(), samplePlan.getSprtpr());
+	}
 	
 	@Override
 	public  void delete(SamplePlan samplePlan) {

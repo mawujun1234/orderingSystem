@@ -118,6 +118,11 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public void order_dl__comp_comc(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_COMP")String P_COMP,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_PSMPNO")String P_PSMPNO,@Param("P_RESP")String P_RESP);
 	public void order_dl__comp_comd(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_DEAL")String P_DEAL,@Param("P_SAMPNO")String P_SAMPNO,@Param("P_RESP")String P_RESP);
 	public void order_dl__comp_pass(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__auto_box(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDTYNO")String P_ORDTYNO,@Param("P_ORDORG")String P_ORDORG,
+			@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	public void order_dl__size_ap(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDTYNO")String P_ORDTYNO,@Param("P_ORDORG")String P_ORDORG,
+			@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	
 	
 	
 	public void order_dl__order_to( @Param("P_MLORNO")String P_MLORNO,@Param("P_SDTYNO")String P_SDTYNO,@Param("P_RESP")String P_RESP);

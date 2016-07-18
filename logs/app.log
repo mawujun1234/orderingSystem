@@ -26499,3 +26499,221 @@ PL/SQL: Statement ignored
 18:03:11.458 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
 18:03:17.229 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
 18:03:17.229 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+08:22:56.679 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+08:26:01.236 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+08:55:44.683 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.youngor.order.OrdController.sizeVO_querySizeVOData(java.util.Map<java.lang.String, java.lang.Object>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='sizegp', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #5 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+08:55:44.694 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='sizegp', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #5 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+09:22:05.758 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.Size@12ebc8a3
+09:22:18.764 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@3a0940b6
+09:22:18.810 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@3d91838d
+09:22:18.849 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@ffe0b5f
+09:22:18.878 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@40174236
+09:22:18.885 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@3b22cc02
+09:22:18.940 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@7bc6b1cd
+09:22:18.948 [http-bio-8086-exec-2] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@77a1fa05
+09:22:30.307 [http-bio-8086-exec-6] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@69b8e1f3
+09:22:39.043 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@2eb05287
+09:22:39.050 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@1bb2043b
+09:22:39.057 [http-bio-8086-exec-3] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.pubsize.SizeDtl@1a6c8cae
+09:23:28.575 [http-bio-8086-exec-7] DEBUG com.mawujun.repository.hibernate.HibernateDao - save entity: com.youngor.sample.SampleDesignSizegp@6a14d8ec
+09:58:18.759 [http-bio-8086-exec-12] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:31:12.963 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.order.MyInfoVO com.youngor.order.OrdController.queryMyInfoVO()]: java.lang.NullPointerException
+11:31:12.964 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:42:32.607 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:51:47.485 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:51:53.864 [http-bio-8086-exec-9] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+11:52:19.116 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:52:52.063 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+11:52:52.064 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:52:52.177 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+11:52:52.177 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:52:52.177 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:52:59.485 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+11:52:59.485 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:52:59.487 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+11:52:59.487 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:52:59.487 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:53:27.584 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+11:53:27.585 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:53:27.585 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+11:53:27.585 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:53:27.585 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:54:08.617 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+11:54:08.618 [http-bio-8086-exec-13] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:54:08.618 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+11:54:08.618 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:54:08.618 [http-bio-8086-exec-13] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:55:13.890 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+11:55:13.890 [http-bio-8086-exec-4] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+11:55:13.891 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+11:55:13.891 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+11:55:13.891 [http-bio-8086-exec-4] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+11:57:25.467 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+11:58:30.944 [http-bio-8086-exec-13] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:00:38.356 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:11:47.721 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:12:13.387 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+12:12:13.387 [http-bio-8086-exec-9] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+12:12:13.387 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+12:12:13.388 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:12:13.388 [http-bio-8086-exec-9] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:27:43.077 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+12:29:06.892 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+12:29:44.912 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+12:29:44.913 [http-bio-8086-exec-7] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+12:29:44.913 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+12:29:44.914 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:29:44.914 [http-bio-8086-exec-7] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:29:45.968 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+12:29:45.968 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+12:29:45.968 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+12:29:45.968 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:29:45.968 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:30:25.591 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.youngor.sample.SamplePlan com.youngor.sample.SamplePlanController.update(com.youngor.sample.SamplePlan)]: java.lang.NullPointerException
+12:30:25.591 [http-bio-8086-exec-5] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - java.lang.NullPointerException
+12:30:25.591 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving to view 'common_error' for exception of type [java.lang.NullPointerException], based on exception mapping [java.lang.Exception]
+12:30:25.591 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Applying HTTP status code 503
+12:30:25.591 [http-bio-8086-exec-5] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Exposing Exception as model attribute 'exception'
+12:40:02.708 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+12:40:02.709 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+12:40:06.891 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+12:40:06.891 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201605' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:09:05.496 [http-bio-8086-exec-2] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+13:09:16.096 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:09:16.096 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:13:33.774 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:13:33.774 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:14:44.866 [http-bio-8086-exec-8] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public java.util.List<com.youngor.plan.PlanHdVO> com.youngor.plan.PlanHdController.queryHdGrid(java.lang.String,java.lang.String,java.lang.String,java.lang.String)]: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:14:44.866 [http-bio-8086-exec-8] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+### The error may exist in com/youngor/plan/PlanHdRepository.xml
+### The error may involve com.youngor.plan.PlanHdRepository.queryHdGrid-Inline
+### The error occurred while setting parameters
+### SQL: select  '201607' as ormtno,'Y' as bradno,x.*,y.plmtqt,y.plmtam,nvl(y.plstat,0) plstat  from (           select distinct b.orgno,b.orgnm,b.channo,b.orgso,P0.ITNo AS SPCLNo,P0.ITNM AS SPCLNM,p0.itso from t_org b                  cross join ORD_PUB_CODE P0                 where b.channo='YXGS' AND b.ORGST='KQ'  and b.orgno!='08' and P0.TYNO='0'                and exists (select 1 from ord_sample_plan x where p0.ITNo=x.spclno and x.ormtno=?                 and x.bradno=?                )                          and exists ( select 1 from  t_role_user x,t_role_class y            where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=? )   ) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=? and y.bradno=? and y.channo='YXGS'    WHERE   x.orgno=?       order by x.orgso,x.itso
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "B"."SPCLNO": invalid identifier
+
+13:30:57.742 [http-bio-8086-exec-1] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+13:30:57.742 [http-bio-8086-exec-1] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+14:55:50.888 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:56:14.847 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+14:57:09.258 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:00:25.896 [http-bio-8086-exec-6] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:05:09.762 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:10:02.016 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:12:37.992 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:18:05.549 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:44:59.130 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:53:36.782 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:57:19.964 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+15:57:59.400 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+15:59:21.520 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:01:05.833 [http-bio-8086-exec-4] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:02:25.365 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:29:00.622 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:29:48.010 [http-bio-8086-exec-1] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:35:17.274 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+16:36:34.614 [http-bio-8086-exec-10] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+16:53:08.471 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:17:44.873 [http-bio-8086-exec-7] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:18:32.608 [http-bio-8086-exec-2] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:18:32.608 [http-bio-8086-exec-2] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:45:02.509 [localhost-startStop-1] DEBUG com.mawujun.controller.spring.SpringContextHolder - 注入ApplicationContext到SpringContextHolder:null
+17:59:42.501 [http-bio-8086-exec-5] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+17:59:53.284 [http-bio-8086-exec-6] DEBUG com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - Resolving exception from handler [public com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg> com.youngor.ordmt.OrdOrgController.queryPager(com.mawujun.utils.page.Pager<com.youngor.ordmt.OrdOrg>)]: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+17:59:53.284 [http-bio-8086-exec-6] ERROR com.mawujun.controller.spring.mvc.exception.MappingExceptionResolver - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='ormtno', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting null for parameter #1 with JdbcType OTHER . Try setting a different JdbcType for this parameter or a different jdbcTypeForNull configuration property. Cause: java.sql.SQLException: 无效的列类型: 1111
+18:54:02.206 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证
+18:54:07.011 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/user/logout.do匹配 '/user/logout.do*'. 所以不进行权限验证
+19:47:04.804 [http-bio-8086-exec-3] INFO  com.mawujun.controller.shiro.ShiroURLPermissionsFilter - 当前路径/main/index.jsp匹配 '/main/**'. 所以不进行权限验证

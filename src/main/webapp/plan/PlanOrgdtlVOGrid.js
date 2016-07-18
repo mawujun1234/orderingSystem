@@ -47,6 +47,18 @@ Ext.define('y.plan.PlanOrgdtlVOGrid',{
 		            	return value;
 		            }
         },
+        {dataIndex:'totalmtqt',header:'合计数量',sortable:false,
+					renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						metaData.tdStyle = 'background-color:#CD9B9B;' ;
+		            	return value;
+		            }
+        },
+        {dataIndex:'totalmtam',header:'合计金额(万元)',sortable:false,hideable:false,width:140,
+					renderer:function(value, metaData, record, rowIndex, colIndex, store){
+						metaData.tdStyle = 'background-color:#CD9B9B;' ;
+		            	return value;
+		            }
+        },
         {
         	header:'区域',
         	columns:[

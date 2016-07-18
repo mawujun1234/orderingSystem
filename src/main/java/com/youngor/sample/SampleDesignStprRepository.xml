@@ -44,5 +44,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 order by a.ditno
 		 
     </select>
+    <!-- 当更新企划样衣编号中出厂价和零售价的时候，同时更新设计样衣编号中“标准套”的出厂价和零售价-->
+    <update id="update_T00_stpr_by_plspno"  parameterType="map">
+    	update ord_sample_design_stpr set spftpr=#{spftpr},sprtpr=#{sprtpr}
+		where sampno in (select sampno from ord_sample_design  where plspno=#{plspno} ) and suitno='T00'
+    </update>
 </mapper>
 

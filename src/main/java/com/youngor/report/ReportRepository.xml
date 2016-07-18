@@ -149,6 +149,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
             select a.CHANNO,org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
             from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            and c.suitno in('T00','T01')
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} and org.yxgsno=#{yxgsno} 
              <if test="channo!=null and channo!=''">
              	and a.channo=#{channo}
@@ -176,6 +177,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
             from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            and c.suitno in('T00','T01')
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} and org.yxgsno=#{yxgsno} 
              <if test="channo!=null and channo!=''">
              	and a.channo=#{channo}
@@ -204,6 +206,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
             from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            and c.suitno in('T00','T01')
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} and org.yxgsno=#{yxgsno} 
              <if test="channo!=null and channo!=''">
              	and a.channo=#{channo}

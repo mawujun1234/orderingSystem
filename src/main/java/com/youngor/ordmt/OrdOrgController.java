@@ -28,6 +28,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.mawujun.utils.page.Pager;
+import com.youngor.utils.ContextUtils;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -148,7 +149,7 @@ public class OrdOrgController {
 	    		
 	    		//Object mim = record.getObject("MIM");
 	    	    String quanc = record.getOrgnm();
-	    	    String fileName = record.getOrdorg()+".png"; 
+	    	    String fileName = request.getServletContext().getContextPath()+"/qrcode_temp/"+record.getOrdorg()+".png"; 
 	    	    if(quanc.length() > 9){
 	    	    	quanc = quanc.substring(0, 9);
 	    	    }

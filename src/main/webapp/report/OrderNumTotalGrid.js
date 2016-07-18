@@ -101,6 +101,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        			ormtno:record.get("ormtno")
 		        		});
 		        		ordorg.reload();
+		        		//alert(0);
 		        		//ordorg.getStore().reload();
 		        		
 		        		var channo=combo.nextSibling("#channo");
@@ -143,6 +144,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        			qyno:record.get("orgno")
 		        		});
 		        		ordorg.reload();
+		        		//alert(1);
 		        		//ordorg.getStore().reload();
 					}
 				}
@@ -163,6 +165,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        			channo:record.get("channo")
 		        		});
 		        		ordorg.reload();
+		        		//alert(2);
 		        		//ordorg.getStore().reload();
 					}
 				}
@@ -204,10 +207,11 @@ Ext.define('y.report.OrderNumTotalGrid',{
 				},
 	            hidden:false,
 				xtype:'combobox',
-				reload_flag:0,
+				reload_flag:1,//因为渠道类型使用了value，不会触发select事件
 				reload:function(){
 					var me=this;
 					me.reload_flag++;
+					//console.log(me.reload_flag);
 					if(me.reload_flag>=3){
 						me.getStore().reload();
 					}

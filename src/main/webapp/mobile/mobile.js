@@ -199,16 +199,27 @@ $(function(){
 		 return;
 	  }
 
-	  if(pageId == "od_loginpage") {
-		  $("#bottom_bar").hide();
-	  } else {
-		  $("#bottom_bar").show();
+ 	  if(pageId == "od_info" || pageId == "od_mypage") {
+		   $("#bottom_bar").show();
 		  
 		  $("#bottom_bar a.tab-item").removeClass("active");
 	      $("#bottom_bar_"+pageId).addClass("active");
 		  
 		  sessionStorage["active_nav_id"]="#bottom_bar_"+pageId;
+		  
+	  } else {
+		 $("#bottom_bar").hide();
 	  }
+	 // if(pageId == "od_loginpage") {
+//		  $("#bottom_bar").hide();
+//	  } else {
+//		  $("#bottom_bar").show();
+//		  
+//		  $("#bottom_bar a.tab-item").removeClass("active");
+//	      $("#bottom_bar_"+pageId).addClass("active");
+//		  
+//		  sessionStorage["active_nav_id"]="#bottom_bar_"+pageId;
+//	  }
 	  
 	 
 	});
@@ -372,8 +383,14 @@ $(function(){
 			scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
 			success: function (res) {
 				var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-
-				scan(result)
+//alert(result);
+				var codes=result.split(',');
+				if(codes.length>1){
+					scan(codes[1]);
+				} else {
+					scan(result);
+				}
+				
 			}
 		});
 	});

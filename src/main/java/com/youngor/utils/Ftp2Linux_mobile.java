@@ -21,8 +21,8 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
-public class Ftp2Linux {
-	private static Log log = LogFactory.getLog(Ftp2Linux.class);
+public class Ftp2Linux_mobile {
+	private static Log log = LogFactory.getLog(Ftp2Linux_mobile.class);
 	private static String linux_tomcat_install_dir="/opt/apache-tomcat-8.0.36";
 	private static String linux_webapps_dir=linux_tomcat_install_dir+"/webapps";
 	private static String od_file_local="E:\\eclipse\\aaa\\orderingSystem\\target\\od.war";

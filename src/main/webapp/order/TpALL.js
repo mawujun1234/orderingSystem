@@ -134,7 +134,7 @@ Ext.onReady(function(){
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		  		text: '恢复定制',
+		  		text: '恢复订制',
 		  		disabled:true,
 		  		itemId:'restoreDZ_btn',
 				handler: function(btn){
@@ -228,7 +228,7 @@ Ext.onReady(function(){
 	        },
 	        {dataIndex:'PACKQT',header:'包装要求'
 	        },
-	        {dataIndex:'ORMTQT',header:'定制总数'
+	        {dataIndex:'ORMTQT',header:'订制总数'
 	        },
 	        {dataIndex:'ORMTQT_TP',header:'统配总数',
 	        	renderer:function(value, metaData, record, rowIndex, colIndex, store){

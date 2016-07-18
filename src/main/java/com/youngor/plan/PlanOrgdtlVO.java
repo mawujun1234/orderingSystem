@@ -14,7 +14,37 @@ public class PlanOrgdtlVO extends PlanOrgdtl{
 	private String sptynm;
 	private String spsenm;
 	
-	private Boolean isTotal=false;
+	private Boolean isTotal=false;//判断这行是不是小计行
+	/**
+	 * 获取数量合计
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getTotalmtqt(){
+		Double mtqt=0d;
+		if(super.getQymtqt()!=null){
+			mtqt=mtqt+super.getQymtqt();
+		}
+		if(super.getTxmtqt()!=null){
+			mtqt=mtqt+super.getTxmtqt();
+		}
+		return mtqt;
+	}
+	/**
+	 * 获取金额合计
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public Double getTotalmtam(){
+		Double mtam=0d;
+		if(super.getQymtam()!=null){
+			mtam=mtam+super.getQymtam();
+		}
+		if(super.getTxmtam()!=null){
+			mtam=mtam+super.getTxmtam();
+		}
+		return mtam;
+	}
 	
 	public String getBradnm(){
 		return PubCodeCache.getBradno_name(this.getBradno());

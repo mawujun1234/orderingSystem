@@ -11,6 +11,7 @@ Ext.Ajax.on({
  			case 401 :
  				//表示Unauthorized ，没有登录
  				alert("用户未登录");
+ 				top.location.reload();
 				break;
 			case 403 :
 				//表示没有权限

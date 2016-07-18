@@ -679,6 +679,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        {call ORDER_DL.ORDER_TO(?,?,?)}  
     </update>
     
+     <!--规格平衡-自动成箱（订货批号，订单类型，订货单位,品牌，大类，操作人）-->
+    <parameterMap type="map" id="order_dl__auto_box_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_ORDTYNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_ORDORG" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>
+	 </parameterMap>  
+	 <update id="order_dl__auto_box" parameterMap="order_dl__auto_box_params" statementType="CALLABLE">  
+       {call ORDER_DL.AUTO_BOX(?,?,?,?,?,?)}  
+    </update>
+    <!-- 规格平衡-提交审批（订货批号，订单类型，订货单位,品牌，大类，操作人） -->
+    <parameterMap type="map" id="order_dl__size_ap_box_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_ORDTYNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_ORDORG" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>
+	 </parameterMap>  
+	 <update id="order_dl__size_ap" parameterMap="order_dl__size_ap_box_params" statementType="CALLABLE">  
+       {call ORDER_DL.SIZE_AP(?,?,?,?,?,?)}  
+    </update>
+    
     <!-- 判断费否可以做尾箱调整了-->
     <select id="wxtz_check_stat" resultType="string" parameterType="map">
     	SELECT DEITNM FROM

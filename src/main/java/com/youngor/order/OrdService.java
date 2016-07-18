@@ -995,6 +995,30 @@ public class OrdService extends AbstractService<Ord, String>{
 	public void zgsVO_balanceOver(String ormtno,String bradno,String spclno) {
 		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
+	/**
+	 * 规格平衡 自动成箱
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param ordtyno
+	 * @param ordorg
+	 * @param bradno
+	 * @param spclno
+	 */
+	public void sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno) {
+		ordRepository.order_dl__auto_box(ormtno,ordtyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
+	}
+	/**
+	 * 规格平衡---规格平衡-提交审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param ordtyno
+	 * @param ordorg
+	 * @param bradno
+	 * @param spclno
+	 */
+	public void sizeVO_size_ap(String ormtno,String ordtyno,String ordorg,String bradno,String spclno) {
+		ordRepository.order_dl__auto_box(ormtno,ordtyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
+	}
 	
 	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
 		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);

@@ -15,10 +15,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		             	and x.bradno=#{bradno}
 		             )
 		             <if test="spclno!=null and spclno!=''">
-			    		and b.spclno=#{spclno}
+			    		and P0.ITNo=#{spclno}
 			    	</if>
 			    	and exists ( select 1 from  t_role_user x,t_role_class y
-      					where x.role_id=y.role_id and b.spclno=y.itno and x.user_id=#{user_id} )
+      					where x.role_id=y.role_id and P0.ITNo=y.itno and x.user_id=#{user_id} )
 		) x left join ord_plan_hd y on x.orgno=y.orgno and x.channo=y.channo and x.SPCLNO=y.SPCLNo  and y.ormtno=#{ormtno} and y.bradno=#{bradno} and y.channo='YXGS'
 		<where>
     	<if test="spclno!=null and spclno!=''">

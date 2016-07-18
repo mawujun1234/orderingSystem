@@ -266,7 +266,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 
     	var records=me.getSelectionModel( ).getSelection();
     	if(records==null || records.length==0){
-    		Ext.Msg.alert("提醒","请选择一行数据!");
+    		Ext.Msg.alert("提醒","请选择要打印的订货单位!");
     		return;
     	}
     	//var data=[];

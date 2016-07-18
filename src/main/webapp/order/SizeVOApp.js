@@ -86,6 +86,7 @@ Ext.onReady(function(){
 				labelWidth:65,
 				width:170,
 				allowBlank: false,
+				showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"订货单位不允许为空",
 				itemId: 'ordorg',
@@ -104,10 +105,15 @@ Ext.onReady(function(){
 				    listeners:{
 				    	load:function(myStore){
 				    		if(myStore.getCount( ) >0){
-						 		var r=myStore.getAt(1);
+						 		var r=null;
 						 		var me=panel.down("#ordorg");
+								if(me.showBlank==true){
+									r=myStore.getAt(1);//第一行是无
+								} else {
+									r=myStore.getAt(0);//第一行是,正确的数据
+								}
 						 		me.select( r );
-						 		me.fireEvent("select", me, r);
+							 	me.fireEvent("select", me, r);
 						 	}
 				    	}
 				    }
@@ -360,7 +366,7 @@ Ext.onReady(function(){
 					alert("存储过程还没写!");
 					return;
 					Ext.Ajax.request({
-						url:Ext.ContextPath+"/ord/sizeVO/autoPRDPK.do",
+						url:Ext.ContextPath+"/ord/sizeVO/sizeVO_auto_box.do",
 						params:{
 							sizegp:sizegp.getValue(),
 							sztype:sztype
@@ -379,7 +385,7 @@ Ext.onReady(function(){
 					alert("存储过程还没写!");
 					return;
 					Ext.Ajax.request({
-						url:Ext.ContextPath+"/ord/sizeVO/approve.do",
+						url:Ext.ContextPath+"/ord/sizeVO/sizeVO_size_ap.do",
 						params:{
 							sizegp:sizegp.getValue(),
 							sztype:sztype

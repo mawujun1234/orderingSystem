@@ -105,14 +105,12 @@ public class ShiroConfig {
 		shiroKickoutSessionControlFilter.setKickoutAfter(false);
 		shiroKickoutSessionControlFilter.setCacheManager(ehcacheManager());
 		shiroKickoutSessionControlFilter.setSessionManager(sessionManager());
-		//还要添加到下面的路径中，哪些地址进行拦截
-		//filterChainDefinitionMap.put("/**/*.jsp", "authc,perms,kickout");//表示就在这里进行登录
+
 		shiroFilter.getFilters().put("kickout", shiroKickoutSessionControlFilter);
-		
+		shiroFilter.getFilters().put("authc", shiroFormAjaxAuthenticationFilter());
 		shiroFilter.getFilters().put("perms", shiroURLPermissionsFilter());
 		
-		
-		//http://jinnianshilongnian.iteye.com/blog/2025656
+
 		Map<String,String> filterChainDefinitionMap=new HashMap<String,String>();
 		//filterChainDefinitionMap.put("/**", "anon");//这个是临时的
 		filterChainDefinitionMap.put("/", "anon");//anon只是用于判断认证，不用于判断授权
