@@ -20,7 +20,7 @@ function show_od_closeing_info(){
 	$.post(Ext.ContextPath+'/ord/mobile/checked_closeing_info.do', {  }, function(response){
 		if(response.success==false){
 			if(response.msg){
-				alert(response.msg);return;
+				$.alert(response.msg);return;
 			} else {
 				return;
 			}
@@ -520,6 +520,7 @@ $(function(){
 		//console.log(this.value);
 		this.value=this.value.replace(/\D/g,'');//.replace('/^[0-9]*[1-9][0-9]*$/g');//this.value.replace('/[^0-9]/g');
 		this.value=parseInt(this.value);//.replace('.','')
+		console.log(e.keyCode);
 		//console.log(this.value+"====");
 	});
 	
@@ -575,7 +576,7 @@ $(function(){
 			aa+=orszqt_sum;
 		}
 		if(window.vm_sampleVO.abstat==1 && aa==0){
-			alert("必定款的数量不能输入0");
+			$.alert("必定款的数量不能输入0");
 			$.hidePreloader();
 			return;
 		}

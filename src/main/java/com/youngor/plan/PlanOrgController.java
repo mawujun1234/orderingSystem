@@ -1,12 +1,12 @@
 package com.youngor.plan;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -52,7 +52,12 @@ public class PlanOrgController {
 	@RequestMapping("/planOrg/queryPlanOrgdtlVO.do")
 	@ResponseBody
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {	
-		List<PlanOrgdtlVO> planOrges=planOrgService.queryPlanOrgdtlVO(params);
+		List<PlanOrgdtlVO> planOrges=new ArrayList<PlanOrgdtlVO>();//planOrgService.queryPlanOrgdtlVO(params);
+		if(params.getParams().get("yxgsno")==null || "".equals(params.getParams().get("yxgsno"))){
+			planOrges= planOrgService.queryPlanOrgdtlVO_all(params);
+		} else {
+			planOrges= planOrgService.queryPlanOrgdtlVO(params);
+		}
 		return planOrges;
 	}
 	

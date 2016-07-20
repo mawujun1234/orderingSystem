@@ -25,20 +25,34 @@ Ext.define('y.main.LoginWindow', {
 			        xtype:'textfield'
 			    },
 				{
-			        fieldLabel: '编码',
+			        fieldLabel: '密码',
 			        name: 'password',
 			        afterLabelTextTpl: Ext.required,
 		            blankText:"密码不允许为空",
 		            inputType: 'password',
-			        xtype:'textfield'
+			        xtype:'textfield',
+			        listeners: {
+		                specialkey: function(field, e){
+		                    // e.HOME, e.END, e.PAGE_UP, e.PAGE_DOWN,
+		                    // e.TAB, e.ESC, arrow keys: e.LEFT, e.RIGHT, e.UP, e.DOWN
+		                    if (e.getKey() == e.ENTER) {
+		                        //var form = field.up('form').getForm();
+		                        //form.submit();
+		                    	
+		                    	var formpanel = field.up('form');
+		                    	formpanel.down("#loginform_save").fireEvent("click",formpanel.down("#loginform_save"));
+		                    }
+		                }
+		            }
 			    }],
 			 buttons:[{
 					text : '登录',
-					itemId : 'save',
+					itemId : 'loginform_save',
 					formBind: true, //only enabled once the form is valid
 		       		disabled: true,
 					glyph : 0xf0c7,
-					handler : function(button){
+					listeners:{
+					click : function(button){
 						var formpanel = button.up('form');
 						formpanel.submit({ 
 							headers:{ 'Accept':'application/json;'},
@@ -75,6 +89,7 @@ Ext.define('y.main.LoginWindow', {
 				           });		
 						
 						}
+					}//listener
 					},{
 						text : '关闭',
 						itemId : 'close',

@@ -41,10 +41,10 @@ Ext.define('y.report.OrderNumTotalGrid',{
         },
         {dataIndex:'ormtqt',header:'数量'
         },
-        {dataIndex:'spftpr',header:'出厂价'
-        },
-        {dataIndex:'spftpr_jine',header:'出厂金额'
-        },
+//        {dataIndex:'spftpr',header:'出厂价'
+//        },
+//        {dataIndex:'spftpr_jine',header:'出厂金额'
+//        },
         {dataIndex:'sprtpr',header:'零售价'
         },
         {dataIndex:'sprtpr_jine_wan',header:'零售金额(万元)'

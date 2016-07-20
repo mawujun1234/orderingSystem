@@ -42,7 +42,7 @@ Ext.onReady(function(){
 		        labelWidth:40,
 		        width:120,
 	            allowBlank: false,
-	            //showBlank:false,
+	            showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
 	             selFirst:true,
@@ -85,7 +85,7 @@ Ext.onReady(function(){
 		  		width:160,
 		  		itemId:'compcombo',
 				xtype:'orgcombo',
-				showBlank:true,
+				showBlank:false,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						//var regioncombo=combo.nextSibling("#regioncombo");
@@ -93,7 +93,7 @@ Ext.onReady(function(){
 						queryColumns(record.get("orgno"));
 						
 						window.query_stat_ready++;
-						panel.query_stat();
+						//panel.query_stat();
 					}
 				}
 			},{
@@ -108,6 +108,8 @@ Ext.onReady(function(){
 					//var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=panel.getParams();
 					grid.getStore().reload();
+					
+					panel.query_stat();
 
 				},
 				iconCls: 'icon-refresh'
@@ -179,7 +181,9 @@ Ext.onReady(function(){
 							url:Ext.ContextPath+'/tp/tpQy_getStat.do',
 							params:{
 								yxgsno:toolbars[1].down("#compcombo").getValue(),
-								ormtno:toolbars[0].down("#ordmtcombo").getValue()
+								ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+								bradno:toolbars[0].down("#bradno").getValue(),
+								spclno:toolbars[0].down("#spclno").getValue()
 							},
 							success:function(response){
 								var obj=Ext.decode(response.responseText);
@@ -200,14 +204,16 @@ Ext.onReady(function(){
 	 	
 	 }
 	 panel.over=function(){
-	 	Ext.Msg.confirm("消息","确定要完成吗?",function(btn){
+	 	Ext.Msg.confirm("消息","确定要按‘品牌+大类’完成吗?",function(btn){
 	 		if(btn=='yes'){
 		var toolbars=panel.getDockedItems('toolbar[dock="top"]');
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/tp/tpQy_over.do',
 			params:{
 				yxgsno:toolbars[1].down("#compcombo").getValue(),
-				ormtno:toolbars[0].down("#ordmtcombo").getValue()
+				ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+				bradno:toolbars[0].down("#bradno").getValue(),
+				spclno:toolbars[0].down("#spclno").getValue()
 			},
 			success:function(response){
 				var obj=Ext.decode(response.responseText);
@@ -215,9 +221,11 @@ Ext.onReady(function(){
 					Ext.Msg.alert("消息",obj.msg);
 					return;
 				}
-				var over_btn=toolbars[2].down("#over_btn");
-				over_btn.disable();
-				window.stat=0;
+//				var over_btn=toolbars[2].down("#over_btn");
+//				over_btn.disable();
+//				window.stat=0;
+				
+				panel.query_stat();
 				grid.getStore().reload();
 			}
 		});

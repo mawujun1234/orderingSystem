@@ -76,6 +76,11 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
 					successProperty:'success',
 					totalProperty:'total'		
 				}
+			},
+			listeners:{
+				load:function(sampleDesignSizegpGrid_store){
+				
+				}
 			}
 	  });
 
@@ -113,7 +118,7 @@ Ext.define('y.sample.SampleDesignSizegpGrid',{
       me.callParent();
 	},
 	reloadEditor:function(ormtno,bradno,spclno){
-		
+		//this.store.removeAll();
 		//var sizegpField=this.sizegp_editor;
 			this.sizegp_editor_store.getProxy().extraParams={
 				ormtno:ormtno,

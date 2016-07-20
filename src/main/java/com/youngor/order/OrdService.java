@@ -682,7 +682,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			for(Map<String,Object> map:list){
 				builder.append(","+map.get("QYNM"));
 			}
-			throw new BusinessException("下列区域的订单状态不对，不能审批通过："+builder.substring(1));
+			throw new BusinessException("下列区域未提交："+builder.substring(1));
 		}
 		//订货汇总条码打印-审批通过（订货批号,品牌,大类，操作用户）
 		ordRepository.order_dl__print_ps(params.get("ormtno").toString(), params.get("bradno").toString(),

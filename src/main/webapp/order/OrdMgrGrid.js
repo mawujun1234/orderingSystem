@@ -42,23 +42,6 @@ Ext.define('y.order.OrdMgrGrid',{
       			}
       		}
         },
-        {dataIndex:'MLORNO',header:'审批订单号'
-        },
-        {dataIndex:'MLORVN',header:'版本号'
-        },
-        {dataIndex:'ISFECT',header:'有效'
-        	,renderer:function(value){
-      			if(value=='0'){
-      				return "无效";
-      			} else if(value=='1'){
-      				return "有效";
-      			}  else {
-      				return "";
-      			}
-      		}
-        },
-        {dataIndex:'ORAPDP',header:'审批部门'
-        },
         {dataIndex:'ORSTAT',header:'总量状态'
         	,renderer:function(value){
       			if(value==0){
@@ -89,6 +72,24 @@ Ext.define('y.order.OrdMgrGrid',{
         		}
       		}
         },
+        {dataIndex:'MLORNO',header:'审批订单号'
+        },
+        {dataIndex:'MLORVN',header:'版本号'
+        },
+        {dataIndex:'ISFECT',header:'有效'
+        	,renderer:function(value){
+      			if(value=='0'){
+      				return "无效";
+      			} else if(value=='1'){
+      				return "有效";
+      			}  else {
+      				return "";
+      			}
+      		}
+        },
+        {dataIndex:'ORAPDP',header:'审批部门'
+        },
+        
         {dataIndex:'ORAPDT',header:'处理日期'
         }
       ];
@@ -427,6 +428,10 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		method:'POST',
 					    		success:function(response){
 					    			var obj=Ext.decode(response.responseText);
+					    			if(obj.success==false){
+					    				Ext.Msg.alert("消息",obj.msg);
+					    				return;
+					    			}
 					    			grid.getStore().reload();
 					    		}
 					    	});
@@ -457,6 +462,10 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		method:'POST',
 					    		success:function(response){
 					    			var obj=Ext.decode(response.responseText);
+					    			if(obj.success==false){
+					    				Ext.Msg.alert("消息",obj.msg);
+					    				return;
+					    			}
 					    			grid.getStore().reload();
 					    		}
 					    	});
@@ -488,6 +497,10 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		method:'POST',
 					    		success:function(response){
 					    			var obj=Ext.decode(response.responseText);
+					    			if(obj.success==false){
+					    				Ext.Msg.alert("消息",obj.msg);
+					    				return;
+					    			}
 					    			grid.getStore().reload();
 					    		}
 					    	});

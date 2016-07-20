@@ -17,4 +17,5 @@ import com.youngor.plan.PlanOrg;
 public interface PlanOrgRepository extends IRepository<PlanOrg, String>{
 
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(Map<String, Object> params);
+	public List<PlanOrgdtlVO> queryPlanOrgdtlVO_all(Map<String, Object> params);
 }

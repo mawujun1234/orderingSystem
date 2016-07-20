@@ -66,7 +66,7 @@ Ext.define('y.order.TpQyGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(window.stat!=0){
+	            	if(window.stat==3){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	 return value;
@@ -80,7 +80,7 @@ Ext.define('y.order.TpQyGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(window.stat!=0){
+	            	if(window.stat==3){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	 return value;
@@ -128,7 +128,9 @@ Ext.define('y.order.TpQyGrid',{
       });  
 	  this.plugins = [this.cellEditing];
 	  this.cellEditing.on("beforeedit",function(editor, context){
-	  	if(window.stat==0){
+	  	if(window.stat==3){
+	  		return true;
+	  	} else {
 	  		return false;
 	  	}
 
@@ -145,11 +147,11 @@ Ext.define('y.order.TpQyGrid',{
 		  	
 			var PACKQT=record.get("PACKQT");
 	
-		  	//商品部录入统配总量，要求统配总量为包装要求的整数倍
-		  	if(record.get("SUITNO")!='T02' && (value/PACKQT-parseInt(value/PACKQT))!=0){
-		  		Ext.Msg.alert("消息","统配数量必须是包装数量的整数倍!");
-		  		return false;
-		  	}
+//		  	//商品部录入统配总量，要求统配总量为包装要求的整数倍
+//		  	if(record.get("SUITNO")!='T02' && (value/PACKQT-parseInt(value/PACKQT))!=0){
+//		  		Ext.Msg.alert("消息","统配数量必须是包装数量的整数倍!");
+//		  		return false;
+//		  	}
 		  	//判断新的值加进去后，会不会超过 总公司的统配数量
 		  	var ORMTQT_TOTAL=record.get("ORMTQT_TOTAL");
 		  	//alert(originalValue);

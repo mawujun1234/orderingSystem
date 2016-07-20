@@ -5,13 +5,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
-import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
@@ -31,6 +30,25 @@ public class PubCodeController {
 	private PubCodeRepository pubCodeRepository;
 	@Resource
 	private PubCodeTypeService pubCodeTypeService;
+	
+	@PostConstruct
+	public void initPubCodeCache(){
+		//PubCodeCache.refreshPubCode();
+		List<PubCodeType> pubCodeTypes=pubCodeTypeService.queryAll();
+		for(PubCodeType pubCodeType:pubCodeTypes){
+			List<PubCode> pubCodes=pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, pubCodeType.getTyno()));
+			PubCodeCache.setPubCode(pubCodeType, pubCodes);
+		}
+	}
+	
+	@Scheduled(cron="0 0/10 * * * ? ")   //每5分执行一次 
+	public void refeshPubCodeCache() {
+		System.out.println("=================================================刷新缓存");
+		System.out.println("=================================================刷新缓存");
+		System.out.println("=================================================刷新缓存");
+		System.out.println("=================================================刷新缓存");
+		initPubCodeCache();
+	}
 
 	/**
 	 * 
@@ -38,8 +56,8 @@ public class PubCodeController {
 	 * @param tyno
 	 * @param fitno
 	 * @param bradno
-	 * @param stat_stat
-	 * @param showBlank
+	 * @param stat_stat 获取当季可用的 1:就是获取当季
+	 * @param showBlank：是否显示"无"这个数据
 	 * @param query 输入的查询参数
 	 * @return
 	 */
@@ -154,15 +172,7 @@ public class PubCodeController {
 		
 	}
 	
-	@PostConstruct
-	public void initPubCodeCache(){
-		//PubCodeCache.refreshPubCode();
-		List<PubCodeType> pubCodeTypes=pubCodeTypeService.queryAll();
-		for(PubCodeType pubCodeType:pubCodeTypes){
-			List<PubCode> pubCodes=pubCodeService.query(Cnd.select().andEquals(M.PubCode.tyno, pubCodeType.getTyno()));
-			PubCodeCache.setPubCode(pubCodeType, pubCodes);
-		}
-	}
+
 	
 
 

@@ -286,13 +286,21 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
     <!-- 在按审批通过按钮的时候，检查该营销公司下的所有区域是否已经都提交确认了-->
     <select id="process1_check_stats" resultType="map" parameterType="map">
+    select distinct c.qyno,c.qynm
+       from ORD_ORD a 
+       inner join v_ord_org c on  a.ordorg=c.qyno
+       left join ORD_ORDHD b on a.MTORNO=b.MTORNO and (b.SDTYNO!='10' or b.ORSTAT!=2) and b.bradno=#{bradno} and b.spclno=#{spclno}
+       where  a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
+    </select>
+    <!--
+    <select id="process1_check_stats" resultType="map" parameterType="map">
     	 select distinct c.qyno,c.qynm
        from ORD_ORD a,ORD_ORDHD b,v_ord_org c
        where a.MTORNO=b.MTORNO and a.ordorg=c.qyno
        and a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
-       and (b.SDTYNO!='20' or b.ORSTAT!=2)
+       and (b.SDTYNO!='10' or b.ORSTAT!=2)
        and b.bradno=#{bradno} and b.spclno=#{spclno}
-    </select>
+    </select>-->
     <!-- 订货审批的时候 -->
     <parameterMap type="map" id="order_dl__print_ps_params">  
 	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>   
@@ -362,7 +370,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>   
 	 </parameterMap>  
 	 <update id="order_dl__process" parameterMap="order_dl__process_params" statementType="CALLABLE">  
-       {call order_dl__process_params(?,?,?)}  
+       {call ORDER_DL.PROCESS(?,?,?)}  
     </update>
     <!-- 把该营销公司下面的所有区域的状态变成编辑中
     <update id="process1_update_ordhd_stats_0" parameterType="map">
@@ -874,7 +882,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 where a.MTORNO=b.MTORNO and a.ordorg=c.orgno
 		 and exists (select 1 from t_position_org_access x,t_position_org_user y where x.position_id=y.position_id and x.orgno=c.orgno and y.user_id=#{user_id})
        	 and a.ormtno=#{ormtno}          
-       	 and b.bradno=#{bradno} and b.spclno=#{spclno} 
+       	 and b.bradno=#{bradno} 
+       	 <if test="spclno!=null and spclno!=''">
+       	 	 and b.spclno=#{spclno} 
+       	 </if>
        	 <if test="readyHandling=='ready'">
        	 	and (b.orstat in ('1','2') or b.szstat in ('1','2'))
        	 </if>

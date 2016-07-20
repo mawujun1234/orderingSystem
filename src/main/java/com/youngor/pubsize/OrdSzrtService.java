@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
+import com.youngor.utils.M;
 
 
 /**
@@ -34,7 +36,17 @@ public class OrdSzrtService extends AbstractService<OrdSzrt, OrdSzrt.PK>{
 	@Override
 	public OrdSzrt.PK create(OrdSzrt ordSzrt) {
 		try {
-		ordSzrtRepository.deleteById(ordSzrt.geetPK());
+			if(ordSzrt.getVersno()==null || "".equals(ordSzrt.getVersno())){
+				ordSzrtRepository.deleteBatch(Cnd.delete().andIsNull(M.OrdSzrt.versno)
+						.andEquals(M.OrdSzrt.ormtno, ordSzrt.getOrmtno())
+						.andEquals(M.OrdSzrt.ordorg, ordSzrt.getOrdorg())
+						.andEquals(M.OrdSzrt.sizegp, ordSzrt.getSizegp())
+						.andEquals(M.OrdSzrt.sizeno, ordSzrt.getSizeno())
+						.andEquals(M.OrdSzrt.spseno, ordSzrt.getSpseno()));
+			} else {
+				ordSzrtRepository.deleteById(ordSzrt.geetPK());
+			}
+			
 		} catch( ObjectNotFoundException e) {
 			
 		}

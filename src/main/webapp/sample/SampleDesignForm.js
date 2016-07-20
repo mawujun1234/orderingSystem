@@ -545,26 +545,41 @@ Ext.define('y.sample.SampleDesignForm',{
 		//如果小类是套西的话，就隐藏套装种类
 		if(window.sampleDesign.get("sptyno")=='S10'){
 			//me.showsampleDesignSizegpGrid_bool=true;
-			me.showsampleDesignSizegpGrid(true);
+			me.showsampleDesignSizegpGrid(true,record.get("suitty"));
 		} else {
 			//me.showsampleDesignSizegpGrid_bool=false;
-			me.showsampleDesignSizegpGrid(false);
+			me.showsampleDesignSizegpGrid(false,record.get("suitty"));
 		}
 		
 		//if(me.showsampleDesignSizegpGrid_bool){
 			var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();
 			sampleDesignSizegpGrid_store.removeAll();
+			//if(!record.get("suitty")){
+				//console.log("--------------------"+(new Date()).getTime()+"----"+record.get("suitty"));
+				if(record.get("suitty")){//排除新建的时候，第一次选择套装类型，不会更新的问题
+					//alert(1);
+					sampleDesignSizegpGrid_store.click_loading=true;
+				}
+				
+				sampleDesignSizegpGrid_store.reload({
+					params:{
+						suitty:record.get("suitty"),
+						sampno:record.get("sampno")//window.sampno.sampno
+					}
+				});
+			//}
 //			sampleDesignSizegpGrid_store.getProxy().extraParams={
 //				suitty:record.get("suitty"),
-//				sampno:window.sampno.sampno
+//				sampno:record.get("sampno")//window.sampno.sampno
 //			};
-			sampleDesignSizegpGrid_store.reload({
-				params:{
-					suitty:record.get("suitty"),
-					sampno:window.sampno.sampno
-				}
-			});
-		//}
+			//sampleDesignSizegpGrid_store.reload();
+//			sampleDesignSizegpGrid_store.reload({
+//				params:{
+//					suitty:record.get("suitty"),
+//					sampno:record.get("sampno")//window.sampno.sampno
+//				}
+//			});
+//		//}
 		
 		me.getForm().loadRecord(record);
 		
@@ -669,7 +684,7 @@ Ext.define('y.sample.SampleDesignForm',{
 		sampleDesignSizegpGrid_store.removeAll();
 	},
 	//如果小类是套西的时候，就显示套装种类
-	showsampleDesignSizegpGrid:function(bool){
+	showsampleDesignSizegpGrid:function(bool,suitty){
 		var me=this;
 		this.showsampleDesignSizegpGrid_bool=bool;
 		//小类为套西时，是否拆套和套装种类 必填，其他情况不显示；
@@ -727,17 +742,23 @@ Ext.define('y.sample.SampleDesignForm',{
 		            blankText:"套装种类不允许为空",
 		            xtype:'pubcodecombo',
 			        tyno:'20',
-			        selFirst:true,
+			        selFirst:false,
+			        value:suitty,
 			        listeners:{
 			        	select:function(combo, record){
 			        		var form=combo.up("form");
 			        		var sampleDesignSizegpGrid_store=form.getSampleDesignSizegpGrid().getStore();
+			        		if(sampleDesignSizegpGrid_store.click_loading==true){
+			        			sampleDesignSizegpGrid_store.click_loading=false;
+			        			return;
+			        		}
 			        		sampleDesignSizegpGrid_store.removeAll();
 		//					sampleDesignSizegpGrid_store.getProxy().extraParams={
 		//						suitty:record.get("itno"),
 		//						sampno:window.sampno.sampno
 		//						
 		//					};
+			        		//console.log("==========="+(new Date()).getTime()+"===="+record.get("itno"));
 							sampleDesignSizegpGrid_store.reload({params:{
 								suitty:record.get("itno"),
 								sampno:window.sampno.sampno

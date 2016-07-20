@@ -60,7 +60,9 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 	
 	public List<PlanOrgdtlVO> queryPlanOrgdtlVO(MapParams params) {
 		params.getParams().put("user_id", ShiroUtils.getUserId());
-		List<PlanOrgdtlVO> list= planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+		//List<PlanOrgdtlVO> list= new ArrayList<PlanOrgdtlVO>();//
+		List<PlanOrgdtlVO> list=planOrgRepository.queryPlanOrgdtlVO(params.getParams());
+		
 		if(list.size()==0){
 			return list;
 		}
@@ -86,6 +88,120 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 			if(!ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.QY) && planOrgdtlVO.getPlstat()==0){
 				planOrgdtlVO.setPlstat(5);
 			}
+			
+			//区域的小计
+			PlanOrgdtlVO subtotal_qy=map_quy.get(planOrgdtlVO.getOrdorg());
+			if(subtotal_qy==null){
+				subtotal_qy=new PlanOrgdtlVO();
+				subtotal_qy.setOrdorg(planOrgdtlVO.getOrdorg());
+				subtotal_qy.setOrgnm(planOrgdtlVO.getOrgnm()+"小计:");
+				subtotal_qy.setIsTotal(true);
+				map_quy.put(planOrgdtlVO.getOrdorg(), subtotal_qy);
+			}	
+			subtotal_qy.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_qy.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_qy.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_qy.addTxmtam(planOrgdtlVO.getTxmtam());
+			
+			
+			//添加大类小计
+			String key_spclno=subtotal_qy.getOrdorg()+planOrgdtlVO.getSpclno();
+			PlanOrgdtlVO subtotal_spclno=map_spclno.get(key_spclno);
+			if(subtotal_spclno==null){	
+				subtotal_spclno=new PlanOrgdtlVO();
+				//subtotal_spclno.setOrdorg("notedit");
+				subtotal_spclno.setSpclno(planOrgdtlVO.getSpclno());
+				subtotal_spclno.setSpclnm(planOrgdtlVO.getSpclnm()+"小计:");
+				subtotal_spclno.setIsTotal(true);
+				map_spclno.put(key_spclno, subtotal_spclno);
+			}
+			subtotal_spclno.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_spclno.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_spclno.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_spclno.addTxmtam(planOrgdtlVO.getTxmtam());
+			
+			//添加小类合计
+			String key_sptyno=subtotal_qy.getOrdorg()+planOrgdtlVO.getSpclno()+planOrgdtlVO.getSptyno();
+			PlanOrgdtlVO subtotal_sptyno=map_sptyno.get(key_sptyno);
+			if(subtotal_sptyno==null){
+				subtotal_sptyno=new PlanOrgdtlVO();
+				//subtotal_sptyno.setOrdorg("notedit");
+				subtotal_sptyno.setSptyno(planOrgdtlVO.getSptyno());
+				subtotal_sptyno.setSptynm(planOrgdtlVO.getSptynm()+"小计:");
+				subtotal_sptyno.setIsTotal(true);
+				map_sptyno.put(key_sptyno, subtotal_sptyno);
+			}
+			subtotal_sptyno.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_sptyno.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_sptyno.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_sptyno.addTxmtam(planOrgdtlVO.getTxmtam());
+			
+			
+			
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !(list.get(i).getOrdorg()+list.get(i).getSpclno()+list.get(i).getSptyno()).equals(key_sptyno)){
+				list_new.add(subtotal_sptyno);
+			}
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !(list.get(i).getOrdorg()+list.get(i).getSpclno()).equals(key_spclno)){
+				list_new.add(subtotal_spclno);
+			}
+			
+			//排除把小计添加在第一行 和最后一行的时候加上去
+			if(list_size==i || !list.get(i).getOrdorg().equals(subtotal_qy.getOrdorg())){
+				list_new.add(subtotal_qy);
+			}
+			
+			
+			//添加合计
+			if(subtotal_all==null){
+				subtotal_all=new PlanOrgdtlVO();
+				subtotal_all.setOrdorg(planOrgdtlVO.getOrdorg());
+				subtotal_all.setOrgnm("合计:");
+				subtotal_all.setIsTotal(true);
+			}
+			
+			subtotal_all.addQymtqt(planOrgdtlVO.getQymtqt());
+			subtotal_all.addQymtam(planOrgdtlVO.getQymtam());
+			subtotal_all.addTxmtqt(planOrgdtlVO.getTxmtqt());
+			subtotal_all.addTxmtam(planOrgdtlVO.getTxmtam());
+		}
+		list_new.add(subtotal_all);
+		return list_new;
+	}
+	
+	public List<PlanOrgdtlVO> queryPlanOrgdtlVO_all(MapParams params) {
+		params.getParams().put("user_id", ShiroUtils.getUserId());
+		List<PlanOrgdtlVO> list=planOrgRepository.queryPlanOrgdtlVO_all(params.getParams());
+		
+		if(list.size()==0){
+			return list;
+		}
+		//return list;
+		List<PlanOrgdtlVO> list_new= new ArrayList<PlanOrgdtlVO>();
+		//计算合计和小计
+		
+		
+		
+		//String subtotal_sptyno_temp=null;
+		//PlanOrgdtlVO subtotal_sptyno=new PlanOrgdtlVO();//小类
+		//PlanOrgdtlVO subtotal_spclno=new PlanOrgdtlVO();//大类
+		////合计
+		Map<String,PlanOrgdtlVO> map_sptyno=new HashMap<String,PlanOrgdtlVO>();
+		Map<String,PlanOrgdtlVO> map_spclno=new HashMap<String,PlanOrgdtlVO>();
+		Map<String,PlanOrgdtlVO> map_quy=new HashMap<String,PlanOrgdtlVO>();
+		PlanOrgdtlVO subtotal_all=null;//new PlanOrgdtlVO();//合计
+		int list_size=list.size();
+		int i=0;
+		for(PlanOrgdtlVO planOrgdtlVO:list){
+			i++;
+			list_new.add(planOrgdtlVO);
+			//如果不是区域进去，是不准修改的
+			//if(!ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.QY) ){
+				planOrgdtlVO.setPlstat(5);
+			//}
 			
 			//区域的小计
 			PlanOrgdtlVO subtotal_qy=map_quy.get(planOrgdtlVO.getOrdorg());

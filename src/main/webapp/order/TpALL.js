@@ -30,12 +30,12 @@ Ext.onReady(function(){
 	
 	var dockedItems=[];
 	
-	dockedItems.push({
-	        xtype: 'pagingtoolbar',
-	        store: store,  
-	        dock: 'bottom',
-	        displayInfo: true
-	  });
+//	dockedItems.push({
+//	        xtype: 'pagingtoolbar',
+//	        store: store,  
+//	        dock: 'bottom',
+//	        displayInfo: true
+//	  });
 	  
 	 dockedItems.push({
 	  		xtype: 'toolbar',
@@ -46,8 +46,7 @@ Ext.onReady(function(){
 				allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 				listeners:{
-					select:function( combo, record, eOpts ) {	
-//						
+					select:function( combo, record, eOpts ) {						
 	    				grid.query_stat();
 					}
 				}
@@ -74,6 +73,7 @@ Ext.onReady(function(){
 		        labelWidth:40,
 		        width:120,
 	            allowBlank: false,
+	            showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
 	             selFirst:true,
@@ -124,6 +124,8 @@ Ext.onReady(function(){
     				grid.getStore().getProxy().extraParams=grid.getParams();
     				
 					grid.getStore().reload();
+					
+					grid.query_stat();
 
 				},
 				iconCls: 'icon-refresh'
@@ -268,7 +270,9 @@ Ext.onReady(function(){
 							url:Ext.ContextPath+'/tp/zgs_getOrstat.do',
 							params:{
 								//ordorg:spb_orgno,
-								ormtno:toolbars[0].down("#ordmtcombo").getValue()
+								ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+								bradno:toolbars[0].down("#bradno").getValue(),
+								spclno:toolbars[0].down("#spclno").getValue()
 							},
 							success:function(response){
 								var obj=Ext.decode(response.responseText);
@@ -320,14 +324,16 @@ Ext.onReady(function(){
 	}
 	
 	grid.over=function(){
-		Ext.Msg.confirm("消息","确定要完成吗?",function(btn){
+		Ext.Msg.confirm("消息","确定要按‘品牌+大类’完成吗?",function(btn){
 			if(btn=='yes'){
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/tp/zgs_over.do',
 			params:{
 				//ordorg:spb_orgno,
-				ormtno:toolbars[0].down("#ordmtcombo").getValue()
+				ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+				bradno:toolbars[0].down("#bradno").getValue(),
+				spclno:toolbars[0].down("#spclno").getValue()
 			},
 			success:function(){
 				

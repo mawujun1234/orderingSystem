@@ -38,8 +38,8 @@ public class TpService {
 	
 	private String spb_orgno="10206030000";//商品部的id，也就是总部的ordorg
 
-	public  Pager<Map<String,Object>> zgs_tpAllQuery( Pager<Map<String,Object>> pager) {
-		return tpRepository.zgs_tpAllQuery(pager);
+	public  List<Map<String,Object>> zgs_tpAllQuery(MapParams pager) {
+		return tpRepository.zgs_tpAllQuery(pager.getParams());
 	}
 	
 	public  List<Map<String,Object>> zgs_tpAllExport(MapParams params) {
@@ -79,7 +79,7 @@ public class TpService {
 			//ordhd.setSdtyno();
 			ordhd.setOrstat(0);
 			ordhd.setSzstat(0);
-			ordhd.setIsfect(0);
+			ordhd.setIsfect(1);
 			ordhdRepository.create(ordhd);
 		}
 		
@@ -124,17 +124,17 @@ public class TpService {
 		pk1.setSampno(sampno);
 		pk1.setSuitno(suitno);
 		orddtlRepository.deleteById(pk1);
-		
+		//把所有这个样衣编号的数量都回复到订制的数量
 		tpRepository.zgs_restoreDZ(sampno, mtorno);
 	}
 	
-	public void zgs_over(String ormtno) {
+	public void zgs_over(String ormtno,String bradno,String spclno) {
 		String mtorno=ordService.getMtorno(ormtno,"TP",spb_orgno);
-		tpRepository.zgs_over(mtorno);
+		tpRepository.zgs_over(mtorno,bradno,spclno);
 	}
-	public int zgs_getOrstat(String ormtno) {
+	public int zgs_getOrstat(String ormtno,String bradno,String spclno) {
 		String mtorno=ordService.getMtorno(ormtno,"TP",spb_orgno);
-		Integer aa= tpRepository.zgs_getOrstat(mtorno);
+		Integer aa= tpRepository.zgs_getOrstat(mtorno,bradno,spclno);
 		if(aa==null){
 			return 0;
 		}
@@ -246,10 +246,10 @@ public class TpService {
 	 * @param ormtno
 	 * @return 0：不可编辑。
 	 */
-	public Integer tpYxgs_getStat(String ormtno) {
+	public Integer tpYxgs_getStat(String ormtno,String bradno,String spclno) {
 		//总部的有效状态为1，而且orstat=3的，才说明营销公司可以编辑
 		String mtorno=ordService.getMtorno(ormtno,"TP",spb_orgno);
-		List<Map<String,Object>> list= tpRepository.tpYxgs_getStat(mtorno);
+		List<Map<String,Object>> list= tpRepository.tpYxgs_getStat(mtorno,bradno,spclno);
 		if(list==null || list.size()==0){
 			return 0;
 		}
@@ -263,18 +263,18 @@ public class TpService {
 		}
 		if("1".equals(map.get("ISFECT").toString())){
 			if("3".equals(map.get("ORSTAT").toString())){
-				return 1;
+				return 3;
 			}
 		}
 		return 0;
 		
 	}
 	
-	public  void tpYxgs_over(String ormtno){
+	public  void tpYxgs_over(String ormtno,String bradno,String spclno){
 		
 		String mtorno=ordService.getMtorno(ormtno,"TP",spb_orgno);
 		//还要判断各个大区的统配数量之和是否等于总公司的统配数量之和，如果不相等的话，不能提交
-		List<String> list=tpRepository.tpYxgs_check_diff(ormtno, mtorno);
+		List<String> list=tpRepository.tpYxgs_check_diff(ormtno, mtorno,bradno,spclno);
 		if(list!=null && list.size()>0){
 			StringBuilder builder=new StringBuilder();
 			for(String str:list){
@@ -282,11 +282,21 @@ public class TpService {
 			}
 			throw new BusinessException("下列样衣未分配完:"+builder.substring(1));
 		}
+		
+		// 检查 区域统配+特许统配 是否等于统配总数
+		List<Map<String, Object>> list1 = tpRepository.tpYxgs_check_packqt(ormtno, mtorno, bradno, spclno);
+		if (list1 != null && list1.size() > 0) {
+			StringBuilder builder = new StringBuilder();
+			for (Map<String, Object> map : list1) {
+				builder.append("," + map.get("SAMPNM") + "(" + map.get("YXGSNM") + ")");
+			}
+			throw new BusinessException("下列样衣不符合包装要求:" + builder.substring(1));
+		}
 		//把总部的订单状态改为无效0
-		tpRepository.tpYxgs_over_GSBB(mtorno);
+		tpRepository.tpYxgs_over_GSBB(mtorno,bradno,spclno);
 		
 		//把素有营销公司的 有效状态 改成 有效1，并且orstat 改成 “审批通过”
-		tpRepository.tpYxgs_over(ormtno);
+		tpRepository.tpYxgs_over(ormtno,bradno,spclno);
 		
 	}
 
@@ -341,10 +351,10 @@ public class TpService {
 	 * @param ormtno
 	 * @return 0：不可编辑。
 	 */
-	public int tpQy_getStat(String ormtno, String yxgsno) {
+	public int tpQy_getStat(String ormtno, String yxgsno,String bradno,String spclno) {
 		// 营销公司的有效状态为1，而且orstat=3的，才说明营销公司可以编辑
 		String mtorno = ordService.getMtorno(ormtno, "TP", yxgsno);
-		List<Map<String, Object>> list = tpRepository.tpYxgs_getStat(mtorno);
+		List<Map<String, Object>> list = tpRepository.tpYxgs_getStat(mtorno, bradno, spclno);
 		if (list == null || list.size() == 0) {
 			return 0;
 		}
@@ -358,7 +368,7 @@ public class TpService {
 		}
 		if ("1".equals(map.get("ISFECT").toString())) {
 			if ("3".equals(map.get("ORSTAT").toString())) {
-				return 1;
+				return 3;
 			}
 		}
 		return 0;
@@ -424,10 +434,10 @@ public class TpService {
 			orddtlRepository.update(orddtl);
 		}
 	}
-	public void tpQy_over(String ormtno,String yxgsno) {
+	public void tpQy_over(String ormtno,String yxgsno,String bradno,String spclno) {
 		String mtorno=ordService.getMtorno(ormtno,"TP",yxgsno);
 		//还要判断各个区域的统配数量之和是否等于区域的统配数量之和，如果不相等的话，不能提交
-		List<String> list=tpRepository.tpQy_check_diff(ormtno, mtorno);
+		List<String> list=tpRepository.tpQy_check_diff(yxgsno,ormtno, mtorno, bradno, spclno);
 		if(list!=null && list.size()>0){
 			StringBuilder builder=new StringBuilder();
 			for(String str:list){
@@ -435,11 +445,23 @@ public class TpService {
 			}
 			throw new BusinessException("下列样衣未分配完:"+builder.substring(1));
 		}
+		
+		//检查  区域统配+特许统配  是否等于统配总数
+		List<Map<String,Object>> list1=tpRepository.tpQy_check_packqt(yxgsno,ormtno, mtorno, bradno, spclno);
+		if(list1!=null && list1.size()>0){
+			StringBuilder builder=new StringBuilder();
+			for(Map<String,Object> map:list1){
+				builder.append(","+map.get("SAMPNM")+"("+map.get("QYNM")+")");
+			}
+			throw new BusinessException("下列样衣不符合包装要求:"+builder.substring(1));
+		}
+		
+		
 		//把营销公司的订单状态改为无效0
-		tpRepository.tpQy_over_YXGS(mtorno);
+		tpRepository.tpQy_over_YXGS(mtorno, bradno, spclno);
 		
 		//把素有营销公司的 有效状态 改成 有效1，并且orstat 改成 “审批通过”
-		tpRepository.tpQy_over(ormtno,yxgsno);
+		tpRepository.tpQy_over(ormtno,yxgsno, bradno, spclno);
 	}
 	
 }

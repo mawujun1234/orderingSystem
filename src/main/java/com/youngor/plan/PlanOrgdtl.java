@@ -1,6 +1,8 @@
 package com.youngor.plan;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,7 +58,7 @@ public class PlanOrgdtl {
 		if(qymtam==null){
 			qymtam=0d;
 		}
-		this.qymtam=this.qymtam+qymtam;
+		this.qymtam=(new BigDecimal(this.qymtam)).add(new BigDecimal(qymtam)).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 	
 	public void addTxmtqt(Double txmtqt){
@@ -75,7 +77,8 @@ public class PlanOrgdtl {
 		if(txmtam==null){
 			txmtam=0d;
 		}
-		this.txmtam=this.txmtam+txmtam;
+		//this.txmtam=this.txmtam+txmtam;
+		this.txmtam=(new BigDecimal(this.txmtam)).add(new BigDecimal(txmtam)).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 	
 	public static class PK implements Serializable {

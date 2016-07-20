@@ -14,12 +14,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryQyData" resultType="map" parameterType="map">
     	select x.*,y.QYNO,y.ORMTQT_BW_QY
     		,'${bradno}' bradno ,'${spclno}' spclno,'${ormtno}' ormtno from (
-		          select c.SAMPNO,c.sampnm,e.SUITNO,d.sptyno,d.spseno
+		          select b.SAMPNO,b.sampnm,nvl(bb.SUITNO,'T00') SUITNO,a.sptyno,a.spseno
 					    from 
-		         	ord_sample_design c 
-		          inner join ord_sample_plan d on c.plspno=d.plspno 
-		          inner join ord_sample_design_sizegp E on c.sampno=e.sampno 
-					    WHERE   d.ormtno=#{ormtno} 
+		         	ord_sample_design b 
+		          inner join ord_sample_plan a on b.plspno=a.plspno 
+		          --inner join ord_sample_design_sizegp E on c.sampno=e.sampno 
+		          left join ORD_SUIT_DC bb on  bb.sptyno=a.sptyno and bb.sexno=b.sexno and  bb.suitty=b.suitty and bb.spltmk=b.spltmk and bb.bradno=a.bradno
+					    WHERE   a.ormtno=#{ormtno}  and a.spclno=#{spclno} and a.bradno=#{bradno}
+					    <if test="sptyno!=null and sptyno!=''">
+					    	and a.sptyno=#{sptyno}
+					    </if>
+					    <if test="spseno!=null and spseno!=''">
+					    	and a.spseno=#{spseno}
+					    </if>
+					    <if test="sampnm!=null and sampnm!=''">
+					    	and b.sampnm like '%${sampnm}%'
+					    </if>
 		) x left join (
 		      select SAMPNO,QYNO,SUITNO,sum(ORMTQT_BW_QY) ORMTQT_BW_QY  FROM(
 		            select B.SAMPNO,a.ordorg as QYNO,B.SUITNO,sum(b.ORMTQT) ORMTQT_BW_QY

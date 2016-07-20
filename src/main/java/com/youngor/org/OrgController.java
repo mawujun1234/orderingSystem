@@ -64,7 +64,12 @@ public class OrgController {
 			dim=Dim.SALE;
 		}
 
-		List<Org> orges=orgService.query4Combo(parent_no, channo,dim,ShiroUtils.getUserId());
+		List<Org> orges=new ArrayList<Org>();//orgService.query4Combo(parent_no, channo,dim,ShiroUtils.getUserId());
+		if(parent_no==null || "".equals(parent_no)){
+			//orges=orgService.query4Combo(parent_no, channo,dim,ShiroUtils.getUserId());
+		} else {
+			orges=orgService.query4Combo(parent_no, channo,dim,ShiroUtils.getUserId());
+		}
 		if(showBlank!=null && showBlank==true){
 			Org blank=new Org();
 			blank.setOrgno("");

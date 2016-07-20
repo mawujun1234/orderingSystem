@@ -43,20 +43,35 @@ public class TpController {
 	 * @param id
 	 * @return
 	 */
+//	@RequestMapping("/tp/zgs_tpAllQuery.do")
+//	@ResponseBody
+//	public  Pager<Map<String,Object>> zgs_tpAllQuery( Pager<Map<String,Object>> pager) {
+//		//在查询的时候判断，是否已经超时了，如果已经超时了，就不能查询了
+//		
+//		
+//		pager= tpService.zgs_tpAllQuery(pager);
+//		List<Map<String,Object>> list=pager.getRoot();
+//		for(Map<String,Object> map:list){
+//			map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(map.get("SPTYNO").toString()));
+//			map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(map.get("SPSENO").toString()));
+//			map.put("SUITNO_NAME", PubCodeCache.getSuitno_name(map.get("SUITNO").toString()));
+//		}
+//		return pager;
+//	}
 	@RequestMapping("/tp/zgs_tpAllQuery.do")
 	@ResponseBody
-	public  Pager<Map<String,Object>> zgs_tpAllQuery( Pager<Map<String,Object>> pager) {
+	public  List<Map<String,Object>> zgs_tpAllQuery( MapParams pager) {
 		//在查询的时候判断，是否已经超时了，如果已经超时了，就不能查询了
 		
 		
-		pager= tpService.zgs_tpAllQuery(pager);
-		List<Map<String,Object>> list=pager.getRoot();
+		List<Map<String,Object>>  list= tpService.zgs_tpAllQuery(pager);
+		//List<Map<String,Object>> list=pager.getRoot();
 		for(Map<String,Object> map:list){
 			map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(map.get("SPTYNO").toString()));
 			map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(map.get("SPSENO").toString()));
 			map.put("SUITNO_NAME", PubCodeCache.getSuitno_name(map.get("SUITNO").toString()));
 		}
-		return pager;
+		return list;
 	}
 	
 	@RequestMapping("/tp/zgs_updateOrmtqt_tp.do")
@@ -74,16 +89,16 @@ public class TpController {
 	}
 	@RequestMapping("/tp/zgs_over.do")
 	@ResponseBody
-	public String zgs_over(String ormtno) {
-		
-		tpService.zgs_over( ormtno);
+	public String zgs_over(String ormtno,String bradno,String spclno) {
+		//总量提交是按照大类+品牌进行提交的
+		tpService.zgs_over( ormtno,bradno,spclno);
 		return "{success:true}";
 	}
 	@RequestMapping("/tp/zgs_getOrstat.do")
 	@ResponseBody
-	public String zgs_getOrstat(String ormtno) {
+	public String zgs_getOrstat(String ormtno,String bradno,String spclno) {
 		
-		int orstat=tpService.zgs_getOrstat( ormtno);
+		int orstat=tpService.zgs_getOrstat( ormtno,bradno,spclno);
 		return "{success:true,orstat:"+orstat+"}";
 	}
 	
@@ -192,15 +207,15 @@ public class TpController {
 	}
 	@RequestMapping("/tp/tpYxgs_getStat.do")
 	@ResponseBody
-	public String tpYxgs_getStat(String ormtno) {
-		int stat=tpService.tpYxgs_getStat(ormtno);
+	public String tpYxgs_getStat(String ormtno,String bradno,String spclno) {
+		int stat=tpService.tpYxgs_getStat(ormtno,bradno,spclno);
 		return "{success:true,stat:"+stat+"}";
 	}
 	@RequestMapping("/tp/tpYxgs_over.do")
 	@ResponseBody
-	public String tpYxgs_over(String ormtno) {
+	public String tpYxgs_over(String ormtno,String bradno,String spclno) {
 		
-		tpService.tpYxgs_over( ormtno);
+		tpService.tpYxgs_over( ormtno,bradno,spclno);
 		return "{success:true}";
 	}
 	@RequestMapping("/tp/tpYxgsExport.do")
@@ -340,8 +355,8 @@ public class TpController {
 	
 	@RequestMapping("/tp/tpQy_getStat.do")
 	@ResponseBody
-	public String tpQy_getStat(String ormtno,String yxgsno) {
-		int stat=tpService.tpQy_getStat(ormtno,yxgsno);
+	public String tpQy_getStat(String ormtno,String yxgsno,String bradno,String spclno) {
+		int stat=tpService.tpQy_getStat(ormtno,yxgsno,bradno,spclno);
 		return "{success:true,stat:"+stat+"}";
 	}
 	@RequestMapping("/tp/tpQy_updateOrmtqt_tp.do")
@@ -352,9 +367,9 @@ public class TpController {
 	}
 	@RequestMapping("/tp/tpQy_over.do")
 	@ResponseBody
-	public String tpQy_over(String ormtno,String yxgsno) {
+	public String tpQy_over(String ormtno,String yxgsno,String bradno,String spclno) {
 		
-		tpService.tpQy_over( ormtno,yxgsno);
+		tpService.tpQy_over( ormtno,yxgsno,bradno,spclno);
 		return "{success:true}";
 	}
 	

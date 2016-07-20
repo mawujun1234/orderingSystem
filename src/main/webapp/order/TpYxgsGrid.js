@@ -61,7 +61,7 @@ Ext.define('y.order.TpYxgsGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(window.stat!=0){
+	            	if(window.stat==3){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	
@@ -108,7 +108,9 @@ Ext.define('y.order.TpYxgsGrid',{
       });  
 	  this.plugins = [this.cellEditing];
 	  this.cellEditing.on("beforeedit",function(editor, context){
-	  	if(window.stat==0){
+	  	if(window.stat==3){
+	  		return true;
+	  	} else {
 	  		return false;
 	  	}
 

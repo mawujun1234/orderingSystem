@@ -27,7 +27,7 @@ public class ContextUtils {
 		ContextUtils.photoBakDir=photoBakDir;//"";
 	}
 	/**
-	 * 获取可访问品牌中的第一个品牌
+	 * 获取可访问品牌中的第一个品牌,添加权限控制了
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */

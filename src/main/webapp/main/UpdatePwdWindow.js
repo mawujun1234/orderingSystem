@@ -14,11 +14,11 @@ Ext.define('y.main.UpdatePwdWindow', {
 		    },
 			items: [
 				{
-			        fieldLabel: '密码',
+			        fieldLabel: '原密码',
 			        name: 'password',
 		            allowBlank: false,
 		            afterLabelTextTpl: Ext.required,
-		            blankText:"密码不允许为空",
+		            blankText:"原密码不允许为空",
 		            inputType: 'password',
 			        xtype:'textfield'
 			    },

@@ -19,6 +19,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -42,6 +43,7 @@ import com.mawujun.exception.BusinessException;
 	includeFilters = @Filter(type = FilterType.ANNOTATION, value = {Controller.class}))
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
+@EnableScheduling
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	//private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");

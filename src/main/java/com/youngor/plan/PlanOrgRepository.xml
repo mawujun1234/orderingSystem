@@ -48,6 +48,51 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
     </select> 
     
+    <select id="queryPlanOrgdtlVO_all" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
+    	SELECT G.yxgsno as ordorg,G.yxgsnm as ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,b.SPCLNO,b.SPTYNO,b.SPSENO,
+        sum(D.QYMTQT) QYMTQT,sum(D.QYMTAM) QYMTAM,sum(D.TXMTQT) TXMTQT,sum(D.TXMTAM) TXMTAM
+        FROM
+    (
+    SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,2),2,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A
+    LEFT JOIN ORD_PUB_PLANRT B ON A.BRADNO=B.BRADNO AND A.SPCLNO=B.SPCLNO AND A.SPTYNO=B.SPTYNO
+    WHERE 
+       exists ( select 1 from  t_role_user x,t_role_class y
+          where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+          and exists ( select 1 from  t_role_user x,t_role_brand y
+          where x.role_id=y.role_id and a.bradno=y.itno and x.user_id=#{user_id} )
+      and A.ORMTNO=#{ormtno} AND A.BRADNO=#{bradno}
+    )B
+    INNER JOIN ORD_PUB_CODE P0 ON P0.TYNO='0' AND B.SPCLNO=P0.ITNO
+    INNER JOIN ORD_PUB_CODE P2 ON P2.TYNO='2' AND B.SPCLNO=P2.FITNO AND B.SPTYNO=P2.ITNO
+    LEFT JOIN ORD_PUB_CODE P5 ON P5.TYNO='5' AND B.SPCLNO=P5.FITNO AND B.SPSENO=P5.ITNO
+    LEFT JOIN (select distinct qyno ,yxgsno,yxgsnm from V_ORD_ORG where CHANNO='QY') G ON 1=1 
+    LEFT JOIN ORD_PLAN_ORG C ON C.ORMTNO=B.ORMTNO AND C.ORDORG=G.qyno AND C.BRADNO=B.BRADNO 
+    LEFT JOIN ORD_PLAN_ORGDTL D ON C.PLORNO=D.PLORNO AND D.SPCLNO=B.SPCLNO AND D.SPTYNO=B.SPTYNO AND NVL(D.SPSENO,' ')=B.SPSENO
+    WHERE B.ORMTNO=#{ormtno} 
+    
+    and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id 
+        and c.orgno=g.qyno and d.user_id=#{user_id})
+		<if test="qyno!=null and qyno!=''">
+			AND G.ORGNO=#{qyno}
+		</if>
+		<if test="spclno!=null and spclno!=''">
+			AND B.SPCLNO=#{spclno} 
+		</if>
+		
+		<if test="sptyno!=null and sptyno!=''">
+			AND B.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and b.spseno=#{spseno}
+		</if>
+		<if test="plstat!=null and plstat!=''">
+			and c.plstat=#{plstat}
+		</if>
+		group by G.yxgsno,G.yxgsnm,P0.ITNM ,P2.ITNM,P5.ITNM,b.SPCLNO,b.SPTYNO,b.SPSENO
+     ORDER BY G.yxgsno,B.SPCLNO,B.SPTYNO,B.SPSENO
+
+    </select> 
+    
 
     
 </mapper>

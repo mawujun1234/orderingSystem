@@ -1,5 +1,8 @@
 package com.youngor.plan;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import com.youngor.pubcode.PubCodeCache;
 
 public class PlanOrgdtlVO extends PlanOrgdtl{
@@ -43,7 +46,7 @@ public class PlanOrgdtlVO extends PlanOrgdtl{
 		if(super.getTxmtam()!=null){
 			mtam=mtam+super.getTxmtam();
 		}
-		return mtam;
+		return new BigDecimal(mtam).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
 	}
 	
 	public String getBradnm(){

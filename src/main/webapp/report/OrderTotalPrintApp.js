@@ -49,7 +49,7 @@ Ext.onReady(function(){
 	            afterLabelTextTpl: Ext.required,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
-				showBlank:false,
+				showBlank:true,
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						//var regioncombo=combo.nextSibling("#qyno");

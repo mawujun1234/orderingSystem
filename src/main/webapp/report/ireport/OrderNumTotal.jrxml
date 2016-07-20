@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderNumTotal" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="8346c2f3-ba40-4113-b350-23288aecdbc7">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="125"/>
+	<property name="ireport.x" value="220"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="bradno_name" class="java.lang.String"/>
 	<parameter name="yxgsnm" class="java.lang.String"/>
@@ -62,7 +62,7 @@
 		<groupFooter>
 			<band height="20">
 				<textField>
-					<reportElement uuid="347e23c2-bad3-4841-b320-c60d49264fdc" mode="Opaque" x="578" y="-1" width="79" height="20" backcolor="#999999"/>
+					<reportElement uuid="347e23c2-bad3-4841-b320-c60d49264fdc" mode="Transparent" x="578" y="-1" width="79" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -74,7 +74,7 @@
 					<textFieldExpression><![CDATA[$V{ormtqt_3}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="93b5cb97-42fc-4d7a-8230-1ab9aebac475" mode="Opaque" x="657" y="-1" width="68" height="20" backcolor="#999999"/>
+					<reportElement uuid="93b5cb97-42fc-4d7a-8230-1ab9aebac475" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -86,7 +86,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_3}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="3d5e0d2f-6fb9-4fd1-90dc-764095ce6a02" mode="Opaque" x="725" y="-1" width="73" height="20" backcolor="#999999"/>
+					<reportElement uuid="3d5e0d2f-6fb9-4fd1-90dc-764095ce6a02" mode="Transparent" x="725" y="-1" width="73" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -98,7 +98,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_4}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="a249ccd0-6401-40ea-8010-b32ec46ac715" mode="Opaque" x="0" y="-1" width="578" height="20" backcolor="#999999"/>
+					<reportElement uuid="a249ccd0-6401-40ea-8010-b32ec46ac715" mode="Transparent" x="0" y="-1" width="578" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -117,7 +117,7 @@
 		<groupFooter>
 			<band height="20">
 				<textField>
-					<reportElement uuid="119f1cfc-af64-406a-8fbf-96d626c0b3ec" mode="Opaque" x="578" y="-1" width="79" height="20" backcolor="#999999"/>
+					<reportElement uuid="119f1cfc-af64-406a-8fbf-96d626c0b3ec" mode="Transparent" x="578" y="-1" width="79" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -129,7 +129,7 @@
 					<textFieldExpression><![CDATA[$V{ormtqt_2}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="f8924a29-aecc-49fb-948a-78b2eb98f158" mode="Opaque" x="657" y="-1" width="68" height="20" backcolor="#999999"/>
+					<reportElement uuid="f8924a29-aecc-49fb-948a-78b2eb98f158" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -141,7 +141,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_2}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="1ca1c789-517f-46a4-912b-ddb6832fac85" mode="Opaque" x="725" y="-1" width="73" height="20" backcolor="#999999"/>
+					<reportElement uuid="1ca1c789-517f-46a4-912b-ddb6832fac85" mode="Transparent" x="725" y="-1" width="73" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -153,7 +153,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_3}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="55f67625-d90a-4f6d-b772-0d1311da899a" mode="Opaque" x="0" y="-1" width="100" height="20" backcolor="#999999"/>
+					<reportElement uuid="55f67625-d90a-4f6d-b772-0d1311da899a" mode="Transparent" x="0" y="-1" width="100" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -165,7 +165,7 @@
 					<text><![CDATA[]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="9acf0cb4-c0ea-4242-b288-52dbec0be556" mode="Opaque" x="100" y="-1" width="478" height="20" backcolor="#999999"/>
+					<reportElement uuid="9acf0cb4-c0ea-4242-b288-52dbec0be556" mode="Transparent" x="100" y="-1" width="478" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -184,7 +184,7 @@
 		<groupFooter>
 			<band height="21">
 				<textField>
-					<reportElement uuid="cc74f765-4a4e-4320-854c-384c2999b403" mode="Opaque" x="578" y="0" width="79" height="20" backcolor="#CCCCCC"/>
+					<reportElement uuid="cc74f765-4a4e-4320-854c-384c2999b403" mode="Transparent" x="578" y="0" width="79" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -196,7 +196,7 @@
 					<textFieldExpression><![CDATA[$V{ormtqt_sum}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="2c4a5de9-4167-427b-9b7f-b56d46393caa" mode="Opaque" x="200" y="0" width="378" height="20" backcolor="#CCCCCC"/>
+					<reportElement uuid="2c4a5de9-4167-427b-9b7f-b56d46393caa" mode="Transparent" x="200" y="0" width="378" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -208,7 +208,7 @@
 					<textFieldExpression><![CDATA[$F{spseno_name}+"--小计:"]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="18056a87-ce82-4ce0-9120-47dd9d364d64" mode="Opaque" x="657" y="0" width="68" height="20" backcolor="#CCCCCC"/>
+					<reportElement uuid="18056a87-ce82-4ce0-9120-47dd9d364d64" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -220,7 +220,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_avg}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="05195628-9551-44d4-9bbd-e0e794519f00" mode="Opaque" x="725" y="0" width="73" height="20" backcolor="#CCCCCC"/>
+					<reportElement uuid="05195628-9551-44d4-9bbd-e0e794519f00" mode="Transparent" x="725" y="0" width="73" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -232,7 +232,7 @@
 					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_sum}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="a3036741-03c0-4c07-88a9-f67fc6ad049d" mode="Opaque" x="0" y="0" width="200" height="20" backcolor="#CCCCCC"/>
+					<reportElement uuid="a3036741-03c0-4c07-88a9-f67fc6ad049d" mode="Transparent" x="0" y="0" width="200" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -539,7 +539,7 @@
 				<text><![CDATA[审批签字:]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="619c4f50-11e4-4f2e-9917-7937c3f1a471" mode="Opaque" x="578" y="-1" width="79" height="20" backcolor="#666666"/>
+				<reportElement uuid="619c4f50-11e4-4f2e-9917-7937c3f1a471" mode="Transparent" x="578" y="-1" width="79" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -551,7 +551,7 @@
 				<textFieldExpression><![CDATA[$V{ormtqt_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="963aae40-ff7e-48f5-85b0-d44c18333e27" mode="Opaque" x="657" y="-1" width="68" height="20" backcolor="#666666"/>
+				<reportElement uuid="963aae40-ff7e-48f5-85b0-d44c18333e27" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -563,7 +563,7 @@
 				<textFieldExpression><![CDATA[$V{sprtpr_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="9d3701d9-e0a7-4fb9-bc9d-15b39e5ed897" mode="Opaque" x="725" y="-1" width="73" height="20" backcolor="#666666"/>
+				<reportElement uuid="9d3701d9-e0a7-4fb9-bc9d-15b39e5ed897" mode="Transparent" x="725" y="-1" width="73" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -575,7 +575,7 @@
 				<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="848593b7-fe30-4ae0-8090-fe05c5fefa24" mode="Opaque" x="0" y="-1" width="578" height="20" backcolor="#666666"/>
+				<reportElement uuid="848593b7-fe30-4ae0-8090-fe05c5fefa24" mode="Transparent" x="0" y="-1" width="578" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
