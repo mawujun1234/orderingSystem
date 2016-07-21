@@ -642,8 +642,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/sizeVO/sizeVO_auto_box.do")
 	@ResponseBody
-	public String sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno,Integer sztype){
-		ordService.sizeVO_auto_box(ormtno, ordtyno, ordorg, bradno, spclno,sztype);
+	public String sizeVO_auto_box(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno,Integer sztype){
+		ordService.sizeVO_auto_box(ormtno, ortyno, ordorg, bradno, spclno,suitno,sztype);
 		return "{success:true}";
 	}
 	/**
@@ -653,8 +653,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/sizeVO/approve.do")
 	@ResponseBody
-	public String sizeVO_size_ap(String ormtno,String ordtyno,String ordorg,String bradno,String spclno){
-		ordService.sizeVO_size_ap(ormtno, ordtyno, ordorg, bradno, spclno);
+	public String sizeVO_size_ap(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno){
+		ordService.sizeVO_size_ap(ormtno, ortyno, ordorg, bradno, spclno,suitno);
 		return "{success:true}";
 	}
 	

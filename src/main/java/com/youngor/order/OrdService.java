@@ -1078,44 +1078,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	public void zgsVO_balanceOver(String ormtno,String bradno,String spclno) {
 		ordRepository.order_dl__comp_pass(ormtno, bradno, spclno, ShiroUtils.getLoginName());
 	}
-	/**
-	 * 规格平衡 自动成箱
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @param ormtno
-	 * @param ordtyno
-	 * @param ordorg
-	 * @param bradno
-	 * @param spclno
-	 */
-	public void sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno,Integer sztype) {
-		if(sztype!=1){
-			throw new BusinessException("上报方式不是‘单规+整箱’，不能自动成箱!");
-		}
-		
-		
-		ordRepository.order_dl__auto_box(ormtno,ordtyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
-	}
-	/**
-	 * 规格平衡---规格平衡-提交审批
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 * @param ormtno
-	 * @param ordtyno
-	 * @param ordorg
-	 * @param bradno
-	 * @param spclno
-	 */
-	public void sizeVO_size_ap(String ormtno,String ordtyno,String ordorg,String bradno,String spclno) {
-		ordRepository.order_dl__auto_box(ormtno,ordtyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
-	}
 	
-	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
-		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);
-		if(list==null || list.size()==0 || list.size()>1){
-			//throw new BusinessException("订单的状态不对，请先检查!");
-			return "不可操作";
-		}
-		return list.get(0);
-	}
+	
 	/**
 	 * 查询尾箱调整的数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -1456,6 +1420,62 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		
 		return result;
+	}
+	
+	private void sizeVO_auto_box_check_num(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno){
+		//规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱；
+				String mtorno=this.getMtorno(ormtno, ortyno, ordorg);
+				String mlorno=mtorno+bradno+spclno;
+				List<Map<String,Object>> list=ordRepository.sizeVO_auto_box_check_num(mtorno, mlorno, suitno);
+				if(list!=null && list.size()>0){
+					StringBuilder builder=new StringBuilder();
+					for(Map<String,Object> map:list){
+						builder.append(","+map.get("SAMPNM"));
+					}
+					throw new BusinessException("下列样衣编号平衡数量不等于规格小计:<br/>"+builder.substring(1));
+				}
+	}
+	/**
+	 * 规格平衡 自动成箱
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param ordtyno
+	 * @param ordorg
+	 * @param bradno
+	 * @param spclno
+	 */
+	public void sizeVO_auto_box(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno,Integer sztype) {
+		if(sztype!=0){
+			throw new BusinessException("上报方式不是‘单规+整箱’，不能自动成箱!");
+		}
+		
+		this.sizeVO_auto_box_check_num(ormtno, ortyno, ordorg, bradno, spclno, suitno);
+		
+		ordRepository.order_dl__auto_box(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
+	}
+	/**
+	 * 规格平衡---规格平衡-提交审批
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param ordtyno
+	 * @param ordorg
+	 * @param bradno
+	 * @param spclno
+	 */
+	public void sizeVO_size_ap(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno) {
+		//包装总量 是否和 平衡数量一致，不一致的提示 出来，不允许 提交审批；
+		this.sizeVO_auto_box_check_num(ormtno, ortyno, ordorg, bradno, spclno, suitno);
+		
+		ordRepository.order_dl__auto_box(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
+	}
+	
+	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
+		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);
+		if(list==null || list.size()==0 || list.size()>1){
+			//throw new BusinessException("订单的状态不对，请先检查!");
+			return "不可操作";
+		}
+		return list.get(0);
 	}
 	
 	
