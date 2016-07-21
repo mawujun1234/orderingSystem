@@ -313,8 +313,10 @@
     <div class="panel panel-right panel-cover theme-white" id='report_query_params'>
     
       <div class="card" id='report_query_params_bradno'>
-        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">品牌</div>
-        <div class="card-content">
+        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">
+        品牌<span class="icon icon-up" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" >
           <div class="card-content-inner">
           <!--
             <a href="#" class="button button-light param-btn button-success button-fill" >衬衫</a>
@@ -330,28 +332,39 @@
       </div><!--card-->
       
       <div class="card" id='report_query_params_spclno'>
-        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">大类</div>
+        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">
+        	大类<span class="icon icon-up" style="position:absolute;right:8px;"></span>
+        </div>
         <div class="card-content">
           <div class="card-content-inner">   
      	  </div>
         </div>
       </div><!--card-->
       <div class="card" id='report_query_params_sptyno'>
-        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">小类</div>
-        <div class="card-content">
+        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">
+        	小类<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
           <div class="card-content-inner">   
      	  </div>
         </div>
       </div><!--card-->
       <div class="card" id='report_query_params_spseno'>
-        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">系列</div>
-        <div class="card-content">
+        <div class="card-header" style="min-height:1rem;height: 1.1rem;font-size:0.7rem;color:gray;">
+        	系列<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
           <div class="card-content-inner">   
      	  </div>
         </div>
       </div><!--card-->
       
-     
+      
+      	<p class="buttons-row" >
+        	<a href="#" class="button" id="report_query_params_reset">重置</a>
+            <a href="#" class="button active" id="report_query_params_complete">完成</a>
+        </p>
+      
     </div>
 
     

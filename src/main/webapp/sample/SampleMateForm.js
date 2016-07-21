@@ -220,28 +220,30 @@ Ext.define('y.sample.SampleMateForm',{
 				    success: function(record, operation) {
 				    	Ext.Msg.alert("消息","保存成功!");
 						//button.up('window').close();
-				    	
-				    	me.previousSibling("grid#sampleMateGrid").getStore().reload(
-				    		function(records, operation, success){
-				    			//alert(1);
-				    			//触发成衣信息中的“预计成本价”的计算sumSpctpr,
-						    	var spctpr=window.sampleColthForm.sumSpctpr();
-						    	Ext.Ajax.request({
-						    		url:Ext.ContextPath+"/sampleColth/updateSpctpr.do",
-						    		params:{
-						    			sampno:record.get("sampno"),
-						    			spctpr:spctpr
-						    		},
-						    		success:function(response){
-						    			var obj=Ext.decode(response.responseText);
-						    			if(obj.success==false){
-						    				Ext.Msg.alert("消息","更新成衣信息中的预计成本价失败!请去手工保存成衣信息!");
-						    				return;
-						    			}
-						    		}
-						    	});
-				    		}
-				    	);
+				    	var sampleMateGrid=me.previousSibling("grid#sampleMateGrid");
+				    	sampleMateGrid.getStore().reload();
+				    	sampleMateGrid.getStore().sampleMateForm_saved_record=record;//用来表示是面料信息进行更新了，这个时候需要重新计算预计成本价
+//				    	me.previousSibling("grid#sampleMateGrid").getStore().reload(
+//				    		function(records, operation, success){
+//				    			alert(1);
+//				    			//触发成衣信息中的“预计成本价”的计算sumSpctpr,
+//						    	var spctpr=window.sampleColthForm.sumSpctpr();
+//						    	Ext.Ajax.request({
+//						    		url:Ext.ContextPath+"/sampleColth/updateSpctpr.do",
+//						    		params:{
+//						    			sampno:record.get("sampno"),
+//						    			spctpr:spctpr
+//						    		},
+//						    		success:function(response){
+//						    			var obj=Ext.decode(response.responseText);
+//						    			if(obj.success==false){
+//						    				Ext.Msg.alert("消息","更新成衣信息中的预计成本价失败!请去手工保存成衣信息!");
+//						    				return;
+//						    			}
+//						    		}
+//						    	});
+//				    		}
+//				    	);
 				    	
 				    	
 				    }

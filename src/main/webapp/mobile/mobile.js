@@ -4,6 +4,21 @@ if(location.pathname.indexOf("/od")==-1){
 	Ext.ContextPath="";
 }
 
+//$(document).on('ajaxComplete',function(e,xhr,options){
+//	var response=JSON.parse(xhr.responseText);
+//	if(response.success==false){
+//			if(response.msg){
+//				$.alert(response.msg);
+//				if(response.errorCode=='nologin'){
+//					$.router.load("#od_loginpage"); 
+//				}
+//				return;
+//			} else {
+//				return;
+//			}
+//	}
+//})
+
 //显示和隐藏今日订货会快结束的信息
 window.od_closeing_info=null;//提高性能
 window.canOrd=null;//判断是否可以订货

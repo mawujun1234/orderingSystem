@@ -42,7 +42,32 @@ Ext.define('y.sample.SampleMateGrid',{
 			autoSync:false,
 			pageSize:50,
 			model: 'y.sample.SampleMate',
-			autoLoad:false
+			autoLoad:false,
+			listeners:{
+				load:function(store){
+					if(!store.sampleMateForm_saved_record){
+						return;
+					}
+					var record=store.sampleMateForm_saved_record;
+					store.sampleMateForm_saved_record=false;
+					//alert(1);
+					var spctpr=window.sampleColthForm.sumSpctpr();
+						    	Ext.Ajax.request({
+						    		url:Ext.ContextPath+"/sampleColth/updateSpctpr.do",
+						    		params:{
+						    			sampno:record.get("sampno"),
+						    			spctpr:spctpr
+						    		},
+						    		success:function(response){
+						    			var obj=Ext.decode(response.responseText);
+						    			if(obj.success==false){
+						    				Ext.Msg.alert("消息","更新成衣信息中的预计成本价失败!请去手工保存成衣信息!");
+						    				return;
+						    			}
+						    		}
+						    	});
+				}
+			}
 	  });
 	  me.dockedItems=[];
 

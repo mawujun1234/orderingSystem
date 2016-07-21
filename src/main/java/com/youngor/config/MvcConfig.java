@@ -4,6 +4,8 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,8 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -44,7 +48,7 @@ import com.mawujun.exception.BusinessException;
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableWebMvc
 @EnableScheduling
-public class MvcConfig extends WebMvcConfigurerAdapter {
+public class MvcConfig extends WebMvcConfigurerAdapter implements SchedulingConfigurer{
 	private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	//private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -163,6 +167,22 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 //        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCachePeriod(31556926);
     }
 
+	 @Override
+     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+         taskRegistrar.setScheduler(taskScheduler());
+//         taskRegistrar.addTriggerTask(
+//             new Runnable() {
+//                 public void run() {
+//                     myTask().work();
+//                 }
+//             },
+//             new CustomTrigger()
+//         );
+     }
 
+     @Bean(destroyMethod="shutdown")
+     public Executor taskScheduler() {
+         return Executors.newScheduledThreadPool(10);
+     }
 
 }

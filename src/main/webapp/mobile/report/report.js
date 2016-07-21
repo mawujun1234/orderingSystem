@@ -4,6 +4,7 @@ $(function(){
 	$.condition.params={};
 	$.condition.init=function(config){
 		var me=this;
+		me.initCollage();
 //		//获取品牌和大类
 //		$.post(Ext.ContextPath+'/mobile/report/queryCondition.do', {  }, function(response){
 //			//$("#od_loginpage_title").html(response.ormtnm);
@@ -128,9 +129,32 @@ $(function(){
 		//console.log(html);
 		return html;
 	}
+	
+	$.condition.clear=function(){
+		$("#report_query_params .card .card-content-inner .button-success").removeClass("button-success");
+	}
+	//初始化展开，收缩，事件
+	$.condition.initCollage=function(){
+		$("#report_query_params .card .card-header .icon").on("click",function(){
+			if($(this).hasClass("icon-up")){
+				$(this).removeClass("icon-up").addClass("icon-down").parent().next().hide();
+			} else {
+				$(this).removeClass("icon-down").addClass("icon-up").parent().next().show();
+			}
+		});
+		
+		//初始化按钮事件
+		$("#report_query_params #report_query_params_reset").on("click",function(){
+			$.condition.clear();
+		});
+		$("#report_query_params #report_query_params_complete").on("click",function(){
+			alert("使用事件总线");
+		});
+	}
 });
 
 //报表统计--按商品类
 $(function(){
 	$.condition.init();
+
 });

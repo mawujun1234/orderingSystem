@@ -181,6 +181,14 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 					
 			    },
 			    iconCls: 'icon-edit'
+			},{
+			    text: '打印企业号',
+			    itemId:'printQyhQrcode',
+			    handler: function(){
+			    	me.onPrintQyhQrcode();
+					
+			    },
+			    iconCls: 'icon-edit'
 			}]
 		});
 
@@ -304,6 +312,17 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 //    		items:[formpanel]
 //    	});
 //    	win.show();
+    },
+    onPrintQyhQrcode:function(){
+    	Ext.Msg.prompt("消息","输入数量:",function(buttonId,value){
+    		//alert(buttonId);
+    		if(buttonId=='ok'){
+    			var url=Ext.ContextPath+"/ordOrg/print_qyh_qrcode.do?num="+value;
+	    		//alert(url);return;
+	    		window.open(url);
+    		}
+    	
+    	},this,false,50);
     },
     
     onDelete:function(){

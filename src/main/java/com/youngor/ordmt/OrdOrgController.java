@@ -100,7 +100,7 @@ public class OrdOrgController {
         
         
         String TEMPLATE_FILE_NAME = request.getSession().getServletContext()
- 		       .getRealPath("/ordmt/template/template2.html");
+ 		       .getRealPath("/ordmt/template/template1.html");
  		
  		String templateHtmlStr = "";
 
@@ -173,6 +173,96 @@ public class OrdOrgController {
 		out.println("  <HEAD><TITLE></TITLE></HEAD>");
 		out.println("  <BODY style='text-align:center'>");
 		out.println(outPutString);
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
+	}
+	@RequestMapping("/ordOrg/print_qyh_qrcode.do")
+	//@ResponseBody
+	public void print_qyh_qrcode(HttpServletRequest request,HttpServletResponse response,Integer num) throws WriterException, IOException{
+		String contextPath=WebUtils.getRealPath(request.getServletContext(), "/");
+		//String filePath=contextPath+"qrcode_temp";
+		if(num==null){
+			num=20;
+		}
+        
+        String TEMPLATE_FILE_NAME = request.getSession().getServletContext()
+ 		       .getRealPath("/ordmt/template/qyh_qrcode.html");
+ 		
+ 		String templateHtmlStr = "";
+
+ 	    BufferedReader bfdreader=null;
+ 	    InputStreamReader read = null;
+ 	     
+ 		try{
+ 			     File fp=new File(TEMPLATE_FILE_NAME);
+ 			     read = new InputStreamReader(new FileInputStream(fp),"UTF-8");
+ 			     bfdreader=new BufferedReader(read);
+
+ 			     String str_line=bfdreader.readLine();
+ 			     while(str_line!=null) {
+ 			    	templateHtmlStr = templateHtmlStr + str_line;
+ 			        str_line=bfdreader.readLine();
+ 		         }
+ 			     
+ 		   }catch(IOException e) {
+ 				  throw new IOException(" 模板读取错误！");
+ 	    }finally
+ 	    {
+ 	    	 bfdreader.close();
+ 		     read.close();
+ 	    }
+// 		//读取要打印的组织单元的数量
+// 		
+// 		String outPutString = "";
+//		
+//		int template_cols = this.getSubStrCount(templateHtmlStr, "name='div_diaop_area'");
+//	    
+//	    
+//	    int recordCount = list.size();
+//	    int index = 0;
+//	    
+//	    while(index < recordCount){
+//	    	
+//	    	String rowString = templateHtmlStr;
+//	    	for(int i=0;i<template_cols;i++){
+//	    		
+//	    		if(index >= recordCount){
+//	    			break;
+//	    		}
+//	    		
+//	    		OrdOrg record = list.get(index);
+//	    		index ++;
+//	    		
+//	    		//Object mim = record.getObject("MIM");
+//	    	    String quanc = record.getOrgnm();
+//	    	    String fileName = request.getServletContext().getContextPath()+"/qrcode_temp/"+record.getOrdorg()+".png"; 
+//	    	    if(quanc.length() > 9){
+//	    	    	quanc = quanc.substring(0, 9);
+//	    	    }
+//	    		//rowString =rowString.replaceAll("\\{DAIM_MIM_" + i + "\\}", record.getString("DAIM")+","+record.getObject("MIM"));
+//	    		rowString =rowString.replaceAll("\\{QUANC_" + i + "\\}", quanc);
+//	    		//rowString =rowString.replaceAll("\\{DAIM_" + i + "\\}", record.getLoginname());
+//	    		rowString =rowString.replaceAll("\\{fileName_" + i + "\\}", fileName);
+//	    	}
+//	    	
+//	        outPutString = outPutString + rowString;
+//	    }
+	    StringBuilder builder=new StringBuilder();
+	    for(int i=0;i<num;i++){
+	    	builder.append(templateHtmlStr);
+	    }
+
+		//response.reset();
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE>");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE></TITLE></HEAD>");
+		out.println("  <BODY style='text-align:center'>");
+		out.println(builder.toString());
 		out.println("  </BODY>");
 		out.println("</HTML>");
 		out.flush();
