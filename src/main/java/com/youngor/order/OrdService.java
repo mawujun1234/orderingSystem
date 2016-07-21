@@ -61,6 +61,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private PlanOrgService planOrgService;
 	@Autowired
 	private SampleDesignRepository sampleDesignRepository;
+	@Autowired
+	private TpService tpService;
 	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -387,6 +389,34 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 	}
 	/**
+	 * 查询还没有订的必定款的样衣
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public List<SampleDesign> query_none_abstat(){
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		if("QY".equals(org.getChanno().toString())){
+			//订单号
+			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
+			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
+//			if(none_abstat!=null && none_abstat.size()>0){
+//				StringBuilder builder=new StringBuilder();
+//				int i=0;
+//				for(SampleDesign sampleDesign:none_abstat){
+//					builder.append(",\""+sampleDesign.getSampnm1()+"\"");
+//					i++;
+//				}
+//				
+//				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+//			}
+			return none_abstat;
+		} else {
+			return new ArrayList<SampleDesign>();
+		}
+
+	}
+	/**
 	 * 订单确认
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param sampno
@@ -401,17 +431,15 @@ public class OrdService extends AbstractService<Ord, String>{
 			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
 			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
 			if(none_abstat!=null && none_abstat.size()>0){
-				StringBuilder builder=new StringBuilder();
-				int i=0;
-				for(SampleDesign sampleDesign:none_abstat){
-//					if(i>=4){//一次最多显示4个样衣编号
-//						break;
-//					}
-					builder.append(",\""+sampleDesign.getSampnm1()+"\"");
-					i++;
-				}
-				
-				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+//				StringBuilder builder=new StringBuilder();
+//				int i=0;
+//				for(SampleDesign sampleDesign:none_abstat){
+//					builder.append(",\""+sampleDesign.getSampnm1()+"\"");
+//					i++;
+//				}
+//				
+//				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+				throw new BusinessException("none_abstat");
 			}
 		}
 
@@ -470,17 +498,45 @@ public class OrdService extends AbstractService<Ord, String>{
 		ordRepository.confirm2_update_orstat(mtorno, "1");
 	}
 	
-	
+	private void ordMgr_check_process2ANDback_stat(Integer stat,String[] mlornoes){
+		StringBuilder builder=new StringBuilder();
+		for(String mlorno:mlornoes){
+			builder.append(",'"+mlorno+"'");
+		}
+		List<String> result=ordRepository.ordMgr_check_process2ANDback_stat(stat, builder.substring(1));
+		if(result!=null && result.size()>0){
+			builder=new StringBuilder();
+			for(String str:result){
+				builder.append(","+str);
+			}
+			if(stat==1){
+				throw new BusinessException("只有'大区审批中'才能审批/退回:"+builder.substring(1));
+			} else if(stat==2){
+				throw new BusinessException("只有'总部审批中'才能审批/退回:"+builder.substring(1));
+			} else {
+				throw new BusinessException("下列订单不能审批/退货:"+builder.substring(1));
+			}
+		}
+	}
 	/**
 	 * 总部审批,是按大类，品牌进行审批,审批完后进入到 总公司平衡中
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	public void process2(String[] mlornoes) {
-		//检查订单状态是不是“总部审批中”，如果不是，就不能进行审批
+	public void ordMgr_process2(String[] mlornoes) {
+		if(mlornoes!=null && mlornoes.length>0){
+			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
+			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
+			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
+				ordMgr_check_process2ANDback_stat(1,mlornoes);
+			} else if(ShiroUtils.getAuthenticationInfo().hasTheOrg(tpService.getSpb_orgno())){
+				ordMgr_check_process2ANDback_stat(2,mlornoes);
+			} else {
+				throw new BusinessException("对不起，请没有权限进行操作!");
+			}
 		
 		//订单状态改成“审批通过”，订单节点改成“总公司平衡”
-		if(mlornoes!=null && mlornoes.length>0){
+		
 			for(String mlorno:mlornoes){
 				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
 			}
@@ -492,9 +548,19 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param mlornoes
 	 */
-	public void back(String[] mlornoes) {
+	public void ordMgr_back(String[] mlornoes) {
 		
 		if(mlornoes!=null && mlornoes.length>0){
+			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
+			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
+			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
+				ordMgr_check_process2ANDback_stat(1,mlornoes);
+			} else if(ShiroUtils.getAuthenticationInfo().hasTheOrg(tpService.getSpb_orgno())){
+				ordMgr_check_process2ANDback_stat(2,mlornoes);
+			} else {
+				throw new BusinessException("对不起，请没有权限进行操作!");
+			}
+			
 			for(String mlorno:mlornoes){
 				//把订单状态修改为“编辑中”
 				ordhdRepository.update(Cnd.update().set(M.Ordhd.orstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
@@ -508,7 +574,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param mlornoes
 	 */
-	public void isfect_no(String[] mlornoes) {
+	public void ordMgr_isfect_no(String[] mlornoes) {
+		
 		
 		if(mlornoes!=null && mlornoes.length>0){
 			for(String mlorno:mlornoes){
@@ -516,6 +583,34 @@ public class OrdService extends AbstractService<Ord, String>{
 				ordhdRepository.update(Cnd.update().set(M.Ordhd.isfect, 0).andEquals(M.Ordhd.mlorno, mlorno));
 				
 			}
+		}
+		
+	}
+	/**
+	 * 订单流转
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void ordMgr_ordercircle(String[] mlornoes,String sdtyno) {
+		if(mlornoes==null){
+			return;
+		}
+		
+		StringBuilder builder=new StringBuilder();
+		for(String mlorno:mlornoes){
+			builder.append(",'"+mlorno+"'");
+		}
+		List<String> result=ordRepository.ordMgr_check_ordercircle_stat( builder.substring(1));
+		if(result!=null && result.size()>0){
+			builder=new StringBuilder();
+			for(String str:result){
+				builder.append(","+str);
+			}
+	
+			throw new BusinessException("下列订单不能进行单单流转:"+builder.substring(1));
+			
+		}
+		for(String mlorno:mlornoes){
+			ordRepository.order_dl__order_to(mlorno, sdtyno, ShiroUtils.getLoginName());
 		}
 		
 	}
@@ -932,19 +1027,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		
 	}
-	/**
-	 * 订单流转
-	 * @author mawujun qq:16064988 mawujun1234@163.com
-	 */
-	public void order_dl__order_to(String[] mlornoes,String sdtyno) {
-		if(mlornoes==null){
-			return;
-		}
-		for(String mlorno:mlornoes){
-			ordRepository.order_dl__order_to(mlorno, sdtyno, ShiroUtils.getLoginName());
-		}
-		
-	}
+
 	public List<Map<String,Object>> zgsVO_query_meger_comp(String SAMPNO) {
 		return ordRepository.query_meger_comp(SAMPNO);
 	}
@@ -1004,7 +1087,12 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param bradno
 	 * @param spclno
 	 */
-	public void sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno) {
+	public void sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno,Integer sztype) {
+		if(sztype!=1){
+			throw new BusinessException("上报方式不是‘单规+整箱’，不能自动成箱!");
+		}
+		
+		
 		ordRepository.order_dl__auto_box(ormtno,ordtyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	/**
@@ -1158,6 +1246,9 @@ public class OrdService extends AbstractService<Ord, String>{
 				Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
 				if(map==null) {
 					map=new HashMap<String,Object>();
+					//map.put("ORMTNO", listmap.get(""));
+					
+					
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
 					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));

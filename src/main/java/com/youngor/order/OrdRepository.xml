@@ -78,13 +78,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	      and  c.sampno=#{sampno}
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
 	    ) a left join (
-	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
             <if test="versno==null or versno==''">
-            	and versno is null
+            	and a.versno is null
             </if>
             <if test="versno!=null and versno!=''">
-            	and versno=#{versno} 
+            	and a.versno=#{versno} 
             </if>
              and sizety='STDSZ'
 	    ) b
@@ -104,8 +104,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	      and a.sizety='PRDPK' and b.sizety='PRDPK'  
 	    ) a 
 	    left join (
-	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -132,8 +132,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk} and bb.bradno=#{bradno}
 	        )
 	     ) a left join (
-	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -158,8 +158,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	          and bb.sptyno=#{sptyno} and bb.sexno=#{sexno}  and  bb.suitty=#{suitty} and bb.spltmk=#{spltmk} and bb.bradno=#{bradno}
 	        )
 	     ) a left join (
-	    	select * from    ORD_ORD_SZRT
-            where ormtno=#{ormtno} and ordorg=#{ordorg} and bradno=#{bradno} and spclno=#{spclno} and spseno=#{spseno} 
+	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno}  
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -874,8 +874,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
       </select>
       -->
       
-      
-      
+      <!--订单管理中 订单审批和退货的时候进行判断哟没有权限进行 -->
+     <select id="ordMgr_check_process2ANDback_stat" resultType="string" parameterType="map">
+     	select distinct mlorno from ord_ordhd where 
+		orstat!=#{stat} and szstat!=#{stat} and mlorno in (${mlorno_in})
+     </select>
+     <!-- 订单管理==订单流转的时候判断可不可以进行流转-->
+      <select id="ordMgr_check_ordercircle_stat" resultType="string" parameterType="map">
+     	select distinct mlorno from ord_ordhd where 
+			(orstat!=3 or szstat!=0) and mlorno in (${mlorno_in})
+     </select>
      <select id="ordMgr_queryOrdMgr" resultType="map" parameterType="map">
        	 select a.ORTYNO,c.YXGSNM,c.QYNM,c.ORGNM AS ORDORG_NAME,a.ORDORG,a.CHANNO,b.MLORNO,b.MLORVN,b.ISFECT,b.SDTYNO,b.BRADNO,b.SPCLNO,b.ORAPDP,b.ORSTAT,b.SZSTAT,b.ORAPDT
 		 from ORD_ORD a,ORD_ORDHD b,v_ord_org c

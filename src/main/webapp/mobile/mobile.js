@@ -535,7 +535,7 @@ $(function(){
 		//console.log(this.value);
 		this.value=this.value.replace(/\D/g,'');//.replace('/^[0-9]*[1-9][0-9]*$/g');//this.value.replace('/[^0-9]/g');
 		this.value=parseInt(this.value);//.replace('.','')
-		console.log(e.keyCode);
+		//console.log(e.keyCode);
 		//console.log(this.value+"====");
 	});
 	
@@ -646,46 +646,53 @@ $(function(){
 	//点击菜单切换过来的时候
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  if(pageId == "od_mypage") {
+		  document.title="我";
 		  queryMyInfoVO ();
-	  } 
+	  } else if(pageId == "od_info") {
+		  document.title="现场订货";
+	  }
 	});
 	
 	$("#od_mypage_confirm_button").click(function(){
 		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
 			//od_mypage_myinfo_card
 			if(response.success==false){
-				//$.toast(response.msg);
-				//$.popup('.popup_abstat');
-				var sampnms=JSON.parse(response.msg);
-				//var sampnms=response.msg;
-				var html="";
-				for(var i=0;i<sampnms.length;i++){
-					html+='<li class="item-content">'+
-					'<div class="item-media"><i class="icon icon-f7"></i></div>'+
-					'<div class="item-inner"><div class="item-title">'+sampnms[i]+'</div></div>'+
-					'</li>';
+				if(response.msg=="none_abstat"){
+					$.router.load("#none_abstat");
 				}
-				 var popupHTML = 
-				 '<div class="popup">'+
-				 	''+
-                    '<div class="content-block">'+
-                      '<div class="content-block-title">下列出样样衣编号是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
-                      '<div class="list-block">'+
-					  '<ul>'+
-					  //'<li class="item-content">'+
-					 // '<div class="item-media"><i class="icon icon-f7"></i></div>'+
-					 // '<div class="item-inner">'+
-					  html+
-					  //'<div class="item-title">商品名称</div>'+
-					  //'<div class="item-after">杜蕾斯</div>'+
-					 // '</div>'+
-					 // '</li>'+
-					  '</ul>'+
-					  '</div>'+
-                    '</div>'+
-                  '</div>'
-  				$.popup(popupHTML);
-				return;
+				return ;
+//				//$.toast(response.msg);
+//				//$.popup('.popup_abstat');
+//				var sampnms=JSON.parse(response.msg);
+//				//var sampnms=response.msg;
+//				var html="";
+//				for(var i=0;i<sampnms.length;i++){
+//					html+='<li class="item-content">'+
+//					'<div class="item-media"><i class="icon icon-f7"></i></div>'+
+//					'<div class="item-inner"><div class="item-title">'+sampnms[i]+'</div></div>'+
+//					'</li>';
+//				}
+//				 var popupHTML = 
+//				 '<div class="popup">'+
+//				 	''+
+//                    '<div class="content-block">'+
+//                      '<div class="content-block-title">下列出样样衣编号是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
+//                      '<div class="list-block">'+
+//					  '<ul>'+
+//					  //'<li class="item-content">'+
+//					 // '<div class="item-media"><i class="icon icon-f7"></i></div>'+
+//					 // '<div class="item-inner">'+
+//					  html+
+//					  //'<div class="item-title">商品名称</div>'+
+//					  //'<div class="item-after">杜蕾斯</div>'+
+//					 // '</div>'+
+//					 // '</li>'+
+//					  '</ul>'+
+//					  '</div>'+
+//                    '</div>'+
+//                  '</div>'
+//  				$.popup(popupHTML);
+//				return;
 			}
 			//$("#od_mypage_confirm_button").hide();
 			//$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
@@ -707,3 +714,4 @@ $(function(){
 	});
 	
 });
+

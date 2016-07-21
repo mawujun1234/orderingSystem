@@ -360,3 +360,9 @@ table.report_table td {
 table.report_table td.example_code {
 	vertical-align: bottom
 }
+.cond_hide{
+	display:none;	
+}
+.cond_show {
+	display:block;	
+}

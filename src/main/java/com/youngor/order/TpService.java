@@ -463,5 +463,9 @@ public class TpService {
 		//把素有营销公司的 有效状态 改成 有效1，并且orstat 改成 “审批通过”
 		tpRepository.tpQy_over(ormtno,yxgsno, bradno, spclno);
 	}
+
+	public String getSpb_orgno() {
+		return spb_orgno;
+	}
 	
 }

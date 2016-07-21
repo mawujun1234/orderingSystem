@@ -86,6 +86,9 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	
 	public void order_dl__process(@Param("P_MLORNO")String P_MLORNO,@Param("P_TYPE")String P_TYPE,@Param("P_RESP")String P_RESP);
 	
+	public List<String> ordMgr_check_process2ANDback_stat(@Param("stat")Integer stat,@Param("mlorno_in")String mlorno_in);
+	public List<String> ordMgr_check_ordercircle_stat(@Param("mlorno_in")String mlorno_in);
+	
 	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
 	
 	

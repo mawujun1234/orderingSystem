@@ -134,21 +134,28 @@ public class OrdController {
 	}
 	
 	/**
+	 * 订单管理--审批
 	 * 总部进行审批，第二次审批
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	@RequestMapping("/ord/process2.do")
+	@RequestMapping("/ord/ordMgr/process2.do")
 	@ResponseBody
-	public String process2(String[] mlornoes ) {
-		ordService.process2(mlornoes);
+	public String ordMgr_process2(String[] mlornoes ) {
+		//
+		ordService.ordMgr_process2(mlornoes);
 		return "{success:true}";
 	}
-	
-	@RequestMapping("/ord/back.do")
+	/**
+	 * 订单管理--退回
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param mlornoes
+	 * @return
+	 */
+	@RequestMapping("/ord/ordMgr/back.do")
 	@ResponseBody
-	public String back(String[] mlornoes ) {
-		ordService.back(mlornoes);
+	public String ordMgr_back(String[] mlornoes ) {
+		ordService.ordMgr_back(mlornoes);
 		return "{success:true}";
 	}
 	/**
@@ -158,16 +165,16 @@ public class OrdController {
 	 * @param sdtyno
 	 * @return
 	 */
-	@RequestMapping("/ord/ordercircle.do")
+	@RequestMapping("/ord/ordMgr/ordercircle.do")
 	@ResponseBody
-	public String ordercircle( String[] mlornoes,String sdtyno) {
-		ordService.order_dl__order_to(mlornoes,sdtyno);
+	public String ordMgr_ordercircle( String[] mlornoes,String sdtyno) {
+		ordService.ordMgr_ordercircle(mlornoes,sdtyno);
 		return "{success:true}";
 	}
-	@RequestMapping("/ord/isfect_no.do")
+	@RequestMapping("/ord/ordMgr/isfect_no.do")
 	@ResponseBody
-	public String isfect_no(String[] mlornoes ) {
-		ordService.isfect_no(mlornoes);
+	public String ordMgr_isfect_no(String[] mlornoes ) {
+		ordService.ordMgr_isfect_no(mlornoes);
 		return "{success:true}";
 	}
 	@RequestMapping("/ord/ordty/queryAll.do")
@@ -635,8 +642,8 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/sizeVO/sizeVO_auto_box.do")
 	@ResponseBody
-	public String sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno){
-		ordService.sizeVO_auto_box(ormtno, ordtyno, ordorg, bradno, spclno);
+	public String sizeVO_auto_box(String ormtno,String ordtyno,String ordorg,String bradno,String spclno,Integer sztype){
+		ordService.sizeVO_auto_box(ormtno, ordtyno, ordorg, bradno, spclno,sztype);
 		return "{success:true}";
 	}
 	/**

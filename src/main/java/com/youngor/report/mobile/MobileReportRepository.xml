@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.report.mobile.MobileReportRepository">
+
+   
+    <select id="queryOrdorgCondition" resultType="map" parameterType="map">
+    	select distinct d.orgno,d.orgnm from t_position_org_user a,t_position_org_access b,ord_org c,t_org d
+		where a.position_id=b.position_id and b.orgno=c.ordorg and c.ordorg=d.orgno
+		and c.ormtno=#{ormtno} and a.user_id=#{user_id}
+    </select> 
+    
+   
+</mapper>
+

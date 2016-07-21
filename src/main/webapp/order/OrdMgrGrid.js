@@ -423,7 +423,7 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		mlornoes.push(records[i].get("MLORNO"));
 					    	}
 					    	Ext.Ajax.request({
-					    		url:Ext.ContextPath+'/ord/process2.do',
+					    		url:Ext.ContextPath+'/ord/ordMgr/process2.do',
 					    		params:{mlornoes:mlornoes},
 					    		method:'POST',
 					    		success:function(response){
@@ -457,7 +457,7 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		mlornoes.push(records[i].get("MLORNO"));
 					    	}
 					    	Ext.Ajax.request({
-					    		url:Ext.ContextPath+'/ord/back.do',
+					    		url:Ext.ContextPath+'/ord/ordMgr/back.do',
 					    		params:{mlornoes:mlornoes},
 					    		method:'POST',
 					    		success:function(response){
@@ -492,7 +492,7 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		mlornoes.push(records[i].get("MLORNO"));
 					    	}
 					    	Ext.Ajax.request({
-					    		url:Ext.ContextPath+'/ord/isfect_no.do',
+					    		url:Ext.ContextPath+'/ord/ordMgr/isfect_no.do',
 					    		params:{mlornoes:mlornoes},
 					    		method:'POST',
 					    		success:function(response){
@@ -555,7 +555,7 @@ Ext.define('y.order.OrdMgrGrid',{
 					    listeners:{
 					    	itemdblclick:function( view , record , item , index , e , eOpts){
 					    		Ext.Ajax.request({
-						    		url:Ext.ContextPath+'/ord/ordercircle.do',
+						    		url:Ext.ContextPath+'/ord/ordMgr/ordercircle.do',
 						    		params:{
 						    			mlornoes:mlornoes,
 						    			sdtyno:record.get("sdtyno")

@@ -262,6 +262,7 @@ Ext.define('y.order.SizeVOGrid',{
 					
 					ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
 					record.set("ORMTQT_NOW",ORMTQT_NOW);
+					record.commit();
 				} else if(aaa[0]=="PRDPK"){
 					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
 					if(typeof(subtotal)=='undefined'){

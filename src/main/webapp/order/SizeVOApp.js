@@ -365,16 +365,28 @@ Ext.onReady(function(){
 				handler: function(btn){
 					alert("存储过程还没写!");
 					return;
-					Ext.Ajax.request({
-						url:Ext.ContextPath+"/ord/sizeVO/sizeVO_auto_box.do",
-						params:{
-							sizegp:sizegp.getValue(),
-							sztype:sztype
-						},
-						success:function(response){
-						 	//console.log(response.responseText);
-							var obj=Ext.decode(response.responseText);
-							grid.getStore().reload();
+					Ext.Msg.confirm("消息","根据 订单类型+订货单位+品牌+大类 自动成箱，自动成箱会清除已有包装数据，是否确认自动成箱？?",function(btnid){
+						if(btnid=='yes'){
+							Ext.Ajax.request({
+								url:Ext.ContextPath+"/ord/sizeVO/sizeVO_auto_box.do",
+								params:{
+									ormtno:grid.getStore().getProxy().extraParams.ormtno,
+									ordtyno:grid.getStore().getProxy().extraParams.ordtyno,
+									ordorg:grid.getStore().getProxy().extraParams.ordorg,
+									bradno:grid.getStore().getProxy().extraParams.bradno,
+									spclno:grid.getStore().getProxy().extraParams.spclno,
+									sztype:grid.getStore().getProxy().extraParams.sztype
+								},
+								success:function(response){
+								 	//console.log(response.responseText);
+									var obj=Ext.decode(response.responseText);
+									if(obj.success==false){
+										Ext.Msg.alert("消息",obj.msg);
+										return;
+									}
+									grid.getStore().reload();
+								}
+							});
 						}
 					});
 				},
@@ -393,6 +405,10 @@ Ext.onReady(function(){
 						success:function(response){
 						 	//console.log(response.responseText);
 							var obj=Ext.decode(response.responseText);
+							if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+							}
 							grid.getStore().reload();
 						}
 					});
