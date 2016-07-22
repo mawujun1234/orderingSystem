@@ -164,13 +164,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
-          and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          and a.bradno=#{bradno} 
+          <if test="spclno!=null and spclno!=''">
+          	 and a.spclno=#{spclno} 
+          </if>
           <if test="sptyno!=null and sptyno!=''">
           	 and a.sptyno=#{sptyno}
           </if>
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+          order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    <select id="orderTotalPrint_export1" resultType="com.youngor.report.OrderPrint1" parameterType="map">
     	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul
@@ -195,13 +199,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
-          and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          and a.bradno=#{bradno} 
+ 		  <if test="spclno!=null and spclno!=''">
+          	 and a.spclno=#{spclno} 
+          </if>
           <if test="sptyno!=null and sptyno!=''">
           	 and a.sptyno=#{sptyno}
           </if>
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+        order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
     <select id="orderTotalPrint_export2" resultType="com.youngor.report.OrderPrint1" parameterType="map">
     	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul,d.spsuno
@@ -227,13 +235,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           	and lower(b.sampnm0 like lower('%${sampnm}%')
           </if>
           
-          and a.bradno=#{bradno} and a.spclno=#{spclno} 
+          and a.bradno=#{bradno} 
+          <if test="spclno!=null and spclno!=''">
+          	 and a.spclno=#{spclno} 
+          </if>
           <if test="sptyno!=null and sptyno!=''">
           	 and a.sptyno=#{sptyno}
           </if>
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+          order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    
 </mapper>

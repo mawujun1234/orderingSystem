@@ -1,0 +1,36 @@
+
+<div class="page-group">
+  <div class="page" id="report_money" >
+    <header class="bar bar-nav"> 
+      <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+      <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+      <!--<h1 class='title'>..........</h1>-->
+    </header>
+    <div class="content" style="padding-right:8px;display:none;">
+      <table class="report_table">
+        <thead>
+          <tr>
+            <th>价格段</th>
+            <th>订货金额</th>
+            <th>占比</th>
+            <th>订货品种</th>
+            <th>占比</th>
+            <th>订货数量</th>
+            <th>占比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="todo in todos">
+            <td>{{todo.sprtpr}}</td>
+            <td>{{todo.ormtam}}</td>
+            <td>{{todo.ormtam_zb}}</td>
+            <td>{{todo.sampnocount}}</td>
+            <td>{{todo.sampnocount_zb}}</td>
+            <td>{{todo.ormtqt}}</td>
+            <td>{{todo.ormtqt_zb}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

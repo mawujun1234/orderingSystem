@@ -8,11 +8,260 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
    
     <select id="queryOrdorgCondition" resultType="map" parameterType="map">
-    	select distinct d.orgno,d.orgnm from t_position_org_user a,t_position_org_access b,ord_org c,t_org d
+    	select distinct d.orgno,d.orgnm,d.orgso from t_position_org_user a,t_position_org_access b,ord_org c,t_org d
 		where a.position_id=b.position_id and b.orgno=c.ordorg and c.ordorg=d.orgno
 		and c.ormtno=#{ormtno} and a.user_id=#{user_id}
+		 order by orgso
     </select> 
     
+    <!-- 订货统计-商品类，还要加上可访问的品牌过滤+可访问的订货单位过滤 ,如果是特许，将不存在指标金额
+    		如果是特许取的是spftpr，否则就取sprtpr
+    -->
+    <select id="queryReportSplcno" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,y.qymtqt,y.qymtam from (
+		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} 
+		  and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+		  and c.bradno=#{bradno} 
+		  group by c.spclno,d.itnm
+		) x left join (
+		  select b.spclno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno} 
+		  and exists (select 1 from v_ord_org f where A.ordorg=f.orgno  and f.QYNO=#{ordorg})
+		  group by b.spclno
+		) y on x.spclno=y.spclno
+		order by x.spclno
+    </select>
+    
+    <select id="queryReportSplcno_TX" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,0 qymtqt,0 qymtam from (
+		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*sprtpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}  and e.ordorg=#{ordorg}
+		  and c.bradno=#{bradno} 
+		  group by c.spclno,d.itnm
+		) x 
+		order by x.spclno
+    </select>
+    
+    <select id="queryReportSplcno_YXGS" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,y.qymtqt,y.qymtam from (
+		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}  
+		  and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+		  and c.bradno=#{bradno} 
+		  group by c.spclno,d.itnm
+		) x left join (
+		  select b.spclno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno} and a.bradno=#{bradno}
+		  and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+		  group by b.spclno
+		) y on x.spclno=y.spclno
+		order by x.spclno
+    </select>
+    <select id="queryReportSplcno_ALL" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,y.qymtqt,y.qymtam from (
+		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}  
+		  and c.bradno=#{bradno} 
+		  group by c.spclno,d.itnm
+		) x left join (
+		  select b.spclno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno} and a.bradno=#{bradno}
+		  group by b.spclno
+		) y on x.spclno=y.spclno
+		order by x.spclno
+    </select>
+    
+    
+    
+    
+    
+    
+    <!-- 按零售价的价格段 -->
+     <select id="queryReportMoney_YXGS" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
+     	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
+			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
+			  sum(a.ormtqt*c.sprtpr) ormtam,
+			   ratio_to_report(sum(a.ormtqt*c.sprtpr)) over() as ormtam_zb,
+			  count(distinct b.sampno) sampnocount,
+			   ratio_to_report( count(distinct b.sampno)) over() as sampnocount_zb
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+		  where a.sampno=b.sampno and b.plspno=c.plspno  
+		  	and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+		  	 and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+		  	and c.bradno=#{bradno} 
+		  	<if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+		  group by c.sprtpr
+     </select>
+     <select id="queryReportMoney_QY" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
+     	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
+			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
+			  sum(a.ormtqt*c.sprtpr) ormtam,
+			   ratio_to_report(sum(a.ormtqt*c.sprtpr)) over() as ormtam_zb,
+			  count(distinct b.sampno) sampnocount,
+			   ratio_to_report( count(distinct b.sampno)) over() as sampnocount_zb
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+		  where a.sampno=b.sampno and b.plspno=c.plspno  
+		  	and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+		  	 and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+		  	and c.bradno=#{bradno} 
+		  	<if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+		  group by c.sprtpr
+     </select>
+     <select id="queryReportMoney_TX" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
+     	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
+			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
+			  sum(a.ormtqt*c.sprtpr) ormtam,
+			   ratio_to_report(sum(a.ormtqt*c.sprtpr)) over() as ormtam_zb,
+			  count(distinct b.sampno) sampnocount,
+			   ratio_to_report( count(distinct b.sampno)) over() as sampnocount_zb
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+		  where a.sampno=b.sampno and b.plspno=c.plspno  
+		  	and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+		  	 and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.ORGNO=#{ordorg}) 
+		  	and c.bradno=#{bradno} 
+		  	<if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+		  group by c.sprtpr
+     </select>
+     <select id="queryReportMoney_ALL" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
+     	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
+			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
+			  sum(a.ormtqt*c.sprtpr) ormtam,
+			   ratio_to_report(sum(a.ormtqt*c.sprtpr)) over() as ormtam_zb,
+			  count(distinct b.sampno) sampnocount,
+			   ratio_to_report( count(distinct b.sampno)) over() as sampnocount_zb
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+		  where a.sampno=b.sampno and b.plspno=c.plspno  
+		  	and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+		  	and c.bradno=#{bradno} 
+		  	<if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+		  group by c.sprtpr
+     </select>
+     
+     
+     
+     <!-- 按渠道报表   营销公司进来的报表 ordorg是营销公司的代码-->
+     <select id="queryReportOrg_YXGS" resultType="com.youngor.report.mobile.ReportOrg" parameterType="map">
+     	 select x.*,y.qymtqt,y.qymtam from (     
+		      select f.qyno as orgno,f.qynm as orgnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,v_ord_org f
+		      where a.sampno=b.sampno and b.plspno=c.plspno  
+		      and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} and c.bradno=#{bradno}
+		      and e.ordorg=f.orgno and f.YXGSNO=#{ordorg}   
+		        <if test="spclno!=null and spclno!=''">
+			  		and c.spclno=#{spclno}
+			  	</if>
+			  	<if test="sptyno!=null and sptyno!=''">
+			  		and c.sptyno=#{sptyno}
+			  	</if>
+			  	<if test="spseno!=null and spseno!=''">
+			  		and c.spseno=#{spseno}
+			  	</if>
+		      group by f.qyno,f.qynm
+		) x,(    
+		      select f.qyno as orgno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+				  from ord_plan_org a,ord_plan_orgdtl b,v_ord_org f
+				  where 
+				  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno}
+				  and A.ordorg=f.orgno and f.YXGSNO=#{ordorg}
+				    <if test="spclno!=null and spclno!=''">
+				  		and b.spclno=#{spclno}
+				  	</if>
+				  	<if test="sptyno!=null and sptyno!=''">
+				  		and b.sptyno=#{sptyno}
+				  	</if>
+				  	<if test="spseno!=null and spseno!=''">
+				  		and b.spseno=#{spseno}
+				  	</if>
+				  group by f.qyno
+		 ) y
+		 where x.orgno=y.orgno  
+     </select>
+     <!-- 总公司进来的报表-->
+     <select id="queryReportOrg_ALL" resultType="com.youngor.report.mobile.ReportOrg" parameterType="map">
+     	  select x.*,y.qymtqt,y.qymtam from (     
+		      select f.YXGSNO as orgno,f.YXGSNM as orgnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,v_ord_org f
+		      where a.sampno=b.sampno and b.plspno=c.plspno  
+		      and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}
+		      and e.ordorg=f.orgno 
+		      and c.bradno=#{bradno}
+		        <if test="spclno!=null and spclno!=''">
+			  		and c.spclno=#{spclno}
+			  	</if>
+			  	<if test="sptyno!=null and sptyno!=''">
+			  		and c.sptyno=#{sptyno}
+			  	</if>
+			  	<if test="spseno!=null and spseno!=''">
+			  		and c.spseno=#{spseno}
+			  	</if>
+		      group by f.YXGSNO,f.YXGSNM
+		) x,(    
+		      select f.YXGSNO as orgno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+				  from ord_plan_org a,ord_plan_orgdtl b,v_ord_org f
+				  where 
+				  a.plorno=b.plorno and a.ormtno#{ormtno}  and a.bradno=#{bradno}
+				  and A.ordorg=f.orgno 
+				    <if test="spclno!=null and spclno!=''">
+				  		and b.spclno=#{spclno}
+				  	</if>
+				  	<if test="sptyno!=null and sptyno!=''">
+				  		and b.sptyno=#{sptyno}
+				  	</if>
+				  	<if test="spseno!=null and spseno!=''">
+				  		and b.spseno=#{spseno}
+				  	</if>
+				  group by f.YXGSNO
+		 ) y
+		 where x.orgno=y.orgno 
+		 ORDER BY X.ORGNO 
+     </select>
    
 </mapper>
 

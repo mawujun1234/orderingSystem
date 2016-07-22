@@ -29,6 +29,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
 import com.youngor.order.OrdService;
+import com.youngor.org.Org;
 import com.youngor.utils.M;
 import com.youngor.utils.SignUtil;
 /**
@@ -124,9 +125,14 @@ public class UserController {
 		//显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
         SecurityUtils.getSubject().hasRole("XXX") ;
 		
+        Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 		//创建订单主表
 		try {
-			ordService.create();
+			//判断用户是否是订货单位，如果是订货单位的话，就创建订货单
+			if(ordService.isOrmtnoOrdorg(org.getOrgno())){
+				ordService.create();
+			}
+			
 		 } catch (BusinessException e) {  
 	        error = e.getMessage();  
 	     }
@@ -138,23 +144,10 @@ public class UserController {
         } else {//登录成功  
    
              model.put("success", true);
-//             //显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo
-//             //SecurityUtils.getSubject().hasRole("XXX") ;
-//             //设置微信调用设想头的信息
-//             Map<String,Object> wxConfig=new HashMap<String,Object>();
-//             wxConfig.put("appId", SignUtil.APPID);
-//             wxConfig.put("nonceStr", SignUtil.noncestr);
-//             //如果不能访问外网，就不去获取签名,在测试库的时候
-//             if(url.indexOf("192.168.188.69")==-1){
-//            	 wxConfig.put("signature", SignUtil.getSignature(url));
-//             }
-//             wxConfig.put("timestamp", SignUtil.timestamp);
-//             wxConfig.put("jsApiList", new String[]{"scanQRCode"});
-//             model.put("wxConfig", wxConfig);
              
              
-             model.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
-             model.put("channo",ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getChanno().toString());
+             model.put("orgnm", org.getOrgnm());
+             model.put("channo",org.getChanno().toString());
              
         }  
 		return model;

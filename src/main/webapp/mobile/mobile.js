@@ -270,6 +270,7 @@ $(function(){
 					}
 					
 					document.title = response.orgnm;
+					document.orgnm=response.orgnm;
 					
 					show_od_closeing_info();
 				}
@@ -646,10 +647,11 @@ $(function(){
 	//点击菜单切换过来的时候
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  if(pageId == "od_mypage") {
-		  document.title="我";
+		  document.title=document.orgnm;
 		  queryMyInfoVO ();
 	  } else if(pageId == "od_info") {
-		  document.title="现场订货";
+		  document.title=document.orgnm;
+		  //document.title="现场订货";
 	  }
 	});
 	

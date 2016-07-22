@@ -70,6 +70,19 @@ public class OrdService extends AbstractService<Ord, String>{
 	public OrdRepository getRepository() {
 		return ordRepository;
 	}
+	/**
+	 * 判断某个账号是不是本期的订货单位
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public boolean isOrmtnoOrdorg(String ordorg) {
+		int count=ordOrgService.queryCount(Cnd.count().andEquals(M.OrdOrg.ormtno, ContextUtils.getFirstOrdmt().getOrmtno()).andEquals(M.OrdOrg.ordorg, ordorg));
+		if(count>0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public void create(){
 		//先判断主订单是否已经有了，这个组织的单元
@@ -396,7 +409,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	public List<SampleDesign> query_none_abstat(){
 		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
-		if("QY".equals(org.getChanno().toString())){
+		if(org.getChanno()!=Chancl.TX){
 			//订单号
 			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
 			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
@@ -426,7 +439,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//区域 订单确认时判断 必定款的样衣是否全部已订，提示未订的必定款样衣；
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
-		if("QY".equals(org.getChanno().toString())){
+		if(org.getChanno()!=Chancl.TX){
 			//订单号
 			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
 			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
@@ -621,7 +634,16 @@ public class OrdService extends AbstractService<Ord, String>{
 		UserVO userVO=ShiroUtils.getAuthenticationInfo();
 		Ord ord=userVO.getOrd();
 		Org org=userVO.getFirstCurrentOrg();
+		
 		Map<String,Object> result=new HashMap<String,Object>();
+		if(org.getChanno()!=Chancl.TX  && org.getChanno()!=Chancl.QY){
+			result.put("show", false);
+			result.put("canOrd", false);//是否可以订货
+			result.put("msg", "你所在的组织单元不是订货单位，不能订货!");
+			result.put("success", true);
+			return result;
+		}
+		
 		ord.setOrdCheckInfo(result);
 		OrdmtScde ordmtScde=ordRepository.get_ordmt_scde(ord.getOrmtno(), org.getChanno().toString());
 		if(ordmtScde==null){
@@ -742,6 +764,9 @@ public class OrdService extends AbstractService<Ord, String>{
 		Ord ord=userVO.getOrd();
 		Org org=userVO.getFirstCurrentOrg();
 		MyInfoVO myInfoVO= ordRepository.queryMyInfoVO(ord.getMtorno(),org.getChanno().toString());
+		if(myInfoVO==null){
+			myInfoVO=new MyInfoVO();
+		}
 		
 		myInfoVO.setOrgnm(org.getOrgnm());
 		

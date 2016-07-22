@@ -21,6 +21,9 @@ $(function(){
 	
 	var od_yxgs_confirm_btn=$("#od_yxgs_confirm_btn");
 	od_yxgs_confirm_btn.click(function(){
+		if($(this).hasClass("disabled")){
+			return;
+		}
 		$.post(Ext.ContextPath+'/ord/mobile/confirm_yxgs.do', {  }, function(response){
 			if(response.success==false){
 				alert(response.msg);

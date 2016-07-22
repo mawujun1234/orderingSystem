@@ -9,6 +9,9 @@ Ext.define('y.sample.SampleDesignGrid',{
           selType: 'checkboxmodel'
           //,checkOnly:true
     },
+     viewConfig:{
+    	enableTextSelection:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[

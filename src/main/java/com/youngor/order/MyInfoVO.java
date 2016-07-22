@@ -1,5 +1,8 @@
 package com.youngor.order;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class MyInfoVO {
 	private String orgnm;
 //	private Double plmtam;//指标金额
@@ -7,11 +10,11 @@ public class MyInfoVO {
 	
 	//private Double spftpr;//出厂价
 	//private Double sprtpr;//零售价
-	private Integer ormtam;//实订金额
+	private BigDecimal ormtam;//实订金额
 	private Integer ormtqt;//实订数量
 	
-	private Double qymtqt;//区域指标数量
-	private Double qymtam;//区域指标金额
+	private Integer qymtqt;//区域指标数量
+	private BigDecimal qymtam;//区域指标金额
 	
 	
 	public String getOrgnm() {
@@ -27,22 +30,28 @@ public class MyInfoVO {
 	public void setOrmtqt(Integer ormtqt) {
 		this.ormtqt = ormtqt;
 	}
-	public Integer getOrmtam() {
-		return ormtam;
+	public BigDecimal getOrmtam() {
+		if(ormtam==null){
+			return new BigDecimal(0);
+		}
+		return ormtam.setScale(2, RoundingMode.HALF_UP);
 	}
-	public void setOrmtam(Integer ormtam) {
+	public void setOrmtam(BigDecimal ormtam) {
 		this.ormtam = ormtam;
 	}
-	public Double getQymtqt() {
+	public Integer getQymtqt() {
 		return qymtqt;
 	}
-	public void setQymtqt(Double qymtqt) {
+	public void setQymtqt(Integer qymtqt) {
 		this.qymtqt = qymtqt;
 	}
-	public Double getQymtam() {
-		return qymtam;
+	public BigDecimal getQymtam() {
+		if(ormtam==null){
+			return new BigDecimal(0);
+		}
+		return qymtam.setScale(2, RoundingMode.HALF_UP);
 	}
-	public void setQymtam(Double qymtam) {
+	public void setQymtam(BigDecimal qymtam) {
 		this.qymtam = qymtam;
 	}
 

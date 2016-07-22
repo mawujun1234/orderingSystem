@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
-
+    <link rel="stylesheet" href="mobile.css" >
   </head>
   <body>
     <div class="page-group">
@@ -24,37 +24,217 @@
                   <div class="content-block-title">报表清单</div>
                   <div class="list-block">
                     <ul>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                          <div class="item-title">未定的必定款样衣</div>
-                        </div>
-                      </li>
+                      
                       <li class="item-content item-link">
                         <div class="item-media"><i class="icon icon-f7"></i></div>
                         <div class="item-inner">
                           <div class="item-title">订货统计-按实订样衣</div>
                         </div>
                       </li>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                          <div class="item-title">订货统计-按商品类
-</div>
+                      <li>
+                        <a href="#report_spclno" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">    
+                          <div class="item-title">订货统计-按商品类</div>
                         </div>
+                        </a>
                       </li>
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                      <li>
+                        <a href="#report_money" data-no-cache="true" class="item-link item-content">
                         <div class="item-inner">
-                          <div class="item-title">订货统计-按价位
-</div>
+                          <div class="item-title">订货统计-按价位段</div>
                         </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#report_org" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-按渠道</div>
+                        </div>
+                        </a>
                       </li>
                     </ul>
                   </div><!-- 报表清单-->
             </div><!-- content-->
         </div><!-- #od_yxgs -->
+        
+        
+         <!--订货统计-按商品类 -->
+        <div class="page" id="report_spclno" >
+            <header class="bar bar-nav"> 
+              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+              <table class="report_table">
+                <thead>
+                  <tr>
+                    <th>大类</th>
+                    <th>订货金额</th>
+                    <th>计划金额</th>
+                    <th>完成率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="todo in todos">
+                    <td>{{todo.spclnm}}</td>
+                    <td>{{todo.ormtam_wan}}</td>
+                    <td>{{todo.qymtam}}</td>
+                    <td>{{todo.wancl}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- #report_spclno -->
+          
+          <!-- 订货统计-按价位-->
+          <div class="page" id="report_money" >
+            <header class="bar bar-nav"> 
+              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+              <table class="report_table">
+                <thead>
+                  <tr>
+                    <th>价格段</th>
+                    <th>订货金额</th>
+                    <th>占比</th>
+                    <th>订货品种</th>
+                    <th>占比</th>
+                    <th>订货数量</th>
+                    <th>占比</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="todo in todos">
+                    <td>{{todo.sprtpr}}</td>
+                    <td>{{todo.ormtam_wan}}</td>
+                    <td>{{todo.ormtam_zb}}</td>
+                    <td>{{todo.sampnocount}}</td>
+                    <td>{{todo.sampnocount_zb}}</td>
+                    <td>{{todo.ormtqt}}</td>
+                    <td>{{todo.ormtqt_zb}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- #report_money -->
+          
+          
+          
+          <!-- 订货统计-按价位-->
+          <div class="page" id="report_org" >
+            <header class="bar bar-nav"> 
+              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+              <table class="report_table">
+                <thead>
+                  <tr>
+                    <th>渠道</th>
+                    <th>订货金额</th>
+                    <th>计划金额</th>
+                    <th>完成率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="todo in todos">
+                    <td>{{todo.orgnm}}</td>
+                    <td>{{todo.ormtam_wan}}</td>
+                    <td>{{todo.qymtam}}</td>
+                    <td>{{todo.wancl}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- #report_org -->
+          
+          
+          
+          
+          
+          
+          
+          
     </div>
+    
+    
+        <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-right panel-cover theme-white" id='report_query_params'>
+    
+      <div class="card" id='report_query_params_bradno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        品牌<span class="icon icon-up" style="position:absolute;right:0.5rem;"></span>
+        </div>
+        <div class="card-content" >
+          <div class="card-content-inner">
+          <!--
+            <a href="#" class="button button-light param-btn button-success button-fill" >衬衫</a>
+            <a href="#" class="button button-light param-btn ">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <a href="#" class="button button-light param-btn" >衬衫</a>
+            <a href="#" class="button button-light param-btn">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <div style="clear:both;"></div>
+            -->
+     	  </div>
+        </div>
+      </div><!--card-->
+      
+      <div class="card" id='report_query_params_spclno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	大类<span class="icon icon-up" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_sptyno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	小类<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_spseno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	系列<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_ordorg' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	订货单位<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      
+      <!--
+      	<p class="buttons-row" >
+        	<a href="#" class="button" id="report_query_params_reset">重置</a>
+            <a href="#" class="button active button-danger" id="report_query_params_complete">完成</a>
+        </p>
+      -->
+      <div class="row">
+          <div class="col-50"><a href="#" class="button button-dark" id="report_query_params_reset">重置</a></div>
+          <div class="col-50"><a href="#" class="button button-fill button-danger" id="report_query_params_complete">查询</a></div>
+      </div>
+    </div>
+
 
     	<!--			
     <script type='text/javascript' src='./js/zepto.min.js' charset='utf-8'></script>
@@ -67,6 +247,7 @@
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
     <script type='text/javascript' src='yxgs.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./report/report.js' charset='utf-8'></script>
 
   </body>
 </html>

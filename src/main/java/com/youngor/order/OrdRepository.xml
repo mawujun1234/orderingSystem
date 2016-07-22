@@ -197,10 +197,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
      	select sum(a.ormtqt) ormtqt
      	<if test="channo=='TX'">
-     		,sum(a.ormtqt*c.spftpr)/10000 ormtam
+     		,sum(a.ormtqt*c.sprtpr)/10000 ormtam
      	</if>
      	<if test="channo!='TX'">
-     		,sum(a.ormtqt*c.sprtpr)/10000 ormtam
+     		,sum(a.ormtqt*c.spftpr)/10000 ormtam
      	</if>
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno

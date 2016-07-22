@@ -1,6 +1,8 @@
 package com.youngor.plan;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,6 +64,7 @@ public class PlanHd {
 			return;
 		}
 		this.plmtam=this.plmtam+plmtam;
+		this.plmtam=(new BigDecimal(this.plmtam)).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 	
 	

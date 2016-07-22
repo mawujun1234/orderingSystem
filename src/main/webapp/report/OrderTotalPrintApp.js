@@ -61,10 +61,11 @@ Ext.onReady(function(){
 				labelWidth:65,
 				width:150,
 				allowBlank: false,
+				showBlank:false,
 	            afterLabelTextTpl: Ext.required,
 				itemId: 'channo',
 				xtype:'channocombo',
-				value:'QY',
+				//value:'QY',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var toolbars=grid.getDockedItems('toolbar[dock="top"]');
@@ -74,13 +75,7 @@ Ext.onReady(function(){
 						} else {
 							shenp_btn.disable();
 						}
-						
-//		        		
-//						var ordorg=combo.nextSibling("#ordorg");
-//		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
-//		        			channo:record.get("channo")
-//		        		});
-//		        		ordorg.getStore().reload();
+
 					}
 				}
 			 }]
@@ -94,6 +89,7 @@ Ext.onReady(function(){
 		        itemId: 'spclno',
 		        labelWidth:40,
 		        width:120,
+		        showBlank:false,
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
