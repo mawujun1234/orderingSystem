@@ -13,6 +13,8 @@ import com.youngor.ordmt.OrdmtController;
 import com.youngor.org.Channo;
 import com.youngor.org.ChannoService;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.permission.User;
+import com.youngor.permission.UserController;
 import com.youngor.permission.UserVO;
 import com.youngor.suno.PubSuno;
 import com.youngor.suno.PubSunoService;
@@ -121,6 +123,35 @@ public class ContextUtils {
 		return channo_map.get(channo);
 		
 	}
+	
+	/**
+	 * 获取设计师
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	private static Map<String,User> sjs_map=new HashMap<String,User>();
+	private static Boolean sjs_bool=false;
+	public static User getSjs(String sjsno){
+		if(sjsno==null || "".equals(sjsno)){
+			return null;
+		}
+		if(sjs_bool){
+			return null;
+		}
+		if(sjs_map==null || sjs_map.size()==0 || sjs_map.get(sjsno)==null){
+			sjs_bool=true;
+			UserController userController=SpringContextHolder.getBean(UserController.class);
+			List<User> users=userController.querySjs("sjs");
+			for(User user:users){
+				sjs_map.put(user.getId(), user);
+			}
+			sjs_bool=false;
+		}
+		
+		return sjs_map.get(sjsno);
+		
+	}
+	
 	/**
 	 * 所有供应商
 	 */
@@ -130,10 +161,11 @@ public class ContextUtils {
 		if(idsuno==null || "".equals(idsuno)){
 			return null;
 		}
+		if(pubSuno_bool){
+			return null;
+		}
 		if(pubSuno_map==null || pubSuno_map.size()==0 || pubSuno_map.get(idsuno)==null){
-			if(pubSuno_bool){
-				return null;
-			}
+			
 			pubSuno_bool=true;
 			PubSunoService pubSunoService=SpringContextHolder.getBean(PubSunoService.class);
 			List<PubSuno> pubSunoes=pubSunoService.queryAll();

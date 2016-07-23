@@ -38,4 +38,6 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	public List<Map<String,Object>> query_exportSample(Map<String,Object> params);
 	public List<Map<String,Object>> query_exportSampleMate(Map<String,Object> params);
 	public List<Map<String,Object>> query_exportSampleMate_other(Map<String,Object> params);
+	
+	public List<String> querySampnoBySampnm1(@Param("sampnm1")String sampnm1);
 }

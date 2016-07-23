@@ -62,6 +62,9 @@ public class SamplePhoto extends BaseObject {
 		this.photms = photms;
 	}
 	public String getImgnm() {
+		if(imgnm==null){
+			return "../mobile/images/no_photo.jpg";
+		}
 		return imgnm;
 	}
 	public void setImgnm(String imgnm) {

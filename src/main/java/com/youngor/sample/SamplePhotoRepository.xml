@@ -8,5 +8,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBySampno">
     	delete ord_sample_photo where sampno=#{sampno}
     </delete>
+    
+    <select id="queryBySampno" resultType="com.youngor.sample.SamplePhoto" parameterType="map">
+    	select * from ord_sample_photo where sampno=#{sampno}
+    </select>
 </mapper>
 

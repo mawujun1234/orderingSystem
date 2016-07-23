@@ -1,5 +1,33 @@
 Ext={};
-Ext.ContextPath="";
+Ext.ContextPath="/od";
+if(location.pathname.indexOf("/od")==-1){
+	Ext.ContextPath="";
+}
+$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
+$(document).on('ajaxSuccess',function(e,xhr,options,response){
+	handlerReturn(response);
+	return;
+});
+$(document).on('ajaxError',function(e,xhr,options,response){
+	handlerReturn(response);
+	return;
+});
+function handlerReturn(response){
+	
+	if(response.success==false){
+			if(response.msg){
+				$.alert(response.msg);
+				if(response.errorCode=='nologin'){
+					$.router.load("#od_loginpage"); 
+				}
+				return;
+			} else {
+				return;
+			}
+			$.hidePreloader();
+	}
+}
+
 $(function(){
 	function check(){
 		$.post(Ext.ContextPath+'/ord/mobile/yxgs/getOrstat.do', {  }, function(response){
@@ -15,7 +43,7 @@ $(function(){
 				od_yxgs_confirm_btn.show().css("display","block");
 				od_yxgs_confirm_btn.html("订单已确认");
 			}
-		});
+		},'json');
 	}
 	check();
 	

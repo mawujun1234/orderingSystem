@@ -366,3 +366,16 @@ table.report_table td.example_code {
 .cond_show {
 	display:block;	
 }
+
+
+.circle13 { 
+width: 1.5rem; 
+height:  1rem; 
+line-height:1rem;
+color:red;
+background-color:rgba(8,148,236,0.8); 
+-moz-border-radius: 50px; 
+-webkit-border-radius: 50px; 
+border-radius: 50px; 
+text-align:center;
+} 

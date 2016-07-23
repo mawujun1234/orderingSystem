@@ -318,4 +318,130 @@ public class PubCodeCache {
 			return pubCode.getItnm();
 		}
 	}
+	
+	/**
+	 * 获取工作室系列
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getStseno(String itno){
+		if(itno!=null && cache.get("21").get(itno)==null) {
+			refreshPubCode("21");
+		}
+		return cache.get("21").get(itno);
+	}
+	public static String getStseno_name(String itno){
+		PubCode pubCode=getStseno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取生产类型
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getSpmtno(String itno){
+		if(itno!=null && cache.get("29").get(itno)==null) {
+			refreshPubCode("29");
+		}
+		return cache.get("29").get(itno);
+	}
+	public static String getSpmtno_name(String itno){
+		PubCode pubCode=getSpmtno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取花型
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getPattno(String itno){
+		if(itno!=null && cache.get("12").get(itno)==null) {
+			refreshPubCode("12");
+		}
+		return cache.get("12").get(itno);
+	}
+	public static String getPattno_name(String itno){
+		PubCode pubCode=getPattno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取款式
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getStylno(String itno){
+		if(itno!=null && cache.get("14").get(itno)==null) {
+			refreshPubCode("14");
+		}
+		return cache.get("14").get(itno);
+	}
+	public static String getStylno_name(String itno){
+		PubCode pubCode=getStylno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取性别
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getSexno(String itno){
+		if(itno!=null && cache.get("6").get(itno)==null) {
+			refreshPubCode("6");
+		}
+		return cache.get("6").get(itno);
+	}
+	public static String getSexno_name(String itno){
+		PubCode pubCode=getSexno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取长短袖
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getSlveno(String itno){
+		if(itno!=null && cache.get("7").get(itno)==null) {
+			refreshPubCode("7");
+		}
+		return cache.get("7").get(itno);
+	}
+	public static String getSlveno_name(String itno){
+		PubCode pubCode=getSlveno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
 }

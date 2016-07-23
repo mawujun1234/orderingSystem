@@ -25,11 +25,12 @@
                   <div class="list-block">
                     <ul>
                       
-                      <li class="item-content item-link">
-                        <div class="item-media"><i class="icon icon-f7"></i></div>
-                        <div class="item-inner">
-                          <div class="item-title">订货统计-按实订样衣</div>
+                      <li>
+                      	<a href="#report_alreadyod" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">    
+                          <div class="item-title">订货统计-按已订样衣</div>
                         </div>
+                        </a>
                       </li>
                       <li>
                         <a href="#report_spclno" data-no-cache="true" class="item-link item-content">
@@ -61,7 +62,7 @@
          <!--订货统计-按商品类 -->
         <div class="page" id="report_spclno" >
             <header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
               <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
@@ -90,7 +91,7 @@
           <!-- 订货统计-按价位-->
           <div class="page" id="report_money" >
             <header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
               <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
@@ -124,10 +125,10 @@
           
           
           
-          <!-- 订货统计-按价位-->
+          <!-- 订货统计-按渠道-->
           <div class="page" id="report_org" >
             <header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
               <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
@@ -154,13 +155,107 @@
           </div><!-- #report_org -->
           
           
+            <!-- 已订样衣-->
+          <div class="page" id="report_alreadyod" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            
+            <div  class="content infinite-scroll infinite-scroll-bottom" data-distance="100" style="padding-right:8px;display:none;" >
+            <div class="row" style="margin-left:10px;text-align:center;font-size:0.7rem;">
+              已订品种数:<span style="color:red;">{{totalData.sampnocount}}</span>种<span style="color:red;">/</span>
+              已订数量:<span style="color:red;">{{totalData.ormtqt}}</span>件<span style="color:red;">/</span>
+              已订金额:<span style="color:red;">{{totalData.ormtam}}</span>万
+            </div>
+            <div class="row" v-for="todo in todos">
+               <div class="col-50" v-for="samp in todo">
+                  <div class="card demo-card-header-pic" >
+                    <div valign="bottom" class="card-header color-white no-border no-padding">
+                      <img class='card-cover' v-bind:src="samp.imgnm" alt="">
+                    </div>
+                    <div class="card-content">
+                      <div class="card-content-inner" style="padding:0px;padding-left:5px;">
+                        <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">零售价:{{samp.sprtpr}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">订货数量:{{samp.ormtqt}}</p>
+                      </div>
+                    </div>
+                    <div class="card-footer" style="padding-top:0px;padding-bottom:0px;line-height:1rem;min-height:1.5rem;">
+                      <a href="#" class="link " style="height:1rem;margin:0px;"><span class="circle13">{{samp.rownum}}</span></a>
+                      <a href="#sample_info" class="link sample_info_link" v-bind:data-sampno="samp.sampno" style="height:1rem;margin:0px;">更多</a>
+                    </div>
+                  </div>
+                </div><!-- 50%-->
+               
+       
+              </div>
+              <!-- 加载提示符 -->
+              <div class="infinite-scroll-preloader">
+                  <div class="preloader"></div>
+              </div>
+            </div><!-- content-->
+          </div><!-- #report_alreadyod -->
           
           
+          <!-- 样衣信息-->
+          <div class="page" id="sample_info" >
+          	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+            	<h1 class='title'>样衣详细信息</h1>
+            </header>
+            <div class="content">
+
+            <template v-for="todo in todos">
+               <div class="content-block-title">{{todo.sampnm}}</div>
+               <div class="swiper-container" data-space-between='10'>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" v-for="photo in todo.photoes">
+                  	<img src="v-bind:src="photo.imgnm"" alt="">
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="card-content">  
+                  <div class="buttons-tab">
+                    <a href="#tab1" class="tab-link active button">企划</a>
+                    <a href="#tab2" class="tab-link button">设计</a>
+                  </div> 
+                   <div class="tabs" >
+                      <div id="tab1" class="tab active">     
+                          <div class="list-block">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab1">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab1 -->
+                       <div id="tab2" class="tab">
+                       	  <div class="list-block">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab2">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab2 -->
+                    
+                     </div><!-- tabs-->
+                  </div><!--card-conten -->
+            </template>           
+            </div><!--content -->
+          </div><!--sample_info -->
           
           
-          
-          
-    </div>
+    </div><!-- page-group -->
     
     
         <div class="panel-overlay"></div>

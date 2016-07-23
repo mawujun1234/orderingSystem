@@ -276,7 +276,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="#" data-no-cache="true" class="item-link item-content">
+                        <a href="#report_alreadyod" data-no-cache="true" class="item-link item-content">
                         <div class="item-inner">
                           <div class="item-title">订货统计-已定样衣</div>
                         </div>
@@ -305,7 +305,7 @@
         <!-- 未订的必定款样衣-->
         <div class="page" id="none_abstat">
         	<header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> -->
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
             </header>
         	<div class="content">
             	&nbsp;&nbsp;<span style="color:rgba(244,2,25,1.00)">必定</span>出样样衣编号:
@@ -326,7 +326,7 @@
         <!--订货统计-按商品类 -->
         <div class="page" id="report_spclno" >
             <header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
               <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
@@ -355,7 +355,7 @@
           <!-- 订货统计-按价位-->
           <div class="page" id="report_money" >
             <header class="bar bar-nav"> 
-              <!--<a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>--> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
               <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
@@ -386,6 +386,39 @@
               </table>
             </div>
           </div><!-- #report_money -->
+          
+          <!-- 已订样衣-->
+          <div class="page" id="report_alreadyod" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " style="font-size:1rem;">&nbsp;筛选</span></a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+            <div class="row" v-for="todo in todos">
+               <div class="col-50" v-for="samp in todo">
+                  <div class="card demo-card-header-pic" >
+                    <div valign="bottom" class="card-header color-white no-border no-padding">
+                      <img class='card-cover' v-bind:src="samp.imgnm" alt="">
+                    </div>
+                    <div class="card-content">
+                      <div class="card-content-inner" style="padding:0px;padding-left:5px;">
+                        <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">零售价:{{samp.sprtpr}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">订货数量:{{samp.ormtqt}}</p>
+                      </div>
+                    </div>
+                    <div class="card-footer" style="padding-top:0px;padding-bottom:0px;line-height:1rem;min-height:1.5rem;">
+                      <a href="#" class="link " style="height:1rem;margin:0px;"><span class="circle13">{{samp.rownum}}</span></a>
+                      <a href="#" class="link" style="height:1rem;margin:0px;">更多</a>
+                    </div>
+                  </div>
+                </div><!-- 50%-->
+               
+       
+              </div>
+            </div><!-- content-->
+          </div><!-- #report_alreadyod -->
           
 	</div><!-- page-group -->
     

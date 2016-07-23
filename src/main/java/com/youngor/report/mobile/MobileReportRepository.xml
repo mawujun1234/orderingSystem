@@ -13,6 +13,80 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		and c.ormtno=#{ormtno} and a.user_id=#{user_id}
 		 order by orgso
     </select> 
+    <!-- 已定样衣 -->
+    <sql id="queryReportAlreadyOd_where">
+    	 select  b.sampno,b.sampnm,c.sprtpr,nvl(f.imgnm,'../mobile/images/no_photo.jpg') imgnm,sum(a.ormtqt) ormtqt 
+	      from ord_ord e
+	      inner join ord_orddtl a on e.mtorno=a.mtorno
+	      inner join ord_sample_design b on a.sampno=b.sampno
+	      inner join ord_sample_plan c on  b.plspno=c.plspno  
+	      left join (
+	           select sampno,imgnm from ord_sample_photo a
+	           where not exists(select 1 from ord_sample_photo b where a.sampno=b.sampno and a.id>b.id)
+	      ) f on b.sampno=f.sampno
+	      where  
+	           e.ormtno=#{ormtno} and e.ortyno='DZ' 
+	         <choose>  
+	         	<when test="channo=='TX' or channo=='QY'">  
+	         		AND e.ordorg=#{ordorg}
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+	        and c.bradno=#{bradno}
+	        <if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+	        group by b.sampno,b.sampnm,c.sprtpr,f.imgnm
+	        
+    </sql>
+    <select id="queryReportAlreadyOd" resultType="com.youngor.report.mobile.AlreadyOd" parameterType="map">
+    	<include refid="queryReportAlreadyOd_where"></include>  
+          order by sum(a.ormtqt) desc 
+    </select>
+    <select id="queryReportAlreadyOd_count" resultType="int" parameterType="map">
+    	select count(*) from (
+    		 <include refid="queryReportAlreadyOd_where"></include>  
+    	)
+    </select>
+    <select id="queryReportAlreadyOd_totalData" resultType="map" parameterType="map">
+    	select  sum(a.ormtqt) as ormtqt,
+        round(sum(a.ormtqt*c.sprtpr)/10000,2) ormtam,
+        count(distinct b.sampno) sampnocount
+      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+      where a.sampno=b.sampno and b.plspno=c.plspno  
+        and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+         <choose>  
+	         	<when test="channo=='TX' or channo=='QY'">  
+	         		AND e.ordorg=#{ordorg}
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+        	and c.bradno=#{bradno}
+	        <if test="spclno!=null and spclno!=''">
+		  		and c.spclno=#{spclno}
+		  	</if>
+		  	<if test="sptyno!=null and sptyno!=''">
+		  		and c.sptyno=#{sptyno}
+		  	</if>
+		  	<if test="spseno!=null and spseno!=''">
+		  		and c.spseno=#{spseno}
+		  	</if>
+        
+    </select>
     
     <!-- 订货统计-商品类，还要加上可访问的品牌过滤+可访问的订货单位过滤 ,如果是特许，将不存在指标金额
     		如果是特许取的是spftpr，否则就取sprtpr

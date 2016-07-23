@@ -1,11 +1,11 @@
 package com.youngor.sample;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import java.util.UUID;
-import com.mawujun.repository.IRepository;
 
-import com.youngor.sample.SamplePhoto;
+import com.mawujun.repository.IRepository;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -14,5 +14,6 @@ import com.youngor.sample.SamplePhoto;
 @Repository
 public interface SamplePhotoRepository extends IRepository<SamplePhoto, String>{
 	public void deleteBySampno(@Param("sampno")String sampno);
+	public List<SamplePhoto> queryBySampno(@Param("sampno")String sampno);
 
 }

@@ -3,21 +3,27 @@ Ext.ContextPath="/od";
 if(location.pathname.indexOf("/od")==-1){
 	Ext.ContextPath="";
 }
-
-//$(document).on('ajaxComplete',function(e,xhr,options){
-//	var response=JSON.parse(xhr.responseText);
-//	if(response.success==false){
-//			if(response.msg){
-//				$.alert(response.msg);
-//				if(response.errorCode=='nologin'){
-//					$.router.load("#od_loginpage"); 
-//				}
-//				return;
-//			} else {
-//				return;
-//			}
-//	}
-//})
+$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
+$(document).on('ajaxSuccess',function(e,xhr,options,response){
+	handlerReturn(response);
+});
+$(document).on('ajaxError',function(e,xhr,options,response){
+	handlerReturn(response);
+});
+function handlerReturn(response){
+	if(response.success==false){
+			if(response.msg){
+				$.alert(response.msg);
+				if(response.errorCode=='nologin'){
+					$.router.load("#od_loginpage"); 
+				}
+				return;
+			} else {
+				return;
+			}
+			$.hidePreloader();
+	}
+}
 
 //显示和隐藏今日订货会快结束的信息
 window.od_closeing_info=null;//提高性能
@@ -255,7 +261,7 @@ $(function(){
 				password:password,
 				isscan:isscan
 			},function(response){
-				$.hidePreloader();
+				
 				if(response.success==false){
 					$.toast(response.msg);
 				} else {
@@ -273,6 +279,7 @@ $(function(){
 					document.orgnm=response.orgnm;
 					
 					show_od_closeing_info();
+					$.hidePreloader();
 				}
 				
 			}

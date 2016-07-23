@@ -291,7 +291,10 @@ $(function(){
 		$.condition.clear();
 		showreport();
 	  } else {
-		  //window.report_spclno_vm=null;
+		  //window.report_spclno_vm.$data.todos=[];
+		  if(window.report_spclno_vm){
+			   window.report_spclno_vm.$data.todos=[];
+		  }
 		  $.closePanel();
 	  }
 	});
@@ -344,7 +347,9 @@ $(function(){
 		$.condition.clear();
 		showreport();
 	  } else {
-		  //window.report_money_vm=null;
+		  if(window.report_money_vm){
+			   window.report_money_vm.$data.todos=[];
+		  }
 		  $.closePanel();
 	  }
 	});
@@ -398,7 +403,10 @@ $(function(){
 		$.condition.clear();
 		showreport();
 	  } else {
-		 // window.report_org_vm=null;
+		  if(window.report_org_vm){
+			  window.report_org_vm.$data.todos=[];
+		  }
+		  
 		  $.closePanel();
 	  }
 	});
@@ -436,6 +444,182 @@ $(function(){
 			  }
 			});
 			$("#report_org .content").show();	
+		}
+		$.hidePreloader();
+	}
+
+});
+
+
+
+//报表统计--已订样衣
+$(function(){
+	$(document).on("pageInit", function(e, pageId, $page) {
+		
+	  if(pageId == "report_alreadyod") {
+		document.title="订货统计-已定样衣";
+		if(document.last_view_pageId=='sample_info'){
+			return;
+		}
+		$.showPreloader();
+		$.condition.clear();
+		showreport();
+	  } else {
+		  if(window.report_alreadyod_vm && pageId!='sample_info'){
+			   window.report_alreadyod_vm.$data.todos=[];
+			   window.report_alreadyod_vm.$data.totalData={};
+		  }
+		
+		  $.closePanel();
+	  }
+	  document.last_view_pageId=pageId;
+	});
+
+	function showreport(){
+		$.condition.init({
+			bradno:true,
+			spclno:true,
+			ordorg:false,
+			//
+			selectFirstConfig:{//等着几个必须的条件准备好后，就自动进行查询
+				bradno:true,//后台也要改，临时的
+				//ordorg:false,//后台也要改，临时的
+				readyIndex:1//临时解决方案，要初始化的查询条件的个数，等查询条件个数完成后，就自动进行查询，
+			},
+			submit:function(condition){
+				//console.log(condition.params)
+				params=condition.params;
+				params.start=0;
+				params.limit=itemsPerLoad;
+				$.post(Ext.ContextPath+'/mobile/report/queryReportAlreadyOd.do', condition.params, function(response){
+					renderReport(response);
+					
+					maxItems=response.total;
+					lastIndex = response.numPage;
+					if(have_detachInfiniteScroll){
+						//$.attachInfiniteScroll("#report_alreadyod .infinite-scroll");
+						have_detachInfiniteScroll=false;
+			  			$('#report_alreadyod .infinite-scroll-preloader').show();
+					}
+					if(response.numPage==0){
+						$('#report_alreadyod .infinite-scroll-preloader').hide();	
+					} else {
+						$('#report_alreadyod .infinite-scroll-preloader').show();
+					}
+				},'json');
+			}
+		});
+		
+	}
+	
+	function renderReport(response){
+		if(window.report_alreadyod_vm){
+			//console.log(response);
+			window.report_alreadyod_vm.$data.todos=response.root;
+			window.report_alreadyod_vm.$data.totalData=response.totalData;
+		} else {
+			window.report_alreadyod_vm=new Vue({//这个不能删除，不然模板没了
+			  el: '#report_alreadyod',
+			  data: {
+				todos:response.root,
+				totalData:response.totalData
+			  }
+			});
+			$("#report_alreadyod .content").show();	
+			infinite();
+		}
+		$.hidePreloader();
+	}
+	
+	var params={};
+	// 加载flag
+    var loading = false;
+    // 最多可加载的条目
+    var maxItems = 100;
+    // 每次加载添加多少条目
+    var itemsPerLoad = 20;
+	var lastIndex = itemsPerLoad;
+	var have_detachInfiniteScroll=false;
+	function infinite(){
+		$(document).on('infinite', '.infinite-scroll-bottom',function() {
+          // 如果正在加载，则退出
+          if (loading) return;
+          // 设置flag
+          loading = true;
+		  params.start=lastIndex;
+		  params.limit=itemsPerLoad;
+		  
+		  if (lastIndex >= maxItems) {
+			  //$.detachInfiniteScroll($('#report_alreadyod .infinite-scroll'));
+			  have_detachInfiniteScroll=true;
+			  $('#report_alreadyod .infinite-scroll-preloader').hide();
+			  loading=false;
+			  return;
+		  }
+		  $.post(Ext.ContextPath+'/mobile/report/queryReportAlreadyOd.do',params, function(response){
+		  		loading = false;
+				if(!response.root || response.root.length==0){
+					return;
+				}
+				 // 添加新条目
+				 for(var i=0;i<response.root.length;i++){
+					 window.report_alreadyod_vm.$data.todos.push(response.root[i]);
+				 }
+				  //addItems(itemsPerLoad, lastIndex);
+				  // 更新最后加载的序号
+				  lastIndex = lastIndex+response.numPage;
+				  //容器发生改变,如果是js滚动，需要刷新滚动
+				  $.refreshScroller();
+				
+		  },'json');
+				
+          
+      });//infinite
+		
+	}
+	
+	$("#report_alreadyod").on("click",".sample_info_link",function(){
+		window.sample_info_sampno=$(this).data("sampno");
+	});
+
+});
+
+
+//样衣详细信息
+$(function(){
+	$(document).on("pageInit", function(e, pageId, $page) {
+	  if(pageId == "sample_info") {
+		document.title="样衣详细信息";
+		$.showPreloader();
+		//$.condition.clear();
+		showreport();
+	  } else {
+		  if(window.sample_info_vm){
+			  window.sample_info_vm.$data.todos=[];
+		  }
+		  
+		  $.closePanel();
+	  }
+	});
+
+	function showreport(){
+		$.post(Ext.ContextPath+'/mobile/report/querySampleInfo.do', {sampno:window.sample_info_sampno}, function(response){
+					renderReport(response);
+				},'json');
+	}
+	
+	function renderReport(response){
+		if(window.sample_info_vm){
+			//console.log(response);
+			window.sample_info_vm.$data.todos=response;
+		} else {
+			window.sample_info_vm=new Vue({//这个不能删除，不然模板没了
+			  el: '#sample_info',
+			  data: {
+				todos:response
+			  }
+			});
+			$("#sample_info .content").show();	
 		}
 		$.hidePreloader();
 	}
