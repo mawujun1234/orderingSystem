@@ -420,6 +420,65 @@
             </div><!-- content-->
           </div><!-- #report_alreadyod -->
           
+          
+          
+          
+          
+          <!-- 样衣信息-->
+          <div class="page" id="sample_info" >
+          	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+            	<h1 class='title'>样衣详细信息</h1>
+            </header>
+            <div class="content">
+
+            <template v-for="todo in todos">
+               <div class="content-block-title">{{todo.sampnm}}</div>
+               <div class="swiper-container" data-space-between='10'>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" v-for="photo in todo.photoes">
+                  	<img src="v-bind:src="photo.imgnm"" alt="">
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="card-content">  
+                  <div class="buttons-tab">
+                    <a href="#tab1" class="tab-link active button">企划</a>
+                    <a href="#tab2" class="tab-link button">设计</a>
+                  </div> 
+                   <div class="tabs" >
+                      <div id="tab1" class="tab active">     
+                          <div class="list-block">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab1">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab1 -->
+                       <div id="tab2" class="tab">
+                       	  <div class="list-block">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab2">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab2 -->
+                    
+                     </div><!-- tabs-->
+                  </div><!--card-conten -->
+            </template>           
+            </div><!--content -->
+          </div><!--sample_info -->
+          
 	</div><!-- page-group -->
     
     <div class="panel-overlay"></div>

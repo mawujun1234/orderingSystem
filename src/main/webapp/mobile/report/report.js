@@ -261,25 +261,25 @@ $(function(){
 	function show_none_abstat_report(){
 		$.showPreloader();
 		$.post(Ext.ContextPath+"/mobile/report/query_none_abstat.do",{},function(response){
-			////
-//			new Vue({
-//			  el: '#none_abstat',
-//			  data: {
-//				sanmpes: response
-//			  }
-//			});
 			var html="";
 			for(var i=0;i<response.length;i++){
-					html+='<li class="item-content">'+
-					'<div class="item-media"><i class="icon icon-f7"></i></div>'+
+					html+='<li>'+
+					'<a  href="#sample_info" class="sample_info_link item-link item-content" data-sampnm1="'+response[i].sampnm1+'">'+
+					//'<div class="item-media"><i class="icon icon-f7"></i></div>'+
 					'<div class="item-inner"><div class="item-title">'+response[i].sampnm1+'</div></div>'+
+					'</a>'+
 					'</li>';
 			}
 			$("#none_abstat_ul").html(html);
 			
 			$.hidePreloader();
 		});
-	}
+	 }
+	 
+	 $("#none_abstat").on("click","a.sample_info_link",function(){
+		window.sample_info_sampno=null;
+		window.sample_info_sampnm1=$(this).data("sampnm1");
+	 });
 });
 
 //报表统计--按商品类
@@ -580,6 +580,7 @@ $(function(){
 	
 	$("#report_alreadyod").on("click",".sample_info_link",function(){
 		window.sample_info_sampno=$(this).data("sampno");
+		window.sample_info_sampnm1=null;
 	});
 
 });
@@ -603,7 +604,7 @@ $(function(){
 	});
 
 	function showreport(){
-		$.post(Ext.ContextPath+'/mobile/report/querySampleInfo.do', {sampno:window.sample_info_sampno}, function(response){
+		$.post(Ext.ContextPath+'/mobile/report/querySampleInfo.do', {sampno:window.sample_info_sampno,sampnm1:window.sample_info_sampnm1}, function(response){
 					renderReport(response);
 				},'json');
 	}
