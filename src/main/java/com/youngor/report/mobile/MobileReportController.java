@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mawujun.utils.page.Pager;
 import com.youngor.order.OrdService;
 import com.youngor.org.Chancl;
+import com.youngor.org.Dim;
+import com.youngor.org.NodeVO;
 import com.youngor.org.Org;
 import com.youngor.org.OrgService;
 import com.youngor.permission.ShiroUtils;
@@ -64,7 +66,12 @@ public class MobileReportController {
 	@ResponseBody
 	public Map<String,Object> queryBradnoCondition(String bradno){
 		if(bradno==null || "".equals(bradno)){
-			bradno=ContextUtils.getFirstBradno();
+			if(ShiroUtils.isLogon()){
+				bradno=ContextUtils.getFirstBradno();
+			} else {
+				bradno="Y";
+			}
+			
 		}
 		Map<String,Object> result=new HashMap<String,Object>();
 		
@@ -165,20 +172,28 @@ public class MobileReportController {
 	public Map<String,Object> queryOrdorgCondition(){
 		
 		Map<String,Object> result=new HashMap<String,Object>();
+		
+		//如果用户没有登录，那就设置成，可以选择营销公司
+		if(!ShiroUtils.isLogon()){
+			List<NodeVO> orges=orgService.queryOnlyOrg("root", Dim.SALE);
+			List<Cond> cond_ordorg=new ArrayList<Cond>();
+			for(NodeVO map:orges){
+				Cond cond=new Cond();
+				cond.setValue(map.getOrgno());
+				cond.setName(map.getName());
+				cond_ordorg.add(cond);
+			}
+			result.put("cond_ordorg", cond_ordorg);
+			return result;
+		}
+		
 		//获取当前登录用户可以看到的订货单位
-		
-		
 		List<Map<String,Object>> ordorges=mobileReportRepository.queryOrdorgCondition(ContextUtils.getFirstOrdmt().getOrmtno(), ShiroUtils.getUserId());
 		List<Cond> cond_ordorg=new ArrayList<Cond>();
 		for(Map<String,Object> map:ordorges){
 			Cond cond=new Cond();
 			cond.setValue(map.get("ORGNO").toString());
 			cond.setName(map.get("ORGNM").toString());
-//			//默认选择
-//			if(cond.getValue().equals(orgno)){
-//				cond.setSelected(true);
-//			}
-//			
 			cond_ordorg.add(cond);
 		}
 		result.put("cond_ordorg", cond_ordorg);
@@ -197,7 +212,16 @@ public class MobileReportController {
 		pager.addParam("spclno", spclno);
 		pager.addParam("sptyno", sptyno);
 		pager.addParam("spseno", spseno);
-		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		//Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		}
 		pager.addParam("channo", org.getChanno().toString());
 		pager.addParam("ordorg", org.getOrgno());
 		
@@ -261,19 +285,38 @@ public class MobileReportController {
 	@RequestMapping("/mobile/report/queryReportSplcno.do")
 	@ResponseBody
 	public List<ReportSplcno> queryReportSplcno(String bradno,String ordorg){
-		if(ordorg==null || "".equals(ordorg)){
-			ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+//		if(ordorg==null || "".equals(ordorg)){
+//			//ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+//		}
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			if(ordorg!=null && !"".equals(ordorg)){
+				//主要是营销公司的时候，在前端01会变成1，先暂时这样，等以后改
+				if(ordorg.length()==1){
+					ordorg="0"+ordorg;
+				}
+				org=orgService.get(ordorg);
+			}
+			
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+//			if(ordorg==null || "".equals(ordorg)){
+//				ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+//			}
 		}
-		Org org=orgService.get(ordorg);
+		//Org org=orgService.get(ordorg);
 		List<ReportSplcno> list=null;
 		if(org.getChanno()==Chancl.TX){
-			list= mobileReportRepository.queryReportSplcno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,  ShiroUtils.getUserId());
+			list= mobileReportRepository.queryReportSplcno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
 		} else if(org.getChanno()==Chancl.QY){
-			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,  ShiroUtils.getUserId());
+			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
 		} else if(org.getChanno()==Chancl.YXGS) {
-			list= mobileReportRepository.queryReportSplcno_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,  ShiroUtils.getUserId());
+			list= mobileReportRepository.queryReportSplcno_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
 		} else {
-			list= mobileReportRepository.queryReportSplcno_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno,  ShiroUtils.getUserId());
+			list= mobileReportRepository.queryReportSplcno_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno);
 		}
 		
 		//计算合计
@@ -294,21 +337,30 @@ public class MobileReportController {
 	public List<ReportMoney> queryReportMoney(String bradno,String spclno,String sptyno,String spseno){
 		//Org org=orgService.get(ordorg);
 		//String orgno=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
-		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		//Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		}
 		String orgno=org.getOrgno();
 		List<ReportMoney> list=null;
 		if(org.getChanno()==Chancl.TX){
 			list= mobileReportRepository.queryReportMoney_TX(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno, ShiroUtils.getUserId());
+					spclno, sptyno, spseno);
 		} else if(org.getChanno()==Chancl.QY){
 			list= mobileReportRepository.queryReportMoney_QY(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno, ShiroUtils.getUserId());
+					spclno, sptyno, spseno);
 		} else if(org.getChanno()==Chancl.YXGS) {
 			list= mobileReportRepository.queryReportMoney_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno, ShiroUtils.getUserId());
+					spclno, sptyno, spseno);
 		} else {
 			list= mobileReportRepository.queryReportMoney_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno, 
-					spclno, sptyno, spseno, ShiroUtils.getUserId());
+					spclno, sptyno, spseno);
 		}
 		//计算合计
 		ReportMoney total = new ReportMoney();
@@ -328,7 +380,16 @@ public class MobileReportController {
 	@RequestMapping("/mobile/report/queryReportOrg.do")
 	@ResponseBody
 	public List<ReportOrg> queryReportOrg(String bradno,String spclno,String sptyno,String spseno){
-		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		//Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		}
 		String orgno=org.getOrgno();
 		List<ReportOrg> list=null;
 		if(org.getChanno()==Chancl.YXGS) {
@@ -358,11 +419,13 @@ public class MobileReportController {
 	 */
 	@RequestMapping("/mobile/report/querySampleInfo.do")
 	@ResponseBody
-	public List<Map<String,Object>> querysampleInfo(String sampno,String sampnm1){
+	public Map<String,Object> querysampleInfo(String sampno,String sampnm1){
 		
+		Map<String,Object> result=new HashMap<String,Object>();
 		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 		if(sampno!=null && !"".equals(sampno)){
 			list.add(querysampleInfoBySampno(sampno));
+			result.put("title", list.get(0).get("sampnm"));
 		}
 		
 		if(sampnm1!=null && !"".equals(sampnm1)){
@@ -370,9 +433,13 @@ public class MobileReportController {
 			for(String _sampno:sampnos){
 				list.add(querysampleInfoBySampno(_sampno));
 			}
+			result.put("title", sampnm1);
 		}
 		
-		return list;
+		
+		result.put("todos", list);
+		
+		return result;
 		
 	}
 	
@@ -444,6 +511,63 @@ public class MobileReportController {
 		List<SamplePhoto> photoes=samplePhotoRepository.queryBySampno(sampno);
 		result.put("photoes", photoes);
 		
+		return result;
+	}
+	
+	@RequestMapping("/mobile/report/queryReportFirst_allBradno.do")
+	@ResponseBody
+	public Map<String,Object> queryReportFirst_allBradno(){
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		}
+
+		
+		List<ReportFirst> list=mobileReportRepository.queryReportFirst_allBradno(ContextUtils.getFirstOrdmt().getOrmtno(), 
+				org.getChanno().toString(), org.getOrgno(),null);
+		//return list;
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("todos", list);
+		result.put("orgnm", org.getOrgnm());
+		return result;
+	}
+	@RequestMapping("/mobile/report/queryReportFirst_bradno.do")
+	@ResponseBody
+	public Map<String,BigDecimal> queryReportFirst_bradno(String bradno){
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+		} else {
+			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		}
+		
+		Map<String,BigDecimal> result=new HashMap<String,BigDecimal>();
+		//获取指定品牌的订货量
+		List<ReportFirst> aaa=mobileReportRepository.queryReportFirst_allBradno(ContextUtils.getFirstOrdmt().getOrmtno(), 
+				org.getChanno().toString(), org.getOrgno(),bradno);
+		ReportFirst first=aaa.get(0);
+		result.put("ormtqt", first.getOrmtqt());
+		result.put("ormtam", first.getOrmtam());
+		
+		
+		//获取指定品牌的指标数量
+		Map<String,BigDecimal> bbb=new HashMap<String,BigDecimal>();
+		if("Y".equals(bradno)){
+			bbb=mobileReportRepository.queryReportFirst_Y(ContextUtils.getFirstOrdmt().getOrmtno(), org.getChanno().toString(), org.getOrgno());
+			result.put("qymtqt", bbb.get("QYMTQT"));
+			result.put("qymtam", bbb.get("QYMTAM"));
+		} else if(bradno!=null && !"".equals(bradno)){
+			bbb=mobileReportRepository.queryReportFirst_other_bradno(ContextUtils.getFirstOrdmt().getOrmtno(), org.getChanno().toString(),
+					org.getOrgno(),bradno);
+			result.put("qymtqt", bbb.get("PLMTQT"));
+			result.put("qymtam", bbb.get("PLMTAM"));
+		}
 		return result;
 	}
 

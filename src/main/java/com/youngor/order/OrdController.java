@@ -193,10 +193,18 @@ public class OrdController {
 	@RequestMapping("/ord/mobile/yxgs/getOrstat.do")
 	@ResponseBody
 	public Map<String,Object> yxgs_getOrstat() {
+		
+		if(!ShiroUtils.isLogon()){
+			Map<String,Object> result=new HashMap<String,Object>();
+			result.put("canConfirm", 0);
+			result.put("orgnm","全国");
+			return result;
+		}
+		Org org= ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 		Integer  canConfirm=ordService.yxgs_getOrstat();
 		Map<String,Object> result=new HashMap<String,Object>();
 		result.put("canConfirm", canConfirm);
-		result.put("orgnm", ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgnm());
+		result.put("orgnm",org.getOrgnm());
 		return result;
 		//return "{success:true}";
 	}

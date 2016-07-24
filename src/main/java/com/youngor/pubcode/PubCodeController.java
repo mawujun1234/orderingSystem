@@ -80,6 +80,9 @@ public class PubCodeController {
 		
 		
 		List<PubCode> pubCodes=pubCodeService.query(tyno,fitno, bradno,stat_stat,query);
+		if(!ShiroUtils.isLogon()){
+			return pubCodes;
+		}
 		//如果返回的是品牌大类，就过滤成用户可访问的品牌大类
 		if("1".equals(tyno)){
 			List<PubCode> list=new ArrayList<PubCode>();

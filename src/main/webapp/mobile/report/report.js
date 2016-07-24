@@ -254,7 +254,9 @@ $(function(){
 $(function(){
 	$(document).on("pageInit", "#none_abstat", function(e, pageId, $page) {
 		document.title="未订的必定款样衣";
-		
+		if(document.last_view_pageId=='sample_info'){
+			return;
+		}
 		show_none_abstat_report();
 	});
 	
@@ -597,6 +599,7 @@ $(function(){
 	  } else {
 		  if(window.sample_info_vm){
 			  window.sample_info_vm.$data.todos=[];
+			  window.sample_info_vm.$data.title="";
 		  }
 		  
 		  $.closePanel();
@@ -612,12 +615,14 @@ $(function(){
 	function renderReport(response){
 		if(window.sample_info_vm){
 			//console.log(response);
-			window.sample_info_vm.$data.todos=response;
+			window.sample_info_vm.$data.todos=response.todos;
+			window.sample_info_vm.$data.title=response.title;
 		} else {
 			window.sample_info_vm=new Vue({//这个不能删除，不然模板没了
 			  el: '#sample_info',
 			  data: {
-				todos:response
+				todos:response.todos,
+				title:response.title
 			  }
 			});
 			$("#sample_info .content").show();	
@@ -626,3 +631,6 @@ $(function(){
 	}
 
 });
+
+
+

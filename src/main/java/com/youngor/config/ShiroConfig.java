@@ -117,6 +117,22 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/**/*.html", "anon");
 		filterChainDefinitionMap.put("/main/login.jsp*", "anon");
 		filterChainDefinitionMap.put("/menu/queryElementPermission.do*", "anon");
+		filterChainDefinitionMap.put("/ord/mobile/yxgs/getOrstat.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportFirst_allBradno.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportFirst_bradno.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryBradnoCondition.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/querySpclnoCondition.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/querySptynoCondition.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/querySpsenoCondition.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryOrdorgCondition.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportAlreadyOd.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportSplcno.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportMoney.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/queryReportOrg.do*", "anon");
+//		filterChainDefinitionMap.put("/mobile/report/querySampleInfo.do*", "anon");
+		filterChainDefinitionMap.put("/mobile/report/**/*.do*", "anon");
+		
+		
 		
 		filterChainDefinitionMap.put("/main/unauthorized.jsp*", "anon");
 		filterChainDefinitionMap.put("/user/login.do*", "anon");

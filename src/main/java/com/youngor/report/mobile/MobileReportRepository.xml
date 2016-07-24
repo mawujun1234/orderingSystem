@@ -13,6 +13,62 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		and c.ormtno=#{ormtno} and a.user_id=#{user_id}
 		 order by orgso
     </select> 
+    <!-- 报表的首页数据,各个品牌的汇总数据-->
+    <select id="queryReportFirst_allBradno" resultType="com.youngor.report.mobile.ReportFirst" parameterType="map">
+    	select c.bradno, sum(a.ormtqt) as ormtqt,
+        round(sum(a.ormtqt*c.spftpr)/10000,2) ormtam,
+        count(distinct b.sampno) sampnocount
+      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
+      where a.sampno=b.sampno and b.plspno=c.plspno  
+        and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
+        <choose>  
+	         	<when test="channo=='TX' or channo=='QY'">  
+	         		AND e.ordorg=#{ordorg}
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	     </choose>
+	    <if test="bradno!=null and bradno!=''">
+			and c.bradno=#{bradno}
+		</if>  
+		group by c.bradno
+		order by sum(a.ormtqt) desc
+    </select>
+
+    <!-- 当点击品牌的时候，获取品牌的计划量和实际订货量的柱状图-->
+    <select id="queryReportFirst_Y"  resultType="map" parameterType="map">
+    	 select sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno='Y'
+		  <choose>  
+	         	<when test="channo=='TX' or channo=='QY'">  
+	         		AND a.ordorg=#{ordorg}
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	     </choose>
+    </select>
+    <select id="queryReportFirst_other_bradno"  resultType="map" parameterType="map">
+    	select sum(plmtam) plmtam,sum(plmtqt) plmtqt from ord_plan_hd a
+      where a.ormtno=#{ormtno}  and a.bradno=#{bradno}
+      <choose>  
+	         	<when test="channo=='TX' or channo=='QY'">  
+	         		AND a.ordorg=#{ordorg}
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and a.orgno=#{ordorg}
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	     </choose>
+    </select>
     <!-- 已定样衣 -->
     <sql id="queryReportAlreadyOd_where">
     	 select  b.sampno,b.sampnm,c.sprtpr,nvl(f.imgnm,'../mobile/images/no_photo.jpg') imgnm,sum(a.ormtqt) ormtqt 
@@ -320,7 +376,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		      select f.YXGSNO as orgno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
 				  from ord_plan_org a,ord_plan_orgdtl b,v_ord_org f
 				  where 
-				  a.plorno=b.plorno and a.ormtno#{ormtno}  and a.bradno=#{bradno}
+				  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno}
 				  and A.ordorg=f.orgno 
 				    <if test="spclno!=null and spclno!=''">
 				  		and b.spclno=#{spclno}

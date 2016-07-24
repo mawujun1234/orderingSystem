@@ -22,6 +22,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and b.parent_no=#{parent_id}
     	and b.dim=#{dim} and a.orgst='KQ'
     </select> 
+    
 
 
 	<select id="query4Combo" resultType="com.youngor.org.Org" parameterType="map">

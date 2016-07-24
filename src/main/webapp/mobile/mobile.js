@@ -3,27 +3,29 @@ Ext.ContextPath="/od";
 if(location.pathname.indexOf("/od")==-1){
 	Ext.ContextPath="";
 }
-$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
-$(document).on('ajaxSuccess',function(e,xhr,options,response){
-	handlerReturn(response);
-});
-$(document).on('ajaxError',function(e,xhr,options,response){
-	handlerReturn(response);
-});
-function handlerReturn(response){
-	if(response.success==false){
-			if(response.msg){
-				$.alert(response.msg);
-				if(response.errorCode=='nologin'){
-					$.router.load("#od_loginpage"); 
+$(function(){
+	$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
+	$(document).on('ajaxSuccess',function(e,xhr,options,response){
+		handlerReturn(response);
+	});
+	$(document).on('ajaxError',function(e,xhr,options,response){
+		handlerReturn(response);
+	});
+	function handlerReturn(response){
+		if(response.success==false){
+				if(response.msg){
+					$.alert(response.msg);
+					if(response.errorCode=='nologin'){
+						$.router.load("#od_loginpage"); 
+					}
+					return;
+				} else {
+					return;
 				}
-				return;
-			} else {
-				return;
-			}
-			$.hidePreloader();
+				$.hidePreloader();
+		}
 	}
-}
+});
 
 //显示和隐藏今日订货会快结束的信息
 window.od_closeing_info=null;//提高性能
