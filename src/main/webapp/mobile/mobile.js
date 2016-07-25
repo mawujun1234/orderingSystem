@@ -3,8 +3,9 @@ Ext.ContextPath="/od";
 if(location.pathname.indexOf("/od")==-1){
 	Ext.ContextPath="";
 }
+$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
 $(function(){
-	$.ajaxSettings.accepts.json="application/json;charset=UTF-8";
+	
 	$(document).on('ajaxSuccess',function(e,xhr,options,response){
 		handlerReturn(response);
 	});
@@ -18,9 +19,9 @@ $(function(){
 					if(response.errorCode=='nologin'){
 						$.router.load("#od_loginpage"); 
 					}
-					return;
+					//return;
 				} else {
-					return;
+					//return;
 				}
 				$.hidePreloader();
 		}
@@ -265,7 +266,7 @@ $(function(){
 			},function(response){
 				
 				if(response.success==false){
-					$.toast(response.msg);
+					//$.toast(response.msg);
 				} else {
 					window.user=response;
 					storeuser(window.user);
@@ -366,8 +367,10 @@ $(function(){
 		window.od_info_data_issaved_bool=!bool;
 		if(bool){
 			$("#od_info_unsave_tips").show();
+			$("#od_info_save_button").removeClass("disabled");
 		} else {
 			$("#od_info_unsave_tips").hide();	
+			$("#od_info_save_button").addClass("disabled");
 		}
 	}
 	//判断能否切换页面或者重新扫描，如果未保存的话
@@ -577,6 +580,9 @@ $(function(){
 		//},"json");
 	});
 	$("#od_info_save_button").click(function(){
+		if($(this).hasClass("disabled")){
+			return;
+		}
 		
 		$.showPreloader("正在保存订货信息...");
 		var suitVOs=window.vm_od_info_suitVOs.suitVOs;
@@ -665,45 +671,14 @@ $(function(){
 	});
 	
 	$("#od_mypage_confirm_button").click(function(){
+		$.confirm("确定完成订货吗?", function(){
 		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
 			//od_mypage_myinfo_card
 			if(response.success==false){
-				if(response.msg=="none_abstat"){
-					$.router.load("#none_abstat");
-				}
-				return ;
-//				//$.toast(response.msg);
-//				//$.popup('.popup_abstat');
-//				var sampnms=JSON.parse(response.msg);
-//				//var sampnms=response.msg;
-//				var html="";
-//				for(var i=0;i<sampnms.length;i++){
-//					html+='<li class="item-content">'+
-//					'<div class="item-media"><i class="icon icon-f7"></i></div>'+
-//					'<div class="item-inner"><div class="item-title">'+sampnms[i]+'</div></div>'+
-//					'</li>';
+	//			if(response.msg=="none_abstat"){
+//					$.router.load("#none_abstat");
 //				}
-//				 var popupHTML = 
-//				 '<div class="popup">'+
-//				 	''+
-//                    '<div class="content-block">'+
-//                      '<div class="content-block-title">下列出样样衣编号是必定款: <a style="display:block;width:60px;position:absolute;top:0px;right:0px;" class="close-popup">关闭</a></div>'+
-//                      '<div class="list-block">'+
-//					  '<ul>'+
-//					  //'<li class="item-content">'+
-//					 // '<div class="item-media"><i class="icon icon-f7"></i></div>'+
-//					 // '<div class="item-inner">'+
-//					  html+
-//					  //'<div class="item-title">商品名称</div>'+
-//					  //'<div class="item-after">杜蕾斯</div>'+
-//					 // '</div>'+
-//					 // '</li>'+
-//					  '</ul>'+
-//					  '</div>'+
-//                    '</div>'+
-//                  '</div>'
-//  				$.popup(popupHTML);
-//				return;
+				return ;
 			}
 			//$("#od_mypage_confirm_button").hide();
 			//$("#od_info").html("<div style='margin:110px auto;text-align:center;color:green;'>订单已经确认，不能再扫描!</div>");
@@ -711,9 +686,12 @@ $(function(){
 			$("#od_info_cannot_order").show();
 			$("#od_info_cannot_order").html("订单未审批，不能平衡!");
 			$("#qrcode_button").hide();
+			$.alert("完成订货!");
 		},"json");
+		});//$.confirm
 	});
 	$("#od_mypage_over_button").click(function(){
+		$.confirm("确定完成平衡吗?", function(){
 		 $.showPreloader('正在处理...');
 		$.post(Ext.ContextPath+"/ord/mobile/confirm2.do",{},function(response){
 			$.hidePreloader();
@@ -721,7 +699,9 @@ $(function(){
 				return;
 			}
 			show_od_closeing_info();
+			$.alert("完成平衡!");
 		});
+		});//$.confirm
 	});
 	
 });

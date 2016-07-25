@@ -172,9 +172,9 @@ $(function(){
 			$.condition.params.ordorg=response.sel_ordorg;//这里必须放在前面
 			$.condition._readyIndex++;
 			
-			if($.condition._readyIndex>=me.initConfig.selectFirstConfig.readyIndex){
-				$.condition.initConfig.submit($.condition);
-			}
+			//if($.condition._readyIndex>=me.initConfig.selectFirstConfig.readyIndex){
+			//	$.condition.initConfig.submit($.condition);
+			//}
 			
 			$("#report_query_params_ordorg .card-content-inner").html(me.render(response.cond_ordorg,'ordorg'));
 		},'json');
@@ -241,6 +241,8 @@ $(function(){
 		$("#report_query_params #report_query_params_reset").on("click",function(){
 			$.condition.clear();
 			$.condition.selectFirst();
+			$.condition.initConfig.submit($.condition);
+			$.closePanel();
 		});
 		$("#report_query_params #report_query_params_complete").on("click",function(){
 			//alert("使用事件总线");
@@ -266,7 +268,7 @@ $(function(){
 			var html="";
 			for(var i=0;i<response.length;i++){
 					html+='<li>'+
-					'<a  href="#sample_info" class="sample_info_link item-link item-content" data-sampnm1="'+response[i].sampnm1+'">'+
+					'<a  href="#sample_info" class="sample_info_link item-link item-content" style="color:#0894ec;" data-sampnm1="'+response[i].sampnm1+'">'+
 					//'<div class="item-media"><i class="icon icon-f7"></i></div>'+
 					'<div class="item-inner"><div class="item-title">'+response[i].sampnm1+'</div></div>'+
 					'</a>'+
@@ -289,14 +291,18 @@ $(function(){
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  if(pageId == "report_spclno") {
 		document.title="订货统计-按商品类";
+		if(document.last_view_pageId=='report_sptyno_spseno'){
+			return;
+		}
 		$.showPreloader();
 		$.condition.clear();
 		showreport();
 	  } else {
 		  //window.report_spclno_vm.$data.todos=[];
-		  if(window.report_spclno_vm){
-			   window.report_spclno_vm.$data.todos=[];
-		  }
+		if(window.report_spclno_vm && pageId!='report_sptyno_spseno'){
+			window.report_spclno_vm.$data.todos=[];
+		}
+		 
 		  $.closePanel();
 	  }
 	});
@@ -335,6 +341,71 @@ $(function(){
 			$("#report_spclno .content").show();	
 		}
 		$.hidePreloader();		
+	}
+	
+	
+	$("#report_spclno").on("click",".report_spclno_click",function(){
+		var spclno=$(this).data("spclno");
+		if(spclno.indexOf("total")!=-1){
+			$.toast("合计不能下钻!");
+			return;
+		}
+		var buttons1 = [
+        {
+          text: '请选择下钻到:',
+          label: true
+        },
+        {
+          text: '小类',
+          bold: true,
+          color: 'danger',
+          onClick: function() {
+            $.condition.params.spclno=spclno;
+			//$.condition.params.tyno=2;
+			$.showPreloader();
+			$.post(Ext.ContextPath+'/mobile/report/queryReportSptyno.do', $.condition.params, function(response){
+				renderReportSptynoSpseno(response);
+			},'json');
+          }
+        },
+        {
+          text: '系列',
+          onClick: function() {
+            $.condition.params.spclno=spclno;
+			//$.condition.params.tyno=5;
+			$.showPreloader();
+			$.post(Ext.ContextPath+'/mobile/report/queryReportSpseno.do', $.condition.params, function(response){
+				renderReportSptynoSpseno(response);
+			},'json');
+          }
+        }
+      ];
+      var buttons2 = [
+        {
+          text: '取消',
+          bg: 'danger'
+        }
+      ];
+      var groups = [buttons1, buttons2];
+      $.actions(groups);
+		
+	});
+	
+	function renderReportSptynoSpseno(response){
+		if(window.report_sptyno_spseno_vm){
+			//console.log(response);
+			window.report_sptyno_spseno_vm.$data.todos=response;
+		} else {
+			window.report_sptyno_spseno_vm=new Vue({//这个不能删除，不然模板没了
+			  el: '#report_sptyno_spseno',
+			  data: {
+				todos:response
+			  }
+			});
+			$("#report_sptyno_spseno .content").show();	
+		}
+		$.router.load("#report_sptyno_spseno");
+		$.hidePreloader();
 	}
 
 });
@@ -404,6 +475,7 @@ $(function(){
 		$.showPreloader();
 		$.condition.clear();
 		showreport();
+		//initTouchmove();
 	  } else {
 		  if(window.report_org_vm){
 			  window.report_org_vm.$data.todos=[];
@@ -449,6 +521,8 @@ $(function(){
 		}
 		$.hidePreloader();
 	}
+	
+	
 
 });
 
@@ -496,6 +570,7 @@ $(function(){
 				$.post(Ext.ContextPath+'/mobile/report/queryReportAlreadyOd.do', condition.params, function(response){
 					renderReport(response);
 					
+					
 					maxItems=response.total;
 					lastIndex = response.numPage;
 					if(have_detachInfiniteScroll){
@@ -507,6 +582,9 @@ $(function(){
 						$('#report_alreadyod .infinite-scroll-preloader').hide();	
 					} else {
 						$('#report_alreadyod .infinite-scroll-preloader').show();
+					}
+					if(response.total<itemsPerLoad){
+						$('#report_alreadyod .infinite-scroll-preloader').hide();	
 					}
 				},'json');
 			}

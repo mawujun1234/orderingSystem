@@ -10,19 +10,37 @@ public class ReportSplcno {
 	private BigDecimal ormtam;//订货金额
 	private BigDecimal qymtqt;//区域指标数量
 	private BigDecimal qymtam;//区域指标金额
+	public String getSpclno() {
+		return "_"+spclno;
+	}
 	
 	/**
 	 * 获取完成率
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	public String getWancl(){
+	public String getOrmtam_wancl(){
 		BigDecimal ormtam=getOrmtam_wan();
 		if(ormtam==null){
 			return "0%";
 		}
 		if(qymtam!=null && qymtam.doubleValue()>0){
-			return ormtam.divide(qymtam, 2,RoundingMode.HALF_UP).toString()+"%";
+			return ormtam.multiply(new BigDecimal(100)).divide(qymtam, 2,RoundingMode.HALF_UP).toString()+"%";
+		}
+		return "";
+	}
+	/**
+	 * 获取完成率
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public String getOrmtqt_wancl(){
+		//BigDecimal ormtqt=getOrmtqt();
+		if(ormtqt==null){
+			return "0%";
+		}
+		if(qymtqt!=null && qymtqt.doubleValue()>0){
+			return ormtqt.multiply(new BigDecimal(100)).divide(qymtqt, 2,RoundingMode.HALF_UP).toString()+"%";
 		}
 		return "";
 	}
@@ -51,10 +69,26 @@ public class ReportSplcno {
 		}
 		this.qymtam=this.qymtam.add(qymtam);
 	}
-	
-	public String getSpclno() {
-		return spclno;
+	public void addOrmtqt(BigDecimal ormtqt) {
+		if(this.ormtqt==null){
+			this.ormtqt= new BigDecimal(0);
+		}
+		if(ormtqt==null){
+			ormtqt= new BigDecimal(0);
+		}
+		this.ormtqt=this.ormtqt.add(ormtqt);
 	}
+	public void addQymtqt(BigDecimal qymtqt){
+		if(this.qymtqt==null){
+			this.qymtqt= new BigDecimal(0);
+		}
+		if(qymtqt==null){
+			qymtqt= new BigDecimal(0);
+		}
+		this.qymtqt=this.qymtqt.add(qymtqt);
+	}
+	
+	
 	public void setSpclno(String spclno) {
 		this.spclno = spclno;
 	}

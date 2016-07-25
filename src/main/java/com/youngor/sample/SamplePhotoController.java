@@ -1,4 +1,5 @@
 package com.youngor.sample;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -101,6 +102,26 @@ public class SamplePhotoController {
 		//response.setContentType("text/html");
 		//response.getWriter().write("{\"success\":true}");
 		return map;
+	}
+	/**
+	 * 匹配文件中存在的缩略图
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param id
+	 */
+	@RequestMapping("/samplePhoto/thumbPP.do")
+	public void createThumb(String id) {
+		List<SamplePhoto> list=samplePhotoService.queryAll();
+		for(SamplePhoto photo:list){
+			String imgnm=photo.getImgnm();
+			imgnm=imgnm.replace("/photoes/201607/", "/photoes/201607/thumb/");
+			//System.out.println("F:\201607\thumb"+imgnm);
+			File file=new File("F:"+imgnm);
+			if(file.exists()){
+				//System.out.println(file.getAbsolutePath());
+				samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+			}
+			//String aaa[]=imgnm.split("/");
+		}
 	}
 	
 	

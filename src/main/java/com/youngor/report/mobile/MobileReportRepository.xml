@@ -15,8 +15,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select> 
     <!-- 报表的首页数据,各个品牌的汇总数据-->
     <select id="queryReportFirst_allBradno" resultType="com.youngor.report.mobile.ReportFirst" parameterType="map">
-    	select c.bradno, sum(a.ormtqt) as ormtqt,
-        round(sum(a.ormtqt*c.spftpr)/10000,2) ormtam,
+    	select c.bradno, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,
+        round(sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.spftpr)/10000,2) ormtam,
         count(distinct b.sampno) sampnocount
       from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
       where a.sampno=b.sampno and b.plspno=c.plspno  
@@ -71,19 +71,19 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     <!-- 已定样衣 -->
     <sql id="queryReportAlreadyOd_where">
-    	 select  b.sampno,b.sampnm,c.sprtpr,nvl(f.imgnm,'../mobile/images/no_photo.jpg') imgnm,sum(a.ormtqt) ormtqt 
+    	 select  b.sampno,b.sampnm,c.sprtpr,nvl(f.thumb,f.imgnm) imgnm,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) ormtqt 
 	      from ord_ord e
 	      inner join ord_orddtl a on e.mtorno=a.mtorno
 	      inner join ord_sample_design b on a.sampno=b.sampno
 	      inner join ord_sample_plan c on  b.plspno=c.plspno  
 	      left join (
-	           select sampno,imgnm from ord_sample_photo a
+	           select sampno,imgnm,thumb from ord_sample_photo a
 	           where not exists(select 1 from ord_sample_photo b where a.sampno=b.sampno and a.id>b.id)
 	      ) f on b.sampno=f.sampno
 	      where  
 	           e.ormtno=#{ormtno} and e.ortyno='DZ' 
 	         <choose>  
-	         	<when test="channo=='TX' or channo=='QY'">  
+	         	<when test="channo=='TX' or channo=='QY' or channo=='ZY'">  
 	         		AND e.ordorg=#{ordorg}
 	         	</when>
 	         	<when test="channo=='YXGS'">  
@@ -102,7 +102,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		  	<if test="spseno!=null and spseno!=''">
 		  		and c.spseno=#{spseno}
 		  	</if>
-	        group by b.sampno,b.sampnm,c.sprtpr,f.imgnm
+	        group by b.sampno,b.sampnm,c.sprtpr,f.imgnm,thumb
 	        
     </sql>
     <select id="queryReportAlreadyOd" resultType="com.youngor.report.mobile.AlreadyOd" parameterType="map">
@@ -115,14 +115,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	)
     </select>
     <select id="queryReportAlreadyOd_totalData" resultType="map" parameterType="map">
-    	select  sum(a.ormtqt) as ormtqt,
-        round(sum(a.ormtqt*c.sprtpr)/10000,2) ormtam,
+    	select  sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,
+    	<if test="channo=='TX'">
+     		 round(sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.sprtpr)/10000,2) ormtam,
+     	</if>
+     	<if test="channo!='TX'">
+     		 round(sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.spftpr)/10000,2) ormtam,
+     	</if>
+       
         count(distinct b.sampno) sampnocount
       from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
       where a.sampno=b.sampno and b.plspno=c.plspno  
         and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
          <choose>  
-	         	<when test="channo=='TX' or channo=='QY'">  
+	         	<when test="channo=='TX' or channo=='QY'  or channo=='ZY'">  
 	         		AND e.ordorg=#{ordorg}
 	         	</when>
 	         	<when test="channo=='YXGS'">  
@@ -149,11 +155,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     -->
     <select id="queryReportSplcno" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
     	select x.*,y.qymtqt,y.qymtam from (
-		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		  select c.spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*spftpr) ormtam
 		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
 		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
 		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} 
-		  and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
 		  and c.bradno=#{bradno} 
 		  group by c.spclno,d.itnm
 		) x left join (
@@ -161,7 +176,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		  from ord_plan_org a,ord_plan_orgdtl b
 		  where 
 		  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno} 
-		  and exists (select 1 from v_ord_org f where A.ordorg=f.orgno  and f.QYNO=#{ordorg})
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
 		  group by b.spclno
 		) y on x.spclno=y.spclno
 		order by x.spclno
@@ -169,7 +193,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     <select id="queryReportSplcno_TX" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
     	select x.*,0 qymtqt,0 qymtam from (
-		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*sprtpr) ormtam
+		  select c.spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt
+		  ,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*sprtpr) ormtam
 		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
 		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spclno=d.itno and d.tyno=0
 		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}  and e.ordorg=#{ordorg}
@@ -178,7 +203,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		) x 
 		order by x.spclno
     </select>
-    
+    <!--
     <select id="queryReportSplcno_YXGS" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
     	select x.*,y.qymtqt,y.qymtam from (
 		  select c.spclno,d.itnm as spclnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
@@ -215,24 +240,139 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		) y on x.spclno=y.spclno
 		order by x.spclno
     </select>
+    -->
+    
+    <!--按商品类中的大类点击 下钻之后到小类或系列的时候 -->
+    <select id="queryReportSptyno" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,y.qymtqt,y.qymtam from (
+		  select c.sptyno spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*spftpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.sptyno=d.itno and d.tyno='2'
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} 
+		 
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+		  and c.bradno=#{bradno} and c.spclno=#{spclno}
+		  group by c.sptyno,d.itnm
+		) x left join (
+		  select b.sptyno spclno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno} and b.spclno=#{spclno}
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+		  group by b.sptyno
+		) y on x.spclno=y.spclno
+		order by x.spclno
+    </select>
+    <select id="queryReportSptyno_TX" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,0 qymtqt,0 qymtam from (
+		  select c.sptyno spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt
+		  	,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*sprtpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.sptyno=d.itno and d.tyno='2'
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} and e.ordorg=#{ordorg}
+		  and c.bradno=#{bradno} and c.spclno=#{spclno}
+		  group by c.sptyno,d.itnm
+		) x 
+		order by x.spclno
+    </select>
     
     
-    
+    <!-- 获取系列的数据-->
+    <select id="queryReportSpseno" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,y.qymtqt,y.qymtam from (
+		  select c.spseno spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*spftpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spseno=d.itno and d.tyno='5'
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} 
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+		  and c.bradno=#{bradno} and c.spclno=#{spclno}
+		  group by c.spseno,d.itnm
+		) x left join (
+		  select b.spseno spclno,sum(qymtqt) qymtqt,sum(qymtam) qymtam 
+		  from ord_plan_org a,ord_plan_orgdtl b
+		  where 
+		  a.plorno=b.plorno and a.ormtno=#{ormtno}  and a.bradno=#{bradno} and b.spclno=#{spclno}
+		  <choose>  
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where a.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
+		  group by b.spseno
+		) y on x.spclno=y.spclno
+		order by x.spclno
+    </select>
+    <select id="queryReportSpseno_TX" resultType="com.youngor.report.mobile.ReportSplcno" parameterType="map">
+    	select x.*,0 qymtqt,0 qymtam from (
+		  select c.spseno spclno,d.itnm as spclnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt
+		  ,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*sprtpr) ormtam
+		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,ord_pub_code d
+		  where a.sampno=b.sampno and b.plspno=c.plspno and c.spseno=d.itno and d.tyno='5'
+		  and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}  and e.ordorg=#{ordorg}
+		  and c.bradno=#{bradno} and c.spclno=#{spclno}
+		  group by c.spseno,d.itnm
+		) x 
+		order by x.spclno
+    </select>
+
     
     
     
     <!-- 按零售价的价格段 -->
-     <select id="queryReportMoney_YXGS" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
-     	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
-			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
-			  sum(a.ormtqt*c.sprtpr) ormtam,
-			   ratio_to_report(sum(a.ormtqt*c.sprtpr)) over() as ormtam_zb,
+     <select id="queryReportMoney" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
+     	  select c.sprtpr, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,
+			  ratio_to_report(sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt)) over() as ormtqt_zb,
+			  sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.sprtpr) ormtam,
+			   ratio_to_report(sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.sprtpr)) over() as ormtam_zb,
 			  count(distinct b.sampno) sampnocount,
 			   ratio_to_report( count(distinct b.sampno)) over() as sampnocount_zb
 		  from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c
 		  where a.sampno=b.sampno and b.plspno=c.plspno  
 		  	and e.mtorno=a.mtorno and e.ormtno=#{ormtno} and e.ortyno='DZ' 
-		  	 and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+		  	 <choose>  
+		  	 	<when test="channo=='TX' or channo=='ZY'">  
+	         		and exists (select 1 from v_ord_org f where E.ordorg=f.orgno  and f.ORGNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='QY'">  
+	         		 and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.QYNO=#{ordorg}) 
+	         	</when>
+	         	<when test="channo=='YXGS'">  
+	         		and exists (select 1 from v_ord_org f where e.ordorg=f.orgno  and f.yxgsno=#{ordorg}) 
+	         	</when>
+	         	<otherwise>  
+            	</otherwise>
+	         </choose>
 		  	and c.bradno=#{bradno} 
 		  	<if test="spclno!=null and spclno!=''">
 		  		and c.spclno=#{spclno}
@@ -245,6 +385,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		  	</if>
 		  group by c.sprtpr
      </select>
+     <!--
      <select id="queryReportMoney_QY" resultType="com.youngor.report.mobile.ReportMoney" parameterType="map">
      	  select c.sprtpr, sum(a.ormtqt) as ormtqt,
 			  ratio_to_report(sum(a.ormtqt)) over() as ormtqt_zb,
@@ -313,13 +454,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		  	</if>
 		  group by c.sprtpr
      </select>
-     
+     -->
      
      
      <!-- 按渠道报表   营销公司进来的报表 ordorg是营销公司的代码-->
      <select id="queryReportOrg_YXGS" resultType="com.youngor.report.mobile.ReportOrg" parameterType="map">
      	 select x.*,y.qymtqt,y.qymtam from (     
-		      select f.qyno as orgno,f.qynm as orgnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		      select f.qyno as orgno,f.qynm as orgnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*spftpr) ormtam
 		      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,v_ord_org f
 		      where a.sampno=b.sampno and b.plspno=c.plspno  
 		      and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno} and c.bradno=#{bradno}
@@ -356,7 +497,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <!-- 总公司进来的报表-->
      <select id="queryReportOrg_ALL" resultType="com.youngor.report.mobile.ReportOrg" parameterType="map">
      	  select x.*,y.qymtqt,y.qymtam from (     
-		      select f.YXGSNO as orgno,f.YXGSNM as orgnm, sum(a.ormtqt) as ormtqt,sum(a.ormtqt*spftpr) ormtam
+		      select f.YXGSNO as orgno,f.YXGSNM as orgnm, sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) as ormtqt,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*spftpr) ormtam
 		      from ord_ord e,ord_orddtl a,ord_sample_design b,ord_sample_plan c,v_ord_org f
 		      where a.sampno=b.sampno and b.plspno=c.plspno  
 		      and e.mtorno=a.mtorno and e.ortyno='DZ' and e.ormtno=#{ormtno}

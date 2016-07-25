@@ -29,6 +29,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
 import com.youngor.order.OrdService;
+import com.youngor.org.Chancl;
 import com.youngor.org.Org;
 import com.youngor.utils.M;
 import com.youngor.utils.SignUtil;
@@ -131,6 +132,12 @@ public class UserController {
 			//判断用户是否是订货单位，如果是订货单位的话，就创建订货单
 			if(ordService.isOrmtnoOrdorg(org.getOrgno())){
 				ordService.create();
+			} else {
+				if(org.getChanno()!=Chancl.YXGS){
+					model.put("success", false);
+					model.put("msg", "你不是订货单位，不能登录!");
+					return model;
+				} 
 			}
 			
 		 } catch (BusinessException e) {  

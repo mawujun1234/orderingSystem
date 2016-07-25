@@ -46,7 +46,7 @@ public class MyInfoVO {
 		this.qymtqt = qymtqt;
 	}
 	public BigDecimal getQymtam() {
-		if(ormtam==null){
+		if(qymtam==null){
 			return new BigDecimal(0);
 		}
 		return qymtam.setScale(2, RoundingMode.HALF_UP);

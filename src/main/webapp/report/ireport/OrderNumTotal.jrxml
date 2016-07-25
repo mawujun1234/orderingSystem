@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderNumTotal" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="8346c2f3-ba40-4113-b350-23288aecdbc7">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="220"/>
+	<property name="ireport.x" value="299"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="bradno_name" class="java.lang.String"/>
 	<parameter name="yxgsnm" class="java.lang.String"/>
@@ -30,13 +30,13 @@
 	<variable name="ormtqt_1" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_1" class="java.lang.Double" calculation="Average">
+	<variable name="sprtpr_1" class="java.math.BigDecimal" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_jine_wan_1" class="java.lang.Number" calculation="Sum">
+	<variable name="sprtpr_jine_wan_1" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_jine_wan_2" class="java.lang.Number" calculation="Sum">
+	<variable name="sprtpr_jine_wan_2" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
 	</variable>
 	<variable name="ormtqt_2" class="java.lang.Integer" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
@@ -45,7 +45,7 @@
 	<variable name="sprtpr_2" class="java.lang.Double" resetType="Group" resetGroup="sptyno_name" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_jine_wan_3" class="java.lang.Number" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
+	<variable name="sprtpr_jine_wan_3" class="java.math.BigDecimal" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
 	</variable>
 	<variable name="ormtqt_3" class="java.lang.Integer" resetType="Group" resetGroup="spclno_name" calculation="Sum">
@@ -54,7 +54,7 @@
 	<variable name="sprtpr_3" class="java.lang.Double" resetType="Group" resetGroup="spclno_name" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_jine_wan_4" class="java.lang.Number" resetType="Group" resetGroup="spclno_name" calculation="Sum">
+	<variable name="sprtpr_jine_wan_4" class="java.math.BigDecimal" resetType="Group" resetGroup="spclno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
 	</variable>
 	<group name="spclno_name">

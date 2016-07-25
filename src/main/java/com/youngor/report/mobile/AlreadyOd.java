@@ -1,12 +1,14 @@
 package com.youngor.report.mobile;
 
+import java.math.BigDecimal;
+
 public class AlreadyOd {
 	private Integer rownum;
 	private String sampno;
 	private String sampnm;
 	private String sprtpr;
 	private String imgnm;
-	private Integer ormtqt;
+	private BigDecimal ormtqt;
 	
 	public String getSampnm() {
 		return sampnm;
@@ -21,15 +23,18 @@ public class AlreadyOd {
 		this.sprtpr = sprtpr;
 	}
 	public String getImgnm() {
+		if(this.imgnm==null || "".equals(imgnm)){
+			return "../mobile/images/no_photo.jpg";
+		}
 		return imgnm;
 	}
 	public void setImgnm(String imgnm) {
 		this.imgnm = imgnm;
 	}
-	public Integer getOrmtqt() {
+	public BigDecimal getOrmtqt() {
 		return ormtqt;
 	}
-	public void setOrmtqt(Integer ormtqt) {
+	public void setOrmtqt(BigDecimal ormtqt) {
 		this.ormtqt = ormtqt;
 	}
 	public Integer getRownum() {

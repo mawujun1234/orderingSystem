@@ -79,7 +79,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	      and a.sizety='STDSZ' and b.sizety='STDSZ'  
 	    ) a left join (
 	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
-            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+            <if test="spseno==null or spseno==''">
+            	and a.spseno is null
+            </if>
+            <if test="spseno!=null and spseno!=''">
+            	and a.spseno=#{spseno} 
+            </if>
             <if test="versno==null or versno==''">
             	and a.versno is null
             </if>
@@ -105,7 +111,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    ) a 
 	    left join (
 	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
-            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+            <if test="spseno==null or spseno==''">
+            	and a.spseno is null
+            </if>
+            <if test="spseno!=null and spseno!=''">
+            	and a.spseno=#{spseno} 
+            </if>
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -133,7 +145,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        )
 	     ) a left join (
 	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
-            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno} 
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno}
+            <if test="spseno==null or spseno==''">
+            	and a.spseno is null
+            </if>
+            <if test="spseno!=null and spseno!=''">
+            	and a.spseno=#{spseno} 
+            </if> 
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -159,7 +177,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        )
 	     ) a left join (
 	    	select a.* from    ORD_ORD_SZRT a,v_ord_org b
-            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} and a.spseno=#{spseno}  
+            where a.ordorg=b.qyno and a.ormtno=#{ormtno} and b.orgno=#{ordorg} and a.bradno=#{bradno} and a.spclno=#{spclno} 
+            <if test="spseno==null or spseno==''">
+            	and a.spseno is null
+            </if>
+            <if test="spseno!=null and spseno!=''">
+            	and a.spseno=#{spseno} 
+            </if> 
             <if test="versno==null or versno==''">
             	and versno is null
             </if>
@@ -195,12 +219,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          and a.mtorno=#{mtorno}  
      </select>-->
      <select id="queryMyInfoVO" resultType="com.youngor.order.MyInfoVO" parameterType="map">
-     	select sum(a.ormtqt) ormtqt
+     	select sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt) ormtqt
      	<if test="channo=='TX'">
-     		,sum(a.ormtqt*c.sprtpr)/10000 ormtam
+     		,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.sprtpr)/10000 ormtam
      	</if>
      	<if test="channo!='TX'">
-     		,sum(a.ormtqt*c.spftpr)/10000 ormtam
+     		,sum(decode(a.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*a.ormtqt*c.spftpr)/10000 ormtam
      	</if>
          from ORD_ORDDTL a,ord_sample_design b,ord_sample_plan c
          where a.sampno=b.sampno and b.plspno=c.plspno
@@ -218,6 +242,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
                 and d.abstat='1' and d.sampst=1 and  c.mtorno=#{mtorno}
      	)
      	and a.sampst=1 and b.plstat=1
+     	order by a.sampnm1
      </select>
      <!-- 生成版本订单号和版本号 -->
      <update id="updateMtornoMlorvn" parameterType="map">

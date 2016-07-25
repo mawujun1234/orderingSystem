@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.utils.page.Pager;
 import com.youngor.order.OrdService;
 import com.youngor.org.Chancl;
@@ -22,6 +23,8 @@ import com.youngor.permission.ShiroUtils;
 import com.youngor.pubcode.PubCode;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.pubcode.PubCodeController;
+import com.youngor.pubcode.PubCodeRepository;
+import com.youngor.pubcode.PubCodeService;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignRepository;
 import com.youngor.sample.SampleDesignService;
@@ -33,8 +36,12 @@ import com.youngor.utils.ContextUtils;
 
 @Controller
 public class MobileReportController {
+	//@Autowired
+	//private PubCodeController pubCodeController;
 	@Autowired
-	private PubCodeController pubCodeController;
+	private PubCodeRepository pubCodeRepository;
+	@Autowired
+	private PubCodeService pubCodeService;
 	@Autowired
 	private MobileReportRepository mobileReportRepository;
 	@Autowired
@@ -66,17 +73,17 @@ public class MobileReportController {
 	@ResponseBody
 	public Map<String,Object> queryBradnoCondition(String bradno){
 		if(bradno==null || "".equals(bradno)){
-			if(ShiroUtils.isLogon()){
-				bradno=ContextUtils.getFirstBradno();
-			} else {
-				bradno="Y";
-			}
-			
+//			if(ShiroUtils.isLogon()){
+//				bradno=ContextUtils.getFirstBradno();
+//			} else {
+//				bradno="Y";
+//			}
+			bradno="Y";
 		}
 		Map<String,Object> result=new HashMap<String,Object>();
 		
 		//获取品牌，并且在展示的时候，默认显示第一个品牌
-		List<PubCode> bradnos=pubCodeController.query4Combo("1", null, bradno, "1", false, null);
+		List<PubCode> bradnos=pubCodeRepository.queryBradno4Ordmt(ContextUtils.getFirstOrdmt().getOrmtno());//pubCodeController.query4Combo("1", null, bradno, "1", false, null);
 		List<Cond> cond_bradno=new ArrayList<Cond>();
 		for(PubCode pubcode:bradnos){
 			Cond cond=new Cond();
@@ -107,11 +114,13 @@ public class MobileReportController {
 	@ResponseBody
 	public Map<String,List<Cond>> querySpclnoCondition(String bradno){
 		if(bradno==null || "".equals(bradno)){
-			bradno=ContextUtils.getFirstBradno();
+			//bradno=ContextUtils.getFirstBradno();
+			bradno="Y";
 		}
 		Map<String,List<Cond>> result=new HashMap<String,List<Cond>>();
 		
-		List<PubCode> spclnos=pubCodeController.query4Combo("0", null, bradno, "1", false, null);
+		//List<PubCode> spclnos=pubCodeController.query4Combo("0", null, bradno, "1", false, null);
+		List<PubCode> spclnos=pubCodeService.query("0",null, bradno,"1",null);
 		List<Cond> cond_spclno=new ArrayList<Cond>();
 		for(PubCode pubcode:spclnos){
 			Cond cond=new Cond();
@@ -127,11 +136,13 @@ public class MobileReportController {
 	@ResponseBody
 	public Map<String,List<Cond>> querySptynoCondition(String bradno,String spclno){
 		if(bradno==null || "".equals(bradno)){
-			bradno=ContextUtils.getFirstBradno();
+			//bradno=ContextUtils.getFirstBradno();
+			bradno="Y";
 		}
 		Map<String,List<Cond>> result=new HashMap<String,List<Cond>>();
 		
-		List<PubCode> spclnos=pubCodeController.query4Combo("2", spclno, bradno, "1", false, null);
+		//List<PubCode> spclnos=pubCodeController.query4Combo("2", spclno, bradno, "1", false, null);
+		List<PubCode> spclnos=pubCodeService.query("2",spclno, bradno,"1",null);
 		List<Cond> cond_sptyno=new ArrayList<Cond>();
 		for(PubCode pubcode:spclnos){
 			Cond cond=new Cond();
@@ -147,11 +158,13 @@ public class MobileReportController {
 	@ResponseBody
 	public Map<String,List<Cond>> querySpsenoCondition(String bradno,String spclno){
 		if(bradno==null || "".equals(bradno)){
-			bradno=ContextUtils.getFirstBradno();
+			//bradno=ContextUtils.getFirstBradno();
+			bradno="Y";
 		}
 		Map<String,List<Cond>> result=new HashMap<String,List<Cond>>();
 		
-		List<PubCode> spclnos=pubCodeController.query4Combo("5", spclno, bradno, "1", false, null);
+		//List<PubCode> spclnos=pubCodeController.query4Combo("5", spclno, bradno, "1", false, null);
+		List<PubCode> spclnos=pubCodeService.query("5",spclno, bradno,"1",null);
 		List<Cond> cond_spseno=new ArrayList<Cond>();
 		for(PubCode pubcode:spclnos){
 			Cond cond=new Cond();
@@ -302,21 +315,24 @@ public class MobileReportController {
 			}
 			
 		} else {
-			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
-//			if(ordorg==null || "".equals(ordorg)){
-//				ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
-//			}
+			
+			if(ordorg==null || "".equals(ordorg)){
+				org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+				ordorg=org.getOrgno();//ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+			} else {
+				org=orgService.get(ordorg);
+			}
 		}
-		//Org org=orgService.get(ordorg);
+		//Org 
 		List<ReportSplcno> list=null;
-		if(org.getChanno()==Chancl.TX){
+		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
 			list= mobileReportRepository.queryReportSplcno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
 		} else if(org.getChanno()==Chancl.QY){
-			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
+			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.QY.toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
-			list= mobileReportRepository.queryReportSplcno_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
+			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.YXGS.toString());
 		} else {
-			list= mobileReportRepository.queryReportSplcno_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno);
+			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg,bradno,null);
 		}
 		
 		//计算合计
@@ -326,6 +342,141 @@ public class MobileReportController {
 		for(ReportSplcno spclno:list){
 			total.addOrmtam(spclno.getOrmtam());
 			total.addQymtam(spclno.getQymtam());
+			total.addOrmtqt(spclno.getOrmtqt());
+			total.addQymtqt(spclno.getQymtqt());
+		}
+		list.add(total);
+		return list;
+		
+	}
+	
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param bradno
+	 * @param ordorg
+	 * @param spclno
+	 * @param tyno 2:小类  5：系列
+	 * @return
+	 */
+	@RequestMapping("/mobile/report/queryReportSptyno.do")
+	@ResponseBody
+	public List<ReportSplcno> queryReportSptyno(String bradno,String ordorg,String spclno){
+		if(spclno==null || "".equals(spclno)){
+			throw new BusinessException("请先选择一个大类!");
+		}
+		spclno=spclno.substring(1);
+		
+		
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			if(ordorg!=null && !"".equals(ordorg)){
+				//主要是营销公司的时候，在前端01会变成1，先暂时这样，等以后改
+				if(ordorg.length()==1){
+					ordorg="0"+ordorg;
+				}
+				org=orgService.get(ordorg);
+			}
+			
+		} else {
+			
+			if(ordorg==null || "".equals(ordorg)){
+				org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+				ordorg=org.getOrgno();//ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+			} else {
+				org=orgService.get(ordorg);
+			}
+		}
+		//Org 
+		List<ReportSplcno> list=null;
+		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
+			list= mobileReportRepository.queryReportSptyno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno);
+		} else if(org.getChanno()==Chancl.QY){
+			list= mobileReportRepository.queryReportSptyno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.QY.toString());
+		} else if(org.getChanno()==Chancl.YXGS) {
+			list= mobileReportRepository.queryReportSptyno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.YXGS.toString());
+		} else {
+			list= mobileReportRepository.queryReportSptyno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg,bradno,spclno,org.getChanno().toString());
+		}
+		
+		//计算合计
+		ReportSplcno total=new ReportSplcno();
+		total.setSpclno("total");
+		total.setSpclnm("合计:");
+		for(ReportSplcno reportSplcno:list){
+			total.addOrmtam(reportSplcno.getOrmtam());
+			total.addQymtam(reportSplcno.getQymtam());
+			total.addOrmtqt(reportSplcno.getOrmtqt());
+			total.addQymtqt(reportSplcno.getQymtqt());
+		}
+		list.add(total);
+		return list;
+		
+	}
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param bradno
+	 * @param ordorg
+	 * @param spclno
+	 * @param tyno 2:小类  5：系列
+	 * @return
+	 */
+	@RequestMapping("/mobile/report/queryReportSpseno.do")
+	@ResponseBody
+	public List<ReportSplcno> queryReportSpseno(String bradno,String ordorg,String spclno){
+		if(spclno==null || "".equals(spclno)){
+			throw new BusinessException("请先选择一个大类!");
+		}
+		spclno=spclno.substring(1);
+		
+		
+		Org org=null;
+		if(!ShiroUtils.isLogon()){
+			org=new Org();
+			org.setChanno(Chancl.OTH);
+			org.setOrgnm("全国");
+			if(ordorg!=null && !"".equals(ordorg)){
+				//主要是营销公司的时候，在前端01会变成1，先暂时这样，等以后改
+				if(ordorg.length()==1){
+					ordorg="0"+ordorg;
+				}
+				org=orgService.get(ordorg);
+			}
+			
+		} else {
+			
+			if(ordorg==null || "".equals(ordorg)){
+				org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+				ordorg=org.getOrgno();//ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+			} else {
+				org=orgService.get(ordorg);
+			}
+		}
+		//Org 
+		List<ReportSplcno> list=null;
+		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
+			list= mobileReportRepository.queryReportSpseno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno);
+		} else if(org.getChanno()==Chancl.QY){
+			list= mobileReportRepository.queryReportSpseno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.QY.toString());
+		} else if(org.getChanno()==Chancl.YXGS) {
+			list= mobileReportRepository.queryReportSpseno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.YXGS.toString());
+		} else {
+			list= mobileReportRepository.queryReportSpseno(ContextUtils.getFirstOrdmt().getOrmtno(),ordorg, bradno,spclno,null);
+		}
+		
+		//计算合计
+		ReportSplcno total=new ReportSplcno();
+		total.setSpclno("total");
+		total.setSpclnm("合计:");
+		for(ReportSplcno reportSplcno:list){
+			total.addOrmtam(reportSplcno.getOrmtam());
+			total.addQymtam(reportSplcno.getQymtam());
+			total.addOrmtqt(reportSplcno.getOrmtqt());
+			total.addQymtqt(reportSplcno.getQymtqt());
 		}
 		list.add(total);
 		return list;
@@ -349,18 +500,18 @@ public class MobileReportController {
 		}
 		String orgno=org.getOrgno();
 		List<ReportMoney> list=null;
-		if(org.getChanno()==Chancl.TX){
-			list= mobileReportRepository.queryReportMoney_TX(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno);
+		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
+			list= mobileReportRepository.queryReportMoney(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
+					spclno, sptyno, spseno,org.getChanno().toString());
 		} else if(org.getChanno()==Chancl.QY){
-			list= mobileReportRepository.queryReportMoney_QY(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno);
+			list= mobileReportRepository.queryReportMoney(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
+					spclno, sptyno, spseno,org.getChanno().toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
-			list= mobileReportRepository.queryReportMoney_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
-					spclno, sptyno, spseno);
+			list= mobileReportRepository.queryReportMoney(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
+					spclno, sptyno, spseno,org.getChanno().toString());
 		} else {
-			list= mobileReportRepository.queryReportMoney_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno, 
-					spclno, sptyno, spseno);
+			list= mobileReportRepository.queryReportMoney(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, 
+					spclno, sptyno, spseno,null);
 		}
 		//计算合计
 		ReportMoney total = new ReportMoney();
@@ -404,6 +555,8 @@ public class MobileReportController {
 		for (ReportOrg aaa : list) {
 			total.addOrmtam(aaa.getOrmtam());
 			total.addQymtam(aaa.getQymtam());
+			total.addOrmtqt(aaa.getOrmtqt());
+			total.addQymtqt(aaa.getQymtqt());
 		}
 		list.add(total);
 		return list;
@@ -565,8 +718,14 @@ public class MobileReportController {
 		} else if(bradno!=null && !"".equals(bradno)){
 			bbb=mobileReportRepository.queryReportFirst_other_bradno(ContextUtils.getFirstOrdmt().getOrmtno(), org.getChanno().toString(),
 					org.getOrgno(),bradno);
-			result.put("qymtqt", bbb.get("PLMTQT"));
-			result.put("qymtam", bbb.get("PLMTAM"));
+			if(bbb!=null){
+				result.put("qymtqt", bbb.get("PLMTQT"));
+				result.put("qymtam", bbb.get("PLMTAM"));
+			} else {
+				result.put("qymtqt", new BigDecimal(0));
+				result.put("qymtam", new BigDecimal(0));
+			}
+			
 		}
 		return result;
 	}

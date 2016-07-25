@@ -20,36 +20,55 @@ public interface MobileReportRepository {
 	public Map<String,BigDecimal> queryReportFirst_other_bradno(@Param("ormtno")String ormtno,
 			@Param("channo")String channo,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
 	
-	public List<ReportSplcno> queryReportSplcno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
+	public List<ReportSplcno> queryReportSplcno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+			,@Param("channo")String channo);
 	public List<ReportSplcno> queryReportSplcno_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
-	public List<ReportSplcno> queryReportSplcno_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
-	public List<ReportSplcno> queryReportSplcno_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno);
+//	public List<ReportSplcno> queryReportSplcno_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
+//	public List<ReportSplcno> queryReportSplcno_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno);
+	
+	
+	public List<ReportSplcno> queryReportSptyno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno,
+			@Param("spclno")String spclno,@Param("channo")String channo);
+	public List<ReportSplcno> queryReportSpseno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno,
+			@Param("spclno")String spclno,@Param("channo")String channo);
+	
+	public List<ReportSplcno> queryReportSptyno_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno,
+			@Param("spclno")String spclno);
+	public List<ReportSplcno> queryReportSpseno_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno,
+			@Param("spclno")String spclno);
+
 	
 	
 	public Pager<AlreadyOd> queryReportAlreadyOd(Pager<AlreadyOd> pager);
 	
 	public List<Map<String,Object>> queryReportAlreadyOd_totalData(Map<String,Object> params);
 	
-	public List<ReportMoney> queryReportMoney_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+	public List<ReportMoney> queryReportMoney(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
 			,@Param("spclno")String spclno
 			,@Param("sptyno")String sptyno
-			,@Param("spseno")String spseno
+			,@Param("spseno")String spseno,@Param("channo")String channo
 			);
-	public List<ReportMoney> queryReportMoney_QY(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
-			,@Param("spclno")String spclno
-			,@Param("sptyno")String sptyno
-			,@Param("spseno")String spseno
-			);
-	public List<ReportMoney> queryReportMoney_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
-			,@Param("spclno")String spclno
-			,@Param("sptyno")String sptyno
-			,@Param("spseno")String spseno
-			);
-	public List<ReportMoney> queryReportMoney_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno
-			,@Param("spclno")String spclno
-			,@Param("sptyno")String sptyno
-			,@Param("spseno")String spseno
-			);
+	
+//	public List<ReportMoney> queryReportMoney_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+//			,@Param("spclno")String spclno
+//			,@Param("sptyno")String sptyno
+//			,@Param("spseno")String spseno
+//			);
+//	public List<ReportMoney> queryReportMoney_QY(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+//			,@Param("spclno")String spclno
+//			,@Param("sptyno")String sptyno
+//			,@Param("spseno")String spseno
+//			);
+//	public List<ReportMoney> queryReportMoney_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+//			,@Param("spclno")String spclno
+//			,@Param("sptyno")String sptyno
+//			,@Param("spseno")String spseno
+//			);
+//	public List<ReportMoney> queryReportMoney_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno
+//			,@Param("spclno")String spclno
+//			,@Param("sptyno")String sptyno
+//			,@Param("spseno")String spseno
+//			);
 	
 	
 	public List<ReportOrg> queryReportOrg_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno

@@ -52,29 +52,32 @@ public class ReportMoney {
 	public BigDecimal getOrmtqt() {
 		return ormtqt;
 	}
-	public BigDecimal getOrmtqt_zb() {
+	public String getOrmtqt_zb() {
 		if(ormtqt_zb==null){
-			return new BigDecimal(0);
+			//return new BigDecimal(0);
+			return "0%";
 		}
-		return ormtqt_zb.setScale(2, RoundingMode.HALF_UP);
+		return ormtqt_zb.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)+"%";
 	}
 	public BigDecimal getOrmtam() {
 		return ormtam;
 	}
-	public BigDecimal getOrmtam_zb() {
+	public String getOrmtam_zb() {
 		if(ormtam_zb==null){
-			return new BigDecimal(0);
+			//return new BigDecimal(0);
+			return "0%";
 		}
-		return ormtam_zb.setScale(2, RoundingMode.HALF_UP);
+		return ormtam_zb.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)+"%";
 	}
 	public BigDecimal getSampnocount() {
 		return sampnocount;
 	}
-	public BigDecimal getSampnocount_zb() {
+	public String getSampnocount_zb() {
 		if(sampnocount_zb==null){
-			return new BigDecimal(0);
+			//return new BigDecimal(0);
+			return "0%";
 		}
-		return sampnocount_zb.setScale(2, RoundingMode.HALF_UP);
+		return sampnocount_zb.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP)+"%";
 	}
 	public void setSprtpr(String sprtpr) {
 		this.sprtpr = sprtpr;

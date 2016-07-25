@@ -61,6 +61,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	order by a.itso
     </select> 
     
+    <!--  获取这次订货会用到的品牌  -->
+    <select id="queryBradno4Ordmt" resultType="com.youngor.pubcode.PubCode" parameterType="map">
+    	select distinct a.* from ord_pub_code a,ord_pub_codebrad b
+    	where 
+    	a.tyno='1' 
+    	and exists (select 1 from ord_sample_plan d where  a.itno=d.bradno 
+    			and d.ormtno=#{ormtno} 
+    		)
+    	and b.stat=1
+    	order by a.itso
+    </select> 
     
     <!--  获取这次订货会用到的属版型   -->
     <select id="queryVersno4Ordmt" resultType="com.youngor.pubcode.PubCode" parameterType="map">

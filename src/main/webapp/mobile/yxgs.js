@@ -21,9 +21,9 @@ $(function(){
 					if(response.errorCode=='nologin'){
 						$.router.load("#od_loginpage"); 
 					}
-					return;
+					//return;
 				} else {
-					return;
+					//return;
 				}
 				$.hidePreloader();
 		}
@@ -45,6 +45,7 @@ $(function(){
 		$.post(Ext.ContextPath+'/ord/mobile/yxgs/getOrstat.do', {  }, function(response){
 			//alert(response.canConfirm);
 			document.title = response.orgnm;
+			document.last_title=response.orgnm;
 			if(response.canConfirm==0){//不显示按钮
 				od_yxgs_confirm_btn.hide();
 			} else if(response.canConfirm==1){
@@ -79,7 +80,10 @@ $(function(){
 	$.router.load("#report_first");
 	$(document).on("pageInit", function(e, pageId, $page) {
 	  if(pageId == "report_first") {//
-		document.title="概述";
+	  	if(document.last_title){
+			document.title=document.last_title;	
+		}
+		//document.title="概述";
 		$.showPreloader();
 		//$.condition.clear();
 		showreport();
@@ -97,6 +101,7 @@ $(function(){
 		   $("#bottom_bar").hide();
 	    }
 	});
+
 	
 	$("#report_first").on("click",".bradnoInfo",function(){
 		$("#report_first .bradnoInfo .brandName").removeClass("bradnoSelect");

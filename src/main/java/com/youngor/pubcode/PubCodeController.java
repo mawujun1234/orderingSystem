@@ -41,7 +41,7 @@ public class PubCodeController {
 		}
 	}
 	
-	@Scheduled(cron="0 0/5 * * * ? ")   //每5分执行一次 
+	@Scheduled(cron="0 0/10 * * * ? ")   //每5分执行一次 
 	public void refeshPubCodeCache() {
 		initPubCodeCache();
 		System.out.println("=================================================刷新缓存");

@@ -452,7 +452,7 @@ public class OrdService extends AbstractService<Ord, String>{
 //				}
 //				
 //				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
-				throw new BusinessException("none_abstat");
+				throw new BusinessException("有必定款样衣未订");
 			}
 		}
 
@@ -636,13 +636,14 @@ public class OrdService extends AbstractService<Ord, String>{
 		Org org=userVO.getFirstCurrentOrg();
 		
 		Map<String,Object> result=new HashMap<String,Object>();
-		if(org.getChanno()!=Chancl.TX  && org.getChanno()!=Chancl.QY){
-			result.put("show", false);
-			result.put("canOrd", false);//是否可以订货
-			result.put("msg", "你所在的组织单元不是订货单位，不能订货!");
-			result.put("success", true);
-			return result;
-		}
+//不是订货单位等都登陆不进来了		
+//		if(org.getChanno()!=Chancl.TX  && org.getChanno()!=Chancl.QY){
+//			result.put("show", false);
+//			result.put("canOrd", false);//是否可以订货
+//			result.put("msg", "你所在的组织单元不是订货单位，不能订货!");
+//			result.put("success", true);
+//			return result;
+//		}
 		
 		ord.setOrdCheckInfo(result);
 		OrdmtScde ordmtScde=ordRepository.get_ordmt_scde(ord.getOrmtno(), org.getChanno().toString());
@@ -737,19 +738,21 @@ public class OrdService extends AbstractService<Ord, String>{
 		if(list ==null || list.size()==0){
 			return 1;
 		}
+		//10:现场订货.20:区域平衡.30:总公司平衡.40:尾箱调整
+		////0：编辑中；1：大区审批中；2：总部审批中；3：审批通过；4：退回 
 		if(list.size()==1 ){
 			Map<String,Object> map=list.get(0);
-//			//如果还是现场订货，并且状态是编辑中的话，就是显示“订单完成”按钮
-//			if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
-//				return 1;
-//			}  else 
-			if("10".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
-				//进入了大区审批中，只有审批过后，才能进行区域平衡
+			//如果还是现场订货，并且状态是编辑中的话，就是显示“订单完成”按钮
+			if("10".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
+				return 1;
+			}  else  if("10".equals(map.get("SDTYNO")) && "2".equals(map.get("ORSTAT").toString())){
+				//进入了总部审批中，只有审批过后，才能进行区域平衡
 				return 2;
 			}  else if("20".equals(map.get("SDTYNO")) && "0".equals(map.get("ORSTAT").toString())){
 				//进入了区域平衡
 				return 3;
 			} else {
+				//其余情况就是，即不能确认也不能完成
 				return 4;
 			}
 		} else {

@@ -74,52 +74,157 @@
         </div><!-- #od_yxgs -->
         
         
-         <!--订货统计-按商品类 -->
+                 <!--订货统计-按商品类 -->
         <div class="page" id="report_spclno" >
             <header class="bar bar-nav"> 
               <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
-              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search "></span>&nbsp;筛选</a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search "></span>&nbsp;筛选&nbsp;</a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-              <table class="report_table">
-                <thead>
-                  <tr>
-                    <th>大类</th>
-                    <th>订货金额</th>
-                    <th>计划金额</th>
-                    <th>完成率</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="todo in todos">
-                    <td>{{todo.spclnm}}</td>
-                    <td>{{todo.ormtam_wan}}</td>
-                    <td>{{todo.qymtam}}</td>
-                    <td>{{todo.wancl}}</td>
-                  </tr>
-                </tbody>
-              </table>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+              <div class="card">
+                <div class="card-header">订货金额</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货金额</th>
+                            <th>计划金额</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td><a href="#" class="report_spclno_click" v-bind:data-spclno="todo.spclno">{{todo.spclnm}}</a></td>
+                            <td>{{todo.ormtam_wan}}</td>
+                            <td>{{todo.qymtam}}</td>
+                            <td>{{todo.ormtam_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="card">
+                <div class="card-header">订货数量</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货数量</th>
+                            <th>计划数量</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td><a href="#" class="report_spclno_click" v-bind:data-spclno="todo.spclno">{{todo.spclnm}}</a></td>
+                            <td>{{todo.ormtqt}}</td>
+                            <td>{{todo.qymtqt}}</td>
+                            <td>{{todo.ormtqt_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+          
             </div>
           </div><!-- #report_spclno -->
           
-          <!-- 订货统计-按价位-->
-          <div class="page" id="report_money" >
+          
+         <!--订货统计-按商品类----小类或系列 -->
+        <div class="page" id="report_sptyno_spseno" >
             <header class="bar bar-nav"> 
               <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
-              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " ></span>&nbsp;筛选</a>
+              
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+              <div class="card">
+                <div class="card-header">订货金额</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货金额</th>
+                            <th>计划金额</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td>{{todo.spclnm}}</td>
+                            <td>{{todo.ormtam_wan}}</td>
+                            <td>{{todo.qymtam}}</td>
+                            <td>{{todo.ormtam_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="card">
+                <div class="card-header">订货数量</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货数量</th>
+                            <th>计划数量</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td>{{todo.spclnm}}</td>
+                            <td>{{todo.ormtqt}}</td>
+                            <td>{{todo.qymtqt}}</td>
+                            <td>{{todo.ormtqt_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+          </div><!-- #report_sptyno_spseno -->
+          
+          
+          
+          <!-- 订货统计-按价格段-->
+          <div class="page" id="report_money" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " ></span>&nbsp;筛选&nbsp;</a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;font-size:0.7rem;">
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
               <table class="report_table">
                 <thead>
-                  <tr>
+                  <tr style="font-size:0.6rem;">
                     <th>价格段</th>
-                    <th>订货金额</th>
+                    <th>零售金额</th>
                     <th>占比</th>
-                    <th>订货品种</th>
+                    <th>品种</th>
                     <th>占比</th>
-                    <th>订货数量</th>
+                    <th>数量</th>
                     <th>占比</th>
                   </tr>
                 </thead>
@@ -144,10 +249,15 @@
           <div class="page" id="report_org" >
             <header class="bar bar-nav"> 
               <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
-              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search "></span>&nbsp;筛选</a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search "></span>&nbsp;筛选&nbsp;</a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
+			<span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+          <div class="card">
+            <div class="card-header">订货金额</div>
+            <div class="card-content">
+            <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
               <table class="report_table">
                 <thead>
                   <tr>
@@ -162,10 +272,43 @@
                     <td>{{todo.orgnm}}</td>
                     <td>{{todo.ormtam_wan}}</td>
                     <td>{{todo.qymtam}}</td>
-                    <td>{{todo.wancl}}</td>
+                    <td>{{todo.ormtam_wancl}}</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+            </div>
+          </div>
+              
+          <div class="card">
+            <div class="card-header">订货数量</div>
+            <div class="card-content">
+              <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                  <table class="report_table" >
+                    <thead>
+                      <tr>
+                        <th>渠道</th>
+                        <th>订货数量</th>
+                        <th>计划数量</th>
+                        <th>完成率</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="todo in todos">
+                        <td>{{todo.orgnm}}</td>
+                        <td>{{todo.ormtqt}}</td>
+                        <td>{{todo.qymtqt}}</td>
+                        <td>{{todo.ormtqt_wancl}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+
+
+
+
             </div>
           </div><!-- #report_org -->
           
@@ -174,11 +317,12 @@
           <div class="page" id="report_alreadyod" >
             <header class="bar bar-nav"> 
               <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
-              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search" ></span>&nbsp;筛选</a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search" ></span>&nbsp;筛选&nbsp;</a>
               <!--<h1 class='title'>..........</h1>-->
             </header>
             
             <div  class="content infinite-scroll infinite-scroll-bottom" data-distance="100" style="padding-right:8px;display:none;" >
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
             <div class="row" style="margin-left:10px;text-align:center;font-size:0.7rem;">
               品种数:<span style="color:red;">{{totalData.sampnocount}}</span>种<span style="color:red;">/</span>
               数量:<span style="color:red;">{{totalData.ormtqt}}</span>件<span style="color:red;">/</span>
@@ -194,7 +338,7 @@
                       <div class="card-content-inner" style="padding:0px;padding-left:5px;">
                         <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
                         <p style="margin-bottom:0px;margin-top:0px;">零售价:{{samp.sprtpr}}</p>
-                        <p style="margin-bottom:0px;margin-top:0px;">订货数量:<span style="color:red;">{{samp.ormtqt}}</span></p>
+                        <p style="margin-bottom:0px;margin-top:0px;">数量:<span style="color:red;">{{samp.ormtqt}}</span></p>
                       </div>
                     </div>
                     <div class="card-footer" style="padding-top:0px;padding-bottom:0px;line-height:1rem;min-height:1.5rem;">
@@ -234,11 +378,11 @@
               </div>
               <div class="card-content">  
                   <div class="buttons-tab">
-                    <a href="#tab1" class="tab-link active button">企划</a>
-                    <a href="#tab2" class="tab-link button">设计</a>
+                    <a href="#tab1_{{$index}}" class="tab-link active button">企划</a>
+                    <a href="#tab2_{{$index}}" class="tab-link button">设计</a>
                   </div> 
                    <div class="tabs" >
-                      <div id="tab1" class="tab active">     
+                      <div id="tab1_{{$index}}" class="tab active">     
                           <div class="list-block"  style="margin-top:0rem;">
                             <ul>
                               <li class="item-content" v-for="field in todo.tab1">
@@ -250,7 +394,7 @@
                             </ul>
                           </div>
                        </div><!-- tab1 -->
-                       <div id="tab2" class="tab">
+                       <div id="tab2_{{$index}}" class="tab">
                        	  <div class="list-block"  style="margin-top:0rem;">
                             <ul>
                               <li class="item-content" v-for="field in todo.tab2">
@@ -273,14 +417,14 @@
           
           <!-- 首页报表-->
           <div class="page" id="report_first" >
-            <div class="content" style="display:none;">
+            <div class="content" style="display:none;margin-bottom:40px;">
 				<table style="height:100%;">
                 	<tr>
                     	<td valign="top">
                         	<div class="bradnoInfo" v-for="item in todos">
                             	<div class="brandName" v-bind:data-bradno="item.bradno">{{item.bradno_name}}</div>
-                                数量:{{item.ormtqt}}<br/>
-                                金额:{{item.ormtam}}<br/>
+                                折算数量:{{item.ormtqt}}<br/>
+                                折算金额:{{item.ormtam}}<br/>
                                 品种数:{{item.sampnocount}}<br/>
                             </div> 
                         </td>
@@ -373,8 +517,8 @@
         </p>
       -->
       <div class="row" style="margin-bottom:40px;">
-          <div class="col-50"><a href="#" class="button button-dark" id="report_query_params_reset">重置</a></div>
-          <div class="col-50"><a href="#" class="button button-fill button-danger" id="report_query_params_complete">查询</a></div>
+          <div class="col-50"><a href="#" class="button button-big button-dark" id="report_query_params_reset">重置</a></div>
+          <div class="col-50"><a href="#" class="button button-big button-fill button-danger" id="report_query_params_complete">查询</a></div>
       </div>
     </div>
 
@@ -390,8 +534,8 @@
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/echarts.simple.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
-    <script type='text/javascript' src='yxgs.js' charset='utf-8'></script>
-    <script type='text/javascript' src='./report/report.js' charset='utf-8'></script>
+    <script type='text/javascript' src='yxgs.js?v=20160725' charset='utf-8'></script>
+    <script type='text/javascript' src='./report/report.js?v=20160725' charset='utf-8'></script>
     
 
   </body>

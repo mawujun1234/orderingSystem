@@ -16,13 +16,28 @@ public class ReportOrg {
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	public String getWancl(){
+	public String getOrmtam_wancl(){
 		BigDecimal ormtam=getOrmtam_wan();
 		if(ormtam==null){
 			return "0%";
 		}
 		if(qymtam!=null && qymtam.doubleValue()>0){
-			return ormtam.divide(qymtam, 2,RoundingMode.HALF_UP).toString()+"%";
+			return ormtam.multiply(new BigDecimal(100)).divide(qymtam, 2,RoundingMode.HALF_UP).toString()+"%";
+		}
+		return "";
+	}
+	/**
+	 * 获取完成率
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	public String getOrmtqt_wancl(){
+		//BigDecimal ormtam=getOrmtam_wan();
+		if(ormtqt==null){
+			return "0%";
+		}
+		if(qymtqt!=null && qymtqt.doubleValue()>0){
+			return ormtqt.multiply(new BigDecimal(100)).divide(qymtqt, 2,RoundingMode.HALF_UP).toString()+"%";
 		}
 		return "";
 	}
@@ -33,7 +48,7 @@ public class ReportOrg {
 		return ormtam.divide(new BigDecimal(10000),2,RoundingMode.HALF_UP);
 		//return ormtam;
 	}
-	public void addOrmtam(BigDecimal ormtam){
+	public void addOrmtam(BigDecimal ormtam) {
 		if(this.ormtam==null){
 			this.ormtam= new BigDecimal(0);
 		}
@@ -41,6 +56,15 @@ public class ReportOrg {
 			ormtam= new BigDecimal(0);
 		}
 		this.ormtam=this.ormtam.add(ormtam);
+	}
+	public void addOrmtqt(BigDecimal ormtqt) {
+		if(this.ormtqt==null){
+			this.ormtqt= new BigDecimal(0);
+		}
+		if(ormtqt==null){
+			ormtqt= new BigDecimal(0);
+		}
+		this.ormtqt=this.ormtqt.add(ormtqt);
 	}
 	public void addQymtam(BigDecimal qymtam){
 		if(this.qymtam==null){
@@ -50,6 +74,15 @@ public class ReportOrg {
 			qymtam= new BigDecimal(0);
 		}
 		this.qymtam=this.qymtam.add(qymtam);
+	}
+	public void addQymtqt(BigDecimal qymtqt){
+		if(this.qymtqt==null){
+			this.qymtqt= new BigDecimal(0);
+		}
+		if(qymtqt==null){
+			qymtqt= new BigDecimal(0);
+		}
+		this.qymtqt=this.qymtqt.add(qymtqt);
 	}
 	
 	
