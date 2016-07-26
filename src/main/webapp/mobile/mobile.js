@@ -192,6 +192,7 @@ $(function(){
 
 //=========================================================登录相关
 $(function(){
+	//$.router.load("#od_loginpage");
 	$.post(Ext.ContextPath+'/ord/mobile/getOrdmt.do', {  }, function(response){
 		$("#od_loginpage_title").html(response.ormtnm);	
 	},'json');
@@ -273,7 +274,7 @@ $(function(){
 					//如果是营销公司，就进入到营销公司的界面
 					if(window.user.channo=='YXGS'){
 						//$.router.load("#od_yxgs"); 
-						window.location.href="./yxgs.html?from=index";
+						window.location.href="./yxgs.html";
 					} else {
 						$.router.load("#od_info"); 
 					}

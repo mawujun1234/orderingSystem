@@ -364,12 +364,12 @@ Ext.define('y.report.OrderNumTotalGrid',{
 				},
 				iconCls: 'icon-refresh'
 			},{
-		  		text: '打印特许',
+		  		text: '打印',
 				handler: function(btn){
 					var grid=btn.up("grid");
 					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 			    	if(!toolbars[0].down("#ordorg").getValue()){
-			    		Ext.Msg.alert("消息","打印特许的时候，只能一家一家的打印，请先选择‘订货单位’!");
+			    		Ext.Msg.alert("消息","打印的时候，只能一家一家的打印，请先选择‘订货单位’!");
 			    		return;
 			    	}
 			    	

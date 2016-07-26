@@ -69,6 +69,12 @@ public class SampleMate {
 	@Transient
 	private String mtsuno_name;
 	
+	public void setMateno(String mateno) {
+		if(mateno!=null){
+			this.mateno = mateno.toUpperCase();
+		}
+	}
+	
 	public static class PK implements Serializable {
 		private static final long serialVersionUID = 1L;
 
@@ -130,9 +136,7 @@ public class SampleMate {
 		return mateno;
 	}
 
-	public void setMateno(String mateno) {
-		this.mateno = mateno;
-	}
+	
 
 	public String getMtbrad() {
 		return mtbrad;

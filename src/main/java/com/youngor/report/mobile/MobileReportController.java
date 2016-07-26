@@ -1,5 +1,6 @@
 package com.youngor.report.mobile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +28,6 @@ import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserController;
 import com.youngor.pubcode.PubCode;
 import com.youngor.pubcode.PubCodeCache;
-import com.youngor.pubcode.PubCodeController;
 import com.youngor.pubcode.PubCodeRepository;
 import com.youngor.pubcode.PubCodeService;
 import com.youngor.sample.SampleDesign;
@@ -690,6 +692,11 @@ public class MobileReportController {
 		return result;
 	}
 	
+	@RequestMapping("/mobile/redirect_yxgshtml.do")
+	public void redirect(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		userController.logout();
+		response.sendRedirect("./yxgs.html");
+	}
 	@RequestMapping("/mobile/report/queryReportFirst_allBradno.do")
 	@ResponseBody
 	public Map<String,Object> queryReportFirst_allBradno(String from){
@@ -702,31 +709,31 @@ public class MobileReportController {
 		} else {
 			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
 			
-			//如果不是全国的人登录了，总公司报表，那就退出，可以看到总公司报表
-			//如果是营销公司，那还是可以看到报表，并且和营销公司的账号是一样的
-			if(org.getChanno()!=Chancl.YXGS){
-//				Map<String,Object> result=new HashMap<String,Object>();
-//				result.put("success", false);
-//				result.put("msg", "你已经登录其他账号，没有权限访问该报表!");
-//				return result;
-				
-				//如果是其他用户访问总公司报表，那也就退出
-				userController.logout();
-				
-				org=new Org();
-				org.setChanno(Chancl.OTH);
-				org.setOrgnm("全国");
-			} else {
-				//如果是营销公司访问，总公司报表,那也退出，可以访问全国报表
-				//也就是说，大区账号不是通过登录访问这张报表的时候
-				if(!"index".equals(from)){
-					userController.logout();
-					
-					org=new Org();
-					org.setChanno(Chancl.OTH);
-					org.setOrgnm("全国");
-				}
-			}
+//			//如果不是全国的人登录了，总公司报表，那就退出，可以看到总公司报表
+//			//如果是营销公司，那还是可以看到报表，并且和营销公司的账号是一样的
+//			if(org.getChanno()!=Chancl.YXGS){
+////				Map<String,Object> result=new HashMap<String,Object>();
+////				result.put("success", false);
+////				result.put("msg", "你已经登录其他账号，没有权限访问该报表!");
+////				return result;
+//				
+//				//如果是其他用户访问总公司报表，那也就退出
+//				userController.logout();
+//				
+//				org=new Org();
+//				org.setChanno(Chancl.OTH);
+//				org.setOrgnm("全国");
+//			} else {
+//				//如果是营销公司访问，总公司报表,那也退出，可以访问全国报表
+//				//也就是说，大区账号不是通过登录访问这张报表的时候
+//				if(!"index".equals(from)){
+//					userController.logout();
+//					
+//					org=new Org();
+//					org.setChanno(Chancl.OTH);
+//					org.setOrgnm("全国");
+//				}
+//			}
 			
 			
 		}

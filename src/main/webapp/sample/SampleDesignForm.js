@@ -554,38 +554,24 @@ Ext.define('y.sample.SampleDesignForm',{
 		//if(me.showsampleDesignSizegpGrid_bool){
 			var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();
 			sampleDesignSizegpGrid_store.removeAll();
-			//if(!record.get("suitty")){
-				//console.log("--------------------"+(new Date()).getTime()+"----"+record.get("suitty"));
-				if(record.get("suitty")){//排除新建的时候，第一次选择套装类型，不会更新的问题
-					//alert(1);
-					sampleDesignSizegpGrid_store.click_loading=true;
-				}
+		if(record.get("suitty")){//排除新建的时候，第一次选择套装类型，不会更新的问题
+			sampleDesignSizegpGrid_store.click_loading=true;
+		}
 				
-				sampleDesignSizegpGrid_store.reload({
-					params:{
-						suitty:record.get("suitty"),
-						sampno:record.get("sampno")//window.sampno.sampno
-					}
-				});
-			//}
-//			sampleDesignSizegpGrid_store.getProxy().extraParams={
-//				suitty:record.get("suitty"),
-//				sampno:record.get("sampno")//window.sampno.sampno
-//			};
-			//sampleDesignSizegpGrid_store.reload();
-//			sampleDesignSizegpGrid_store.reload({
-//				params:{
-//					suitty:record.get("suitty"),
-//					sampno:record.get("sampno")//window.sampno.sampno
-//				}
-//			});
-//		//}
+
 		
 		me.getForm().loadRecord(record);
 		
 		me.showOrHidden_saveButton(record.get("spstat"));
 					
-
+		
+				
+		sampleDesignSizegpGrid_store.reload({
+			params:{
+				suitty:record.get("suitty"),
+				sampno:record.get("sampno")//window.sampno.sampno
+			}
+		});
 		
 	},
 	/**

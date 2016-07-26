@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderNumTotal" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="8346c2f3-ba40-4113-b350-23288aecdbc7">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderNumTotal" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="0" uuid="8346c2f3-ba40-4113-b350-23288aecdbc7">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="299"/>
+	<property name="ireport.x" value="134"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="bradno_name" class="java.lang.String"/>
 	<parameter name="yxgsnm" class="java.lang.String"/>
@@ -15,22 +15,22 @@
 	<field name="versno_name" class="java.lang.String"/>
 	<field name="suitno_name" class="java.lang.String"/>
 	<field name="ormtqt" class="java.lang.Integer"/>
-	<field name="sprtpr" class="java.lang.Double"/>
+	<field name="sprtpr" class="java.lang.Number"/>
 	<field name="sprtpr_jine_wan" class="java.lang.Number"/>
 	<variable name="ormtqt_sum" class="java.lang.Integer" resetType="Group" resetGroup="spseno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_avg" class="java.lang.Double" resetType="Group" resetGroup="spseno_name" calculation="Average">
+	<variable name="sprtpr_avg" class="java.lang.Number" resetType="Group" resetGroup="spseno_name" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_jine_wan_sum" class="java.lang.Double" resetType="Group" resetGroup="spseno_name" calculation="Sum">
+	<variable name="sprtpr_jine_wan_sum" class="java.math.BigDecimal" resetType="Group" resetGroup="spseno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
 	</variable>
 	<variable name="variable1" class="java.lang.String"/>
 	<variable name="ormtqt_1" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_1" class="java.math.BigDecimal" calculation="Average">
+	<variable name="sprtpr_1" class="java.lang.Number" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
 	<variable name="sprtpr_jine_wan_1" class="java.math.BigDecimal" calculation="Sum">
@@ -42,7 +42,7 @@
 	<variable name="ormtqt_2" class="java.lang.Integer" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_2" class="java.lang.Double" resetType="Group" resetGroup="sptyno_name" calculation="Average">
+	<variable name="sprtpr_2" class="java.lang.Number" resetType="Group" resetGroup="sptyno_name" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
 	<variable name="sprtpr_jine_wan_3" class="java.math.BigDecimal" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
@@ -51,7 +51,7 @@
 	<variable name="ormtqt_3" class="java.lang.Integer" resetType="Group" resetGroup="spclno_name" calculation="Sum">
 		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
 	</variable>
-	<variable name="sprtpr_3" class="java.lang.Double" resetType="Group" resetGroup="spclno_name" calculation="Average">
+	<variable name="sprtpr_3" class="java.lang.Number" resetType="Group" resetGroup="spclno_name" calculation="Average">
 		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
 	</variable>
 	<variable name="sprtpr_jine_wan_4" class="java.math.BigDecimal" resetType="Group" resetGroup="spclno_name" calculation="Sum">
@@ -73,7 +73,7 @@
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{ormtqt_3}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="###0.00;-###0.00">
 					<reportElement uuid="93b5cb97-42fc-4d7a-8230-1ab9aebac475" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
@@ -128,7 +128,7 @@
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{ormtqt_2}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="###0.00;-###0.00">
 					<reportElement uuid="f8924a29-aecc-49fb-948a-78b2eb98f158" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
@@ -207,7 +207,7 @@
 					<textElement/>
 					<textFieldExpression><![CDATA[$F{spseno_name}+"--小计:"]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="###0.00;-###0.00">
 					<reportElement uuid="18056a87-ce82-4ce0-9120-47dd9d364d64" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
 					<box>
 						<pen lineWidth="0.5"/>
@@ -538,7 +538,7 @@
 				<textElement/>
 				<text><![CDATA[审批签字:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="###0.00;-###0.00">
 				<reportElement uuid="619c4f50-11e4-4f2e-9917-7937c3f1a471" mode="Transparent" x="578" y="-1" width="79" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>
@@ -550,7 +550,7 @@
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{ormtqt_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="###0.00;-###0.00">
 				<reportElement uuid="963aae40-ff7e-48f5-85b0-d44c18333e27" mode="Transparent" x="657" y="-1" width="68" height="20" backcolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="0.5"/>

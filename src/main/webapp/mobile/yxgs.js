@@ -110,9 +110,9 @@ $(function(){
 	});
 
 	function showreport(){
-		var search=location.search;
+		//var search=location.search;
 		//alert(search);
-		$.post(Ext.ContextPath+'/mobile/report/queryReportFirst_allBradno.do'+search, {}, function(response){
+		$.post(Ext.ContextPath+'/mobile/report/queryReportFirst_allBradno.do', {}, function(response){
 					renderReport(response);
 		},'json');
 	}

@@ -130,6 +130,8 @@ public class ShiroConfig {
 //		filterChainDefinitionMap.put("/mobile/report/queryReportMoney.do*", "anon");
 //		filterChainDefinitionMap.put("/mobile/report/queryReportOrg.do*", "anon");
 //		filterChainDefinitionMap.put("/mobile/report/querySampleInfo.do*", "anon");
+		
+		filterChainDefinitionMap.put("/mobile/redirect_yxgshtml.do*", "anon");
 		filterChainDefinitionMap.put("/mobile/report/**/*.do*", "anon");
 		
 		
