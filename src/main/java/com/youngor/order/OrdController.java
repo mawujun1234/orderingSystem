@@ -29,6 +29,7 @@ import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.permission.UserController;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 /**
@@ -44,6 +45,8 @@ public class OrdController {
 	private OrdService ordService;
 	@Resource
 	private OrdtyService ordtyService;
+	
+	
 	@RequestMapping("/ord/mobile/getOrdmt.do")
 	@ResponseBody
 	public Ordmt getOrdmt() {
@@ -200,7 +203,9 @@ public class OrdController {
 			result.put("orgnm","全国");
 			return result;
 		}
+		
 		Org org= ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		
 		Integer  canConfirm=ordService.yxgs_getOrstat();
 		Map<String,Object> result=new HashMap<String,Object>();
 		result.put("canConfirm", canConfirm);

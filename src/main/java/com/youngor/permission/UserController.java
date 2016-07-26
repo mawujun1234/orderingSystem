@@ -221,11 +221,18 @@ public class UserController {
 	@RequestMapping("/user/logout.do")
 	//@ResponseBody
 	public void logout(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		Subject subject = SecurityUtils.getSubject(); 
-		subject.logout();
+		logout();
 		//return "/main/login";
 		response.sendRedirect(request.getContextPath()+"/main/login.jsp");
 		//response.getRequestDispatcher("/main/login").forward(request, response);
+	}
+	/**
+	 * 没有跳转的，在别的地方调用的
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void logout(){
+		Subject subject = SecurityUtils.getSubject(); 
+		subject.logout();
 	}
 	/**
 	 * 这是基于分页的几种写法,的例子，请按自己的需求修改

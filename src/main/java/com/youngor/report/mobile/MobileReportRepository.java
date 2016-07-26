@@ -22,6 +22,8 @@ public interface MobileReportRepository {
 	
 	public List<ReportSplcno> queryReportSplcno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
 			,@Param("channo")String channo);
+	public List<ReportSplcno> queryReportSplcno_other_bradno(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno
+			,@Param("channo")String channo);
 	public List<ReportSplcno> queryReportSplcno_TX(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
 //	public List<ReportSplcno> queryReportSplcno_YXGS(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("bradno")String bradno);
 //	public List<ReportSplcno> queryReportSplcno_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno);
@@ -77,6 +79,11 @@ public interface MobileReportRepository {
 			,@Param("spseno")String spseno
 			);
 	public List<ReportOrg> queryReportOrg_ALL(@Param("ormtno")String ormtno,@Param("bradno")String bradno
+			,@Param("spclno")String spclno
+			,@Param("sptyno")String sptyno
+			,@Param("spseno")String spseno
+			);
+	public List<ReportOrg> queryReportOrg_ALL_other_bradno(@Param("ormtno")String ormtno,@Param("bradno")String bradno
 			,@Param("spclno")String spclno
 			,@Param("sptyno")String sptyno
 			,@Param("spseno")String spseno

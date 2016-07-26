@@ -115,7 +115,7 @@
                                     <div class="item-input">
                                       <input id="od_info_input" type="text" placeholder="请输入样衣编号" v-model="sampnm">
                                     </div>
-                                    <a href="#" id="od_info_scan_button" class="button button-fill button-success">查询</a><!-- -->
+                                    <a href="#" id="od_info_scan_button" class="button button-fill button-success" style="width:3.5rem;">查询</a><!-- -->
                                   </div>
                                 </div>
                                 </li>
@@ -332,7 +332,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <div class="card">
                 <div class="card-header">订货金额</div>
                 <div class="card-content">
@@ -398,7 +398,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <div class="card">
                 <div class="card-header">订货金额</div>
                 <div class="card-content">
@@ -406,7 +406,7 @@
                       <table class="report_table" >
                          <thead>
                           <tr>
-                            <th>大类</th>
+                            <th>小类</th>
                             <th>订货金额</th>
                             <th>计划金额</th>
                             <th>完成率</th>
@@ -468,7 +468,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;font-size:0.7rem;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <table class="report_table">
                 <thead>
                   <tr style="font-size:0.6rem;">
@@ -505,7 +505,7 @@
             </header>
             
             <div  class="content infinite-scroll infinite-scroll-bottom" data-distance="100" style="padding-right:8px;display:none;" >
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
             <div class="row" style="margin-left:10px;text-align:center;font-size:0.7rem;">
               品种数:<span style="color:red;">{{totalData.sampnocount}}</span>种<span style="color:red;">/</span>
               数量:<span style="color:red;">{{totalData.ormtqt}}</span>件<span style="color:red;">/</span>
@@ -514,9 +514,13 @@
             <div class="row" v-for="todo in todos">
                <div class="col-50" v-for="samp in todo">
                   <div class="card demo-card-header-pic" >
+                  <a href="#sample_info" class="sample_info_link" v-bind:data-sampno="samp.sampno">
                     <div valign="bottom" class="card-header color-white no-border no-padding">
+                      
                       <img class='card-cover' v-bind:src="samp.imgnm" alt="" >
+                      
                     </div>
+                  </a>
                     <div class="card-content">
                       <div class="card-content-inner" style="padding:0px;padding-left:5px;">
                         <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
@@ -525,8 +529,9 @@
                       </div>
                     </div>
                     <div class="card-footer" style="padding-top:0px;padding-bottom:0px;line-height:1rem;min-height:1.5rem;">
+                    
                       <a href="#" class="link " style="height:1rem;margin:0px;"><span class="circle13">{{samp.rownum}}</span></a>
-                      <a href="#sample_info" class="link sample_info_link" v-bind:data-sampno="samp.sampno" style="height:1rem;margin:0px;">更多</a>
+                      <a href="#od_info" class="link od_info_link" v-bind:data-sampnm="samp.sampnm" style="height:1rem;margin:0px;">更改数量</a>
                     </div>
                   </div>
                 </div><!-- 50%-->

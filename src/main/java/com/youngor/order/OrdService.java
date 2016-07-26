@@ -290,7 +290,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		//订货总数据和订单的明细数据之和是否一致，如果不一致就报错
 		for(SuitVO suitVO:suitVOs){
 			//如果两个地方数据不一样就报错
-			System.out.println(suitVO.geetOrmtqt_sum()!=suitVO.getOrmtqt());
+			//System.out.println(suitVO.geetOrmtqt_sum()!=suitVO.getOrmtqt());
 			if(suitVO.getOrmtqt()!=suitVO.geetOrmtqt_sum()){
 				throw new BusinessException("总订货数和明细数据不一致，不能保存!");
 			}
@@ -330,12 +330,12 @@ public class OrdService extends AbstractService<Ord, String>{
 					throw new BusinessException("不拆套 男套西 的裤子数量必须小于标准套的15%");
 				}
 			} else if(sampleVO.getSpltmk()==1 && "Z0".equals(sampleVO.getSexno()) && "S10".equals(sampleVO.getSptyno())){
-				// 拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
-				if(T02_ormtqt>T01_ormtqt*1.15){
-					throw new BusinessException("不拆套 男套西 的裤子数量必须小于标准套的115%");
-				}
+//				// 拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)
+//				if(T02_ormtqt>T01_ormtqt*1.15){
+//					throw new BusinessException("拆套 男套西 的裤子数量必须小于标准套的115%");
+//				}
 				
-				if(T02_ormtqt>T01_ormtqt){
+				if(!(T02_ormtqt>=T01_ormtqt && T02_ormtqt<=T01_ormtqt*1.15)){
 					throw new BusinessException(" 拆套男套西 的裤子数量必须是  : 上衣<=裤子<=上衣*115%");
 				}
 			} 

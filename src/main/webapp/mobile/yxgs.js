@@ -110,12 +110,19 @@ $(function(){
 	});
 
 	function showreport(){
-		$.post(Ext.ContextPath+'/mobile/report/queryReportFirst_allBradno.do', {}, function(response){
+		var search=location.search;
+		//alert(search);
+		$.post(Ext.ContextPath+'/mobile/report/queryReportFirst_allBradno.do'+search, {}, function(response){
 					renderReport(response);
 		},'json');
 	}
 	var first_bradno="";
 	function renderReport(response){
+		if(response.success==false){
+			$("#report_first").html(response.msg);
+			$("#bottom_bar").hide();
+			return;
+		}
 		if(response.todos.length>0){
 			if(!first_bradno){
 				first_bradno=response.todos[0].bradno;

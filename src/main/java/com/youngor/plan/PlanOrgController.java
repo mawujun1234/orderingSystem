@@ -107,7 +107,13 @@ public class PlanOrgController {
 	}
 	
 	private void createData(XSSFWorkbook wb,Sheet sheet1,MapParams params){
-		List<PlanOrgdtlVO> planOrges=planOrgService.queryPlanOrgdtlVO(params);
+		List<PlanOrgdtlVO> planOrges=null;
+		if(params.getParams().get("yxgsno")==null || "".equals(params.getParams().get("yxgsno"))){
+			planOrges= planOrgService.queryPlanOrgdtlVO_all(params);
+		} else {
+			planOrges= planOrgService.queryPlanOrgdtlVO(params);
+		}
+		//List<PlanOrgdtlVO> planOrges=planOrgService.queryPlanOrgdtlVO(params);
 		int row_index=0;
 		for(int i=0;i<planOrges.size();i++){
 			PlanOrgdtlVO planOrgdtlVO=planOrges.get(i);

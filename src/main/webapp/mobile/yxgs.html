@@ -82,7 +82,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <div class="card">
                 <div class="card-header">订货金额</div>
                 <div class="card-content">
@@ -148,7 +148,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <div class="card">
                 <div class="card-header">订货金额</div>
                 <div class="card-content">
@@ -183,7 +183,7 @@
                       <table class="report_table" >
                          <thead>
                           <tr>
-                            <th>大类</th>
+                            <th>小类</th>
                             <th>订货数量</th>
                             <th>计划数量</th>
                             <th>完成率</th>
@@ -215,7 +215,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;font-size:0.7rem;">
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
               <table class="report_table">
                 <thead>
                   <tr style="font-size:0.6rem;">
@@ -253,7 +253,7 @@
               <!--<h1 class='title'>..........</h1>-->
             </header>
             <div class="content" style="padding-right:8px;display:none;">
-			<span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+			<span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
           <div class="card">
             <div class="card-header">订货金额</div>
             <div class="card-content">
@@ -322,7 +322,7 @@
             </header>
             
             <div  class="content infinite-scroll infinite-scroll-bottom" data-distance="100" style="padding-right:8px;display:none;" >
-            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量，金额也是折算金额。</span>
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
             <div class="row" style="margin-left:10px;text-align:center;font-size:0.7rem;">
               品种数:<span style="color:red;">{{totalData.sampnocount}}</span>种<span style="color:red;">/</span>
               数量:<span style="color:red;">{{totalData.ormtqt}}</span>件<span style="color:red;">/</span>
@@ -331,9 +331,11 @@
             <div class="row" v-for="todo in todos">
                <div class="col-50" v-for="samp in todo">
                   <div class="card demo-card-header-pic" >
+                  <a href="#sample_info" class="sample_info_link" v-bind:data-sampno="samp.sampno">
                     <div valign="bottom" class="card-header color-white no-border no-padding">
                       <img class='card-cover' v-bind:src="samp.imgnm" alt="" >
                     </div>
+                  </a>
                     <div class="card-content">
                       <div class="card-content-inner" style="padding:0px;padding-left:5px;">
                         <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
@@ -424,7 +426,7 @@
                         	<div class="bradnoInfo" v-for="item in todos">
                             	<div class="brandName" v-bind:data-bradno="item.bradno">{{item.bradno_name}}</div>
                                 折算数量:{{item.ormtqt}}<br/>
-                                折算金额:{{item.ormtam}}<br/>
+                                订货金额:{{item.ormtam}}<br/>
                                 品种数:{{item.sampnocount}}<br/>
                             </div> 
                         </td>

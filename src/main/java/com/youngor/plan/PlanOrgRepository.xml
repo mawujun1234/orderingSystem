@@ -51,6 +51,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="queryPlanOrgdtlVO_all" resultType="com.youngor.plan.PlanOrgdtlVO" parameterType="map">
     	SELECT G.yxgsno as ordorg,G.yxgsnm as ORGNM,P0.ITNM AS SPCLNM,P2.ITNM AS SPTYNM,P5.ITNM AS SPSENM,b.SPCLNO,b.SPTYNO,b.SPSENO,
         sum(D.QYMTQT) QYMTQT,sum(D.QYMTAM) QYMTAM,sum(D.TXMTQT) TXMTQT,sum(D.TXMTAM) TXMTAM
+        ,'${bradno}' as bradno
         FROM
     (
     SELECT DISTINCT A.ORMTNO,A.BRADNO,A.SPCLNO,A.SPTYNO,DECODE(NVL(B.PLANRT,2),2,A.SPSENO,' ')SPSENO FROM ORD_SAMPLE_PLAN A

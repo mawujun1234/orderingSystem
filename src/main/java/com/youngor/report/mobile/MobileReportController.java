@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.youngor.org.NodeVO;
 import com.youngor.org.Org;
 import com.youngor.org.OrgService;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.permission.UserController;
 import com.youngor.pubcode.PubCode;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.pubcode.PubCodeController;
@@ -56,6 +59,8 @@ public class MobileReportController {
 	private SamplePhotoRepository samplePhotoRepository;
 	@Autowired
 	private SampleDesignRepository sampleDesignRepository;
+	@Resource
+	private UserController userController;
 	
 	/**
 	 * 查询未订的必定款样衣
@@ -330,9 +335,19 @@ public class MobileReportController {
 		} else if(org.getChanno()==Chancl.QY){
 			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.QY.toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
-			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.YXGS.toString());
+			
+			if("Y".equals(bradno)){
+				list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.YXGS.toString());
+			} else {
+				list= mobileReportRepository.queryReportSplcno_other_bradno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.YXGS.toString());
+			}
 		} else {
-			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg,bradno,null);
+			
+			if("Y".equals(bradno)){
+				list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg,bradno,null);
+			} else {
+				list= mobileReportRepository.queryReportSplcno_other_bradno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg,bradno,null);
+			}
 		}
 		
 		//计算合计
@@ -544,9 +559,17 @@ public class MobileReportController {
 		String orgno=org.getOrgno();
 		List<ReportOrg> list=null;
 		if(org.getChanno()==Chancl.YXGS) {
-			list= mobileReportRepository.queryReportOrg_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, spclno, sptyno, spseno);
+			
+				list= mobileReportRepository.queryReportOrg_YXGS(ContextUtils.getFirstOrdmt().getOrmtno(), orgno, bradno, spclno, sptyno, spseno);
+			
+			
 		} else {
-			list= mobileReportRepository.queryReportOrg_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno, spclno, sptyno, spseno);
+			
+			if("Y".equals(bradno)){
+				list= mobileReportRepository.queryReportOrg_ALL(ContextUtils.getFirstOrdmt().getOrmtno(), bradno, spclno, sptyno, spseno);
+			} else {
+				list= mobileReportRepository.queryReportOrg_ALL_other_bradno(ContextUtils.getFirstOrdmt().getOrmtno(), bradno, spclno, sptyno, spseno);
+			}
 		}
 		// 计算合计
 		ReportOrg total = new ReportOrg();
@@ -669,7 +692,7 @@ public class MobileReportController {
 	
 	@RequestMapping("/mobile/report/queryReportFirst_allBradno.do")
 	@ResponseBody
-	public Map<String,Object> queryReportFirst_allBradno(){
+	public Map<String,Object> queryReportFirst_allBradno(String from){
 		Org org=null;
 		if(!ShiroUtils.isLogon()){
 			org=new Org();
@@ -678,11 +701,61 @@ public class MobileReportController {
 			
 		} else {
 			org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+			
+			//如果不是全国的人登录了，总公司报表，那就退出，可以看到总公司报表
+			//如果是营销公司，那还是可以看到报表，并且和营销公司的账号是一样的
+			if(org.getChanno()!=Chancl.YXGS){
+//				Map<String,Object> result=new HashMap<String,Object>();
+//				result.put("success", false);
+//				result.put("msg", "你已经登录其他账号，没有权限访问该报表!");
+//				return result;
+				
+				//如果是其他用户访问总公司报表，那也就退出
+				userController.logout();
+				
+				org=new Org();
+				org.setChanno(Chancl.OTH);
+				org.setOrgnm("全国");
+			} else {
+				//如果是营销公司访问，总公司报表,那也退出，可以访问全国报表
+				//也就是说，大区账号不是通过登录访问这张报表的时候
+				if(!"index".equals(from)){
+					userController.logout();
+					
+					org=new Org();
+					org.setChanno(Chancl.OTH);
+					org.setOrgnm("全国");
+				}
+			}
+			
+			
 		}
 
 		
 		List<ReportFirst> list=mobileReportRepository.queryReportFirst_allBradno(ContextUtils.getFirstOrdmt().getOrmtno(), 
 				org.getChanno().toString(), org.getOrgno(),null);
+		//if(list==null || list.size()==0){
+		//	list=new ArrayList<ReportFirst>();
+			//获取全国的有样衣的品牌
+			//这个是临时解决方案
+			List<PubCode> bradnos=pubCodeRepository.queryBradno4Ordmt(ContextUtils.getFirstOrdmt().getOrmtno());
+			for(PubCode pubcode:bradnos){
+				boolean exists=false;
+				for(ReportFirst first_exist:list){
+					if(first_exist.getBradno().equals(pubcode.getItno())){
+						exists=true;
+						break;
+					}
+				}
+				if(!exists){
+					ReportFirst first=new ReportFirst();
+					first.setBradno(pubcode.getItno());
+					list.add(first);
+				}
+				
+			}
+			
+		//}
 		//return list;
 		Map<String,Object> result=new HashMap<String,Object>();
 		result.put("todos", list);
@@ -704,9 +777,12 @@ public class MobileReportController {
 		//获取指定品牌的订货量
 		List<ReportFirst> aaa=mobileReportRepository.queryReportFirst_allBradno(ContextUtils.getFirstOrdmt().getOrmtno(), 
 				org.getChanno().toString(), org.getOrgno(),bradno);
-		ReportFirst first=aaa.get(0);
-		result.put("ormtqt", first.getOrmtqt());
-		result.put("ormtam", first.getOrmtam());
+		if(aaa!=null && aaa.size()>0){
+			ReportFirst first=aaa.get(0);
+			result.put("ormtqt", first.getOrmtqt());
+			result.put("ormtam", first.getOrmtam());
+		}
+		
 		
 		
 		//获取指定品牌的指标数量

@@ -273,7 +273,7 @@ $(function(){
 					//如果是营销公司，就进入到营销公司的界面
 					if(window.user.channo=='YXGS'){
 						//$.router.load("#od_yxgs"); 
-						window.location.href="./yxgs.html";
+						window.location.href="./yxgs.html?from=index";
 					} else {
 						$.router.load("#od_info"); 
 					}
@@ -539,6 +539,7 @@ $(function(){
 		
 		
 	}//function scan()
+	window.od_info_scan=scan;
 	
 	$("#od_info").on('click', 'input[type=number]', function(e){ 
 		//console.log(this.value);
@@ -606,11 +607,11 @@ $(function(){
 			}
 			aa+=orszqt_sum;
 		}
-		if(window.vm_sampleVO.abstat==1 && aa==0){
-			$.alert("必定款的数量不能输入0");
-			$.hidePreloader();
-			return;
-		}
+//		if(window.vm_sampleVO.abstat==1 && aa==0){
+//			$.alert("必定款的数量不能输入0");
+//			$.hidePreloader();
+//			return;
+//		}
 		
 		//console.log(data["suitVOs"]);
 		//$.post(Ext.ContextPath+"/ord/mobile/create.do",suitVOs,function(response){
@@ -625,7 +626,7 @@ $(function(){
 			//header 
 			success:function(response, status, xhr) {
 				if(response.success==false){
-					$.toast(response.msg);
+					//$.toast(response.msg);
 					$.hidePreloader();
 					return;
 				}

@@ -662,6 +662,10 @@ $(function(){
 		window.sample_info_sampno=$(this).data("sampno");
 		window.sample_info_sampnm1=null;
 	});
+	$("#report_alreadyod").on("click",".od_info_link",function(){
+		//alert($(this).data("sampnm"));
+		od_info_scan($(this).data("sampnm"));
+	});
 
 });
 
