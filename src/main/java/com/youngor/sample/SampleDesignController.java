@@ -134,12 +134,14 @@ public class SampleDesignController {
 	
 	@RequestMapping("/sampleDesign/mustOrder.do")
 	@ResponseBody
-	public void mustOrder(String[] sampnos,Integer abstat) {
-		if(sampnos!=null){
-			sampleDesignService.update(Cnd.update().set(M.SampleDesign.abstat, abstat).andIn(M.SampleDesign.sampno, sampnos));
-		}
+	public void mustOrder(String[] sampnos,String[] sampnm1s,Integer abstat) {
+//		if(sampnos!=null){
+//			sampleDesignService.update(Cnd.update().set(M.SampleDesign.abstat, abstat).andIn(M.SampleDesign.sampno, sampnos));
+//		}
 
-		
+		if(sampnm1s!=null){
+			sampleDesignService.update(Cnd.update().set(M.SampleDesign.abstat, abstat).andIn(M.SampleDesign.sampnm1, sampnm1s));
+		}
 	}
 	
 //	@RequestMapping("/sampleDesign/destroy.do")

@@ -13,6 +13,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
+import com.youngor.order.OrddtlRepository;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.ordmt.OrdmtRepository;
 import com.youngor.permission.ShiroUtils;
@@ -44,6 +45,8 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 	private SampleMateRepository sampleMateRepository;
 	@Autowired
 	private SampleColthRepository sampleColthRepository;
+	//@Autowired
+	//private OrddtlRepository orddtlRepository;
 	
 	
 	
@@ -58,11 +61,11 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			return;
 		}
 		//再判断订货会是否已经开始了，如果已经开始了，就不能删除了
-		Ordmt ordmt=ordmtRepository.get(ormtno);
-		Date start=ordmt.getMtstdt();
-		if(start.getTime()<(new Date()).getTime() || ordmt.getOrmtst()){
-			throw new BusinessException("订货会已经开始或结束，不能删除!");
-		}
+//		Ordmt ordmt=ordmtRepository.get(ormtno);
+//		Date start=ordmt.getMtstdt();
+//		if(start.getTime()<(new Date()).getTime() || ordmt.getOrmtst()){
+//			throw new BusinessException("订货会已经开始或结束，不能删除!");
+//		}
 		
 		for(String sampno:sampnos){
 
@@ -70,6 +73,12 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			if(sampleDesign.getSpstat() !=null && sampleDesign.getSpstat()!=0){
 				throw new BusinessException("已经锁定,不能删除!");
 			}
+			//判断样衣是否已经被订货，如果已经被订 了的话，就不能删除
+			int count=sampleDesignRepository.checkExistOrddtl(sampno);
+			if(count>0){
+				throw new BusinessException("样衣已被订货,不能删除!");
+			}
+			
 			
 			List<SamplePhoto> photoes=samplePhotoRepository.query(Cnd.select().andEquals(M.SamplePhoto.sampno, sampno));
 

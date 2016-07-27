@@ -333,7 +333,7 @@ public class MobileReportController {
 		//Org 
 		List<ReportSplcno> list=null;
 		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
-			list= mobileReportRepository.queryReportSplcno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno);
+			list= mobileReportRepository.queryReportSplcno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,org.getChanno().toString());
 		} else if(org.getChanno()==Chancl.QY){
 			list= mobileReportRepository.queryReportSplcno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,Chancl.QY.toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
@@ -410,7 +410,7 @@ public class MobileReportController {
 		//Org 
 		List<ReportSplcno> list=null;
 		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
-			list= mobileReportRepository.queryReportSptyno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno);
+			list= mobileReportRepository.queryReportSptyno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,org.getChanno().toString());
 		} else if(org.getChanno()==Chancl.QY){
 			list= mobileReportRepository.queryReportSptyno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.QY.toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
@@ -476,7 +476,7 @@ public class MobileReportController {
 		//Org 
 		List<ReportSplcno> list=null;
 		if(org.getChanno()==Chancl.TX || org.getChanno()==Chancl.ZY){
-			list= mobileReportRepository.queryReportSpseno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno);
+			list= mobileReportRepository.queryReportSpseno_TX(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,org.getChanno().toString());
 		} else if(org.getChanno()==Chancl.QY){
 			list= mobileReportRepository.queryReportSpseno(ContextUtils.getFirstOrdmt().getOrmtno(), ordorg, bradno,spclno,Chancl.QY.toString());
 		} else if(org.getChanno()==Chancl.YXGS) {
@@ -602,14 +602,14 @@ public class MobileReportController {
 		Map<String,Object> result=new HashMap<String,Object>();
 		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 		if(sampno!=null && !"".equals(sampno)){
-			list.add(querysampleInfoBySampno(sampno));
+			list.add(querysampleInfoBySampno(sampno,true));
 			result.put("title", list.get(0).get("sampnm"));
 		}
 		
 		if(sampnm1!=null && !"".equals(sampnm1)){
 			List<String> sampnos=sampleDesignRepository.querySampnoBySampnm1(sampnm1);
 			for(String _sampno:sampnos){
-				list.add(querysampleInfoBySampno(_sampno));
+				list.add(querysampleInfoBySampno(_sampno,false));
 			}
 			result.put("title", sampnm1);
 		}
@@ -621,7 +621,7 @@ public class MobileReportController {
 		
 	}
 	
-	private Map<String ,Object> querysampleInfoBySampno(String sampno){
+	private Map<String ,Object> querysampleInfoBySampno(String sampno,boolean bool){
 		Map<String,Object> result=new HashMap<String,Object>();
 		//获取设计样衣信息
 		SampleDesign sampleDesign=sampleDesignService.get(sampno);
@@ -689,9 +689,21 @@ public class MobileReportController {
 		List<SamplePhoto> photoes=samplePhotoRepository.queryBySampno(sampno);
 		result.put("photoes", photoes);
 		
+		if(bool){
+			//获取样衣信息的时候，同时展现区域汇总数据
+			if(ShiroUtils.isLogon()){
+				List<SampleInfoField> list=mobileReportRepository.queryOrmtqt_sum_by_sampno(sampno,ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno());
+				result.put("tab3", list);
+			} else {
+				List<SampleInfoField> list=mobileReportRepository.queryOrmtqt_sum_by_sampno(sampno,null);
+				result.put("tab3", list);
+			}
+			
+		}
+
 		return result;
 	}
-	
+
 	@RequestMapping("/mobile/redirect_yxgshtml.do")
 	public void redirect(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		userController.logout();

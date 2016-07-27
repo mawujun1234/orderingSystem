@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Dinghhz_YXGS_Daxl" language="groovy" pageWidth="300" pageHeight="439" columnWidth="300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8db175a1-bb54-4340-9fa8-299fbe1ea52d">
 	<property name="ireport.zoom" value="2.000000000000001"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="22"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -252,7 +252,7 @@
 		<groupFooter>
 			<band height="25">
 				<staticText>
-					<reportElement uuid="31d060de-0bd7-4b47-9ebf-96d84d2c816f" mode="Opaque" x="4" y="0" width="40" height="18" backcolor="#CCCCCC"/>
+					<reportElement uuid="31d060de-0bd7-4b47-9ebf-96d84d2c816f" mode="Opaque" x="4" y="0" width="40" height="20" backcolor="#CCCCCC"/>
 					<box leftPadding="5">
 						<pen lineWidth="0.5"/>
 						<topPen lineWidth="0.5"/>
@@ -261,12 +261,12 @@
 						<rightPen lineWidth="0.5"/>
 					</box>
 					<textElement verticalAlignment="Middle">
-						<font fontName="宋体" isBold="true"/>
+						<font fontName="宋体" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[小计：]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="b550d7f0-f283-49fa-9c1b-61c8f82beef4" mode="Opaque" x="44" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+					<reportElement uuid="b550d7f0-f283-49fa-9c1b-61c8f82beef4" mode="Opaque" x="44" y="0" width="126" height="20" backcolor="#CCCCCC"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 						<leftPen lineWidth="0.5"/>
@@ -274,12 +274,12 @@
 						<rightPen lineWidth="0.5"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="宋体" isBold="true"/>
+						<font fontName="宋体" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{v_yangybh_sum_shul}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement uuid="0e825740-8d28-4335-96cc-5f11009064a4" mode="Opaque" x="170" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+					<reportElement uuid="0e825740-8d28-4335-96cc-5f11009064a4" mode="Opaque" x="170" y="0" width="126" height="20" backcolor="#CCCCCC"/>
 					<box>
 						<topPen lineWidth="0.5"/>
 						<leftPen lineWidth="0.5"/>
@@ -287,7 +287,7 @@
 						<rightPen lineWidth="0.5"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="宋体" isBold="true"/>
+						<font fontName="宋体" size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[]]></text>
 				</staticText>
@@ -306,9 +306,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="18">
+		<band height="20">
 			<textField>
-				<reportElement uuid="b926cff2-5534-4ac0-8d75-b99c51962aca" x="44" y="0" width="126" height="18"/>
+				<reportElement uuid="b926cff2-5534-4ac0-8d75-b99c51962aca" x="44" y="0" width="126" height="20"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -316,12 +316,12 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="宋体"/>
+					<font fontName="宋体" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{shul}==0?'':$F{shul}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="feba903c-7966-4d50-8a34-f4ca5b368ace" x="4" y="0" width="40" height="18"/>
+				<reportElement uuid="feba903c-7966-4d50-8a34-f4ca5b368ace" x="4" y="0" width="40" height="20"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -329,12 +329,12 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="宋体"/>
+					<font fontName="宋体" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{yxgsmc}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="6282131c-83ce-4760-a730-e3c22ec3d443" mode="Transparent" x="170" y="0" width="126" height="18" backcolor="#CCCCCC"/>
+				<reportElement uuid="6282131c-83ce-4760-a730-e3c22ec3d443" mode="Transparent" x="170" y="0" width="126" height="20" backcolor="#CCCCCC"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -342,7 +342,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="宋体" isBold="true"/>
+					<font fontName="宋体" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>

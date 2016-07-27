@@ -807,16 +807,19 @@ Ext.define('y.sample.SampleDesignGrid',{
 			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
 		}
-		Ext.Msg.confirm("消息","是否对选中的样衣指定/取消为必定款?‘<span style='color:red;'>全选</span>’只选中当前页所有数据！",function(val){
+		Ext.Msg.confirm("消息","将会对选中的<span>具有相同出样样衣编号的</span>样衣指定/取消为必定款?‘<span style='color:red;'>全选</span>’只选中当前页所有数据！",function(val){
 				if(val=='yes'){
 					var sampnos=[];
+					var sampnm1s=[];
 					for(var i=0;i<modles.length;i++){
 						sampnos.push(modles[i].get("sampno"));
+						sampnm1s.push(modles[i].get("sampnm1"));
 					}
 					Ext.Ajax.request({
 						    url:Ext.ContextPath+'/sampleDesign/mustOrder.do',
 						    params:{
 						    	 sampnos:sampnos,
+						    	 sampnm1s:sampnm1s,
 						    	 abstat:abstat
 						    },
 						    method:'POST',

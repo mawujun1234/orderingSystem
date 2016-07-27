@@ -1,32 +1,32 @@
 package com.youngor.utils;
 
-import com.sun.image.codec.jpeg.ImageFormatException; 
-import com.sun.image.codec.jpeg.JPEGCodec; 
-import com.sun.image.codec.jpeg.JPEGImageDecoder; 
+import java.awt.Transparency;
+import java.awt.color.ColorSpace;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.ComponentColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
+
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.sun.image.codec.jpeg.ImageFormatException;
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageDecoder;
 import com.sun.image.codec.jpeg.JPEGImageEncoder; 
-
-import java.awt.Transparency; 
-import java.awt.color.ColorSpace; 
-import java.awt.image.BufferedImage; 
-import java.awt.image.ColorModel; 
-import java.awt.image.ComponentColorModel; 
-import java.awt.image.DataBuffer; 
-import java.awt.image.DataBufferByte; 
-import java.awt.image.Raster; 
-import java.awt.image.WritableRaster; 
-import java.io.File; 
-import java.io.FileInputStream; 
-import java.io.FileOutputStream; 
-import java.io.IOException; 
-import java.util.Iterator; 
-
-import javax.imageio.IIOException; 
-import javax.imageio.ImageIO; 
-import javax.imageio.ImageReader; 
-import javax.imageio.stream.ImageInputStream; 
-
-import org.apache.commons.logging.Log; 
-import org.apache.commons.logging.LogFactory; 
 
 /**
  * 

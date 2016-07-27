@@ -33,7 +33,7 @@
         <div class="page " id="od_yxgs"> 
             <div class="content">
             	  
-                    <a href="#" id="od_yxgs_confirm_btn" class="button button-fill button-success disabled" style="display:none;margin-top:10px;">订货完成-确认</a>
+                    <a href="#" id="od_yxgs_confirm_btn" class="button button-fill button-success disabled" style="display:none;margin-top:10px;">大区平衡完成</a>
                   
                   
                   <div class="content-block-title">报表清单</div>
@@ -382,6 +382,7 @@
                   <div class="buttons-tab">
                     <a href="#tab1_{{$index}}" class="tab-link active button">企划</a>
                     <a href="#tab2_{{$index}}" class="tab-link button">设计</a>
+                    <a href="#tab3_{{$index}}" class="tab-link button">区域</a>
                   </div> 
                    <div class="tabs" >
                       <div id="tab1_{{$index}}" class="tab active">     
@@ -408,6 +409,19 @@
                             </ul>
                           </div>
                        </div><!-- tab2 -->
+                       
+                       <div id="tab3_{{$index}}" class="tab">
+                       	  <div class="list-block"  style="margin-top:0rem;">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab3">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab3 -->
                     
                      </div><!-- tabs-->
                   </div><!--card-conten -->

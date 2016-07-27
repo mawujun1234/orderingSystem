@@ -617,7 +617,7 @@ $(function(){
     // 最多可加载的条目
     var maxItems = 100;
     // 每次加载添加多少条目
-    var itemsPerLoad = 20;
+    var itemsPerLoad = 50;
 	var lastIndex = itemsPerLoad;
 	var have_detachInfiniteScroll=false;
 	function infinite(){

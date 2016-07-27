@@ -14,6 +14,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select count(a.sampno)
 		from ord_sample_design a
     </select>
+    <!-- 在删除样衣的时候，判断样衣是否已经被订货了，如果已经订货了，就不能删除-->
+    <select id="checkExistOrddtl" resultType="int" parameterType="map">
+    	  select count(*)  from ord_orddtl orddtl0_ 
+		    where orddtl0_.sampno=#{sampno}
+		    and (orddtl0_.ormtqt!=0 or orddtl0_.ormtqs!=0)
+    </select>
     
 
     <sql id="queryPlanDesign_where">  

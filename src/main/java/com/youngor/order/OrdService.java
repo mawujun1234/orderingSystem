@@ -1,5 +1,6 @@
 package com.youngor.order;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -629,7 +630,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	
 	SimpleDateFormat HHmm_format=new SimpleDateFormat("HHmm");
-	public Map<String,Object> checked_closeing_info() {
+	SimpleDateFormat yyyyMMdd_format=new SimpleDateFormat("yyyyMMdd");
+	public Map<String,Object> checked_closeing_info()  {
 		//这里去获取该用户，离订货时间借宿还有多长时间，如果时间不够的话，就给出提示
 		UserVO userVO=ShiroUtils.getAuthenticationInfo();
 		Ord ord=userVO.getOrd();
@@ -661,12 +663,22 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//Date now=new Date();
 		Calendar cal=Calendar.getInstance();
+		//System.out.println(HHmm_format.format(ordmtScde.getMtfidt()));
+		String now=yyyyMMdd_format.format(new Date());
+		Date date=new Date();
+		try {
+			date = yyyyMMdd_format.parse(now);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//判断日期范围
-		if(ordmtScde.getMtstdt().getTime()>cal.getTimeInMillis()){
+		if(ordmtScde.getMtstdt().getTime()>date.getTime()){
 			result.put("show", true);
 			result.put("canOrd", false);//是否可以订货
 			result.put("msg", "订货会还未开始，请稍候!");
-		} else if(ordmtScde.getMtfidt().getTime()<cal.getTimeInMillis()){
+		} else if(ordmtScde.getMtfidt().getTime()<date.getTime()){
+			
 			result.put("show", true);
 			result.put("canOrd", false);//是否可以订货
 			result.put("msg", "订货会已经结束，不能再订货!");

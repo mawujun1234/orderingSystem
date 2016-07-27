@@ -436,7 +436,7 @@ $(function(){
 				sampnm:sampnm
 			},function(response){
 				if(response.success==false){
-					$.toast(response.msg);
+					//$.toast(response.msg);
 					$.hidePreloader();
 					//clearSampleInfo();
 					if(window.last_query_sampnm ){

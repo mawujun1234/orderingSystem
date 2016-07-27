@@ -86,7 +86,7 @@ public class SampleDesign extends BaseObject{
 	@FieldDefine(title="样衣状态",sort=50,hidden=true)
 	private Integer sampst=1;//0：作废；1：有效
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
-	private Integer spstat=0;//0：未锁定，1：锁定
+	private Integer spstat=0;//0：未锁定，1：锁定,现在有两个锁定来源，一个是手工锁定，另一个是一旦条码打印了，就马上锁定
 	@FieldDefine(title="必定款",sort=50,hidden=true)
 	private Integer abstat;//0：不需要必定，1：必定
 	
