@@ -305,8 +305,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		where a.MTORNO=b.MTORNO and a.SAMPNO=b.SAMPNO and b.mtorno=#{mtorno})
      </update>
      
+     <!-- 因为其他品牌不走，二次平衡过程，所以先写死，只走雅戈尔品牌 -->
      <select id="check_is_confirm" resultType="map" parameterType="map">
-     	select distinct sdtyno,ORSTAT  from ORD_ORDHD where mtorno=#{mtorno}
+     	select distinct sdtyno,ORSTAT  from ORD_ORDHD where mtorno=#{mtorno} and bradno='Y'
      </select>
      
     <!-- 在按审批通过按钮的时候，检查该营销公司下的所有区域是否已经都提交确认了-->
@@ -314,8 +315,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     select distinct c.qyno,c.qynm
        from ORD_ORD a 
        inner join v_ord_org c on  a.ordorg=c.qyno
-       left join ORD_ORDHD b on a.MTORNO=b.MTORNO and (b.SDTYNO!='10' or b.ORSTAT!=2) and b.bradno=#{bradno} and b.spclno=#{spclno}
+       left join ORD_ORDHD b on a.MTORNO=b.MTORNO  and b.bradno=#{bradno} and b.spclno=#{spclno}
        where  a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
+           and a.channo='QY' and (nvl(b.SDTYNO,0)!='10' or nvl(b.ORSTAT,0)!=2)
     </select>
     <!--
     <select id="process1_check_stats" resultType="map" parameterType="map">

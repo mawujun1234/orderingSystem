@@ -147,9 +147,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join (
             select a.CHANNO,org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
-            from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
-            where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
+            where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
             and c.suitno in('T00','T01')
+             and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} 
              <if test="yxgsno!=null and yxgsno!=''">
              	 and org.yxgsno=#{yxgsno} 
@@ -174,6 +175,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+          and c.ORMTQT!=0
           order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    <select id="orderTotalPrint_export1" resultType="com.youngor.report.OrderPrint1" parameterType="map">
@@ -182,9 +184,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join (
             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
-            from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
-            where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
+            where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
             and c.suitno in('T00','T01')
+            and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno}
              <if test="yxgsno!=null and yxgsno!=''">
              	 and org.yxgsno=#{yxgsno} 
@@ -209,6 +212,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+         and c.ORMTQT!=0
         order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
     <select id="orderTotalPrint_export2" resultType="com.youngor.report.OrderPrint1" parameterType="map">
@@ -218,9 +222,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ord_sample_colth d on b.sampno=d.sampno 
           inner join (
             select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
-            from ORD_ORD a,ORD_ORDDTL c, v_ord_org org
-            where a.MTORNO=c.MTORNO and a.channo=org.channo and a.ordorg=org.orgno
+            from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
+            where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
             and c.suitno in('T00','T01')
+             and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} 
               <if test="yxgsno!=null and yxgsno!=''">
              	 and org.yxgsno=#{yxgsno} 
@@ -245,6 +250,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          <if test="spseno!=null and spseno!=''">
          	and a.spseno=#{spseno} 
           </if>
+          and c.ORMTQT!=0
           order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    

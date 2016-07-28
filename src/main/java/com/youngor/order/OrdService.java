@@ -507,7 +507,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		//为订单规格明细更新审批订单号
 		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
 		//生成订单副表数据，同时更新订单审批号，版本号
-		ordRepository.confirm2_createOrd_ordhd(mtorno, mlorvn, "10", "0");
+		ordRepository.confirm2_createOrd_ordhd(mtorno, mlorvn, "20", "0");
 		//订单状态改成"大区审批中“
 		ordRepository.confirm2_update_orstat(mtorno, "1");
 	}
@@ -1593,9 +1593,10 @@ public class OrdService extends AbstractService<Ord, String>{
 		if(org.getChanno()!=Chancl.YXGS){
 			throw new BusinessException("你不是大区账号，没有权限进行确认!");
 		}
-		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		//Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
 
-		String ormtno=ord.getOrmtno();
+		//String ormtno=ord.getOrmtno();
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
 		String yxgsno=org.getOrgno();
 		//检查该营销公司下是否所有的订单都已经按过“平衡完成”，即判断该营销公司下面的所有订单的状态是否是“大区审批中”
 		List<Map<String,Object>> list=ordRepository.yxgs_confirm_check_stats(ormtno, yxgsno);
