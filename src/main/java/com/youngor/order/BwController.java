@@ -64,8 +64,8 @@ public class BwController {
 	
 	@RequestMapping("/bw/qy_getStat.do")
 	@ResponseBody
-	public String qy_getStat(String ormtno,String yxgsno) {
-		int stat=bwService.qy_getStat(ormtno,yxgsno);
+	public String qy_getStat(String ormtno,String yxgsno,String spclno) {
+		int stat=bwService.qy_getStat(ormtno,yxgsno,spclno);
 		return "{success:true,stat:"+stat+"}";
 	}
 	@RequestMapping("/bw/qy_updateOrmtqt.do")

@@ -77,10 +77,10 @@ public class BwService {
 		return result;
 	}
 	
-	public int qy_getStat(String ormtno,String yxgsno) {
+	public int qy_getStat(String ormtno,String yxgsno,String spclno) {
 		// 营销公司的有效状态为1，而且orstat=3的，才说明营销公司可以编辑
 		//String mtorno = ordService.getMtorno(ormtno, "BW", yxgsno);
-		Integer orstat=bwRepository.qy_getStat(ormtno,yxgsno);
+		Integer orstat=bwRepository.qy_getStat(ormtno,yxgsno,spclno);
 		if(orstat==null){
 			return 0;
 		}
@@ -159,9 +159,9 @@ public class BwService {
 	 */
 	public void qy_approve(String ormtno,String yxgsno,String bradno,String spclno) {
 		//String mtorno=ordService.getMtorno(ormtno,"BW",s);
-		bwRepository.qy_approve(ormtno, yxgsno);
+		bwRepository.qy_approve(ormtno, yxgsno,spclno);
 	}
 	public void qy_over(String ormtno,String yxgsno,String bradno,String spclno){
-		bwRepository.qy_over(ormtno, yxgsno);
+		bwRepository.qy_over(ormtno, yxgsno,spclno);
 	}
 }

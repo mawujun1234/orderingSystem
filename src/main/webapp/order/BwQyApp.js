@@ -117,6 +117,7 @@ Ext.onReady(function(){
 					//var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=panel.getParams();
 					grid.getStore().reload();
+					panel.query_stat();
 
 				},
 				iconCls: 'icon-refresh'
@@ -193,7 +194,8 @@ Ext.onReady(function(){
 							url:Ext.ContextPath+'/bw/qy_getStat.do',
 							params:{
 								yxgsno:toolbars[1].down("#compcombo").getValue(),
-								ormtno:toolbars[0].down("#ordmtcombo").getValue()
+								ormtno:toolbars[0].down("#ordmtcombo").getValue(),
+								spclno:toolbars[0].down("#spclno").getValue()
 							},
 							success:function(response){
 								var obj=Ext.decode(response.responseText);

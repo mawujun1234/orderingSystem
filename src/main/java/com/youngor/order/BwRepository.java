@@ -16,9 +16,9 @@ import com.mawujun.utils.page.Pager;
 public interface BwRepository {
 	public  List<Map<String,Object>> queryQyColumns(@Param("yxgsno")String yxgsno);
 	public  List<Map<String,Object>> queryQyData(Map<String,Object> params);
-	public Integer qy_getStat(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	public Integer qy_getStat(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("spclno")String spclno);
 	
-	public void qy_approve(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
-	public void qy_over(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno);
+	public void qy_approve(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("spclno")String spclno);
+	public void qy_over(@Param("ormtno")String ormtno,@Param("yxgsno")String yxgsno,@Param("spclno")String spclno);
 }
 	

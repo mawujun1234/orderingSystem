@@ -176,7 +176,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          	and a.spseno=#{spseno} 
           </if>
           and c.ORMTQT!=0
-          order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
+          order by b.sampnm,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    <select id="orderTotalPrint_export1" resultType="com.youngor.report.OrderPrint1" parameterType="map">
     	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul
@@ -196,6 +196,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
              	and a.channo=#{channo}
              </if>
              group by org.yxgsno ,org.yxgsnm,c.SAMPNO
+             order by org.yxgsno
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
@@ -213,7 +214,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          	and a.spseno=#{spseno} 
           </if>
          and c.ORMTQT!=0
-        order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
+        order by B.sampnm,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
     <select id="orderTotalPrint_export2" resultType="com.youngor.report.OrderPrint1" parameterType="map">
     	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul,d.spsuno
@@ -251,7 +252,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
          	and a.spseno=#{spseno} 
           </if>
           and c.ORMTQT!=0
-          order by a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
+          order by B.sampnm,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    
 </mapper>

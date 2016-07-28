@@ -48,6 +48,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
      		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
 	    )
+	    and  spclno=#{spclno}
     </select>
     
     <update id="qy_approve">
@@ -55,6 +56,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
      		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
 	    )
+	     and  spclno=#{spclno}
     </update>
     
     <update id="qy_over">
@@ -62,6 +64,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	        select mtorno from ORD_ORD a,V_ORD_ORG b where a.ordorg=b.orgno and a.channo=b.channo 
      		and a.ortyno='BW' and ormtno=#{ormtno} and a.channo='QY' and b.yxgsno=#{yxgsno}
 	    )
+	     and  spclno=#{spclno}
     </update>
 </mapper>
 

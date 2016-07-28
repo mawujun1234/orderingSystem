@@ -276,6 +276,13 @@ Ext.define('y.sample.SampleDesignForm',{
 	        xtype:'numberfield'  ,
 	         value:0
 	    },
+	     {
+	        fieldLabel: '必定',
+	        name: 'abstat',
+            hidden:true,
+	        xtype:'numberfield'  ,
+	         value:0
+	    },
 
        
 		{

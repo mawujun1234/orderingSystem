@@ -534,7 +534,7 @@ $(function(){
 		
 	  if(pageId == "report_alreadyod") {
 		document.title="订货统计-已定样衣";
-		if(document.last_view_pageId=='sample_info'){
+		if(document.last_view_pageId=='sample_info' ){
 			return;
 		}
 		$.showPreloader();
