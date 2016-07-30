@@ -1,6 +1,7 @@
 package com.youngor.pubcode;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -26,5 +27,7 @@ public interface PubCodeRepository extends IRepository<PubCode, String>{
 	public List<PubCode> queryList(@Param("tyno")String tyno,@Param("fitno")String fitno,@Param("bradno")String bradno);
 	
 	public  void updateStat(@Param("bradno")String bradno,@Param("tyno")String tyno,@Param("itno")String itno,@Param("stat")String stat);
+	
+	public List<Map<String,Object>> queryUnms4Combo(@Param("spclno")String spclno,@Param("sptyno")String sptyno,@Param("spseno")String spseno);
 
 }

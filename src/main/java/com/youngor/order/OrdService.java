@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
+import com.mawujun.exception.DefaulExceptionCode;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
@@ -149,10 +150,12 @@ public class OrdService extends AbstractService<Ord, String>{
 			if(count==0){
 				throw new BusinessException("该样衣不可订!");
 			}
-			count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
-			if(count==0){
-				throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求）订货！");
-			}
+//			count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),sampleVO.getSampno());
+//			if(count==0){
+//				//获取对应的样衣的包装要求
+//				SampleDesign sampleDesign=sampleDesignRepository.get(sampleVO.getSampno());
+//				throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求:"+sampleDesign.getPackqt()+"）订货！",DefaulExceptionCode.BUSSINESS_EXCEPTION);
+//			}
 		}
 		
 		
@@ -288,6 +291,8 @@ public class OrdService extends AbstractService<Ord, String>{
 		if(suitVOs==null || suitVOs.length==0){
 			return;
 		}
+		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		
 		//订货总数据和订单的明细数据之和是否一致，如果不一致就报错
 		for(SuitVO suitVO:suitVOs){
 			//如果两个地方数据不一样就报错
@@ -295,9 +300,22 @@ public class OrdService extends AbstractService<Ord, String>{
 			if(suitVO.getOrmtqt()!=suitVO.geetOrmtqt_sum()){
 				throw new BusinessException("总订货数和明细数据不一致，不能保存!");
 			}
+			
+			if("T00".equals(suitVO.getSuitno()) || "T01".equals(suitVO.getSuitno())){
+				Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+				int count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),suitVO.getSampno());
+				if(count==0){
+					//获取对应的样衣的包装要求
+					SampleDesign sampleDesign=sampleDesignRepository.get(suitVO.getSampno());
+					if((suitVO.getOrmtqt()%sampleDesign.getPackqt())!=0){
+						throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求:"+sampleDesign.getPackqt()+"）订货！");
+					}
+					
+				}
+			}
 		}
 		
-		Ord ord=ShiroUtils.getAuthenticationInfo().getOrd();
+		
 		
 //		   不拆套 男套西  ：标准 ，裤子     (裤子<=nvl(配置值,15%) *标准)
 //		    拆套男套西   ：上衣，裤子         (上衣=<裤子<=nvl(1+配置值,115% )*上衣)

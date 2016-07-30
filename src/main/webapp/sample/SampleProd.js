@@ -1,0 +1,59 @@
+Ext.define("y.sample.SampleProd",{
+	extend:"Ext.data.Model",
+	fields:[
+		{name:'sampno',type:'string'},
+		{name:'suitno',type:'string'},
+		{name:'prseqm',type:'string'},
+		{name:'prodno',type:'string'},
+		{name:'prodnm',type:'string'},
+		{name:'prodds',type:'string'},
+		{name:'sizegp',type:'string'},
+		{name:'prtype',type:'string'},
+		{name:'prprpt',type:'string'},
+		{name:'prorgd',type:'string'},
+		{name:'prunit',type:'string'},
+		{name:'mateno',type:'string'},
+		{name:'prdcno',type:'string'},
+		{name:'prftpr',type:'string'},
+		{name:'prsupr',type:'string'},
+		{name:'prrtpr',type:'string'},
+		{name:'prctpr',type:'string'},
+		{name:'prmtam',type:'string'},
+		{name:'prmlam',type:'string'},
+		{name:'prorpr',type:'string'},
+		{name:'prflam',type:'string'},
+		{name:'prprnt',type:'string'},
+		{name:'prqtnm',type:'string'},
+		{name:'prname',type:'string'},
+		{name:'prsasd',type:'string'},
+		{name:'prdosd',type:'string'},
+		{name:'prwapt',type:'string'},
+		{name:'prwash',type:'string'},
+		{name:'prmark',type:'string'},
+		{name:'ormtno',type:'string'}
+	],
+	proxy:{
+		type:'ajax',
+		actionMethods: { read: 'POST' },
+		timeout :600000,
+		headers:{ 'Accept':'application/json;'},
+		writer:{
+			type:'json',
+			writeRecordId:true,
+			writeAllFields:true
+		},
+		reader:{
+			type:'json'
+			///rootProperty:'root',
+			//successProperty:'success',
+			//totalProperty:'total'		
+		},
+		api:{
+			read:Ext.ContextPath+'/sampleProd/load.do',
+			//load : Ext.ContextPath+'/sampleProd/load.do',
+			create:Ext.ContextPath+'/sampleProd/create.do',
+			update:Ext.ContextPath+'/sampleProd/update.do',
+			destroy:Ext.ContextPath+'/sampleProd/destroy.do'
+		}
+	}
+});

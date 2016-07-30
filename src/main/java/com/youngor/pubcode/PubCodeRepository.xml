@@ -85,6 +85,23 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	order by a.itso
     </select> 
     
+    
+    <select id="queryUnms4Combo" resultType="map" parameterType="map">
+    	select distinct spunms from ord_sample_unms
+    	<where>
+    		spunms is not null
+    		<if test="spclno!=null and spclno!=''">
+    			and spclno=#{spclno}
+    		</if>
+    		<if test="sptyno!=null and sptyno!=''">
+    			and sptyno=#{sptyno}
+    		</if>
+    		<if test="spseno!=null and spseno!=''">
+    			and spseno=#{spseno}
+    		</if>
+    	</where>
+    </select>
+    
      <!--  获取这次订货会用到的系列   -->
     <select id="querySpseno4Ordmt" resultType="com.youngor.pubcode.PubCode" parameterType="map">
     	select distinct a.* from ord_pub_code a,ord_pub_codebrad b

@@ -274,7 +274,7 @@ Ext.define('y.sample.SampleDesignForm',{
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield'  ,
-	         value:0
+	         value:1
 	    },
 	     {
 	        fieldLabel: '必定',
@@ -371,7 +371,6 @@ Ext.define('y.sample.SampleDesignForm',{
 	        name: 'spstat',
             hidden:true,
             allowDecimals:false,
-            selectOnFocus:true,
 	        xtype:'numberfield'   
 	    }
 //		{

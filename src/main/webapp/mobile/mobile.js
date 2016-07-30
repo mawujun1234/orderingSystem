@@ -435,7 +435,7 @@ $(function(){
 			{
 				sampnm:sampnm
 			},function(response){
-				if(response.success==false){
+				if(response.success==false && response.errorCode!='BUSSINESS_EXCEPTION'){
 					//$.toast(response.msg);
 					$.hidePreloader();
 					//clearSampleInfo();

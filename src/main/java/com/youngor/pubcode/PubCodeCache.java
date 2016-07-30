@@ -444,4 +444,67 @@ public class PubCodeCache {
 			return pubCode.getItnm();
 		}
 	}
+	
+	/**
+	 * 获取类别
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getPrtype(String itno){
+		if(itno!=null && cache.get("4").get(itno)==null) {
+			refreshPubCode("4");
+		}
+		return cache.get("4").get(itno);
+	}
+	public static String getPrtype_name(String itno){
+		PubCode pubCode=getPrtype(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取商品性质
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getPrprpt(String itno){
+		if(itno!=null && cache.get("15").get(itno)==null) {
+			refreshPubCode("15");
+		}
+		return cache.get("15").get(itno);
+	}
+	public static String getPrprpt_name(String itno){
+		PubCode pubCode=getPrprpt(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
+	
+	/**
+	 * 获取渠道限制
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getProrgd(String itno){
+		if(itno!=null && cache.get("16").get(itno)==null) {
+			refreshPubCode("16");
+		}
+		return cache.get("16").get(itno);
+	}
+	public static String getProrgd_name(String itno){
+		PubCode pubCode=getProrgd(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
 }

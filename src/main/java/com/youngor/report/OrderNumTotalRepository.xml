@@ -11,12 +11,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	select e.yxgsnm ,e.qynm,e.orgnm,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,
 		f.PRODNM,c.sampnm,b.suitno,
-		ormtqt,spftpr,ormtqt*spftpr spftpr_jine,sprtpr,ormtqt*sprtpr  sprtpr_jine
+		ormtqt,g.spftpr,ormtqt*g.spftpr spftpr_jine,g.sprtpr,ormtqt*g.sprtpr  sprtpr_jine
 		from ord_ord a
 		inner join ord_orddtl b on a.mtorno=b.mtorno
 		inner join ord_sample_design c on b.sampno=c.sampno
 		inner join ord_sample_plan d on c.plspno=d.plspno
 		inner join v_ord_org e on a.ordorg=e.orgno
+		INNER JOIN ORD_SAMPLE_DESIGN_STPR g on b.sampno=g.sampno and b.suitno=g.suitno
 		left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod 
 				            where ormtno=#{ormtno}
 				           group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno

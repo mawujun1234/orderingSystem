@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleProdRepository">
+	<sql id="queryPage_sql">
+		select a.ormtno,a.spyear,c.suitno,a.bradno,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno,a.spbano
+		       ,b.sampno,b.sampnm,b.versno,b.stseno,b.buspno,b.spmtno,b.gustno,b.colrno,b.pattno,b.stylno,b.stylgp,b.sexno,b.slveno
+		       ,b.suitty,b.desp
+		       ,h.prsuno
+		       , e.sizenm as sizegp_name
+		       ,g.prseqm,g.prodnm,g.prodds,e.sizeno as sizegp,g.prtype,g.prprpt,g.prorgd,g.prunit,i.mateno,g.prdcno
+		       ,a.spftpr prftpr ,sprtpr prrtpr,h.spctpr as prctpr,g.prmtam,j.prmlam,g.prorpr,(h.spclbd+h.acsyam) prflam, g.prmark
+		       ,decode(f.sampno,null,'未订货','已订货') sample_state
+		from ord_sample_plan a
+		inner join ord_sample_design b on a.plspno=b.plspno
+		inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
+		inner join ord_size d on c.sizegp=d.sizeno and d.sizety='PRDSZFW' and d.ysizety='PRDSZTY' and d.ormtno='201607'
+		inner join ORD_PUB_SIZE e on  e.sizety='PRDSZTY' and e.sizety=d.ysizety and e.sizeno=d.ysizeno and e.szbrad='Y' and e.szclno='01'
+		left join ord_sample_colth h on b.sampno=h.sampno
+		left join (select * from ord_sample_mate where mateso=1) i on b.sampno=i.sampno
+		left join (select sampno,sum(mtpupr*mtcnqt) prmlam from ord_sample_mate group by sampno) j on b.sampno=j.sampno
+		left join (select distinct sampno,suitno from ord_orddtl  where (ormtqs!=0 or ormtqt!=0)) f on b.sampno=f.sampno and c.suitno=f.suitno 
+		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno
+		where a.ormtno='201607' and a.bradno='Y' and a.spclno='01'
+		<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="prsuno!=null and prsuno!=''">
+    		and h.prsuno=#{prsuno}
+    	</if>
+    	<if test="prod_state=='ok'">
+    		and g.sampno is not null
+    	</if>
+    	<if test="prod_state=='no'">
+    		and g.sampno is null
+    	</if>
+    	<if test="sampnm!=null and sampnm!=''">
+    		and lower(b.sampnm) like lower('%${sampnm}%')
+    	</if>
+    	<if test="prodnm!=null and prodnm!=''">
+    		and g.prodnm like lower('%${prodnm}%')
+    	</if>
+    	<if test="sample_state=='ok'">
+    		and f.sampno is not null
+    	</if>
+    	<if test="sample_state=='no'">
+    		and f.sampno is null
+    	</if>
+	</sql>
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage" resultType="com.youngor.sample.SampleProdVO" parameterType="map">
+    	<include refid="queryPage_sql"></include> 
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(*) from (
+			<include refid="queryPage_sql"></include> 
+		)
+    </select>
+</mapper>
+

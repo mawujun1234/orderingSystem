@@ -1,6 +1,8 @@
 package com.youngor.pubcode;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -123,6 +125,21 @@ public class PubCodeController {
 //			list.add(code);
 //		}
 //		return list;
+	}
+	
+	@RequestMapping("/pubCode/queryUnms4Combo.do")
+	@ResponseBody
+	public List<Map<String,Object>> queryUnms4Combo(String spclno,String sptyno,String spseno) {
+		List<Map<String,Object>> list= pubCodeRepository.queryUnms4Combo(spclno, sptyno, spseno);
+		
+		List<Map<String,Object>> result=new ArrayList<Map<String,Object>>();
+		for(Map<String,Object> map:list){
+			Map<String,Object> aa=new HashMap<String,Object>();
+			aa.put("id", map.get("SPUNMS"));
+			aa.put("name", map.get("SPUNMS"));
+			result.add(aa);
+		}
+		return result;
 	}
 	
 	@RequestMapping("/pubCodeType/queryVersno4Ordmt.do")
