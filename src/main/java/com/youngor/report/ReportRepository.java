@@ -23,7 +23,7 @@ public interface ReportRepository {
 	public  List<OrderPrint1> orderTotalPrint_export1( Map<String,Object> params);
 	public  List<OrderPrint1> orderTotalPrint_export2( Map<String,Object> params);
 	
-	
+	public  List<OrderPrint1> orderTotalPrint_export3( Map<String,Object> params);
 
 	
 }

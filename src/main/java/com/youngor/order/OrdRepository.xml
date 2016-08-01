@@ -577,7 +577,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		       M.SPTYNM,M.SPSENM,M.SAMPNO,M.SAMPNM,M.ORMTQS00,M.ORMTQS01,M.ORMTQS02,M.ORMTQS04,
 		       M.ORMTQT00,M.ORMTQT01,M.ORMTQT02,M.ORMTQT04,P1.SAMPNM PLSPNM
 		 FROM
-		(SELECT A.ORMTNO,SUM(DECODE(B.SDTYNO,'30',0,1))SDTYNO,SUM(DECODE(B.ORSTAT,1,1,0))ORSTAT,
+		(SELECT A.ORMTNO,SUM(decode(a.ortyno,'BW',0,DECODE(B.SDTYNO,'30',0,1))) SDTYNO,SUM(decode(a.ortyno,'BW',0,DECODE(B.ORSTAT,1,1,0))) ORSTAT,
 		   E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,
 		   SUM(DECODE(C.SUITNO,'T00',C.ORMTQS,0))ORMTQS00,SUM(DECODE(C.SUITNO,'T01',C.ORMTQS,0))ORMTQS01,
 		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQS,0))ORMTQS02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQS,0))ORMTQS04,
@@ -591,7 +591,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
 		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
 		WHERE
-		A.ORMTNO=#{ormtno} AND A.ORTYNO='DZ' and C.ORMTQT!=0 and C.ORMTQS!=0
+		A.ORMTNO=#{ormtno}  and (C.ORMTQT!=0 or C.ORMTQS!=0) and DECODE(A.ORTYNO,'BW',1,1)=1
 		AND E.BRADNO=#{bradno}  AND E.SPCLNO=#{spclno}
 		<if test="sptyno!=null and sptyno!=''">
 			 and e.sptyno=#{sptyno}
@@ -845,7 +845,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno
         inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
         inner join  ORD_ORDDTL d on c.sampno=d.sampno and c.suitno=d.suitno 
-        inner join  ORD_ORDHD e on d.mtorno=e.mtorno
+        inner join  ORD_ORDHD e on d.mtorno=e.mtorno and d.mlorno=e.mlorno
         left join ORD_ORDSZDTL f on d.sampno=f.sampno and d.mtorno=f.mtorno and d.suitno=f.suitno 
         left join ord_sample_prod z on b.sampno=z.sampno and a.ormtno=z.ormtno
         where c.suitno=#{suitno} and a.ormtno=#{ormtno}  AND A.BRADNO=#{bradno} and a.spclno=#{spclno} and c.sizegp=#{sizegp}

@@ -149,7 +149,6 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
             select a.CHANNO,org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
-            and c.suitno in('T00','T01')
              and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} 
              <if test="yxgsno!=null and yxgsno!=''">
@@ -183,10 +182,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
               from ORD_SAMPLE_PLAN a
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join (
-            select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
+            select org.yxgsno ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
-            and c.suitno in('T00','T01')
             and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno}
              <if test="yxgsno!=null and yxgsno!=''">
@@ -222,10 +220,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join ord_sample_colth d on b.sampno=d.sampno 
           inner join (
-            select org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
+            select org.yxgsno ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
-            and c.suitno in('T00','T01')
              and b.isfect=1
              and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} 
               <if test="yxgsno!=null and yxgsno!=''">
@@ -255,5 +252,43 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           order by B.sampnm,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
    
+   <select id="orderTotalPrint_export3" resultType="com.youngor.report.OrderPrint1" parameterType="map">
+    	 select b.sampnm1 as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,d.spsuno,sum(c.ORMTQT) as shul
+              from ORD_SAMPLE_PLAN a
+          inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
+          inner join ord_sample_colth d on b.sampno=d.sampno 
+          inner join (
+            select org.yxgsno ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
+            from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
+            where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
+             and b.isfect=1
+             and a.ORTYNO='DZ' and a.ORMTNO=#{ormtno} 
+              <if test="yxgsno!=null and yxgsno!=''">
+             	 and org.yxgsno=#{yxgsno} 
+             </if>
+             <if test="channo!=null and channo!=''">
+             	and a.channo=#{channo}
+             </if>
+             group by org.yxgsno ,org.yxgsnm,c.SAMPNO
+          ) c on b.sampno=c.sampno
+          where 1=1
+          <if test="sampnm!=null and sampnm!=''">
+          	and lower(b.sampnm0 like lower('%${sampnm}%')
+          </if>
+          
+          and a.bradno=#{bradno} 
+          <if test="spclno!=null and spclno!=''">
+          	 and a.spclno=#{spclno} 
+          </if>
+          <if test="sptyno!=null and sptyno!=''">
+          	 and a.sptyno=#{sptyno}
+          </if>
+         <if test="spseno!=null and spseno!=''">
+         	and a.spseno=#{spseno} 
+          </if>
+          and c.ORMTQT!=0
+          group by b.sampnm1 ,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr ,c.yxgsnm,d.spsuno
+          order by B.sampnm1,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
+    </select>
 </mapper>
 

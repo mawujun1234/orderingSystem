@@ -160,6 +160,14 @@ Ext.onReady(function(){
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
+		  		text: '打印3(出样)',
+				handler: function(btn){
+					var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/report/orderTotalPrint/export3.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
 		  		text: '审批通过',
 		  		itemId:'shenp_btn',
 		  		//disabled:true,

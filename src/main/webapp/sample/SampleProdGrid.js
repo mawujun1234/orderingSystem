@@ -267,6 +267,23 @@ Ext.define('y.sample.SampleProdGrid',{
 					grid.reload();
 				},
 				iconCls: 'icon-refresh'
+			},{
+		  		text: '导出',
+				handler: function(btn){
+					var grid=btn.up("grid");
+					var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/sampleProd/download.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
+			   text: '导入',
+			   itemId:'onImport',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					me.onImport();
+				},
+				iconCls: 'icon-upload-alt'
 			}]
 		});
 		
@@ -349,7 +366,58 @@ Ext.define('y.sample.SampleProdGrid',{
     		}
     	});
     	win.show();
-    }
+    },
+    onImport:function(){
+		var me=this;
+		var formpanel=Ext.create('Ext.form.Panel',{
+			items:[{
+		        xtype: 'filefield',
+		        name: 'imageFile',
+		       // id:'photo',
+		        labelWidth:60,
+		        fieldLabel: '文件名',
+		        allowBlank: false,
+		        anchor: '100%',
+		        buttonText: '选择文件...',
+		        listeners:{
+		        	change:function(field, value){
+	
+		        	}
+		        }
+		    }]
+		});
+		
+		var win=Ext.create('Ext.window.Window',{
+			items:[formpanel],
+			modal:true,
+			height:120,
+			width:320,
+			buttons:[{
+				text : '上传',
+				//formBind: true, //only enabled once the form is valid
+	       		//disabled: true,
+				glyph : 0xf0c7,
+				handler : function(button){
+					
+					formpanel.getForm().submit({
+						 waitMsg:'正在上传请稍候',  
+	                     waitTitle:'提示', 
+	                     url:Ext.ContextPath+'/sampleProd/import.do', 
+	                     //method:'POST', 
+	                     success:function(form,action){   	
+	                     	button.up('window').close();
+	                     	me.getStore().reload();
+	                     },
+	                     failure:function(form,action){
+	                     	Ext.Msg.alert("警告",action.result.msg);                    
+	                     }
+					});	
+				
+				}
+			}]
+		});
+		win.show();
+	}
     
    
 });

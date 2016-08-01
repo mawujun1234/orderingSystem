@@ -81,6 +81,153 @@ Ext.define('y.sample.SampleProdForm',{
 	        xtype:'hiddenfield'
 	    },
 	    {
+	        fieldLabel: '品牌',
+	        name: 'bradno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '年份',
+	        name: 'spyear',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '季节',
+	        name: 'spsean_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '大系列',
+	        name: 'spbseno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '品牌系列',
+	        name: 'sprseno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '大类',
+	        name: 'spclno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '小类',
+	        name: 'sptyno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '系列',
+	        name: 'spseno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '定位',
+	        name: 'splcno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '上市批次',
+	        name: 'spbano_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '版型',
+	        name: 'versno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '工作室系列',
+	        name: 'stseno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '外买样衣编号',
+	        name: 'buspno',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '生产类型',
+	        name: 'spmtno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '客供编号',
+	        name: 'gustno',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '颜色',
+	        name: 'colrno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '花型',
+	        name: 'pattno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '款式',
+	        name: 'stylno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '款式组',
+	        name: 'stylgp',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '性别',
+	        name: 'sexno_name',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '长短袖',
+	        name: 'slveno',
+            fieldStyle:'background-color:#CDC9C9;',
+	        readOnly:true,
+	        xtype:'textfield'
+	    },
+	    {
 	        fieldLabel: '类别',
 	        name: 'prtype',
 	        xtype:'pubcodecombo',

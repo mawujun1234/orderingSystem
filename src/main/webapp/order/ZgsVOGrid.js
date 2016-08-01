@@ -215,7 +215,7 @@ Ext.define('y.order.ZgsVOGrid',{
 		  	items:[{
 		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
-		        itemId: 'sampno',
+		        itemId: 'sampnm',
 	            xtype:'textfield'
 		    },{
 				fieldLabel: '订单状态',
@@ -293,7 +293,7 @@ Ext.define('y.order.ZgsVOGrid',{
 			"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[0].down("#spseno").getValue(),
 
-			"params['sampno']":toolbars[1].down("#sampno").getValue()
+			"params['sampnm']":toolbars[1].down("#sampnm").getValue()
 			//"params['orstat']":toolbars[1].down("#orstat").getValue()
 		};
 		return params;
@@ -402,6 +402,7 @@ Ext.define('y.order.ZgsVOGrid',{
 				Ext.Msg.alert("消息","样衣编号"+modles[i].get("SAMPNM")+"已经平衡过不能再平衡!");
 				return;
 			}
+
 			store.add({
 				SAMPNO:modles[i].get("SAMPNO"),
 				SAMPNM:modles[i].get("SAMPNM"),
@@ -440,6 +441,10 @@ Ext.define('y.order.ZgsVOGrid',{
 					var aaa=store.getRange();
 					for(var i=0;i<aaa.length;i++){
 						if(aaa[i].get("PSMPNM")){
+							if(aaa[i].get("SAMPNO")==aaa[i].get("PSMPNM")){
+								Ext.Msg.alert("消息","合并的时候，样衣编号不能一致,不能把A变成A!");
+								return;
+							}
 							data.push({
 								SAMPNO:aaa[i].get("SAMPNO"),
 								PSMPNM:aaa[i].get("PSMPNM")

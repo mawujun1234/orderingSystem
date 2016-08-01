@@ -1390,7 +1390,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("ORMTQT_NOW", new BigDecimal(0));//兑现数量
 				}
 				//接下来是行列转换
-				map.put(map.get("SIZETY")+"___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+				map.put(listmap.get("SIZETY")+"___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
 				//添加小计
 				if(listmap.get("ORBGQT")!=null){
 					BigDecimal STDSZ___SUBTOTAL=(BigDecimal)map.get("STDSZ___SUBTOTAL");

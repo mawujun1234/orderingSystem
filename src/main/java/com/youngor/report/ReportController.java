@@ -181,4 +181,40 @@ public class ReportController {
 	}
 
 
+	@RequestMapping("/report/orderTotalPrint/export3.do")
+	@ResponseBody
+	public  void orderTotalPrint_export3(MapParams params,HttpServletRequest request,HttpServletResponse response) throws IOException, JRException {
+		List<OrderPrint1> list=reportRepository.orderTotalPrint_export3(params.getParams());
+
+		String reportFilePath = "";
+		reportFilePath = request
+				.getSession()
+				.getServletContext()
+				.getRealPath(
+						File.separator+"report"+File.separator+"ireport"+File.separator+"Dinghhz_YXGS_Daxl _gongys.jasper");
+
+		Map<String, Object> rpt_params = new HashMap<String, Object>();
+		rpt_params.put("p_shul_title", "订货数量");
+
+
+		File reportFile = new File(reportFilePath);
+
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
+
+		JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport,
+				rpt_params, new JRBeanCollectionDataSource(list));
+
+		OutputStream httpOut = response.getOutputStream();
+		response.reset();
+		response.setCharacterEncoding("GBK");
+		response.setHeader("Content-Disposition", "attachment;filename="
+				+ new String("订货汇总-供应商".getBytes("GBK"), "iso8859-1")
+				+ ".xls");
+
+		expoertReportToExcelStream(jasperprint, httpOut);
+
+		httpOut.close(); 
+	}
+
+
 }

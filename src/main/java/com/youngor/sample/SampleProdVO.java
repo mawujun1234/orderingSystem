@@ -76,7 +76,31 @@ public class SampleProdVO extends SampleProd{
 	public String getSpbano_name() {
 		return PubCodeCache.getSpbano_name(this.getSpbano());
 	}
+	public String getStseno_name() {
+		return PubCodeCache.getStseno_name(this.getStseno());
+	}
+	public  String getSpmtno_name( ){
+		return PubCodeCache.getSpmtno_name(this.getSpmtno());
+	}
+	public  String getColrno_name( ){
+		return PubCodeCache.getColrno_name(this.getColrno());
+	}
 	
+	public String getPattno_name() {
+		return PubCodeCache.getPattno_name(this.getPattno());
+	}
+	public String getStylno_name() {
+		return PubCodeCache.getStylno_name(this.getStylno());
+	}
+	public String getSexno_name() {
+		return PubCodeCache.getSexno_name(this.getSexno());
+	}
+	public String getSlveno_name(){
+		return PubCodeCache.getSlveno_name(this.getSlveno());
+	}
+	public String getVersno_name(){
+		return PubCodeCache.getVersno_name(this.getVersno());
+	}
 	
 	
 	public String getBradno() {

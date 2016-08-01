@@ -6,7 +6,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.sample.SampleProdRepository">
 	<sql id="queryPage_sql">
-		select a.ormtno,a.spyear,c.suitno,a.bradno,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno,a.spbano
+		select a.ormtno,a.spyear,c.suitno,a.bradno,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno,a.spbano
 		       ,b.sampno,b.sampnm,b.versno,b.stseno,b.buspno,b.spmtno,b.gustno,b.colrno,b.pattno,b.stylno,b.stylgp,b.sexno,b.slveno
 		       ,b.suitty,b.desp
 		       ,h.prsuno

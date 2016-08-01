@@ -60,6 +60,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			    left join (select c.* from ORD_ORDDTL c inner join ORD_ORD d on c.mtorno=d.mtorno and d.ORMTNO=#{ormtno}  and d.ORTYNO='DZ') c on b.sampno=c.sampno and c.suitno=nvl(bb.SUITNO,'T00')
 			   
 			    WHERE a.ORMTNO=#{ormtno} <include refid="zgs_tpAllQuery_where"></include> 
+			    and not exists (select 1 from ORD_COMP_PAL p where a.ormtno=p.ormtno and b.sampno=p.sampno and p.paltpy='取消')
 			    --group by  a.sptyno,a.spseno,b.SAMPNO,B.SAMPNM,bb.SUITNO,B.PACKQT
 			 ) a 
              group by a.sptyno,a.spseno,a.SAMPNO,a.SAMPNM ,a.SUITNO,a.PACKQT
