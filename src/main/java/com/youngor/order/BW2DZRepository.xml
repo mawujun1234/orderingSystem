@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.BW2DZRepository">
+	<sql id="queryPager_sql">
+		SELECT A.ORMTNO,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,C.SUITNO,E3.ITNM AS SUITNM,G.YXGSNM,g.qyno,G.QYNM,
+		       SUM(DECODE(A.ORTYNO,'DZ',C.ORMTQT,0))DZMTQT,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0))BWMTQT--,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0)) NUM
+		FROM ORD_ORD A
+		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
+		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		INNER JOIN ORD_PUB_CODE E3 ON E3.TYNO='3' AND E3.ITNO=C.SUITNO
+		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
+		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
+		WHERE
+		--订货批号,订单类型(固定参数  ‘DZ’)
+		A.ORMTNO=#{ormtno} AND A.ORTYNO!='TP'
+		--品牌 ，大类,小类，系列,样衣编号 
+		AND E.BRADNO=#{bradno} AND E.SPCLNO=#{spclno} 
+		<if test="sptyno!=null and sptyno!=''">
+			and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and e.spseno=#{spseno}
+		</if>
+		<if test="sptyno!=null and sptyno!=''">
+			and lower(d.sampnm) like lower('%${sampnm}%')
+		</if>
+		<if test="suitno!=null and suitno!=''">
+			and C.SUITNO=#{suitno}
+		</if>
+		--营销公司，区域
+		<if test="yxgsno!=null and yxgsno!=''">
+			and g.yxgsno=#{yxgsno}
+		</if>
+		<if test="qyno!=null and qyno!=''">
+			and g.qyno=#{qyno}
+		</if>
+		 
+		
+		GROUP BY A.ORMTNO,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,C.SUITNO,E3.ITNM,G.YXGSNM,g.qyno,G.QYNM
+		--是否有备忘数据
+		--HAVING SUM(DECODE(A.ORTYNO,'DZ',C.ORMTQT,0))!=0 OR SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0))!=0
+		HAVING SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0))!=0
+		order by G.YXGSNM,g.qyno
+	</sql>
+   
+    <select id="queryPager" resultType="map" parameterType="map">
+    	<include refid="queryPager_sql"></include>  
+    </select> 
+    <select id="queryPager_count" resultType="int" parameterType="map">
+    	select count(*) from (
+			<include refid="queryPager_sql"></include>  
+		)
+    </select> 
+   
+   
+	 <!-- 获取最新的版本号 -->
+    <select id="get_mlorno_mlorvn" parameterType="map" resultType="map" >
+    	select distinct mlorno,mlorvn from ORD_ORDHD where mtorno=#{mtorno} and bradno=#{bradno} and spclno=#{spclno}
+    </select>
+    
+    <update id="update_DZ_ormtqt" parameterType="map" >
+    	update ORD_ORDDTL set ormtqt=ormtqt+(#{num}) 
+		where mtorno=#{mtorno} and sampno=#{sampno} and suitno=#{suitno}
+    </update>
+    <update id="update_BW_ormtqt" parameterType="map" >
+    	update ORD_ORDDTL set ormtqt=ormtqt-(#{num}) 
+		where mtorno=#{mtorno} and sampno=#{sampno} and suitno=#{suitno}
+    </update>
+</mapper>
+

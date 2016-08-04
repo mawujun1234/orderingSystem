@@ -839,7 +839,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<select id="sizeVO_querySizeVOData" resultType="map" parameterType="map">
      	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,b.packqt,d.ORMTQT
      		,d.mtorno ,d.mlorno
-            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,z.PRODNM
+            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,0 as ORSZST,z.PRODNM
         from  
         ORD_SAMPLE_PLAN a 
         inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno

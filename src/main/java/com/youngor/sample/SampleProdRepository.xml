@@ -17,14 +17,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_plan a
 		inner join ord_sample_design b on a.plspno=b.plspno
 		inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
-		inner join ord_size d on c.sizegp=d.sizeno and d.sizety='PRDSZFW' and d.ysizety='PRDSZTY' and d.ormtno='201607'
-		inner join ORD_PUB_SIZE e on  e.sizety='PRDSZTY' and e.sizety=d.ysizety and e.sizeno=d.ysizeno and e.szbrad='Y' and e.szclno='01'
+		inner join ord_size d on c.sizegp=d.sizeno and d.sizety='PRDSZFW' and d.ysizety='PRDSZTY' and d.ormtno=#{ormtno}
+		inner join ORD_PUB_SIZE e on  e.sizety='PRDSZTY' and e.sizety=d.ysizety and e.sizeno=d.ysizeno and e.szbrad=#{bradno} and e.szclno=#{spclno}
 		left join ord_sample_colth h on b.sampno=h.sampno
 		left join (select * from ord_sample_mate where mateso=1) i on b.sampno=i.sampno
 		left join (select sampno,sum(mtpupr*mtcnqt) prmlam from ord_sample_mate group by sampno) j on b.sampno=j.sampno
-		left join (select distinct sampno,suitno from ord_orddtl  where (ormtqs!=0 or ormtqt!=0)) f on b.sampno=f.sampno and c.suitno=f.suitno 
+		left join (select  sampno,suitno,sum(ormtqt) ormtqt from ord_orddtl  where (ormtqs!=0 or ormtqt!=0) group by  sampno,suitno) f on b.sampno=f.sampno and c.suitno=f.suitno 
 		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno
-		where a.ormtno='201607' and a.bradno='Y' and a.spclno='01'
+		where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
+			and not exists (select 1 from ORD_COMP_PAL p where a.ormtno=p.ormtno and b.sampno=p.sampno and p.paltpy='取消')
 		<if test="sptyno!=null and sptyno!=''">
     		and a.sptyno=#{sptyno}
     	</if>
@@ -46,8 +47,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	<if test="prodnm!=null and prodnm!=''">
     		and g.prodnm like lower('%${prodnm}%')
     	</if>
+    	<!--f.ormtqt!=0很重要，排除了没订货的，排除了取消掉的，也同时排除了套装西服拆套西服只有上衣和裤子，没有标准的问题 -->
     	<if test="sample_state=='ok'">
-    		and f.sampno is not null
+    		and f.sampno is not null and f.ormtqt!=0
     	</if>
     	<if test="sample_state=='no'">
     		and f.sampno is null

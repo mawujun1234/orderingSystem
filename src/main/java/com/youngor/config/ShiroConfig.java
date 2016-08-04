@@ -138,6 +138,7 @@ public class ShiroConfig {
 		
 		filterChainDefinitionMap.put("/main/unauthorized.jsp*", "anon");
 		filterChainDefinitionMap.put("/user/login.do*", "anon");
+		filterChainDefinitionMap.put("/user/onlineling.do*", "anon");
 		filterChainDefinitionMap.put("/user/logout.do*", "anon");
 		filterChainDefinitionMap.put("/user/mobile/login.do*", "anon");
 		filterChainDefinitionMap.put("/user/mobile/getWxConfig.do*", "anon");

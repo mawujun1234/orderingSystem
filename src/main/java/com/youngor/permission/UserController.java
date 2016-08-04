@@ -93,6 +93,19 @@ public class UserController {
        // return model;
 	}
 	/**
+	 * 保持在线的请求
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/user/onlineling.do")
+	@ResponseBody
+	public String onlineling() {
+		if(!ShiroUtils.isLogon()){
+			return "{success:false}";
+		}
+		return "{success:true}";
+	}
+	/**
 	 * 
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param username

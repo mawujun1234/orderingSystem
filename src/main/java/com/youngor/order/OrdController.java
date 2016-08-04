@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -645,6 +646,11 @@ public class OrdController {
 	@RequestMapping("/ord/sizeVO/updateOrdszdtl.do")
 	@ResponseBody
 	public String sizeVO_updateOrdszdtl(OrdszdtlVO ordszdtlVO){
+		ordszdtlVO.setRgdt(new Date());
+		ordszdtlVO.setRgsp(ShiroUtils.getLoginName());
+		ordszdtlVO.setLmdt(new Date());
+		ordszdtlVO.setLmsp(ShiroUtils.getLoginName());
+		
 		ordService.sizeVO_updateOrdszdtl(ordszdtlVO);
 		return "{success:true}";
 	}

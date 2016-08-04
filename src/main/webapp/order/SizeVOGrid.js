@@ -24,13 +24,13 @@ Ext.define('y.order.SizeVOGrid',{
         },
          {dataIndex:'PRODNM',header:'产品货号'
         },
-        {dataIndex:'ORMTQT',header:'平衡数量',width:75
+        {dataIndex:'ORMTQT',header:'兑现数量',width:75
          	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 metaData.tdStyle = 'background-color:#CD9B9B;' ;
 	            	 return value;
             }
         },
-        {dataIndex:'ORMTQT_NOW',header:'兑现数量',width:75
+        {dataIndex:'ORMTQT_NOW',header:'规格合计',width:75
          	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 //metaData.tdStyle = 'background-color:#CD9B9B;' ;
 	            	 if(record.get("ORMTQT_NOW")!=record.get("ORMTQT")){
@@ -76,10 +76,11 @@ Ext.define('y.order.SizeVOGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(value>0){
+	            	//单规+包装箱
+	            	if( record.get("ORSZST")!=1){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	} else {
-	            		metaData.tdStyle = 'background-color:#98FB98;' ;
+	            		//metaData.tdStyle = 'background-color:#98FB98;' ;
 	            	}
 	            	 return value;
             	}
@@ -94,10 +95,11 @@ Ext.define('y.order.SizeVOGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(value>0){
+	            	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
+	            	if(record.get("SZTYPE")==0 ){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            	} else {
-	            		metaData.tdStyle = 'background-color:#98FB98;' ;
+	            	} else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1){
+	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	 return value;
             	}
@@ -107,19 +109,20 @@ Ext.define('y.order.SizeVOGrid',{
       		 	header:initColumn["SIZENM"],
       		 	dataIndex:initColumn["SIZENO"]
       		 	,width: 80
-      		 	,editor: {
-	                xtype: 'numberfield',
-	                allowDecimals:false,
-	                selectOnFocus:true 
-	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	if(value>0){
-	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            	} else {
-	            		metaData.tdStyle = 'background-color:#98FB98;' ;
-	            	}
-	            	 
-	            	 return value;
-            	}
+//      		 	,editor: {
+//	                xtype: 'numberfield',
+//	                allowDecimals:false,
+//	                selectOnFocus:true 
+//	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+//	            	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
+//	            	if(record.get("SZTYPE")==0 ){
+//	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+//	            	} else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1){
+//	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+//	            	}
+//	            	 
+//	            	 return value;
+//            	}
       		 });
       	}
 
@@ -206,6 +209,23 @@ Ext.define('y.order.SizeVOGrid',{
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
+	  
+	  this.cellEditing.on("beforeedit",function(editor, context){
+	  	var record=context.record;
+	  	var field =context.field ;
+	  	var aaa=field.split("___");
+	  	
+	  	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
+	    if(record.get("SZTYPE")==0 && aaa[0]!="STDSZ"){
+	       //metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	    	return true;
+	    } else if(record.get("SZTYPE")==0 && record.get("ORSZST")!=1){
+	    	return true;
+	    } else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1){
+	        return true;
+	    }
+	    return false;
+	  });
 	  this.cellEditing.on("edit",function(editor, context){
 	  	var record=context.record;
 	  	var grid=context.grid;
@@ -251,35 +271,111 @@ Ext.define('y.order.SizeVOGrid',{
 				if(typeof(ORMTQT_NOW)=='undefined'){
 					ORMTQT_NOW=0;
 				}
-				if(aaa[0]=="STDSZ" || aaa[0]=="STDSZPRDPK"){
-					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-					if(typeof(subtotal)=='undefined'){
-						subtotal=0;
+				//如果是整箱上报,需要把数量加到规格合计里面，其他两种情况，只需要算单规就可以了
+				if(record.get("SZTYPE")==2){
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} else{
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+						
+						subtotal=subtotal-(originalValue)+(value);
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						var packqt=record.get("PACKQT");
+						if(typeof(packqt)=='undefined'){
+							subtotal=1;
+						}
+						ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
 					}
+				} else if(record.get("SZTYPE")==0){//整箱+单规 上报的时候
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} else{
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+						var packqt=record.get("PACKQT");
+						if(typeof(packqt)=='undefined'){
+							subtotal=1;
+						}
+						subtotal=subtotal-(originalValue*packqt)+(value*packqt);
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
 	
-					subtotal=subtotal-originalValue+value;
-					record.set(aaa[0]+"___SUBTOTAL",subtotal);
-					
-					ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-					record.set("ORMTQT_NOW",ORMTQT_NOW);
-					record.commit();
-				} else if(aaa[0]=="PRDPK"){
-					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-					if(typeof(subtotal)=='undefined'){
-						subtotal=0;
+						record.commit();
 					}
-					
-					subtotal=subtotal-(originalValue)+(value);
-					record.set(aaa[0]+"___SUBTOTAL",subtotal);
-					
-					var packqt=record.get("PACKQT");
-					if(typeof(packqt)=='undefined'){
-						subtotal=1;
-					}
-					ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
-					record.set("ORMTQT_NOW",ORMTQT_NOW);
+				} else {
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} 
 					record.commit();
 				}
+				//if(aaa[0]=="STDSZ" || aaa[0]=="STDSZPRDPK"){
+//				if(aaa[0]=="STDSZ"){
+//					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//					if(typeof(subtotal)=='undefined'){
+//						subtotal=0;
+//					}
+//	
+//					subtotal=subtotal-originalValue+value;
+//					record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//					
+//					ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+//					record.set("ORMTQT_NOW",ORMTQT_NOW);
+//					record.commit();
+//				} 
+//				else if(aaa[0]=="PRDPK"){
+//					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//					if(typeof(subtotal)=='undefined'){
+//						subtotal=0;
+//					}
+//					
+//					subtotal=subtotal-(originalValue)+(value);
+//					record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//					
+//					var packqt=record.get("PACKQT");
+//					if(typeof(packqt)=='undefined'){
+//						subtotal=1;
+//					}
+//					ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
+//					record.set("ORMTQT_NOW",ORMTQT_NOW);
+//					record.commit();
+//				}
 				
 			}
 						

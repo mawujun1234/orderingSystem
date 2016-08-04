@@ -1232,16 +1232,28 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		//获取包装上报方式：
 		if(ordszdtlVO.getSztype()==0){//如果是整箱+单规的上报方式，并且输入的是是单规的话，就只修改orszqt，否则就修改orbgqt
-			//是不是单规箱的数据
-			if(ordszdtlVO.getIsSTDSZPRDPK()==true){
+//			//是不是单规箱的数据
+//			if(ordszdtlVO.getIsSTDSZPRDPK()==true){
+//				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+//			} else {
+//				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+//			}
+			if("PRDPK".equals(ordszdtl.getSizety())){
+				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+				ordszdtl.setOrszqt(0);
+			} else {
+				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+			}
+			
+		} else {
+			if("PRDPK".equals(ordszdtl.getSizety())){
 				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
 			} else {
 				ordszdtl.setOrszqt(ordszdtlVO.getValue());
 			}
-		} else {
-			//否则orszqt和orbgqt的数量就是一致的
-			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
-			ordszdtl.setOrszqt(ordszdtlVO.getValue());
+//			//否则orszqt和orbgqt的数量就是一致的
+//			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+//			ordszdtl.setOrszqt(ordszdtlVO.getValue());
 			
 		}
 		
@@ -1277,12 +1289,16 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SPSENO", listmap.get("SPSENO"));
 					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
 					map.put("VERSNO", listmap.get("VERSNO"));
-					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+					if(listmap.get("VERSNO")!=null){
+						map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+					}
+					
 					map.put("PLSPNO", listmap.get("PLSPNO"));
 					map.put("PLSPNM", listmap.get("PLSPNM"));
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					map.put("ORSZST", listmap.get("ORSZST"));
 					
 					map.put("PACKQT", listmap.get("PACKQT"));
 					map.put("SUITNO", listmap.get("SUITNO"));
@@ -1326,7 +1342,7 @@ public class OrdService extends AbstractService<Ord, String>{
 						map.put("STDSZPRDPK___SUBTOTAL",aaa);
 						
 						//兑现数量
-						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT));
+						//map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT));
 
 					}
 					
@@ -1342,16 +1358,16 @@ public class OrdService extends AbstractService<Ord, String>{
 						if(ORBGQT==null){
 							ORBGQT=new BigDecimal(0);
 						}
-
-						aaa=aaa.add(ORBGQT);
-						map.put("PRDPK___SUBTOTAL",aaa);
-						
-						//兑现数量
 						BigDecimal packqt=(BigDecimal)listmap.get("PACKQT");
 						if(packqt==null){
 							packqt=new BigDecimal(1);
 						}
-						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT.multiply(packqt)));
+						aaa=aaa.add(ORBGQT);
+						map.put("PRDPK___SUBTOTAL",aaa.multiply(packqt));
+						
+						//兑现数量
+						
+						//map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT.multiply(packqt)));
 					}
 				} 
 			}
@@ -1375,6 +1391,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					map.put("ORSZST", listmap.get("ORSZST"));
 					
 					map.put("PACKQT", listmap.get("PACKQT"));
 					map.put("SUITNO", listmap.get("SUITNO"));
@@ -1419,6 +1436,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("SAMPNO", listmap.get("SAMPNO"));
 					map.put("SAMPNM", listmap.get("SAMPNM"));
 					map.put("ORMTQT", listmap.get("ORMTQT"));
+					map.put("ORSZST", listmap.get("ORSZST"));
 					
 					map.put("PACKQT", listmap.get("PACKQT"));
 					map.put("SUITNO", listmap.get("SUITNO"));
@@ -1465,12 +1483,7 @@ public class OrdService extends AbstractService<Ord, String>{
 						}
 						map.put("ORMTQT_NOW", ((BigDecimal)map.get("ORMTQT_NOW")).add(ORBGQT.multiply(packqt)));
 						
-//						aaa=aaa.add((BigDecimal)listmap.get("ORBGQT"));
-//						BigDecimal packqt=(BigDecimal)listmap.get("PACKQT");
-//						if(packqt==null){
-//							packqt=new BigDecimal(1);
-//						}
-//						map.put("PRDPK___SUBTOTAL",aaa.multiply(packqt));
+
 					}
 				}
 				

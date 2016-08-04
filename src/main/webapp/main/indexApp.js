@@ -18,6 +18,20 @@ Ext.require('Ext.ux.TabCloseMenu');
 Ext.require('y.main.MainController');
 Ext.require('y.main.MainViewModel');
 Ext.onReady(function(){
+	window.onlineling=function() {
+		Ext.Ajax.request({
+			url:Ext.ContextPath+'/user/onlineling.do',
+			success:function(response){
+				var obj=Ext.decode(response.responseText);
+				if(!obj.success){
+				  location.href="./login.jsp";
+				}
+			}
+			
+		});
+		setTimeout("onlineling()",120000);
+	}
+	onlineling();
 
 		
 		

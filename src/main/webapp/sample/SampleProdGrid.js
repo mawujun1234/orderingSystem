@@ -39,6 +39,28 @@ Ext.define('y.sample.SampleProdGrid',{
 	            return value;
             }
         },
+        {dataIndex:'spclno_name',header:'大类'
+        },
+        {dataIndex:'sptyno_name',header:'小类'
+        },
+        {dataIndex:'spsean_name',header:'季节'
+        },
+        {dataIndex:'spseno_name',header:'系列'
+        },
+        {dataIndex:'splcno_name',header:'定位'
+        },
+        {dataIndex:'spbano_name',header:'上市批次'
+        },
+        {dataIndex:'versno_name',header:'版型'
+        },
+        {dataIndex:'stylno_name',header:'款式'
+        },
+        {dataIndex:'stylgp',header:'款式组'
+        },
+        {dataIndex:'sexno_name',header:'性别'
+        },
+        {dataIndex:'slveno_name',header:'长短袖'
+        },
 //		{dataIndex:'prodds',header:'货号简称'
 //        },
 		{dataIndex:'sizegp_name',header:'规格系列'

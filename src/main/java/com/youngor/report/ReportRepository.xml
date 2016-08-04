@@ -235,7 +235,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
-          	and lower(b.sampnm0 like lower('%${sampnm}%')
+          	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
           and a.bradno=#{bradno} 
@@ -273,7 +273,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           ) c on b.sampno=c.sampno
           where 1=1
           <if test="sampnm!=null and sampnm!=''">
-          	and lower(b.sampnm0 like lower('%${sampnm}%')
+          	and lower(b.sampnm) like lower('%${sampnm}%')
           </if>
           
           and a.bradno=#{bradno} 
