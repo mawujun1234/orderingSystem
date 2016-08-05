@@ -2,6 +2,7 @@ package com.youngor.sample;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
 import com.youngor.utils.MapParams;
 
@@ -105,6 +107,18 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 			
 			
 		}
+		
+		//判断货号名称是否有重复，如果有重复，就报错
+		List<Map<String,Object>> list=sampleProdRepository.check_repeat_prodnm();
+		if(list!=null && list.size()!=0){
+			StringBuilder builder=new StringBuilder();
+			for(Map<String,Object> map:list){
+				builder.append(","+map.get("PRODNM"));
+			}
+			throw new BusinessException("导入成功，但是下列货号重复:"+builder.substring(1));
+		}
+		
+		
 	}
 
 }

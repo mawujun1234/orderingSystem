@@ -113,7 +113,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </update>
     
     <select id="queryTpYxgsColumns" resultType="map">
-    	select * from t_org where orgty='COMP'AND ORGST='KQ' AND ORGNO!='08' ORDER BY ORGSO
+    	select * from t_org where orgty='COMP'AND ORGST='KQ'  ORDER BY ORGSO
     </select>
     
     <select id="tpYxgsQuery" resultType="map" parameterType="map">

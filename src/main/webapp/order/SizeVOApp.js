@@ -171,7 +171,6 @@ Ext.onReady(function(){
 				labelWidth:65,
 				 allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
-	            blankText:"大类不允许为空",
 				//selFirst:true,
 				width:150,
 				value:'DZ',

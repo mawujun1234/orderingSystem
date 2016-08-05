@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.plan.OrdDwdtRepository">
+	<sql id="queryPager1_sql">	
+		SELECT M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,' ')YXGSNM,DECODE('${count_type}','qyno',M.QYNM,' ')QYNM,M.SUITNO,
+		     SUM(M.ORMTQT)ORMTQT,COUNT(DISTINCT W.PLDATE)PLDATE_COUNT,min(W.PLDATE) PLDATE,MIN(W.MLDATE)MLDATE,MAX(W.PPLACE)PPLACE 
+		FROM
+		 (SELECT A.ORMTNO,A.ORTYNO,T.ORTYNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,E23.ITNM AS SPBANM,H.PRSUNO,D.SAMPNM,G.QYNO,G.YXGSNO,G.YXGSNM,G.QYNM,C.SAMPNO,C.SUITNO,SUM(C.ORMTQT)ORMTQT 
+		  FROM ORD_ORD A
+		  INNER JOIN ORD_ORDTY T ON A.ORTYNO=T.ORTYNO
+		  INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
+		  LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		  INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
+		  INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
+		  INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
+		  INNER JOIN ORD_SAMPLE_COLTH H ON C.SAMPNO=H.SAMPNO 
+		  INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
+		  INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
+		  INNER JOIN ORD_PUB_CODE E23 ON E23.TYNO='23' AND E23.ITNO=E.SPBANO
+		  WHERE
+		  --订货批号,订单有效状态(固定参数 1)，订单类型,
+		  A.ORMTNO=#{ormtno} AND B.ISFECT=1 AND c.ORMTQT!=0  AND A.ORTYNO=#{ortyno} 
+		  --大区，区域
+		  <if test="yxgsno!=null and yxgsno!=''">
+		  	AND G.YXGSNO=#{yxgsno}
+		  </if>
+		  <if test="qyno!=null and qyno!=''">
+		  	AND G.QYNO=#{qyno}
+		  </if>
+		  --品牌 ，大类,小类，系列，上市批次，生产类型
+		  -- AND D.SPMTNO='ZC'
+		  and e.bradno=#{bradno} and e.spclno=#{spclno} 
+		  <if test="sptyno!=null and sptyno!=''">
+		  	 and e.sptyno=#{sptyno}
+		  </if>
+		  <if test="spseno!=null and spseno!=''">
+		  	 and e.spseno=#{spseno}
+		  </if>
+		  <if test="spbano!=null and spbano!=''">
+		  	 and e.spbano=#{spbano}
+		  </if>
+		  --样衣编号
+		  <if test="sampnm!=null and sampnm!=''">
+			and lower(d.sampnm) like lower('%${sampnm}%')
+		  </if>
+		  GROUP BY A.ORMTNO,A.ORTYNO,T.ORTYNM,a.ordorg,E1.ITNM,E2.ITNM,E23.ITNM,H.PRSUNO,D.SAMPNM,G.QYNO,G.YXGSNO,G.YXGSNM,G.QYNM,C.SAMPNO,C.SUITNO
+		)M
+		INNER JOIN ORD_PUB_SUNO S ON M.PRSUNO=IDSUNO
+		LEFT JOIN ORD_SAMPLE_PROD P ON M.SAMPNO=P.SAMPNO AND M.SUITNO=P.SUITNO 
+		LEFT JOIN ORD_ORD_DWDT W ON M.ORMTNO=W.ORMTNO AND M.ORTYNO=W.ORTYNO AND M.QYNO=W.ORDORG AND M.SAMPNO=W.SAMPNO AND M.SUITNO=W.SUITNO
+		--面料交货期，成衣交货期，产地
+		WHERE 1=1
+		<if test="sample_date!=null and sample_date!=''">
+		  	and (W.MLDATE=#{sample_date} or W.PLDATE=#{sample_date})
+		</if>
+		<if test="pplace!=null and pplace!=''">
+		  	 and w.pplace=#{pplace} 
+		</if>
+		GROUP BY  M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,' '),DECODE('${count_type}','qyno',M.QYNM,' '),M.SUITNO
+
+	</sql>
+	<select id="queryPager1" resultType="map" parameterType="map">
+    	<include refid="queryPager1_sql"></include>  
+    </select> 
+    <select id="queryPager1_count" resultType="int" parameterType="map">
+    	select count(*) from (
+			<include refid="queryPager1_sql"></include>  
+		)
+    </select> 
+    
+    
+    <update id="indsert_dwdt"  parameterType="map">
+    	insert into ORD_ORD_DWDT(ormtno,ortyno,ordorg,ormtqt,sampno,suitno,${field})
+		select distinct a.ormtno,a.ortyno,a.ordorg,c.ormtqt,c.sampno,c.suitno,'${value}' mldate from ORD_ORD a
+		 inner join v_ord_org b on a.ordorg=b.qyno
+		  inner join ORD_ORDdtl c on a.mtorno=c.mtorno
+		where   a.ormtno=#{ormtno} and  a.ortyno=#{ortyno} and a.channo='QY' and 
+		 c.sampno=#{sampno} and c.suitno=#{suitno}
+		 <if test="yxgsno!=null and yxgsno!=''">
+		 	and b.yxgsno=#{yxgsno}
+		 </if>
+		 <if test="qyno!=null and qyno!=''">
+		 	and b.qyno=#{qyno}
+		 </if>
+		  and not exists (select 1 from ORD_ORD_DWDT d where a.ormtno=d.ormtno and a.ortyno=d.ortyno and a.ordorg=d.ordorg)
+		  
+    </update>
+    <update id="update_dwdt"  parameterType="map">
+    	update  ORD_ORD_DWDT set ${field}=#{value}  where ormtno=#{ormtno} and ortyno=#{ortyno} and sampno=#{sampno} and suitno=#{suitno} 
+    	<if test="yxgsno!=null and yxgsno!=''">
+		 	and ordorg in (
+			     select distinct qyno from v_ord_org where yxgsno=#{yxgsno}
+			     <if test="qyno!=null and qyno!=''">
+				 	and b.qyno=#{qyno}
+				 </if>
+			)
+		 </if>
+    	
+    </update>
+</mapper>
+

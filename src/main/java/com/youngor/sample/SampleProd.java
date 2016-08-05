@@ -1,6 +1,8 @@
 package com.youngor.sample;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -73,7 +75,7 @@ public class SampleProd {
 	@FieldDefine(title="零售价",hidden=false)
 	private String prrtpr;
 	@FieldDefine(title="成本价",hidden=false)
-	private String prctpr;//预计成本价
+	private BigDecimal prctpr;//预计成本价
 	@FieldDefine(title="加工费",hidden=false)
 	private String prmtam;//自己填
 	@FieldDefine(title="面料费",hidden=false)
@@ -280,11 +282,14 @@ public class SampleProd {
 		this.prrtpr = prrtpr;
 	}
 
-	public String getPrctpr() {
+	public BigDecimal getPrctpr() {
+		if(prctpr!=null){
+			return prctpr.setScale(2, RoundingMode.HALF_UP);
+		}
 		return prctpr;
 	}
 
-	public void setPrctpr(String prctpr) {
+	public void setPrctpr(BigDecimal prctpr) {
 		this.prctpr = prctpr;
 	}
 

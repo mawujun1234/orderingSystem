@@ -40,7 +40,7 @@ public class BW2DZService {
 			pk.setSuitno(suitno);
 			Orddtl orddtl=orddtlRepository.get(pk);
 			if(orddtl==null){
-				if(num>0){
+				if(num<0){
 					throw new BusinessException("对应的订制订单没有数据，不能进行转移!");
 				}
 				orddtl=new Orddtl();
@@ -48,11 +48,12 @@ public class BW2DZService {
 				orddtl.setSampno(sampno);
 				orddtl.setSuitno(suitno);
 				orddtl.setOrmtqs(0);
-				orddtl.setOrmtqt(Math.abs(num));	
+				//orddtl.setOrmtqt(Math.abs(num));	
 				//获取mlorno，mlorvn
+				param.put("mtorno", dz_mtorno);
 				Map<String,Object> mlorno=bW2DZRepository.get_mlorno_mlorvn(param);
-				orddtl.setMlorno(mlorno.get("mlorno").toString());
-				orddtl.setMlorvn(((BigDecimal)mlorno.get("mlorvn")).intValue());
+				orddtl.setMlorno(mlorno.get("MLORNO").toString());
+				orddtl.setMlorvn(((BigDecimal)mlorno.get("MLORVN")).intValue());
 				orddtlRepository.create(orddtl);
 			}
 			

@@ -15,7 +15,35 @@ Ext.define('y.plan.OrdDwdtGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-		{dataIndex:'sampnm',header:'设计样衣编号'
+		{dataIndex:'SPTYNM',header:'小类'
+        },
+        {dataIndex:'SPSENM',header:'系列'
+        },
+        {dataIndex:'SPBANM',header:'上市批次'
+        },
+        {dataIndex:'SAMPNM',header:'设计样衣编号'
+        },
+        {dataIndex:'PRODNM',header:'货号名称'
+        },
+        {dataIndex:'ORTYNM',header:'订单类型'
+        },
+        {dataIndex:'IDSUNM',header:'生产单位'
+        },
+        {dataIndex:'YXGSNM',header:'营销公司'
+        },
+        {dataIndex:'QYNM',header:'区域'
+        },
+        {dataIndex:'SUITNM',header:'套件'
+        },
+        {dataIndex:'ORMTQT',header:'数量'
+        },
+        {dataIndex:'PLDATE_COUNT',header:'交货批次数'
+        },
+        {dataIndex:'MLDATE',header:'面料交货期'
+        },
+        {dataIndex:'PLDATE',header:'成衣交货期'
+        },
+        {dataIndex:'PPLACE',header:'产地'
         }
       ];
       
@@ -24,10 +52,10 @@ Ext.define('y.plan.OrdDwdtGrid',{
 			autoSync:false,
 			pageSize:50,
 			autoLoad:true,
-			
+			fields:['ORDORG','SPTYNM','SPSENM','SPBANM','SAMPNO','SAMPNM','PRODNM','ORTYNM','YXGSNM','QYNM','IDSUNM','SUITNO','SUITNM','ORMTQT','PLDATE_COUNT','PLDATE','MLDATE','PPLACE'],
 			proxy:{
 				type: 'ajax',
-			    url : Ext.ContextPath+'/sampleProd/queryPager.do',
+			    url : Ext.ContextPath+'/ordDwdt/queryPager1.do',
 			    headers:{ 'Accept':'application/json;'},
 			    actionMethods: { read: 'POST' },
 			    extraParams:{limit:50},
@@ -86,7 +114,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 		        itemId: 'spclno',
 		        labelWidth:40,
 		        width:120,
-		        showBlank:true,
+		        showBlank:false,
 	            allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
 	            blankText:"大类不允许为空",
@@ -122,6 +150,13 @@ Ext.define('y.plan.OrdDwdtGrid',{
 	            autoLoad:false,
 		        xtype:'pubcodecombo',
 		        tyno:'5'
+		    },{
+		        fieldLabel: '上市批次',
+		        labelWidth:75,
+		  		width:175,
+		        itemId: 'spbano',
+		        xtype:'pubcodecombo',
+		        tyno:'23'
 		    }]
 		});
 		
@@ -129,24 +164,104 @@ Ext.define('y.plan.OrdDwdtGrid',{
 	 	xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
-		        fieldLabel: '生产单位',
-		        labelWidth:60,
-		        width:220,
-		        name: 'prsuno',
-		        itemId: 'prsuno',
-	            xtype:'pubsunocombo'
-		    },Ext.create('Ext.form.ComboBox', {
-			    fieldLabel: '货号状态',
-			    name: 'prod_state',
-		        itemId: 'prod_state',
+		  		itemId:'ortyno',
+				xtype:'ordtycombo',
+				labelWidth:65,
+				 allowBlank: false,
+	            afterLabelTextTpl: Ext.required,
+				//selFirst:true,
+				width:150,
+				value:'DZ',
+				listeners:{
+					select:function( combo, record, eOpts ) {
+//						var ordorg=combo.nextSibling("#ordorg");
+//		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+//		        			ortyno:record.get("ortyno")
+//		        		});
+//		        		ordorg.getStore().reload();
+					}
+				}
+			},Ext.create('Ext.form.ComboBox', {
+			    fieldLabel: '统计类型',
+			    name: 'count_type',
+		        itemId: 'count_type',
 		        labelWidth:60,
 		        width:150,
+		        value:'sampno',
 			    store: Ext.create('Ext.data.Store', {
 				    fields: ['value', 'name'],
 				    data : [
-				    	{"value":"all", "name":"所有"},
-				        {"value":"ok", "name":"已填写"},
-				        {"value":"no", "name":"未填写"}
+				    	{"value":"sampno", "name":"样衣"},
+				        {"value":"yxgsno", "name":"到营销公司"},
+				        {"value":"qyno", "name":"到区域"}
+				    ]
+				}),
+			    queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'value'
+			}),{
+		  		fieldLabel: '营销公司',
+		  		labelWidth:75,
+		  		width:175,
+		  		allowBlank: true,
+	           // afterLabelTextTpl: Ext.required,
+		  		selFirst:false,
+		  		itemId:'yxgsno',
+				xtype:'orgcombo',
+				showBlank:true,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+						var regioncombo=combo.nextSibling("#qyno");
+		        		regioncombo.reload(record.get("orgno"));
+					}
+				}
+			},{
+		  		fieldLabel: '区域',
+		  		labelWidth:45,
+		  		width:170,
+//		  		allowBlank: false,
+//	            afterLabelTextTpl: Ext.required,
+		  		selFirst:false,
+		  		itemId:'qyno',
+				xtype:'orgcombo',
+				autoLoad:false,
+				showBlank:true,
+				listeners:{
+					select:function( combo, record, eOpts ) {
+		        		
+//						var ordorg=combo.nextSibling("#ordorg");
+//		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+//		        			qyno:record.get("orgno")
+//		        		});
+//		        		ordorg.getStore().reload();
+					}
+				}
+			},{
+				fieldLabel: '交货期',
+				xtype:'datefield',
+				itemId: 'sample_date',
+				labelWidth:55,
+				format: 'Y-m-d ',
+		        width:160
+			}]
+	 });
+	  
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[Ext.create('Ext.form.ComboBox', {
+			    fieldLabel: '产地',
+			    name: 'pplace',
+		        itemId: 'pplace',
+		        labelWidth:60,
+		        width:150,
+		        //value:'sampno',
+			    store: Ext.create('Ext.data.Store', {
+				    fields: ['value', 'name'],
+				    data : [
+				    	{"value":"", "name":"所有"},
+				    	{"value":"宁波", "name":"宁波"},
+				        {"value":"珲春", "name":"珲春"}
 				    ]
 				}),
 			    queryMode: 'local',
@@ -159,36 +274,6 @@ Ext.define('y.plan.OrdDwdtGrid',{
 		    	xtype:'textfield'
 		    	
 		    },{
-		    	emptyText:'请输入货号',
-		    	itemId: 'prodnm',
-		    	width:90,
-		    	xtype:'textfield'
-		    	
-		    },Ext.create('Ext.form.ComboBox', {
-			    fieldLabel: '样衣状态',
-			    name: 'sample_state',
-		        itemId: 'sample_state',
-		        labelWidth:60,
-		        width:150,
-			    store: Ext.create('Ext.data.Store', {
-				    fields: ['value', 'name'],
-				    data : [
-				    	{"value":"all", "name":"所有"},
-				        {"value":"ok", "name":"已订货"},
-				        {"value":"no", "name":"未订货"}
-				    ]
-				}),
-				value:'ok',
-			    queryMode: 'local',
-			    displayField: 'name',
-			    valueField: 'value'
-			})]
-	 });
-	  
-	  me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
 				text: '查询',
 				itemId:'reload',
 				disabled:me.disabledAction,
@@ -198,22 +283,25 @@ Ext.define('y.plan.OrdDwdtGrid',{
 				},
 				iconCls: 'icon-refresh'
 			},{
-		  		text: '导出',
-				handler: function(btn){
-					var grid=btn.up("grid");
-					var params=grid.getParams();
-			    	var url=Ext.ContextPath+"/sampleProd/download.do?"+Ext.urlEncode(params);
-			    	window.open(url);
-				},
-				iconCls: 'icon-download-alt'
-		  	},{
-			   text: '导入',
-			   itemId:'onImport',
+			   text: '指定面料交货期',
 			   //hidden:!Permision.canShow('plan_orgdtl_import'),
 				handler: function(btn){
-					me.onImport();
+					me.onMldate();
 				},
-				iconCls: 'icon-upload-alt'
+				iconCls: 'icon-wrench'
+			},{
+		  		text: '指定成衣交货期',
+				handler: function(btn){
+					me.onPldate();
+				},
+				iconCls: 'icon-wrench'
+		  	},{
+			   text: '指定产地',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					me.onPplace();
+				},
+				iconCls: 'icon-wrench'
 			}]
 		});
 		
@@ -262,12 +350,16 @@ Ext.define('y.plan.OrdDwdtGrid',{
 				"params['spclno']":toolbars[0].down("#spclno").getValue(),
 				"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 				"params['spseno']":toolbars[0].down("#spseno").getValue(),
+				"params['spbano']":toolbars[0].down("#spbano").getValue(),
 				
-				"params['prsuno']":toolbars[1].down("#prsuno").getValue(),
-				"params['prod_state']":toolbars[1].down("#prod_state").getValue(),
-				"params['sampnm']":toolbars[1].down("#sampnm").getValue(),
-				"params['prodnm']":toolbars[1].down("#prodnm").getValue(),
-				"params['sample_state']":toolbars[1].down("#sample_state").getValue()
+				"params['ortyno']":toolbars[1].down("#ortyno").getValue(),
+				"params['count_type']":toolbars[1].down("#count_type").getValue(),
+				
+				"params['yxgsno']":toolbars[1].down("#yxgsno").getValue(),
+				"params['qyno']":toolbars[1].down("#qyno").getValue(),
+				"params['sample_date']":toolbars[1].down("#sample_date").getValue(),
+				"params['pplace']":toolbars[2].down("#pplace").getValue(),
+				"params['sampnm']":toolbars[2].down("#sampnm").getValue()
 		};
 		return params;
 	},
@@ -297,57 +389,261 @@ Ext.define('y.plan.OrdDwdtGrid',{
     	});
     	win.show();
     },
-    onImport:function(){
+    onMldate:function(){
 		var me=this;
-		var formpanel=Ext.create('Ext.form.Panel',{
-			items:[{
-		        xtype: 'filefield',
-		        name: 'imageFile',
-		       // id:'photo',
-		        labelWidth:60,
-		        fieldLabel: '文件名',
-		        allowBlank: false,
-		        anchor: '100%',
-		        buttonText: '选择文件...',
-		        listeners:{
-		        	change:function(field, value){
-	
-		        	}
-		        }
-		    }]
-		});
-		
-		var win=Ext.create('Ext.window.Window',{
-			items:[formpanel],
-			modal:true,
-			height:120,
-			width:320,
-			buttons:[{
-				text : '上传',
-				//formBind: true, //only enabled once the form is valid
-	       		//disabled: true,
-				glyph : 0xf0c7,
-				handler : function(button){
-					
-					formpanel.getForm().submit({
-						 waitMsg:'正在上传请稍候',  
-	                     waitTitle:'提示', 
-	                     url:Ext.ContextPath+'/sampleProd/import.do', 
-	                     //method:'POST', 
-	                     success:function(form,action){   	
-	                     	button.up('window').close();
-	                     	me.getStore().reload();
-	                     },
-	                     failure:function(form,action){
-	                     	Ext.Msg.alert("警告",action.result.msg);                    
-	                     }
-					});	
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
 				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
 				}
 			}]
 		});
 		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var mldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						field:'mldate',
+						value:mldate
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ordDwdt/updateField.do',
+						    jsonData:dataes,
+						    params:{
+						    	ormtno:extraParams["params['ormtno']"],
+								ortyno:extraParams["params['ortyno']"],
+								count_type:extraParams["params['count_type']"],
+								yxgsno:extraParams["params['yxgsno']"],
+								qyno:extraParams["params['qyno']"]
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	},
+	onPldate:function(){
+		var me=this;
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定成衣交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var mldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						field:'pldate',
+						value:mldate
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ordDwdt/updateField.do',
+						    jsonData:dataes,
+						    params:{
+						    	ormtno:extraParams["params['ormtno']"],
+								ortyno:extraParams["params['ortyno']"],
+								count_type:extraParams["params['count_type']"],
+								yxgsno:extraParams["params['yxgsno']"],
+								qyno:extraParams["params['qyno']"]
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	},
+    onPplace:function(){
+		var me=this;
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var pplacefield=Ext.create('Ext.form.ComboBox', {
+			    fieldLabel: '产地',
+			    name: 'pplace',
+		        itemId: 'pplace',
+		        labelWidth:60,
+		        width:150,
+		        //value:'sampno',
+			    store: Ext.create('Ext.data.Store', {
+				    fields: ['value', 'name'],
+				    data : [
+				    	//{"value":"", "name":"所有"},
+				    	{"value":"宁波", "name":"宁波"},
+				        {"value":"珲春", "name":"珲春"}
+				    ]
+				}),
+			    queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'value'
+			});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[pplacefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!pplacefield.getValue()){
+				return;
+			}
+			var pplace=pplacefield.getValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						field:'pplace',
+						value:pplace
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ordDwdt/updateField.do',
+						    jsonData:dataes,
+						    params:{
+						    	ormtno:extraParams["params['ormtno']"],
+								ortyno:extraParams["params['ortyno']"],
+								count_type:extraParams["params['count_type']"],
+								yxgsno:extraParams["params['yxgsno']"],
+								qyno:extraParams["params['qyno']"]
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
 	}
-    
    
 });

@@ -324,7 +324,7 @@ Ext.define('y.common.OrgCombo',{
 			},
 			listeners:{
 				load:function(myStore){
-					if(myStore.getCount( ) >0){
+					if(myStore.getCount( ) >0 && me.selFirst){
 						var r=null;
 						if(me.showBlank==true){
 							r=myStore.getAt(1);//第一行是无

@@ -14,5 +14,7 @@ import com.mawujun.repository.IRepository;
 @Repository
 public interface SampleProdRepository extends IRepository<SampleProd, com.youngor.sample.SampleProd.PK>{
 	public  List<SampleProdVO> queryPage( Map<String,Object> params);
+	
+	public List<Map<String,Object>> check_repeat_prodnm();
 
 }

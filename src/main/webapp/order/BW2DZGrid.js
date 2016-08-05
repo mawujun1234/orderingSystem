@@ -329,13 +329,13 @@ Ext.define('y.order.BW2DZGrid',{
 		//订制转备忘
 		Ext.Msg.confirm("消息","是否对选中的数据进行转移!",function(btn){
 			if(btn=='yes'){
-				Ext.getBody().mask("正在处理,请稍候.....");
+				
 				var modles=me.getSelection( ) ;
 				if(!modles || modles.length==0){
 					Ext.Msg.alert("消息","请选择一行或多行!");
 					return;
 				}	
-				
+				Ext.getBody().mask("正在处理,请稍候.....");
 				var dataes=[];
 				for(var i=0;i<modles.length;i++){
 					if(modles[i].get("NUM")){

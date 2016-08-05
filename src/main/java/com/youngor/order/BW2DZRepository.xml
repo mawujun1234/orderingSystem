@@ -7,7 +7,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.order.BW2DZRepository">
 	<sql id="queryPager_sql">
 		SELECT A.ORMTNO,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,D.SAMPNO,D.SAMPNM,C.SUITNO,E3.ITNM AS SUITNM,G.YXGSNM,g.qyno,G.QYNM,
-		       SUM(DECODE(A.ORTYNO,'DZ',C.ORMTQT,0))DZMTQT,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0))BWMTQT--,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0)) NUM
+		       SUM(DECODE(A.ORTYNO,'DZ',C.ORMTQT,0))DZMTQT,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0))BWMTQT,SUM(DECODE(A.ORTYNO,'BW',C.ORMTQT,0)) NUM
 		FROM ORD_ORD A
 		INNER JOIN V_ORD_ORG G ON A.ORDORG=G.ORGNO
 		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
@@ -28,7 +28,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="spseno!=null and spseno!=''">
 			and e.spseno=#{spseno}
 		</if>
-		<if test="sptyno!=null and sptyno!=''">
+		<if test="sampnm!=null and sampnm!=''">
 			and lower(d.sampnm) like lower('%${sampnm}%')
 		</if>
 		<if test="suitno!=null and suitno!=''">

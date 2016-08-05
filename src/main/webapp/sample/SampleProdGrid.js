@@ -21,14 +21,14 @@ Ext.define('y.sample.SampleProdGrid',{
 //		{dataIndex:'prodno',header:'货号代码'
 //        },
 		{dataIndex:'prodnm',header:'货号名称'
-			,editor: {
-	                xtype: 'numberfield',
-	                allowDecimals:false,
-	                selectOnFocus:true 
-	        },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            return value;
-            }
+//			,editor: {
+//	                xtype: 'numberfield',
+//	                allowDecimals:false,
+//	                selectOnFocus:true 
+//	        },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+//	            metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+//	            return value;
+//            }
         },
         {dataIndex:'sample_state',header:'样衣状态'
         	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
