@@ -135,6 +135,12 @@ Ext.onReady(function(){
 							success:function(response){
 								var obj=Ext.decode(response.responseText);
 								sztype.setValue(obj.sztype);
+								//alert(sztype);
+								if(obj.sztype==0){
+				        			panel.down("#sizeVO_auto_box").show();
+				        		} else{
+				        			panel.down("#sizeVO_auto_box").hide();
+				        		}
 							}
 							
 						});
@@ -159,7 +165,7 @@ Ext.onReady(function(){
 					    data:[{id:'0',name:'单规+整箱上报'},{id:'1',name:'单规上报'},{id:'2',name:'整箱上报'}]
 				},
 		        hidden:false,
-				xtype:'combobox'  
+				xtype:'combobox' 
 		    }]
 	});
 	panel.addDocked({
@@ -363,7 +369,8 @@ Ext.onReady(function(){
 				},
 				iconCls: 'icon-refresh'
 			},{
-				text: '自动成箱',
+				text: '初始化成箱',
+				itemId:'sizeVO_auto_box',
 				handler: function(btn){
 					//alert("存储过程还没写!");
 					//return;

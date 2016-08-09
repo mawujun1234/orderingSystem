@@ -499,7 +499,8 @@ public class OrdController {
 	@RequestMapping("/ord/wxtz/queryWx.do")
 	@ResponseBody
 	public Pager<Map<String,Object>> wxtz_queryWx(Pager<Map<String,Object>> pager){
-		return ordService.wxtz_queryWx(pager);
+		pager= ordService.wxtz_queryWx(pager);
+		return pager;
 	}
 	
 	/**

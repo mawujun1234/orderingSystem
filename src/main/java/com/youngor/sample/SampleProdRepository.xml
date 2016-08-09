@@ -68,7 +68,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		)
     </select>
     <!-- 检查是否有货号重复 -->
-    <select id="check_repear_prodnm" resultType="map">
+    <select id="check_repeat_prodnm" resultType="map">
     	select prodnm,suitno,count(prodnm) 
 		from ord_sample_prod
 		group by prodnm,suitno

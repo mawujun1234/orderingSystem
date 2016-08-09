@@ -103,6 +103,7 @@ Ext.onReady(function(){
 		        width:145,
 		        xtype:'pubcodecombo',
 		        tyno:'29',
+		        value:'ZC',
 		        listeners:{
 		       		change:function(field, newValue, oldValue){
 
@@ -128,7 +129,8 @@ Ext.onReady(function(){
 			},{
 		  		text: '导出',
 				handler: function(btn){
-					me.createNew();
+					var grid=btn.up("grid");
+					grid.onExport();
 				},
 				iconCls: 'icon-download-alt'
 		  	}]
@@ -218,6 +220,13 @@ Ext.onReady(function(){
 			"params['idsunm']":toolbars[1].down("#idsunm").getValue()
 		};
 		return params;
+	}
+	
+	grid.onExport=function(){
+		
+		var params=grid.getParams();
+		var url=Ext.ContextPath+"/report/exportMatePurePlan.do?"+Ext.urlEncode(params);
+		window.open(url);
 	}
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{

@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.exception.BusinessException;
-import com.mawujun.exception.DefaulExceptionCode;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
@@ -29,6 +28,10 @@ import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserVO;
 import com.youngor.plan.PlanOrgService;
 import com.youngor.pubcode.PubCodeCache;
+import com.youngor.pubsize.PubSize;
+import com.youngor.pubsize.PubSizeDtl;
+import com.youngor.pubsize.PubSizeDtlRepository;
+import com.youngor.pubsize.PubSizeRepository;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignRepository;
 import com.youngor.sample.SampleDesignStpr;
@@ -65,6 +68,10 @@ public class OrdService extends AbstractService<Ord, String>{
 	private SampleDesignRepository sampleDesignRepository;
 	@Autowired
 	private TpService tpService;
+	@Autowired
+	private  PubSizeRepository pubSizeRepository;
+	@Autowired
+	private PubSizeDtlRepository pubSizeDtlRepository;
 	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -1138,6 +1145,15 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	
 	
+	
+	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
+		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);
+		if(list==null || list.size()==0 || list.size()>1){
+			//throw new BusinessException("订单的状态不对，请先检查!");
+			return "不可操作";
+		}
+		return list.get(0);
+	}
 	/**
 	 * 查询尾箱调整的数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com
@@ -1226,38 +1242,84 @@ public class OrdService extends AbstractService<Ord, String>{
 			return;
 		}
 		Ordszdtl ordszdtl=ordszdtlRepository.get(ordszdtlVO.geetPK());
+		Integer orginal_orbgqt=0;
 		if(ordszdtl==null){
 			ordszdtl=new Ordszdtl();
 			BeanUtils.copyProperties(ordszdtlVO, ordszdtl);
-		}
-		//获取包装上报方式：
-		if(ordszdtlVO.getSztype()==0){//如果是整箱+单规的上报方式，并且输入的是是单规的话，就只修改orszqt，否则就修改orbgqt
-//			//是不是单规箱的数据
-//			if(ordszdtlVO.getIsSTDSZPRDPK()==true){
-//				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
-//			} else {
-//				ordszdtl.setOrszqt(ordszdtlVO.getValue());
-//			}
-			if("PRDPK".equals(ordszdtl.getSizety())){
-				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
-				ordszdtl.setOrszqt(0);
-			} else {
-				ordszdtl.setOrszqt(ordszdtlVO.getValue());
-			}
-			
 		} else {
-			if("PRDPK".equals(ordszdtl.getSizety())){
+			orginal_orbgqt=ordszdtl.getOrbgqt();//修改之前的数量
+		}
+		// 获取包装上报方式：
+		if (ordszdtlVO.getSztype() == 0) {// 如果是整箱+单规的上报方式，并且输入的是是单规的话，就只修改orszqt，否则就修改orbgqt
+			//如果是标准箱，只需要设置orbgqt就可以了
+			if ("PRDPK".equals(ordszdtl.getSizety())) {
 				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+				//同时还要修改剩余的数量
+				sizeVO_checkOrdszdtl(ordszdtlVO,orginal_orbgqt);
+				// ordszdtl.setOrszqt(0);
 			} else {
+				//如果是单规，就设置orszqt，同一行的orgbqt存放的是标准箱用完之后的剩余数量
 				ordszdtl.setOrszqt(ordszdtlVO.getValue());
 			}
-//			//否则orszqt和orbgqt的数量就是一致的
-//			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
-//			ordszdtl.setOrszqt(ordszdtlVO.getValue());
-			
+
+		} else if (ordszdtlVO.getSztype() == 1) {//如果是单规上报
+			// 否则orszqt和orbgqt的数量就是一致的
+			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+			ordszdtl.setOrszqt(ordszdtlVO.getValue());
+		} else {
+			if ("PRDPK".equals(ordszdtl.getSizety())) {
+				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+			} else {
+				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+			}
 		}
 		
+		//throw new BusinessException("测试");
 		ordszdtlRepository.createOrUpdate(ordszdtl);
+	}
+	/**
+	 * 检查输入当标准箱的时候，进行判断剩余的单规数量是否足够分配给这个标准箱PRDPK时，会使用
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public void sizeVO_checkOrdszdtl(OrdszdtlVO ordszdtlVO,Integer orginal_orbgqt){
+		//获取指定样衣编号的剩余规格数量
+		List<Ordszdtl> ordszdtles=ordszdtlRepository.query(Cnd.select()
+				.andEquals(M.Ordszdtl.sizety, "STDSZ")
+				.andEquals(M.Ordszdtl.sampno, ordszdtlVO.getSampno())
+				.andEquals(M.Ordszdtl.mtorno, ordszdtlVO.getMtorno()));
+		
+		//获取指定标准箱中各个规格的分配比例
+		List<PubSizeDtl>  pubSizeDtles=pubSizeDtlRepository.query(Cnd.select().andEquals(M.PubSizeDtl.fszty, "PRDPK")
+				.andEquals(M.PubSizeDtl.sizety, "STDSZ")
+				.andEquals(M.PubSizeDtl.fszno, ordszdtlVO.getSizeno()));
+		//判断是新增了还是减少了
+		Integer xiangcha=ordszdtlVO.getValue()-orginal_orbgqt;
+		for(Ordszdtl ordszdtl:ordszdtles){
+			
+			for(PubSizeDtl pubSizeDtl:pubSizeDtles){
+				if(ordszdtl.getSizeno().equals(pubSizeDtl.getSizeno())){
+					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt()-(xiangcha*pubSizeDtl.getSizeqt()));
+					//判断剩余数量是否足够指定的数量的比配
+					if(ordszdtl.getOrbgqt()<0){
+						PubSize.PK pk=new PubSize.PK();
+						pk.setSizety("STDSZ");
+						pk.setSizeno(ordszdtl.getSizeno());
+						PubSize pubSize=pubSizeRepository.get(pk);
+						throw new BusinessException("剩余数量不足以成箱:"+pubSize.getSizenm()+"("+pubSize.getSizeno()+")");
+					}
+				}
+			}
+		}
+		
+		//如果都允许，就开始更新剩余规格的数量
+		for(Ordszdtl ordszdtl:ordszdtles){
+			//System.out.println(ordszdtl.getOrbgqt());
+			ordszdtlRepository.update(ordszdtl);
+		}
+		
+		
+		
 	}
 	/**
 	 * 规格平衡查询数据
@@ -1285,12 +1347,12 @@ public class OrdService extends AbstractService<Ord, String>{
 					
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
-					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name((String)listmap.get("SPTYNO")));
 					map.put("SPSENO", listmap.get("SPSENO"));
-					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name((String)listmap.get("SPSENO")));
 					map.put("VERSNO", listmap.get("VERSNO"));
 					if(listmap.get("VERSNO")!=null){
-						map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+						map.put("VERSNO_NAME", PubCodeCache.getVersno_name((String)listmap.get("VERSNO")));
 					}
 					
 					map.put("PLSPNO", listmap.get("PLSPNO"));
@@ -1300,7 +1362,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					map.put("ORMTQT", listmap.get("ORMTQT"));
 					map.put("ORSZST", listmap.get("ORSZST"));
 					
-					map.put("PACKQT", listmap.get("PACKQT"));
+					//map.put("PACKQT", listmap.get("PACKQT"));
 					map.put("SUITNO", listmap.get("SUITNO"));
 					map.put("MTORNO", listmap.get("MTORNO"));
 					map.put("MLORNO", listmap.get("MLORNO"));
@@ -1350,6 +1412,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					
 				} else if("PRDPK".equals(listmap.get("SIZETY"))){
 					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));//取ORBGQT（包装数量）作为 标准箱的数量
+					map.put("PRDPK___PACKQT___"+listmap.get("SIZENO"), listmap.get("PACKQT"));
 					
 					//添加 标准箱小计
 					if(listmap.get("ORBGQT")!=null){
@@ -1362,8 +1425,8 @@ public class OrdService extends AbstractService<Ord, String>{
 						if(packqt==null){
 							packqt=new BigDecimal(1);
 						}
-						aaa=aaa.add(ORBGQT);
-						map.put("PRDPK___SUBTOTAL",aaa.multiply(packqt));
+						aaa=aaa.add(ORBGQT.multiply(packqt));
+						map.put("PRDPK___SUBTOTAL",aaa);
 						
 						//兑现数量
 						
@@ -1381,11 +1444,11 @@ public class OrdService extends AbstractService<Ord, String>{
 					map=new HashMap<String,Object>();
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
-					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name((String)listmap.get("SPTYNO")));
 					map.put("SPSENO", listmap.get("SPSENO"));
-					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name((String)listmap.get("SPSENO")));
 					map.put("VERSNO", listmap.get("VERSNO"));
-					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+					map.put("VERSNO_NAME", PubCodeCache.getVersno_name((String)listmap.get("VERSNO")));
 					map.put("PLSPNO", listmap.get("PLSPNO"));
 					map.put("PLSPNM", listmap.get("PLSPNM"));
 					map.put("SAMPNO", listmap.get("SAMPNO"));
@@ -1426,11 +1489,11 @@ public class OrdService extends AbstractService<Ord, String>{
 					map=new HashMap<String,Object>();
 					map.put("ORDORG_NAME", params.get("ordorg_name"));
 					map.put("SPTYNO", listmap.get("SPTYNO"));
-					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name(listmap.get("SPTYNO").toString()));
+					map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name((String)listmap.get("SPTYNO")));
 					map.put("SPSENO", listmap.get("SPSENO"));
-					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name(listmap.get("SPSENO").toString()));
+					map.put("SPSENO_NAME", PubCodeCache.getSpseno_name((String)listmap.get("SPSENO")));
 					map.put("VERSNO", listmap.get("VERSNO"));
-					map.put("VERSNO_NAME", PubCodeCache.getVersno_name(listmap.get("VERSNO").toString()));
+					map.put("VERSNO_NAME", PubCodeCache.getVersno_name((String)listmap.get("VERSNO")));
 					map.put("PLSPNO", listmap.get("PLSPNO"));
 					map.put("PLSPNM", listmap.get("PLSPNM"));
 					map.put("SAMPNO", listmap.get("SAMPNO"));
@@ -1466,6 +1529,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					
 				} else if("PRDPK".equals(listmap.get("SIZETY"))){
 					map.put("PRDPK___"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
+					map.put("PRDPK___PACKQT___"+listmap.get("SIZENO"), listmap.get("PACKQT"));
 					//添加小计
 					if(listmap.get("ORBGQT")!=null){
 						BigDecimal aaa=(BigDecimal)map.get("PRDPK___SUBTOTAL");
@@ -1540,14 +1604,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		ordRepository.order_dl__auto_box(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	
-	public String wxtz_check_stat(String ormtno,String bradno,String spclno) {
-		List<String> list=ordRepository.wxtz_check_stat(ormtno, bradno, spclno);
-		if(list==null || list.size()==0 || list.size()>1){
-			//throw new BusinessException("订单的状态不对，请先检查!");
-			return "不可操作";
-		}
-		return list.get(0);
-	}
+	
 	
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager) {

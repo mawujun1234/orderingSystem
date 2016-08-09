@@ -190,7 +190,7 @@ Ext.define('y.order.WxtzGrid',{
 		  	items:[{
 		        fieldLabel: '订货样衣编号',
 		        labelWidth:85,
-		        itemId: 'sampno',
+		        itemId: 'sampnm',
 	            xtype:'textfield'
 		    },{
 				fieldLabel: '订单状态',
@@ -251,7 +251,7 @@ Ext.define('y.order.WxtzGrid',{
 			"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
 			"params['spseno']":toolbars[0].down("#spseno").getValue(),
 
-			"params['sampno']":toolbars[1].down("#sampno").getValue()
+			"params['sampnm']":toolbars[1].down("#sampnm").getValue()
 			//"params['orstat']":toolbars[1].down("#orstat").getValue()
 		};
 		return params;
@@ -294,24 +294,26 @@ Ext.define('y.order.WxtzGrid',{
 	 * @type
 	 */
 	comp_wx:function(){
-		Ext.Msg.alert("消息","确定进行尾箱调整?",function(btn){
+		var me=this;
+		var extraParams=this.getStore().getProxy().extraParams;
+		Ext.Msg.confirm("消息","确定进行尾箱调整?",function(btn){
 			if(btn=='yes'){
 				Ext.Ajax.request({
 						    url:Ext.ContextPath+'/ord/wxtz/comp_wx.do',
 						    params:{
-								ormtno:me.getStore().getProxy().extraParams["params['ormtno']"],
-								bradno:me.getStore().getProxy().extraParams["params['bradno']"],
-								spclno:me.getStore().getProxy().extraParams["params['spclno']"]
+								ormtno:extraParams["params['ormtno']"],
+								bradno:extraParams["params['bradno']"],
+								spclno:extraParams["params['spclno']"]
 							},
-						    jsonData:data,
+						    //jsonData:data,
 						    method:'POST',
-						    success:function(){
+						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
 									Ext.Msg.alert("消息",obj.msg);
 									return;
 								}
-						    	grid.getStore().reload();
+						    	me.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
 						    }
 						   });
@@ -325,24 +327,26 @@ Ext.define('y.order.WxtzGrid',{
 	 * @type
 	 */
 	comp_wxps:function(){
-		Ext.Msg.alert("消息","确定尾箱调整完成了?",function(btn){
+		var me=this;
+		var extraParams=this.getStore().getProxy().extraParams;
+		Ext.Msg.confirm("消息","确定尾箱调整完成了?",function(btn){
 			if(btn=='yes'){
 				Ext.Ajax.request({
 						    url:Ext.ContextPath+'/ord/wxtz/comp_wxps.do',
 						    params:{
-								ormtno:me.getStore().getProxy().extraParams["params['ormtno']"],
-								bradno:me.getStore().getProxy().extraParams["params['bradno']"],
-								spclno:me.getStore().getProxy().extraParams["params['spclno']"]
+								ormtno:extraParams["params['ormtno']"],
+								bradno:extraParams["params['bradno']"],
+								spclno:extraParams["params['spclno']"]
 							},
-						    jsonData:data,
+						   // jsonData:data,
 						    method:'POST',
-						    success:function(){
+						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
 									Ext.Msg.alert("消息",obj.msg);
 									return;
 								}
-						    	grid.getStore().reload();
+						    	me.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
 						    }
 						   });

@@ -592,7 +592,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
 		WHERE
 		A.ORMTNO=#{ormtno}  and (C.ORMTQT!=0 or C.ORMTQS!=0) and DECODE(A.ORTYNO,'BW',1,1)=1
-		AND E.BRADNO=#{bradno}  AND E.SPCLNO=#{spclno}
+		AND E.BRADNO=#{bradno}  AND E.SPCLNO=#{spclno} and b.isfect=1
 		<if test="sptyno!=null and sptyno!=''">
 			 and e.sptyno=#{sptyno}
 		</if>
@@ -760,7 +760,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04
 		 FROM ORD_ORD A
 		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
-		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO --AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
 		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
 		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
 		INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO
@@ -778,7 +778,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			 and e.spseno=#{spseno}
 		</if>
 		<if test="sampnm!=null and sampnm!=''">
-			and d.sampnm=#{sampnm}
+			and lower(d.sampnm) like lower('%${sampnm}%')
 		</if>
 		GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,D.PACKQT
 
@@ -810,7 +810,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			 and e.spseno=#{spseno}
 		</if>
 		<if test="sampnm!=null and sampnm!=''">
-			and d.sampnm=#{sampnm}
+			and lower(d.sampnm) like lower('%${sampnm}%')
 		</if>
 		GROUP BY A.ORMTNO,E0.ITNM,E1.ITNM,E2.ITNM,D.SAMPNO,D.SAMPNM,D.PACKQT
 		)
@@ -837,9 +837,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		
      </select>
 	<select id="sizeVO_querySizeVOData" resultType="map" parameterType="map">
-     	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,b.packqt,d.ORMTQT
+     	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,d.ORMTQT
      		,d.mtorno ,d.mlorno
-            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,0 as ORSZST,z.PRODNM
+     		,NVL(X.packqt,1) packqt
+            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,nvl(f.orszst,0) ORSZST,z.PRODNM
         from  
         ORD_SAMPLE_PLAN a 
         inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno
@@ -847,9 +848,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         inner join  ORD_ORDDTL d on c.sampno=d.sampno and c.suitno=d.suitno 
         inner join  ORD_ORDHD e on d.mtorno=e.mtorno and d.mlorno=e.mlorno
         left join ORD_ORDSZDTL f on d.sampno=f.sampno and d.mtorno=f.mtorno and d.suitno=f.suitno 
-        left join ord_sample_prod z on b.sampno=z.sampno and a.ormtno=z.ormtno
+        left join ord_sample_prod z on b.sampno=z.sampno and a.ormtno=z.ormtno and c.suitno=z.suitno
+        LEFT JOIN (         SELECT FSZTY,FSZNO,SUM(SIZEQT) packqt FROM ORD_PUB_SIZEDTL WHERE FSZTY='PRDPK' AND SIZETY='STDSZ' 
+         GROUP BY FSZTY,FSZNO) X ON F.SIZETY=X.FSZTY AND F.SIZENO=X.FSZNO 
         where c.suitno=#{suitno} and a.ormtno=#{ormtno}  AND A.BRADNO=#{bradno} and a.spclno=#{spclno} and c.sizegp=#{sizegp}
-			       and d.mtorno=#{mtorno}
+			       and d.mtorno=#{mtorno} and d.ORMTQT!=0
 		<if test="sptyno!=null and sptyno!=''">
 			       		and a.sptyno=#{sptyno}
 		</if>

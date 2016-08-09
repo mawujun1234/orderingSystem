@@ -96,9 +96,9 @@ Ext.define('y.order.SizeVOGrid',{
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
-	            	if(record.get("SZTYPE")==0 ){
+	            	if(record.get("SZTYPE")==0 && record.get("ORSZST")==1){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            	} else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1){
+	            	} else if(record.get("SZTYPE")!=0 && record.get("ORSZST")==0){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	 return value;
@@ -216,12 +216,12 @@ Ext.define('y.order.SizeVOGrid',{
 	  	var aaa=field.split("___");
 	  	
 	  	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
-	    if(record.get("SZTYPE")==0 && aaa[0]!="STDSZ"){
+	    if(record.get("SZTYPE")==0 && aaa[0]=="STDSZ"  && record.get("ORSZST")==0){
 	       //metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	    	return true;
-	    } else if(record.get("SZTYPE")==0 && record.get("ORSZST")!=1){
+	    } else if(record.get("SZTYPE")==0 && aaa[0]=="PRDPK"  && record.get("ORSZST")==1){
 	    	return true;
-	    } else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1){
+	    } else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1) {
 	        return true;
 	    }
 	    return false;
@@ -261,121 +261,98 @@ Ext.define('y.order.SizeVOGrid',{
 				//orszqt:
 	
 			},
-			success:function(){
+			success:function(response){
 				//me.getStore().reload();
-				
-				
-				//更新小计
-				//ORMTQT_NOW兑现数量
-				var ORMTQT_NOW=record.get("ORMTQT_NOW");
-				if(typeof(ORMTQT_NOW)=='undefined'){
-					ORMTQT_NOW=0;
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+				 	Ext.Msg.alert("消息",obj.msg);return;
 				}
-				//如果是整箱上报,需要把数量加到规格合计里面，其他两种情况，只需要算单规就可以了
-				if(record.get("SZTYPE")==2){
-					if(aaa[0]=="STDSZ"){
-						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-						if(typeof(subtotal)=='undefined'){
-							subtotal=0;
-						}
-		
-						subtotal=subtotal-originalValue+value;
-						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-						
-						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-						record.set("ORMTQT_NOW",ORMTQT_NOW);
-						record.commit();
-					} else{
-						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-						if(typeof(subtotal)=='undefined'){
-							subtotal=0;
-						}
-						
-						subtotal=subtotal-(originalValue)+(value);
-						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-						
-						var packqt=record.get("PACKQT");
-						if(typeof(packqt)=='undefined'){
-							subtotal=1;
-						}
-						ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
-						record.set("ORMTQT_NOW",ORMTQT_NOW);
-						record.commit();
-					}
-				} else if(record.get("SZTYPE")==0){//整箱+单规 上报的时候
-					if(aaa[0]=="STDSZ"){
-						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-						if(typeof(subtotal)=='undefined'){
-							subtotal=0;
-						}
-		
-						subtotal=subtotal-originalValue+value;
-						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-						
-						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-						record.set("ORMTQT_NOW",ORMTQT_NOW);
-						record.commit();
-					} else{
-						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-						if(typeof(subtotal)=='undefined'){
-							subtotal=0;
-						}
-						var packqt=record.get("PACKQT");
-						if(typeof(packqt)=='undefined'){
-							subtotal=1;
-						}
-						subtotal=subtotal-(originalValue*packqt)+(value*packqt);
-						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-	
-						record.commit();
-					}
-				} else {
-					if(aaa[0]=="STDSZ"){
-						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-						if(typeof(subtotal)=='undefined'){
-							subtotal=0;
-						}
-		
-						subtotal=subtotal-originalValue+value;
-						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-						
-						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-						record.set("ORMTQT_NOW",ORMTQT_NOW);
-						record.commit();
-					} 
-					record.commit();
-				}
-				//if(aaa[0]=="STDSZ" || aaa[0]=="STDSZPRDPK"){
-//				if(aaa[0]=="STDSZ"){
-//					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//					if(typeof(subtotal)=='undefined'){
-//						subtotal=0;
+				
+				grid.getStore().reload();
+				
+//				//更新小计
+//				//ORMTQT_NOW兑现数量
+//				var ORMTQT_NOW=record.get("ORMTQT_NOW");
+//				if(typeof(ORMTQT_NOW)=='undefined'){
+//					ORMTQT_NOW=0;
+//				}
+//				//如果是整箱上报,需要把数量加到规格合计里面，其他两种情况，只需要算单规就可以了
+//				if(record.get("SZTYPE")==2){
+//					if(aaa[0]=="STDSZ"){
+//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//						if(typeof(subtotal)=='undefined'){
+//							subtotal=0;
+//						}
+//		
+//						subtotal=subtotal-originalValue+value;
+//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//						
+//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+//						record.set("ORMTQT_NOW",ORMTQT_NOW);
+//						record.commit();
+//					} else{
+//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//						if(typeof(subtotal)=='undefined'){
+//							subtotal=0;
+//						}
+//						
+//						subtotal=subtotal-(originalValue)+(value);
+//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//						
+//						//"PRDPK___PACKQT___"+aaa[1]
+//						var packqt=record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
+//						if(typeof(packqt)=='undefined'){
+//							subtotal=1;
+//						}
+//						ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
+//						record.set("ORMTQT_NOW",ORMTQT_NOW);
+//						record.commit();
 //					}
+//				} else if(record.get("SZTYPE")==0){//整箱+单规 上报的时候
+//					if(aaa[0]=="STDSZ"){
+//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//						if(typeof(subtotal)=='undefined'){
+//							subtotal=0;
+//						}
+//		
+//						subtotal=subtotal-originalValue+value;
+//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//						
+//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+//						record.set("ORMTQT_NOW",ORMTQT_NOW);
+//						record.commit();
+//					} else{
+//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//						if(typeof(subtotal)=='undefined'){
+//							subtotal=0;
+//						}
+//						var packqt=record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
+//						//alert(packqt);
+//						if(typeof(packqt)=='undefined'){
+//							subtotal=1;
+//						}
+//						subtotal=subtotal-(originalValue*packqt)+(value*packqt);
+//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
 //	
-//					subtotal=subtotal-originalValue+value;
-//					record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//					
-//					ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-//					record.set("ORMTQT_NOW",ORMTQT_NOW);
-//					record.commit();
-//				} 
-//				else if(aaa[0]=="PRDPK"){
-//					var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//					if(typeof(subtotal)=='undefined'){
-//						subtotal=0;
+//						record.commit();
 //					}
-//					
-//					subtotal=subtotal-(originalValue)+(value);
-//					record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//					
-//					var packqt=record.get("PACKQT");
-//					if(typeof(packqt)=='undefined'){
-//						subtotal=1;
-//					}
-//					ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
-//					record.set("ORMTQT_NOW",ORMTQT_NOW);
+//				} else {
+//					if(aaa[0]=="STDSZ"){
+//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+//						if(typeof(subtotal)=='undefined'){
+//							subtotal=0;
+//						}
+//		
+//						subtotal=subtotal-originalValue+value;
+//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+//						
+//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+//						record.set("ORMTQT_NOW",ORMTQT_NOW);
+//						record.commit();
+//					} 
 //					record.commit();
 //				}
+
 				
 			}
 						

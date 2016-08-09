@@ -36,6 +36,7 @@ public class PubSize extends BaseObject{
 	@FieldDefine(title="规格代码",hidden=false)
 	@Column(length=36)
 	private String sizeno;
+	
 	@FieldDefine(title="规格名称",hidden=false)
 	@Column(length=36)
 	private String sizenm;

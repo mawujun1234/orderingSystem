@@ -391,8 +391,13 @@ Ext.define('y.sample.SampleProdGrid',{
     },
     onImport:function(){
 		var me=this;
+		var extraParams=me.getStore().getProxy().extraParams;
 		var formpanel=Ext.create('Ext.form.Panel',{
 			items:[{
+				xtype:'hiddenfield',
+				name:'spclno',
+				value:extraParams[params['spclno']]
+			},{
 		        xtype: 'filefield',
 		        name: 'imageFile',
 		       // id:'photo',

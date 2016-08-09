@@ -48,6 +48,7 @@ public class BW2DZService {
 				orddtl.setSampno(sampno);
 				orddtl.setSuitno(suitno);
 				orddtl.setOrmtqs(0);
+				orddtl.setOrmtqt(0);
 				//orddtl.setOrmtqt(Math.abs(num));	
 				//获取mlorno，mlorvn
 				param.put("mtorno", dz_mtorno);

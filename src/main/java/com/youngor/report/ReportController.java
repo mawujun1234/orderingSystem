@@ -3,15 +3,27 @@ package com.youngor.report;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -57,6 +69,102 @@ public class ReportController {
 
 		return pager;
 	}
+	
+	@RequestMapping("/report/exportMatePurePlan.do")
+	@ResponseBody
+	public  void exportMatePurePlan( MapParams params,HttpServletRequest request,HttpServletResponse response) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("报表");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		titles.put("SAMPNM", "订货样衣编号");
+		titles.put("PRODNM", "产品货号");
+		titles.put("IDSUNM","原供应商");
+		titles.put("NWSUNM","新供应商");
+		titles.put("MTTYPE","进口/国产");
+		titles.put("MATENO","供应商面料货号");
+		titles.put("MLITNO","面料货号");
+		titles.put("MATESO","主料/拼料");
+		titles.put("PLDATE","计划成衣交期");
+		titles.put("MLDATE","计划面料交期");
+		titles.put("MTPUPR","面料单价");
+		titles.put("HTTRPR","合同单价");
+		titles.put("MTCOMP","面料成分");
+		titles.put("YARMCT","纱支针数");
+		titles.put("GRAMWT","克重密度");
+		titles.put("MLWDTH","门幅");
+		titles.put("ORMTQT","下单件数");
+		titles.put("MTCNQT","单耗");
+		titles.put("ORMLQT","下单米数");
+		titles.put("HTTRQT","合同数量");
+		titles.put("HTORDT","合同交期");
+		titles.put("SPSEANM","季节");
+		titles.put("SPBANM","上市批次");
+		titles.put("COLRNM","颜色");
+		titles.put("VERSNM","版型");
+		titles.put("SPBSENM","大系列");
+		titles.put("SPCLNM","大类");
+		titles.put("SPTYNM","小类");
+		titles.put("SPSENM","系列");
+
+
+
+		crreateTitle_export(wb,sheet1,titles);
+		crreateData_export(wb,sheet1,titles,params);
+		
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("面料采购计划表".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	
+	private void crreateTitle_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
+		CellStyle cellStyle = wb.createCellStyle();
+		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+	    cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
+		
+		Font font = wb.createFont();
+	    //font.setFontHeightInPoints((short)18);
+	    font.setFontName("Courier New");
+	    cellStyle.setFont(font);
+		 
+		Row title = sheet1.createRow((short)0);
+		
+		int i=0;
+		for(Entry<String,String> entry:titles.entrySet()){
+			Cell cell = title.createCell(i);
+			cell.setCellValue(entry.getValue());
+			cell.setCellStyle(cellStyle);
+			i++;
+		}
+		
+	}
+	private void crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
+		
+		List<OrderNumTotal> list=null;//orderNumTotalRepository.query(params.getParams());
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			OrderNumTotal orderNumTotal=list.get(i);
+			Row row = sheet1.createRow((short)i+1);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				String get_name="get"+StringUtils.capitalize(entry.getKey());
+				Object value=ReflectionUtils.findMethod(OrderNumTotal.class, get_name).invoke(orderNumTotal);
+				if(value!=null){
+					cell.setCellValue(value.toString());
+				}
+			}
+		}
+	}
+	
 	/**
 	 * 双击面料计划表的的时候，弹出框
 	 * @author mawujun qq:16064988 mawujun1234@163.com
