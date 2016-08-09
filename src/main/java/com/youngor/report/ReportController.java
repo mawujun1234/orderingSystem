@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,7 +15,6 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -23,7 +24,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -56,6 +56,82 @@ public class ReportController {
 		List<Map<String,Object>> list=pager.getRoot();
 
 		return pager;
+	}
+	@RequestMapping("/report/exportClothPurePlan.do")
+	@ResponseBody
+	public  void exportClothPurePlan( MapParams params,HttpServletRequest request,HttpServletResponse response) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("报表");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		titles.put("SAMPNM", "订货样衣编号");
+		
+		titles.put("SPCLNM","大类");
+		titles.put("SPTYNM","小类");
+		titles.put("SPSENM","系列");
+		titles.put("SPRSENM","风格");
+		titles.put("SPSEANM","季节");
+		titles.put("SPBANM","上市批次");
+		titles.put("SAMPNM","订货样衣编号");
+		titles.put("PRODNM","成品货号");
+		titles.put("GUSTNO","客供编号");
+		titles.put("COLRNM","颜色");
+		titles.put("MTTYPE","进口/国产");
+		titles.put("MTCOMP","面料成分");
+		titles.put("YARMCT","纱支");
+		titles.put("GRAMWT","克重");
+		titles.put("DESP","规格版型特殊说明");
+		titles.put("SPCTPR","成衣原价");
+		titles.put("aaaa","新成本价");
+		titles.put("SPFTPR","出厂价");
+		titles.put("SPRTPR","零售价");
+		titles.put("PLDTCT","交货批次");
+		titles.put("PLDATE","成衣交期");
+		titles.put("IDSUNM","生产单位");
+		titles.put("SPMTNM","生产类型");
+		titles.put("ORMTQT","订货总量");
+
+
+
+		crreateTitle_exportMatePurePlan(wb,sheet1,titles);
+		crreateData_exportClothPurePlan(wb,sheet1,titles,params);
+		
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("成衣采购计划表".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
+	}
+	private void crreateData_exportClothPurePlan(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
+		
+		List<Map<String,Object>> list=reportRepository.queryClothPurePlan(params.getParams());
+		if(list==null || list.size()==0){
+			return;
+		}
+		for(int i=0;i<list.size();i++){
+			Map<String,Object> map=list.get(i);
+			Row row = sheet1.createRow((short)i+1);
+			int j=0;
+			for(Entry<String,String> entry:titles.entrySet()){
+				Cell cell = row.createCell(j);
+				j++;
+				//String get_name="get"+StringUtils.capitalize(entry.getKey());
+				//Object value=ReflectionUtils.findMethod(OrderNumTotal.class, get_name).invoke(orderNumTotal);
+				Object value=map.get(entry.getKey());
+				if(value!=null){
+					cell.setCellValue(value.toString());
+//					if(value instanceof BigDecimal){
+//						//cell.setCellValue(((BigDecimal)value).setScale(2, RoundingMode.HALF_UP).doubleValue());
+//						System.out.println(((BigDecimal)value).setScale(2, RoundingMode.HALF_UP));
+//						cell.setCellValue(((BigDecimal)value).setScale(2, RoundingMode.HALF_UP).toString());
+//					} else {
+//						cell.setCellValue(value.toString());
+//					}
+					
+				}
+			}
+		}
 	}
 	
 	@RequestMapping("/report/queryMatePurePlan.do")
@@ -108,8 +184,8 @@ public class ReportController {
 
 
 
-		crreateTitle_export(wb,sheet1,titles);
-		crreateData_export(wb,sheet1,titles,params);
+		crreateTitle_exportMatePurePlan(wb,sheet1,titles);
+		crreateData_exportMatePurePlan(wb,sheet1,titles,params);
 		
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
         response.setHeader("Content-disposition", "attachment;filename="+new String("面料采购计划表".getBytes(),"ISO8859-1")+".xlsx");    
@@ -119,7 +195,7 @@ public class ReportController {
         ouputStream.close();    
 	}
 	
-	private void crreateTitle_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
+	private void crreateTitle_exportMatePurePlan(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles){
 		CellStyle cellStyle = wb.createCellStyle();
 		cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
 	    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
@@ -142,22 +218,23 @@ public class ReportController {
 		}
 		
 	}
-	private void crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	private void crreateData_exportMatePurePlan(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		
-		List<OrderNumTotal> list=null;//orderNumTotalRepository.query(params.getParams());
+		List<Map<String,Object>> list=reportRepository.queryMatePurePlan(params.getParams());
 		if(list==null || list.size()==0){
 			return;
 		}
 		for(int i=0;i<list.size();i++){
-			OrderNumTotal orderNumTotal=list.get(i);
+			Map<String,Object> map=list.get(i);
 			Row row = sheet1.createRow((short)i+1);
 			int j=0;
 			for(Entry<String,String> entry:titles.entrySet()){
 				Cell cell = row.createCell(j);
 				j++;
-				String get_name="get"+StringUtils.capitalize(entry.getKey());
-				Object value=ReflectionUtils.findMethod(OrderNumTotal.class, get_name).invoke(orderNumTotal);
+				//String get_name="get"+StringUtils.capitalize(entry.getKey());
+				//Object value=ReflectionUtils.findMethod(OrderNumTotal.class, get_name).invoke(orderNumTotal);
+				Object value=map.get(entry.getKey());
 				if(value!=null){
 					cell.setCellValue(value.toString());
 				}
@@ -172,6 +249,8 @@ public class ReportController {
 	 * @param htitno
 	 * @return
 	 */
+	@RequestMapping("/report/query_mate_podtl.do")
+	@ResponseBody
 	public  List<Map<String,Object>> query_mate_podtl(String ormtno,String htitno) {
 		return reportRepository.query_mate_podtl(ormtno, htitno);
 	}

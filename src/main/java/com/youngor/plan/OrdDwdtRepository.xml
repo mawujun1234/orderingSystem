@@ -6,7 +6,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.plan.OrdDwdtRepository">
 	<sql id="queryPager1_sql">	
-		SELECT M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,' ')YXGSNM,DECODE('${count_type}','qyno',M.QYNM,' ')QYNM,M.SUITNO,
+		SELECT M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,'qyno',M.YXGSNM,' ')YXGSNM,DECODE('${count_type}','qyno',M.QYNM,' ')QYNM,M.SUITNO,
 		     SUM(M.ORMTQT)ORMTQT,COUNT(DISTINCT W.PLDATE)PLDATE_COUNT,min(W.PLDATE) PLDATE,MIN(W.MLDATE)MLDATE,MAX(W.PPLACE)PPLACE 
 		FROM
 		 (SELECT A.ORMTNO,A.ORTYNO,T.ORTYNM,E1.ITNM AS SPTYNM,E2.ITNM AS SPSENM,E23.ITNM AS SPBANM,H.PRSUNO,D.SAMPNM,G.QYNO,G.YXGSNO,G.YXGSNM,G.QYNM,C.SAMPNO,C.SUITNO,SUM(C.ORMTQT)ORMTQT 
@@ -60,7 +60,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="pplace!=null and pplace!=''">
 		  	 and w.pplace=#{pplace} 
 		</if>
-		GROUP BY  M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,' '),DECODE('${count_type}','qyno',M.QYNM,' '),M.SUITNO
+		GROUP BY  M.SPTYNM,M.SPSENM,M.SPBANM,M.SAMPNO,M.SAMPNM,P.PRODNM,S.IDSUNM,M.ORTYNM,DECODE('${count_type}','yxgsno',M.YXGSNM,'qyno',M.YXGSNM,' '),DECODE('${count_type}','qyno',M.QYNM,' '),M.SUITNO
 
 	</sql>
 	<select id="queryPager1" resultType="map" parameterType="map">

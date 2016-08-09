@@ -1,6 +1,31 @@
 
 Ext.onReady(function(){
-	
+	 var store=Ext.create('Ext.data.Store',{
+			autoSync:false,
+			pageSize:50,
+			autoLoad:false,
+			fields:['SPCLNM','SPTYNM','SPSENM','SPRSENM','SPSEANM','SPBANM','SAMPNM',
+			'PRODNM','GUSTNO','COLRNM','MTTYPE','MTCOMP','YARMCT','GRAMWT',
+			'DESP','SPCTPR','aaaa','SPFTPR','SPRTPR','PLDTCT','PLDATE','IDSUNM','SPMTNM','ORMTQT'],
+			proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/report/queryClothPurePlan.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    extraParams:{limit:50},
+			    reader:{
+					type:'json',
+					rootProperty:'root',
+					successProperty:'success',
+					totalProperty:'total'
+				}
+			},
+			listeners:{
+				load:function(store,records){
+				
+				}
+			}
+	});
 	
 	var dockedItems=[];
 	
@@ -103,6 +128,7 @@ Ext.onReady(function(){
 		        width:145,
 		        xtype:'pubcodecombo',
 		        tyno:'29',
+		        value:'WG',
 		        listeners:{
 		       		change:function(field, newValue, oldValue){
 
@@ -128,7 +154,8 @@ Ext.onReady(function(){
 			},{
 		  		text: '导出',
 				handler: function(btn){
-					me.createNew();
+					var grid=btn.up("grid");
+					grid.onExport();
 				},
 				iconCls: 'icon-download-alt'
 		  	}]
@@ -160,32 +187,7 @@ Ext.onReady(function(){
 //		});
 //	  });
 	  
-	 var store=Ext.create('Ext.data.Store',{
-			autoSync:false,
-			pageSize:50,
-			autoLoad:false,
-			fields:['SPCLNM','SPTYNM','SPSENM','SPRSENM','SPSEANM','SPBANM','SAMPNM',
-			'PRODNM','GUSTNO','COLRNM','MTTYPE','MTCOMP','YARMCT','GRAMWT',
-			'DESP','SPCTPR','aaaa','SPFTPR','SPRTPR','PLDTCT','PLDATE','IDSUNM','SPMTNM','ORMTQT'],
-			proxy:{
-				type: 'ajax',
-			    url : Ext.ContextPath+'/report/queryClothPurePlan.do',
-			    headers:{ 'Accept':'application/json;'},
-			    actionMethods: { read: 'POST' },
-			    extraParams:{limit:50},
-			    reader:{
-					type:'json',
-					rootProperty:'root',
-					successProperty:'success',
-					totalProperty:'total'
-				}
-			},
-			listeners:{
-				load:function(store,records){
-				
-				}
-			}
-	});
+	
 	var grid=Ext.create('Ext.grid.Panel',{
 		region:'center',
 		columnLines :true,
@@ -237,6 +239,13 @@ Ext.onReady(function(){
 			"params['idsunm']":toolbars[1].down("#idsunm").getValue()
 		};
 		return params;
+	}
+	
+	grid.onExport=function(){
+		
+		var params=grid.getParams();
+		var url=Ext.ContextPath+"/report/exportClothPurePlan.do?"+Ext.urlEncode(params);
+		window.open(url);
 	}
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{

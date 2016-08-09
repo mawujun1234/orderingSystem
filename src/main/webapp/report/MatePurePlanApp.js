@@ -1,6 +1,31 @@
 
 Ext.onReady(function(){
-	
+	 var store=Ext.create('Ext.data.Store',{
+			autoSync:false,
+			pageSize:50,
+			autoLoad:false,
+			fields:['SAMPNM','PRODNM','IDSUNM','NWSUNM','MTTYPE','MATENO','MLITNO','MATESO','PLDATE','MLDATE','MTPUPR',
+				'MTCOMP','YARMCT','MLWDTH','ORMTQT','MTCNQT','ORMLQT','HTTRQT','HTORDT',
+				'SPSEANM','COLRNM','VERSNM','SPBSENM','SPCLNM','SPTYNM','SPSENM'],
+			proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/report/queryMatePurePlan.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    extraParams:{limit:50},
+			    reader:{
+					type:'json',
+					rootProperty:'root',
+					successProperty:'success',
+					totalProperty:'total'
+				}
+			},
+			listeners:{
+				load:function(store,records){
+				
+				}
+			}
+	});
 	
 	var dockedItems=[];
 	
@@ -138,32 +163,7 @@ Ext.onReady(function(){
 
 
 	  
-	 var store=Ext.create('Ext.data.Store',{
-			autoSync:false,
-			pageSize:50,
-			autoLoad:false,
-			fields:['SAMPNM','PRODNM','IDSUNM','NWSUNM','MTTYPE','MATENO','MLITNO','MATESO','PLDATE','MLDATE','MTPUPR',
-				'MTCOMP','YARMCT','MLWDTH','ORMTQT','MTCNQT','ORMLQT','HTTRQT','HTORDT',
-				'SPSEANM','COLRNM','VERSNM','SPBSENM','SPCLNM','SPTYNM','SPSENM'],
-			proxy:{
-				type: 'ajax',
-			    url : Ext.ContextPath+'/report/queryMatePurePlan.do',
-			    headers:{ 'Accept':'application/json;'},
-			    actionMethods: { read: 'POST' },
-			    extraParams:{limit:50},
-			    reader:{
-					type:'json',
-					rootProperty:'root',
-					successProperty:'success',
-					totalProperty:'total'
-				}
-			},
-			listeners:{
-				load:function(store,records){
-				
-				}
-			}
-	});
+	
 	var grid=Ext.create('Ext.grid.Panel',{
 		region:'center',
 		columnLines :true,
@@ -228,6 +228,66 @@ Ext.onReady(function(){
 		var url=Ext.ContextPath+"/report/exportMatePurePlan.do?"+Ext.urlEncode(params);
 		window.open(url);
 	}
+	
+	
+	
+	 var htstore=Ext.create('Ext.data.Store',{
+			autoSync:false,
+			pageSize:50,
+			autoLoad:false,
+			fields:['HTORMT','HTITCL','HTITNO','HTSEQN','HTTRQT','HTTRPR','HTORDT','HTMARK','HTRGDT','HTRDDT'],
+			proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/report/query_mate_podtl.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    extraParams:{limit:50},
+			    reader:{
+					type:'json',
+					rootProperty:'root',
+					successProperty:'success',
+					totalProperty:'total'
+				}
+			},
+			listeners:{
+				load:function(store,records){
+				
+				}
+			}
+	});
+	
+	grid.on("itemdblclick",function(view , record , item , index , e){
+		htstore.getProxy().extraParams={
+			ormtno:grid.getStore().getProxy().extraParams["params['ormtno']"],
+			htitno:record.get("MLITNO")
+		};
+		htstore.reload();
+		var htgrid=Ext.create('Ext.grid.Panel',{
+			columnLines :true,
+			stripeRows:true,
+			store:htstore,
+			columns:[
+				{xtype: 'rownumberer'},
+				{dataIndex:'HTITNO',header:'面料货号'},
+				{dataIndex:'HTSEQN',header:'合同序号'},
+				{dataIndex:'HTTRQT',header:'合同数量'},
+				{dataIndex:'HTTRPR',header:'合同单价'},
+				{dataIndex:'HTORDT',header:'合同交期'},
+				{dataIndex:'HTMARK',header:'备注'},
+				{dataIndex:'HTRGDT',header:'维护日期'},
+				{dataIndex:'HTRDDT',header:'导入日期'}
+
+			]
+		});
+		var win=Ext.create('Ext.window.Window',{
+			layout:'fit',
+			items:[htgrid],
+			width:600,
+			height:350,
+			modal:true
+		});
+		win.show();
+	});
 	
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'border',

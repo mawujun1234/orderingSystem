@@ -15,8 +15,10 @@ import com.mawujun.utils.page.Pager;
 @Repository
 public interface ReportRepository {
 	public  Pager<Map<String,Object>> queryClothPurePlan( Pager<Map<String,Object>> pager);
+	public  List<Map<String,Object>> queryClothPurePlan( Map<String,Object> params);
 	
 	public  Pager<Map<String,Object>> queryMatePurePlan( Pager<Map<String,Object>> pager);
+	public  List<Map<String,Object>> queryMatePurePlan( Map<String,Object> params);
 	public  List<Map<String,Object>> query_mate_podtl(@Param("ormtno")String ormtno,@Param("htitno")String htitno);
 	
 	public  Pager<Map<String,Object>> queryOrderTotalPrint( Pager<Map<String,Object>> pager);
