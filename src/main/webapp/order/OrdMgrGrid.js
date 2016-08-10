@@ -207,11 +207,11 @@ Ext.define('y.order.OrdMgrGrid',{
 				fieldLabel: '渠道类型',
 				labelWidth:65,
 				width:150,
-//				allowBlank: false,
+				showBlank: true,
 //	            afterLabelTextTpl: Ext.required,
 				itemId: 'channo',
 				xtype:'channocombo',
-				value:'QY',
+				//value:'QY',
 				listeners:{
 					select:function( combo, record, eOpts ) {
 		        		
