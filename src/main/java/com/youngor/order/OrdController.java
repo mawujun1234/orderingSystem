@@ -145,9 +145,10 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/ordMgr/process2.do")
 	@ResponseBody
-	public String ordMgr_process2(String[] mlornoes ) {
+	//public String ordMgr_process2(String[] mlornoes ) {
+	public String ordMgr_process2(@RequestBody List<Map<String,String>> params ) {
 		//
-		ordService.ordMgr_process2(mlornoes);
+		ordService.ordMgr_process2(params);
 		return "{success:true}";
 	}
 	/**
@@ -158,8 +159,9 @@ public class OrdController {
 	 */
 	@RequestMapping("/ord/ordMgr/back.do")
 	@ResponseBody
-	public String ordMgr_back(String[] mlornoes ) {
-		ordService.ordMgr_back(mlornoes);
+	//public String ordMgr_back(String[] mlornoes ) {
+	public String ordMgr_back(@RequestBody List<Map<String,String>> params) {
+		ordService.ordMgr_back(params);
 		return "{success:true}";
 	}
 	/**
@@ -230,7 +232,13 @@ public class OrdController {
 	@ResponseBody
 	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno,Boolean showBlank) {
 		//return null;
-		List<Org> orges= ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
+		List<Org> orges=new ArrayList<Org>();
+		if(qyno==null || "".equals(qyno)){
+			
+		} else {
+			orges= ordService.queryOrdorg(ormtno,qyno,channo,ortyno);
+		}
+		
 		if(showBlank!=null && showBlank==true){
 			Org org=new Org();
 			org.setOrgno("");

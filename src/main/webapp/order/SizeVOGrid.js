@@ -1,3 +1,5 @@
+
+
 Ext.define('y.order.SizeVOGrid',{
 	extend:'Ext.grid.Panel',
 	requires: [
@@ -10,6 +12,12 @@ Ext.define('y.order.SizeVOGrid',{
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
+      	{dataIndex:'SAMPNO',header:'图片',width:55
+      		,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	 
+	            	 return "<a href='#' onclick='clickShowPhoto(\""+value+"\")'>查看</a>";
+            }
+        },
       	{dataIndex:'ORDORG_NAME',header:'订货单位'
         },
         {dataIndex:'SPTYNO_NAME',header:'小类'
@@ -268,60 +276,64 @@ Ext.define('y.order.SizeVOGrid',{
 				 	Ext.Msg.alert("消息",obj.msg);return;
 				}
 				
-				grid.getStore().reload();
+				if(record.get("SZTYPE")==0){
+					
+				}
 				
-//				//更新小计
-//				//ORMTQT_NOW兑现数量
-//				var ORMTQT_NOW=record.get("ORMTQT_NOW");
-//				if(typeof(ORMTQT_NOW)=='undefined'){
-//					ORMTQT_NOW=0;
-//				}
-//				//如果是整箱上报,需要把数量加到规格合计里面，其他两种情况，只需要算单规就可以了
-//				if(record.get("SZTYPE")==2){
-//					if(aaa[0]=="STDSZ"){
-//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//						if(typeof(subtotal)=='undefined'){
-//							subtotal=0;
-//						}
-//		
-//						subtotal=subtotal-originalValue+value;
-//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//						
-//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-//						record.set("ORMTQT_NOW",ORMTQT_NOW);
-//						record.commit();
-//					} else{
-//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//						if(typeof(subtotal)=='undefined'){
-//							subtotal=0;
-//						}
-//						
-//						subtotal=subtotal-(originalValue)+(value);
-//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//						
-//						//"PRDPK___PACKQT___"+aaa[1]
-//						var packqt=record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
-//						if(typeof(packqt)=='undefined'){
-//							subtotal=1;
-//						}
-//						ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
-//						record.set("ORMTQT_NOW",ORMTQT_NOW);
-//						record.commit();
-//					}
-//				} else if(record.get("SZTYPE")==0){//整箱+单规 上报的时候
-//					if(aaa[0]=="STDSZ"){
-//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//						if(typeof(subtotal)=='undefined'){
-//							subtotal=0;
-//						}
-//		
-//						subtotal=subtotal-originalValue+value;
-//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//						
-//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-//						record.set("ORMTQT_NOW",ORMTQT_NOW);
-//						record.commit();
-//					} else{
+				
+				//更新小计
+				//ORMTQT_NOW兑现数量
+				var ORMTQT_NOW=record.get("ORMTQT_NOW");
+				if(typeof(ORMTQT_NOW)=='undefined'){
+					ORMTQT_NOW=0;
+				}
+				//如果是整箱上报,需要把数量加到规格合计里面，其他两种情况，只需要算单规就可以了
+				if(record.get("SZTYPE")==2){
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} else{
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+						
+						subtotal=subtotal-(originalValue)+(value);
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						//"PRDPK___PACKQT___"+aaa[1]
+						var packqt=record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
+						if(typeof(packqt)=='undefined'){
+							subtotal=1;
+						}
+						ORMTQT_NOW=ORMTQT_NOW-(originalValue*packqt)+(value*packqt);
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					}
+				} else if(record.get("SZTYPE")==0){//整箱+单规 上报的时候
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} else{
+						grid.getStore().reload();
 //						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
 //						if(typeof(subtotal)=='undefined'){
 //							subtotal=0;
@@ -335,23 +347,23 @@ Ext.define('y.order.SizeVOGrid',{
 //						record.set(aaa[0]+"___SUBTOTAL",subtotal);
 //	
 //						record.commit();
-//					}
-//				} else {
-//					if(aaa[0]=="STDSZ"){
-//						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
-//						if(typeof(subtotal)=='undefined'){
-//							subtotal=0;
-//						}
-//		
-//						subtotal=subtotal-originalValue+value;
-//						record.set(aaa[0]+"___SUBTOTAL",subtotal);
-//						
-//						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
-//						record.set("ORMTQT_NOW",ORMTQT_NOW);
-//						record.commit();
-//					} 
-//					record.commit();
-//				}
+					}
+				} else {
+					if(aaa[0]=="STDSZ"){
+						var subtotal=record.get(aaa[0]+"___SUBTOTAL");
+						if(typeof(subtotal)=='undefined'){
+							subtotal=0;
+						}
+		
+						subtotal=subtotal-originalValue+value;
+						record.set(aaa[0]+"___SUBTOTAL",subtotal);
+						
+						ORMTQT_NOW=ORMTQT_NOW-originalValue+value;
+						record.set("ORMTQT_NOW",ORMTQT_NOW);
+						record.commit();
+					} 
+					record.commit();
+				}
 
 				
 			}

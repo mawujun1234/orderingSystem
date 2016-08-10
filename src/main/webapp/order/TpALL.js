@@ -220,6 +220,12 @@ Ext.onReady(function(){
 		plugins : [cellEditing],
 		columns:[
 			{xtype: 'rownumberer'},
+			{dataIndex:'SAMPNO',header:'图片',width:55
+	      		,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+		            	 
+		            	 return "<a href='#' onclick='clickShowPhoto(\""+value+"\")'>查看</a>";
+	            }
+	        },
 			{dataIndex:'SPTYNO_NAME',header:'小类'
 	        },
 	        {dataIndex:'SPSENO_NAME',header:'系列'

@@ -40,8 +40,8 @@ public class OrdDwdtController {
 	
 	@RequestMapping("/ordDwdt/updateField.do")
 	@ResponseBody
-	public  String onMldate(@RequestBody List<Map<String,Object>> params,String ormtno,String ortyno,String count_type,String yxgsno,String qyno ) {
-		ordDwdtService.updateField(params, ormtno, ortyno, count_type, yxgsno, qyno);
+	public  String onMldate(@RequestBody List<Map<String,Object>> params,String ormtno,String ortyno,String count_type) {
+		ordDwdtService.updateField(params, ormtno, ortyno, count_type);
 		return "{success:true}";
 	}
 //	@RequestMapping("/ordDwdt/onPldate.do")

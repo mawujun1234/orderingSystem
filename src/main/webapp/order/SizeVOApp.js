@@ -5,6 +5,7 @@ Ext.onReady(function(){
 		height:120
 	});
 	window.load_num=0;
+	window.ordorg_load_num=0;
 	panel.addDocked({
 		xtype: 'toolbar',
 	  	dock:'top',
@@ -19,7 +20,9 @@ Ext.onReady(function(){
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			ormtno:record.get("ormtno")
 		        		});
-		        		ordorg.getStore().reload();
+		        		//ordorg.getStore().reload();
+		        		window.ordorg_load_num++;
+		        		reloadOrdorg();
 		        		
 		        		window.load_num++;
 						reloadSizegp();
@@ -59,7 +62,9 @@ Ext.onReady(function(){
 		        			qyno:record.get("orgno"),
 		        			channo:channo.getValue()
 		        		});
-		        		ordorg.getStore().reload();
+		        		//ordorg.getStore().reload();
+		        		window.ordorg_load_num++;
+		        		reloadOrdorg();
 					}
 				}
 			},{
@@ -78,7 +83,9 @@ Ext.onReady(function(){
 		        		ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
 		        			channo:record.get("channo")
 		        		});
-		        		ordorg.getStore().reload();
+		        		//ordorg.getStore().reload();
+		        		window.ordorg_load_num++;
+		        		reloadOrdorg();
 					}
 				}
 			 },{
@@ -435,6 +442,16 @@ Ext.onReady(function(){
 				iconCls: 'icon-edit'
 			}]
 	});
+	
+	function reloadOrdorg(){
+		if(window.ordorg_load_num>1){
+			var ordorg=panel.down("#ordorg");//combo.nextSibling("#ordorg");
+			//ordorg.getStore().getProxy().extraParams=Ext.apply(ordorg.getStore().getProxy().extraParams,{
+			//        ormtno:record.get("ormtno")
+			//});
+			ordorg.getStore().reload();
+		}
+	}
 	
 	function reloadSizegp(){
 		//console.log(window.load_num);

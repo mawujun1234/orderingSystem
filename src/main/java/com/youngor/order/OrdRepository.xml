@@ -443,7 +443,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      -->
      <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
-     	select b.* from ORD_ORD a,V_ORD_ORG b
+     	select distinct b.* from ORD_ORD a,V_ORD_ORG b
       	where a.ORDORG=b.orgno  
       	<if test="channo!=null and channo!=''">
 			and a.channo=#{channo}
@@ -760,7 +760,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		   SUM(DECODE(C.SUITNO,'T02',C.ORMTQT,0))ORMTQT02,SUM(DECODE(C.SUITNO,'T04',C.ORMTQT,0))ORMTQT04
 		 FROM ORD_ORD A
 		INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
-		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO --AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
+		LEFT JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO --AND B.MLORVN=C.MLORVN
 		INNER JOIN ORD_SAMPLE_DESIGN D ON C.SAMPNO=D.SAMPNO
 		INNER JOIN ORD_SAMPLE_PLAN E ON D.PLSPNO=E.PLSPNO AND A.ORMTNO=E.ORMTNO
 		INNER JOIN ORD_PUB_CODE E0 ON E0.TYNO='0' AND E0.ITNO=E.SPCLNO
@@ -868,6 +868,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="szstat!=null and szstat!=''">
 			       		and e.szstat =#{szstat}
 		</if>
+		order by a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno
 	</select>
 	
 	 <!--自动成箱的时候，判断规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱； -->
@@ -882,6 +883,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		) y
 		on x.sampno=y.sampno  
 		where x.ormtqt!=y.orszqt
+    </select>
+    <select id="sizeVO_size_ap_check_orstat" resultType="int" parameterType="map">
+    select min(orstat) from ord_ord a,ord_ordhd b
+      where a.mtorno=b.mtorno and a.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno} and a.ortyno=#{ortyno}
+      and a.ormtno=#{ormtno}
     </select>
      <!--
       <select id="sizeVO_querySizeVOData" resultType="map" parameterType="map">

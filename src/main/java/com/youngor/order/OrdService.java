@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
@@ -562,8 +563,15 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
-	public void ordMgr_process2(String[] mlornoes) {
-		if(mlornoes!=null && mlornoes.length>0){
+	//public void ordMgr_process2(String[] mlornoes) {
+	public void ordMgr_process2(List<Map<String,String>> params) {
+		if(params!=null && params.size()>0){
+			String[] mlornoes=new String[params.size()];
+			int i=0;
+			for(Map<String,String> param:params){
+				mlornoes[i]=param.get("MLORNO");
+				i++;
+			}
 			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
 			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
 			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
@@ -573,13 +581,39 @@ public class OrdService extends AbstractService<Ord, String>{
 			} else {
 				throw new BusinessException("对不起，请没有权限进行操作!");
 			}
-		
-		//订单状态改成“审批通过”，订单节点改成“总公司平衡”
-		
-			for(String mlorno:mlornoes){
-				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
+
+			for(Map<String,String> param:params){
+				String mlorno=param.get("MLORNO");
+				//如果是总量状态是审批中，就修改总量的状态为编辑中
+				if("1".equals(param.get("ORSTAT")) || "2".equals(param.get("ORSTAT"))){
+					//如果是规格状态是审批中，就修改规格的状态为编辑中
+					//把订单状态修改为“编辑中”
+					ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
+				} 
+				if("1".equals(param.get("SZSTAT")) || "2".equals(param.get("SZSTAT"))){
+					//如果是规格状态是审批中，就修改规格的状态为编辑中
+					//把订单状态修改为“编辑中”
+					ordRepository.order_dl__process(mlorno, "规格", ShiroUtils.getLoginName());
+				}
 			}
 		}
+		
+//		if(mlornoes!=null && mlornoes.length>0){
+//			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
+//			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
+//			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
+//				ordMgr_check_process2ANDback_stat(1,mlornoes);
+//			} else if(ShiroUtils.getAuthenticationInfo().hasTheOrg(tpService.getSpb_orgno())){
+//				ordMgr_check_process2ANDback_stat(2,mlornoes);
+//			} else {
+//				throw new BusinessException("对不起，请没有权限进行操作!");
+//			}
+//		
+//			//订单状态改成“审批通过”，订单节点改成“总公司平衡”
+//			for(String mlorno:mlornoes){
+//				ordRepository.order_dl__process(mlorno, "总量", ShiroUtils.getLoginName());
+//			}
+//		}
 		
 	}
 	/**
@@ -587,9 +621,15 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param mlornoes
 	 */
-	public void ordMgr_back(String[] mlornoes) {
-		
-		if(mlornoes!=null && mlornoes.length>0){
+	//public void ordMgr_back(String[] mlornoes) {
+	public void ordMgr_back(List<Map<String,String>> params){
+		if(params!=null && params.size()>0){
+			String[] mlornoes=new String[params.size()];
+			int i=0;
+			for(Map<String,String> param:params){
+				mlornoes[i]=param.get("MLORNO");
+				i++;
+			}
 			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
 			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
 			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
@@ -600,12 +640,43 @@ public class OrdService extends AbstractService<Ord, String>{
 				throw new BusinessException("对不起，请没有权限进行操作!");
 			}
 			
-			for(String mlorno:mlornoes){
-				//把订单状态修改为“编辑中”
-				ordhdRepository.update(Cnd.update().set(M.Ordhd.orstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
-				
+			//for(String mlorno:mlornoes){
+			for(Map<String,String> param:params){
+				String mlorno=param.get("MLORNO");
+				//如果是总量状态是审批中，就修改总量的状态为编辑中
+				if("1".equals(param.get("ORSTAT")) || "2".equals(param.get("ORSTAT"))){
+					//如果是规格状态是审批中，就修改规格的状态为编辑中
+					//把订单状态修改为“编辑中”
+					ordhdRepository.update(Cnd.update().set(M.Ordhd.orstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
+				} 
+				if("1".equals(param.get("SZSTAT")) || "2".equals(param.get("SZSTAT"))){
+					//如果是规格状态是审批中，就修改规格的状态为编辑中
+					//把订单状态修改为“编辑中”
+					ordhdRepository.update(Cnd.update().set(M.Ordhd.szstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
+				}
 			}
 		}
+		
+//		if(mlornoes!=null && mlornoes.length>0){
+//			//大区账号只能对总量状态=1，或规格状态=1的订单审批或退回
+//			//总部商品部只能对总量状态=2或规格状态=2的订单 审批或退回
+//			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS)) {
+//				ordMgr_check_process2ANDback_stat(1,mlornoes);
+//			} else if(ShiroUtils.getAuthenticationInfo().hasTheOrg(tpService.getSpb_orgno())){
+//				ordMgr_check_process2ANDback_stat(2,mlornoes);
+//			} else {
+//				throw new BusinessException("对不起，请没有权限进行操作!");
+//			}
+//			
+//			for(String mlorno:mlornoes){
+//				//如果是总量状态是审批中，就修改总量的状态为编辑中
+//				
+//				//如果是规格状态是审批中，就修改规格的状态为编辑中
+//				//把订单状态修改为“编辑中”
+//				ordhdRepository.update(Cnd.update().set(M.Ordhd.orstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
+//				
+//			}
+//		}
 		
 	}
 	/**
@@ -1287,7 +1358,8 @@ public class OrdService extends AbstractService<Ord, String>{
 		List<Ordszdtl> ordszdtles=ordszdtlRepository.query(Cnd.select()
 				.andEquals(M.Ordszdtl.sizety, "STDSZ")
 				.andEquals(M.Ordszdtl.sampno, ordszdtlVO.getSampno())
-				.andEquals(M.Ordszdtl.mtorno, ordszdtlVO.getMtorno()));
+				.andEquals(M.Ordszdtl.mtorno, ordszdtlVO.getMtorno())
+				.andEquals(M.Ordszdtl.suitno, ordszdtlVO.getSuitno()));
 		
 		//获取指定标准箱中各个规格的分配比例
 		List<PubSizeDtl>  pubSizeDtles=pubSizeDtlRepository.query(Cnd.select().andEquals(M.PubSizeDtl.fszty, "PRDPK")
@@ -1598,10 +1670,17 @@ public class OrdService extends AbstractService<Ord, String>{
 	 * @param spclno
 	 */
 	public void sizeVO_size_ap(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno) {
+		//如果 总量状态 不是审批通过的时候不允许提交
+		Integer arstat=ordRepository.sizeVO_size_ap_check_orstat(ormtno, ortyno, ordorg, bradno, spclno);
+		if(arstat!=3){
+			throw new BusinessException("总量状态 不是审批通过的时候不允许提交");
+		}
+		
+
 		//包装总量 是否和 平衡数量一致，不一致的提示 出来，不允许 提交审批；
 		this.sizeVO_auto_box_check_num(ormtno, ortyno, ordorg, bradno, spclno, suitno);
 		
-		ordRepository.order_dl__auto_box(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
+		ordRepository.order_dl__size_ap(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
 	}
 	
 	

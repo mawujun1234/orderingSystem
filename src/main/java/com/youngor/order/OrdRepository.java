@@ -123,7 +123,11 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public void order_dl__comp_pass(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
 	public void order_dl__auto_box(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDTYNO")String P_ORDTYNO,@Param("P_ORDORG")String P_ORDORG,
 			@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
+	
+	
 	public List<Map<String,Object>> sizeVO_auto_box_check_num(@Param("mtorno")String mtorno,@Param("mlorno")String mlorno,@Param("suitno")String suitno);
+	public Integer sizeVO_size_ap_check_orstat(@Param("ormtno")String ormtno,@Param("ortyno")String ortyno,@Param("ordorg")String ordorg
+			,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	public void order_dl__size_ap(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDTYNO")String P_ORDTYNO,@Param("P_ORDORG")String P_ORDORG,
 			@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
 	

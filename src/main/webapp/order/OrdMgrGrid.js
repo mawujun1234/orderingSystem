@@ -418,13 +418,20 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		Ext.Msg.alert("消息","请先选择行!");
 					    		return;
 					    	}
-					    	var mlornoes=[];
+					    	//var mlornoes=[];
+					    	var params=[];
 					    	for(var i=0;i<records.length;i++){
-					    		mlornoes.push(records[i].get("MLORNO"));
+					    		//mlornoes.push(records[i].get("MLORNO"));
+					    		params.push({
+					    			MLORNO:records[i].get("MLORNO"),
+					    			ORSTAT:records[i].get("ORSTAT"),
+					    			SZSTAT:records[i].get("SZSTAT")
+					    		});
 					    	}
 					    	Ext.Ajax.request({
 					    		url:Ext.ContextPath+'/ord/ordMgr/process2.do',
-					    		params:{mlornoes:mlornoes},
+					    		//params:{mlornoes:mlornoes},
+					    		jsonData:params,
 					    		method:'POST',
 					    		success:function(response){
 					    			var obj=Ext.decode(response.responseText);
@@ -452,14 +459,21 @@ Ext.define('y.order.OrdMgrGrid',{
 					    		Ext.Msg.alert("消息","请先选择行!");
 					    		return;
 					    	}
-					    	var mlornoes=[];
+					    	//var mlornoes=[];
+					    	var params=[];
 					    	for(var i=0;i<records.length;i++){
-					    		mlornoes.push(records[i].get("MLORNO"));
+					    		//mlornoes.push(records[i].get("MLORNO"));
+					    		params.push({
+					    			MLORNO:records[i].get("MLORNO"),
+					    			ORSTAT:records[i].get("ORSTAT"),
+					    			SZSTAT:records[i].get("SZSTAT")
+					    		});
 					    	}
 					    	Ext.Ajax.request({
 					    		url:Ext.ContextPath+'/ord/ordMgr/back.do',
-					    		params:{mlornoes:mlornoes},
+					    		//params:{mlornoes:mlornoes},
 					    		method:'POST',
+					    		jsonData:params,
 					    		success:function(response){
 					    			var obj=Ext.decode(response.responseText);
 					    			if(obj.success==false){

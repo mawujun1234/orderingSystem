@@ -455,3 +455,25 @@ Ext.define('y.common.ChannoCombo',{
 		me.callParent();
 	}
 });
+
+
+function clickShowPhoto(SAMPNO){
+	var samplePhotoShow=Ext.create('y.sample.SamplePhotoShow',{
+		
+		itemId:'samplePhotoShow'
+	});
+	samplePhotoShow.getStore().getProxy().extraParams={
+			sampno:SAMPNO
+	};
+	//samplePhotoShow.down("#samplePhotoView").refresh( );
+	samplePhotoShow.getStore().reload();
+	var win=Ext.create('Ext.window.Window',{
+		title:'产品图片',
+		layout:'fit',
+		items:[samplePhotoShow],
+		modal:true,
+		width:600,
+		height:500
+	});
+	win.show();
+}

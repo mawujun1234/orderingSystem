@@ -9,7 +9,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 	},
 	selModel: {
           selType: 'checkboxmodel'
-          ,checkOnly:true
+          //,checkOnly:true
     },
 	initComponent: function () {
       var me = this;
@@ -268,6 +268,20 @@ Ext.define('y.plan.OrdDwdtGrid',{
 			    displayField: 'name',
 			    valueField: 'value'
 			}),{
+		       // fieldLabel: '生产类型',
+		        emptyText:'生产类型',
+		         width:90,
+		        itemId: 'spmtno',
+	            selectOnFocus:true,
+		        xtype:'pubcodecombo',
+		        tyno:'29'
+		    },{
+		        emptyText: '上市批次',
+		        itemId: 'spbano',
+		         width:90,
+		        xtype:'pubcodecombo',
+		        tyno:'23'
+		    },{
 		    	emptyText:'请输入订货样衣编号',
 		    	itemId: 'sampnm',
 		    	width:90,
@@ -358,6 +372,9 @@ Ext.define('y.plan.OrdDwdtGrid',{
 				"params['yxgsno']":toolbars[1].down("#yxgsno").getValue(),
 				"params['qyno']":toolbars[1].down("#qyno").getValue(),
 				"params['sample_date']":toolbars[1].down("#sample_date").getValue(),
+				
+				"params['spmtno']":toolbars[2].down("#spmtno").getValue(),
+				"params['spbano']":toolbars[2].down("#spbano").getValue(),
 				"params['pplace']":toolbars[2].down("#pplace").getValue(),
 				"params['sampnm']":toolbars[2].down("#sampnm").getValue()
 		};
@@ -438,6 +455,8 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						
 						sampno:modles[i].get("SAMPNO"),
 						suitno:modles[i].get("SUITNO"),
+						yxgsno:modles[i].get("YXGSNO"),
+						qyno:modles[i].get("QYNO"),
 						field:'mldate',
 						value:mldate
 					});
@@ -449,9 +468,9 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						    params:{
 						    	ormtno:extraParams["params['ormtno']"],
 								ortyno:extraParams["params['ortyno']"],
-								count_type:extraParams["params['count_type']"],
-								yxgsno:extraParams["params['yxgsno']"],
-								qyno:extraParams["params['qyno']"]
+								count_type:extraParams["params['count_type']"]
+								//yxgsno:extraParams["params['yxgsno']"],
+								//qyno:extraParams["params['qyno']"]
 						    },
 						    method:'POST',
 						    success:function(response){
@@ -519,6 +538,8 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						
 						sampno:modles[i].get("SAMPNO"),
 						suitno:modles[i].get("SUITNO"),
+						yxgsno:modles[i].get("YXGSNO"),
+						qyno:modles[i].get("QYNO"),
 						field:'pldate',
 						value:mldate
 					});
@@ -530,9 +551,9 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						    params:{
 						    	ormtno:extraParams["params['ormtno']"],
 								ortyno:extraParams["params['ortyno']"],
-								count_type:extraParams["params['count_type']"],
-								yxgsno:extraParams["params['yxgsno']"],
-								qyno:extraParams["params['qyno']"]
+								count_type:extraParams["params['count_type']"]
+								//yxgsno:extraParams["params['yxgsno']"],
+								//qyno:extraParams["params['qyno']"]
 						    },
 						    method:'POST',
 						    success:function(response){
@@ -613,6 +634,8 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						
 						sampno:modles[i].get("SAMPNO"),
 						suitno:modles[i].get("SUITNO"),
+						yxgsno:modles[i].get("YXGSNO"),
+						qyno:modles[i].get("QYNO"),
 						field:'pplace',
 						value:pplace
 					});
@@ -624,9 +647,9 @@ Ext.define('y.plan.OrdDwdtGrid',{
 						    params:{
 						    	ormtno:extraParams["params['ormtno']"],
 								ortyno:extraParams["params['ortyno']"],
-								count_type:extraParams["params['count_type']"],
-								yxgsno:extraParams["params['yxgsno']"],
-								qyno:extraParams["params['qyno']"]
+								count_type:extraParams["params['count_type']"]
+								//yxgsno:extraParams["params['yxgsno']"],
+								//qyno:extraParams["params['qyno']"]
 						    },
 						    method:'POST',
 						    success:function(response){

@@ -274,7 +274,7 @@ Ext.define('y.order.WxtzGrid',{
 					Ext.Msg.alert("消息",obj.msg);
 					return;
 				}
-				if(obj.stat=="不可操作"){
+				if(obj.stat=="不可操作" || obj.stat=="审批通过"){
 					toolbars[2].disable();
 					//toolbars[1].down("#zgs_orstat").setValue("可操作");
 				} else {

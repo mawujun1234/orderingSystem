@@ -38,7 +38,7 @@ public class OrdDwdtService extends AbstractService<OrdDwdt, com.youngor.plan.Or
 		return pager;
 	}
 	
-	public  void updateField(List<Map<String,Object>> sampnos,String ormtno,String ortyno,String count_type,String yxgsno,String qyno ) {
+	public  void updateField(List<Map<String,Object>> sampnos,String ormtno,String ortyno,String count_type ) {
 		if(sampnos==null || sampnos.size()==0){
 			return;
 		}
@@ -49,6 +49,8 @@ public class OrdDwdtService extends AbstractService<OrdDwdt, com.youngor.plan.Or
 			
 			String sampno=map.get("sampno").toString();
 			String suitno=map.get("suitno").toString();
+			String yxgsno=(String)map.get("yxgsno");
+			String qyno=(String)map.get("qyno");
 			
 			ordDwdtRepository.indsert_dwdt(sampno, suitno, ormtno, ortyno, count_type, yxgsno, qyno, map.get("field").toString(), map.get("value").toString());
 			ordDwdtRepository.update_dwdt(sampno, suitno, ormtno, ortyno, count_type, yxgsno, qyno, map.get("field").toString(), map.get("value").toString());

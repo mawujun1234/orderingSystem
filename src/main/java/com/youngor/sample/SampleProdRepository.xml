@@ -24,7 +24,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		left join (select * from ord_sample_mate where mateso=1) i on b.sampno=i.sampno
 		left join (select sampno,sum(mtpupr*mtcnqt) prmlam from ord_sample_mate group by sampno) j on b.sampno=j.sampno
 		left join (select  sampno,suitno,sum(ormtqt) ormtqt from ord_orddtl  where (ormtqs!=0 or ormtqt!=0) group by  sampno,suitno) f on b.sampno=f.sampno and c.suitno=f.suitno 
-		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno
+		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno and c.suitno=g.suitno
 		where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
 			and not exists (select 1 from ORD_COMP_PAL p where a.ormtno=p.ormtno and b.sampno=p.sampno and p.paltpy='取消')
 		<if test="sptyno!=null and sptyno!=''">
