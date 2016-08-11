@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.controller.spring.mvc.json.JsonConfigHolder;
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.utils.page.Pager;
@@ -101,9 +102,10 @@ public class UserController {
 	@ResponseBody
 	public String onlineling() {
 		if(!ShiroUtils.isLogon()){
-			return "{success:false}";
+			JsonConfigHolder.setSuccessValue(false);
+			return "false";
 		}
-		return "{success:true}";
+		return "success";
 	}
 	/**
 	 * 

@@ -83,11 +83,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     <update id="indsert_dwdt"  parameterType="map">
     	insert into ORD_ORD_DWDT(ormtno,ortyno,ordorg,ormtqt,sampno,suitno,${field})
-		select distinct a.ormtno,a.ortyno,a.ordorg,c.ormtqt,c.sampno,c.suitno,'${value}' mldate from ORD_ORD a
-		 inner join v_ord_org b on a.ordorg=b.qyno
+		select distinct a.ormtno,a.ortyno,b.qyno as ordorg,c.ormtqt,c.sampno,c.suitno,'${value}' mldate from ORD_ORD a
+		 inner join v_ord_org b on a.ordorg=b.orgno
 		  inner join ORD_ORDdtl c on a.mtorno=c.mtorno
-		where   a.ormtno=#{ormtno} and  a.ortyno=#{ortyno} and a.channo='QY' and 
-		 c.sampno=#{sampno} and c.suitno=#{suitno}
+		where   a.ormtno=#{ormtno} and  a.ortyno=#{ortyno}  
+		 and c.sampno=#{sampno} and c.suitno=#{suitno}
 		 <if test="yxgsno!=null and yxgsno!=''">
 		 	and b.yxgsno=#{yxgsno}
 		 </if>
@@ -103,7 +103,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 	and ordorg in (
 			     select distinct qyno from v_ord_org where yxgsno=#{yxgsno}
 			     <if test="qyno!=null and qyno!=''">
-				 	and b.qyno=#{qyno}
+				 	and qyno=#{qyno}
 				 </if>
 			)
 		 </if>

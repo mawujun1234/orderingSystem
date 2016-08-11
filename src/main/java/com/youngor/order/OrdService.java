@@ -1629,7 +1629,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		return result;
 	}
 	
-	private void sizeVO_auto_box_check_num(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno){
+	public void sizeVO_auto_box_check_num(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno){
 		//规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱；
 				String mtorno=this.getMtorno(ormtno, ortyno, ordorg);
 				String mlorno=mtorno+bradno+spclno;
@@ -1657,6 +1657,7 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		
 		this.sizeVO_auto_box_check_num(ormtno, ortyno, ordorg, bradno, spclno, suitno);
+		//System.out.println(111111);
 		
 		ordRepository.order_dl__auto_box(ormtno,ortyno,ordorg, bradno, spclno, ShiroUtils.getLoginName());
 	}

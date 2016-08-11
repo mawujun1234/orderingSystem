@@ -276,12 +276,6 @@ Ext.define('y.plan.OrdDwdtGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'29'
 		    },{
-		        emptyText: '上市批次',
-		        itemId: 'spbano',
-		         width:90,
-		        xtype:'pubcodecombo',
-		        tyno:'23'
-		    },{
 		    	emptyText:'请输入订货样衣编号',
 		    	itemId: 'sampnm',
 		    	width:90,
@@ -374,7 +368,6 @@ Ext.define('y.plan.OrdDwdtGrid',{
 				"params['sample_date']":toolbars[1].down("#sample_date").getValue(),
 				
 				"params['spmtno']":toolbars[2].down("#spmtno").getValue(),
-				"params['spbano']":toolbars[2].down("#spbano").getValue(),
 				"params['pplace']":toolbars[2].down("#pplace").getValue(),
 				"params['sampnm']":toolbars[2].down("#sampnm").getValue()
 		};
