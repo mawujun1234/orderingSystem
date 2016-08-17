@@ -57,11 +57,15 @@ Ext.define('y.main.MainController', {
 	    			}
 	    		}
 
+	    		var url=menuitem.get("url");
+	    		if(url && url.indexOf("http://")==-1){
+	    			url=Ext.ContextPath+menuitem.get("url");
+	    		}
 				maincenter.setActiveTab(maincenter.add({
 					xtype : 'modulepanel',
 					menu_id:menuitem.get("id"),
 					title:menuitem.get("name"),
-					url:Ext.ContextPath+menuitem.get("url"),
+					url:url,
 					closable : true,
 					reorderable : true
 				}));

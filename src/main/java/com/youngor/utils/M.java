@@ -1,5 +1,31 @@
 package com.youngor.utils;
 public final class M {
+public static final class BwOrdhd {
+	public static final String mmorno="mmorno";
+	public static final String ormmno="ormmno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String mldate="mldate";
+	public static final String pldate="pldate";
+	public static final String pplace="pplace";
+	public static final String orstat="orstat";
+	public static final String isfect="isfect";
+}
+public static final class BwOrdmt {
+	public static final String ormmno="ormmno";
+	public static final String ormtno="ormtno";
+	public static final String ormmnm="ormmnm";
+}
+public static final class BwOrdszdtl {
+	public static final String mmorno="mmorno";
+	public static final String ordorg="ordorg";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String sizety="sizety";
+	public static final String sizeno="sizeno";
+	public static final String orszqt="orszqt";
+	public static final String ormark="ormark";
+}
 public static final class CompPal {
 	public static final String ormtno="ormtno";
 	public static final String sampno="sampno";
@@ -632,6 +658,10 @@ public static final class SizeDtl {
 	public static final String sizety="sizety";
 	public static final String sizeno="sizeno";
 	public static final String ormtno="ormtno";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
 }
 public static final class SampleColth {
 	public static final String sampno="sampno";
@@ -735,6 +765,7 @@ public static final class SamplePhoto {
 	public static final String photms="photms";
 	public static final String imgnm="imgnm";
 	public static final String photst="photst";
+	public static final String ormtno="ormtno";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
@@ -778,6 +809,68 @@ public static final class SamplePlanStpr {
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+}
+public static final class SampleProd {
+	public static final String ormtno="ormtno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String prseqm="prseqm";
+	public static final String prodno="prodno";
+	public static final String prodnm="prodnm";
+	public static final String prodds="prodds";
+	public static final String sizegp="sizegp";
+	public static final String prtype="prtype";
+	public static final String prprpt="prprpt";
+	public static final String prorgd="prorgd";
+	public static final String prunit="prunit";
+	public static final String mateno="mateno";
+	public static final String prdcno="prdcno";
+	public static final String prftpr="prftpr";
+	public static final String prrtpr="prrtpr";
+	 /**
+	 * 返回关联对象的属性，，以对象关联的方式(a.b这种形式)，只有一些基本属性，层级不再往下了
+	 */
+	public static final class prctpr {
+		public static final String scale="prctpr.scale";
+		public static final String precision="prctpr.precision";
+		public static final String stringCache="prctpr.stringCache";
+		public static final String INFLATED="prctpr.INFLATED";
+		public static final String intCompact="prctpr.intCompact";
+		public static final String MAX_COMPACT_DIGITS="prctpr.MAX_COMPACT_DIGITS";
+		public static final String HALF_LONG_MAX_VALUE="prctpr.HALF_LONG_MAX_VALUE";
+		public static final String HALF_LONG_MIN_VALUE="prctpr.HALF_LONG_MIN_VALUE";
+		public static final String ROUND_UP="prctpr.ROUND_UP";
+		public static final String ROUND_DOWN="prctpr.ROUND_DOWN";
+		public static final String ROUND_CEILING="prctpr.ROUND_CEILING";
+		public static final String ROUND_FLOOR="prctpr.ROUND_FLOOR";
+		public static final String ROUND_HALF_UP="prctpr.ROUND_HALF_UP";
+		public static final String ROUND_HALF_DOWN="prctpr.ROUND_HALF_DOWN";
+		public static final String ROUND_HALF_EVEN="prctpr.ROUND_HALF_EVEN";
+		public static final String ROUND_UNNECESSARY="prctpr.ROUND_UNNECESSARY";
+		public static final String BIG_TEN_POWERS_TABLE_INITLEN="prctpr.BIG_TEN_POWERS_TABLE_INITLEN";
+		public static final String BIG_TEN_POWERS_TABLE_MAX="prctpr.BIG_TEN_POWERS_TABLE_MAX";
+		public static final String DIV_NUM_BASE="prctpr.DIV_NUM_BASE";
+		public static final String $assertionsDisabled="prctpr.$assertionsDisabled";
+			
+	    /**
+	    * 返回的是关联类的属性名称，主要用于属性过滤的时候
+	    */
+	    public static String name(){ 
+		    return "prctpr";
+	    }
+	}
+	public static final String prmtam="prmtam";
+	public static final String prmlam="prmlam";
+	public static final String prorpr="prorpr";
+	public static final String prflam="prflam";
+	public static final String prprnt="prprnt";
+	public static final String prqtnm="prqtnm";
+	public static final String prname="prname";
+	public static final String prsasd="prsasd";
+	public static final String prdosd="prdosd";
+	public static final String prwapt="prwapt";
+	public static final String prwash="prwash";
+	public static final String prmark="prmark";
 }
 public static final class PubSuno {
 	public static final String idsuno="idsuno";

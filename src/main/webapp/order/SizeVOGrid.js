@@ -84,8 +84,9 @@ Ext.define('y.order.SizeVOGrid',{
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	//console.log(window.szsta);
 	            	//单规+包装箱
-	            	if( record.get("ORSZST")!=1){
+	            	if(window.szstat==0 && record.get("ORSZST")!=1){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	} else {
 	            		//metaData.tdStyle = 'background-color:#98FB98;' ;
@@ -104,9 +105,9 @@ Ext.define('y.order.SizeVOGrid',{
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
-	            	if(record.get("SZTYPE")==0 && record.get("ORSZST")==1){
+	            	if(window.szstat==0 && record.get("SZTYPE")==0 && record.get("ORSZST")==1){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            	} else if(record.get("SZTYPE")!=0 && record.get("ORSZST")==0){
+	            	} else if(window.szstat==0 && record.get("SZTYPE")!=0 && record.get("ORSZST")==0){
 	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 	            	}
 	            	 return value;
@@ -222,16 +223,17 @@ Ext.define('y.order.SizeVOGrid',{
 	  	var record=context.record;
 	  	var field =context.field ;
 	  	var aaa=field.split("___");
-	  	
-	  	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
-	    if(record.get("SZTYPE")==0 && aaa[0]=="STDSZ"  && record.get("ORSZST")==0){
-	       //metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	    	return true;
-	    } else if(record.get("SZTYPE")==0 && aaa[0]=="PRDPK"  && record.get("ORSZST")==1){
-	    	return true;
-	    } else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1) {
-	        return true;
-	    }
+	  	if(window.szstat==0) {
+		  	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
+		    if(record.get("SZTYPE")==0 && aaa[0]=="STDSZ"  && record.get("ORSZST")==0){
+		       //metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+		    	return true;
+		    } else if(record.get("SZTYPE")==0 && aaa[0]=="PRDPK"  && record.get("ORSZST")==1){
+		    	return true;
+		    } else if(record.get("SZTYPE")!=0 && record.get("ORSZST")!=1) {
+		        return true;
+		    }
+	  	}
 	    return false;
 	  });
 	  this.cellEditing.on("edit",function(editor, context){

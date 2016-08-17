@@ -105,7 +105,7 @@ public class UserController {
 			JsonConfigHolder.setSuccessValue(false);
 			return "false";
 		}
-		return "success";
+		return "{success:true}";
 	}
 	/**
 	 * 

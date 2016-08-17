@@ -187,6 +187,7 @@ Ext.define('y.sample.SampleMateForm',{
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"单件用料不允许为空",
             selectOnFocus:true,
+            decimalPrecision:3,
 	        xtype:'numberfield'
 	    },
 		{

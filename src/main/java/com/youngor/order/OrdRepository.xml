@@ -840,7 +840,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,d.ORMTQT
      		,d.mtorno ,d.mlorno
      		,NVL(X.packqt,1) packqt
-            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,nvl(f.orszst,0) ORSZST,z.PRODNM
+            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,nvl(f.ORSZST,0) ORSZST,z.PRODNM
         from  
         ORD_SAMPLE_PLAN a 
         inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno
@@ -870,6 +870,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</if>
 		order by a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno
 	</select>
+	<select id="sizeVO_getSzstat" resultType="int" parameterType="string">
+     	SELECT max(szstat) FROM ORD_ORD a,ORD_ORDhd b
+		where a.mtorno=b.mtorno and a.ormtno=#{ormtno}
+		and a.ortyno=#{ortyno} and a.ordorg=#{ordorg} and channo=#{channo}
+		and b.bradno=#{bradno} and b.spclno=#{spclno}
+    </select>
 	
 	 <!--自动成箱的时候，判断规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱； -->
     <select id="sizeVO_auto_box_check_num" resultType="map" parameterType="map">
@@ -882,7 +888,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		group by sampno
 		) y
 		on x.sampno=y.sampno  
-		where x.ormtqt!=y.orszqt
+		 where   x.ormtqt!=nvl(y.orszqt,0)
     </select>
     <select id="sizeVO_size_ap_check_orstat" resultType="int" parameterType="map">
     select min(orstat) from ord_ord a,ord_ordhd b
@@ -926,6 +932,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
       </select>
       -->
       
+     <!-- 获取规格上报方式 --> 
+     <select id="ordMgr_getSztype" resultType="int" parameterType="map">
+     	select distinct c.sztype from ord_ord a,ord_ordhd b,ord_org c
+		where a.mtorno=b.mtorno and a.ormtno=c.ormtno and a.ordorg=c.ordorg and a.channo=c.channo and b.mlorno=#{mlorno}
+     </select>
       <!--订单管理中 订单审批和退货的时候进行判断哟没有权限进行 -->
      <select id="ordMgr_check_process2ANDback_stat" resultType="string" parameterType="map">
      	select distinct mlorno from ord_ordhd where 

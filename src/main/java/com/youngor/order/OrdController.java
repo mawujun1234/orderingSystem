@@ -651,6 +651,18 @@ public class OrdController {
 	public List<Map<String,Object>> sizeVO_querySizeVOData(@RequestBody Map<String,Object> params){
 		return ordService.sizeVO_querySizeVOData(params);
 	}
+	@RequestMapping("/ord/sizeVO/getSzstat.do")
+	@ResponseBody
+	public Map<String,Object> sizeVO_getSzstat(@RequestBody Map<String,Object> params){
+		
+		Integer szstat= ordService.sizeVO_getSzstat( params);
+		
+		Map<String,Object> result=new HashMap<String,Object>();
+		result.put("success", true);
+		result.put("szstat", szstat);
+		return result;
+		//return "{success:true,szstat:"+szstat+"}";
+	}
 	
 	@RequestMapping("/ord/sizeVO/updateOrdszdtl.do")
 	@ResponseBody

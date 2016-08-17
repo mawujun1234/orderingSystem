@@ -636,6 +636,8 @@ public class OrdService extends AbstractService<Ord, String>{
 				ordMgr_check_process2ANDback_stat(1,mlornoes);
 			} else if(ShiroUtils.getAuthenticationInfo().hasTheOrg(tpService.getSpb_orgno())){
 				ordMgr_check_process2ANDback_stat(2,mlornoes);
+			} else if("admin".equals(ShiroUtils.getLoginName())){
+				
 			} else {
 				throw new BusinessException("对不起，请没有权限进行操作!");
 			}
@@ -653,6 +655,12 @@ public class OrdService extends AbstractService<Ord, String>{
 					//如果是规格状态是审批中，就修改规格的状态为编辑中
 					//把订单状态修改为“编辑中”
 					ordhdRepository.update(Cnd.update().set(M.Ordhd.szstat, 0).andEquals(M.Ordhd.mlorno, mlorno));
+					//如果这个订单的上报方式是单规或者整箱，就把orszst改成0，就表示可以继续编辑，如果是整箱+单规的就不变，还是只能编辑整箱数据
+					Integer aa=ordRepository.ordMgr_getSztype(mlorno);
+					if(aa!=null && (aa==1 || aa==2)){
+						ordszdtlRepository.update(Cnd.update().set(M.Ordszdtl.orszst, 0).andEquals(M.Ordszdtl.mlorno, mlorno));
+					}
+					
 				}
 			}
 		}
@@ -1314,14 +1322,26 @@ public class OrdService extends AbstractService<Ord, String>{
 		}
 		Ordszdtl ordszdtl=ordszdtlRepository.get(ordszdtlVO.geetPK());
 		Integer orginal_orbgqt=0;
+		boolean isNew=false;
 		if(ordszdtl==null){
+			isNew=true;
 			ordszdtl=new Ordszdtl();
+			
 			BeanUtils.copyProperties(ordszdtlVO, ordszdtl);
+			if ("PRDPK".equals(ordszdtl.getSizety())) {
+				ordszdtl.setOrszst(1);
+			} else {
+				ordszdtl.setOrszst(0);
+				
+			}
+			ordszdtl.setRgdt(new Date());
+			ordszdtl.setRgsp(ShiroUtils.getLoginName());
 		} else {
 			orginal_orbgqt=ordszdtl.getOrbgqt();//修改之前的数量
 		}
 		// 获取包装上报方式：
 		if (ordszdtlVO.getSztype() == 0) {// 如果是整箱+单规的上报方式，并且输入的是是单规的话，就只修改orszqt，否则就修改orbgqt
+			//只有当单规确认后，才可以修改包装箱的数量
 			//如果是标准箱，只需要设置orbgqt就可以了
 			if ("PRDPK".equals(ordszdtl.getSizety())) {
 				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
@@ -1331,21 +1351,31 @@ public class OrdService extends AbstractService<Ord, String>{
 			} else {
 				//如果是单规，就设置orszqt，同一行的orgbqt存放的是标准箱用完之后的剩余数量
 				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+				//if(isNew){
+					ordszdtl.setOritqt(ordszdtl.getOrszqt());//原始数量，备份现场定后数量
+					ordszdtl.setOrbgqt(ordszdtl.getOrszqt());//确认数量 报表要实时查看的数量
+				//}
 			}
 
 		} else if (ordszdtlVO.getSztype() == 1) {//如果是单规上报
 			// 否则orszqt和orbgqt的数量就是一致的
-			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
 			ordszdtl.setOrszqt(ordszdtlVO.getValue());
+			ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+			if(isNew){
+				ordszdtl.setOritqt(ordszdtl.getOrszqt());//原始数量，备份现场定后数量
+			}
 		} else {
 			if ("PRDPK".equals(ordszdtl.getSizety())) {
 				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
 			} else {
-				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+				
 				ordszdtl.setOrszqt(ordszdtlVO.getValue());
+				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
 			}
 		}
 		
+		ordszdtl.setLmdt(new Date());
+		ordszdtl.setLmsp(ShiroUtils.getLoginName());
 		//throw new BusinessException("测试");
 		ordszdtlRepository.createOrUpdate(ordszdtl);
 	}
@@ -1629,6 +1659,14 @@ public class OrdService extends AbstractService<Ord, String>{
 		return result;
 	}
 	
+	public Integer sizeVO_getSzstat(Map<String,Object> params) {
+		Integer szstat= ordRepository.sizeVO_getSzstat(params);
+		if(szstat==null){
+			szstat=0;
+		}
+		return szstat;
+	}
+	
 	public void sizeVO_auto_box_check_num(String ormtno,String ortyno,String ordorg,String bradno,String spclno,String suitno){
 		//规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱；
 				String mtorno=this.getMtorno(ormtno, ortyno, ordorg);
@@ -1639,7 +1677,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					for(Map<String,Object> map:list){
 						builder.append(","+map.get("SAMPNM"));
 					}
-					throw new BusinessException("下列样衣编号平衡数量不等于规格小计:<br/>"+builder.substring(1));
+					throw new BusinessException("下列样衣编号兑现数量不等于规格小计，不能提交:<br/>"+builder.substring(1));
 				}
 	}
 	/**

@@ -9,7 +9,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 	},
 	selModel: {
           selType: 'checkboxmodel'
-          //,checkOnly:true
+          ,checkOnly:true
     },
 	initComponent: function () {
       var me = this;

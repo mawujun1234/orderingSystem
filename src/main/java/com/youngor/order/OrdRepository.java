@@ -125,6 +125,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 			@Param("P_BRADNO")String P_BRADNO,@Param("P_SPCLNO")String P_SPCLNO,@Param("P_RESP")String P_RESP);
 	
 	
+	public Integer sizeVO_getSzstat(Map<String,Object> params);
 	public List<Map<String,Object>> sizeVO_auto_box_check_num(@Param("mtorno")String mtorno,@Param("mlorno")String mlorno,@Param("suitno")String suitno);
 	public Integer sizeVO_size_ap_check_orstat(@Param("ormtno")String ormtno,@Param("ortyno")String ortyno,@Param("ordorg")String ordorg
 			,@Param("bradno")String bradno,@Param("spclno")String spclno);
@@ -152,6 +153,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public List<Map<String,Object>> sizeVO_querySizeVOData(Map<String,Object> params);
 	
 	public Pager<Map<String,Object>> ordMgr_queryOrdMgr(Pager<Map<String,Object>> pager);
+	public Integer ordMgr_getSztype(@Param("mlorno")String mlorno);
 	
 //	public List<Map<String,Object>> check_S10_Z0_0(@Param("mtorno")String mtorno);
 //	public List<Map<String,Object>> check_S10_Z0_1(@Param("mtorno")String mtorno);

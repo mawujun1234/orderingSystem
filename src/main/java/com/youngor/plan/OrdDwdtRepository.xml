@@ -83,7 +83,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     
     <update id="indsert_dwdt"  parameterType="map">
     	insert into ORD_ORD_DWDT(ormtno,ortyno,ordorg,ormtqt,sampno,suitno,${field})
-		select distinct a.ormtno,a.ortyno,b.qyno as ordorg,c.ormtqt,c.sampno,c.suitno,'${value}' mldate from ORD_ORD a
+		select distinct a.ormtno,a.ortyno,b.qyno as ordorg,SUM(c.ormtqt) ormtqt,c.sampno,c.suitno,'${value}' mldate from ORD_ORD a
 		 inner join v_ord_org b on a.ordorg=b.orgno
 		  inner join ORD_ORDdtl c on a.mtorno=c.mtorno
 		where   a.ormtno=#{ormtno} and  a.ortyno=#{ortyno}  
@@ -94,8 +94,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 <if test="qyno!=null and qyno!=''">
 		 	and b.qyno=#{qyno}
 		 </if>
-		  and not exists (select 1 from ORD_ORD_DWDT d where c.sampno=d.sampno  and c.suitno=d.suitno and a.ormtno=d.ormtno and a.ortyno=d.ortyno and a.ordorg=d.ordorg)
-		  
+		  and not exists (select 1 from ORD_ORD_DWDT d where c.sampno=d.sampno  and c.suitno=d.suitno and a.ormtno=d.ormtno and a.ortyno=d.ortyno and b.qyno=d.ordorg)
+		  GROUP BY a.ormtno,a.ortyno,b.qyno ,c.sampno,c.suitno
     </update>
     <update id="update_dwdt"  parameterType="map">
     	update  ORD_ORD_DWDT set ${field}=#{value}  where ormtno=#{ormtno} and ortyno=#{ortyno} and sampno=#{sampno} and suitno=#{suitno} 

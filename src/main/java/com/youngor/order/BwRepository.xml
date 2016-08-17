@@ -28,7 +28,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 					    	and a.spseno=#{spseno}
 					    </if>
 					    <if test="sampnm!=null and sampnm!=''">
-					    	and b.sampnm like '%${sampnm}%'
+					    	and lower(b.sampnm) like lower('%${sampnm}%')
 					    </if>
 		) x left join (
 		      select SAMPNO,QYNO,SUITNO,sum(ORMTQT_BW_QY) ORMTQT_BW_QY  FROM(

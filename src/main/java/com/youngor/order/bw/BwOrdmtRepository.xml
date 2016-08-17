@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.bw.BwOrdmtRepository">
+	<select id="querySizeVOColumns" resultType="map" parameterType="map">
+     	 SELECT distinct a.sizety,a.sizeno,d.sizenm FROM 
+	    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ORD_PUB_SIZE d
+	    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=d.sizeno
+	    and a.sizety=d.sizety and a.sizety='STDSZ' 
+	    and c.sizegp=#{sizegp}
+	    and a.suitno=#{suitno}
+	    and a.mlorno=#{mlorno}
+	    and a.orbgqt!=0
+	    order by a.sizeno
+     </select>
+     
+     <select id="querySizeVOData" resultType="map" parameterType="map">
+	    select x.*,y.ORMMNO,y.MMORNO,y.ORSZQT from (
+	     	 SELECT  b.sampno,b.sampnm,c.suitno,d.sptyno,d.spseno,b.versno,a.sizety,a.sizeno,a.orbgqt FROM 
+		    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ord_sample_plan d
+		    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and b.plspno=d.plspno
+		    and a.sizety='STDSZ' 
+		    and c.sizegp=#{sizegp}
+		     and a.suitno=#{suitno} 
+		    and a.mlorno=#{mlorno} 
+		    and a.orbgqt!=0
+		    <if test="sptyno!=null and sptyno!=''">
+				and d.sptyno=#{sptyno}
+			</if>
+			<if test="spseno!=null and spseno!=''">
+				and d.spseno=#{spseno}
+			</if>
+			<if test="versno!=null and versno!=''">
+				and b.versno=#{versno}
+			</if>
+			<if test="sampnm!=null and sampnm!=''">
+				and lower(b.sampnm) like lower('%${sampnm}%')
+			</if>
+		) x left join (  
+			select b.ORMMNO,c.* from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
+		    where a.ORMMNO=b.ORMMNO and b.MMORNO=c.MMORNO
+		    and a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+		) y on x.sampno=y.sampno and x.suitno=y.suitno  and x.sizety=y.sizety and x.sizeno=y.sizeno
+		order by x.SPTYNO,x.SPSENO,x.VERSNO,x.SAMPNO,x.SAMPNM,x.suitno
+     </select>
+     
+     <!--获取当前正在编辑中的子订单 -->
+     <select id="getOrmmno" resultType="string" parameterType="map">
+     	select distinct a.ORMMNO from ORD_BW_ORDMT a,ORD_BW_ORDHD b
+     	where a.ORMMNO=b.ORMMNO and a.ormtno=#{ormtno} and b.ORSTAT=0
+     </select>
+     
+      <select id="getMmorno" resultType="string" parameterType="map">
+     	select distinct a.MMORNO from ORD_BW_ORDMT a,ORD_BW_ORDHD b
+     	where a.ORMMNO=b.ORMMNO and a.ormtno=#{ormtno} and b.ORSTAT=0 and b.bradno=#{bradno} and b.spclno=#{spclno}
+     </select>
+     
+     <select id="getBwOrdhdOrstat" resultType="int" parameterType="map">
+     	select max(b.orstat) from ORD_BW_ORDMT a,ORD_BW_ORDHD b
+     	where a.ORMMNO=b.ORMMNO and a.ormtno=#{ormtno} and b.ORSTAT=0 and b.bradno=#{bradno} and b.spclno=#{spclno}
+     </select>
+</mapper>
+

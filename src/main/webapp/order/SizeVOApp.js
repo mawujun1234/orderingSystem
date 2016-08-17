@@ -577,15 +577,35 @@ Ext.onReady(function(){
 		
 		
 	}
-	
+	window.szstat=0;
 	function createSizeVOGrid(initColumns){
 		var params=panel.getParams();
+		getSzstat(params);
 		var　grid=Ext.create('y.order.SizeVOGrid',{
 			region:'center',
 			params:params,
 			initColumns:initColumns
 		});
 		return grid;
+	}
+	
+	function getSzstat(params){
+		Ext.Ajax.request({
+			url:Ext.ContextPath+"/ord/sizeVO/getSzstat.do",
+			jsonData:params,
+			headers:{ 'Accept':'application/json;'},
+			success:function(response){
+			 	//console.log(response.responseText);
+				var obj=Ext.decode(response.responseText);
+				if(obj.success==false){
+					Ext.Msg.alert("消息",obj.msg);
+					return;
+				}
+				//alert(obj.szstat);
+				window.szstat=obj.szstat;
+				
+			}
+		});
 	}
 	
 	var grid=Ext.create('Ext.grid.Panel',{
