@@ -271,6 +271,8 @@ Ext.onReady(function(){
 	grid.getParams=function(){
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 		var params={
+			start:0,
+			page:1,
 			"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
 			"params['bradno']":toolbars[0].down("#bradno").getValue(),
 			"params['yxgsno']":toolbars[0].down("#yxgsno").getValue(),

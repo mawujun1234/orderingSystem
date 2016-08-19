@@ -58,7 +58,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN ORD_SAMPLE_PROD P ON M.SAMPNO=P.SAMPNO AND M.SUITNO=P.SUITNO 
 		LEFT JOIN ORD_ORD_DWDT W ON M.ORMTNO=W.ORMTNO AND M.ORTYNO=W.ORTYNO AND M.QYNO=W.ORDORG AND M.SAMPNO=W.SAMPNO AND M.SUITNO=W.SUITNO
 		--面料交货期，成衣交货期，产地
-		--WHERE 1=1
+		WHERE 1=1
 		<if test="sample_date!=null and sample_date!=''">
 		  	and (W.MLDATE=#{sample_date} or W.PLDATE=#{sample_date})
 		</if>

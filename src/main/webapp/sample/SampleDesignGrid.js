@@ -152,6 +152,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			proxy:{
 				type:'ajax',
 				url:Ext.ContextPath+'/sampleDesign/queryPlanDesign.do',
+				
 				reader:{
 					type:'json',
 					rootProperty:'root',
@@ -472,9 +473,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 		var grid=this;
 		if(this.initReloadSampleDesign_index>=3){
 			grid.getStore().getProxy().extraParams=grid.getParams();
-					grid.getStore().reload();
-					
-					
+			grid.getStore().reload({params:{start:0,page:1}});
+			
 					var tabpanel=grid.nextSibling("tabpanel");
 					var params=grid.getStore().getProxy().extraParams;
 					window.ormtno=params["params['ormtno']"];
@@ -483,8 +483,6 @@ Ext.define('y.sample.SampleDesignGrid',{
 					//alert(params["params['spclno']"]);
 					sampleDesignForm.reloadEditor(params["params['ormtno']"],params["params['bradno']"],params["params['spclno']"]);
 					
-//			this.getStore().getProxy().extraParams=this.getParams();
-//			this.getStore().reload();
 		}
 	},
 	lockOrUblock:function(type,lockOrUnlock){
@@ -548,6 +546,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 	},
 	getParams:function(){
 		var toolbars=this.getDockedItems('toolbar[dock="top"]');
+		
 		var params={
 						    	 			"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
 					    					"params['bradno']":toolbars[0].down("#bradno").getValue(),

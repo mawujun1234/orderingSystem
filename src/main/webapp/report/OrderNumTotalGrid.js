@@ -402,6 +402,8 @@ Ext.define('y.report.OrderNumTotalGrid',{
 	getParams:function(){
 		var toolbars=this.getDockedItems('toolbar[dock="top"]');
 		var params={
+			start:0,
+			page:1,
 			"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
 			"params['yxgsno']":toolbars[0].down("#yxgsno").getValue(),
 			"params['qyno']":toolbars[0].down("#qyno").getValue(),

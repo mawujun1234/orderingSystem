@@ -343,7 +343,7 @@ Ext.define('y.sample.SampleProdGrid',{
 		var grid=this;
 		if(this.initReload_index_grid>=3){
 			grid.getStore().getProxy().extraParams=grid.getParams();
-			grid.getStore().reload();
+			grid.getStore().reload({params:{start:0,page:1}});
 		}
 	},
 	getParams:function(){

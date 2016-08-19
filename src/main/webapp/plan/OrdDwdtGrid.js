@@ -347,7 +347,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 		var grid=this;
 		if(this.initReload_index_grid>=3){
 			grid.getStore().getProxy().extraParams=grid.getParams();
-			grid.getStore().reload();
+			grid.getStore().reload({params:{start:0,page:1}});
 		}
 	},
 	getParams:function(){
@@ -365,7 +365,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 				
 				"params['yxgsno']":toolbars[1].down("#yxgsno").getValue(),
 				"params['qyno']":toolbars[1].down("#qyno").getValue(),
-				"params['sample_date']":toolbars[1].down("#sample_date").getValue(),
+				"params['sample_date']":toolbars[1].down("#sample_date").getRawValue(),
 				
 				"params['spmtno']":toolbars[2].down("#spmtno").getValue(),
 				"params['pplace']":toolbars[2].down("#pplace").getValue(),

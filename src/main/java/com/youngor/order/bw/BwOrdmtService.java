@@ -150,16 +150,39 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		bwOrdszdtlRepository.createOrUpdate(bwOrdszdtl);
 	}
 	
-	public void approve(String ormtno,String bradno,String spclno) {
-		String mmorno=bwOrdmtRepository.getMmorno(ormtno, bradno, spclno);
-		bwOrdszdtlRepository.update(Cnd.update().set(M.BwOrdhd.orstat,1).andEquals(M.BwOrdhd.mmorno, mmorno));
+	public void approve(String[] mmornoes) {
+//		String mmorno=bwOrdmtRepository.getMmorno(ormtno, bradno, spclno);
+//		bwOrdszdtlRepository.update(Cnd.update().set(M.BwOrdhd.orstat,1).andEquals(M.BwOrdhd.mmorno, mmorno));
+		if(mmornoes==null || mmornoes.length==0){
+			return;
+		}
+		for(String mmorno:mmornoes){
+			bwOrdhdRepository.update(Cnd.update().set(M.BwOrdhd.orstat,1)
+					.andEquals(M.BwOrdhd.mmorno, mmorno).andEquals(M.BwOrdhd.orstat,0));
+		}
 	}
 	
-	public Integer getBwOrdhdOrstat(String ormtno,String bradno,String spclno) {
+	public Integer getBwOrdhdOrstat(String ormtno,String ordorg,String bradno,String spclno) {
+		//先判断备忘订单的规格是否已经“审批通过”了，如果已经“审批通过”，才可以审批
+		String mtorno=ordService.getMtorno(ormtno, "BW", ordorg);
+		Integer szstat= bwOrdmtRepository.getBwOrdhdSzstat(mtorno, bradno, spclno);
+		if(szstat!=3){
+			return 1;
+		}
+		
+		
+		
+		
 		Integer orstat=bwOrdmtRepository.getBwOrdhdOrstat(ormtno, bradno, spclno);
 		if(orstat==null){
 			return 0;
 		}
 		return orstat;
+	}
+	
+	
+	public List<BwOrdhd> queryBwOrdhd(String ormtno,String ormmno,String bradno,String spclno) {
+		return bwOrdhdRepository.query(Cnd.select().andEquals(M.BwOrdhd.ormmno, ormmno)
+				.andEqualsIf(M.BwOrdhd.bradno, bradno).andEqualsIf(M.BwOrdhd.spclno, spclno));
 	}
 }

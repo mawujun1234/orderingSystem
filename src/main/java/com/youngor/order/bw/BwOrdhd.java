@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 import com.mawujun.generator.model.FieldDefine;
+import com.youngor.pubcode.PubCodeCache;
 
 
 
@@ -44,7 +45,12 @@ public class BwOrdhd {
 	@FieldDefine(title="有效状态",sort=50,hidden=false)
 	private Integer isfect;//1：有效；0：无效
 	
-	
+	public String getBradno_name() {
+		return PubCodeCache.getBradno_name(this.getBradno());
+	}
+	public String getSpclno_name() {
+		return PubCodeCache.getSpclno_name(this.getSpclno());
+	}
 	
 	public String getOrmmno() {
 		return ormmno;

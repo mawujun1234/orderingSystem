@@ -62,5 +62,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	select max(b.orstat) from ORD_BW_ORDMT a,ORD_BW_ORDHD b
      	where a.ORMMNO=b.ORMMNO and a.ormtno=#{ormtno} and b.ORSTAT=0 and b.bradno=#{bradno} and b.spclno=#{spclno}
      </select>
+     <!-- 获取备忘订单中第一次是否已经提交了 -->
+     <select id="getBwOrdhdSzstat" resultType="int" parameterType="map">
+     	select min(szstat) from ORD_ORDHD
+   		 where mtorno=#{mtorno} and bradno=#{bradno} and spclno=#{spclno}
+     </select>
 </mapper>
 

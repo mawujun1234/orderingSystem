@@ -398,7 +398,7 @@ Ext.define('y.order.OrdMgrGrid',{
 				handler: function(btn){
 					var grid=btn.up("grid");
     				grid.getStore().getProxy().extraParams=grid.getParams();
-					grid.getStore().reload();
+					grid.getStore().reload({params:{start:0,page:1}});
 				},
 				iconCls: 'icon-refresh'
 			}]

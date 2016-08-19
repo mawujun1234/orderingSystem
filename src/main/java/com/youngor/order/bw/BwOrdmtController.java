@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mawujun.repository.cnd.Cnd;
+import com.youngor.utils.M;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -42,8 +45,8 @@ public class BwOrdmtController {
 	
 	@RequestMapping("/bwOrdmt/approve.do")
 	@ResponseBody
-	public String approve(String ormtno,String bradno,String spclno){
-		bwOrdmtService.approve(ormtno, bradno, spclno);
+	public String approve(String[] mmornoes){
+		bwOrdmtService.approve(mmornoes);
 		return "{success:true}";
 	}
 	/**
@@ -56,9 +59,21 @@ public class BwOrdmtController {
 	 */
 	@RequestMapping("/bwOrdmt/getBwOrdhdOrstat.do")
 	@ResponseBody
-	public String getBwOrdhdOrstat(String ormtno,String bradno,String spclno){
-		Integer orstat=bwOrdmtService.getBwOrdhdOrstat(ormtno, bradno, spclno);
+	public String getBwOrdhdOrstat(String ormtno,String ordorg,String bradno,String spclno){
+		Integer orstat=bwOrdmtService.getBwOrdhdOrstat(ormtno,ordorg, bradno, spclno);
 		return "{success:true,orstat:"+orstat+"}";
+	}
+	
+	@RequestMapping("/bwOrdmt/getOrmmnos.do")
+	@ResponseBody
+	public List<BwOrdmt> getOrmmnos(String ormtno){
+		return bwOrdmtService.query(Cnd.select().andEquals(M.BwOrdmt.ormtno, ormtno));
+	}
+	
+	@RequestMapping("/bwOrdmt/queryBwOrdhd.do")
+	@ResponseBody
+	public List<BwOrdhd> queryBwOrdhd(String ormtno,String ormmno,String bradno,String spclno){
+		return bwOrdmtService.queryBwOrdhd(ormtno, ormmno, bradno, spclno);
 	}
 
 //

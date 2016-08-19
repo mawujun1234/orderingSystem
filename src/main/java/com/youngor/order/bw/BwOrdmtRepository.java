@@ -22,4 +22,6 @@ public interface BwOrdmtRepository extends IRepository<BwOrdmt, String>{
 	public String getOrmmno(@Param("ormtno")String ormtno);
 	public String getMmorno(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	public Integer getBwOrdhdOrstat(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	
+	public Integer getBwOrdhdSzstat(@Param("mtorno")String mtorno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 }

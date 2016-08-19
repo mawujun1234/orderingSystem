@@ -516,10 +516,10 @@ Ext.onReady(function(){
 		
 		
 	}
-	window.szstat=0;
+	window.orstat=0;
 	function createBwSizeGrid(initColumns,params){
 		
-		getSzstat(params);
+		getorstat(params);
 		var　grid=Ext.create('y.order.BwSizeGrid',{
 			region:'center',
 			params:params,
@@ -528,11 +528,11 @@ Ext.onReady(function(){
 		return grid;
 	}
 	
-	function getSzstat(params){
+	function getorstat(params){
 		Ext.Ajax.request({
 			url:Ext.ContextPath+"/bwOrdmt/getBwOrdhdOrstat.do",
 			params:params,
-			headers:{ 'Accept':'application/json;'},
+			//headers:{ 'Accept':'application/json;'},
 			success:function(response){
 			 	//console.log(response.responseText);
 				var obj=Ext.decode(response.responseText);
@@ -540,8 +540,8 @@ Ext.onReady(function(){
 					Ext.Msg.alert("消息",obj.msg);
 					return;
 				}
-				//alert(obj.szstat);
-				window.szstat=obj.szstat;
+				//alert(obj);
+				window.orstat=obj.orstat;
 				
 			}
 		});
