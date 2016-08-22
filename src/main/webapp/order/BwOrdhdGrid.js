@@ -221,6 +221,8 @@ Ext.define('y.order.BwOrdhdGrid',{
 			var grid=me;
     		grid.getStore().getProxy().extraParams=grid.getParams();
 			grid.getStore().reload();
+			
+			me.bwOrdhdListGrid.mask();
 		}
 		
 	},

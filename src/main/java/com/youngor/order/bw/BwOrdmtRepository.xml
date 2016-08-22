@@ -18,7 +18,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      
      <select id="querySizeVOData" resultType="map" parameterType="map">
-	    select x.*,y.ORMMNO,y.MMORNO,y.ORSZQT from (
+	    select x.sampno,x.sampnm,x.suitno,x.sptyno,x.spseno,x.versno,x.sizety,x.sizeno,(x.orbgqt-nvl(z.ORSZQT,0)) orbgqt
+	    	,y.ORMMNO,y.MMORNO,y.ORSZQT
+	    	,u.prodnm from (
 	     	 SELECT  b.sampno,b.sampnm,c.suitno,d.sptyno,d.spseno,b.versno,a.sizety,a.sizeno,a.orbgqt FROM 
 		    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ord_sample_plan d
 		    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and b.plspno=d.plspno
@@ -39,11 +41,21 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="sampnm!=null and sampnm!=''">
 				and lower(b.sampnm) like lower('%${sampnm}%')
 			</if>
-		) x left join (  
+		) x 
+		left join (  
 			select b.ORMMNO,c.* from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
 		    where a.ORMMNO=b.ORMMNO and b.MMORNO=c.MMORNO
 		    and a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    and b.orstat=0
 		) y on x.sampno=y.sampno and x.suitno=y.suitno  and x.sizety=y.sizety and x.sizeno=y.sizeno
+		left join (  
+			select c.sampno,c.suitno,c.sizety,c.sizeno,sum(c.ORSZQT) ORSZQT from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
+		    where a.ORMMNO=b.ORMMNO and b.MMORNO=c.MMORNO
+		    and a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    and b.orstat=1
+		    group by c.sampno,c.suitno,c.sizety,c.sizeno
+		) z on x.sampno=z.sampno and x.suitno=z.suitno  and x.sizety=z.sizety and x.sizeno=z.sizeno
+		left join ORD_SAMPLE_PROD u on x.sampno=u.sampno and x.suitno=u.suitno and u.ormtno=#{ormtno}
 		order by x.SPTYNO,x.SPSENO,x.VERSNO,x.SAMPNO,x.SAMPNM,x.suitno
      </select>
      
@@ -66,6 +78,19 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="getBwOrdhdSzstat" resultType="int" parameterType="map">
      	select min(szstat) from ORD_ORDHD
    		 where mtorno=#{mtorno} and bradno=#{bradno} and spclno=#{spclno}
+     </select>
+     
+     <select id="queryBwSizeMgrList" resultType="map" parameterType="map">
+     	select b.ORMMNO,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm,sum(orszqt) orszqt
+		from ORD_BW_ORDMT a
+		inner join ORD_BW_ORDHD b on a.ORMMNO=b.ORMMNO 
+		inner join ORD_BW_ORDSZDTL c on b.MMORNO=c.MMORNO
+		inner join ord_sample_design d on c.sampno=d.sampno
+		inner join ord_sample_plan e on d.plspno=e.plspno
+		inner join t_org f on c.ordorg=f.orgno
+		left join ORD_SAMPLE_PROD g on c.sampno=g.sampno  
+		where  b.mmorno=#{mmorno}
+		group by b.ORMMNO,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm
      </select>
 </mapper>
 

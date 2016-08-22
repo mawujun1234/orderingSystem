@@ -24,4 +24,6 @@ public interface BwOrdmtRepository extends IRepository<BwOrdmt, String>{
 	public Integer getBwOrdhdOrstat(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	
 	public Integer getBwOrdhdSzstat(@Param("mtorno")String mtorno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	
+	public List<Map<String,Object>> queryBwSizeMgrList(Map<String,Object> params);
 }

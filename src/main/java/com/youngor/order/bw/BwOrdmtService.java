@@ -76,6 +76,7 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 				if(listmap.get("VERSNO")!=null){
 					map.put("VERSNO_NAME", PubCodeCache.getVersno_name((String)listmap.get("VERSNO")));
 				}
+				map.put("PRODNM", listmap.get("PRODNM"));
 				
 				map.put("PLSPNO", listmap.get("PLSPNO"));
 				map.put("PLSPNM", listmap.get("PLSPNM"));
@@ -120,7 +121,7 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		if(ormmno==null || "".equals(ormmno)){
 			ormmno=bwOrdmtRepository.getOrmmno(bwOrdszdtlVO.getOrmtno());
 			if(ormmno==null || "".equals(ormmno)){
-				ormmno=bwOrdszdtlVO.getOrmtno()+"_"+DateUtils.format(new Date(), "yyyyMMdd");
+				ormmno=bwOrdszdtlVO.getOrmtno()+"_"+DateUtils.format(new Date(), "yyyyMMddHHmm");
 				BwOrdmt bwOrdmt=new BwOrdmt();
 				bwOrdmt.setOrmmno(ormmno);
 				bwOrdmt.setOrmtno(bwOrdszdtlVO.getOrmtno());
@@ -184,5 +185,19 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 	public List<BwOrdhd> queryBwOrdhd(String ormtno,String ormmno,String bradno,String spclno) {
 		return bwOrdhdRepository.query(Cnd.select().andEquals(M.BwOrdhd.ormmno, ormmno)
 				.andEqualsIf(M.BwOrdhd.bradno, bradno).andEqualsIf(M.BwOrdhd.spclno, spclno));
+	}
+	
+	public List<Map<String,Object>> queryBwSizeMgrList(Map<String,Object> params) {
+		 List<Map<String,Object>> list=bwOrdmtRepository.queryBwSizeMgrList(params);
+		 for(Map<String,Object> listmap:list){
+			 listmap.put("SPTYNO_NAME", PubCodeCache.getSptyno_name((String)listmap.get("SPTYNO")));
+			 listmap.put("SPSENO_NAME", PubCodeCache.getSpseno_name((String)listmap.get("SPSENO")));
+			 if(listmap.get("VERSNO")!=null){
+				listmap.put("VERSNO_NAME", PubCodeCache.getVersno_name((String)listmap.get("VERSNO")));
+			 }
+			 listmap.put("SUITNO_NAME", PubCodeCache.getSuitno_name((String)listmap.get("SUITNO")));
+		 }
+		 
+		 return list;
 	}
 }

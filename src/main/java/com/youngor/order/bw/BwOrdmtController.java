@@ -1,4 +1,5 @@
 package com.youngor.order.bw;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,13 +68,20 @@ public class BwOrdmtController {
 	@RequestMapping("/bwOrdmt/getOrmmnos.do")
 	@ResponseBody
 	public List<BwOrdmt> getOrmmnos(String ormtno){
-		return bwOrdmtService.query(Cnd.select().andEquals(M.BwOrdmt.ormtno, ormtno));
+		return bwOrdmtService.query(Cnd.select().andEquals(M.BwOrdmt.ormtno, ormtno).desc(M.BwOrdmt.ormmno));
 	}
 	
 	@RequestMapping("/bwOrdmt/queryBwOrdhd.do")
 	@ResponseBody
 	public List<BwOrdhd> queryBwOrdhd(String ormtno,String ormmno,String bradno,String spclno){
 		return bwOrdmtService.queryBwOrdhd(ormtno, ormmno, bradno, spclno);
+	}
+	@RequestMapping("/bwOrdmt/queryBwSizeMgrList.do")
+	@ResponseBody
+	public List<Map<String,Object>> queryBwSizeMgrList(String mmorno) {
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("mmorno", mmorno);
+		return bwOrdmtService.queryBwSizeMgrList(params);
 	}
 
 //
