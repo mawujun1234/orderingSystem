@@ -384,8 +384,14 @@ public class PubSizeController {
 	 */
 	@RequestMapping("/pubSize/queryPRDSZFW4Ordmt.do")
 	@ResponseBody
-	public List<PubSizeVO> queryPRDSZFW4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno) {	
+	public List<PubSizeVO> queryPRDSZFW4Ordmt(String szbrad,String szclno,String ormtno,String versno,String spseno,Boolean showBlank) {	
 		List<PubSizeVO> pubSizees=pubSizeService.queryPRDSZFW4Ordmt(szbrad, szclno, ormtno,versno,spseno);
+		if(showBlank!=null && showBlank==true){
+			PubSizeVO pubSize=new PubSizeVO();
+			pubSize.setSizeno("");
+			pubSize.setSizenm("所有");
+			pubSizees.add(0,pubSize);
+		}
 		return pubSizees;
 	}
 	

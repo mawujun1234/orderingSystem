@@ -26,18 +26,25 @@ Ext.define('y.order.BwOrdhdListGrid',{
         },
         {dataIndex:'SAMPNM',header:'样衣编号'
         },
+         {dataIndex:'PRODNM',header:'货号'
+        },
         {dataIndex:'SUITNO_NAME',header:'套件'
         },
          {dataIndex:'ORSZQT',header:'数量'
+        },
+         {dataIndex:'MLDATE',header:'面料交货期'
+        },
+         {dataIndex:'PLDATE',header:'成衣交货期'
+        },
+         {dataIndex:'PPLACE',header:'产地'
         },
         {dataIndex:'SPTYNO_NAME',header:'小类'
         },
         {dataIndex:'SPSENO_NAME',header:'季节'
         },
         {dataIndex:'VERSNO_NAME',header:'版型'
-        },
-        {dataIndex:'PRODNM',header:'货号'
         }
+       
        
       ];
       var fields=[

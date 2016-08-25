@@ -15,7 +15,9 @@ import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.DateUtils;
 import com.mawujun.utils.bean.BeanUtils;
+import com.mawujun.utils.string.StringUtils;
 import com.youngor.order.OrdService;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.utils.M;
 
@@ -35,6 +37,8 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 	private BwOrdhdRepository bwOrdhdRepository;
 	@Autowired
 	private BwOrdszdtlRepository bwOrdszdtlRepository;
+	@Autowired
+	private BwOrddtRepository bwOrddtRepository;
 	
 	@Autowired
 	private OrdService ordService;
@@ -89,27 +93,63 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 				map.put("SUITNO", listmap.get("SUITNO"));
 				map.put("MTORNO", listmap.get("MTORNO"));
 				map.put("MLORNO", listmap.get("MLORNO"));
-				map.put("SIZETY", listmap.get("SIZETY"));
-				map.put("ORMMNO", listmap.get("ORMMNO"));
-				map.put("MMORNO", listmap.get("MMORNO"));
+				
+				
+				
+				
+				
 				result.add(map);
 				key_map.put(listmap.get("SAMPNO").toString(), map);
 				
 				map.put("ORBGQT_SUBTOTAL", new BigDecimal(0));//剩余的备忘数量
 				map.put("ORSZQT_SUBTOTAL", new BigDecimal(0));//兑现数量
+				
+				
 			}
+			
+			if(listmap.get("MLDATE")!=null){
+				map.put("MLDATE", listmap.get("MLDATE"));
+			}
+			if(listmap.get("PLDATE")!=null){
+				map.put("PLDATE", listmap.get("PLDATE"));
+			}
+			if(listmap.get("PPLACE")!=null){
+				map.put("PPLACE", listmap.get("PPLACE"));
+			}
+			if(listmap.get("ORMMNO")!=null){
+				map.put("ORMMNO", listmap.get("ORMMNO"));
+			}
+			if(listmap.get("MMORNO")!=null){
+				map.put("MMORNO", listmap.get("MMORNO"));
+			}
+			if(listmap.get("ORDORG")!=null){
+				map.put("ORDORG", listmap.get("ORDORG"));
+			}
+			map.put("SIZETY___"+listmap.get("SIZENO"), listmap.get("SIZETY"));
+			BigDecimal PACKQT=(BigDecimal)listmap.get("PACKQT");
+			map.put("PACKQT___"+listmap.get("SIZENO"), PACKQT);
 			//接下来是行列转换
 			map.put("ORBGQT_"+listmap.get("SIZENO"), listmap.get("ORBGQT"));
 			map.put("ORSZQT_"+listmap.get("SIZENO"), listmap.get("ORSZQT"));
 			//添加小计
 			if(listmap.get("ORBGQT")!=null){
 				BigDecimal ORBGQT_SUBTOTAL=(BigDecimal)map.get("ORBGQT_SUBTOTAL");
-				ORBGQT_SUBTOTAL=ORBGQT_SUBTOTAL.add((BigDecimal)listmap.get("ORBGQT"));
+				if("PRDPK".equals(listmap.get("SIZETY"))){
+					ORBGQT_SUBTOTAL=ORBGQT_SUBTOTAL.add(((BigDecimal)listmap.get("ORBGQT")).multiply(PACKQT));
+				} else {
+					ORBGQT_SUBTOTAL=ORBGQT_SUBTOTAL.add((BigDecimal)listmap.get("ORBGQT"));
+				}
+				
 				map.put("ORBGQT_SUBTOTAL",ORBGQT_SUBTOTAL);
 			}
 			//兑现数量
 			if(listmap.get("ORSZQT")!=null){
-				map.put("ORSZQT_SUBTOTAL", ((BigDecimal)map.get("ORSZQT_SUBTOTAL")).add((BigDecimal)listmap.get("ORSZQT")));
+				if("PRDPK".equals(listmap.get("SIZETY"))){
+					map.put("ORSZQT_SUBTOTAL", ((BigDecimal)map.get("ORSZQT_SUBTOTAL")).add(((BigDecimal)listmap.get("ORSZQT")).multiply(PACKQT)));
+				} else {
+					map.put("ORSZQT_SUBTOTAL", ((BigDecimal)map.get("ORSZQT_SUBTOTAL")).add((BigDecimal)listmap.get("ORSZQT")));
+				}
+				
 			}
 		}
 		
@@ -199,5 +239,40 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		 }
 		 
 		 return list;
+	}
+	
+	public  List<String> updateBwOrddt( BwOrddt[] bwOrddtes,String field) {
+		ArrayList<String> sampno_none=new ArrayList<String>();
+		for(BwOrddt bwOrddt:bwOrddtes){
+			if(!StringUtils.hasText(bwOrddt.getOrmmno()) || !StringUtils.hasText(bwOrddt.getOrdorg())){
+				sampno_none.add(bwOrddt.getSampnm());
+				continue;
+			}
+			BwOrddt bwOrddt_exists=bwOrddtRepository.get(bwOrddt.geetPK());
+			if(bwOrddt_exists==null){
+				bwOrddt.setRgdt(new Date());
+				bwOrddt.setRgsp(ShiroUtils.getLoginName());
+				bwOrddtRepository.create(bwOrddt);
+			} else if("mldate".equals(field)){
+				bwOrddt_exists.setOrmtqt(bwOrddt.getOrmtqt());
+				bwOrddt_exists.setLmdt(new Date());
+				bwOrddt_exists.setLmsp(ShiroUtils.getLoginName());
+				bwOrddt_exists.setMldate(bwOrddt.getMldate());
+				bwOrddtRepository.update(bwOrddt_exists);	
+			} else if("pldate".equals(field)){
+				bwOrddt_exists.setOrmtqt(bwOrddt.getOrmtqt());
+				bwOrddt_exists.setLmdt(new Date());
+				bwOrddt_exists.setLmsp(ShiroUtils.getLoginName());
+				bwOrddt_exists.setPldate(bwOrddt.getPldate());
+				bwOrddtRepository.update(bwOrddt_exists);	
+			} else if("pplace".equals(field)){
+				bwOrddt_exists.setOrmtqt(bwOrddt.getOrmtqt());
+				bwOrddt_exists.setLmdt(new Date());
+				bwOrddt_exists.setLmsp(ShiroUtils.getLoginName());
+				bwOrddt_exists.setPplace(bwOrddt.getPplace());
+				bwOrddtRepository.update(bwOrddt_exists);	
+			}
+		}
+		return sampno_none;
 	}
 }

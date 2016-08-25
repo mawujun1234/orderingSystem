@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.youngor.utils.M;
 /**
@@ -82,6 +83,24 @@ public class BwOrdmtController {
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("mmorno", mmorno);
 		return bwOrdmtService.queryBwSizeMgrList(params);
+	}
+	
+	@RequestMapping("/bwOrdmt/updateBwOrddt.do")
+	@ResponseBody
+	public  String updateBwOrddt(@RequestBody BwOrddt[] bwOrddt,String field) {
+		List<String> sampno_none=bwOrdmtService.updateBwOrddt(bwOrddt, field);
+		if(sampno_none.size()>0){
+			StringBuilder builder=new StringBuilder();
+			for(String str:sampno_none){
+				builder.append(","+str);
+			}
+			//throw new BusinessException("下列样衣设置失败,其他样衣设置成功，因为这些样衣未填写数量:"+builder);
+			return "{success:true,msg:'"+"下列样衣设置失败,其他样衣设置成功，因为这些样衣未填写数量:"+builder+"'}";
+		} else {
+			return "{success:true}";
+		}
+		//bwOrdmtService.update(bwOrddt);
+		
 	}
 
 //

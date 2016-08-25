@@ -7,7 +7,10 @@ Ext.define('y.order.BwSizeGrid',{
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	selModel: {
+          selType: 'checkboxmodel'
+          ,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -31,6 +34,12 @@ Ext.define('y.order.BwSizeGrid',{
          {dataIndex:'SAMPNM',header:'订货样衣编号'
         },
          {dataIndex:'PRODNM',header:'产品货号'
+        },
+         {dataIndex:'MLDATE',header:'面料交货期'
+        },
+         {dataIndex:'PLDATE',header:'成衣交货期'
+        },
+         {dataIndex:'PPLACE',header:'产地'
         },
         {dataIndex:'ORBGQT_SUBTOTAL',header:'备忘合计',width:75
          	,renderer:function(value, metaData, record, rowIndex, colIndex, store){
@@ -65,41 +74,74 @@ Ext.define('y.order.BwSizeGrid',{
 		{name:'ORBGQT_SUBTOTAL',type:'string'},
 		{name:'ORSZQT_SUBTOTAL',type:'string'},
 		{name:'ORMMNO',type:'string'},
-		{name:'MMORNO',type:'string'}
+		{name:'MMORNO',type:'string'},
+		{name:'MLDATE',type:'string'},
+		{name:'PLDATE',type:'string'},
+		{name:'PPLACE',type:'string'}
 		
 	  ];
       
 	  var STDSZ_columns=[];//单规
-	  //var PRDPK_columns=[];//包装
+	  var PRDPK_columns=[];//标准箱
 	 // var STDSZPRDPK_columns=[];//单规包装
       for(var i=0;i<me.initColumns.length;i++){
       	var initColumn=me.initColumns[i];
-      	STDSZ_columns.push({
-      		header:initColumn["SIZENM"],
-      		columns:[{
-      			header:'备忘',
-      			dataIndex:"ORBGQT_"+initColumn["SIZENO"],
-      			width: 60
-      		},{
-      			header:'数量',
-      			dataIndex:"ORSZQT_"+initColumn["SIZENO"],
-      			width: 60
-      			,editor: {
-	                xtype: 'numberfield',
-	                allowDecimals:false,
-	                selectOnFocus:true 
-	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
-	            	//console.log(window.szsta);
-	            	//单规+包装箱
-	            	if(window.orstat==0){
-	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
-	            	} else {
-	            		//metaData.tdStyle = 'background-color:#98FB98;' ;
+      	if(initColumn.SIZETY=='PRDPK'){
+      		PRDPK_columns.push({
+	      		header:initColumn["SIZENM"],
+	      		columns:[{
+	      			header:'可用',
+	      			dataIndex:"ORBGQT_"+initColumn["SIZENO"],
+	      			width: 60
+	      		},{
+	      			header:'数量',
+	      			dataIndex:"ORSZQT_"+initColumn["SIZENO"],
+	      			width: 60
+	      			,editor: {
+		                xtype: 'numberfield',
+		                allowDecimals:false,
+		                selectOnFocus:true 
+		            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+		            	//console.log(record.get("PACKQT___"));
+		            	//单规+包装箱
+		            	if(window.orstat==0){
+		            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+		            	} else {
+		            		//metaData.tdStyle = 'background-color:#98FB98;' ;
+		            	}
+		            	 return value;
 	            	}
-	            	 return value;
-            	}
-      		}]
-      	});
+	      		}]
+	      	});
+      	} else if(initColumn.SIZETY=='STDSZ'){
+      		STDSZ_columns.push({
+	      		header:initColumn["SIZENM"],
+	      		columns:[{
+	      			header:'可用',
+	      			dataIndex:"ORBGQT_"+initColumn["SIZENO"],
+	      			width: 60
+	      		},{
+	      			header:'数量',
+	      			dataIndex:"ORSZQT_"+initColumn["SIZENO"],
+	      			width: 60
+	      			,editor: {
+		                xtype: 'numberfield',
+		                allowDecimals:false,
+		                selectOnFocus:true 
+		            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+		            	//console.log(window.szsta);
+		            	//单规+包装箱
+		            	if(window.orstat==0){
+		            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+		            	} else {
+		            		//metaData.tdStyle = 'background-color:#98FB98;' ;
+		            	}
+		            	 return value;
+	            	}
+	      		}]
+	      	});
+      	}
+      	
 
       	 fields.push({name:"ORBGQT_"+initColumn["SIZENO"],type:'int'});
       	 fields.push({name:"ORSZQT_"+initColumn["SIZENO"],type:'int'});
@@ -107,6 +149,10 @@ Ext.define('y.order.BwSizeGrid',{
       
       
        if(STDSZ_columns.length!=0){
+       		me.columns.push({
+      			header:'标准箱',
+      			columns:PRDPK_columns
+      		});
       		me.columns.push({
       			header:'规格',
       			columns:STDSZ_columns
@@ -193,7 +239,7 @@ Ext.define('y.order.BwSizeGrid',{
 				sampno:record.get("SAMPNO"),
 				suitno:params.suitno,
 				
-				sizety:record.get("SIZETY"),
+				sizety:record.get("SIZETY___"+aaa[1]),
 				sizeno:aaa[1],
 				orszqt:value
 
@@ -216,9 +262,17 @@ Ext.define('y.order.BwSizeGrid',{
 				if(typeof(ORSZQT_SUBTOTAL)=='undefined') {
 					ORSZQT_SUBTOTAL=0;
 				}
-				ORSZQT_SUBTOTAL=ORSZQT_SUBTOTAL-originalValue+value;
+				
+				var packqt=record.get("PACKQT___"+aaa[1]);//record.get("PACKQT");
+				if(typeof(packqt)=='undefined'){
+					packqt=1;
+				}
+				ORSZQT_SUBTOTAL=ORSZQT_SUBTOTAL-(originalValue*packqt)+(value*packqt);
 				record.set("ORSZQT_SUBTOTAL",ORSZQT_SUBTOTAL);
-				record.commit();
+				record.commit();		
+//				ORSZQT_SUBTOTAL=ORSZQT_SUBTOTAL-originalValue+value;
+//				record.set("ORSZQT_SUBTOTAL",ORSZQT_SUBTOTAL);
+//				record.commit();
 
 			}
 						

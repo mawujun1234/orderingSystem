@@ -9,8 +9,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	 SELECT distinct a.sizety,a.sizeno,d.sizenm FROM 
 	    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ORD_PUB_SIZE d
 	    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=d.sizeno
-	    and a.sizety=d.sizety and a.sizety='STDSZ' 
-	    and c.sizegp=#{sizegp}
+	    and a.sizety=d.sizety --and a.sizety='STDSZ' 
+	    <if test="sizegp!=null and sizegp!=''">
+	    	 and c.sizegp=#{sizegp}
+	    </if>
+	   
 	    and a.suitno=#{suitno}
 	    and a.mlorno=#{mlorno}
 	    and a.orbgqt!=0
@@ -19,13 +22,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      
      <select id="querySizeVOData" resultType="map" parameterType="map">
 	    select x.sampno,x.sampnm,x.suitno,x.sptyno,x.spseno,x.versno,x.sizety,x.sizeno,(x.orbgqt-nvl(z.ORSZQT,0)) orbgqt
-	    	,y.ORMMNO,y.MMORNO,y.ORSZQT
-	    	,u.prodnm from (
+	    	,y.ORMMNO,y.MMORNO,y.ORSZQT,y.mldate,y.pldate,y.pplace,y.ordorg
+	    	,u.prodnm,NVL(v.packqt,1) packqt	
+	    	 from (
 	     	 SELECT  b.sampno,b.sampnm,c.suitno,d.sptyno,d.spseno,b.versno,a.sizety,a.sizeno,a.orbgqt FROM 
 		    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ord_sample_plan d
 		    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and b.plspno=d.plspno
-		    and a.sizety='STDSZ' 
-		    and c.sizegp=#{sizegp}
+		    --and a.sizety='STDSZ' 
+		    <if test="sizegp!=null and sizegp!=''">
+		    	 and c.sizegp=#{sizegp}
+		    </if>
+		    
 		     and a.suitno=#{suitno} 
 		    and a.mlorno=#{mlorno} 
 		    and a.orbgqt!=0
@@ -41,11 +48,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="sampnm!=null and sampnm!=''">
 				and lower(b.sampnm) like lower('%${sampnm}%')
 			</if>
+			
 		) x 
 		left join (  
-			select b.ORMMNO,c.* from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
-		    where a.ORMMNO=b.ORMMNO and b.MMORNO=c.MMORNO
-		    and a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+			select b.ORMMNO,w.mldate,w.pldate,w.pplace,c.* from ORD_BW_ORDMT a 
+			inner join ORD_BW_ORDHD b on a.ORMMNO=b.ORMMNO
+			inner join ORD_BW_ORDSZDTL c on b.MMORNO=c.MMORNO
+			left join ord_bw_orddt w on b.ORMMNO=w.ORMMNO and b.mmorno=w.mmorno and c.ordorg=w.ordorg and c.sampno=w.sampno and c.suitno=w.suitno
+		    where   
+		    a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
 		    and b.orstat=0
 		) y on x.sampno=y.sampno and x.suitno=y.suitno  and x.sizety=y.sizety and x.sizeno=y.sizeno
 		left join (  
@@ -56,6 +67,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		    group by c.sampno,c.suitno,c.sizety,c.sizeno
 		) z on x.sampno=z.sampno and x.suitno=z.suitno  and x.sizety=z.sizety and x.sizeno=z.sizeno
 		left join ORD_SAMPLE_PROD u on x.sampno=u.sampno and x.suitno=u.suitno and u.ormtno=#{ormtno}
+		LEFT JOIN (         SELECT FSZTY,FSZNO,SUM(SIZEQT) packqt FROM ORD_PUB_SIZEDTL WHERE FSZTY='PRDPK' AND SIZETY='STDSZ' 
+         GROUP BY FSZTY,FSZNO) v ON x.SIZETY=v.FSZTY AND x.SIZENO=v.FSZNO 
+        
+		where 1=1
+		<if test="prodnm!=null and prodnm!=''">
+			and lower(u.prodnm) like lower('%${prodnm}%')
+		</if>
 		order by x.SPTYNO,x.SPSENO,x.VERSNO,x.SAMPNO,x.SAMPNM,x.suitno
      </select>
      
@@ -81,7 +99,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      
      <select id="queryBwSizeMgrList" resultType="map" parameterType="map">
-     	select b.ORMMNO,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm,sum(orszqt) orszqt
+     	select b.ORMMNO,w.mldate,w.pldate,w.pplace,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm,sum(orszqt*nvl(v.packqt,1)) orszqt
 		from ORD_BW_ORDMT a
 		inner join ORD_BW_ORDHD b on a.ORMMNO=b.ORMMNO 
 		inner join ORD_BW_ORDSZDTL c on b.MMORNO=c.MMORNO
@@ -89,8 +107,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		inner join ord_sample_plan e on d.plspno=e.plspno
 		inner join t_org f on c.ordorg=f.orgno
 		left join ORD_SAMPLE_PROD g on c.sampno=g.sampno  
+		LEFT JOIN (         SELECT FSZTY,FSZNO,SUM(SIZEQT) packqt FROM ORD_PUB_SIZEDTL WHERE FSZTY='PRDPK' AND SIZETY='STDSZ' 
+         GROUP BY FSZTY,FSZNO) v ON c.SIZETY=v.FSZTY AND c.SIZENO=v.FSZNO 
+        left join ord_bw_orddt w on b.ORMMNO=w.ORMMNO and b.mmorno=w.mmorno and c.ordorg=w.ordorg and c.sampno=w.sampno and c.suitno=w.suitno
 		where  b.mmorno=#{mmorno}
-		group by b.ORMMNO,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm
+		group by b.ORMMNO,w.mldate,w.pldate,w.pplace,c.mmorno,c.ordorg,f.orgnm,c.sampno,c.suitno,d.sampnm,e.sptyno,e.spseno,d.versno,g.prodnm
+		order by e.sptyno,e.spseno,d.versno,g.prodnm
      </select>
 </mapper>
 

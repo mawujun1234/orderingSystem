@@ -2,7 +2,7 @@ Ext.require('y.order.BwSizeGrid');
 Ext.onReady(function(){
 	var panel=Ext.create('Ext.panel.Panel',{
 		region:'north',
-		height:120
+		height:145
 	});
 	window.load_num=0;
 	window.ordorg_load_num=0;
@@ -331,22 +331,29 @@ Ext.onReady(function(){
 				    	url:Ext.ContextPath+'/pubSize/queryPRDSZFW4Ordmt.do'
 				    },
 				    listeners:{
-				    	load:function(myStore){
-				    		if(myStore.getCount( ) >0){
-						 		var r=myStore.getAt(0);//第一行是无
-						 		var me=panel.down("#sizegp");
-						 		me.select( r );
-						 		//me.fireEvent("select", me, r);
-						 	}
-				    	}
+//				    	load:function(myStore){
+//				    		if(myStore.getCount( ) >0){
+//						 		var r=myStore.getAt(0);//第一行是无
+//						 		var me=panel.down("#sizegp");
+//						 		me.select( r );
+//						 		//me.fireEvent("select", me, r);
+//						 	}
+//				    	}
 				    }
 				}
 		        
 		    },{
 		        fieldLabel: '订货样衣编号',
-		        labelWidth:65,
+		        labelWidth:85,
 		        width:165,
 		        itemId: 'sampnm',
+	            xtype:'textfield'
+		    }
+		    ,{
+		        fieldLabel: '货号',
+		        labelWidth:40,
+		        width:165,
+		        itemId: 'prodnm',
 	            xtype:'textfield'
 		    }
 //		    ,{
@@ -406,6 +413,60 @@ Ext.onReady(function(){
 			]
 	});
 	
+	panel.addDocked({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[
+//		  	Ext.create('Ext.form.ComboBox', {
+//			    fieldLabel: '产地',
+//			    name: 'pplace',
+//		        itemId: 'pplace',
+//		        labelWidth:60,
+//		        width:150,
+//		        //value:'sampno',
+//			    store: Ext.create('Ext.data.Store', {
+//				    fields: ['value', 'name'],
+//				    data : [
+//				    	{"value":"", "name":"所有"},
+//				    	{"value":"宁波", "name":"宁波"},
+//				        {"value":"珲春", "name":"珲春"}
+//				    ]
+//				}),
+//			    queryMode: 'local',
+//			    displayField: 'name',
+//			    valueField: 'value'
+//			}),{
+//		       // fieldLabel: '生产类型',
+//		        emptyText:'生产类型',
+//		         width:90,
+//		        itemId: 'spmtno',
+//	            selectOnFocus:true,
+//		        xtype:'pubcodecombo',
+//		        tyno:'29'
+//		    }
+		    {
+			   text: '指定面料交货期',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					panel.onMldate();
+				},
+				iconCls: 'icon-wrench'
+			},{
+		  		text: '指定成衣交货期',
+				handler: function(btn){
+					panel.onPldate();
+				},
+				iconCls: 'icon-wrench'
+		  	},{
+			   text: '指定产地',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					panel.onPplace();
+				},
+				iconCls: 'icon-wrench'
+			}]
+		});
+	
 	function reloadOrdorg(){
 		if(window.ordorg_load_num>1){
 			var ordorg=panel.down("#ordorg");//combo.nextSibling("#ordorg");
@@ -435,6 +496,7 @@ Ext.onReady(function(){
 			var sizegp=panel.down("#sizegp");
 			sizegp.clearValue( );
 			sizegp.getStore().getProxy().extraParams={
+				showBlank:true,
 				szbrad:panel.down("#bradno").getValue(),
 				szclno:panel.down("#spclno").getValue(),
 				ormtno:panel.down("#ordmtcombo").getValue() 
@@ -477,7 +539,8 @@ Ext.onReady(function(){
 			
 			'versno':toolbars[2].down("#versno").getValue(),
 			'sizegp':toolbars[2].down("#sizegp").getValue(),
-			'sampnm':toolbars[2].down("#sampnm").getValue()
+			'sampnm':toolbars[2].down("#sampnm").getValue(),
+			'prodnm':toolbars[2].down("#prodnm").getValue()
 			//'szstat':toolbars[2].down("#szstat").getValue()
 		};
 		return params;
@@ -558,5 +621,262 @@ Ext.onReady(function(){
 	});
 
 
+	
+	panel.onMldate=function(){
+		var me=grid;
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var mldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						ormmno:modles[i].get("ORMMNO"),
+						mmorno:modles[i].get("MMORNO"),
+						ordorg:modles[i].get("ORDORG"),
+						sampnm:modles[i].get("SAMPNM"),
+						
+						mldate:mldate,
+						ormtqt:modles[i].get("ORSZQT_SUBTOTAL")
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/bwOrdmt/updateBwOrddt.do',
+						    jsonData:dataes,
+						    params:{
+						    	field:'mldate'
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息",obj.msg?obj.msg:"成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	},
+	panel.onPldate=function(){
+		var me=grid;
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定成衣交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var mldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						ormmno:modles[i].get("ORMMNO"),
+						mmorno:modles[i].get("MMORNO"),
+						ordorg:modles[i].get("ORDORG"),
+						sampnm:modles[i].get("SAMPNM"),
+						
+						pldate:mldate,
+						ormtqt:modles[i].get("ORSZQT_SUBTOTAL")
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/bwOrdmt/updateBwOrddt.do',
+						    jsonData:dataes,
+						    params:{
+						    	field:'pldate'
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息",obj.msg?obj.msg:"成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	},
+    panel.onPplace=function(){
+		var me=grid;
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var pplacefield=Ext.create('Ext.form.ComboBox', {
+			    fieldLabel: '产地',
+			    name: 'pplace',
+		        itemId: 'pplace',
+		        labelWidth:60,
+		        width:150,
+		        //value:'sampno',
+			    store: Ext.create('Ext.data.Store', {
+				    fields: ['value', 'name'],
+				    data : [
+				    	//{"value":"", "name":"所有"},
+				    	{"value":"宁波", "name":"宁波"},
+				        {"value":"珲春", "name":"珲春"}
+				    ]
+				}),
+			    queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'value'
+			});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[pplacefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!pplacefield.getValue()){
+				return;
+			}
+			var pplace=pplacefield.getValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						sampno:modles[i].get("SAMPNO"),
+						suitno:modles[i].get("SUITNO"),
+						ormmno:modles[i].get("ORMMNO"),
+						mmorno:modles[i].get("MMORNO"),
+						ordorg:modles[i].get("ORDORG"),
+						sampnm:modles[i].get("SAMPNM"),
+						
+						pplace:pplace,
+						ormtqt:modles[i].get("ORSZQT_SUBTOTAL")
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/bwOrdmt/updateBwOrddt.do',
+						    jsonData:dataes,
+						    params:{
+						    	field:'pplace'
+						    },
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息",obj.msg?obj.msg:"成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	}
 
 });

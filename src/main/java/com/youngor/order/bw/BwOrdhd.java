@@ -31,15 +31,15 @@ public class BwOrdhd {
 	@FieldDefine(title="大类",sort=50,hidden=false)
 	private String spclno;
 
-	@Column(length=50)
-	@FieldDefine(title="计划面料交货期",sort=50,hidden=false)
-	private String mldate;
-	@Column(length=50)
-	@FieldDefine(title="计划成衣交货期",sort=50,hidden=false)
-	private String pldate;
-	@Column(length=50)
-	@FieldDefine(title="产地",sort=50,hidden=false)
-	private String pplace;
+//	@Column(length=50)
+//	@FieldDefine(title="计划面料交货期",sort=50,hidden=false)
+//	private String mldate;
+//	@Column(length=50)
+//	@FieldDefine(title="计划成衣交货期",sort=50,hidden=false)
+//	private String pldate;
+//	@Column(length=50)
+//	@FieldDefine(title="产地",sort=50,hidden=false)
+//	private String pplace;
 	@FieldDefine(title="订单状态",sort=50,hidden=false)
 	private Integer orstat;//0：编辑中；1：已确认；
 	@FieldDefine(title="有效状态",sort=50,hidden=false)
@@ -76,24 +76,7 @@ public class BwOrdhd {
 	public void setSpclno(String spclno) {
 		this.spclno = spclno;
 	}
-	public String getMldate() {
-		return mldate;
-	}
-	public void setMldate(String mldate) {
-		this.mldate = mldate;
-	}
-	public String getPldate() {
-		return pldate;
-	}
-	public void setPldate(String pldate) {
-		this.pldate = pldate;
-	}
-	public String getPplace() {
-		return pplace;
-	}
-	public void setPplace(String pplace) {
-		this.pplace = pplace;
-	}
+	
 	public Integer getOrstat() {
 		return orstat;
 	}
