@@ -15,7 +15,8 @@ import com.mawujun.repository.IRepository;
 @Repository
 public interface BwOrdmtRepository extends IRepository<BwOrdmt, String>{
 
-	public List<Map<String,Object>> querySizeVOColumns(@Param("sizegp")String sizegp,@Param("mlorno")String mlorno,@Param("suitno")String suitno);	
+	//public List<Map<String,Object>> querySizeVOColumns(@Param("sizegp")String sizegp,@Param("mlorno")String mlorno,@Param("suitno")String suitno);
+	public List<Map<String,Object>> querySizeVOColumns(Map<String,Object> params);
 	
 	public List<Map<String,Object>> querySizeVOData(Map<String,Object> params);
 	
@@ -23,7 +24,7 @@ public interface BwOrdmtRepository extends IRepository<BwOrdmt, String>{
 	public String getMmorno(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	public Integer getBwOrdhdOrstat(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	
-	public Integer getBwOrdhdSzstat(@Param("mtorno")String mtorno,@Param("bradno")String bradno,@Param("spclno")String spclno);
+	public Integer getBwOrdhdSzstat(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("channo")String channo,@Param("bradno")String bradno,@Param("spclno")String spclno);
 	
 	public List<Map<String,Object>> queryBwSizeMgrList(Map<String,Object> params);
 }

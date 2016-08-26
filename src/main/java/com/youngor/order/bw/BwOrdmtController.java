@@ -27,9 +27,10 @@ public class BwOrdmtController {
 	
 	@RequestMapping("/bwOrdmt/querySizeVOColumns.do")
 	@ResponseBody
-	public List<Map<String,Object>> querySizeVOColumns(String sizegp,String ormtno,String ordorg,String bradno,String spclno,String suitno ){
-		
-		return bwOrdmtService.querySizeVOColumns(sizegp, ormtno, ordorg, bradno, spclno, suitno);
+	//public List<Map<String,Object>> querySizeVOColumns(String sizegp,String ormtno,String ordorg,String bradno,String spclno,String suitno ){
+	public List<Map<String,Object>> querySizeVOColumns(@RequestBody Map<String,Object> params){	
+		//return bwOrdmtService.querySizeVOColumns(sizegp, ormtno, ordorg, bradno, spclno, suitno);
+		return bwOrdmtService.querySizeVOColumns(params);
 	}
 	
 	@RequestMapping("/bwOrdmt/querySizeVOData.do")
@@ -61,8 +62,8 @@ public class BwOrdmtController {
 	 */
 	@RequestMapping("/bwOrdmt/getBwOrdhdOrstat.do")
 	@ResponseBody
-	public String getBwOrdhdOrstat(String ormtno,String ordorg,String bradno,String spclno){
-		Integer orstat=bwOrdmtService.getBwOrdhdOrstat(ormtno,ordorg, bradno, spclno);
+	public String getBwOrdhdOrstat(String ormtno,String ordorg,String channo,String bradno,String spclno){
+		Integer orstat=bwOrdmtService.getBwOrdhdOrstat(ormtno,ordorg, channo,bradno, spclno);
 		return "{success:true,orstat:"+orstat+"}";
 	}
 	

@@ -51,27 +51,35 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		return bwOrdmtRepository;
 	}
 	
-	public List<Map<String,Object>> querySizeVOColumns(String sizegp,String ormtno,String ordorg,String bradno,String spclno,String suitno) {
-		String mtorno=ordService.getMtorno(ormtno, "BW", ordorg);
-		return bwOrdmtRepository.querySizeVOColumns(sizegp, mtorno+bradno+spclno, suitno);
+	//public List<Map<String,Object>> querySizeVOColumns(String sizegp,String ormtno,String ordorg,String bradno,String spclno,String suitno) {
+	public List<Map<String,Object>> querySizeVOColumns(Map<String,Object> params){
+		//String mtorno=ordService.getMtorno(ormtno, "BW", ordorg);
+		return bwOrdmtRepository.querySizeVOColumns(params);
 	}
 	
 	public List<Map<String,Object>> querySizeVOData(Map<String,Object> params) {
-		String mtorno=ordService.getMtorno(params.get("ormtno").toString(), "BW", params.get("ordorg").toString());
-		params.put("mtorno", mtorno);
-		params.put("mlorno", mtorno+params.get("bradno").toString()+params.get("spclno").toString());
+		//String mtorno=ordService.getMtorno(params.get("ormtno").toString(), "BW", params.get("ordorg").toString());
+		//params.put("mtorno", mtorno);
+		//params.put("mlorno", mtorno+params.get("bradno").toString()+params.get("spclno").toString());
 		
 		List<Map<String,Object>> result= new ArrayList<Map<String,Object>>();
 		
 		List<Map<String,Object>> list= bwOrdmtRepository.querySizeVOData(params);
 		//进行行列转换
 		Map<String,Map<String,Object>> key_map=new HashMap<String,Map<String,Object>>();
+		//汇总
+		Map<String,Object> total=new HashMap<String,Object>();
+		total.put("ORDORG", "TOTAL");
+		total.put("ORDORG_NAME", "合计:");
+		
+		
+		
 		for(Map<String,Object> listmap:list){
-			Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString());
+			Map<String,Object> map=key_map.get(listmap.get("SAMPNO").toString()+listmap.get("SUITNO")+listmap.get("ORDORG"));
 			if(map==null) {
 				map=new HashMap<String,Object>();
 	
-				map.put("ORDORG_NAME", params.get("ordorg_name"));
+				map.put("ORDORG_NAME", listmap.get("ORDORG_NAME"));
 				map.put("SPTYNO", listmap.get("SPTYNO"));
 				map.put("SPTYNO_NAME", PubCodeCache.getSptyno_name((String)listmap.get("SPTYNO")));
 				map.put("SPSENO", listmap.get("SPSENO"));
@@ -91,6 +99,7 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 				
 				//map.put("PACKQT", listmap.get("PACKQT"));
 				map.put("SUITNO", listmap.get("SUITNO"));
+				//map.put("SUITNO_NAME", PubCodeCache.getSuitno_name(listmap.get("SUITNO").toString()));
 				map.put("MTORNO", listmap.get("MTORNO"));
 				map.put("MLORNO", listmap.get("MLORNO"));
 				
@@ -99,7 +108,7 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 				
 				
 				result.add(map);
-				key_map.put(listmap.get("SAMPNO").toString(), map);
+				key_map.put(listmap.get("SAMPNO").toString()+listmap.get("SUITNO")+listmap.get("ORDORG"), map);
 				
 				map.put("ORBGQT_SUBTOTAL", new BigDecimal(0));//剩余的备忘数量
 				map.put("ORSZQT_SUBTOTAL", new BigDecimal(0));//兑现数量
@@ -150,6 +159,57 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 					map.put("ORSZQT_SUBTOTAL", ((BigDecimal)map.get("ORSZQT_SUBTOTAL")).add((BigDecimal)listmap.get("ORSZQT")));
 				}
 				
+			}
+			
+			//计算汇总
+			String key="ORBGQT_"+listmap.get("SIZENO");
+			if(total.get(key)==null) {
+				total.put(key, new BigDecimal(0));
+			} 
+			if(map.get(key)!=null){
+				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
+			}
+			key="ORSZQT_"+listmap.get("SIZENO");
+			if(total.get(key)==null) {
+				total.put(key, new BigDecimal(0));
+			} 
+			if(map.get(key)!=null){
+				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
+			}
+//			key="ORBGQT_SUBTOTAL";
+//			if(total.get(key)==null) {
+//				total.put(key, new BigDecimal(0));
+//			} 
+//			if(map.get(key)!=null){
+//				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
+//			}
+//			key="ORSZQT_SUBTOTAL";
+//			if(total.get(key)==null) {
+//				total.put(key, new BigDecimal(0));
+//			} 
+//			if(map.get(key)!=null) {
+//				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
+//			}
+		}
+		result.add(total);
+		
+		for(Map<String,Object> map:result){
+			if("TOTAL".equals(map.get("ORDORG"))){
+				continue;
+			}
+			String key="ORBGQT_SUBTOTAL";
+			if(total.get(key)==null) {
+				total.put(key, new BigDecimal(0));
+			} 
+			if(map.get(key)!=null){
+				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
+			}
+			key="ORSZQT_SUBTOTAL";
+			if(total.get(key)==null) {
+				total.put(key, new BigDecimal(0));
+			} 
+			if(map.get(key)!=null) {
+				total.put(key, ((BigDecimal)total.get(key)).add((BigDecimal)map.get(key)));
 			}
 		}
 		
@@ -203,10 +263,10 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		}
 	}
 	
-	public Integer getBwOrdhdOrstat(String ormtno,String ordorg,String bradno,String spclno) {
+	public Integer getBwOrdhdOrstat(String ormtno,String ordorg,String channo,String bradno,String spclno) {
 		//先判断备忘订单的规格是否已经“审批通过”了，如果已经“审批通过”，才可以审批
-		String mtorno=ordService.getMtorno(ormtno, "BW", ordorg);
-		Integer szstat= bwOrdmtRepository.getBwOrdhdSzstat(mtorno, bradno, spclno);
+		//String mtorno=ordService.getMtorno(ormtno, "BW", ordorg);
+		Integer szstat= bwOrdmtRepository.getBwOrdhdSzstat(ormtno,ordorg,channo, bradno, spclno);
 		if(szstat!=3){
 			return 1;
 		}

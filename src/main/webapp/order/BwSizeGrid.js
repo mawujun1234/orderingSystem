@@ -104,7 +104,7 @@ Ext.define('y.order.BwSizeGrid',{
 		            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
 		            	//console.log(record.get("PACKQT___"));
 		            	//单规+包装箱
-		            	if(window.orstat==0){
+		            	if(window.orstat==0 && record.get("ORDORG")!='TOTAL'){
 		            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 		            	} else {
 		            		//metaData.tdStyle = 'background-color:#98FB98;' ;
@@ -131,7 +131,7 @@ Ext.define('y.order.BwSizeGrid',{
 		            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
 		            	//console.log(window.szsta);
 		            	//单规+包装箱
-		            	if(window.orstat==0){
+		            	if(window.orstat==0 && record.get("ORDORG")!='TOTAL'){
 		            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
 		            	} else {
 		            		//metaData.tdStyle = 'background-color:#98FB98;' ;
@@ -197,7 +197,7 @@ Ext.define('y.order.BwSizeGrid',{
 	  	var record=context.record;
 	  	var field =context.field ;
 	  	//var aaa=field.split("___");
-	  	if(window.orstat==0) {
+	  	if(window.orstat==0  && record.get("ORDORG")!='TOTAL') {
 		  	return true
 	  	}
 	    return false;

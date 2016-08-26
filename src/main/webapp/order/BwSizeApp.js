@@ -22,7 +22,7 @@ Ext.onReady(function(){
 		        		});
 		        		//ordorg.getStore().reload();
 		        		window.ordorg_load_num++;
-		        		reloadOrdorg();
+		        		//reloadOrdorg();
 		        		
 		        		window.load_num++;
 						reloadSizegp();
@@ -47,9 +47,10 @@ Ext.onReady(function(){
 		  		fieldLabel: '区域',
 		  		labelWidth:45,
 		  		width:170,
-		  		allowBlank: false,
-	            afterLabelTextTpl: Ext.required,
-	            showBlank:false,
+		  		//allowBlank: false,
+		  		selFirst:false,
+	            //afterLabelTextTpl: Ext.required,
+	            showBlank:true,
 		  		itemId:'qyno',
 				xtype:'orgcombo',
 				autoLoad:false,
@@ -92,10 +93,10 @@ Ext.onReady(function(){
 				fieldLabel: '订货单位',
 				labelWidth:65,
 				width:270,
-				allowBlank: false,
-				showBlank:false,
-	            afterLabelTextTpl: Ext.required,
-	            blankText:"订货单位不允许为空",
+				//allowBlank: false,
+				showBlank:true,
+	            //afterLabelTextTpl: Ext.required,
+	            //blankText:"订货单位不允许为空",
 				itemId: 'ordorg',
 				queryMode: 'local',
 				editable:false,
@@ -559,9 +560,10 @@ Ext.onReady(function(){
 		var sizegp=panel.down("#sizegp");
 		Ext.Ajax.request({
 			url:Ext.ContextPath+"/bwOrdmt/querySizeVOColumns.do",
-			params:{
+			jsonData:{
 				sizegp:sizegp.getValue(),
 				ormtno:params.ormtno,
+				channo:params.channo,
 				ordorg:params.ordorg,
 				bradno:params.bradno,
 				spclno:params.spclno,

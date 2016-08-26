@@ -7,34 +7,50 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.order.bw.BwOrdmtRepository">
 	<select id="querySizeVOColumns" resultType="map" parameterType="map">
      	 SELECT distinct a.sizety,a.sizeno,d.sizenm FROM 
-	    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ORD_PUB_SIZE d
-	    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=d.sizeno
+	     ord_ord e,ord_ordhd f,ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ORD_PUB_SIZE d
+	    where e.mtorno=f.mtorno and f.mtorno=a.mtorno and f.mlorno=a.mlorno and a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=d.sizeno
 	    and a.sizety=d.sizety --and a.sizety='STDSZ' 
 	    <if test="sizegp!=null and sizegp!=''">
 	    	 and c.sizegp=#{sizegp}
 	    </if>
 	   
 	    and a.suitno=#{suitno}
-	    and a.mlorno=#{mlorno}
+	    <if test="ordorg!=null and ordorg!=''">
+		    and e.ordorg=#{ordorg}
+		</if>
+		and e.ormtno=#{ormtno}
+		and e.ortyno='BW'
+		and e.channo=#{channo}
+		and f.bradno=#{bradno}
+		and f.spclno=#{spclno}
 	    and a.orbgqt!=0
 	    order by a.sizeno
      </select>
      
      <select id="querySizeVOData" resultType="map" parameterType="map">
-	    select x.sampno,x.sampnm,x.suitno,x.sptyno,x.spseno,x.versno,x.sizety,x.sizeno,(x.orbgqt-nvl(z.ORSZQT,0)) orbgqt
-	    	,y.ORMMNO,y.MMORNO,y.ORSZQT,y.mldate,y.pldate,y.pplace,y.ordorg
+	    select x.ordorg,x.ORDORG_NAME,x.sampno,x.sampnm,x.suitno,x.sptyno,x.spseno,x.versno,x.sizety,x.sizeno,(x.orbgqt-nvl(z.ORSZQT,0)) orbgqt
+	    	,y.ORMMNO,y.MMORNO,y.ORSZQT,y.mldate,y.pldate,y.pplace
 	    	,u.prodnm,NVL(v.packqt,1) packqt	
 	    	 from (
-	     	 SELECT  b.sampno,b.sampnm,c.suitno,d.sptyno,d.spseno,b.versno,a.sizety,a.sizeno,a.orbgqt FROM 
-		    ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ord_sample_plan d
-		    where a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and b.plspno=d.plspno
+	     	 SELECT DISTINCT e.ordorg,G.ORGNM AS ORDORG_NAME, b.sampno,b.sampnm,c.suitno,d.sptyno,d.spseno,b.versno,a.sizety,a.sizeno,a.orbgqt FROM 
+		    ord_ord e,ord_ordhd f,ord_ordszdtl a,ord_sample_design b,ord_sample_design_sizegp c,ord_sample_plan d,v_ord_org G
+		    where e.mtorno=f.mtorno and f.mtorno=a.mtorno and f.mlorno=a.mlorno AND E.ORDORG=G.ORGNO and  a.sampno=b.sampno and b.sampno=c.sampno and a.suitno=c.suitno and b.plspno=d.plspno
 		    --and a.sizety='STDSZ' 
 		    <if test="sizegp!=null and sizegp!=''">
 		    	 and c.sizegp=#{sizegp}
 		    </if>
 		    
 		     and a.suitno=#{suitno} 
-		    and a.mlorno=#{mlorno} 
+		  
+		    <if test="ordorg!=null and ordorg!=''">
+		    	and e.ordorg=#{ordorg}
+		    </if>
+		    AND G.YXGSNO=#{yxgsno}
+		    and e.ormtno=#{ormtno}
+		    and e.ortyno='BW'
+		    and e.channo=#{channo}
+		    and f.bradno=#{bradno}
+		    and f.spclno=#{spclno}
 		    and a.orbgqt!=0
 		    <if test="sptyno!=null and sptyno!=''">
 				and d.sptyno=#{sptyno}
@@ -56,16 +72,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			inner join ORD_BW_ORDSZDTL c on b.MMORNO=c.MMORNO
 			left join ord_bw_orddt w on b.ORMMNO=w.ORMMNO and b.mmorno=w.mmorno and c.ordorg=w.ordorg and c.sampno=w.sampno and c.suitno=w.suitno
 		    where   
-		    a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    a.ormtno=#{ormtno}  and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    <if test="ordorg!=null and ordorg!=''">
+		    	and c.ordorg=#{ordorg}
+		    </if>
 		    and b.orstat=0
-		) y on x.sampno=y.sampno and x.suitno=y.suitno  and x.sizety=y.sizety and x.sizeno=y.sizeno
+		) y on x.sampno=y.sampno and x.suitno=y.suitno  and x.sizety=y.sizety and x.sizeno=y.sizeno and x.ordorg=y.ordorg
 		left join (  
-			select c.sampno,c.suitno,c.sizety,c.sizeno,sum(c.ORSZQT) ORSZQT from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
+			select c.ordorg,c.sampno,c.suitno,c.sizety,c.sizeno,sum(c.ORSZQT) ORSZQT from ORD_BW_ORDMT a,ORD_BW_ORDHD b,ORD_BW_ORDSZDTL c
 		    where a.ORMMNO=b.ORMMNO and b.MMORNO=c.MMORNO
-		    and a.ormtno=#{ormtno} and c.ordorg=#{ordorg} and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    and a.ormtno=#{ormtno}  and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    <if test="ordorg!=null and ordorg!=''">
+		    	and c.ordorg=#{ordorg}
+		    </if>
 		    and b.orstat=1
-		    group by c.sampno,c.suitno,c.sizety,c.sizeno
-		) z on x.sampno=z.sampno and x.suitno=z.suitno  and x.sizety=z.sizety and x.sizeno=z.sizeno
+		    group by  c.ordorg,c.sampno,c.suitno,c.sizety,c.sizeno
+		) z on x.sampno=z.sampno and x.suitno=z.suitno  and x.sizety=z.sizety and x.sizeno=z.sizeno and x.ordorg=z.ordorg
 		left join ORD_SAMPLE_PROD u on x.sampno=u.sampno and x.suitno=u.suitno and u.ormtno=#{ormtno}
 		LEFT JOIN (         SELECT FSZTY,FSZNO,SUM(SIZEQT) packqt FROM ORD_PUB_SIZEDTL WHERE FSZTY='PRDPK' AND SIZETY='STDSZ' 
          GROUP BY FSZTY,FSZNO) v ON x.SIZETY=v.FSZTY AND x.SIZENO=v.FSZNO 
@@ -74,7 +96,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="prodnm!=null and prodnm!=''">
 			and lower(u.prodnm) like lower('%${prodnm}%')
 		</if>
-		order by x.SPTYNO,x.SPSENO,x.VERSNO,x.SAMPNO,x.SAMPNM,x.suitno
+		order by x.ordorg,x.SPTYNO,x.SPSENO,x.VERSNO,x.SAMPNO,x.SAMPNM,x.suitno
      </select>
      
      <!--获取当前正在编辑中的子订单 -->
@@ -94,8 +116,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      <!-- 获取备忘订单中第一次是否已经提交了 -->
      <select id="getBwOrdhdSzstat" resultType="int" parameterType="map">
-     	select min(szstat) from ORD_ORDHD
-   		 where mtorno=#{mtorno} and bradno=#{bradno} and spclno=#{spclno}
+     	select min(szstat) from ORD_ORDHD a, ORD_ORD b
+   		 where a.mtorno=b.mtorno  and b.ormtno=#{ormtno}   and b.channo=#{channo} and b.ortyno='BW' and bradno=#{bradno} and spclno=#{spclno}
+    		<if test="ordorg!=null and ordorg!=''">
+    			and b.ordorg=#{ordorg}
+    		</if>
      </select>
      
      <select id="queryBwSizeMgrList" resultType="map" parameterType="map">
