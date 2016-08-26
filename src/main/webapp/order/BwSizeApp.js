@@ -34,7 +34,7 @@ Ext.onReady(function(){
 		  		width:160,
 		  		allowBlank: false,
 	            afterLabelTextTpl: Ext.required,
-	            showBlank:false,
+	            showBlank:true,
 		  		itemId:'yxgsno',
 				xtype:'orgcombo',
 				listeners:{

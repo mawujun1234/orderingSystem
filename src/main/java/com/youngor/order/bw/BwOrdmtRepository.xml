@@ -45,7 +45,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		    <if test="ordorg!=null and ordorg!=''">
 		    	and e.ordorg=#{ordorg}
 		    </if>
-		    AND G.YXGSNO=#{yxgsno}
+		     <if test="yxgsno!=null and yxgsno!=''">
+		    	AND G.YXGSNO=#{yxgsno}
+		    </if>
+		    
 		    and e.ormtno=#{ormtno}
 		    and e.ortyno='BW'
 		    and e.channo=#{channo}
