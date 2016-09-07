@@ -11,7 +11,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		       ,b.suitty,b.desp
 		       ,h.prsuno
 		       , e.sizenm as sizegp_name
-		       ,g.prseqm,g.prodnm,g.prodds,e.sizeno as sizegp,g.prtype,g.prprpt,g.prorgd,g.prunit,i.mateno,g.prdcno
+		       ,g.prseqm,g.prodnm,g.prodds,e.sizeno as sizegp,g.prtype,g.prprpt,g.prorgd,DECODE(C.SUITNO,'T01','件','T03','件','T02','条','T04','条',U.SPUNMS) prunit,i.mateno,g.prdcno
 		       ,STPR.spftpr prftpr ,STPR.sprtpr prrtpr,h.spctpr as prctpr,g.prmtam,j.prmlam,g.prorpr,(h.spclbd+h.acsyam) prflam, g.prmark
 		       ,decode(f.sampno,null,'未订货','已订货') sample_state
 		from ord_sample_plan a
@@ -23,7 +23,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		left join ord_sample_colth h on b.sampno=h.sampno
 		left join (select * from ord_sample_mate where mateso=1) i on b.sampno=i.sampno
 		left join (select sampno,sum(mtpupr*mtcnqt) prmlam from ord_sample_mate group by sampno) j on b.sampno=j.sampno
-		left join (select  sampno,suitno,sum(ormtqt) ormtqt from ord_orddtl  where (ormtqs!=0 or ormtqt!=0) group by  sampno,suitno) f on b.sampno=f.sampno and c.suitno=f.suitno 
+		left join (select  sampno,sum(ormtqt) ormtqt from ord_orddtl  where (ormtqs!=0 or ormtqt!=0) group by  sampno) f on b.sampno=f.sampno
+		 LEFT JOIN ORD_SAMPLE_UNMS U ON U.SPCLNO=A.SPCLNO AND U.SPTYNO=A.SPTYNO AND U.SPSENO=A.SPSENO
 		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno and c.suitno=g.suitno
 		where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.spclno=#{spclno}
 			and not exists (select 1 from ORD_COMP_PAL p where a.ormtno=p.ormtno and b.sampno=p.sampno and p.paltpy='取消')

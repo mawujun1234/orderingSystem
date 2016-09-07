@@ -393,6 +393,17 @@ Ext.define('y.report.OrderNumTotalGrid',{
 			    	window.open(url);
 				},
 				iconCls: 'icon-download-alt'
+		  	},{
+		  		text: '导出所有(含出厂价)',
+				handler: function(btn){
+					var grid=btn.up("grid");
+					
+					
+			    	var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/ordernumtotal/exportAll.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
 		  	}]
 		});
 

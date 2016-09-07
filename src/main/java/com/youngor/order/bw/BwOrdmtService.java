@@ -221,7 +221,7 @@ public class BwOrdmtService extends AbstractService<BwOrdmt, String>{
 		if(ormmno==null || "".equals(ormmno)){
 			ormmno=bwOrdmtRepository.getOrmmno(bwOrdszdtlVO.getOrmtno());
 			if(ormmno==null || "".equals(ormmno)){
-				ormmno=bwOrdszdtlVO.getOrmtno()+"_"+DateUtils.format(new Date(), "yyyyMMddHHmm");
+				ormmno=bwOrdszdtlVO.getOrmtno()+"_"+DateUtils.format(new Date(), "yyyyMMdd");
 				BwOrdmt bwOrdmt=new BwOrdmt();
 				bwOrdmt.setOrmmno(ormmno);
 				bwOrdmt.setOrmtno(bwOrdszdtlVO.getOrmtno());

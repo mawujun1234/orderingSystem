@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.utils.page.Pager;
 import com.youngor.org.OrgService;
+import com.youngor.permission.ShiroUtils;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
@@ -100,7 +101,9 @@ public class OrderNumTotalController {
 		titles.put("sprtpr_jine_wan", "零售金额(万元)");
 
 		crreateTitle_export(wb,sheet1,titles);
-		crreateData_export(wb,sheet1,titles,params);
+		
+		List<OrderNumTotal> list=orderNumTotalRepository.query(params.getParams());
+		crreateData_export(wb,sheet1,titles,list);
 		
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
         response.setHeader("Content-disposition", "attachment;filename="+new String("订单数量汇总报表".getBytes(),"ISO8859-1")+".xlsx");    
@@ -133,10 +136,10 @@ public class OrderNumTotalController {
 		}
 		
 	}
-	private void crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	private void crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,List<OrderNumTotal> list) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		
-		List<OrderNumTotal> list=orderNumTotalRepository.query(params.getParams());
+		
 		if(list==null || list.size()==0){
 			return;
 		}
@@ -154,6 +157,48 @@ public class OrderNumTotalController {
 				}
 			}
 		}
+	}
+	
+	
+	@RequestMapping("/ordernumtotal/exportAll.do")
+	@ResponseBody
+	public  void exportAll(MapParams params,HttpServletRequest request,HttpServletResponse response) throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		XSSFWorkbook wb = new XSSFWorkbook();    
+		Sheet sheet1 = wb.createSheet("报表");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		titles.put("yxgsnm", "营销公司");
+		titles.put("qynm", "区域");
+		titles.put("orgnm", "订货单位");
+		titles.put("ortyno_name", "订货类型");
+		titles.put("bradno_name", "品牌");
+		titles.put("spclno_name", "大类");
+		titles.put("sptyno_name", "小类");
+		titles.put("spseno_name", "系列");
+		titles.put("colrno_name", "颜色");
+		titles.put("spsean_name", "季节");
+		titles.put("spbano_name", "上市批次");
+		titles.put("versno_name", "版型");
+		titles.put("prodnm", "产品货号");
+		titles.put("sampnm", "设计样衣编号");
+		titles.put("suitno_name", "套件");
+		titles.put("ormtqt", "数量");
+		titles.put("spftpr", "出厂价");
+		titles.put("spftpr_jine_wan", "出厂金额(万元)");
+		titles.put("sprtpr", "零售价");
+		titles.put("sprtpr_jine_wan", "零售金额(万元)");
+
+		crreateTitle_export(wb,sheet1,titles);
+		
+		params.getParams().put("user_id", ShiroUtils.getUserId());
+		List<OrderNumTotal> list=orderNumTotalRepository.exportAll(params.getParams());
+		crreateData_export(wb,sheet1,titles,list);
+		
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");    
+        response.setHeader("Content-disposition", "attachment;filename="+new String("订单数量汇总报表".getBytes(),"ISO8859-1")+".xlsx");    
+        OutputStream ouputStream = response.getOutputStream();    
+        wb.write(ouputStream);    
+        ouputStream.flush();    
+        ouputStream.close();    
 	}
 	
 	

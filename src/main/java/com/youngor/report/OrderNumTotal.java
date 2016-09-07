@@ -1,9 +1,9 @@
 package com.youngor.report;
 
-import java.text.NumberFormat;
 
-import org.apache.commons.lang3.math.NumberUtils;
 
+import com.mawujun.utils.NumberFormat;
+import com.youngor.order.Ortyno;
 import com.youngor.pubcode.PubCodeCache;
 
 public class OrderNumTotal {
@@ -18,6 +18,7 @@ public class OrderNumTotal {
 	private String spsean;
 	private String spbano;
 	private String versno;
+	private Ortyno ortyno;
 	
 	private String prodnm;
 	private String sampnm;
@@ -34,7 +35,14 @@ public class OrderNumTotal {
 			return 0d;
 		}
 		Double temp=sprtpr_jine/10000;
-		return Double.parseDouble(NumberFormat.getInstance().format(temp));
+		return Double.parseDouble(NumberFormat.formatNoComma(temp));
+	}
+	public Double getSpftpr_jine_wan() {
+		if(spftpr_jine==null){
+			return 0d;
+		}
+		Double temp=spftpr_jine/10000;
+		return Double.parseDouble(NumberFormat.formatNoComma(temp));
 	}
 	public String getBradno_name() {
 		return PubCodeCache.getBradno_name(this.getBradno());
@@ -62,6 +70,12 @@ public class OrderNumTotal {
 	}
 	public String getSuitno_name() {
 		return PubCodeCache.getSuitno_name(this.getSuitno());
+	}
+	public String getOrtyno_name() {
+		if(ortyno==null){
+			return null;
+		}
+		return ortyno.getName();
 	}
 
 	

@@ -11,4 +11,6 @@ import com.mawujun.utils.page.Pager;
 public interface OrderNumTotalRepository {
 	public  Pager<OrderNumTotal> query( Pager<OrderNumTotal> pager);
 	public  List<OrderNumTotal> query(Map<String,Object> params);
+	
+	public  List<OrderNumTotal> exportAll(Map<String,Object> params);
 }

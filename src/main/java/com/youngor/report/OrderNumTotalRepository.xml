@@ -6,12 +6,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.report.OrderNumTotalRepository">
 
-   
-    <select id="query" resultType="com.youngor.report.OrderNumTotal" parameterType="map">
-    	select e.yxgsnm ,e.qynm,e.orgnm,
+   <sql id="query_where">
+   		select e.yxgsnm ,e.qynm,e.orgnm,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,
 		f.PRODNM,c.sampnm,b.suitno,
-		ormtqt,g.spftpr,ormtqt*g.spftpr spftpr_jine,g.sprtpr,ormtqt*g.sprtpr  sprtpr_jine
+		ormtqt,
+		<if test="channo!='TX'">
+		g.spftpr,ormtqt*g.spftpr spftpr_jine,
+		</if>
+		g.sprtpr,ormtqt*g.sprtpr  sprtpr_jine
 		from ord_ord a
 		inner join ord_orddtl b on a.mtorno=b.mtorno
 		inner join ord_sample_design c on b.sampno=c.sampno
@@ -23,7 +26,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				           group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno
 		where a.ormtno=#{ormtno} and d.ormtno=#{ormtno} and e.yxgsno=#{yxgsno} and e.qyno=#{qyno}
 			and a.channo=#{channo}  and a.ortyno=#{ortyno} 
-			and d.bradno=#{bradno}   
+			and d.bradno=#{bradno}    and ormtqt>0
 			<if test="spclno!=null and spclno!=''">
 				and d.spclno=#{spclno}
 			</if>
@@ -45,55 +48,44 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="sampnm!=null and sampnm!=''">
 				and lower(c.sampnm) like lower('%${sampnm}%')
 			</if>	
-			
+   </sql>
+    <select id="query" resultType="com.youngor.report.OrderNumTotal" parameterType="map">
+    	
+		<include refid="query_where"></include> 
 		order by e.yxgsnm ,e.qynm,e.orgnm,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
     </select> 
     <select id="query_count" resultType="int" parameterType="map">
     	select count(*) from (
-    	select e.yxgsnm ,e.qynm,e.orgnm,
+    		<include refid="query_where"></include> 
+		)
+    </select> 
+   
+   
+   <select id="exportAll" resultType="com.youngor.report.OrderNumTotal" parameterType="map">
+   		select e.yxgsnm ,e.qynm,e.orgnm,a.ortyno,a.channo,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,
 		f.PRODNM,c.sampnm,b.suitno,
 		ormtqt,
-		<if test="channo!='TX'">
-		spftpr,ormtqt*spftpr spftpr_jine,
-		</if>
-		sprtpr,ormtqt*sprtpr   
+		g.spftpr,ormtqt*g.spftpr spftpr_jine,
+		g.sprtpr,ormtqt*g.sprtpr  sprtpr_jine
 		from ord_ord a
 		inner join ord_orddtl b on a.mtorno=b.mtorno
 		inner join ord_sample_design c on b.sampno=c.sampno
 		inner join ord_sample_plan d on c.plspno=d.plspno
 		inner join v_ord_org e on a.ordorg=e.orgno
+		INNER JOIN ORD_SAMPLE_DESIGN_STPR g on b.sampno=g.sampno and b.suitno=g.suitno
 		left join (select ormtno,sampno,max(prodnm)prodnm from ord_sample_prod 
 				            where ormtno=#{ormtno}
 				           group by  ormtno,sampno) f on a.ormtno=f.ormtno and c.sampno=f.sampno
-		where a.ormtno=#{ormtno} and d.ormtno=#{ormtno} and e.yxgsno=#{yxgsno} and e.qyno=#{qyno}
-			and a.channo=#{channo}  and a.ortyno=#{ortyno} 
-			and d.bradno=#{bradno}   
-			<if test="spclno!=null and spclno!=''">
-				and d.spclno=#{spclno}
-			</if>
-			<if test="ordorg!=null and ordorg!=''">
-				and a.ordorg=#{ordorg}
-			</if>
-			<if test="sptyno!=null and sptyno!=''">
-				and d.sptyno=#{sptyno}
-			</if>
-			<if test="spseno!=null and spseno!=''">
-				and d.spseno=#{spseno}
-			</if>
-			<if test="suitno!=null and suitno!=''">
-				and b.suitno=#{suitno} 
-			</if>
-			<if test="spmtno!=null and spmtno!=''">
-				and c.spmtno=#{spmtno}
-			</if>
-			<if test="sampnm!=null and sampnm!=''">
-				and lower(c.sampnm) like lower('%${sampnm}%')
-			</if>	
-		
-		)
-    </select> 
-   
+		where a.ormtno=#{ormtno} and d.ormtno=#{ormtno}  and ormtqt>0
+		and exists ( select 1 from  t_role_user x,t_role_class y
+      		where x.role_id=y.role_id and d.spclno=y.itno and x.user_id=#{user_id} )
+      	and exists ( select 1 from  t_role_user x,t_role_brand y
+      		where x.role_id=y.role_id and d.bradno=y.itno and x.user_id=#{user_id} )
+      	and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.ORDORG and d.user_id=#{user_id})
+		order by e.yxgsnm ,e.qynm,e.orgnm,
+		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
+   </select>
 </mapper>
 

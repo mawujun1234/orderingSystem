@@ -229,7 +229,7 @@ Ext.define('y.order.BwSizeGrid',{
 			url:Ext.ContextPath+'/bwOrdmt/updateOrszqt.do',
 			params:{
 				ormtno:params.ormtno,
-				ordorg:params.ordorg,
+				ordorg:record.get("ORDORG"),
 				bradno:params.bradno,
 				spclno:params.spclno,
 				
