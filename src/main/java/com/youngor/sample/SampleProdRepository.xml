@@ -47,7 +47,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     		and lower(b.sampnm) like lower('%${sampnm}%')
     	</if>
     	<if test="prodnm!=null and prodnm!=''">
-    		and g.prodnm like lower('%${prodnm}%')
+    		and lower(g.prodnm) like lower('%${prodnm}%')
     	</if>
     	<!--f.ormtqt!=0很重要，排除了没订货的，排除了取消掉的，也同时排除了套装西服拆套西服只有上衣和裤子，没有标准的问题 -->
     	<if test="sample_state=='ok'">
