@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.youngor.permission.ShiroUtils;
 import com.mawujun.utils.page.Pager;
 import com.youngor.utils.MapParams;
 /**
@@ -51,7 +52,7 @@ public class SampleProdController {
 	@RequestMapping("/sampleProd/queryPager.do")
 	@ResponseBody
 	public Pager<SampleProd> queryPager(Pager<SampleProd> pager){
-		
+		pager.addParam("user_id", ShiroUtils.getUserId());
 		return sampleProdService.queryPage(pager);
 	}
 
@@ -160,7 +161,7 @@ public class SampleProdController {
 	}
 	private void crreateData_export(XSSFWorkbook wb,Sheet sheet1,LinkedHashMap<String,String> titles,MapParams params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
-		
+		params.getParams().put("user_id", ShiroUtils.getUserId());
 		List<SampleProdVO> list=sampleProdService.queryPage(params);
 		if(list==null || list.size()==0){
 			return;
