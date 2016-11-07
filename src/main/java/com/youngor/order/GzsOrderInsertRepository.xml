@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.GzsOrderInsertRepository">
+	
+	<select id="queryColumns" resultType="map" parameterType="map">
+    	select a.sizety,a.sizeno,b.sizenm from ORD_SIZEDTL a ,ORD_PUB_SIZE b
+		where  a.sizety=b.sizety and a.sizeno=b.sizeno  and 
+		a.fszty='PRDSZFW' and a.fszno=#{sizegp} 
+		--and NVL(b.SIZETY1,1)=1
+		order by a.sizety desc,a.sizeno
+    </select>
+    
+    
+    <select id="queryData" resultType="map" parameterType="map">
+     	select distinct a.ormtno,a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno,d.ORMTQT
+     		,d.mtorno ,d.mlorno
+     		,NVL(X.packqt,1) packqt
+            ,f.SIZETY,f.SIZENO,f.ORSZQT,f.ORBGQT,nvl(f.ORSZST,0) ORSZST,z.PRODNM
+        from  
+        ORD_SAMPLE_PLAN a 
+        inner join ORD_SAMPLE_DESIGN b on a.plspno=b.plspno
+        inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
+        left join  ORD_ORDDTL d on c.sampno=d.sampno and c.suitno=d.suitno and d.mtorno=#{mtorno} and d.ORMTQT!=0
+        left join  ORD_ORDHD e on d.mtorno=e.mtorno and d.mlorno=e.mlorno 
+        left join ORD_ORDSZDTL f on d.mtorno=f.mtorno and d.mlorno=e.mlorno and d.sampno=f.sampno and  d.suitno=f.suitno 
+        left join ord_sample_prod z on b.sampno=z.sampno and a.ormtno=z.ormtno and c.suitno=z.suitno
+        LEFT JOIN (SELECT FSZTY,FSZNO,SUM(SIZEQT) packqt FROM ORD_PUB_SIZEDTL WHERE FSZTY='PRDPK' AND SIZETY='STDSZ' GROUP BY FSZTY,FSZNO) X 
+        		ON F.SIZETY=X.FSZTY AND F.SIZENO=X.FSZNO 
+        where c.suitno=#{suitno} and a.ormtno=#{ormtno}  AND A.BRADNO=#{bradno} and a.spclno=#{spclno} and c.sizegp=#{sizegp}
+			       
+		
+		<if test="sptyno!=null and sptyno!=''">
+			       		and a.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			       		and a.spseno=#{spseno}
+		</if>
+		<if test="versno!=null and versno!=''">
+			       		and b.versno=#{versno}
+		</if>
+		<if test="sampnm!=null and sampnm!=''">
+			       		and lower(b.sampnm) like lower('%${sampnm}%')
+		</if>
+		<if test="szstat!=null and szstat!=''">
+			       		and e.szstat =#{szstat}
+		</if>
+		order by a.SPTYNO,a.SPSENO,b.VERSNO,a.PLSPNO,a.PLSPNM,b.SAMPNO,b.SAMPNM,c.suitno
+	</select>
+	
+	<select id="getSzstat" resultType="int" parameterType="string">
+     	SELECT max(szstat) FROM ORD_ORD a,ORD_ORDhd b
+		where a.mtorno=b.mtorno and a.ormtno=#{ormtno}
+		and a.ortyno=#{ortyno} and a.ordorg=#{ordorg} and channo=#{channo}
+		and b.bradno=#{bradno} and b.spclno=#{spclno}
+    </select>
+    
+    <update id="update_orddtl_ormtqt" parameterType="map">
+    	update ord_orddtl a set ormtqt=(select sum (orszqt) orszqt from ORD_ORDSZDTL b
+		where a.mtorno=b.mtorno and a.sampno=b.sampno and a.suitno=b.suitno), ormtqs=ormtqt
+		<if test="ortyno=='TP'">
+			, ormtqt1=ormtqt
+		</if>
+		where a.mtorno=#{mtorno} and a.sampno=#{sampno} and a.suitno=#{suitno}
+    </update>
+    
+    <update id="submit_ordhd" parameterType="map">
+    	update ORD_ORDHD a set ORSTAT=3,SZSTAT=3 where a.mtorno=#{mtorno} and a.bradno=#{bradno}
+    </update>
+    <update id="submit_ordszdtl" parameterType="map">
+    	update ORD_ORDSZDTL set ORSZST=1 
+		where MTORNO=#{mtorno}
+		and MLORNO in (select MLORNO from ORD_ORDHD a where a.mtorno=#{mtorno} and a.bradno=#{bradno})
+    </update>
+</mapper>
+

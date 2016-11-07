@@ -65,6 +65,8 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 	private String hibernate_hbm2ddl_auto = "update";
 	@Value("${photoBakDir}")
 	private String photoBakDir = "";
+	@Value("${hibernate.default_schema}")
+	private String hibernate_default_schema;
 
 	// To resolve ${} in @Value
 	@Bean
@@ -152,7 +154,13 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 		hibernateProperties.put("use_sql_comments", false);
 		hibernateProperties.put("hibernate.max_fetch_depth", 2);
 		hibernateProperties.put("hibernate.jdbc.batch_size", 30);
+		
 
+		if(hibernate_default_schema!=null && !"".equals(hibernate_default_schema)){
+			hibernateProperties.put("hibernate.default_schema", hibernate_default_schema);
+		}
+		
+		
 		hibernateProperties.put("hibernate.generate_statistics", false);
 		hibernateProperties
 				.put("hibernate.cache.use_structured_entries", false);
