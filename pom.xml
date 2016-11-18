@@ -31,7 +31,7 @@
 		
 		<org.apache.logging.log4j.version>2.5</org.apache.logging.log4j.version>
 		<org.slf4j.version>1.7.18</org.slf4j.version>
-		<leon.version>1.0</leon.version>
+		<leon.version>1.0-SNAPSHOT</leon.version>
 		
 		<druid.version>1.0.20</druid.version>
 		<oracle.version>11.2</oracle.version>

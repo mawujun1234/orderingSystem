@@ -4,16 +4,16 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="leon-repository-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-repository/leon-repository">
+        <dependent-module archiveName="leon-repository-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-repository/leon-repository">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="leon-spring-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-spring/leon-spring">
+        <dependent-module archiveName="leon-spring-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-spring/leon-spring">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="leon-util-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-util/leon-util">
+        <dependent-module archiveName="leon-util-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-util/leon-util">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="leon-generator-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-generator/leon-generator">
+        <dependent-module archiveName="leon-generator-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-generator/leon-generator">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/orderingSystem/target/classes"/>
