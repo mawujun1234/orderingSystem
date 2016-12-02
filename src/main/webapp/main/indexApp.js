@@ -31,7 +31,7 @@ Ext.onReady(function(){
 		});
 		setTimeout("onlineling()",120000);
 	}
-	onlineling();
+	setTimeout("onlineling()",120000);
 
 		
 		
