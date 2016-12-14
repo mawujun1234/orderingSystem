@@ -12,6 +12,18 @@ public class NodeVO {
 	
 	private Boolean checked;//在查看职位可以访问的组织单元的时候用的
 	
+	public String getType_name(){
+		if( "position".equals(this.getType())){
+			return "职位";
+		} else if(this.getType()!=null && !"".equals(this.getType())){
+			return Orgty.valueOf(this.getType()).getName();
+		}
+		return "";
+	}
+//	public String getName_full() {
+//		return name+"("+getType_name()+")";
+//	}
+	
 	public String getIconCls(){
 		if("position".equals(this.getType())){
 			return "icon-group";
@@ -37,7 +49,8 @@ public class NodeVO {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		//return name;
+		return name+"("+getType_name()+")";
 	}
 	public void setName(String name) {
 		this.name = name;

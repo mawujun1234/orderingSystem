@@ -443,7 +443,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      </select>
      -->
      <select id="queryOrdorg" parameterType="map" resultType="com.youngor.org.Org">
-     	select distinct b.* from ORD_ORD a,V_ORD_ORG b
+     	select distinct b.* from ORD_ORG a,V_ORD_ORG b
       	where a.ORDORG=b.orgno  
       	<if test="channo!=null and channo!=''">
 			and a.channo=#{channo}

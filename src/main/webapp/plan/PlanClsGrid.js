@@ -16,19 +16,34 @@ Ext.define('y.plan.PlanClsGrid',{
 //        },
 //		{dataIndex:'bradno',header:'品牌'
 //        },
-		{dataIndex:'spclno',header:'大类'
+		{dataIndex:'spclno_name',header:'大类'
         },
-		{dataIndex:'spseno',header:'系列'
+		{dataIndex:'spseno_name',header:'系列'
         },
 		{dataIndex:'ordqty',header:'起订量',xtype: 'numbercolumn', format:'0',align : 'right'
+			,editor: {
+	                xtype: 'numberfield',
+	                allowDecimals:false,
+	                allowNegative : false, 
+	                selectOnFocus:true 
+	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
+	            	//console.log(window.szsta);
+	            	//if(window.szstat==0 && record.get("ORSZST")!=1){
+	            		metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+	            	//} else {
+	            		//metaData.tdStyle = 'background-color:#98FB98;' ;
+	            	//}
+	            	 return value;
+            	}
 		}
+		
       ];
       
 
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.plan.PlanCls',
 			proxy:{
 				type: 'ajax',
@@ -45,50 +60,49 @@ Ext.define('y.plan.PlanClsGrid',{
 			}
 	  });
 
-//	  me.dockedItems=[];
-//      me.dockedItems.push({
-//	        xtype: 'pagingtoolbar',
-//	        store: me.store,  
-//	        dock: 'bottom',
-//	        displayInfo: true
-//	  });
-//	  
-//	  me.dockedItems.push({
-//	  		xtype: 'toolbar',
-//	  		dock:'top',
-//		  	items:[{
-//				text: '新增',
-//				itemId:'create',
-//				handler: function(btn){
-//					me.onCreate();
-//				},
-//				iconCls: 'icon-plus'
-//			},{
-//			    text: '更新',
-//			    itemId:'update',
-//			    handler: function(){
-//			    	me.onUpdate();
-//					
-//			    },
-//			    iconCls: 'icon-edit'
-//			},{
-//			    text: '删除',
-//			    itemId:'destroy',
-//			    handler: function(){
-//			    	me.onDelete();    
-//			    },
-//			    iconCls: 'icon-trash'
-//			},{
-//				text: '刷新',
-//				itemId:'reload',
-//				disabled:me.disabledAction,
-//				handler: function(btn){
-//					var grid=btn.up("grid");
-//					grid.getStore().reload();
-//				},
-//				iconCls: 'icon-refresh'
-//			}]
-//		});
+	   this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	    this.cellEditing.on("beforeedit",function(editor, context){
+	  	var record=context.record;
+	  	var field =context.field ;
+	  	
+	  });
+	   
+	  this.cellEditing.on("edit",function(editor, context){
+	  	var record=context.record;
+	  	var grid=context.grid;
+	  	var field =context.field ;
+	  	var value=context.value;
+	  	var originalValue =context.originalValue 
+	  	
+	  	if(value<0){
+	  	 record.set(field,Math.abs(value));
+	  	 value=Math.abs(value);
+	  	}
+	  	Ext.Ajax.request({
+	  		url:Ext.ContextPath+'/planCls/createOrupdate.do',
+	  		method:'POST',
+	  		//header:{ 'Accept':'application/json;'},
+	  		params:{
+	  			ordqty:value,
+	  			ormtno:grid.getStore().getProxy().extraParams.ormtno,
+	  			bradno:grid.getStore().getProxy().extraParams.bradno,
+	  			spclno:grid.getStore().getProxy().extraParams.spclno,
+	  			spseno:record.get("spseno")
+	  		},
+	  		success:function(response){
+	  			var obj=Ext.decode(response.responseText);
+	  			if(obj.success){
+	  				record.commit();
+	  			}
+	  			
+	  		}
+	  	});
+	  	
+	  });
+
 
       me.initTbar();
       me.callParent();

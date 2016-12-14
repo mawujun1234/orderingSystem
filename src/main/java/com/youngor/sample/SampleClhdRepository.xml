@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleClhdRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="queryPage_where">
+		where a.ormtno=#{ormtno}
+    	 and a.bradno=#{bradno}
+    	 <if test="spbano!=null and spbano!=''">
+    	 	and a.spbano=#{spbano}
+    	 </if>
+    	 <if test="clppnm!=null and clppnm!=''">
+    	 	and a.clppnm like '%${clppnm}%'
+    	 </if>
+    	 <if test="print!=null and print!=''">
+    	 	and a.print like '%${print}%'
+    	 </if>
+	</sql>
+    <select id="queryPage" resultType="com.youngor.sample.SampleClhd" parameterType="map">
+    	select * from ord_sample_clhd a
+    	<include refid="queryPage_where" />	
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(a.clppno)
+		from ord_sample_clhd a
+		<include refid="queryPage_where" />
+    </select>
+</mapper>
+

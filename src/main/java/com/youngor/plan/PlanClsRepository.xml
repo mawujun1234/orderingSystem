@@ -5,8 +5,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.plan.PlanClsRepository">
-	<select id="queryAll" resultType="com.youngor.plan.PlanClsVO" parameterType="map">
-		
+	<select id="queryAll" resultType="com.youngor.plan.PlanClsVO" parameterType="com.youngor.plan.PlanCls">
+		select a.itno as spseno,a.itnm,'${spclno}' as spclno,'${ormtno}' as ormtno,'${bradno}' as bradno,c.ordqty 
+		from ORD_PUB_CODE a 
+		inner join ORD_PUB_CODEBRAD b on a.tyno=b.tyno and b.bradno=#{bradno} and a.itno=b.itno and b.stat=1
+		left join ORD_PLAN_CLS c on a.itno=c.spseno and c.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno}
+		where a.tyno='5' and a.fitno=#{spclno} 
+		order by a.itso
+
 	</select>
 </mapper>
 

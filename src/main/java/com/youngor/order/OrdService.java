@@ -835,7 +835,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			}
 		}
 		
-		///判断该订单是否已经“确认”，
+		///判断该订单是否已经“确认”,如果已经确认，那也不能顶多
 		int canConfirm=check_is_confirm(ord.getMtorno());
 		result.put("canConfirm", canConfirm);
 

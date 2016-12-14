@@ -40,7 +40,8 @@ Ext.onReady(function(){
 				listeners:{
 					select:function( combo, record, eOpts ) {
 						var regioncombo=combo.nextSibling("#qyno");
-		        		regioncombo.reload(record.get("orgno"));
+						//regioncombo
+		        		regioncombo.reload(record.get("orgno"),'QY');
 					}
 				}
 			},{
@@ -130,27 +131,27 @@ Ext.onReady(function(){
 				listeners:{
 					select:function( combo, record, eOpts ) {
 		        		
-						var sztype=combo.nextSibling("#sztype");
-						//从后台获取当前订货单位的规格上报方式
-						var ormtno_combo=combo.previousSibling("#ordmtcombo");
-						Ext.Ajax.request({
-							url:Ext.ContextPath+"/ordOrg/getOrdOrgByOrg.do",
-							params:{
-								ormtno:ormtno_combo.getValue(),
-								orgno:record.get("orgno")
-							},
-							success:function(response){
-								var obj=Ext.decode(response.responseText);
-								sztype.setValue(obj.sztype);
-								//alert(sztype);
-								if(obj.sztype==0){
-				        			panel.down("#sizeVO_auto_box").show();
-				        		} else{
-				        			panel.down("#sizeVO_auto_box").hide();
-				        		}
-							}
-							
-						});
+//						var sztype=combo.nextSibling("#sztype");
+//						//从后台获取当前订货单位的规格上报方式
+//						var ormtno_combo=combo.previousSibling("#ordmtcombo");
+//						Ext.Ajax.request({
+//							url:Ext.ContextPath+"/ordOrg/getOrdOrgByOrg.do",
+//							params:{
+//								ormtno:ormtno_combo.getValue(),
+//								orgno:record.get("orgno")
+//							},
+//							success:function(response){
+//								var obj=Ext.decode(response.responseText);
+//								sztype.setValue(obj.sztype);
+//								//alert(sztype);
+//								if(obj.sztype==0){
+//				        			panel.down("#sizeVO_auto_box").show();
+//				        		} else{
+//				        			panel.down("#sizeVO_auto_box").hide();
+//				        		}
+//							}
+//							
+//						});
 		        		
 					}
 				}

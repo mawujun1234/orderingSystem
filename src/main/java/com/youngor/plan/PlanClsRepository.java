@@ -15,6 +15,6 @@ import com.youngor.plan.PlanCls;
  */
 @Repository
 public interface PlanClsRepository extends IRepository<PlanCls, com.youngor.plan.PlanCls.PK>{
-	public List<PlanCls> queryAll(Map<String,Object> params);
+	public List<PlanCls> queryAll(PlanCls params);
 
 }

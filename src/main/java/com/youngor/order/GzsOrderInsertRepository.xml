@@ -7,7 +7,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.order.GzsOrderInsertRepository">
 	
 	<select id="queryColumns" resultType="map" parameterType="map">
-    	select a.sizety,a.sizeno,b.sizenm from ORD_SIZEDTL a ,ORD_PUB_SIZE b
+    	select a.sizety,a.sizeno,b.sizenm,SIZEQT packqt from ORD_SIZEDTL a ,ORD_PUB_SIZE b
 		where  a.sizety=b.sizety and a.sizeno=b.sizeno  and 
 		a.fszty='PRDSZFW' and a.fszno=#{sizegp} 
 		--and NVL(b.SIZETY1,1)=1

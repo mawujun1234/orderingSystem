@@ -74,7 +74,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.ordmt.OrdOrg',
 			proxy:{
 				type: 'ajax',

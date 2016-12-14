@@ -38,12 +38,17 @@ public class PlanClsController {
 
 	@RequestMapping("/planCls/queryAll.do")
 	@ResponseBody
-	public List<PlanCls> queryAll(Map<String,Object> params) {	
+	public List<PlanCls> queryAll(PlanCls params) {	
 		List<PlanCls> planClses=planClsService.queryAll(params);
 		return planClses;
 	}
 	
-
+	@RequestMapping("/planCls/createOrupdate.do")
+	@ResponseBody
+	public  String createOrupdate(PlanCls planCls) {
+		planClsService.createOrUpdate(planCls);
+		return "{success:true}";
+	}
 //	@RequestMapping("/planCls/load.do")
 //	public PlanCls load(com.youngor.plan.PlanCls.PK id) {
 //		return planClsService.get(id);
@@ -56,12 +61,7 @@ public class PlanClsController {
 //		return planCls;
 //	}
 //	
-//	@RequestMapping("/planCls/update.do")
-//	@ResponseBody
-//	public  PlanCls update(@RequestBody PlanCls planCls) {
-//		planClsService.update(planCls);
-//		return planCls;
-//	}
+	
 //	
 //	@RequestMapping("/planCls/deleteById.do")
 //	@ResponseBody

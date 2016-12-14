@@ -94,7 +94,12 @@ public class OrdController {
 	@RequestMapping("/ord/mobile/checked_closeing_info.do")
 	@ResponseBody
 	public Map<String,Object> checked_closeing_info() {
-		return ordService.checked_closeing_info();
+		
+		Map<String,Object> result=ordService.checked_closeing_info();
+		
+		//这个是测试用的，别忘记删除
+		result.put("canConfirm", 0);
+		return result;
 	}
 	
 	@RequestMapping("/ord/mobile/queryMyInfoVO.do")

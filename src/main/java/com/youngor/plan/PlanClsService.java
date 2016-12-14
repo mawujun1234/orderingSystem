@@ -32,8 +32,8 @@ public class PlanClsService extends AbstractService<PlanCls, com.youngor.plan.Pl
 		return planClsRepository;
 	}
 	
-	public List<PlanCls> queryAll(Map<String,Object> params) {
-		return planClsRepository.queryAll();
+	public List<PlanCls> queryAll(PlanCls params) {
+		return planClsRepository.queryAll(params);
 	}
 
 }

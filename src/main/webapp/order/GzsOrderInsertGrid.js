@@ -98,6 +98,7 @@ Ext.define('y.order.GzsOrderInsertGrid',{
       		 PRDPK_columns.push({
       		 	header:initColumn["SIZENM"],
       		 	dataIndex:initColumn["SIZENO"]
+      		 	,PACKQT:initColumn["PACKQT"]
       		 	,width: 80
       		 	,editor: {
 	                xtype: 'numberfield',
@@ -194,7 +195,7 @@ Ext.define('y.order.GzsOrderInsertGrid',{
 	  });
 	  delete me.params;
 
-	   this.cellEditing = new Ext.grid.plugin.CellEditing({  
+	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
             clicksToEdit : 1  
       });  
 	  this.plugins = [this.cellEditing];
@@ -225,6 +226,9 @@ Ext.define('y.order.GzsOrderInsertGrid',{
 	  	if(typeof(originalValue)=='undefined'){
 			originalValue=0;
 		}
+		
+		var column=context.column;
+		//alert(column.PACKQT);
 	  	
 		//var params=grid.getStore().getProxy().extraParams;
 		//params.sizeno=field;
@@ -294,7 +298,8 @@ Ext.define('y.order.GzsOrderInsertGrid',{
 						record.set(aaa[0]+"___SUBTOTAL",subtotal);
 						
 						//"PRDPK___PACKQT___"+aaa[1]
-						var packqt=record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
+						var packqt=column.PACKQT;//record.get("PRDPK___PACKQT___"+aaa[1]);//record.get("PACKQT");
+						
 						if(typeof(packqt)=='undefined'){
 							subtotal=1;
 						}

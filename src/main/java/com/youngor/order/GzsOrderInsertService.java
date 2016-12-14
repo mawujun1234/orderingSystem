@@ -56,6 +56,7 @@ public class GzsOrderInsertService {
 				map_new.put("SIZETY", "PRDPK");//变成包装箱组的单规
 				map_new.put("SIZENO", "PRDPK___"+map.get("SIZENO"));//通过三条下划线来分隔
 				map_new.put("SIZENM", map.get("SIZENM"));
+				map_new.put("PACKQT", map.get("PACKQT"));
 				columns_new_PRDPK.add(map_new);
 			}
 		}
