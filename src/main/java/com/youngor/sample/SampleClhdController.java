@@ -76,5 +76,12 @@ public class SampleClhdController {
 		return "{success:true}";
 	}
 	
+//	@RequestMapping("/sampleClhd/querySampleClphtes.do")
+//	@ResponseBody
+//	public List<SampleClpht> querySampleClphtes(String clppno) {	
+//		List<SampleClpht> sampleClpht=sampleClhdService.querySampleClphtes(clppno);
+//		return sampleClpht;
+//	}
+	
 	
 }

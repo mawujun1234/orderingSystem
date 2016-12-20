@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleCldtlRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="queryPage_where">
+	</sql>
+    <select id="queryAll" resultType="com.youngor.sample.SampleCldtlVO" parameterType="map">
+    	select a.*,b.sampnm,c.sptyno,d.imgnm from ord_sample_cldtl a 
+    	inner join ord_sample_design b on a.sampno=b.sampno 
+    	inner join ord_sample_plan c on b.plspno=c.plspno
+    	left join  (
+	           select sampno,imgnm,thumb from ord_sample_photo a
+	           where not exists(select 1 from ord_sample_photo b where a.sampno=b.sampno and a.id>b.id)
+	      ) d on b.sampno=d.sampno
+    	where a.clppno=#{clppno}
+    </select> 
+
+</mapper>
+

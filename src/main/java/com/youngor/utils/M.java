@@ -1,13 +1,26 @@
 package com.youngor.utils;
 public final class M {
+public static final class BwOrddt {
+	public static final String ormmno="ormmno";
+	public static final String mmorno="mmorno";
+	public static final String ordorg="ordorg";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String ormtqt="ormtqt";
+	public static final String mldate="mldate";
+	public static final String pldate="pldate";
+	public static final String pplace="pplace";
+	public static final String sampnm="sampnm";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
 public static final class BwOrdhd {
 	public static final String mmorno="mmorno";
 	public static final String ormmno="ormmno";
 	public static final String bradno="bradno";
 	public static final String spclno="spclno";
-	public static final String mldate="mldate";
-	public static final String pldate="pldate";
-	public static final String pplace="pplace";
 	public static final String orstat="orstat";
 	public static final String isfect="isfect";
 }
@@ -536,6 +549,13 @@ public static final class OrdDwdt {
 	public static final String mldate="mldate";
 	public static final String pldate="pldate";
 }
+public static final class PlanCls {
+	public static final String ormtno="ormtno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String spseno="spseno";
+	public static final String ordqty="ordqty";
+}
 public static final class PlanHd {
 	public static final String ormtno="ormtno";
 	public static final String bradno="bradno";
@@ -662,6 +682,31 @@ public static final class SizeDtl {
 	public static final String rgdt="rgdt";
 	public static final String lmsp="lmsp";
 	public static final String lmdt="lmdt";
+}
+public static final class SampleCldtl {
+	public static final String clppno="clppno";
+	public static final String sampno="sampno";
+	public static final String clspno="clspno";
+	public static final String clspmk="clspmk";
+}
+public static final class SampleClhd {
+	public static final String clppno="clppno";
+	public static final String clppnm="clppnm";
+	public static final String ormtno="ormtno";
+	public static final String bradno="bradno";
+	public static final String spbano="spbano";
+	public static final String clppmk="clppmk";
+	public static final String clppst="clppst";
+	public static final String print="print";
+}
+public static final class SampleClpht {
+	public static final String id="id";
+	public static final String clppno="clppno";
+	public static final String photso="photso";
+	public static final String photnm="photnm";
+	public static final String photms="photms";
+	public static final String imgnm="imgnm";
+	public static final String ormtno="ormtno";
 }
 public static final class SampleColth {
 	public static final String sampno="sampno";

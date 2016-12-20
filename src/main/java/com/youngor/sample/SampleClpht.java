@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,11 +20,11 @@ import com.mawujun.generator.model.FieldDefine;
 @Table(name="ord_sample_clpht")
 public class SampleClpht {
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(
-	        name = "uuid",
-	        strategy = "org.hibernate.id.UUIDGenerator"
-	    )
+//	@GeneratedValue(generator = "uuid")
+//	@GenericGenerator(
+//	        name = "uuid",
+//	        strategy = "org.hibernate.id.UUIDGenerator"
+//	    )
 	@FieldDefine(title="",sort=50,hidden=false)
 	@Column(length=50,nullable=true,updatable=true)
 	private String id;
@@ -40,8 +41,10 @@ public class SampleClpht {
 	@Column(length=50,nullable=true,updatable=true)
 	private String photms;
 	@FieldDefine(title="图片文件名",sort=50,hidden=false)
-	@Column(length=50,nullable=true,updatable=true)
+	@Column(length=100,nullable=true,updatable=true)
 	private String imgnm;
+	@Transient
+	private String ormtno;
 	
 	public String getId() {
 		return id;
@@ -78,6 +81,12 @@ public class SampleClpht {
 	}
 	public void setImgnm(String imgnm) {
 		this.imgnm = imgnm;
+	}
+	public String getOrmtno() {
+		return ormtno;
+	}
+	public void setOrmtno(String ormtno) {
+		this.ormtno = ormtno;
 	}
 
 

@@ -34,6 +34,10 @@ Ext.Ajax.on({
 			case 0 :
 				top.Ext.MessageBox.alert("错误", "加载数据时发生错误:<br/>" + "远程服务器无响应");
 				break;
+			case 503 :
+				var data = Ext.decode(text);
+				top.Ext.MessageBox.alert("错误",data.msg?data.msg:"后台发生错误，请联系管理员");
+				break;
 			default :
 				var data = Ext.decode(text);
 				if (data && data.errorMsg) {

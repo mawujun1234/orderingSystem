@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.sample.SampleClphtRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="queryPage_where">
+	</sql>
+    <select id="queryAll" resultType="com.youngor.sample.SampleClpht" parameterType="map">
+    	select * from ord_sample_clpht
+    	where clppno=#{clppno}
+    </select> 
+    
+</mapper>
+

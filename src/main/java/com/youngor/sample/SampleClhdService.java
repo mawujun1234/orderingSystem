@@ -34,4 +34,13 @@ public class SampleClhdService extends AbstractService<SampleClhd, String>{
 		
 		sampleClhdRepository.update(sampleClhd);
 	}
+//	/**
+//	 * 查询图片
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @param clppno
+//	 * @return
+//	 */
+//	public List<SampleClpht> querySampleClphtes(String clppno) {
+//		return sampleClhdRepository.querySampleClphtes(clppno);
+//	}
 }

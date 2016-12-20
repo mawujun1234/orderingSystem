@@ -54,7 +54,26 @@
 				<jdbc.password>oracle</jdbc.password>
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 				<hibernate.default_schema>odtest</hibernate.default_schema>
-				<photoBakDir>/opt/apache-tomcat-8.0.33/webapps</photoBakDir>
+				<photoBakDir>E:\eclipse\aaa\orderingSystem\src\main\webapp\</photoBakDir>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+				<log4j2.level>debug</log4j2.level>
+				<finalName>test</finalName>
+				<jdbc.dbType>oracle</jdbc.dbType>
+				<jdbc.driver>oracle.jdbc.driver.OracleDriver</jdbc.driver>
+				<jdbc.url>jdbc:oracle:thin:@192.168.188.129:1521:xxb</jdbc.url>
+				<jdbc.username>ODtest</jdbc.username>
+				<jdbc.password>oracle</jdbc.password>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.default_schema>odtest</hibernate.default_schema>
+				<photoBakDir>/opt/apache-tomcat-8.5.6/webapps/</photoBakDir>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>

@@ -25,9 +25,9 @@ public class Ftp2Test44 {
 	private static Log log = LogFactory.getLog(Ftp2Test44.class);
 	private static String linux_tomcat_install_dir="/opt/apache-tomcat-8.5.6";
 	private static String linux_webapps_dir=linux_tomcat_install_dir+"/webapps";
-	private static String od_file_local="E:\\eclipse\\aaa\\orderingSystem\\target\\dev.war";
-	private static String od_file_remote=linux_webapps_dir+"/dev.war";
-	private static String linux_od_folder=linux_webapps_dir+"/dev";
+	private static String od_file_local="E:\\eclipse\\aaa\\orderingSystem\\target\\test.war";
+	private static String od_file_remote=linux_webapps_dir+"/test.war";
+	private static String linux_od_folder=linux_webapps_dir+"/test";
 	private static String stop_tomcat_cmd="sh "+linux_tomcat_install_dir+"/bin/shutdown.sh";
 	private static String start_tomcat_cmd="sh "+linux_tomcat_install_dir+"/bin/startup.sh";
 	
