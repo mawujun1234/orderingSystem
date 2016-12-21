@@ -51,6 +51,7 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 	
 	public void onimport(MultipartFile imageFile) throws IOException, EncryptedDocumentException, InvalidFormatException {
 		InputStream stream = imageFile.getInputStream();
+		String ormtno=null;
 		Workbook wb = WorkbookFactory.create(stream);
 		Sheet sheet = wb.getSheetAt(0);
 		int rownum=sheet.getLastRowNum();
@@ -60,6 +61,7 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 			Cell cell = row.getCell(0);
 			if(cell!=null){
 				pk.setOrmtno(cell.getStringCellValue());
+				ormtno=pk.getOrmtno();
 			}
 			cell = row.getCell(1);
 			if(cell!=null){
@@ -118,7 +120,8 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 			throw new BusinessException("导入成功，但是下列货号重复:"+builder.substring(1));
 		}
 		
-		
+		//更新所有货号的零售价价，成本价
+		sampleProdRepository.updatePrice(ormtno);
 	}
 
 }

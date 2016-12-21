@@ -83,5 +83,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		group by prodnm,suitno
 		having count(prodnm)>1
     </select>
+    
+    <update id="updatePrice">
+    	update ord_sample_prod x set (prftpr,prrtpr,prctpr,prmtam,prmlam)=
+    	(select prftpr,prrtpr,prctpr,prmtam,prmlam from 
+		  (select e.ormtno,a.sampno,a.suitno,avg(a.spftpr) as prftpr,avg(a.sprtpr) as prrtpr,avg(c.spctpr) as prctpr,avg(c.SPTAPA) as prmtam,sum(d.mtcnqt*d.mtpupr) as prmlam
+		  from ord_sample_design_stpr a,ord_sample_design b,ord_sample_colth c,ord_sample_mate d,ord_sample_plan e
+		  where a.sampno=b.sampno and b.sampno=c.sampno and b.sampno=d.sampno and b.plspno=e.plspno and e.ormtno=#{ormtno}
+		  group by e.ormtno,a.sampno,a.suitno) y
+		   where x.sampno=y.sampno and x.suitno=y.suitno and x.ormtno=y.ormtno 
+		)
+		where x.ormtno=#{ormtno}
+    </update>
 </mapper>
 

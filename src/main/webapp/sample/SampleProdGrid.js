@@ -396,7 +396,7 @@ Ext.define('y.sample.SampleProdGrid',{
 			items:[{
 				xtype:'hiddenfield',
 				name:'spclno',
-				value:extraParams[params['spclno']]
+				value:extraParams["params['spclno']"]
 			},{
 		        xtype: 'filefield',
 		        name: 'imageFile',
