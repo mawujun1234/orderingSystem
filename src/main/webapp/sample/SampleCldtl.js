@@ -6,7 +6,10 @@ Ext.define("y.sample.SampleCldtl",{
 		{name:'clspno',type:'int'},
 		{name:'clspmk',type:'string'},
 		
-		{name:'sampnm',type:'string'}
+		{name:'sampnm',type:'string'},
+		{name:'imgnm',type:'string'},
+		{name:'sampno_imgnm',type:'string'},
+		{name:'sampno_thumb',type:'string'}
 	],
 	proxy:{
 		type:'ajax',

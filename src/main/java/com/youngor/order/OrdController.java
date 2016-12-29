@@ -31,6 +31,7 @@ import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.permission.UserController;
+import com.youngor.sample.SampleCldtlVO;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 /**
@@ -68,6 +69,13 @@ public class OrdController {
 		
 		return ordService.querySample(sampnm);
 	}
+	
+	@RequestMapping("/ord/mobile/queryMxByClppno.do")
+	@ResponseBody
+	public List<SampleCldtlVO> queryMxByClppno(String clppno) {
+		return ordService.queryMxByClppno(clppno);
+	}
+	
 	/**
 	 * 创建订单明细 和规格明细数据
 	 * @author mawujun qq:16064988 mawujun1234@163.com

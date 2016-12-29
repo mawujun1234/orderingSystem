@@ -1,8 +1,10 @@
 Ext={};
 Ext.ContextPath="/od";
-if(location.pathname.indexOf("/od")==-1){
+if(location.pathname.indexOf("/test")!=-1){
+	Ext.ContextPath="/test";
+} else if(location.pathname.indexOf("/od")==-1){
 	Ext.ContextPath="";
-}
+} 
 $.ajaxSettings.accepts.json="application/json;charset=UTF-8";
 $(function(){
 	
@@ -10,7 +12,12 @@ $(function(){
 		handlerReturn(response);
 	});
 	$(document).on('ajaxError',function(e,xhr,options,response){
-		handlerReturn(response);
+		if(xhr.status==503){
+			handlerReturn(JSON.parse(xhr.responseText));
+		} else {
+			handlerReturn(response);
+		}
+		
 	});
 	function handlerReturn(response){
 		if(response.success==false){
@@ -95,6 +102,9 @@ show_od_closeing_info();
 $(function(){
 
 			window.card_card__header_item__title_label=function(obj){
+				if(window.showSizeList==false){
+					return;
+				}
 				var input_id=$(obj).attr("id");
 				//如果是订货信息的就不收缩
 				if(input_id=='od_info_input'){
@@ -111,6 +121,9 @@ $(function(){
 			}
 
 			window.card_header_input_click=function(obj){	
+				if(window.showSizeList==false){
+					return;
+				}
 				var input_id=$(obj).attr("id");
 				if(input_id=='od_info_input'){
 					return;
@@ -423,6 +436,53 @@ $(function(){
 			}
 		});
 	});
+	
+	//渲染搭配的界面，因为在页面跳转的时候必须重新渲染，否则会显示异常
+	function initDapei_od_info(){
+		var swiper = new Swiper('#od_info .swiper-container', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 2,
+					paginationClickable: true,
+					spaceBetween: 30
+				});  
+	}
+	//点击的时候跳转到，搭配的相信页面
+	window.queryDapei_mx=function(a){
+		$.post(Ext.ContextPath+"/ord/mobile/queryMxByClppno.do",{clppno:$(a).attr("clppno")},function(response){
+			//console.log(response);
+			if(response) {
+				if(window.vm_dapei_info){//alert(1);
+					window.vm_dapei_info.$data={imgnm:response[0].imgnm,sampleCldtlVOs:response};	
+				} else {
+						//console.dir(response.sampleClhdVOs);
+						//alert(response[0].imgnm);
+					window.vm_dapei_info=new Vue({
+						el: '#dapei_info',
+						data: {imgnm:response[0].imgnm,sampleCldtlVOs:response},
+						methods:{
+							link_to_sampnm:function(event){
+								//alert(event.target.tagName);
+								var sampnm=$(event.target).attr("sampnm");//alert(sampnm);
+								scan(sampnm)
+							}	
+						}
+					});
+				}
+			}
+		});
+	}
+	$(document).on("pageInit", function(e, pageId, $page) {
+		  if(pageId == "dapei_info") {
+			var swiper = new Swiper('#dapei_info .swiper-container', {
+				pagination: '.swiper-pagination',
+				slidesPerView: 3,
+				paginationClickable: true,
+				spaceBetween: 30
+			});
+		  } else if(pageId == "od_info"){
+			initDapei_od_info(); 
+		  }
+	});
 	//开始扫描某个样衣
 	function scan(sampnm){
 		showOd_info_unsave_tips(false);
@@ -435,6 +495,7 @@ $(function(){
 			{
 				sampnm:sampnm
 			},function(response){
+				
 				if(response.success==false && response.errorCode!='BUSSINESS_EXCEPTION'){
 					//$.toast(response.msg);
 					$.hidePreloader();
@@ -445,17 +506,33 @@ $(function(){
 					return;
 				}
 				window.last_query_sampnm=sampnm;
+				//alert(response.showSizeList);
+				window.showSizeList=response.showSizeList;
 				
 				//样衣信息
 				if(window.vm_sampleVO){//alert(1);
 					window.vm_sampleVO.$data=response.sampleVO;
+					
 				} else {
 					window.vm_sampleVO=new Vue({
 					  el: '#od_info_sample_info',
 					  data: response.sampleVO
 					});
 				}
-				
+				//搭配信息
+				if(response.sampleClhdVOs){
+					$("#od_info_sampleClhdVOs").show(200);
+					if(window.vm_sampleClhdVOs){//alert(1);
+						window.vm_sampleClhdVOs.$data={sampleClhdVOs:response.sampleClhdVOs};	
+					} else {
+						//console.dir(response.sampleClhdVOs);
+						window.vm_sampleClhdVOs=new Vue({
+						  el: '#od_info_sampleClhdVOs',
+						  data: {sampleClhdVOs:response.sampleClhdVOs}
+						});
+					}
+					initDapei_od_info();
+				}
 				
 				//od_info_suitVOs
 				//套件信息

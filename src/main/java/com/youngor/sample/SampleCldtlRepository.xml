@@ -9,7 +9,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<sql id="queryPage_where">
 	</sql>
     <select id="queryAll" resultType="com.youngor.sample.SampleCldtlVO" parameterType="map">
-    	select a.*,b.sampnm,c.sptyno,d.imgnm from ord_sample_cldtl a 
+    	select a.*,b.sampnm,c.sptyno,d.imgnm as sampno_imgnm from ord_sample_cldtl a 
     	inner join ord_sample_design b on a.sampno=b.sampno 
     	inner join ord_sample_plan c on b.plspno=c.plspno
     	left join  (
@@ -17,6 +17,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	           where not exists(select 1 from ord_sample_photo b where a.sampno=b.sampno and a.id>b.id)
 	      ) d on b.sampno=d.sampno
     	where a.clppno=#{clppno}
+    	order by a.clspno
     </select> 
 
 </mapper>

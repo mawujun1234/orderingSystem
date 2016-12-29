@@ -13,7 +13,7 @@ Ext.define('y.sample.SampleCldtlGrid',{
       me.columns=[
       	{xtype: 'rownumberer'},
       	
-      	{dataIndex:'SAMPNO',header:'图片',width:55
+      	{dataIndex:'sampno',header:'图片',width:55
       		,renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	 
 	            	 return "<a href='#' onclick='clickShowPhoto(\""+value+"\")'>查看</a>";
@@ -25,7 +25,7 @@ Ext.define('y.sample.SampleCldtlGrid',{
         },
 		{dataIndex:'clspno',header:'搭配样衣序号',xtype: 'numbercolumn', format:'0',align : 'right'
 		},
-		{dataIndex:'imgnm',header:'图片',renderer:function(value ,record,dataIndex ,cell ,column  ){
+		{dataIndex:'sampno_imgnm',header:'图片',renderer:function(value ,record,dataIndex ,cell ,column  ){
 			return "<img src="+value+" style='width:100%;'></img>";
 		}},
 		{dataIndex:'clspmk',header:'搭配说明',flex:1

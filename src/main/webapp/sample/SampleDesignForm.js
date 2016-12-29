@@ -670,6 +670,14 @@ Ext.define('y.sample.SampleDesignForm',{
 
 		
 	},
+	/**
+	 * 根据大类加载工作室系列
+	 * @param {} spclno
+	 */
+	reloadStseno:function(spclno){
+		var stsenoField=this.getForm().findField("stseno");
+		stsenoField.reload(spclno);
+	},
 	reset:function(){
 		this.getForm().reset();
 		var sampleDesignSizegpGrid_store=this.getSampleDesignSizegpGrid().getStore();

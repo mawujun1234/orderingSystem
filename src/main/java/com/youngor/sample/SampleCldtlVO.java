@@ -8,7 +8,11 @@ public class SampleCldtlVO extends SampleCldtl {
 	private String sampnm;
 	private String clppnm;//搭配编号
 	private String sptyno;//大类
-	private String imgnm;
+	private String imgnm;//搭配图片
+	
+	//样衣的图片
+	private String sampno_imgnm;
+	private String sampno_thumb;
 	
 	public String getSptyno_name() {
 		return PubCodeCache.getSptyno_name(this.getSptyno());
@@ -53,6 +57,22 @@ public class SampleCldtlVO extends SampleCldtl {
 
 	public void setImgnm(String imgnm) {
 		this.imgnm = imgnm;
+	}
+
+	public String getSampno_imgnm() {
+		return sampno_imgnm;
+	}
+
+	public void setSampno_imgnm(String sampno_imgnm) {
+		this.sampno_imgnm = sampno_imgnm;
+	}
+
+	public String getSampno_thumb() {
+		return sampno_thumb;
+	}
+
+	public void setSampno_thumb(String sampno_thumb) {
+		this.sampno_thumb = sampno_thumb;
 	}
 
 }

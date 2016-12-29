@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
@@ -33,6 +33,9 @@ import com.youngor.pubsize.PubSize;
 import com.youngor.pubsize.PubSizeDtl;
 import com.youngor.pubsize.PubSizeDtlRepository;
 import com.youngor.pubsize.PubSizeRepository;
+import com.youngor.sample.SampleCldtlVO;
+import com.youngor.sample.SampleClhdRepository;
+import com.youngor.sample.SampleClhdVO;
 import com.youngor.sample.SampleDesign;
 import com.youngor.sample.SampleDesignRepository;
 import com.youngor.sample.SampleDesignStpr;
@@ -73,6 +76,8 @@ public class OrdService extends AbstractService<Ord, String>{
 	private  PubSizeRepository pubSizeRepository;
 	@Autowired
 	private PubSizeDtlRepository pubSizeDtlRepository;
+	@Autowired
+	private SampleClhdRepository sampleClhdRepository;
 	
 	SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
 	
@@ -175,11 +180,13 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		sampleVO.setMtorno(ord.getMtorno());
 		ord.setSampleVO(sampleVO);
-		if("TX".equals(ord.getChanno())){
+		if(Chancl.TX.toString().equals(ord.getChanno())){
 			sampleVO.setSpftpr(0d);
 		}
 		
 		result.put("sampleVO", sampleVO);
+		
+		
 		
 		//获取该用户的上报方式,如果是单规+整箱和单规，显示的是单规的信息，如果是整箱上报方式，那这里显示的是包装箱
 		OrdOrg ordOrg=getOrdMethod();//ord.getOrdMethod();
@@ -250,7 +257,28 @@ public class OrdService extends AbstractService<Ord, String>{
 				//sampleVO.setSuitVOs(suitVOs);
 			}
 		}
+		
+		//如果不是特许的话，就不显示套件和规格的数据,只显示订货总数,在保存订单的时候，就不保存规格明细数据了
+		//不知道等下会不会继续变化，所以先偷懒
+		result.put("showSizeList", true);//默认显示规格数据
+		if(!Chancl.TX.toString().equals(ord.getChanno())){
+			//隐藏规格数据列表
+			result.put("showSizeList", false);
+			
+			//同时获取搭配的图片，展示搭配数据
+			List<SampleClhdVO> sampleClhdVOs=sampleClhdRepository.queryBySampno(ContextUtils.getFirstOrdmt().getOrmtno(), sampleVO.getBradno(), sampleVO.getSampno());
+			result.put("sampleClhdVOs", sampleClhdVOs);
+		}
 		return result;
+	}
+	/**
+	 * 当点击某一个搭配的时候，获取
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param clppno
+	 * @return
+	 */
+	public List<SampleCldtlVO> queryMxByClppno(String clppno) {
+		return sampleClhdRepository.queryMxByClppno(clppno);
 	}
 	/**
 	 * 检查单规的规格比例，如果没有设置过，就全部设置为1，也就是说是平分
@@ -311,6 +339,7 @@ public class OrdService extends AbstractService<Ord, String>{
 			
 			if("T00".equals(suitVO.getSuitno()) || "T01".equals(suitVO.getSuitno())){
 				Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+				//判断样衣所在区域是否订了这个货，如果没定，必须是整箱定
 				int count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),suitVO.getSampno());
 				if(count==0){
 					//获取对应的样衣的包装要求
@@ -390,6 +419,11 @@ public class OrdService extends AbstractService<Ord, String>{
 			orddtl.setLmdt(new Date());
 			//orddtlRepository.delete(orddtl);
 			orddtlRepository.createOrUpdate(orddtl);
+			
+			
+			//如果不是特许的话，就不显示套件和规格的数据,只显示订货总数,在保存订单的时候，就不保存规格明细数据了
+			//不知道等下会不会继续变化，所以先偷懒
+			if(Chancl.TX.toString().equals(ord.getChanno())){
 			if(suitVO.getSizeVOs()!=null && suitVO.getSizeVOs().size()!=0) {
 				for(SizeVO sizeVO:suitVO.getSizeVOs()){
 					Ordszdtl ordszdtl=new Ordszdtl();
@@ -409,6 +443,7 @@ public class OrdService extends AbstractService<Ord, String>{
 					//orddtlRepository.delete(orddtl);
 					ordszdtlRepository.createOrUpdate(ordszdtl);	
 				}
+			}
 			}
 			
 			

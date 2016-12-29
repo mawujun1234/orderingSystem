@@ -29,5 +29,26 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		from ord_sample_clhd a
 		<include refid="queryPage_where" />
     </select>
+    
+    <!-- 根据样衣编号，查询匹配的搭配-->
+    <select id="queryBySampno" resultType="com.youngor.sample.SampleClhdVO" parameterType="map">
+    	select a.clppno,a.clppnm,c.imgnm from ORD_SAMPLE_CLHD a
+		inner join ORD_SAMPLE_CLDTL b on a.clppno=b.clppno
+		left join (select a.* from ORD_SAMPLE_CLPHT a
+		             where not exists(select 1 from ORD_SAMPLE_CLPHT b where a.clppno=b.clppno and a.id>b.id)) c on a.clppno=c.clppno
+		where a.ormtno=#{ormtno} and a.bradno=#{bradno} and a.clppst=1
+		and b.sampno=#{sampno}
+    </select>
+    
+    <!-- 当点击某个搭配，进入到搭配明细界面的时候-->
+    <select id="queryMxByClppno" resultType="com.youngor.sample.SampleCldtlVO" parameterType="map">
+    	select b.*,e.sampnm,c.imgnm,d.imgnm as sampno_imgnm,d.thumb as sampno_thumb from 
+		ORD_SAMPLE_CLDTL b
+		inner join ord_sample_design e on b.sampno=e.sampno
+		inner join ord_sample_photo d on b.sampno=d.sampno
+		left join (select a.* from ORD_SAMPLE_CLPHT a
+		             where not exists(select 1 from ORD_SAMPLE_CLPHT b where a.clppno=b.clppno and a.id>b.id)) c on b.clppno=c.clppno
+		where b.clppno=#{clppno}
+    </select>
 </mapper>
 

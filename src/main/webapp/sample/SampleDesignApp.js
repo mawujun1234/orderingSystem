@@ -117,6 +117,7 @@ Ext.onReady(function(){
 //		//用于获取设计样衣的当季属性
 		sampleDesignForm.reloadPubcode(record.get("bradno"));
 		sampleDesignForm.getSampleDesignSizegpGrid().reloadEditor(record.get("ormtno"),record.get("bradno"),record.get("spclno"));
+		sampleDesignForm.reloadStseno(record.get("spclno"));
 		
 //		if(sampleDesignGrid.sampno==record.get("sampno")){
 //			return;

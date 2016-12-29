@@ -639,6 +639,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 			//sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
 			//获取当季的属性
 			sampleDesignForm.reloadPubcode(record.get("bradno"));
+			sampleDesignForm.reloadStseno(record.get("spclno"));
 		
 			win.hide();
 			

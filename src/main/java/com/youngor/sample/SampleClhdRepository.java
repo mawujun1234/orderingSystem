@@ -15,4 +15,7 @@ import com.mawujun.repository.IRepository;
 public interface SampleClhdRepository extends IRepository<SampleClhd, String>{
 
 	//public List<SampleClpht> querySampleClphtes(@Param("clppno")String clppno);
+	public List<SampleClhdVO> queryBySampno(@Param("ormtno")String ormtno,@Param("bradno")String bradno,@Param("sampno")String sampno);
+	
+	public List<SampleCldtlVO> queryMxByClppno(@Param("clppno")String clppno);
 }

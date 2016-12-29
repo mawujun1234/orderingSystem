@@ -18,6 +18,7 @@
     <!--<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">-->
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">
+    <link rel="stylesheet" href="./swiper/css/swiper.min.css">
      <link rel="stylesheet" href="mobile.css" >
 	<style>
 
@@ -149,7 +150,23 @@
                             </template>
                       </div>
                     </div>
-                  </div><!--card -->
+                  </div><!--card --> 
+
+                  <!-- 搭配开始 -->
+                  <div class="card" id="od_info_sampleClhdVOs" style="display:none;">
+                     <div class="card-header"> 搭配信息 </div>
+                     <!-- Swiper -->
+                     <div class="swiper-container" data-space-between='10'>
+                        <div class="swiper-wrapper">
+                         <div class="swiper-slide"  v-for="sampleClhd in sampleClhdVOs"><a href="#dapei_info" onClick="queryDapei_mx(this)" clppno="{{ sampleClhd.clppno }}"><img v-bind:src="sampleClhd.imgnm" alt="">
+                           <div style="position:absolute;top:0px;z-index:99999;width:100%;text-align:center;right:0px;background-color:rgba(163,235,247,0.7);">{{ sampleClhd.clppnm }}</div>
+                           </a> 
+                          </div>
+                       </div>
+                       <!--<div class="swiper-pagination"></div>--> 
+                     </div>
+                     <!--swiper-container--> 
+                   </div><!--card搭配结束-->
                   
                   <!--  套件的开始 -->
                   <div id="od_info_suitVOs">
@@ -175,13 +192,13 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card-content guig_content" style="display:none;">
+                    <div class="card-content guig_content"   style="display:none;">
                       <div class="card-content-inner">
-                       <div class="list-block">
+                       <div class="list-block" >
                         <ul>
 
                           <!-- Text inputs -->
-                          <li>
+                          <li >
                             <div class="item-content">
                               <div class="item-media"><i class="icon icon-form-name"></i></div>
                               <div class="item-inner">
@@ -234,6 +251,47 @@
                 <p>Lorem ipsum dolor ...</p>
            </div>
         </div>     
+        
+        <!-- 搭配信息界面-->
+        <div class="page" id="dapei_info">
+        	<header class="bar bar-nav">
+              <a class="button button-link button-nav pull-left back" href="#od_info">
+                  <span class="icon icon-left"></span>
+                  返回
+              </a>
+              <h1 class='title'>搭配信息</h1>
+            </header>
+            <div class="content">
+            <!--
+              <div class="list-block" style="margin-top:0px;margin-bottom:10px;">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                    <div class="item-inner">
+                      <div class="item-title">已搭配套数:</div>
+                      <div class="item-after">5</div>
+                    </div>
+                  </li>
+                  
+                </ul>
+              </div>
+              -->
+              <div style="text-align:center;">
+              	<img v-bind:src="imgnm" alt="" style="height:55%;width:55%;">
+              </div>
+              <div class="swiper-container" style="height:30%;">
+              	<div class="swiper-wrapper" >
+                    <div class="swiper-slide" v-for="sampleCldtlVO in sampleCldtlVOs">
+                    	<a href="#od_info" v-on:click="link_to_sampnm" sampnm="{{ sampleCldtlVO.sampnm }}"><img v-bind:src="sampleCldtlVO.sampno_imgnm" sampnm="{{ sampleCldtlVO.sampnm }}" alt=""></a>
+                    </div>          
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+              </div>
+            </div><!-- content -->
+        </div><!--dapei_info -->
+        
+        
         <div class="page" id="od_mypage"> 
         	<!--<header class="bar bar-nav">
               <a class="button button-link button-nav pull-left back" href="/docs-demos/router">
@@ -695,6 +753,7 @@
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
+    <script src="./swiper/js/swiper.min.js"></script>
     <script type='text/javascript' src='mobile.js?v=20160725' charset='utf-8'></script>
      <script type='text/javascript' src='./report/report.js?v=20160725' charset='utf-8'></script>
     

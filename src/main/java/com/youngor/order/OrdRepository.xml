@@ -73,7 +73,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </resultMap>  
      <!--查询不是套西之外的小类，即表中套中拥有的规格 -->
      <select id="querySuitVO_T00" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt,d.ormtqt from (
      	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and  c.sampno=#{sampno}
@@ -99,11 +99,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    left join (
+	    	select * from ord_orddtl where mtorno=#{mtorno} and sampno=#{sampno} 
+	    ) d on a.sampno=d.sampno and a.suitno=d.suitno 
 	    order by a.suitno,a.sizeno
      </select>
      <!-- 当上报方式为  包装箱的时候  包装箱只显示标准箱(即单规箱)-->
      <select id="querySuitVO_T00_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt,d.ormtqt from (
      	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c 
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and NVL(a.SIZETY1,1)=1
@@ -131,12 +134,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='PRDPK'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    left join (
+	    	select * from ord_orddtl where mtorno=#{mtorno} and sampno=#{sampno} 
+	    ) d on a.sampno=d.sampno and a.suitno=d.suitno 
 	    order by a.suitno,a.sizeno
      </select>
      
      <!--当小类是套西的时候，需要从套装种类中选取相应的规格范围，在pc的时候是标准的套装种类，但是在移动端还要通过ORD_SUIT_DC进行过滤-->
      <select id="querySuitVO" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt,d.ormtqt from (
      	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and  c.sampno=#{sampno}
@@ -164,10 +170,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (<!-- 获取已经定了的数量-->
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='STDSZ'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    left join (
+	    	select * from ord_orddtl where mtorno=#{mtorno} and sampno=#{sampno} 
+	    ) d on a.sampno=d.sampno and a.suitno=d.suitno 
 	    order by a.suitno,a.sizeno
      </select>
      <select id="querySuitVO_PRDPK" resultMap="querySuitVO_mapper" parameterType="com.youngor.order.SampleVO">
-     	select a.*,nvl(b.szrate,0) szrate,c.orszqt from (
+     	select a.*,nvl(b.szrate,0) szrate,c.orszqt,d.ormtqt from (
      	  SELECT '${sampno}' AS sampno,c.suitno,c.sizegp,a.sizeno,a.sizenm,a.sizety,a.sizeqt FROM ORD_PUB_SIZE a,ord_sizedtl b,ord_sample_design_sizegp c  
 	      where a.sizety=b.sizety and a.sizeno=b.sizeno and b.fszno=c.sizegp and  b.fszty='PRDSZFW'
 	      and NVL(a.SIZETY1,1)=1
@@ -196,6 +205,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    left join (
 	    	select * from ord_ordszdtl where mtorno=#{mtorno} and sampno=#{sampno} and sizety='PRDPK'
 	    ) c on a.sampno=c.sampno and a.suitno=c.suitno and a.sizeno=c.sizeno
+	    left join (
+	    	select * from ord_orddtl where mtorno=#{mtorno} and sampno=#{sampno} 
+	    ) d on a.sampno=d.sampno and a.suitno=d.suitno 
 	    order by a.suitno,a.sizeno
      </select>
      <!-- 移动端进行清零按钮的时候 -->
