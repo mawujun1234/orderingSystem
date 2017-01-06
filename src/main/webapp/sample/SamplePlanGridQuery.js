@@ -32,6 +32,8 @@ Ext.define('y.sample.SamplePlanGridQuery',{
         },
 		{dataIndex:'spbano_name',header:'上市批次'
         },
+        {dataIndex:'plgrno_name',header:'商品等级'
+        },
 		{dataIndex:'spftpr',header:'出厂价',xtype: 'numbercolumn', format:'0.00',align : 'right'
 		},
 		{dataIndex:'sprtpr',header:'零售价',xtype: 'numbercolumn', format:'0.00',align : 'right'

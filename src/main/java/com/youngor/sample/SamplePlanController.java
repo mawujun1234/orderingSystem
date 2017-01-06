@@ -201,20 +201,24 @@ public class SamplePlanController {
 		cell10.setCellStyle(cellStyle);
 		
 		Cell cell11 = title.createCell(11);
-		cell11.setCellValue("出厂价");
+		cell11.setCellValue("商品等级");
 		cell11.setCellStyle(cellStyle);
 		
 		Cell cell12 = title.createCell(12);
-		cell12.setCellValue("零售价");
+		cell12.setCellValue("出厂价");
 		cell12.setCellStyle(cellStyle);
 		
 		Cell cell13 = title.createCell(13);
-		cell13.setCellValue("企划倍率");
+		cell13.setCellValue("零售价");
 		cell13.setCellStyle(cellStyle);
 		
 		Cell cell14 = title.createCell(14);
-		cell14.setCellValue("企划成本");
+		cell14.setCellValue("企划倍率");
 		cell14.setCellStyle(cellStyle);
+		
+		Cell cell15 = title.createCell(15);
+		cell15.setCellValue("企划成本");
+		cell15.setCellStyle(cellStyle);
 		
 	}
 	
@@ -258,16 +262,19 @@ public class SamplePlanController {
 			cell10.setCellValue(vo.getSpbano_name());
 			
 			Cell cell11 = row.createCell(11);
-			cell11.setCellValue(vo.getSpftpr());
+			cell11.setCellValue(vo.getPlgrno());
 			
 			Cell cell12 = row.createCell(12);
-			cell12.setCellValue(vo.getSprtpr());
+			cell12.setCellValue(vo.getSpftpr());
 			
 			Cell cell13 = row.createCell(13);
-			cell13.setCellValue(vo.getSpplrd());
+			cell13.setCellValue(vo.getSprtpr());
 			
 			Cell cell14 = row.createCell(14);
-			cell14.setCellValue(vo.getPlctpr());
+			cell14.setCellValue(vo.getSpplrd());
+			
+			Cell cell15 = row.createCell(15);
+			cell15.setCellValue(vo.getPlctpr());
 			
 
 			

@@ -133,6 +133,15 @@ Ext.define('y.sample.SamplePlanForm',{
 	        xtype:'pubcodecombo',
 	        tyno:'23'
 	    },
+	    {
+	        fieldLabel: '商品等级',
+	        name: 'plgrno',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"商品等级批次不允许为空",
+	        xtype:'pubcodecombo',
+	        tyno:'30'
+	    },
 		{
 	        fieldLabel: '出厂价',
 	        name: 'spftpr',

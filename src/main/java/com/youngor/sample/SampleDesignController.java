@@ -172,6 +172,7 @@ public class SampleDesignController {
 		titles.put("SPSENM", "系列");
 		titles.put("SPLCNM", "定位");
 		titles.put("SPBANM", "上市批次");
+		titles.put("PLGRNM", "商品等级");
 		titles.put("SPFTPR", "出厂价");
 		titles.put("SPRTPR", "零售价");
 		titles.put("SPPLRD", "企划倍率");

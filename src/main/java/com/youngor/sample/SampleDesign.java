@@ -77,6 +77,7 @@ public class SampleDesign extends BaseObject{
 //	@Column(length=36,nullable=false,updatable=true)
 //	private String sizegp;
 	
+	
 	@FieldDefine(title="包装要求",sort=50,hidden=false)
 	private Integer packqt;
 	@FieldDefine(title="套西是否拆套",sort=50,hidden=false)

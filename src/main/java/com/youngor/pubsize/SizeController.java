@@ -111,5 +111,18 @@ public class SizeController {
 		return size;
 	}
 	
-	
+	@RequestMapping("/size/copy.do")
+	@ResponseBody
+	public  String copy(String sizeno_old) {
+		// 判断订货会是否已经开始，如果已经开始，就不能进行增，删，改了
+		Ordmt ordmt = ContextUtils.getFirstOrdmt();//ContextUtils.getOrdmt(size.getOrmtno());
+		if (!ordmt.isBeforeMtstdt()) {
+			throw new BusinessException("订货会已经开始或结束，不能更新!");
+		}
+		sizeService.copy(sizeno_old);
+//		size.setLmdt(new Date());
+//		size.setLmsp(ShiroUtils.getLoginName());
+//		sizeService.update(size);
+		return "{success:true}";
+	}
 }

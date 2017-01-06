@@ -301,6 +301,7 @@
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<!-- <warSourceExcludes>www/**/*.*,**/*.js,**/*.css</warSourceExcludes> -->
+					<warSourceExcludes>photoes\**,photoes_bak\**</warSourceExcludes>  
 				</configuration>
 			</plugin>
 			<plugin>

@@ -520,7 +520,7 @@ $(function(){
 					});
 				}
 				//搭配信息
-				if(response.sampleClhdVOs){
+				if(response.sampleClhdVOs && response.sampleClhdVOs.length>0){
 					$("#od_info_sampleClhdVOs").show(200);
 					if(window.vm_sampleClhdVOs){//alert(1);
 						window.vm_sampleClhdVOs.$data={sampleClhdVOs:response.sampleClhdVOs};	
@@ -532,6 +532,8 @@ $(function(){
 						});
 					}
 					initDapei_od_info();
+				} else {
+					$("#od_info_sampleClhdVOs").hide(200);
 				}
 				
 				//od_info_suitVOs

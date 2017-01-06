@@ -57,7 +57,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	from (
     	select b.sampno,b.sampnm,b.sampnm1,b.spstat,b.suitty,b.photno,b.abstat,c.name as rgsp,b.rgdt,d.name as lmsp,b.lmdt,
     		a.plspno,a.plspnm,a.ormtno,a.bradno,a.spyear,a.spsean,a.spbseno,a.sprseno,a.spclno,a.sptyno,a.spseno,a.splcno
-			,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst
+			,a.spbano,a.spftpr,a.sprtpr,a.spplrd,a.plctpr,a.pldate,a.mldate,a.plstat,a.plspst,a.plgrno
     	from ord_sample_plan a,ord_sample_design b ,t_user c,t_user d
     	where a.plspno=b.plspno	and b.rgsp=c.loginname and b.lmsp=d.loginname
     	and exists ( select 1 from  t_role_user x,t_role_class y

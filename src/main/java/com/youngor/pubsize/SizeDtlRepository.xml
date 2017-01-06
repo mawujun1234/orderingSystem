@@ -6,7 +6,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.pubsize.SizeDtlRepository">
 	 <select id="query" resultType="com.youngor.pubsize.SizeDtlVO" parameterType="map">
-    	 select a.*,b.sizenm from OD.ORD_SIZEDTL a,ord_pub_size b
+    	 select a.*,b.sizenm from ORD_SIZEDTL a,ord_pub_size b
  		where a.sizety=b.sizety and a.sizeno=b.sizeno and a.ormtno=#{ormtno} and a.fszty=#{fszty} and a.fszno=#{fszno}
  		and a.sizety=#{sizety}
     </select> 
@@ -14,5 +14,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <delete id="deleteByFszno">
     	delete ord_sizedtl where fszty=#{fszty} and fszno=#{fszno}
     </delete>
+    
+    <update id="copyByFszno">
+    	insert into ord_sizedtl(ormtno,fszno,fszty,sizety,sizeno,rgsp,rgdt,lmsp,lmdt)
+		select '${ormtno}' ormtno,'${fszno_new}' fszno,fszty,sizety,sizeno,'${user_id}' rgsp,sysdate rgdt,'${user_id}' lmsp,sysdate lmdt from ord_sizedtl
+		where fszno=#{fszno_old}
+    </update>
 </mapper>
 

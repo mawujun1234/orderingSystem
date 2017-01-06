@@ -507,4 +507,31 @@ public class PubCodeCache {
 			return pubCode.getItnm();
 		}
 	}
+	
+	/**
+	 * 获取商品等级
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static PubCode getPlgrno(String itno){
+		if(itno!=null && cache.get("30").get(itno)==null) {
+			refreshPubCode("30");
+		}
+		return cache.get("30").get(itno);
+	}
+	/**
+	 * 获取商品等级名称
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param itno
+	 * @return
+	 */
+	public static String getPlgrno_name(String itno){
+		PubCode pubCode=getPlgrno(itno);
+		if(pubCode==null){
+			return "";
+		} else {
+			return pubCode.getItnm();
+		}
+	}
 }

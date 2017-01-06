@@ -1,4 +1,6 @@
 package com.youngor.pubsize;
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +8,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mawujun.service.AbstractService;
+import com.mawujun.utils.bean.BeanUtils;
+import com.youngor.ordmt.Ordmt;
+import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.ContextUtils;
 
 
 /**
@@ -50,6 +56,24 @@ public class SizeService extends AbstractService<Size, String>{
 		this.getRepository().delete(size);
 		//删除明细数据
 		sizeDtlRepository.deleteByFszno(size.getSizety(), size.getSizeno());
+		
+	}
+	
+	public  void copy(String sizeno_old) {
+		Size sizeOld=sizeRepository.get(sizeno_old);
+		Size size=BeanUtils.copyOrCast(sizeOld, Size.class);
+		size.setLmdt(new Date());
+		size.setLmsp(ShiroUtils.getUserId());
+		size.setRgdt(new Date());
+		size.setRgsp(ShiroUtils.getUserId());
+		Ordmt ordmt = ContextUtils.getFirstOrdmt();
+		size.setOrmtno(ordmt.getOrmtno());
+		size.setSizeno(null);
+		
+		create(size);
+		
+		//复制明细数据
+		sizeDtlRepository.copyByFszno(sizeOld.getSizeno(), size.getSizeno(), ordmt.getOrmtno(), size.getLmsp());
 		
 	}
 }

@@ -58,6 +58,9 @@ public class SamplePlan extends BaseObject{
 	@FieldDefine(title="上市批次",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=true)
 	private String spbano;
+	@FieldDefine(title="商品等级",sort=50,hidden=false)
+	@Column(length=30,nullable=false,updatable=true)
+	private String plgrno;
 	
 	@FieldDefine(title="出厂价",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=true)
@@ -211,6 +214,12 @@ public class SamplePlan extends BaseObject{
 	}
 	public void setPlspst(Integer plspst) {
 		this.plspst = plspst;
+	}
+	public String getPlgrno() {
+		return plgrno;
+	}
+	public void setPlgrno(String plgrno) {
+		this.plgrno = plgrno;
 	}
 
 }

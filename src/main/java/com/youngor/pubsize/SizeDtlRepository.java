@@ -19,4 +19,6 @@ public interface SizeDtlRepository extends IRepository<SizeDtl, com.youngor.pubs
 	public List<SizeDtlVO> query(@Param("ormtno")String ormtno,@Param("fszty")String fszty,@Param("fszno")String fszno,@Param("sizety")String sizety);
 	
 	public void deleteByFszno(@Param("fszty")String fszty,@Param("fszno")String fszno);
+	
+	public void copyByFszno(@Param("fszno_old")String fszno_old,@Param("fszno_new")String fszno_new,@Param("ormtno")String ormtno,@Param("user_id")String user_id);
 }

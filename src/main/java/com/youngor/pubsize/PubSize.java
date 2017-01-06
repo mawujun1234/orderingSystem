@@ -48,7 +48,7 @@ public class PubSize extends BaseObject{
 	private String szclno;
 	@FieldDefine(title="包装种类",hidden=false)
 	@Column(length=36)
-	private Integer sizety1;//0：单规装；1：混装
+	private Integer sizety1;//0：单规装；1：混装,和新drp中有关系
 	@FieldDefine(title="数量",hidden=false)
 	private Integer sizeqt;//主要用于包装的时候，定义这个包装里要包含多少数量
 	@FieldDefine(title="规备注",hidden=false)

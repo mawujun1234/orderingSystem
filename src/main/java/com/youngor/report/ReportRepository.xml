@@ -45,7 +45,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN(SELECT ORMTNO,SAMPNO,COUNT(DISTINCT PLDATE) PLDTCT FROM ORD_ORD_DWDT 
 		         WHERE ORMTNO=#{ormtno} GROUP BY ORMTNO,SAMPNO)CT ON B.ORMTNO=CT.ORMTNO AND A.SAMPNO=CT.SAMPNO
 		WHERE B.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno}
-		AND B.SPCLNO=#{spclno} 
+		
+		<if test="spclno!=null and spclno!=''">
+			AND B.SPCLNO=#{spclno} 
+		</if>
 		<if test="sptyno!=null and sptyno!=''">
 			and b.sptyno=#{sptyno}
 		</if>
@@ -107,7 +110,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		LEFT JOIN ORD_MATE_POHED T ON B.ORMTNO=T.MLORMT AND A.SAMPNO=T.MLSMNO AND M.MATESO=T.MLZLPL
 		LEFT JOIN ORD_PUB_SUNO S2 ON T.MLSUNO=S2.IDSUNO
 		WHERE B.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno}
-		AND B.SPCLNO=#{spclno} 
+		 
+		<if test="spclno!=null and spclno!=''">
+			AND B.SPCLNO=#{spclno}
+		</if>
 		<if test="sptyno!=null and sptyno!=''">
 			and b.sptyno=#{sptyno}
 		</if>

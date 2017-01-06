@@ -344,6 +344,9 @@ public class OrdService extends AbstractService<Ord, String>{
 				if(count==0){
 					//获取对应的样衣的包装要求
 					SampleDesign sampleDesign=sampleDesignRepository.get(suitVO.getSampno());
+					if(sampleDesign.getPackqt()==null || sampleDesign.getPackqt()==0){
+						throw new BusinessException("该样衣的<包装要求>不能为0，请联系大类管理员！");
+					}
 					if((suitVO.getOrmtqt()%sampleDesign.getPackqt())!=0){
 						throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求:"+sampleDesign.getPackqt()+"）订货！");
 					}

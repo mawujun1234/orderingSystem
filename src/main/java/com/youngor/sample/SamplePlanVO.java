@@ -33,6 +33,9 @@ public class SamplePlanVO extends SamplePlan {
 	public String getSpbano_name() {
 		return PubCodeCache.getSpbano_name(this.getSpbano());
 	}
+	public String getPlgrno_name() {
+		return PubCodeCache.getPlgrno_name(this.getPlgrno());
+	}
 
 	
 

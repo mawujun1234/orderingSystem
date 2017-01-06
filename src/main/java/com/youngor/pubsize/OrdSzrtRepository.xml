@@ -51,7 +51,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     
     
-    <!-- 获取包装规格的列 :SIZETY1是混装还是单规装的数据如果是1：表示是混装，也就是说是标准箱-->
+    <!-- 获取包装规格的列 :SIZETY1是混装还是单规装的数据如果是1：表示是混装，也就是说是标准箱，  也就是说这里必须是混装的才会显示-->
     <select id="queryPrdpkColumns" resultType="com.youngor.pubsize.PubSize" parameterType="map">
     	select b.* from ord_sizedtl a ,ord_pub_size b
        where a.sizeno=b.sizeno and NVL(b.SIZETY1,1)=1 and a.fszty='PRDSZFW' and a.fszno=#{sizegp} and a.sizety='PRDPK' and b.sizety='PRDPK'

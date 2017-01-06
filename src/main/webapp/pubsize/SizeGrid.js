@@ -109,6 +109,14 @@ Ext.define('y.pubsize.SizeGrid',{
 			    	me.onDelete();    
 			    },
 			    iconCls: 'icon-trash'
+			},{
+			    text: '复制到最近订货会',
+			    //itemId:'destroy',
+			    hidden:!Permision.canShow('PRDSZFW_copy'),
+			    handler: function(){
+			    	me.onCopy();    
+			    },
+			    iconCls: 'icon-copy'
 			}]
 		});
 
@@ -202,5 +210,61 @@ Ext.define('y.pubsize.SizeGrid',{
 				});
 			}
 		});
+    },
+    onCopy:function(){
+    	var me=this;
+    	var record=me.getSelectionModel( ).getLastSelected( );
+
+		if(!record){
+		    Ext.Msg.alert("消息","请先选择一行规格范围");	
+			return;
+		}
+		Ext.Msg.confirm("复制",'确定要将当前选中的规格范围复制到最新的订货会吗?', function(btn, text){
+				if (btn == 'yes'){
+					Ext.Ajax.request({
+						url:Ext.ContextPath+"/size/copy.do",
+						params:{sizeno_old:record.get("sizeno")},
+						success:function(response){
+						 var obj=Ext.decode(response.responseText);
+						 if(!obj.success){
+						 
+						 }
+						 Ext.Msg.alert("消息","复制成功!");
+						}
+					});
+				}
+		});
+		
+		
+//		var win=Ext.create("Ext.Window",{
+//			//layout:'fit',
+//			title:'复制到指定订货会',
+//			modal:true,
+//			height:150,
+//			width:100,
+//			items:[{
+//		  		itemId:'ordmtcombo',
+//				xtype:'ordmtcombo',
+//				listeners:{
+//		        	select:function( combo, record, eOpts ) {
+//		        		window.ordmt_record=record;
+//		        	}	
+//		        }
+//			}],
+//			buttons:[{
+//				text:'取消',
+//				handler:function(){
+//					win.close();
+//				}
+//			},{
+//				text:'确定',
+//				handler:function(){
+//					var ordmtcombo=win.down("#ordmtcombo");
+//					alert(ordmtcombo.get());
+//				}
+//			}]
+//		
+//		});
+//		win.show();
     }
 });
