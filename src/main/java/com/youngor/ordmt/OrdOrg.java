@@ -74,6 +74,13 @@ public class OrdOrg {
 			this.ordorg = ordorg;
 		}
 	}
+	
+	public PK geetPK(){
+		PK pk=new PK();
+		pk.setOrdorg(this.getOrdorg());
+		pk.setOrmtno(this.getOrmtno());
+		return pk;
+	}
 
 	public String getOrmtno() {
 		return ormtno;

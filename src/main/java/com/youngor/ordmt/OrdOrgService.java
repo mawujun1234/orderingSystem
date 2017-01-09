@@ -1,6 +1,7 @@
 package com.youngor.ordmt;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -202,6 +203,27 @@ public class OrdOrgService extends AbstractService<OrdOrg, com.youngor.ordmt.Ord
 		for(OrdOrg ordOrg:list){
 			ordOrg.setPrint(1);
 			ordOrgRepository.update(ordOrg);
+		}
+	}
+	
+	public  void copy(OrdOrg[] list) {
+		if(list==null || list.length==0){
+			return;
+		}
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		for(OrdOrg ordOrg:list){
+			if(ordOrg.getOrmtno().equals(ormtno)){
+				return;
+			}
+			
+			OrdOrg ordOrg_new=new OrdOrg();
+			BeanUtils.copyProperties(ordOrg, ordOrg_new);
+			ordOrg_new.setOrmtno(ormtno);
+			ordOrg_new.setPrint(0);
+//			if(ordOrgRepository.get(ordOrg_new.geetPK())){
+//				
+//			};
+			ordOrgRepository.create(ordOrg_new);
 		}
 	}
 }

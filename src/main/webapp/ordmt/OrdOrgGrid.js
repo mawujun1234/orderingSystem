@@ -191,6 +191,19 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 			    iconCls: 'icon-edit'
 			}]
 		});
+		me.dockedItems.push({
+		 	xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
+			    text: '复制到当前订货会',
+			    
+			    handler: function(){
+			    	me.onCopy();
+					
+			    },
+			    iconCls: 'icon-copy'
+			}]
+		});
 
       this.cellEditing = new Ext.grid.plugin.CellEditing({  
             clicksToEdit : 1  
@@ -354,6 +367,34 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 							}
 					    	me.getStore().reload();
 					    }
+				});
+			}
+		});
+    },
+    onCopy:function(){
+    	var me=this;
+    	var records=me.getSelectionModel( ).getSelection();
+    	if(records==null || records.length==0){
+    		Ext.Msg.alert("提醒","请选择要打印的订货单位!");
+    		return;
+    	}
+    	Ext.Msg.confirm("删除",'确定要把选中的订货单位复制到最新的订货会吗?', function(btn, text){
+			if (btn == 'yes'){
+				var datas=[];
+				for(var i=0;i<records.length;i++){
+					datas.push(records[i].getData());
+				}
+				Ext.Ajax.request({
+					url:Ext.ContextPath+'/ordOrg/copy.do',
+					jsonData:datas,
+					success:function(response){
+						var obj=Ext.decode(response.responseText);
+					    if(obj.success==false){
+								Ext.Msg.alert("消息",obj.msg);
+								return;
+						}
+						Ext.Msg.alert("消息","复制成功!");
+					}
 				});
 			}
 		});

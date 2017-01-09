@@ -313,5 +313,11 @@ public class OrdOrgController {
 		return ordOrg;
 	}
 	
-	
+	@RequestMapping("/ordOrg/copy.do")
+	@ResponseBody
+	public  String copy(@RequestBody OrdOrg[] list) {
+
+		ordOrgService.copy(list);
+		return "{success:true}";
+	}
 }
