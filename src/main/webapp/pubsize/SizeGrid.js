@@ -230,6 +230,7 @@ Ext.define('y.pubsize.SizeGrid',{
 						 
 						 }
 						 Ext.Msg.alert("消息","复制成功!");
+						 me.getStore().reload();
 						}
 					});
 				}
