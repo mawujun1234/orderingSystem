@@ -17,6 +17,7 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/orderingSystem/target/classes"/>
-        <property name="context-root" value="ROOT"/>
+        <property name="context-root" value="test"/>
+        <property name="component.exclusion.patterns" value="photoes\**,photoes_bak\**"/>
     </wb-module>
 </project-modules>

@@ -153,7 +153,7 @@ Ext.onReady(function(){
 			    displayField: 'sizenm',
 			    valueField: 'sizeno',
 			    store: {
-			    	autoLoad:true,
+			    	autoLoad:false,
 				    fields: ['sizeno', 'sizenm'],
 				    proxy:{
 				    	type:'ajax',

@@ -19,9 +19,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script>
 
 	</script>
+	
+	<style>
+	 .ormtno_name {
+	 	text-align:center;
+		position:absolute;
+		top:30%;
+		left:50%;
+		margin-left:-190px;
+		color:white;
+		font-family:sans-serif,"幼圆","黑体";
+		font-size:45px;
+	 }
+	</style>
   </head>
   
-  <body style="background-image: url(bg1.jpg);background-position:center;background-repeat:no-repeat;background-attachment:fixed;">
-   
+  <body style="background-image: url(bg.jpg);background-position:center;background-repeat:no-repeat;background-attachment:fixed;">
+   <div class="ormtno_name">
+   	2017秋冬商品订货会
+   </div>
   </body>
 </html>

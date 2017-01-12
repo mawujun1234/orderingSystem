@@ -39,6 +39,52 @@ public static final class BwOrdszdtl {
 	public static final String orszqt="orszqt";
 	public static final String ormark="ormark";
 }
+public static final class CgOrddt {
+	public static final String orcgno="orcgno";
+	public static final String cgorno="cgorno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String ormtqt="ormtqt";
+	public static final String mldate="mldate";
+	public static final String pldate="pldate";
+	public static final String pplace="pplace";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class CgOrddtl {
+	public static final String cgorno="cgorno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String orszqt="orszqt";
+	public static final String ormark="ormark";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class CgOrdhd {
+	public static final String orcgno="orcgno";
+	public static final String cgorno="cgorno";
+	public static final String bradno="bradno";
+	public static final String spclno="spclno";
+	public static final String orstat="orstat";
+	public static final String isfect="isfect";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
+public static final class CgOrdmt {
+	public static final String ormtno="ormtno";
+	public static final String orcgno="orcgno";
+	public static final String orcgnm="orcgnm";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
 public static final class CompPal {
 	public static final String ormtno="ormtno";
 	public static final String sampno="sampno";
@@ -830,6 +876,7 @@ public static final class SamplePlan {
 	public static final String spseno="spseno";
 	public static final String splcno="splcno";
 	public static final String spbano="spbano";
+	public static final String plgrno="plgrno";
 	public static final String spftpr="spftpr";
 	public static final String sprtpr="sprtpr";
 	public static final String spplrd="spplrd";

@@ -359,7 +359,17 @@ Ext.define('y.sample.SampleDesignGrid',{
 			    	me.onCopy();    
 			    },
 			    iconCls: 'icon-copy'
-			},{
+			}
+//			,{
+//			    text: '复制样衣属性',
+//			    itemId:'copySampnoInfo',
+//			    hidden:!Permision.canShow('sample_design_copySampnoInfo'),
+//			    handler: function(){
+//			    	me.onCopySampnoInfo();    
+//			    },
+//			    iconCls: 'icon-copy'
+//			}
+			,{
 			    text: '必定款',
 			    iconCls: 'icon-magnet',
 			    hidden:!Permision.canShow('sample_design_abstat'),
@@ -633,15 +643,17 @@ Ext.define('y.sample.SampleDesignGrid',{
 			}
 			
 			var sampleDesignForm=tabpanel.child("form#sampleDesignForm") ;
+			//获取当季的属性
+			sampleDesignForm.reloadStseno(record.get("spclno"));//这个必须放在前面
+			sampleDesignForm.reloadPubcode(record.get("bradno"));
+			
 			
 			sampleDesignForm.reset();
 			sampleDesignForm.loadRecord(sampleDesign);
 			sampleDesignForm.getForm().findField("sampnm").setReadOnly(false);
 			//sampleDesignForm.getForm().findField( "plspno").setValue(record.get("plspno"));
 			//sampleDesignForm.getForm().findField( "plspnm").setValue(record.get("plspnm"));
-			//获取当季的属性
-			sampleDesignForm.reloadPubcode(record.get("bradno"));
-			sampleDesignForm.reloadStseno(record.get("spclno"));
+			
 		
 			win.hide();
 			
@@ -663,6 +675,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 	       	//重置
 	       	tabpanel.down("grid#sampleMateGrid").getStore().removeAll();
 	       	tabpanel.down("form#sampleMateForm").reset();
+	       	tabpanel.down("form#sampleMateForm").mask();
 
 	       	tabpanel.down("form#sampleColthForm").reset();
 	       //	tabpanel.down("grid#sampleDesignStprGrid").getStore().removeAll();
@@ -799,6 +812,97 @@ Ext.define('y.sample.SampleDesignGrid',{
 		
 		
     },
+//    onCopySampnoInfo:function(){//复制样衣属性，企划样衣编号要手工输入
+//    	//Ext.Msg.confirm("")
+//    	var me=this;
+//    	var record=me.getSelectionModel( ).getLastSelected( );
+//		
+//		if(!record){
+//		    Ext.Msg.alert("消息","请先选择一行数据");	
+//			return;
+//		}
+//		
+//		var form=Ext.create('Ext.form.Panel', {
+//		    bodyPadding: 5,
+//		    width: 350,
+//		    // The form will submit an AJAX request to this URL when submitted
+//		    //url: 'save-form.php',
+//		
+//		    // Fields will be arranged vertically, stretched to full width
+//		    layout: 'anchor',
+//		    defaults: {
+//		        anchor: '100%'
+//		    },
+//		    // The fields
+//		    defaultType: 'textfield',
+//		    items: [{
+//		        fieldLabel: '企划样衣编号',
+//		        name: 'plspnm',
+//	            allowBlank: false,
+//	            //readOnly:true,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"企划样衣编号不允许为空",
+//	            selectOnFocus:true,
+//		        xtype:'textfield'
+//		    },{
+//		        fieldLabel: '出样样衣编号',
+//		        name: 'sampnm1',
+//		        itemId: 'sampnm1',
+//	            allowBlank: false,
+//	            //readOnly:sampnm_readOnly,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"出样样衣编号不允许为空",
+//	            selectOnFocus:true,
+//		        xtype:'textfield'
+//		    },{
+//		        fieldLabel: '订货样衣编号',
+//		        name: 'sampnm',
+//	            allowBlank: false,
+//	            //readOnly:sampnm_readOnly,
+//	            afterLabelTextTpl: Ext.required,
+//	            blankText:"订货样衣编号不允许为空",
+//	            selectOnFocus:true,
+//		        xtype:'textfield',
+//		        listeners:{
+//		        	change:function(field, newValue, oldValue){
+//		        		//var sampnm1=field.nextSibling("#sampnm1");
+//		        		//sampnm1.setValue(newValue);
+//		        	}
+//		        }
+//		    }],
+//		    // Reset and Submit buttons
+//		    buttons: [{
+//		        text: 'Reset',
+//		        handler: function() {
+//		            this.up('form').getForm().reset();
+//		        }
+//		    }, {
+//		        text: 'Submit',
+//		        formBind: true, //only enabled once the form is valid
+//		        disabled: true,
+//		        handler: function() {
+//		            var form = this.up('form').getForm();
+//		            if (form.isValid()) {
+//		                form.submit({
+//		                    success: function(form, action) {
+//		                       Ext.Msg.alert('Success', action.result.msg);
+//		                    },
+//		                    failure: function(form, action) {
+//		                        Ext.Msg.alert('Failed', action.result.msg);
+//		                    }
+//		                });
+//		            }
+//		        }
+//		    }]
+//		});
+//		
+//		var win=Ext.create('Ext.Window',{
+//			layout:'fit',
+//			
+//			items:[form]
+//		});
+//		win.show();
+//    },
     /**
      * 设置必定款
      */

@@ -65,7 +65,7 @@ Ext.define('y.pubcode.PubCodeGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.pubcode.PubCode',
 			proxy:{
 				type: 'ajax',

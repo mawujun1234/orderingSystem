@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order.cg.CgOrdhdRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="queryAll_where">
+		where a.orcgno=#{orcgno} and a.bradno=#{bradno}
+		<if test="spclno!=null and spclno!=''">
+			and a.spclno=#{spclno}
+		</if>
+	</sql>
+    <select id="queryAll_1" resultType="com.youngor.order.cg.CgOrdhdVO" parameterType="map">
+    	select * from ORD_CG_ORDHD a
+    	<include refid="queryAll_where" />	
+    </select> 
+
+</mapper>
+

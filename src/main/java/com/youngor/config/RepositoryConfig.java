@@ -126,6 +126,8 @@ public class RepositoryConfig implements TransactionManagementConfigurer {
 
 		// 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false�?
 		datasource.setPoolPreparedStatements(true);
+		
+		datasource.setValidationQuery("select * from dual");
 
 		// datasource.setFilters("stat,slf4j");
 		// Log4jFilter log_filter=new Log4jFilter();

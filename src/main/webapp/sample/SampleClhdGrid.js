@@ -226,7 +226,12 @@ Ext.define('y.sample.SampleClhdGrid',{
     		width:400,
     		height:300,
     		closeAction:'hide',
-    		items:[formpanel]
+    		items:[formpanel],
+    		listeners:{
+    			close:function(){
+    				me.getStore().reload();
+    			}
+    		}
     	});
     	win.show();
     },

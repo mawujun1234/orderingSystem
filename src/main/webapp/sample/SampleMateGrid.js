@@ -51,7 +51,9 @@ Ext.define('y.sample.SampleMateGrid',{
 					var record=store.sampleMateForm_saved_record;
 					store.sampleMateForm_saved_record=false;
 					//alert(1);
-					var spctpr=window.sampleColthForm.sumSpctpr();
+					//如果衣服是外购的话 预计成本价，就取输入的，所以就不需要重新计算了
+					if(window.sampleColthForm.spctpr_sum){
+						var spctpr=window.sampleColthForm.sumSpctpr();
 						    	Ext.Ajax.request({
 						    		url:Ext.ContextPath+"/sampleColth/updateSpctpr.do",
 						    		params:{
@@ -66,6 +68,8 @@ Ext.define('y.sample.SampleMateGrid',{
 						    			}
 						    		}
 						    	});
+					}
+					
 				}
 			}
 	  });

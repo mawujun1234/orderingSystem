@@ -108,7 +108,7 @@ Ext.define('y.sample.SampleColthForm',{
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
             blankText:"包装辅料费不允许为空",
-            allowDecimals:false,
+            allowDecimals:true,
             selectOnFocus:true,
 	        xtype:'numberfield',
 	        listeners:{
@@ -347,6 +347,11 @@ Ext.define('y.sample.SampleColthForm',{
 	 */
 	sumSpctpr:function(){
 		var me=this;
+		
+		//如果是外购的话，就不进行计算，而是通过手工输入
+		if(!me.spctpr_sum){
+			return;
+		}
 		
 		var sptapa=this.getForm().findField("sptapa");
 		var spacry=this.getForm().findField("spacry");

@@ -54,7 +54,7 @@ public class SampleColth {
 	private Date ctdwdt;
 	@FieldDefine(title="包装辅料费",sort=50,hidden=false)
 	@Column(nullable=true,updatable=true)
-	private Integer acsyam;
+	private Double acsyam;
 	@FieldDefine(title="预计成本价",sort=50,hidden=false)
 	@Column(nullable=true,updatable=true,insertable=true)
 	private Double spctpr;
@@ -187,10 +187,10 @@ public class SampleColth {
 	public void setCtdwdt(Date ctdwdt) {
 		this.ctdwdt = ctdwdt;
 	}
-	public Integer getAcsyam() {
+	public Double getAcsyam() {
 		return acsyam;
 	}
-	public void setAcsyam(Integer acsyam) {
+	public void setAcsyam(Double acsyam) {
 		this.acsyam = acsyam;
 	}
 	public Double getSpctpr() {

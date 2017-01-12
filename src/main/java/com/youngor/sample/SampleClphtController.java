@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 /**
+ * 搭配图片
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
  * @since 1.0

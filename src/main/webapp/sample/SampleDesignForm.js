@@ -158,12 +158,16 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				form.moveAfter( aa, field );
 	       				//外购的时候，预计成本价是自己填写，而不是计算出来的
 	       				var tabpanel=field.up("tabpanel");
-	       				tabpanel.down("form#sampleColthForm").getForm().findField("spctpr").setReadOnly(false);
+	       				var sampleColthForm=tabpanel.down("form#sampleColthForm");
+	       				sampleColthForm.getForm().findField("spctpr").setReadOnly(false);
+	       				sampleColthForm.spctpr_sum=false;
 	       			} else if(newValue=='ZC') {
 	       				form.remove(gustnoField,true);
 	       				
 	       				var tabpanel=field.up("tabpanel");
-	       				tabpanel.down("form#sampleColthForm").getForm().findField("spctpr").setReadOnly(true);
+	       				var sampleColthForm=tabpanel.down("form#sampleColthForm");
+	       				sampleColthForm.getForm().findField("spctpr").setReadOnly(true);
+	       				sampleColthForm.spctpr_sum=true;
 	       			}
 	       		}
 	        
@@ -676,7 +680,10 @@ Ext.define('y.sample.SampleDesignForm',{
 	 */
 	reloadStseno:function(spclno){
 		var stsenoField=this.getForm().findField("stseno");
-		stsenoField.reload(spclno);
+		stsenoField.getStore().getProxy().extraParams=Ext.apply(stsenoField.getStore().getProxy().extraParams,{
+			fitno:spclno
+		});
+		//stsenoField.reload(spclno);
 	},
 	reset:function(){
 		this.getForm().reset();

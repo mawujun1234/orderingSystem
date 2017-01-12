@@ -51,7 +51,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			fields:['ORDORG','SPTYNM','SPSENM','SPBANM','SAMPNO','SAMPNM','PRODNM','ORTYNM','YXGSNM','QYNM','IDSUNM','SUITNO','SUITNM','ORMTQT','PLDATE_COUNT','PLDATE','MLDATE','PPLACE'],
 			proxy:{
 				type: 'ajax',

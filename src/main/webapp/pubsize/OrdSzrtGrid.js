@@ -52,7 +52,7 @@ Ext.define('y.pubsize.OrdSzrtGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			fields: fields,
 			proxy:{
 				type: 'ajax',

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 /**
+ * 搭配样衣
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
  * @since 1.0

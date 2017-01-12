@@ -12,7 +12,7 @@ Ext.define("y.sample.SampleColth",{
 		{name:'contam',type:'float'},
 		{name:'contpr',type:'float'},
 		{name:'ctdwdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
-		{name:'acsyam',type:'int',defaultValue: 0},
+		{name:'acsyam',type:'float',defaultValue: 0},
 		{name:'spctpr',type:'float'},
 		{name:'sprmk',type:'string'},
 		{name:'spctst',type:'int'},
