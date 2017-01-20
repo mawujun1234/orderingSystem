@@ -16,6 +16,14 @@
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
     <link rel="stylesheet" href="mobile.css" >
+    <style>
+
+	/***body {	
+		max-width:720px;
+		margin:0 auto;
+	}
+	**/
+	</style>
   </head>
   <body>
   <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;">
@@ -39,6 +47,13 @@
                   <div class="content-block-title">报表清单</div>
                   <div class="list-block">
                     <ul>
+                      <li>
+                        <a href="#report_dapei_yxgs" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">搭配统计报表</div>
+                        </div>
+                        </a>
+                      </li>
                       
                       <li>
                       	<a href="#report_alreadyod" data-no-cache="true" class="item-link item-content">
@@ -72,6 +87,58 @@
                   </div><!-- 报表清单-->
             </div><!-- content-->
         </div><!-- #od_yxgs -->
+        
+                 <!-- 搭配统计报表-->
+        <div class="page" id="report_dapei_yxgs" >
+        	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+            </header>
+        	<div class="content">
+              <div class="card facebook-card" v-for="dapei in dapeis">
+                
+                <div class="card-content"><img  v-bind:src="dapei.imgnm" width="100%" style="margin:0 auto;"></div>
+                <div class="card-header no-border">
+                  <a href="#" class="link" style="display:block;position:absolute;right:20px;top:30px;" onClick="report_dapei_show_sampno_list(this)" isshow="true">隐藏</a>
+                  <div class=""><span style="font-style:normal;color:rgba(196,192,192,1.00);">搭配名称:</span>{{dapei.clppnm}}</div>
+                  <div class=""><span style="font-style:normal;color:rgba(196,192,192,1.00);">搭配套数:</span>{{dapei.sumnum}}</div>      
+                  <div class=""><span style="font-style:normal;color:rgba(196,192,192,1.00);">TOP:</span>{{ $index+1 }}</div>
+                </div>
+                  
+                <div class="list-block" style="display:block;">
+                	<ul>
+                      <li class="item-content item-link"  v-for="qy in dapei.qyes" onClick="report_dapei_yxgs_popup(this)" qyno="{{ qy.qyno }}" clppnm="{{ dapei.clppnm }}">
+                        <div class="item-media"><i class="icon icon-f7"></i></div>
+                        <div class="item-inner">
+                          <div class="item-title">{{qy.qynm}}</div>
+                          <div class="item-after">{{qy.minnum}}</div>
+                        </div>
+                      </li>
+                    </ul>
+                    
+                  </div><!-- list-block media-list -->
+              </div>
+            </div>
+        </div><!-- #report_dapei_yxgs -->
+        <div id="report_dapei_yxgs_popup" class="popup popup-about">
+          <div class="list-block media-list">
+            <ul>
+              <li v-for="samp in sampnms">
+                <div class="item-content">
+                  <div class="item-media">
+                  <img v-bind:src="samp.imgnm" style='width: 3.5rem;'></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">样衣编号:{{samp.sampnm}}</div>
+                    </div>
+                    <div class="item-subtitle">订货数量:{{samp.num_dh}}</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <p><a href="#" class="close-popup button button-fill">关闭</a></p>
+          </div>
+          
+        </div>
         
         
                  <!--订货统计-按商品类 -->

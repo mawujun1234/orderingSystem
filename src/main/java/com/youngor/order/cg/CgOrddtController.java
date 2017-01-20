@@ -64,19 +64,24 @@ public class CgOrddtController {
 		return cgOrddt;
 	}
 	
-	@RequestMapping("/cgOrddt/deleteById.do")
+//	@RequestMapping("/cgOrddt/deleteById.do")
+//	@ResponseBody
+//	public com.youngor.order.cg.CgOrddt.PK deleteById(com.youngor.order.cg.CgOrddt.PK id) {
+//		cgOrddtService.deleteById(id);
+//		return id;
+//	}
+//	
+//	@RequestMapping("/cgOrddt/destroy.do")
+//	@ResponseBody
+//	public CgOrddt destroy(@RequestBody CgOrddt cgOrddt) {
+//		cgOrddtService.delete(cgOrddt);
+//		return cgOrddt;
+//	}
+	
+	@RequestMapping("/cgOrddt/updateBatch1.do")
 	@ResponseBody
-	public com.youngor.order.cg.CgOrddt.PK deleteById(com.youngor.order.cg.CgOrddt.PK id) {
-		cgOrddtService.deleteById(id);
-		return id;
+	public  String updateBatch1(@RequestBody CgOrddt[] cgOrddt) {
+		cgOrddtService.updateBatch1(cgOrddt);
+		return "{success:true}";
 	}
-	
-	@RequestMapping("/cgOrddt/destroy.do")
-	@ResponseBody
-	public CgOrddt destroy(@RequestBody CgOrddt cgOrddt) {
-		cgOrddtService.delete(cgOrddt);
-		return cgOrddt;
-	}
-	
-	
 }

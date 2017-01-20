@@ -4,24 +4,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
-
-import javax.naming.Context;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
-import com.mawujun.repository.idEntity.UUIDGenerator;
 import com.mawujun.service.AbstractService;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 
 /**
@@ -39,6 +38,8 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 //	private SamplePlanRepository samplePlanRepository;
 	@Autowired
 	private SampleDesignRepository sampleDesignRepository;
+	@Autowired
+	private SampleClphtRepository sampleClphtRepository;
 	
 	@Override
 	public SamplePhotoRepository getRepository() {
@@ -151,6 +152,134 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		}
 		return count;
 		
+	}
+	
+	public void thumbCreate(String ormtno,String common_path) {
+		//String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		
+		
+		
+		//ormtno="201607";
+		//common_path="F:\\bak";
+		
+		List<SamplePhoto> list=this.query(Cnd.select().andLike(M.SamplePhoto.id, ormtno));
+		
+		
+		//String thumbpath="/opt/apache-tomcat-8.0.36/webapps";
+		
+		
+		//String thumb="/photoes/"+ormtno+"/thumb/";
+		for(SamplePhoto photo:list){
+			String imgnm=photo.getImgnm();
+			String thumb_imgnm=imgnm.replace("/photoes/"+ormtno+"/", "/photoes/"+ormtno+"/thumb/");
+			//System.out.println("F:\201607\thumb"+imgnm);
+			File file=new File(common_path+imgnm);
+			File destFile=new File(common_path+thumb_imgnm);
+			if(file.exists() && file.isFile()){
+				//System.out.println(file.getAbsolutePath());
+				//samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+				if(file.length()>204800){//200kb
+					try {
+						if(file.length()>2048000){
+							Thumbnails.of(file) .scale(0.1f).toFile(destFile);	 
+						} else if(file.length()>1024000){
+							Thumbnails.of(file) .scale(0.25f).toFile(destFile);	 
+						} else if(file.length()>512000){
+							Thumbnails.of(file) .scale(0.8f).toFile(destFile);	 
+						}  else {
+							FileUtils.copyFile(file, destFile);
+						}
+						   
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						try {
+							FileUtils.copyFile(file, destFile);
+						} catch (IOException ex) {
+							// TODO Auto-generated catch block
+							ex.printStackTrace();
+							thumb_imgnm=imgnm;//如果报错，就用原始图
+						}
+					}  
+				} else {
+					try {
+						FileUtils.copyFile(file, destFile);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						thumb_imgnm=imgnm;//如果报错，就用原始图
+					}
+					
+				}
+				//photo.setThumb(thumb_imgnm);
+				this.update(Cnd.update().set(M.SamplePhoto.thumb, thumb_imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+			}
+			
+		}
+	}
+	
+	public void thumbCreate_dapei(String ormtno,String common_path) {
+		//String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		//String common_path="/opt/apache-tomcat-8.0.36/webapps";
+		
+		
+		//ormtno="201607";
+		//common_path="F:\\bak";
+		
+		List<SampleClpht> list=sampleClphtRepository.queryAll();
+		
+		
+		//String thumbpath="/opt/apache-tomcat-8.0.36/webapps";
+		
+		
+		//String thumb="/photoes/"+ormtno+"/thumb/";
+		for(SampleClpht photo:list){
+			String imgnm=photo.getImgnm();
+			String thumb_imgnm=imgnm.replace("/photoes/"+ormtno+"/dapei/", "/photoes/"+ormtno+"/dapei/thumb/");
+			//System.out.println("F:\201607\thumb"+imgnm);
+			File file=new File(common_path+imgnm);
+			File destFile=new File(common_path+thumb_imgnm);
+			if(file.exists() && file.isFile()){
+				//System.out.println(file.getAbsolutePath());
+				//samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+				if(file.length()>204800){//200kb
+					try {
+						if(file.length()>2048000){
+							Thumbnails.of(file) .scale(0.1f).toFile(destFile);	 
+						} else if(file.length()>1024000){
+							Thumbnails.of(file) .scale(0.25f).toFile(destFile);	 
+						} else if(file.length()>512000){
+							Thumbnails.of(file) .scale(0.8f).toFile(destFile);	 
+						}  else {
+							FileUtils.copyFile(file, destFile);
+						} 
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						try {
+							FileUtils.copyFile(file, destFile);
+						} catch (IOException ex) {
+							// TODO Auto-generated catch block
+							ex.printStackTrace();
+							thumb_imgnm=imgnm;//如果报错，就用原始图
+						}
+					}  
+				} else {
+					try {
+						FileUtils.copyFile(file, destFile);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						thumb_imgnm=imgnm;//如果报错，就用原始图
+					}
+					
+				}
+				//photo.setThumb(thumb_imgnm);
+				//sampleClphtRepository.update(photo);
+				sampleClphtRepository.update(Cnd.update().set(M.SampleClpht.thumb, thumb_imgnm).andEquals(M.SampleClpht.id, photo.getId()));
+			}
+
+		}
 	}
 
 }

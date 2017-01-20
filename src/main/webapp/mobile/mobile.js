@@ -152,6 +152,10 @@ $(function(){
 //				icon.toggleClass("icon-down");
 //			});
 			window.card_header_item_content_icon=function(obj){
+				//如果不是特许，就不展现规格
+				if(window.showSizeList==false){
+					return;
+				}
 				//搜索具体的规格
 				$(obj).parents(".card").children(".guig_content").toggle();
 				
@@ -439,12 +443,17 @@ $(function(){
 	
 	//渲染搭配的界面，因为在页面跳转的时候必须重新渲染，否则会显示异常
 	function initDapei_od_info(){
-		var swiper = new Swiper('#od_info .swiper-container', {
+		//alert(1);
+		if(window.od_info_swipe_container){
+			window.od_info_swipe_container.destroy(false);	
+		}
+		window.od_info_swipe_container= new Swiper('#od_info .swiper-container', {
 					pagination: '.swiper-pagination',
-					slidesPerView: 2,
-					paginationClickable: true,
+					slidesPerView: 1,
+					paginationClickable: false,
 					spaceBetween: 30
 				});  
+		
 	}
 	//点击的时候跳转到，搭配的相信页面
 	window.queryDapei_mx=function(a){

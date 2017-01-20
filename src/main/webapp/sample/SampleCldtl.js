@@ -3,7 +3,7 @@ Ext.define("y.sample.SampleCldtl",{
 	fields:[
 		{name:'clppno',type:'string'},
 		{name:'sampno',type:'string'},
-		{name:'clspno',type:'int'},
+		{name:'clspno',type:'string'},
 		{name:'clspmk',type:'string'},
 		
 		{name:'sampnm',type:'string'},

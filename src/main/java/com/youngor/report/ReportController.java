@@ -1,11 +1,11 @@
 package com.youngor.report;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,14 +32,32 @@ import com.youngor.pubcode.PubCodeCache;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
 
+import net.sf.jasperreports.engine.JRBand;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRGroup;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.base.JRBaseLineBox;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JRDesignBand;
+import net.sf.jasperreports.engine.design.JRDesignExpression;
+import net.sf.jasperreports.engine.design.JRDesignField;
+import net.sf.jasperreports.engine.design.JRDesignStaticText;
+import net.sf.jasperreports.engine.design.JRDesignTextField;
+import net.sf.jasperreports.engine.design.JRDesignVariable;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.type.CalculationEnum;
+import net.sf.jasperreports.engine.type.HorizontalAlignEnum;
+import net.sf.jasperreports.engine.type.ModeEnum;
+import net.sf.jasperreports.engine.type.ResetTypeEnum;
+import net.sf.jasperreports.engine.type.VerticalAlignEnum;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 @Controller
 public class ReportController {
@@ -402,6 +420,227 @@ public class ReportController {
 
 		httpOut.close(); 
 	}
+	/**
+	 * 打印搭配数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param params
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @throws JRException
+	 */
+	@RequestMapping("/report/printDaPei.do")
+	@ResponseBody
+	public  void printDaPei(MapParams params,HttpServletRequest request,HttpServletResponse response) throws IOException, JRException {
+		HashMap<String, Object> params_jasper = new HashMap<String, Object>();  
+		ArrayList<Map<String, Object>> reportDataList = new ArrayList<Map<String, Object>>();
+		
+//		for(int i=0;i<10;i++){
+//			
+//			for(int j=0;j<9;j++){
+//				HashMap<String, Object> map=new HashMap<String, Object>();
+//				map.put("CLPPNM", "clppnm"+i);
+//				map.put("YXGSNM", "浙江");
+//				//map.put("SPCLNM", "大类"+j);
+//				map.put("SPEC_CODE_01", 1155);
+//				reportDataList.add(map);
+//			}
+//		}
+		 
+		List<Map<String, Object>> list = reportRepository.printDaPei(params.getParams().get("ormtno").toString());
+		//进行行列转换,转换成对应的格式
+		for(Map<String, Object> map:list){
+			Map<String, Object> reportData_new =null;  
+			for(Map<String,Object> reportData:reportDataList){
+				if(map.get("CLPPNM").equals(reportData.get("CLPPNM")) && map.get("YXGSNM").toString().substring(0,2).equals(reportData.get("YXGSNM")) ){
+					reportData_new=reportData;
+					break;
+				}
+			}
+			if(reportData_new==null){
+				reportData_new =new HashMap<String,Object>(); 
+				reportData_new.put("CLPPNM", map.get("CLPPNM"));
+				reportData_new.put("YXGSNM", map.get("YXGSNM").toString().substring(0,2));
+				reportData_new.put("SPEC_CODE_all", map.get("DPMTQT"));
+				reportDataList.add(reportData_new);
+			}
+			reportData_new.put("SPEC_CODE_"+map.get("SPCLNO"), map.get("ORMTQT"));
+		}
+
+		JRDataSource dataSource = new JRBeanCollectionDataSource(reportDataList);  
+		
+		String reportFilePath = "";
+		reportFilePath = request
+				.getSession()
+				.getServletContext()
+				.getRealPath(
+						File.separator+"report"+File.separator+"ireport"+File.separator+"printDapei.jrxml");
+		JasperDesign jdesign = JRXmlLoader.load(reportFilePath);
+		JRBand[] jrbands=jdesign.getAllBands();
+//		for(JRBand jrband:jrbands){
+//			JRDesignBand aa=(JRDesignBand)jrband;
+//			if(aa.){
+//				
+//			}
+//		}
+		JRGroup[]  jRGroups=jdesign.getGroups();
+//		JRDesignGroup  aa=new JRDesignGroup();
+//		((JRDesignGroup)jRGroups[0]).getGroupHeaderSection().getBands()
+		JRDesignBand columnHeader = (JRDesignBand)jrbands[0]; 
+		JRDesignBand subtotalFooter = (JRDesignBand)jrbands[1]; 
+		JRBand cDetailBand = jdesign.getDetailSection().getBands()[0];  
+        JRDesignBand columnDetail = null;  
+        if (cDetailBand != null && cDetailBand instanceof JRDesignBand) {  
+        	columnDetail = (JRDesignBand) cDetailBand;  
+        }  
+        JRBaseLineBox pen=null;
+		
+        List<String[]> spclno_list=new ArrayList<String[]>();
+        spclno_list.add(new String[]{"01","衬衫"});
+        spclno_list.add(new String[]{"08","毛衫"});
+        spclno_list.add(new String[]{"02","西服"});
+        spclno_list.add(new String[]{"12","大衣"});
+        spclno_list.add(new String[]{"04","夹克"});
+        spclno_list.add(new String[]{"03","裤子"});
+        spclno_list.add(new String[]{"06","领带"});
+        spclno_list.add(new String[]{"07","鞋包"});
+        spclno_list.add(new String[]{"all","套件小计"});
+        //252是可以设置的最大宽度
+        int col_unm=spclno_list.size();
+		int width=252/col_unm;
+		//==================================================================
+		for(int i=0;i<col_unm;i++){
+			String[] spclno=spclno_list.get(i);
+			//---------设置字段---------------------------------------
+        	JRDesignField field = new JRDesignField();  
+            field.setName("SPEC_CODE_"+spclno[0] );  
+            field.setValueClass(java.lang.Integer.class);  
+            jdesign.addField(field);  
+//            field = new JRDesignField();  
+//            field.setName("TERM_MEMO_" + i);  
+//            field.setValueClass(java.lang.String.class);  
+//            jdesign.addField(field);  
+            
+            JRDesignVariable subtotal_var=new JRDesignVariable();
+            subtotal_var.setName("VAR_CODE_"+spclno[0]);
+            subtotal_var.setValueClass(Integer.class);
+            subtotal_var.setCalculation(CalculationEnum.SUM);
+            subtotal_var.setResetType(ResetTypeEnum.GROUP);
+            subtotal_var.setResetGroup(jRGroups[0]);
+            JRDesignExpression var_expression = new JRDesignExpression();  
+            var_expression.setText("$F{SPEC_CODE_" + spclno[0] + "}");  
+            subtotal_var.setExpression(var_expression);  
+            jdesign.addVariable(subtotal_var); 
+        	//---------设置标题------------------------------
+        	JRDesignStaticText suiteGrpName = new JRDesignStaticText();
+        	suiteGrpName.setWidth(width);   
+        	suiteGrpName.setY(26); 
+        	suiteGrpName.setX(i*width+44);   
+        	suiteGrpName.setHeight(30);   
+        	suiteGrpName.setText(spclno[1]);
+        	suiteGrpName.setBold(true);
+        	suiteGrpName.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+        	suiteGrpName.setVerticalAlignment(VerticalAlignEnum.MIDDLE);
+        	suiteGrpName.setFontSize(10);
+        	suiteGrpName.setFontName("宋体");
+        	suiteGrpName.setMode(ModeEnum.OPAQUE);
+        	suiteGrpName.setBackcolor(new Color(204,204,204));
+        	//设置边框
+        	if(pen==null){
+        		pen=new JRBaseLineBox(suiteGrpName);
+            	pen.getTopPen().setLineColor(Color.BLACK);
+            	pen.getTopPen().setLineWidth(0.5f);
+            	pen.getRightPen().setLineColor(Color.BLACK);
+            	pen.getRightPen().setLineWidth(0.5f);
+            	pen.getBottomPen().setLineColor(Color.BLACK);
+            	pen.getBottomPen().setLineWidth(0.5f);
+            	pen.getLeftPen().setLineColor(Color.BLACK);
+            	pen.getLeftPen().setLineWidth(0.5f);	
+        	}
+        	suiteGrpName.getLineBox().copyTopPen(pen.getTopPen());
+        	suiteGrpName.getLineBox().copyRightPen(pen.getRightPen());;
+        	suiteGrpName.getLineBox().copyBottomPen(pen.getBottomPen());
+        	suiteGrpName.getLineBox().copyLeftPen(pen.getLeftPen());
+        	
+        	//suiteGrpName.setStyle(style);
+        	columnHeader.addElement(suiteGrpName);  
+        	
+        	//---------画字段 把前面的字段名称拷贝过来------------------------------
+        	JRDesignTextField specNoField = new JRDesignTextField();  
+        	specNoField.setStretchWithOverflow(true);  
+        	specNoField.setWidth(width);   
+        	specNoField.setY(0); 
+        	specNoField.setX(i*width+44);   
+        	specNoField.setHeight(25);   
+        	specNoField.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+        	specNoField.setVerticalAlignment(VerticalAlignEnum.MIDDLE);
+        	specNoField.setFontSize(10);
+        	specNoField.setMode(ModeEnum.OPAQUE);
+        	//specNoField.setStyle(suiteGrpName.getStyle());  
+        	specNoField.setBlankWhenNull(true);  
+        	if("all".equals(spclno[0])){
+        		specNoField.setMode(ModeEnum.OPAQUE);
+        		specNoField.setBackcolor(new Color(204,204,204));
+        	}
+        	
+        	specNoField.getLineBox().copyTopPen(pen.getTopPen());
+        	specNoField.getLineBox().copyRightPen(pen.getRightPen());;
+        	specNoField.getLineBox().copyBottomPen(pen.getBottomPen());
+        	specNoField.getLineBox().copyLeftPen(pen.getLeftPen());
+        	//specNoField.setStretchType(StretchTypeEnum);
+            JRDesignExpression expression = new JRDesignExpression(); 
+            //expression.setValueClass(java.lang.Integer.class);  
+            expression.setText("$F{SPEC_CODE_" + spclno[0] + "}");  
+            specNoField.setExpression(expression);  
+            columnDetail.addElement(specNoField); 
+            
+          //---------------------设置小计-----------------------------------------
+            JRDesignTextField subtotle = new JRDesignTextField();
+            subtotle.setWidth(width);   
+            subtotle.setY(0); 
+            subtotle.setX(i*width+44);   
+            subtotle.setHeight(31);   
+            //subtotle.setText("小计"+i);
+            subtotle.setBold(true);
+            subtotle.setHorizontalAlignment(HorizontalAlignEnum.CENTER);
+            subtotle.setVerticalAlignment(VerticalAlignEnum.MIDDLE);
+            subtotle.setFontSize(10);
+            subtotle.setFontName("宋体");
+            subtotle.setMode(ModeEnum.OPAQUE);
+            subtotle.setBackcolor(new Color(204,204,204));
+            subtotle.getLineBox().copyTopPen(pen.getTopPen());
+            subtotle.getLineBox().copyRightPen(pen.getRightPen());;
+            subtotle.getLineBox().copyBottomPen(pen.getBottomPen());
+            subtotle.getLineBox().copyLeftPen(pen.getLeftPen());
+            subtotle.setBlankWhenNull(true);  
+            subtotalFooter.addElement(subtotle);  
+            
+            expression = new JRDesignExpression();  
+            expression.setText("$V{VAR_CODE_" + spclno[0] + "}");  
+            subtotle.setExpression(expression);  
+		}
+		
+		
+		
+		//==================================================================
+		
+		JasperPrint jasperprint =JasperFillManager.fillReport( JasperCompileManager.compileReport(jdesign), 
+				params_jasper,dataSource);
+		
+		OutputStream httpOut = response.getOutputStream();
+		response.reset();
+		response.setCharacterEncoding("GBK");
+		response.setHeader("Content-Disposition", "attachment;filename="
+				+ new String("搭配情况汇总".getBytes("GBK"), "iso8859-1")
+				+ ".xls");
+		expoertReportToExcelStream(jasperprint, httpOut);
+		httpOut.close(); 
+		
+	}
+	
+//	private JasperPrint printDaPei_sheet(){
+//		
+//	}
 
 
 }

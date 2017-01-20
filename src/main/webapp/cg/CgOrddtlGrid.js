@@ -8,19 +8,52 @@ Ext.define('y.cg.CgOrddtlGrid',{
 	viewConfig:{
 		enableTextSelection:true
 	},
+	selModel: {
+          selType: 'checkboxmodel'
+          ,checkOnly:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
       	{xtype: 'rownumberer'},
-		{dataIndex:'orszqt',header:'数量',xtype: 'numbercolumn', format:'0',align : 'right'
+      	{dataIndex:'sampnm',header:'订货样衣编号',align : 'left'
 		},
+		{dataIndex:'suitno_name',header:'套件',align : 'left'
+		},
+		{dataIndex:'orszqt_now',header:'本次数量',xtype: 'numbercolumn', format:'0',align : 'right'
+			,renderer:function(value, metaData, record, rowIndex, colIndex, store){
+				if(record.get("orstat")==3 && me.CgOrdhd_orstat==0){
+					metaData.tdStyle = 'color:red;background-color:#98FB98;' ;
+				}
+
+            	 return value;
+            },editor: {
+                xtype: 'numberfield',
+                allowDecimals:false,
+                selectOnFocus:true 
+            }
+		},
+		{dataIndex:'orszqt_residue',header:'剩余订货量',align : 'right'
+		},
+		{dataIndex:'orszqt_already',header:'已确认量',align : 'right'
+		},
+		{dataIndex:'orszqt_zhanb',header:'已确认占比',align : 'right'
+		},
+		{dataIndex:'ormtqt',header:'订货量',align : 'right'
+		},
+		{dataIndex:'mldate',header:'面料交货期',align : 'left'
+		},
+		{dataIndex:'pldate',header:'成衣交货期',align : 'left'
+		},
+		{dataIndex:'pplace',header:'面料交货地',align : 'left'
+		}
       ];
       
 
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.cg.CgOrddtl',
 			proxy:{
 				type: 'ajax',
@@ -36,6 +69,52 @@ Ext.define('y.cg.CgOrddtlGrid',{
 				}
 			}
 	  });
+	  
+	  
+	  this.cellEditing = new Ext.grid.plugin.CellEditing({  
+            clicksToEdit : 1  
+      });  
+	  this.plugins = [this.cellEditing];
+	  
+	  this.cellEditing.on("beforeedit",function(editor, context){
+	   	var record=context.record;
+	   	var grid=context.grid;
+	   	//console.log(record.get("orstat"));
+	   	
+	   	if(record.get("orstat")!=3 || grid.CgOrdhd_orstat==1){//alert(1);
+			return false;
+		}
+	  });
+	  this.cellEditing.on("edit",function(editor, context){
+	  	var record=context.record;
+	  	var grid=context.grid;
+	  	var field =context.field ;
+	  	var value=context.value;
+	  	
+	  	//alert(record.get("orszqt_residue"));
+		if(value>parseInt(record.get("orszqt_residue"))){
+			//Ext.Msg.alert("消息","输入数量不能大于剩余订货量!");
+			//return;
+			value=record.get("orszqt_residue");
+		}
+
+	  	Ext.Ajax.request({
+			url : Ext.ContextPath + '/cgOrddtl/update.do',
+			params : {
+				orcgno : record.get("orcgno"),//me.getStore().getProxy().extraParams["params['orcgno']"],
+				cgorno : record.get("cgorno"),//me.getStore().getProxy().extraParams["params['cgorno']"],
+				sampno : record.get("sampno"),
+				suitno : record.get("suitno"),
+				orszqt : value
+			},
+			success : function() {
+				//record.set("orszqt_residue",record.get("orszqt_residue")-value);	
+				record.commit();							
+			}
+
+		});
+	  	
+	  });
 
 	  me.dockedItems=[];
       me.dockedItems.push({
@@ -49,20 +128,56 @@ Ext.define('y.cg.CgOrddtlGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		        fieldLabel: '上市批次',
+		        itemId: 'spbano',
+	            //allowBlank: false,
+	            //afterLabelTextTpl: Ext.required,
+	            //blankText:"上市批次不允许为空",
+		        xtype:'pubcodecombo',
+		        labelWidth:60,
+		        width:150,
+		        tyno:'23'
+		    },{
+		        fieldLabel: '生产类型',
+		        itemId: 'spmtno',
+	            //allowBlank: false,
+	            //afterLabelTextTpl: Ext.required,
+	           // blankText:"生产类型不允许为空",
+	            selectOnFocus:true,
+		        xtype:'pubcodecombo',
+		        labelWidth:60,
+		        width:150,
+		        tyno:'29'
+		    },{
+		  		fieldLabel:"设计样衣编号",
+		  		
+		  		itemId:'sampnm',
+		  		xtype:'textfield',
+		  		labelWidth:90,
+		  		width:180
+		  	},{
+				text: '查询',
+				itemId:'reload',
+				disabled:me.disabledAction,
+				handler: function(btn){
+					var grid=btn.up("grid");
+					grid.getStore().getProxy().extraParams=Ext.apply(grid.getStore().getProxy().extraParams,grid.getParams());
+					grid.getStore().reload();
+				},
+				iconCls: 'icon-refresh'
+			}]
+		});
+	  
+	  me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
 				text: '新增',
 				itemId:'create',
 				handler: function(btn){
 					me.onCreate();
 				},
 				iconCls: 'icon-plus'
-			},{
-			    text: '更新',
-			    itemId:'update',
-			    handler: function(){
-			    	me.onUpdate();
-					
-			    },
-			    iconCls: 'icon-edit'
 			},{
 			    text: '删除',
 			    itemId:'destroy',
@@ -71,14 +186,35 @@ Ext.define('y.cg.CgOrddtlGrid',{
 			    },
 			    iconCls: 'icon-trash'
 			},{
-				text: '刷新',
+				text: '导出',
 				itemId:'reload',
 				disabled:me.disabledAction,
 				handler: function(btn){
-					var grid=btn.up("grid");
-					grid.getStore().reload();
+					//var grid=btn.up("grid");
+					//grid.getStore().reload();
+					me.onExport(); 
 				},
-				iconCls: 'icon-refresh'
+				iconCls: 'icon-download-alt'
+			},{
+			   text: '指定面料交货期',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					me.onMldate();
+				},
+				iconCls: 'icon-wrench'
+			},{
+		  		text: '指定成衣交货期',
+				handler: function(btn){
+					me.onPldate();
+				},
+				iconCls: 'icon-wrench'
+		  	},{
+			   text: '指定面料交货地',
+			   //hidden:!Permision.canShow('plan_orgdtl_import'),
+				handler: function(btn){
+					me.onPplace();
+				},
+				iconCls: 'icon-wrench'
 			}]
 		});
 
@@ -90,29 +226,42 @@ Ext.define('y.cg.CgOrddtlGrid',{
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 
     	var params={
-    		//"params['ormtno']":toolbars[0].down("#ordmtcombo").getValue(),
-    					
+    		"params['sampnm']":toolbars[0].down("#sampnm").getValue(),
+    		"params['spbano']":toolbars[0].down("#spbano").getValue(),
+    		"params['spmtno']":toolbars[0].down("#spmtno").getValue()
+			
     	};
     	return params;
 	},
 	onCreate:function(){
     	var me=this;
-		var child=Ext.create('y.cg.CgOrddtl',{
+    	if(me.CgOrdhd_orstat==1){
+    		Ext.Msg.alert("消息","子批次订单已经确认，不能操作!");
+    		return;
+    	}
 
-		});
-		child.set("id",null);
+		var cgOrddt4InsertGrid=Ext.create('y.cg.CgOrddt4InsertGrid',{});
 		
-		var formpanel=Ext.create('y.cg.CgOrddtlForm',{});
-		formpanel.loadRecord(child);
+		cgOrddt4InsertGrid.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+			"params['ormtno']":me.getStore().getProxy().extraParams["params['ormtno']"],
+			"params['bradno']":me.getStore().getProxy().extraParams["params['bradno']"],
+			"params['spclno']":me.getStore().getProxy().extraParams["params['spclno']"],
+			"params['orcgno']":me.getStore().getProxy().extraParams["params['orcgno']"],
+			"params['cgorno']":me.getStore().getProxy().extraParams["params['cgorno']"],
+			"params['sampnm']":null
+		});
+		cgOrddt4InsertGrid.getStore().reload();
+		
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
-    		title:'新增',
+    		title:'新增样衣编号',
     		modal:true,
-    		width:400,
-    		height:300,
+    		//width:600,
+    		//height:480,
+    		maximized:true,
     		closeAction:'hide',
-    		items:[formpanel],
+    		items:[cgOrddt4InsertGrid],
     		listeners:{
     			close:function(){
     				me.getStore().reload();
@@ -122,50 +271,360 @@ Ext.define('y.cg.CgOrddtlGrid',{
     	win.show();
     },
     
-     onUpdate:function(){
-    	var me=this;
-
-    	var node=me.getSelectionModel( ).getLastSelected();
-    	if(node==null){
-    		Ext.Msg.alert("提醒","请选择一行数据!");
-    		return;
-    	}
-
-		var formpanel=Ext.create('y.cg.CgOrddtlForm',{});
-		formpanel.loadRecord(node);
-		
-    	var win=Ext.create('Ext.window.Window',{
-    		layout:'fit',
-    		title:'更新',
-    		modal:true,
-    		width:400,
-    		height:300,
-    		closeAction:'hide',
-    		items:[formpanel]
-    	});
-    	win.show();
-    },
+//     onUpdate:function(){
+//    	var me=this;
+//
+//    	var node=me.getSelectionModel( ).getLastSelected();
+//    	if(node==null){
+//    		Ext.Msg.alert("提醒","请选择一行数据!");
+//    		return;
+//    	}
+//
+//		var formpanel=Ext.create('y.cg.CgOrddtlForm',{});
+//		formpanel.loadRecord(node);
+//		
+//    	var win=Ext.create('Ext.window.Window',{
+//    		layout:'fit',
+//    		title:'更新',
+//    		modal:true,
+//    		width:400,
+//    		height:300,
+//    		closeAction:'hide',
+//    		items:[formpanel]
+//    	});
+//    	win.show();
+//    },
     
     onDelete:function(){
     	var me=this;
-    	var node=me.getSelectionModel( ).getLastSelected( );
-
-		if(!node){
-		    Ext.Msg.alert("消息","请先选择一行数据");	
+    	if(me.CgOrdhd_orstat==1){
+    		Ext.Msg.alert("消息","子批次订单已经确认，不能操作!");
+    		return;
+    	}
+    	var recordes=me.getSelection( ) ;
+		if(!recordes || recordes.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
-		}
-		var parent=node.parentNode;
+		}	
+		
 		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
-				if (btn == 'yes'){
-					node.erase({
-					    failure: function(record, operation) {
-			            	me.getStore().reload();
-					    },
-					    success:function(){
-					    	me.getStore().reload();
-					    }
-				});
+			if (btn == 'yes'){
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<recordes.length;i++){
+					dataes.push({
+						orcgno : recordes[i].get("orcgno"),//me.getStore().getProxy().extraParams["params['orcgno']"],
+						cgorno : recordes[i].get("cgorno"),//me.getStore().getProxy().extraParams["params['cgorno']"],
+						sampno : recordes[i].get("sampno"),
+						suitno : recordes[i].get("suitno")
+					});
+					
+				}
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/cgOrddtl/destroyBatch1.do',
+						    jsonData:dataes,
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    }
+					});
 			}
 		});
-    }
+		
+//    	var node=me.getSelectionModel( ).getLastSelected( );
+//
+//		if(!node){
+//		    Ext.Msg.alert("消息","请先选择一行数据");	
+//			return;
+//		}
+//		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
+//				if (btn == 'yes'){
+//					node.erase({
+//					    failure: function(record, operation) {
+//			            	me.getStore().reload();
+//					    },
+//					    success:function(){
+//					    	me.getStore().reload();
+//					    }
+//				});
+//			}
+//		});
+		
+    },
+    onExport:function(){
+    	var me=this;
+    	var params=me.getStore().getProxy().extraParams;
+    	var url=Ext.ContextPath+"/cgOrddtl/export.do?"+Ext.urlEncode(params);
+    	window.open(url);
+    },
+     onMldate:function(){
+		var me=this;
+		if(me.CgOrdhd_orstat==1){
+    		Ext.Msg.alert("消息","子批次订单已经确认，不能操作!");
+    		return;
+    	}
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var mldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						orcgno : modles[i].get("orcgno"),//me.getStore().getProxy().extraParams["params['orcgno']"],
+						cgorno : modles[i].get("cgorno"),//me.getStore().getProxy().extraParams["params['cgorno']"],
+						sampno : modles[i].get("sampno"),
+						suitno : modles[i].get("suitno"),
+						ormtqt : modles[i].get("orszqt_now"),
+						
+						pldate:modles[i].get("pldate"),
+						pplace:modles[i].get("pplace"),
+						mldate:mldate
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/cgOrddt/updateBatch1.do',
+						    jsonData:dataes,
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+					});
+			//}
+		}
+		//});
+	},
+	onPldate:function(){
+		var me=this;
+		if(me.CgOrdhd_orstat==1){
+    		Ext.Msg.alert("消息","子批次订单已经确认，不能操作!");
+    		return;
+    	}
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var datefield=Ext.create('Ext.form.field.Date',{
+			fieldLabel: '交货期',
+			labelWidth:55,
+			format: 'Y-m-d '
+		    //width:160
+		});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定成衣交货期',
+			modal:true,
+			items:[datefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!datefield.getValue()){
+				return;
+			}
+			var pldate=datefield.getRawValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						
+						orcgno : modles[i].get("orcgno"),//me.getStore().getProxy().extraParams["params['orcgno']"],
+						cgorno : modles[i].get("cgorno"),//me.getStore().getProxy().extraParams["params['cgorno']"],
+						sampno : modles[i].get("sampno"),
+						suitno : modles[i].get("suitno"),
+						ormtqt : modles[i].get("orszqt_now"),
+						
+						pldate:pldate,
+						pplace:modles[i].get("pplace"),
+						mldate:modles[i].get("mldate")
+
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/cgOrddt/updateBatch1.do',
+						    jsonData:dataes,
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	},
+    onPplace:function(){
+		var me=this;
+		if(me.CgOrdhd_orstat==1){
+    		Ext.Msg.alert("消息","子批次订单已经确认，不能操作!");
+    		return;
+    	}
+		var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
+			return;
+		}	
+				
+		var extraParams=me.getStore().getProxy().extraParams;
+		var pplacefield=Ext.create('Ext.form.ComboBox', {
+			    fieldLabel: '产地',
+			    name: 'pplace',
+		        itemId: 'pplace',
+		        labelWidth:60,
+		        width:150,
+		        //value:'sampno',
+			    store: Ext.create('Ext.data.Store', {
+				    fields: ['value', 'name'],
+				    data : [
+				    	//{"value":"", "name":"所有"},
+				    	{"value":"宁波", "name":"宁波"},
+				        {"value":"珲春", "name":"珲春"}
+				    ]
+				}),
+			    queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'value'
+			});
+		var win=Ext.create('Ext.Window',{
+			layout:'form',
+			title:'指定面料交货期',
+			modal:true,
+			items:[pplacefield],
+			buttons:[{
+				text:'取消',
+				handler:function(){
+					win.hide();
+				}
+			},{
+				text:'确认',
+				handler:function(){
+					handler();
+				}
+			}]
+		});
+		win.show();
+		//Ext.Msg.prompt("消息","是否对选中的数据指定面料交货期!",function(btn){
+		function handler(){
+			if(!pplacefield.getValue()){
+				return;
+			}
+			var pplace=pplacefield.getValue();
+			//if(btn=='yes'){
+				
+				Ext.getBody().mask("正在处理,请稍候.....");
+
+				var dataes=[];
+				for(var i=0;i<modles.length;i++){
+					dataes.push({
+						
+						orcgno : modles[i].get("orcgno"),//me.getStore().getProxy().extraParams["params['orcgno']"],
+						cgorno : modles[i].get("cgorno"),//me.getStore().getProxy().extraParams["params['cgorno']"],
+						sampno : modles[i].get("sampno"),
+						suitno : modles[i].get("suitno"),
+						ormtqt : modles[i].get("orszqt_now"),
+						
+						pldate:modles[i].get("pldate"),
+						pplace:pplace,
+						mldate:modles[i].get("mldate")
+
+					});
+				}
+				
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/cgOrddt/updateBatch1.do',
+						    jsonData:dataes,
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	win.hide();
+						    }
+						   });
+			//}
+		}
+		//});
+	}
 });

@@ -5,7 +5,13 @@ Ext.define('y.sample.SamplePlanGrid',{
 	],
 	columnLines :true,
 	stripeRows:true,
-
+	selModel: {
+          selType: 'checkboxmodel'
+          ,checkOnly:true
+    },
+    viewConfig:{
+    	enableTextSelection:true
+    },
 	initComponent: function () {
       var me = this;
       me.columns=[
@@ -321,25 +327,59 @@ Ext.define('y.sample.SamplePlanGrid',{
     
     onDelete:function(){
     	var me=this;
-    	var node=me.getSelectionModel( ).getLastSelected( );
-
-		if(!node){
-		    Ext.Msg.alert("消息","请先选择一行数据");	
+    	var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
+		}	
+		var plspnos=[];
+		for(var i=0;i<modles.length;i++){
+			plspnos.push(modles[i].get("plspno"));
 		}
-		var parent=node.parentNode;
 		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
-				if (btn == 'yes'){
-					node.erase({
-					    failure: function(record, operation) {
-			            	me.getStore().reload();
-					    },
-					    success:function(){
-					    	me.getStore().reload();
-					    }
-				});
+			if (btn == 'yes'){
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/samplePlan/destroyBatch.do',
+						    //jsonData:plspnos,
+						    params:{
+								plspnos:plspnos
+							},
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+						    	//Ext.getBody().unmask();
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	var tabpanel=me.nextSibling("tabpanel");
+								tabpanel.mask();
+						    }
+					});
 			}
 		});
+		
+//    	var node=me.getSelectionModel( ).getLastSelected( );
+//
+//		if(!node){
+//		    Ext.Msg.alert("消息","请先选择一行数据");	
+//			return;
+//		}
+//		var parent=node.parentNode;
+//		Ext.Msg.confirm("删除",'确定要删除吗?', function(btn, text){
+//				if (btn == 'yes'){
+//					node.erase({
+//					    failure: function(record, operation) {
+//			            	me.getStore().reload();
+//					    },
+//					    success:function(){
+//					    	me.getStore().reload();
+//					    }
+//				});
+//			}
+//		});
     },
     onCopy:function(){
     	var me=this;
@@ -378,23 +418,35 @@ Ext.define('y.sample.SamplePlanGrid',{
      */
     lockOrunlock:function(bool){
     	var me=this;
-    	var record=me.getSelectionModel( ).getLastSelected( );
-		
-		if(!record){
-		    Ext.Msg.alert("消息","请先选择一行数据");	
+//    	var record=me.getSelectionModel( ).getLastSelected( );
+//		
+//		if(!record){
+//		    Ext.Msg.alert("消息","请先选择一行数据");	
+//			return;
+//		}
+    	var modles=me.getSelection( ) ;
+		if(!modles || modles.length==0){
+			Ext.Msg.alert("消息","请选择一行或多行!");
 			return;
+		}	
+		var plspnos=[];
+		for(var i=0;i<modles.length;i++){
+			plspnos.push(modles[i].get("plspno"));
 		}
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/samplePlan/lockOrunlock.do',
 			params:{
-				plspno:record.get("plspno"),
+				plspnos:plspnos,
 				plspst:bool?1:0
 			},
+			method:'POST',
 			success:function(){
-				//me.getStore().reload();
-				record.set("plspst",bool?1:0);
-				me.getSiblingForm().lockOrUnlock(record.get("plspst"));
-				record.commit();
+				me.getStore().reload();
+				var tabpanel=me.nextSibling("tabpanel");
+				tabpanel.mask();
+				//record.set("plspst",bool?1:0);
+				//me.getSiblingForm().lockOrUnlock(record.get("plspst"));
+				//record.commit();
 			}
 		});
     },

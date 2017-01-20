@@ -678,7 +678,11 @@ $(function(){
 		$.showPreloader();
 		//$.condition.clear();
 		showreport();
-	  } else {
+	  } else if(pageId == "report_dapei") {
+		  show_report_dapei();
+	  } else if(pageId=="report_dapei_yxgs") {
+		  show_report_dapei_yxgs();
+	  }else {
 		  if(window.sample_info_vm){
 			  window.sample_info_vm.$data.todos=[];
 			  window.sample_info_vm.$data.title="";
@@ -710,6 +714,88 @@ $(function(){
 			$("#sample_info .content").show();	
 		}
 		$.hidePreloader();
+	}
+	
+	
+	
+	//report_dapei_show_sampno_list
+	//搭配报表
+	window.report_dapei_show_sampno_list=function(a){
+		var isshow=$(a).attr("isshow");
+		//	alert(isshow || );
+		if(!isshow || isshow=='false'){
+			$(a).parent().next(".list-block").show();
+			$(a).attr("isshow",true);
+			$(a).html("隐藏");
+		} else {
+			$(a).parent().next(".list-block").hide();
+			$(a).attr("isshow",false);
+			$(a).html("更多");
+		}
+		
+	}
+	//营销公司搭配报表中的区域被点中的时候
+	window.report_dapei_yxgs_popup=function(li){
+		//alert($(li).attr("clppnm"));
+		$.post(Ext.ContextPath+'/mobile/report/queryDapei_yxgs_list.do', 
+			{
+				ordorg:$(li).attr("qyno"),
+				clppnm:$(li).attr("clppnm")
+			}, 
+			function(response){
+			if(window.report_dapei_yxgs_popup_vm){
+				window.report_dapei_yxgs_popup_vm.$data.sampnms=response;
+			} else {
+				window.report_dapei_yxgs_popup_vm=new Vue({//这个不能删除，不然模板没了
+				  el: '#report_dapei_yxgs_popup',
+				  data: {
+					sampnms:response
+				  }
+				});
+				//$("#sample_info .content").show();	
+			}
+			$.popup('#report_dapei_yxgs_popup');
+		},'json');
+	}
+	//显示搭配报表
+	function show_report_dapei(){
+		$.showPreloader();
+		$.post(Ext.ContextPath+'/mobile/report/queryDapei.do', {}, function(response){
+			if(window.report_dapei_vm){
+				//console.log(response);
+				//window.report_dapei_vm.$data.todos=response.todos;
+				window.report_dapei_vm.$data.dapeis=response;
+			} else {
+				window.report_dapei_vm=new Vue({//这个不能删除，不然模板没了
+				  el: '#report_dapei',
+				  data: {
+					dapeis:response
+				  }
+				});
+				//$("#sample_info .content").show();	
+			}
+			$.hidePreloader();
+		},'json');
+	}
+	//显示搭配报表
+	function show_report_dapei_yxgs(){
+		$.showPreloader();
+		$.post(Ext.ContextPath+'/mobile/report/queryDapei_yxgs.do', {}, function(response){
+			if(window.report_dapei_yxgs_vm){
+				//console.log(response);
+				//window.report_dapei_vm.$data.todos=response.todos;
+				window.report_dapei_yxgs_vm.$data.dapeis=response;
+			} else {
+				window.report_dapei_yxgs_vm=new Vue({//这个不能删除，不然模板没了
+				  el: '#report_dapei_yxgs',
+				  data: {
+					dapeis:response
+				  }
+				});
+				//$("#sample_info .content").show();	
+			}
+			$.hidePreloader();
+		},'json');
 	}
 
 });

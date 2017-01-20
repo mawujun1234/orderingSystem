@@ -37,20 +37,20 @@ Ext.define('y.cg.CgOrdmtForm',{
 				}
 			},
 		{
-	        fieldLabel: '子批次号',
+	        fieldLabel: '采购批次号',
 	        name: 'orcgno',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
-            blankText:"订货会采购子批次号不允许为空",
+            //allowBlank: false,
+           // afterLabelTextTpl: Ext.required,
+            //blankText:"订货会采购采购批次号不允许为空",
             selectOnFocus:true,
-	        xtype:'textfield'
+	        xtype:'hiddenfield'
 	    },
 		{
-	        fieldLabel: '子批次名称',
+	        fieldLabel: '采购批次名称',
 	        name: 'orcgnm',
 	        allowBlank: false,
             afterLabelTextTpl: Ext.required,
-            blankText:"订货会采购子批次名称不允许为空",
+            blankText:"订货会采购采购批次名称不允许为空",
             selectOnFocus:true,
 	        xtype:'textfield'
 	    },

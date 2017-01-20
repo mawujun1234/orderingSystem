@@ -23,7 +23,7 @@ public class SamplePhoto extends BaseObject {
 	@Column(length=36)
 	private String sampno;
 	@FieldDefine(title="图片名",sort=50,hidden=false)
-	@Column(length=80,nullable=false,updatable=true)
+	@Column(length=160,nullable=false,updatable=true)
 	private String photnm;
 	@FieldDefine(title="图片描述",sort=50,hidden=false)
 	@Column(length=80,nullable=false,updatable=true)
@@ -33,6 +33,10 @@ public class SamplePhoto extends BaseObject {
 	private String imgnm;
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer photst=0;//：1：锁定；0：未锁定
+	
+	@FieldDefine(title="缩略图地址",sort=50,hidden=false)
+	@Column(length=160,nullable=false,updatable=true)
+	private String thumb;
 	
 	@Transient
 	private String ormtno;
@@ -81,6 +85,12 @@ public class SamplePhoto extends BaseObject {
 	}
 	public void setOrmtno(String ormtno) {
 		this.ormtno = ormtno;
+	}
+	public String getThumb() {
+		return thumb;
+	}
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
 	}
 
 

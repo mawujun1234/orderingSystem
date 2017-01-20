@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html style="font-size: 20px;">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订货系统</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+<!--
+    <link rel="stylesheet" href="./css/sm.min.css">
+    <link rel="stylesheet" href="./css/sm-extend.min.css">-->
+    <!--<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">-->
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">
+    <link rel="stylesheet" href="./swiper/css/swiper.min.css">
+     <link rel="stylesheet" href="mobile.css" >
+	<style>
+
+	body {	
+		max-width:720px;
+		margin:0 auto;
+	}
+
+	</style>
+  </head>
+  <body>
+  <div  id="tap_effect" >
+  </div>
+  <!-- 离今日订货结束还差60分钟，注意数据保存！-->
+  <div id="od_closeing_info">离今日订货结束还差60分钟，注意数据保存！</div>
+  <nav id="bottom_bar" class="bar bar-tab" style="z-index:6666;display:none;">
+  	<a id="bottom_bar_od_info" class="tab-item active" href="#od_info">
+    	<span class="icon icon-home"></span>
+        <span class="tab-label">订货</span>
+    </a>
+    <a id="bottom_bar_od_mypage" class="tab-item" href="#od_mypage">
+        <span class="icon icon-me"></span>
+        <span class="tab-label">我</span>
+    </a>
+  </nav>
+
+ 
+    <div class="page-group"> 
+        <div class="page page-current" id="od_loginpage"> 
+        	<header class="bar bar-nav">
+              <h1 class='title' id="od_loginpage_title">未连接到订货会系统</h1>
+            </header>
+            
+            <div class="content">
+            	<div class="list-block">
+                	<ul>
+                    	<li>
+                    	<div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-name"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">登录名:</div>
+                            <div class="item-input">
+                              <input id="od_loginpage_username"  type="text" placeholder="输入登录名">
+                            </div>
+                          </div>
+                        </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-password"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label">密码</div>
+                                <div class="item-input">
+                                  <input id="od_loginpage_password" type="password" placeholder="输入密码" class="">
+                                </div>
+                              </div>
+                            </div>
+                        </li>
+                        <li>
+                        	
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-block">
+                	<div class="row">            
+                    	<div class="col-50"><a href="#" class="button button-big button-fill button-danger">退出</a></div>
+                        <div class="col-50"><a href="#" id="od_loginpage_login_btn" class="button button-big button-fill button-success">登录</a></div>
+                    </div>
+                </div>
+                
+                <div class="content-block">
+                    <div class="hi-icon-wrap-login hi-icon-effect-7-login">
+                        <a href="#" id="od_loginpage_scanQRCode_btn"  class="hi-icon-login hi-icon-scale">扫描登录</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!--#od_page -->
+        
+        
+            
+        <div class="page" id="od_info" >  
+        	<div id="qrcode_button" class="hi-icon-wrap hi-icon-effect-7">
+       			<a href="#"  id="od_info_scanQRCode_btn" class="hi-icon hi-icon-cycle external">扫一扫</a>
+			</div>  
+            <div id="od_info_cannot_order" ></div>
+            <div id="od_info_unsave_tips">未保存</div>
+             <div class="content" >                 
+                 <div class="card" id="od_info_sample_info">
+                    <div class="card-header">
+                    	<div class="list-block" style="width:100%;">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div class="item-title label" style="width:4.5rem;font-weight:bold;">样衣编号:</div>
+                                    <div class="item-input">
+                                      <input id="od_info_input" type="text" placeholder="请输入样衣编号" v-model="sampnm">
+                                    </div>
+                                    <a href="#" id="od_info_scan_button" class="button button-fill button-success" style="width:3.5rem;">查询</a><!-- -->
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content" style="display:none;">
+                      <div class="card-content-inner">
+                      		<div class="row">      
+                              <div class="col-50">大系列:{{spbseno_name }}</div>
+                              <div class="col-50">系列:{{spseno_name }}</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">版型:{{versno_name }}</div>
+                              <div class="col-50">定位:{{splcno_name }}</div>          
+                            </div>
+                            <div class="row">
+                              <div class="col-50">上市批次:{{spbano_name }}</div>
+                              <div class="col-50"></div>
+                            </div>
+                            <div class="row" v-show="!showSuitStpres">
+                              <div class="col-50">出厂价:{{spftpr }}</div>
+                              <div class="col-50">零售价:{{sprtpr }}</div>
+                            </div>
+                            <template v-if="showSuitStpres" v-for="suitStpr in suitStpres">
+                            	<div class="row" >
+                                  <div class="col-50">{{suitStpr.suitno_name}}-出厂价:{{ suitStpr.spftpr }}</div>
+                                  <div class="col-50">{{suitStpr.suitno_name}}-零售价:{{ suitStpr.sprtpr }}</div>
+                                </div>
+                            </template>
+                      </div>
+                    </div>
+                  </div><!--card --> 
+
+                  <!-- 搭配开始 -->
+                  <div class="card" id="od_info_sampleClhdVOs" style="display:none;">
+                     <div class="card-header"> 搭配信息 </div>
+                     <!-- Swiper -->
+                     <div class="swiper-container" data-space-between='10'>
+                        <div class="swiper-wrapper">
+                         <div class="swiper-slide"  v-for="sampleClhd in sampleClhdVOs"><a href="#dapei_info" onClick="queryDapei_mx(this)" clppno="{{ sampleClhd.clppno }}"><img v-bind:src="sampleClhd.imgnm" alt="">
+                           <div style="position:absolute;top:0px;z-index:99999;width:100%;text-align:center;right:0px;background-color:rgba(163,235,247,0.7);">{{ sampleClhd.clppnm }}</div>
+                           </a> 
+                          </div>
+                       </div>
+                       <!--<div class="swiper-pagination"></div>--> 
+                     </div>
+                     <!--swiper-container--> 
+                   </div><!--card搭配结束-->
+                  
+                  <!--  套件的开始 -->
+                  <div id="od_info_suitVOs">
+                 <!--  <component-suitvos :suitvos="suitvos" ></component-suitvos>-->
+                  <template v-for="suitVO in suitVOs">
+                  <div class="card" id="od_info_{{ suitVO.suitno }}">
+                    <div class="card-header">
+                    	<div class="list-block" style="width:100%;">
+                            <ul>
+                                <li>
+                                <div class="item-content" style="padding-left:0px;">
+                                  
+                                  <div class="item-inner">
+                                    <div id="od_info_{{ suitVO.suitno_name }}_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
+                                    <div class="item-input">
+                                    <!-- 17.01.18取消了onClick="card_header_input_click(this)"-->
+                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt"  type="number" placeholder="请输入总订货数量" v-model="suitVO.ormtqt">
+                                    </div>
+                                    <span class="icon icon-up" onClick="card_header_item_content_icon(this)"></span>
+                                  </div>
+                                </div>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content guig_content"   style="display:none;">
+                      <div class="card-content-inner">
+                       <div class="list-block" >
+                        <ul>
+
+                          <!-- Text inputs -->
+                          <li >
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-name"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label" style="font-weight:bold;width:60%;">规格<span style="font-size:0.6rem;color:gray;">(占比)</span>:</div>
+                                <div class="item-input" style="font-weight:bold;">订货数量:</div>
+                              </div>
+                            </div>
+                          </li>
+                          
+                          <template v-for="sizeVO in suitVO.sizeVOs">
+                          <li>
+                            <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title label" style="width:60%;">{{sizeVO.sizenm}}<span style="font-size:0.6rem;color:gray;">({{sizeVO.szrate}})</span></div>
+                                <div class="item-input">
+                                  <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" >
+                                </div>
+                              </div>
+                            </div>
+                           </li>
+                           </template>
+                          
+                        </ul>
+                      </div><!-- list-block -->
+                      </div><!-- card-content-inner -->
+                    </div><!-- card-content -->
+                    
+                  </div><!--card -->
+                  </template>
+                  </div><!-- # od_info_suitVOs-->
+                  <!--  套件的结束 -->
+                  
+                 
+                  <div id="od_info_saveAndclear_button" class="content-block" style="padding-bottom:2rem;display:none;" >
+                    <div class="row">
+                      <div class="col-50"><a id="od_info_clear_button" href="#" class="button button-big button-fill button-danger">清零</a></div>
+                      <div class="col-50"><a id="od_info_save_button" href="#" class="button button-big button-fill button-success disabled">保存</a></div>
+                    </div>
+                  </div>
+                  
+             </div><!--content -->
+        </div>
+        
+        
+        <div class="popup popup_abstat">
+           <div class="content-block">
+                <p>Services</p>
+                <p><a href="#" class="close-popup">Close popup</a></p>
+                <p>Lorem ipsum dolor ...</p>
+           </div>
+        </div>     
+        
+        <!-- 搭配信息界面-->
+        <div class="page" id="dapei_info">
+        	<header class="bar bar-nav">
+              <a class="button button-link button-nav pull-left back" href="#od_info">
+                  <span class="icon icon-left"></span>
+                  返回
+              </a>
+              <h1 class='title'>搭配信息</h1>
+            </header>
+            <div class="content">
+            <!--
+              <div class="list-block" style="margin-top:0px;margin-bottom:10px;">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                    <div class="item-inner">
+                      <div class="item-title">已搭配套数:</div>
+                      <div class="item-after">5</div>
+                    </div>
+                  </li>
+                  
+                </ul>
+              </div>
+              -->
+              <div style="text-align:center;">
+              	<img v-bind:src="imgnm" alt="" style="height:55%;width:55%;">
+              </div>
+              <div class="swiper-container" style="height:30%;">
+              	<div class="swiper-wrapper" >
+                    <div class="swiper-slide" v-for="sampleCldtlVO in sampleCldtlVOs">
+                    	<a href="#od_info" v-on:click="link_to_sampnm" sampnm="{{ sampleCldtlVO.sampnm }}"><img v-bind:src="sampleCldtlVO.sampno_imgnm" sampnm="{{ sampleCldtlVO.sampnm }}" alt=""></a>
+                    </div>          
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+              </div>
+            </div><!-- content -->
+        </div><!--dapei_info -->
+        
+        
+        <div class="page" id="od_mypage"> 
+        	<!--<header class="bar bar-nav">
+              <a class="button button-link button-nav pull-left back" href="/docs-demos/router">
+                  <span class="icon icon-left"></span>
+                  返回
+              </a>
+              <h1 class='title'>宁波区域</h1>
+            </header>-->
+   
+            <div class="content">
+            	<div class="card" id="od_mypage_myinfo_card" style="display:none;">
+                    <div class="card-header">我:{{ orgnm }}</div>
+                    <div class="card-content">
+                    	<span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:这里的指标金额/数量，只包含雅戈尔。实订数量/金额,包含所有品牌</span>
+                      <div class="card-content-inner">
+                      		<div class="row">
+                              <div class="col-50">指标金额(万元):{{qymtam}}</div>
+                              <div class="col-50">指标数量(件):{{qymtqt}}</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-50">实订金额(万元):{{ormtam}}</div>
+                              <div class="col-50">实订数量(件):{{ormtqt}}</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-60">&nbsp; </div>
+                              <div class="col-40" ><a href="#" id="od_mypage_confirm_button" style="display:none;width:4rem;"  class="button button-fill button-success">完成订货</a><a href="#" id="od_mypage_over_button"  style="display:none;width:4rem;" class="button button-fill button-success">完成平衡</a></div>
+                            </div>
+                           
+                      </div>
+                    </div>
+                  </div><!--card -->
+                  
+                  <div class="content-block-title">报表清单</div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <a href="#report_dapei" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">搭配统计报表</div>
+                        </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#none_abstat" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">未定的必定款样衣</div>
+                        </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#report_alreadyod" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-已定样衣</div>
+                        </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#report_spclno" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">    
+                          <div class="item-title">订货统计-按商品类</div>
+                        </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#report_money" data-no-cache="true" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title">订货统计-按价位段</div>
+                        </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div><!-- 报表清单-->
+            </div><!-- content-->
+        </div><!-- #od_mypage -->
+        
+         <!-- 搭配统计报表-->
+        <div class="page" id="report_dapei" >
+        	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+            </header>
+        	<div class="content">
+              <div class="card facebook-card">
+                
+                <div class="card-content"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="100%" style="margin:0 auto;"></div>
+                <div class="card-header no-border">
+                  <a href="#" class="link" style="display:block;position:absolute;right:20px;top:30px;" onClick="report_dapei_show_sampno_list(this)">更多</a>
+                  <div class=""><span style="font-style:normal;color:rgba(196,192,192,1.00);">搭配名称:</span>商旅VP秋1左</div>
+                  <div class=""><span style="font-style:normal;color:rgba(196,192,192,1.00);">搭配套数:</span>120</div>      
+                </div>
+                <div class="list-block media-list" style="display:none;">
+                    <ul>
+                      <li>
+                        <a href="#" class="item-link item-content" >
+                          <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+                          <div class="item-inner">
+                            <div class="item-text">样衣编号:aaaa</div>
+                            <div class="item-text">订货数量:120</div>
+                          </div>
+                        </a>
+                      </li>
+                       <li>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+                          <div class="item-inner">
+                            <div class="item-text">样衣编号:aaaa</div>
+                            <div class="item-text">订货数量:120</div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div><!-- list-block media-list -->
+              </div>
+            </div>
+        </div><!-- #report_dapei -->
+        
+        <!-- 未订的必定款样衣-->
+        <div class="page" id="none_abstat">
+        	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+            </header>
+        	<div class="content">
+            	&nbsp;&nbsp;<span style="color:rgba(244,2,25,1.00)">必定</span>出样样衣编号:
+                	<div class="list-block" style="margin-top:0.5rem;">
+                    	<ul id="none_abstat_ul"><!--
+                        	<li class="item-content" v-for="sanmp in sanmpes">
+                            	<div class="item-media"><i class="icon icon-f7"></i></div>
+                                <div class="item-inner"><div class="item-title">{{ sanmp.sampnm1 }}</div></div>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                
+            </div>
+        </div><!-- #none_abstat -->
+        
+		
+         <!--订货统计-按商品类 -->
+        <div class="page" id="report_spclno" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search "></span>&nbsp;筛选&nbsp;</a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
+              <div class="card">
+                <div class="card-header">订货金额</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货金额</th>
+                            <th>计划金额</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td><a href="#" class="report_spclno_click" v-bind:data-spclno="todo.spclno">{{todo.spclnm}}</a></td>
+                            <td>{{todo.ormtam_wan}}</td>
+                            <td>{{todo.qymtam}}</td>
+                            <td>{{todo.ormtam_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="card">
+                <div class="card-header">订货数量</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货数量</th>
+                            <th>计划数量</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td><a href="#" class="report_spclno_click" v-bind:data-spclno="todo.spclno">{{todo.spclnm}}</a></td>
+                            <td>{{todo.ormtqt}}</td>
+                            <td>{{todo.qymtqt}}</td>
+                            <td>{{todo.ormtqt_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+          </div><!-- #report_spclno -->
+          
+          
+         <!--订货统计-按商品类----小类或系列 -->
+        <div class="page" id="report_sptyno_spseno" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+              
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;">
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
+              <div class="card">
+                <div class="card-header">订货金额</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>小类</th>
+                            <th>订货金额</th>
+                            <th>计划金额</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td>{{todo.spclnm}}</td>
+                            <td>{{todo.ormtam_wan}}</td>
+                            <td>{{todo.qymtam}}</td>
+                            <td>{{todo.ormtam_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="card">
+                <div class="card-header">订货数量</div>
+                <div class="card-content">
+                  <div class="card-content-inner"  style="padding:0px;padding-right:7px;">
+                      <table class="report_table" >
+                         <thead>
+                          <tr>
+                            <th>大类</th>
+                            <th>订货数量</th>
+                            <th>计划数量</th>
+                            <th>完成率</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="todo in todos">
+                            <td>{{todo.spclnm}}</td>
+                            <td>{{todo.ormtqt}}</td>
+                            <td>{{todo.qymtqt}}</td>
+                            <td>{{todo.ormtqt_wancl}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+          
+            </div>
+          </div><!-- #report_sptyno_spseno -->
+          
+          
+          
+          
+          
+          
+          <!-- 订货统计-按价格段-->
+          <div class="page" id="report_money" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a> 
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search " ></span>&nbsp;筛选&nbsp;</a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            <div class="content" style="padding-right:8px;display:none;font-size:0.7rem;">
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
+              <table class="report_table">
+                <thead>
+                  <tr style="font-size:0.6rem;">
+                    <th>价格段</th>
+                    <th>零售金额</th>
+                    <th>占比</th>
+                    <th>品种</th>
+                    <th>占比</th>
+                    <th>数量</th>
+                    <th>占比</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="todo in todos">
+                    <td>{{todo.sprtpr}}</td>
+                    <td>{{todo.ormtam_wan}}</td>
+                    <td>{{todo.ormtam_zb}}</td>
+                    <td>{{todo.sampnocount}}</td>
+                    <td>{{todo.sampnocount_zb}}</td>
+                    <td>{{todo.ormtqt}}</td>
+                    <td>{{todo.ormtqt_zb}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- #report_money -->
+          
+           <!-- 已订样衣-->
+          <div class="page" id="report_alreadyod" >
+            <header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+              <a class="pull-right open-panel button button-link button-nav" data-panel='#report_query_params'>  <span class="icon icon-search" ></span>&nbsp;筛选&nbsp;</a>
+              <!--<h1 class='title'>..........</h1>-->
+            </header>
+            
+            <div  class="content infinite-scroll infinite-scroll-bottom" data-distance="100" style="padding-right:8px;display:none;" >
+            <span style="font-size:0.5rem;padding-left:0.75rem;"><span style="color:rgba(247,6,10,1.00)">注意</span>:数量是折算数量。</span>
+            <div class="row" style="margin-left:10px;text-align:center;font-size:0.7rem;">
+              品种数:<span style="color:red;">{{totalData.sampnocount}}</span>种<span style="color:red;">/</span>
+              数量:<span style="color:red;">{{totalData.ormtqt}}</span>件<span style="color:red;">/</span>
+              金额:<span style="color:red;">{{totalData.ormtam}}</span>万
+            </div>
+            <div class="row" v-for="todo in todos">
+               <div class="col-50" v-for="samp in todo">
+                  <div class="card demo-card-header-pic" >
+                  <a href="#sample_info" class="sample_info_link" v-bind:data-sampno="samp.sampno">
+                    <div valign="bottom" class="card-header color-white no-border no-padding">
+                      
+                      <img class='card-cover' v-bind:src="samp.imgnm" alt="" >
+                      
+                    </div>
+                  </a>
+                    <div class="card-content">
+                      <div class="card-content-inner" style="padding:0px;padding-left:5px;">
+                        <p  style="margin-bottom:0px;margin-top:0px;">样衣编号:{{samp.sampnm}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">零售价:{{samp.sprtpr}}</p>
+                        <p style="margin-bottom:0px;margin-top:0px;">数量:<span style="color:red;">{{samp.ormtqt}}</span></p>
+                      </div>
+                    </div>
+                    <div class="card-footer" style="padding-top:0px;padding-bottom:0px;line-height:1rem;min-height:1.5rem;">
+                    
+                      <a href="#" class="link " style="height:1rem;margin:0px;"><span class="circle13">{{samp.rownum}}</span></a>
+                      <a href="#od_info" class="link od_info_link" v-bind:data-sampnm="samp.sampnm" style="height:1rem;margin:0px;">更改数量</a>
+                    </div>
+                  </div>
+                </div><!-- 50%-->
+               
+       
+              </div>
+              <!-- 加载提示符 -->
+              <div class="infinite-scroll-preloader">
+                  <div class="preloader"></div>
+              </div>
+            </div><!-- content-->
+          </div><!-- #report_alreadyod -->
+          
+          
+          <!-- 样衣信息-->
+          <div class="page" id="sample_info" >
+          	<header class="bar bar-nav"> 
+              <a class="button button-link button-nav pull-left back" href="#"> <span class="icon icon-left"></span> 返回 </a>
+            	<h1 class='title'>{{title}}--样衣信息</h1>
+            </header>
+            <div class="content">
+
+            <template v-for="todo in todos">
+               <div class="content-block-title"  style="margin-top:0.5rem;">订货样衣编号:{{todo.sampnm}}</div>
+               <div class="swiper-container" data-space-between='10'>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" v-for="photo in todo.photoes">
+                  	<img v-bind:src="photo.imgnm" alt="" style="width:100%; ">
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+              <div class="card-content">  
+                  <div class="buttons-tab">
+                    <a href="#tab1_{{$index}}" class="tab-link active button">企划</a>
+                    <a href="#tab2_{{$index}}" class="tab-link button">设计</a>
+                  </div> 
+                   <div class="tabs" >
+                      <div id="tab1_{{$index}}" class="tab active">     
+                          <div class="list-block"  style="margin-top:0rem;">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab1">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab1 -->
+                       <div id="tab2_{{$index}}" class="tab">
+                       	  <div class="list-block"  style="margin-top:0rem;">
+                            <ul>
+                              <li class="item-content" v-for="field in todo.tab2">
+                                <div class="item-inner">
+                                  <div class="item-title">{{field.name}}</div>
+                                  <div class="item-after">{{field.value}}</div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                       </div><!-- tab2 -->
+                    
+                     </div><!-- tabs-->
+                  </div><!--card-conten -->
+            </template>           
+            </div><!--content -->
+          </div><!--sample_info -->
+          
+          
+          
+          
+          
+          
+          
+	</div><!-- page-group -->
+    
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-right panel-cover theme-white" id='report_query_params'>
+    
+      <div class="card" id='report_query_params_bradno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        品牌<span class="icon icon-up" style="position:absolute;right:0.5rem;"></span>
+        </div>
+        <div class="card-content" >
+          <div class="card-content-inner">
+          <!--
+            <a href="#" class="button button-light param-btn button-success button-fill" >衬衫</a>
+            <a href="#" class="button button-light param-btn ">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <a href="#" class="button button-light param-btn" >衬衫</a>
+            <a href="#" class="button button-light param-btn">西服</a>
+            <a href="#" class="button button-light param-btn">裤子</a>
+            <div style="clear:both;"></div>
+            -->
+     	  </div>
+        </div>
+      </div><!--card-->
+      
+      <div class="card" id='report_query_params_spclno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	大类<span class="icon icon-up" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_sptyno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	小类<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_spseno' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	系列<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      <div class="card" id='report_query_params_ordorg' style="display:none;">
+        <div class="card-header" style="min-height:1rem;color:gray;">
+        	订货单位<span class="icon icon-down" style="position:absolute;right:8px;"></span>
+        </div>
+        <div class="card-content" style="display:none;">
+          <div class="card-content-inner">   
+     	  </div>
+        </div>
+      </div><!--card-->
+      
+      <!--
+      	<p class="buttons-row" >
+        	<a href="#" class="button" id="report_query_params_reset">重置</a>
+            <a href="#" class="button active button-danger" id="report_query_params_complete">完成</a>
+        </p>
+      -->
+      <div class="row">
+          <div class="col-50"><a href="#" class="button button-big button-dark" id="report_query_params_reset">重置</a></div>
+          <div class="col-50"><a href="#" class="button button-big button-fill button-danger" id="report_query_params_complete">查询</a></div>
+      </div>
+    </div>
+
+    
+
+
+
+	<!--			
+    <script type='text/javascript' src='./js/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/sm-extend.min.js' charset='utf-8'></script>-->
+    
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
+    <script src="./swiper/js/swiper.min.js"></script>
+    <script type='text/javascript' src='mobile.js?v=20160725' charset='utf-8'></script>
+     <script type='text/javascript' src='./report/report.js?v=20160725' charset='utf-8'></script>
+    
+	
+    <script>
+
+		
+	</script>
+  </body>
+</html>

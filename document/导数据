@@ -1,0 +1,21 @@
+#密码登录
+telnet 192.168.188.129
+root
+root
+#用户切换
+su - oracle
+rm -rf /data/xxbbackup/odd.dmp
+#shell
+expdp backup/oracle  schemas=od  directory=backup_dir dumpfile=odd.dmp logfile=xxbfullexp.log
+
+--
+sqlplus / as sysdba
+select 'alter system kill session '''||b.sid||','||b.serial#||''' immediate; ' from v$session b where USERNAME='ODTEST';
+drop user odtest cascade;
+
+#shell
+impdp backup/oracle  REMAP_SCHEMA=od:odtest  directory=backup_dir dumpfile=odd.dmp logfile=xxbfullexp.log
+
+su - oracle
+sqlplus / as sysdba
+alter user odtest identified by oracle;

@@ -65,8 +65,8 @@ Ext.define('y.cg.CgOrdhdGrid',{
     	var params={
     		"params['ormtno']":toolbars[0].down("#ormtno").getValue(),
     		"params['orcgno']":toolbars[0].down("#orcgno").getValue(),
-    		"params['bradno']":toolbars[1].down("#bradno").getValue(),
-    		"params['spclno']":toolbars[1].down("#spclno").getValue()
+    		"params['bradno']":toolbars[0].down("#bradno").getValue(),
+    		"params['spclno']":toolbars[0].down("#spclno").getValue()
     					
     	};
     	return params;
@@ -74,7 +74,7 @@ Ext.define('y.cg.CgOrdhdGrid',{
 	initToolbar:function(){
 		var me=this;
 		var orcgno=Ext.create('Ext.form.field.ComboBox',{
-		    fieldLabel: '子批次编号',
+		    fieldLabel: '采购批次',
 		    labelWidth:80,
 		    xtype:'combobox',
 		    name:'orcgno',
@@ -132,13 +132,7 @@ Ext.define('y.cg.CgOrdhdGrid',{
 						orcgno.getStore().reload();
 					}
 				}
-			},orcgno]
-		});
-		
-		me.dockedItems.push({
-	  		xtype: 'toolbar',
-	  		dock:'top',
-		  	items:[{
+			},orcgno,{
 		        fieldLabel: '品牌',
 		        itemId: 'bradno',
 		        name:'bradno',
@@ -187,6 +181,59 @@ Ext.define('y.cg.CgOrdhdGrid',{
 				iconCls: 'icon-refresh'
 			}]
 		});
+		
+//		me.dockedItems.push({
+//	  		xtype: 'toolbar',
+//	  		dock:'top',
+//		  	items:[{
+//		        fieldLabel: '品牌',
+//		        itemId: 'bradno',
+//		        name:'bradno',
+//		         labelWidth:40,
+//		        width:160,
+//	            //allowBlank: false,
+//	            //afterLabelTextTpl: Ext.required,
+//	            showBlank:false,
+//	            selFirst:true,
+//	            blankText:"品牌不允许为空",
+//		        xtype:'pubcodecombo',
+//		        tyno:'1',
+//		        listeners:{
+//					select:function(combo , record , eOpts){
+//						//me.initReloadSampleDesign_index++;
+//						//me.reload();
+//					}
+//				}
+//		    },{
+//		        fieldLabel: '大类',
+//		        name:'spclno',
+//		        itemId: 'spclno',
+//		        labelWidth:40,
+//		        width:120,
+//		        showBlank:true,
+//	            //allowBlank: false,
+//	            //afterLabelTextTpl: Ext.required,
+//	            blankText:"大类不允许为空",
+//	             selFirst:false,
+//		        xtype:'pubcodecombo',
+//		        tyno:'0',
+//		        listeners:{
+//		        	select:function( combo, record, eOpts ) {
+//
+//		        	}	
+//		        }
+//		    },{
+//				text: '查询',
+//				itemId:'reload',
+//				disabled:me.disabledAction,
+//				handler: function(btn){
+//					var grid=btn.up("grid");
+//					grid.getStore().getProxy().extraParams=me.getParams();
+//					grid.getStore().reload();
+//				},
+//				iconCls: 'icon-refresh'
+//			}]
+//		});
 	
 		
 		me.dockedItems.push({
@@ -200,7 +247,7 @@ Ext.define('y.cg.CgOrdhdGrid',{
 				},
 				iconCls: 'icon-plus'
 			},{
-				text: '新增',
+				text: '新增子批次',
 				itemId:'create',
 				handler: function(btn){
 					me.onCreate();
@@ -236,6 +283,7 @@ Ext.define('y.cg.CgOrdhdGrid',{
 		});
 	},
 	onCreateCg:function(){
+		var me=this;
 		var child=Ext.create('y.cg.CgOrdmt',{
 
 		});
@@ -255,6 +303,9 @@ Ext.define('y.cg.CgOrdhdGrid',{
     		listeners:{
     			close:function(){
     				me.getStore().reload();
+    				var toolbars=me.getDockedItems('toolbar[dock="top"]');
+					toolbars[0].down("#orcgno").getStore().reload();
+
     			}
     		}
     	});
@@ -273,7 +324,7 @@ Ext.define('y.cg.CgOrdhdGrid',{
 		
     	var win=Ext.create('Ext.window.Window',{
     		layout:'fit',
-    		title:'新增',
+    		title:'新增采购批次',
     		modal:true,
     		width:400,
     		height:300,

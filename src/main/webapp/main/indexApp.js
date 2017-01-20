@@ -29,9 +29,9 @@ Ext.onReady(function(){
 			}
 			
 		});
-		setTimeout("onlineling()",120000);
+		setTimeout("onlineling()",300000);
 	}
-	setTimeout("onlineling()",120000);
+	setTimeout("onlineling()",600000);
 
 		
 		

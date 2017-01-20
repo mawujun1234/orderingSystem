@@ -168,6 +168,14 @@ Ext.onReady(function(){
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
+		  		text: '打印-搭配',
+				handler: function(btn){
+					var params=grid.getParams();
+			    	var url=Ext.ContextPath+"/report/printDaPei.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
 		  		text: '审批通过',
 		  		itemId:'shenp_btn',
 		  		//disabled:true,

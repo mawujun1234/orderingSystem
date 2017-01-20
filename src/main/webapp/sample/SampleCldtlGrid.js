@@ -23,7 +23,7 @@ Ext.define('y.sample.SampleCldtlGrid',{
         },
 		{dataIndex:'sampnm',header:'订货样衣编号'
         },
-		{dataIndex:'clspno',header:'搭配样衣序号',xtype: 'numbercolumn', format:'0',align : 'right'
+		{dataIndex:'clspno',header:'搭配样衣序号'
 		},
 		{dataIndex:'sampno_imgnm',header:'图片',renderer:function(value ,record,dataIndex ,cell ,column  ){
 			return "<img src="+value+" style='width:100%;'></img>";

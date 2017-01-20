@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mawujun.utils.page.Pager;
+import com.youngor.report.mobile.ReportDapei;
 /**
  * @author mawujun qq:16064988 e-mail:mawujun1234@163.com 
  * @version 1.0
@@ -26,6 +27,8 @@ public interface ReportRepository {
 	public  List<OrderPrint1> orderTotalPrint_export2( Map<String,Object> params);
 	
 	public  List<OrderPrint1> orderTotalPrint_export3( Map<String,Object> params);
-
 	
+	
+
+	public  List<Map<String,Object>> printDaPei(@Param("ormtno")String ormtno);
 }

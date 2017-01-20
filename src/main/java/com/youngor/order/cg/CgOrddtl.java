@@ -14,6 +14,11 @@ import com.youngor.utils.BaseObject;
 @Entity(name="ORD_CG_ORDDTL")
 @IdClass(CgOrddtl.PK.class)
 public class CgOrddtl extends BaseObject {
+	
+	@Id
+	@FieldDefine(title="采购子批次编号",sort=50,hidden=true)
+	@Column(length=30,nullable=false,updatable=false)
+	private String orcgno;
 	@Id
 	@FieldDefine(title="采购子批次订单号",sort=50,hidden=true)
 	@Column(length=30,nullable=false,updatable=false)
@@ -39,6 +44,7 @@ public class CgOrddtl extends BaseObject {
 		 * @author mawujun qq:16064988 mawujun1234@163.com
 		 */
 		private static final long serialVersionUID = 1L;
+		private String orcgno;
 		private String cgorno;
 		private String sampno;
 		private String suitno;
@@ -60,6 +66,12 @@ public class CgOrddtl extends BaseObject {
 		}
 		public void setSuitno(String suitno) {
 			this.suitno = suitno;
+		}
+		public String getOrcgno() {
+			return orcgno;
+		}
+		public void setOrcgno(String orcgno) {
+			this.orcgno = orcgno;
 		}
 		
 	}
@@ -102,6 +114,14 @@ public class CgOrddtl extends BaseObject {
 
 	public void setOrmark(String ormark) {
 		this.ormark = ormark;
+	}
+
+	public String getOrcgno() {
+		return orcgno;
+	}
+
+	public void setOrcgno(String orcgno) {
+		this.orcgno = orcgno;
 	}
 
 }

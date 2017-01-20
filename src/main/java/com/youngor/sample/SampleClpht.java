@@ -43,6 +43,9 @@ public class SampleClpht {
 	@FieldDefine(title="图片文件名",sort=50,hidden=false)
 	@Column(length=100,nullable=true,updatable=true)
 	private String imgnm;
+	@FieldDefine(title="缩略图",sort=50,hidden=false)
+	@Column(length=150,nullable=true,updatable=true)
+	private String thumb;
 	@Transient
 	private String ormtno;
 	
@@ -87,6 +90,12 @@ public class SampleClpht {
 	}
 	public void setOrmtno(String ormtno) {
 		this.ormtno = ormtno;
+	}
+	public String getThumb() {
+		return thumb;
+	}
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
 	}
 
 

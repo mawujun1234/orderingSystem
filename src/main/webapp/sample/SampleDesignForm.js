@@ -595,6 +595,12 @@ Ext.define('y.sample.SampleDesignForm',{
 		if(this.temp_bradno!=bradno || this.temp_spclno!=spclno){
 			this.getSampleDesignSizegpGrid().reloadEditor(ormtno,bradno,spclno);
 		}
+		
+		this.up("#sample_tabpanel").mask();
+		//刷新工作室系列
+		this.reloadStseno(spclno);
+		var stsenoField=this.getForm().findField("stseno");
+		stsenoField.getStore().reload();
 	},
 	getSampleDesignSizegpGrid:function(){
 		if(this.sampleDesignSizegpGrid){

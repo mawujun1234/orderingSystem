@@ -10,7 +10,7 @@ import javax.persistence.IdClass;
 import com.mawujun.generator.model.FieldDefine;
 import com.youngor.utils.BaseObject;
 
-@Entity(name="ORD_CG_ORDDTL")
+@Entity(name="ORD_CG_ORDDT")
 @IdClass(CgOrddt.PK.class)
 public class CgOrddt extends BaseObject {
 	@Id

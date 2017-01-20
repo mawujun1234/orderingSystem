@@ -1,16 +1,10 @@
 package com.youngor.order.cg;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.mawujun.service.AbstractService;
-
-
-import com.youngor.order.cg.CgOrdmt;
-import com.youngor.order.cg.CgOrdmtRepository;
 
 
 /**

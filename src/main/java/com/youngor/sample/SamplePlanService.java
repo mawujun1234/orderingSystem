@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mawujun.exception.BusinessException;
 import com.mawujun.service.AbstractService;
@@ -81,10 +82,27 @@ public class SamplePlanService extends AbstractService<SamplePlan, String>{
 //		samplePlanRepository.update(samplePlan);
 	}
 	
-	public void lockOrunlock(String plspno,Integer plspst) {
-		SamplePlan samplePlan=samplePlanRepository.get(plspno);
-		samplePlan.setPlspst(plspst);
-		samplePlanRepository.update(samplePlan);
+	public void destroyBatch(String[] plspnos) {
+		if(plspnos==null || plspnos.length==0){
+			return;
+		}
+		for(String plspno:plspnos){
+			SamplePlan samplePlan=new SamplePlan();
+			samplePlan.setPlspno(plspno);
+			this.delete(samplePlan);
+		}
+	}
+	
+	public void lockOrunlock(String [] plspnos,Integer plspst) {
+		if(plspnos==null || plspnos.length==0){
+			return;
+		}
+		for(String plspno:plspnos){
+			SamplePlan samplePlan=samplePlanRepository.get(plspno);
+			samplePlan.setPlspst(plspst);
+			samplePlanRepository.update(samplePlan);
+		}
+		
 	}
 	
 	public List<SamplePlanVO> queryList4Export(MapParams params){

@@ -90,6 +90,18 @@ public interface MobileReportRepository {
 			);
 	
 	public List<SampleInfoField> queryOrmtqt_sum_by_sampno(@Param("sampno")String sampno,@Param("yxgsno")String yxgsno);
+	
+	/**
+	 * 
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno 订货会编号
+	 * @param ordorg 订货单位
+	 * @return
+	 */
+	public List<ReportDapei> queryDapei(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg);
+	public List<ReportDapeiList> queryDapei_yxgs_list(@Param("ormtno")String ormtno,@Param("ordorg")String ordorg,@Param("clppnm")String clppnm);
+	
+	public List<Map<String,Object>> queryQY(@Param("yxgsno")String yxgsno);
 
 
 }

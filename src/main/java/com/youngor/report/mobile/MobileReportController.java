@@ -3,6 +3,7 @@ package com.youngor.report.mobile;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -823,6 +825,104 @@ public class MobileReportController {
 			
 		}
 		return result;
+	}
+	/**
+	 * 在移动端 查询搭配信息
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/mobile/report/queryDapei.do")
+	@ResponseBody
+	public List<ReportDapei> queryDapei(String ordorg){
+		List<ReportDapei> result=new ArrayList<ReportDapei>();
+//		
+//		for(int i=0;i<10;i++){
+//			ReportDapei reportDapei=new ReportDapei();
+//			reportDapei.setClppnm("商旅VP秋1左"+i);
+//			reportDapei.setImgnm("./images/no_photo.jpg");
+//			reportDapei.setNum(i*10+1);
+//			for(int j=0;j<4;j++){
+//				ReportDapeiList reportDapeiList=new ReportDapeiList();
+//				reportDapeiList.setImgnm("./images/no_photo.jpg");
+//				reportDapeiList.setSampnm("CLOO"+i);
+//				reportDapeiList.setNum(j*10+1);
+//				reportDapei.addList(reportDapeiList);
+//			}
+//			result.add(reportDapei);
+//		}
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		if(ordorg==null || "".equals(ordorg)){
+			ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+		}
+		 
+		List<ReportDapei> list=mobileReportRepository.queryDapei(ormtno, ordorg);
+		//计算并过滤掉最少套数为0的数据
+		for(ReportDapei aa:list){
+			aa.calMinnnum();
+			if(aa.getMinnum()!=0){
+				result.add(aa);
+			}
+		}
+		//排序，套件最多的排在前面
+		Collections.sort(result);
+		return result;
+	}
+	/**
+	 * 营销公司获取搭配报表的时候
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @return
+	 */
+	@RequestMapping("/mobile/report/queryDapei_yxgs.do")
+	@ResponseBody
+	public List<ReportDapei_yxgs> queryDapei_yxgs(){
+		List<ReportDapei_yxgs> result=new ArrayList<ReportDapei_yxgs>();
+		//获取当前营销公司下面的区域
+		Org yxgs_org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		List<Map<String,Object>> qyes=mobileReportRepository.queryQY(yxgs_org.getOrgno());
+		
+		//ReportDapei_yxgs reportDapei_yxgs=new ReportDapei_yxgs();
+		for(Map<String,Object> qy_map:qyes){
+			List<ReportDapei> list=queryDapei(qy_map.get("QYNO").toString());
+			for(ReportDapei reportDapei:list){
+				ReportDapei_yxgs reportDapei_yxgs=null;
+				for(ReportDapei_yxgs yxgs:result){
+					if(yxgs.getClppnm().equals(reportDapei.getClppnm())){
+						reportDapei_yxgs=yxgs;
+						break;
+					}
+				}
+				if(reportDapei_yxgs==null){
+					reportDapei_yxgs=new ReportDapei_yxgs();
+					reportDapei_yxgs.setClppnm(reportDapei.getClppnm());
+					reportDapei_yxgs.setImgnm(reportDapei.getImgnm());
+					result.add(reportDapei_yxgs);
+					
+				}
+				reportDapei_yxgs.addSumnum(reportDapei.getMinnum());
+				
+				ReportDapei_qy qy=new ReportDapei_qy();
+				qy.setClppnm(reportDapei.getClppnm());
+				qy.setImgnm(reportDapei.getImgnm());
+				qy.setMinnum(reportDapei.getMinnum());
+				qy.setQynm(qy_map.get("QYNM").toString());
+				qy.setQyno(qy_map.get("QYNO").toString());
+				
+				reportDapei_yxgs.addQyes(qy);
+				
+			}
+			
+		}
+		return result;
+	}
+	@RequestMapping("/mobile/report/queryDapei_yxgs_list.do")
+	@ResponseBody
+	public List<ReportDapeiList> queryDapei_yxgs_list(String ordorg,String clppnm) {
+		String ormtno=ContextUtils.getFirstOrdmt().getOrmtno();
+		if(ordorg==null || "".equals(ordorg)){
+			ordorg=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg().getOrgno();
+		}
+		
+		return mobileReportRepository.queryDapei_yxgs_list(ormtno, ordorg, clppnm);
 	}
 
 }

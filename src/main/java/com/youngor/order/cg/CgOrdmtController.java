@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.repository.cnd.Cnd;
+import com.mawujun.utils.DateUtils;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.M;
 /**
@@ -56,6 +57,8 @@ public class CgOrdmtController {
 	@RequestMapping("/cgOrdmt/create.do")
 	@ResponseBody
 	public CgOrdmt create(@RequestBody CgOrdmt cgOrdmt) {
+		
+		cgOrdmt.setOrcgno(DateUtils.format4Id());
 		
 		cgOrdmt.setRgdt(new Date());
 		cgOrdmt.setRgsp(ShiroUtils.getUserId());

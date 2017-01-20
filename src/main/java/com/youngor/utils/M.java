@@ -54,6 +54,7 @@ public static final class CgOrddt {
 	public static final String lmdt="lmdt";
 }
 public static final class CgOrddtl {
+	public static final String orcgno="orcgno";
 	public static final String cgorno="cgorno";
 	public static final String sampno="sampno";
 	public static final String suitno="suitno";
@@ -752,6 +753,7 @@ public static final class SampleClpht {
 	public static final String photnm="photnm";
 	public static final String photms="photms";
 	public static final String imgnm="imgnm";
+	public static final String thumb="thumb";
 	public static final String ormtno="ormtno";
 }
 public static final class SampleColth {
@@ -856,6 +858,7 @@ public static final class SamplePhoto {
 	public static final String photms="photms";
 	public static final String imgnm="imgnm";
 	public static final String photst="photst";
+	public static final String thumb="thumb";
 	public static final String ormtno="ormtno";
 	public static final String rgsp="rgsp";
 	public static final String rgdt="rgdt";

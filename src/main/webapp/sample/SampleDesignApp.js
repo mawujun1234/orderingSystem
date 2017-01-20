@@ -85,6 +85,7 @@ Ext.onReady(function(){
 	var tabpanel=Ext.create('Ext.tab.Panel', {
 	    region:'east',
 	    width:300,
+	    itemId:'sample_tabpanel',
 	    title:'样衣信息',
 	    split:true,
 	    collapsible : true,

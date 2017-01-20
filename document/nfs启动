@@ -1,9 +1,21 @@
 1:/etc/init.d/nfs start
 http://www.linuxidc.com/Linux/2012-09/71101.htm
 http://blog.163.com/xb_stone_yinyang/blog/static/211816037201322510567919/
+
+
+--在服务端执行
 service nfs restart   重启服务端的nfs
+
+
+--在客户端执行
+挂载到服务器上去
 mount 192.168.188.164:/public/scm/YangYTP /opt/apache-tomcat-8.0.36/webapps/photoes
-scp -r 201607 root@192.168.188.22:/opt/apache-tomcat-8.0.36/webapps/photoes
+取消挂载
+umount /opt/apache-tomcat-8.0.36/webapps/photoes
+
+
+
+---scp -r 201607 root@192.168.188.22:/opt/apache-tomcat-8.0.36/webapps/photoes
 
 从164拷贝照片到测试库：
-scp -r 201607 root@192.168.188.44:/opt/apache-tomcat-8.5.6/webapps/test/photoes
+scp -r 201701 root@192.168.188.44:/opt/apache-tomcat-8.5.6/webapps/photoes

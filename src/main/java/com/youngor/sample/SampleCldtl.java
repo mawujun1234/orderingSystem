@@ -29,7 +29,7 @@ public class SampleCldtl {
 	private String sampno;
 	
 	@FieldDefine(title="搭配样衣序号",sort=50,hidden=false)
-	private Integer clspno;
+	private String clspno;
 	@FieldDefine(title="搭配说明",sort=50,hidden=false)
 	@Column(length=100,nullable=true,updatable=true)
 	private String clspmk;
@@ -78,11 +78,11 @@ public class SampleCldtl {
 		this.sampno = sampno;
 	}
 
-	public Integer getClspno() {
+	public String getClspno() {
 		return clspno;
 	}
 
-	public void setClspno(Integer clspno) {
+	public void setClspno(String clspno) {
 		this.clspno = clspno;
 	}
 

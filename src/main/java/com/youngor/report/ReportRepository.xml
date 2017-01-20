@@ -304,5 +304,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           group by b.sampnm1 ,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr ,c.yxgsnm,d.spsuno
           order by B.sampnm1,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno
     </select>
+    
+    
+    <select id="printDaPei"  resultType="map" parameterType="map">
+    	SELECT clppnm,yxgsnm,spclno,sum(dpmtqt) dpmtqt,sum(ormtqt) ormtqt
+		FROM V_ORD_DPDTL 
+		where ormtno=#{ormtno} --and dpmtqt>0
+		group by clppnm,yxgsnm,spclno
+		order by clppnm,yxgsnm,spclno
+    </select>
 </mapper>
 

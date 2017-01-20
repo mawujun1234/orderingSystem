@@ -106,18 +106,25 @@ public class SamplePlanController {
 //		return id;
 //	}
 	
-	@RequestMapping("/samplePlan/destroy.do")
-	//@ResponseBody
-	public SamplePlan destroy(@RequestBody SamplePlan samplePlan) {
-		samplePlanService.delete(samplePlan);
-		return samplePlan;
+//	@RequestMapping("/samplePlan/destroy.do")
+//	//@ResponseBody
+//	public SamplePlan destroy(@RequestBody SamplePlan samplePlan) {
+//		samplePlanService.delete(samplePlan);
+//		return samplePlan;
+//	}
+	@RequestMapping("/samplePlan/destroyBatch.do")
+	@ResponseBody
+	public String destroyBatch(String[] plspnos) {
+		samplePlanService.destroyBatch(plspnos);
+		return "{success:true}";
 	}
 	
 	
 	@RequestMapping("/samplePlan/lockOrunlock.do")
 	@ResponseBody
-	public void lockOrunlock(String plspno,Integer plspst) {
-		samplePlanService.lockOrunlock(plspno, plspst);
+	public void lockOrunlock(String[] plspnos,Integer plspst) {
+		
+		samplePlanService.lockOrunlock(plspnos, plspst);
 	}
 	
 	@RequestMapping("/samplePlan/export.do")

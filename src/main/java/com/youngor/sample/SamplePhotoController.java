@@ -1,5 +1,4 @@
 package com.youngor.sample;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -103,25 +102,39 @@ public class SamplePhotoController {
 		//response.getWriter().write("{\"success\":true}");
 		return map;
 	}
+//	/**
+//	 * 匹配文件中存在的缩略图
+//	 * @author mawujun qq:16064988 mawujun1234@163.com
+//	 * @param id
+//	 */
+//	@RequestMapping("/samplePhoto/thumbPP.do")
+//	public void createThumb(String id) {
+//		List<SamplePhoto> list=samplePhotoService.queryAll();
+//		for(SamplePhoto photo:list){
+//			String imgnm=photo.getImgnm();
+//			imgnm=imgnm.replace("/photoes/201607/", "/photoes/201607/thumb/");
+//			//System.out.println("F:\201607\thumb"+imgnm);
+//			File file=new File("F:"+imgnm);
+//			if(file.exists()){
+//				//System.out.println(file.getAbsolutePath());
+//				samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+//			}
+//			//String aaa[]=imgnm.split("/");
+//		}
+//	}
 	/**
-	 * 匹配文件中存在的缩略图
+	 * 生成缩略图
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @param id
 	 */
-	@RequestMapping("/samplePhoto/thumbPP.do")
-	public void createThumb(String id) {
-		List<SamplePhoto> list=samplePhotoService.queryAll();
-		for(SamplePhoto photo:list){
-			String imgnm=photo.getImgnm();
-			imgnm=imgnm.replace("/photoes/201607/", "/photoes/201607/thumb/");
-			//System.out.println("F:\201607\thumb"+imgnm);
-			File file=new File("F:"+imgnm);
-			if(file.exists()){
-				//System.out.println(file.getAbsolutePath());
-				samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
-			}
-			//String aaa[]=imgnm.split("/");
+	@RequestMapping("/samplePhoto/thumbCreate.do")
+	public void thumbCreate(String ormtno,String common_path) {
+		//String 
+		if(common_path==null || "".equals(common_path)){
+			common_path="/opt/apache-tomcat-8.0.36/webapps";
 		}
+		samplePhotoService.thumbCreate(ormtno,common_path);
+		samplePhotoService.thumbCreate_dapei(ormtno,common_path);//还没有根据订货会进行过滤，以后请修改
 	}
 	
 	
