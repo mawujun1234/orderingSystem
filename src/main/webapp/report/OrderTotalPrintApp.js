@@ -1,7 +1,32 @@
 
 Ext.onReady(function(){
 	
-	
+		 var store=Ext.create('Ext.data.Store',{
+			autoSync:false,
+			pageSize:50,
+			autoLoad:false,
+			fields:['SPCLNM','SPTYNM','SPSENM','SPRSENM','SPSEANM','SPBANM','SAMPNM',
+			
+			'SPCTPR','ORMTQT'],
+			proxy:{
+				type: 'ajax',
+			    url : Ext.ContextPath+'/report/orderTotalPrint/query.do',
+			    headers:{ 'Accept':'application/json;'},
+			    actionMethods: { read: 'POST' },
+			    extraParams:{limit:50},
+			    reader:{
+					type:'json',
+					rootProperty:'root',
+					successProperty:'success',
+					totalProperty:'total'
+				}
+			},
+			listeners:{
+				load:function(store,records){
+				
+				}
+			}
+	});
 	var dockedItems=[];
 	
 	dockedItems.push({
@@ -227,32 +252,7 @@ Ext.onReady(function(){
 //		});
 //	  });
 	  
-	 var store=Ext.create('Ext.data.Store',{
-			autoSync:false,
-			pageSize:50,
-			autoLoad:false,
-			fields:['SPCLNM','SPTYNM','SPSENM','SPRSENM','SPSEANM','SPBANM','SAMPNM',
-			
-			'SPCTPR','ORMTQT'],
-			proxy:{
-				type: 'ajax',
-			    url : Ext.ContextPath+'/report/orderTotalPrint/query.do',
-			    headers:{ 'Accept':'application/json;'},
-			    actionMethods: { read: 'POST' },
-			    extraParams:{limit:50},
-			    reader:{
-					type:'json',
-					rootProperty:'root',
-					successProperty:'success',
-					totalProperty:'total'
-				}
-			},
-			listeners:{
-				load:function(store,records){
-				
-				}
-			}
-	});
+
 	var grid=Ext.create('Ext.grid.Panel',{
 		region:'center',
 		columnLines :true,

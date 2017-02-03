@@ -17,5 +17,4 @@ umount /opt/apache-tomcat-8.0.36/webapps/photoes
 
 ---scp -r 201607 root@192.168.188.22:/opt/apache-tomcat-8.0.36/webapps/photoes
 
-从164拷贝照片到测试库：
-scp -r 201701 root@192.168.188.44:/opt/apache-tomcat-8.5.6/webapps/photoes
+

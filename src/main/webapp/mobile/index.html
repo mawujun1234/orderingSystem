@@ -156,7 +156,7 @@
                   </div><!--card --> 
 
                   <!-- 搭配开始 -->
-                  <div class="card" id="od_info_sampleClhdVOs" style="display:none;">
+                  <div class="card" id="od_info_sampleClhdVOs" style="display:none;min-height:3rem;">
                      <div class="card-header"> 搭配信息 </div>
                      <!-- Swiper -->
                      <div class="swiper-container" data-space-between='10'>
@@ -186,7 +186,7 @@
                                     <div id="od_info_{{ suitVO.suitno_name }}_label" class="item-title label" onClick="card_card__header_item__title_label(this)" style="width:5rem;font-weight:bold;">{{ suitVO.suitno_name }}-数量:</div>
                                     <div class="item-input">
                                     <!-- 17.01.18取消了onClick="card_header_input_click(this)"-->
-                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt"  type="number" placeholder="请输入总订货数量" v-model="suitVO.ormtqt">
+                                      <input id="od_info_{{ suitVO.suitno }}_input" data-index="{{$index}}" v-on:change="distributeormtqt"  type="number" placeholder="请输入总订货数量" v-model="suitVO.ormtqt"  oninput="showOd_info_unsave_tips(true)">
                                     </div>
                                     <span class="icon icon-up" onClick="card_header_item_content_icon(this)"></span>
                                   </div>

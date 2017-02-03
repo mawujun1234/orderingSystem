@@ -88,6 +88,8 @@ public class ReportController {
 		titles.put("SPSENM","系列");
 		titles.put("SPRSENM","风格");
 		titles.put("SPSEANM","季节");
+		titles.put("SPLCNM","定位");
+		titles.put("PLGRNM","商品等级");
 		titles.put("SPBANM","上市批次");
 		titles.put("SAMPNM","订货样衣编号");
 		titles.put("PRODNM","成品货号");
@@ -199,6 +201,8 @@ public class ReportController {
 		titles.put("SPCLNM","大类");
 		titles.put("SPTYNM","小类");
 		titles.put("SPSENM","系列");
+		titles.put("SPLCNM","定位");
+		titles.put("PLGRNM","商品等级");
 
 
 
@@ -504,7 +508,7 @@ public class ReportController {
         spclno_list.add(new String[]{"03","裤子"});
         spclno_list.add(new String[]{"06","领带"});
         spclno_list.add(new String[]{"07","鞋包"});
-        spclno_list.add(new String[]{"all","套件小计"});
+        spclno_list.add(new String[]{"all","套数小计"});
         //252是可以设置的最大宽度
         int col_unm=spclno_list.size();
 		int width=252/col_unm;

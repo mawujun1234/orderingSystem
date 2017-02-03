@@ -381,7 +381,7 @@ $(function(){
 $(function(){
 	//显示或隐藏 未保存提示框
 	window.od_info_data_issaved_bool=true;
-	function showOd_info_unsave_tips(bool){
+	function showOd_info_unsave_tips(bool){//alert(1);
 		window.od_info_data_issaved_bool=!bool;
 		if(bool){
 			$("#od_info_unsave_tips").show();
@@ -391,6 +391,7 @@ $(function(){
 			$("#od_info_save_button").addClass("disabled");
 		}
 	}
+	window.showOd_info_unsave_tips=showOd_info_unsave_tips;
 	//判断能否切换页面或者重新扫描，如果未保存的话
 	//返回true，表示可以进行切换
 	function od_info_data_issaved() {
@@ -447,14 +448,39 @@ $(function(){
 		if(window.od_info_swipe_container){
 			window.od_info_swipe_container.destroy(false);	
 		}
+		//$("#od_info .swiper-pagination").html("");
+		
+
+		
 		window.od_info_swipe_container= new Swiper('#od_info .swiper-container', {
-					pagination: '.swiper-pagination',
+					pagination: '#od_info .swiper-pagination',
 					slidesPerView: 1,
 					paginationClickable: false,
 					spaceBetween: 30
 				});  
 		
 	}
+	function initDapei_info(){
+		if(window.vm_dapei_info){
+			//$("#dapei_info .swiper-pagination").html("");
+			//window.vm_dapei_info.$data={imgnm:"",sampleCldtlVOs:[]};
+		}
+			window.dapei_info_swipe_container = new Swiper('#dapei_info .swiper-container', {
+				pagination: '#dapei_info .swiper-pagination',
+				//centeredSlides: true,
+				slidesPerView: 3,
+				//loop: true ,
+				paginationClickable: true,
+				spaceBetween: 30
+				,observer:true,//修改swiper自己或子元素时，自动初始化swiper  
+				observeParents:true,//修改swiper的父元素时，自动初始化swiper  
+				onSlideChangeEnd: function(swiper){  
+					//window.dapei_info_swipe_container.update();  
+				}  
+				//initialSlide:0
+			});
+	}
+	window.initDapei_info=initDapei_info;
 	//点击的时候跳转到，搭配的相信页面
 	window.queryDapei_mx=function(a){
 		$.post(Ext.ContextPath+"/ord/mobile/queryMxByClppno.do",{clppno:$(a).attr("clppno")},function(response){
@@ -476,18 +502,17 @@ $(function(){
 							}	
 						}
 					});
-				}
+				}//alert(1);
+				//if(!window.dapei_info_swipe_container){
+					setTimeout("initDapei_info()",600);
+				//}
+				
 			}
 		});
 	}
 	$(document).on("pageInit", function(e, pageId, $page) {
 		  if(pageId == "dapei_info") {
-			var swiper = new Swiper('#dapei_info .swiper-container', {
-				pagination: '.swiper-pagination',
-				slidesPerView: 3,
-				paginationClickable: true,
-				spaceBetween: 30
-			});
+			 //initDapei_info();
 		  } else if(pageId == "od_info"){
 			initDapei_od_info(); 
 		  }
@@ -555,7 +580,7 @@ $(function(){
 					  data:{suitVOs:response.suitVOs},//{suitvos:response.suitVOs}
 					  methods: {
 						distributeormtqt:function(event){
-							showOd_info_unsave_tips(true);
+							//showOd_info_unsave_tips(true);
 							
 							var vm=this;
 							var index=event.target.dataset.index;
@@ -674,6 +699,7 @@ $(function(){
 			return;
 		}
 		
+		
 		$.showPreloader("正在保存订货信息...");
 		var suitVOs=window.vm_od_info_suitVOs.suitVOs;
 		//console.log(suitVOs);
@@ -696,16 +722,11 @@ $(function(){
 			}
 			aa+=orszqt_sum;
 		}
-//		if(window.vm_sampleVO.abstat==1 && aa==0){
-//			$.alert("必定款的数量不能输入0");
-//			$.hidePreloader();
-//			return;
-//		}
-		
-		//console.log(data["suitVOs"]);
-		//$.post(Ext.ContextPath+"/ord/mobile/create.do",suitVOs,function(response){
-			
-		//},"json");
+		//如果没有填数量，就不进行保存了
+		if(!aa){
+			return;
+		}
+
 		$.ajax({
 			type:'post',
 			url:Ext.ContextPath+"/ord/mobile/createOrddtl.do",

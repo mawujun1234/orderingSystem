@@ -654,15 +654,24 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           
     </resultMap>  
     <!-- 按照出样样衣编号进行统计，统计套件的时候，要排除领带和鞋包大类-->
+   <!--<select id="queryDapei" parameterType="map" resultMap="queryDapei_map">
+   	    SELECT X.*,nvl(Y.imgnm,'./images/no_photo.jpg') dapei_imgnm
+	    FROM V_ORD_DPDTL X
+	    LEFT JOIN (select a.* from ORD_SAMPLE_CLPHT a
+	where not exists(select 1 from ORD_SAMPLE_CLPHT b where a.CLPPNO=b.CLPPNO and a.id>b.id)) Y ON X.clppno=Y.clppno
+	    where ormtno='201701' 
+	    AND ORDORG='QY0010'
+   </select> -->
    <select id="queryDapei" parameterType="map" resultMap="queryDapei_map">
    		select x.clppnm,x.dapei_imgnm ,x.sampnm1 sampnm,x.imgnm ,sum(Z.ORMTQT) num ,sum(Z.ORMTQT) num_dh from (
 	    select a.clppnm,b.clspno,b.sampno,d.sampnm1,nvl(c.imgnm,'./images/no_photo.jpg') dapei_imgnm,nvl(e.imgnm,'./images/no_photo.jpg') imgnm from ORD_SAMPLE_CLHD a
 	    inner join ORD_SAMPLE_CLDTL b on a.clppno=b.clppno
 	    inner join ORD_SAMPLE_design d on b.sampno=d.sampno
+	    inner join ORD_SAMPLE_PLAN F on D.PLSPNO=F.PLSPNO
 	    left join ORD_SAMPLE_CLPHT c on a.clppno=c.clppno
 	    left join (select a.* from Ord_Sample_Photo a
 	                     where not exists(select 1 from Ord_Sample_Photo b where a.sampno=b.sampno and a.id>b.id)) e on b.sampno=e.sampno
-	    where a.ormtno=#{ormtno} and a.clppst=1
+	    where a.ormtno=#{ormtno} and a.clppst=1  AND F.SPCLNO NOT IN('06','07')
 	    order by a.CLPPNO,b.clspno
 	    ) x left join (
 	    select b.SAMPNO,b.ORMTQT from ORD_ORD a
@@ -680,7 +689,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    group by x.clppnm,x.dapei_imgnm ,x.sampnm1 ,x.imgnm
 	    order by x.clppnm,x.sampnm1
    </select>
-   
+  
    <select id="queryQY" parameterType="map" resultType="map">
    	select A.ORGNO AS QYNO,A.ORGNM AS QYNM from t_org a,t_org_org b
     where a.orgno=b.child_no and b.parent_no=#{yxgsno} and dim='SALE' AND A.ORGST='KQ'

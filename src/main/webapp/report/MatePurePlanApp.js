@@ -6,7 +6,7 @@ Ext.onReady(function(){
 			autoLoad:false,
 			fields:['SAMPNM','PRODNM','IDSUNM','NWSUNM','MTTYPE','MATENO','MLITNO','MATESO','PLDATE','MLDATE','MTPUPR',
 				'MTCOMP','YARMCT','MLWDTH','ORMTQT','MTCNQT','ORMLQT','HTTRQT','HTORDT',
-				'SPSEANM','COLRNM','VERSNM','SPBSENM','SPCLNM','SPTYNM','SPSENM'],
+				'SPSEANM','COLRNM','VERSNM','SPBSENM','SPCLNM','SPTYNM','SPSENM','SPLCNM'],
 			proxy:{
 				type: 'ajax',
 			    url : Ext.ContextPath+'/report/queryMatePurePlan.do',
@@ -201,7 +201,9 @@ Ext.onReady(function(){
 			{dataIndex:'SPBSENM',header:'大系列'},
 			{dataIndex:'SPCLNM',header:'大类'},
 			{dataIndex:'SPTYNM',header:'小类'},
-			{dataIndex:'SPSENM',header:'系列'}
+			{dataIndex:'SPSENM',header:'系列'},
+			{dataIndex:'SPLCNM',header:'定位'},
+			{dataIndex:'PLGRNM',header:'商品等级'}
 		]
 		
 	});

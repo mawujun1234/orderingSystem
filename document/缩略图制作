@@ -2,6 +2,11 @@
 2：更新表结构，插入缩略图的thume字段SamplePhotoController.java
 
 
-
+从164拷贝照片到测试库：
+cd /public/scm/YangYTP
+scp -r 201701 root@192.168.188.44:/opt/apache-tomcat-8.5.6/webapps/photoes
+--测试库
 http://192.168.188.44:8080/test/samplePhoto/thumbCreate.do?common_path=/opt/apache-tomcat-8.5.6/webapps&ormtno=201701
-http://192.168.188.35:8080/test/samplePhoto/thumbCreate.do?common_path=/opt/apache-tomcat-8.0.36/webapps&ormtno=201701
+
+--正式库
+http://192.168.188.35:8086/samplePhoto/thumbCreate.do?common_path=/opt/apache-tomcat-8.0.36/webapps&ormtno=201701

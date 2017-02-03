@@ -12,6 +12,7 @@ expdp backup/oracle  schemas=od  directory=backup_dir dumpfile=odd.dmp logfile=x
 sqlplus / as sysdba
 select 'alter system kill session '''||b.sid||','||b.serial#||''' immediate; ' from v$session b where USERNAME='ODTEST';
 drop user odtest cascade;
+exit
 
 #shell
 impdp backup/oracle  REMAP_SCHEMA=od:odtest  directory=backup_dir dumpfile=odd.dmp logfile=xxbfullexp.log

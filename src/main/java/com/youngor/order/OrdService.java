@@ -336,21 +336,22 @@ public class OrdService extends AbstractService<Ord, String>{
 			if(suitVO.getOrmtqt()!=suitVO.geetOrmtqt_sum()){
 				throw new BusinessException("总订货数和明细数据不一致，不能保存!");
 			}
-			
-			if("T00".equals(suitVO.getSuitno()) || "T01".equals(suitVO.getSuitno())){
-				Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
-				//判断样衣所在区域是否订了这个货，如果没定，必须是整箱定
-				int count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),suitVO.getSampno());
-				if(count==0){
-					//获取对应的样衣的包装要求
-					SampleDesign sampleDesign=sampleDesignRepository.get(suitVO.getSampno());
-					if(sampleDesign.getPackqt()==null || sampleDesign.getPackqt()==0){
-						throw new BusinessException("该样衣的<包装要求>不能为0，请联系大类管理员！");
+			if(Chancl.TX.toString().equals(ord.getChanno())){
+				if("T00".equals(suitVO.getSuitno()) || "T01".equals(suitVO.getSuitno())){
+					Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+					//判断样衣所在区域是否订了这个货，如果没定，必须是整箱定
+					int count=	ordRepository.order_dl__order_isqy(ord.getOrmtno(),org.getOrgno(),suitVO.getSampno());
+					if(count==0){
+						//获取对应的样衣的包装要求
+						SampleDesign sampleDesign=sampleDesignRepository.get(suitVO.getSampno());
+						if(sampleDesign.getPackqt()==null || sampleDesign.getPackqt()==0){
+							throw new BusinessException("该样衣的<包装要求>不能为0，请联系大类管理员！");
+						}
+						if((suitVO.getOrmtqt()%sampleDesign.getPackqt())!=0){
+							throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求:"+sampleDesign.getPackqt()+"）订货！");
+						}
+						
 					}
-					if((suitVO.getOrmtqt()%sampleDesign.getPackqt())!=0){
-						throw new BusinessException("所在区域未订货，该货号必须整箱（包装要求:"+sampleDesign.getPackqt()+"）订货！");
-					}
-					
 				}
 			}
 		}
@@ -362,6 +363,7 @@ public class OrdService extends AbstractService<Ord, String>{
 //		     女 套西：上衣，裤子，裙子      (上衣=裤子=裙子)
 //		    可根据样衣的套件规格组判断； 
 		SampleVO sampleVO= ord.getSampleVO();
+		
 		//if(suitVOs.length>1){
 		if("S10".equals(sampleVO.getSptyno())){	
 			int T02_ormtqt=0;//裤子的数量

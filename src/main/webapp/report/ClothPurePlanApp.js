@@ -202,6 +202,8 @@ Ext.onReady(function(){
 			{dataIndex:'SPSENM',header:'系列'},
 			{dataIndex:'SPRSENM',header:'风格'},
 			{dataIndex:'SPSEANM',header:'季节'},
+			{dataIndex:'SPLCNM',header:'定位'},
+			{dataIndex:'PLGRNM',header:'商品等级'},
 			{dataIndex:'SPBANM',header:'上市批次'},
 			{dataIndex:'SAMPNM',header:'订货样衣编号'},
 			{dataIndex:'PRODNM',header:'成品货号'},
