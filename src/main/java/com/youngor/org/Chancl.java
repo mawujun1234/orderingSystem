@@ -6,7 +6,7 @@ package com.youngor.org;
  *
  */
 public enum Chancl {
-	ZY("自营"),SC("商场"),TX("特许"),WX("网销")
+	ZY("自营"),SC("商场"),TX("特许"),WX("网销"),GW("专卖")
 	,GSBB("公司本部"),YXGS("营销公司"),FGS("分公司"),QY("区域"),PQ("片区"),FS("服饰"),CK("仓库"),OTH("其他")
 	,DEPT("部门"),WZ(""),QT("其他");
 

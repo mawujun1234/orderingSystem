@@ -21,6 +21,7 @@ Ext.onReady(function(){
 	window.onlineling=function() {
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/user/onlineling.do',
+			headers:{ 'Accept':'application/json;'},
 			success:function(response){
 				var obj=Ext.decode(response.responseText);
 				if(!obj.success){
@@ -29,9 +30,9 @@ Ext.onReady(function(){
 			}
 			
 		});
-		setTimeout("onlineling()",300000);
+		setTimeout("onlineling()",60000);//
 	}
-	setTimeout("onlineling()",600000);
+	setTimeout("onlineling()",60000);//6000000
 
 		
 		

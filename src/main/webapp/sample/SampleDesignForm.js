@@ -531,6 +531,8 @@ Ext.define('y.sample.SampleDesignForm',{
 				       	//这里需要测试，当新建成功后，成衣里面能不能出现标准的套件
 				       	//formpanel.getForm().updateRecord();
 				       	obj.sampleDesign.plspnm=plspnm;
+				       	obj.sampleDesign.sptyno=tabpanel.down("form#samplePlanFormQuery").getForm().getRecord().get("sptyno");//.findField("sptyno_name").getValue();
+				       	//alert(obj.sampleDesign.sptyno);
 				       	var user = Ext.create('y.sample.SampleDesign', obj.sampleDesign);
 				       	user.set("sampst",1);
 				       	tabpanel.down("#sampleColthForm").loadGrid(user);

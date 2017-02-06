@@ -10,5 +10,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		 select max(sizeno) from ORD_SIZE
  		where ormtno=#{ormtno} and ysizety=#{ysizety} and ysizeno=#{ysizeno}
 	</select>
+	<select id="sizeInSample" parameterType="map" resultType="int">
+		 select count(*) from ORD_SAMPLE_DESIGN_SIZEGP where sizegp=#{sizeno}
+	</select>
 </mapper>
 

@@ -219,7 +219,7 @@
                               <div class="item-inner">
                                 <div class="item-title label" style="width:60%;">{{sizeVO.sizenm}}<span style="font-size:0.6rem;color:gray;">({{sizeVO.szrate}})</span></div>
                                 <div class="item-input">
-                                  <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" >
+                                  <input type="number" min="0" placeholder="{{sizeVO.sizenm}}的订货数量" v-model="sizeVO.orszqt" data-suitno="{{ suitVO.suitno }}" v-on:change="sumOrszqt" oninput="showOd_info_unsave_tips(true)">
                                 </div>
                               </div>
                             </div>
@@ -796,7 +796,7 @@
     <script type='text/javascript' src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js' charset='utf-8'></script>
     <script type='text/javascript' src='./js/vue.js' charset='utf-8'></script>
     <script src="./swiper/js/swiper.min.js"></script>
-    <script type='text/javascript' src='mobile.js?v=20160725' charset='utf-8'></script>
+    <script type='text/javascript' src='mobile.js?v=20170206' charset='utf-8'></script>
      <script type='text/javascript' src='./report/report.js?v=20160725' charset='utf-8'></script>
     
 	

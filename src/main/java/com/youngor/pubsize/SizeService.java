@@ -2,6 +2,7 @@ package com.youngor.pubsize;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -75,5 +76,9 @@ public class SizeService extends AbstractService<Size, String>{
 		//复制明细数据
 		sizeDtlRepository.copyByFszno(sizeOld.getSizeno(), size.getSizeno(), ordmt.getOrmtno(), size.getLmsp());
 		
+	}
+	
+	public int sizeInSample(@Param("sizeno")String sizeno) {
+		return sizeRepository.sizeInSample(sizeno);
 	}
 }

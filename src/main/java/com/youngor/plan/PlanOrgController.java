@@ -172,7 +172,7 @@ public class PlanOrgController {
 		Font font = wb.createFont();
 	    //font.setFontHeightInPoints((short)14);
 	    font.setFontName("Courier New");
-	    font.setBold(true);
+	    //font.setBold(true);
 	    cellStyle.setFont(font);
 		 
 		Row title0 = sheet1.createRow((short)0);

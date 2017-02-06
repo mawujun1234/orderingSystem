@@ -71,7 +71,7 @@ Ext.define('y.ordmt.OrdOrgGrid',{
       ];
       
 
-	  me.store=Ext.create('Ext.data.Store',{
+	  var store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
 			autoLoad:false,
@@ -90,11 +90,12 @@ Ext.define('y.ordmt.OrdOrgGrid',{
 				}
 			}
 	  });
+	  me.store=store;
 
 	  me.dockedItems=[];
       me.dockedItems.push({
 	        xtype: 'pagingtoolbar',
-	        store: me.store,  
+	        store: store,  
 	        dock: 'bottom',
 	        displayInfo: true
 	  });

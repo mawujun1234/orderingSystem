@@ -693,6 +693,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
    <select id="queryQY" parameterType="map" resultType="map">
    	select A.ORGNO AS QYNO,A.ORGNM AS QYNM from t_org a,t_org_org b
     where a.orgno=b.child_no and b.parent_no=#{yxgsno} and dim='SALE' AND A.ORGST='KQ'
+    and a.orgty='REGN'
    </select>
    <!-- 营销公司点击区域看区域样衣编号订货明细数据的时候-->
     <select id="queryDapei_yxgs_list" parameterType="map" resultType="com.youngor.report.mobile.ReportDapeiList">

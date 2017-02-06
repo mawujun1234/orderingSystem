@@ -2,6 +2,7 @@ package com.youngor.config;
 
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Executor;
@@ -70,14 +71,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter implements SchedulingConf
 		registry.addConverter(new DateConverter());
     }
 
-	/**
-	 * 主要用于@ResponseBody和@RequestBody的时候，或�?�请求发过来的content-type是applicaiton/json的时�?
-	 */
+	
 	@Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter(getObjectMapper()));
-        
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {    
         converters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
+        converters.add(new MappingJackson2HttpMessageConverter(getObjectMapper()));
     }
 	
 	@Override

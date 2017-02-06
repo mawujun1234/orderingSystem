@@ -315,7 +315,7 @@ public class ReportController {
 
 		File reportFile = new File(reportFilePath);
 
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());//(reportFile.getPath());
 
 		JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport,
 				rpt_params, new JRBeanCollectionDataSource(list));

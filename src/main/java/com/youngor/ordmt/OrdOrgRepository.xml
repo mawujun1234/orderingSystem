@@ -7,9 +7,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.ordmt.OrdOrgRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPage" resultType="com.youngor.ordmt.OrdOrg" parameterType="map">
-    	select a.*,b.orgnm,b.yxgsnm,c.channm,d.loginname,d.pwd from ORD_ORG a,v_ord_org b,t_org_chancl c,t_user d
-    	where a.ordorg=b.orgno and a.channo=c.channo and lower(a.ordorg)=lower(d.loginname)  and a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
-    	
+
+    	 select a.*,b.orgnm,b.yxgsnm,c.channm,d.loginname,d.pwd 
+           from ORD_ORG a
+           inner join v_ord_org b on a.ordorg=b.orgno
+           inner join t_org_chancl c on  a.channo=c.channo
+           left join t_user d on lower(a.ordorg)=lower(d.loginname) 
+        where a.ormtno=#{ormtno} and b.yxgsno=#{yxgsno}
     	<if test="channo!=null and channo!=''">
     		 and a.channo=#{channo}
     	</if>

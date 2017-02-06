@@ -599,6 +599,9 @@ Ext.define('y.sample.SampleDesignGrid',{
     		bradno:toolbars[0].down("#bradno").getValue(),
     		spclno:toolbars[0].down("#spclno").getValue()
     	});
+    	samplePlanGridQuery.down("#sptyno").reload(samplePlanGridQuery.spclno);
+    	samplePlanGridQuery.down("#spseno").reload(samplePlanGridQuery.spclno);
+    	
     	samplePlanGridQuery.on("itemdblclick",function(view, record, item, index, e, eOpts){
     		
 			tabpanel.setTitle("新增样衣:"+record.get("plspnm"));

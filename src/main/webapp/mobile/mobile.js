@@ -724,7 +724,7 @@ $(function(){
 		}
 		//如果没有填数量，就不进行保存了
 		if(!aa){
-			return;
+			//return;
 		}
 
 		$.ajax({
@@ -735,6 +735,7 @@ $(function(){
 			contentType :'application/json;charset=utf-8',
 			//header 
 			success:function(response, status, xhr) {
+				//alert(response);
 				if(response.success==false){
 					//$.toast(response.msg);
 					$.hidePreloader();
@@ -743,6 +744,9 @@ $(function(){
 				$.toast("保存成功!");
 				$.hidePreloader();
 				showOd_info_unsave_tips(false);
+			},
+			error:function(){
+				alert(2);	
 			}
 		});
 	});
@@ -783,12 +787,15 @@ $(function(){
 	
 	$("#od_mypage_confirm_button").click(function(){
 		$.confirm("确定完成订货吗?", function(){
+			$.showPreloader("正在完成订货...");
 		$.post(Ext.ContextPath+"/ord/mobile/confirm.do",{},function(response){
+			$.hidePreloader();
 			//od_mypage_myinfo_card
 			if(response.success==false){
 	//			if(response.msg=="none_abstat"){
 //					$.router.load("#none_abstat");
 //				}
+				$.alert("提交失败!");
 				return ;
 			}
 			//$("#od_mypage_confirm_button").hide();

@@ -30,7 +30,6 @@ import com.mawujun.utils.page.Pager;
 import com.youngor.ordmt.Ordmt;
 import com.youngor.org.Org;
 import com.youngor.permission.ShiroUtils;
-import com.youngor.permission.UserController;
 import com.youngor.sample.SampleCldtlVO;
 import com.youngor.utils.ContextUtils;
 import com.youngor.utils.MapParams;
@@ -87,7 +86,7 @@ public class OrdController {
 	public String createOrddtl(@RequestBody SuitVO[] suitVOs) {
 		//System.out.println(suitVOs.length);
 		ordService.createOrddtl(suitVOs);
-		return "success";
+		return "{\"success\":true}";
 	}
 	
 	@RequestMapping("/ord/mobile/clearSampno.do")
@@ -95,7 +94,7 @@ public class OrdController {
 	public String clearSampno(String sampno) {
 		//System.out.println(suitVOs.length);
 		ordService.mobile_clearSampno(sampno);
-		return "success";
+		return "{\"success\":true}";
 	}
 	
 	
@@ -106,7 +105,7 @@ public class OrdController {
 		Map<String,Object> result=ordService.checked_closeing_info();
 		
 		//这个是测试用的，别忘记删除
-		result.put("canConfirm", 0);
+		//result.put("canConfirm", 0);
 		return result;
 	}
 	
@@ -120,7 +119,7 @@ public class OrdController {
 	@ResponseBody
 	public String confirm() {
 		ordService.confirm();
-		return "{success:true}";
+		return "{\"success\":true}";
 	}
 	/**
 	 * 二次订货后，订单完成的时候
@@ -131,7 +130,7 @@ public class OrdController {
 	@ResponseBody
 	public String confirm2() {
 		ordService.confirm2();
-		return "{success:true}";
+		return "{\"success\":true}";
 	}
 	
 	
@@ -233,7 +232,7 @@ public class OrdController {
 	@ResponseBody
 	public String confirm_yxgs() {
 		ordService.yxgs_confirm();
-		return "{success:true}";
+		return "{\"success\":true}";
 	}
 	
 	/**

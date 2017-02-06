@@ -316,6 +316,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      	update ORD_ORDSZDTL a set MLORNO =
 		(select distinct MLORNO from ORD_ORDDTL b 
 		where a.MTORNO=b.MTORNO and a.SAMPNO=b.SAMPNO and b.mtorno=#{mtorno})
+		where a.MTORNO=#{mtorno}
      </update>
      
      <!-- 因为其他品牌不走，二次平衡过程，所以先写死，只走雅戈尔品牌 -->

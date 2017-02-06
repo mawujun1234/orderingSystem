@@ -129,12 +129,21 @@ public class UserController {
             subject.login(token);  
         } catch (UnknownAccountException e) {  
             error = "用户名/密码错误";  
+            model.put("msg", error);
+        	model.put("success", false);
+        	return model;
         } catch (IncorrectCredentialsException e) {  
             error = "用户名/密码错误";  
+            model.put("msg", error);
+        	model.put("success", false);
+        	return model;
         } catch (AuthenticationException e) {  
             //其他错误，比如锁定，如果想单独处理请单独catch处理  
             error = "认证失败，账号不存在!";  
             e.printStackTrace();
+            model.put("msg", error);
+        	model.put("success", false);
+        	return model;
         }  
 		
 		//显示调用这个，来初始化ShiroAuthorizingRealm中的doGetAuthorizationInfo方法，来获取用户可以访问的资源,否则将不会调用doGetAuthorizationInfo

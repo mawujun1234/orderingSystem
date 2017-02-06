@@ -56,6 +56,10 @@ $(function(){
 				od_yxgs_confirm_btn.show().css("display","block");
 				od_yxgs_confirm_btn.html("订单已确认");
 			}
+			
+			if(response.orgnm=="全国"){
+				$("#report_dapei_yxgs_link").hide();
+			}
 		},'json');
 	}
 	check();

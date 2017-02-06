@@ -14,4 +14,5 @@ public interface SizeRepository extends IRepository<Size, String>{
 	public String getCountByYsizeno(@Param("ormtno")String ormtno,@Param("ysizety")String ysizety,@Param("ysizeno")String ysizeno);
 
 
+	public int sizeInSample(@Param("sizeno")String sizeno);
 }

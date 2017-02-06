@@ -52,7 +52,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     <select id="query" resultType="com.youngor.report.OrderNumTotal" parameterType="map">
     	
 		<include refid="query_where"></include> 
-		order by e.yxgsnm ,e.qynm,e.orgnm,
+		order by E.ORGSO,e.yxgsnm ,e.qynm,e.orgnm,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
     </select> 
     <select id="query_count" resultType="int" parameterType="map">
@@ -84,7 +84,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
       	and exists ( select 1 from  t_role_user x,t_role_brand y
       		where x.role_id=y.role_id and d.bradno=y.itno and x.user_id=#{user_id} )
       	and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.ORDORG and d.user_id=#{user_id})
-		order by e.yxgsnm ,e.qynm,e.orgnm,
+		order by E.ORGSO,e.yxgsnm ,e.qynm,e.orgnm,
 		d.bradno,d.spclno,d.sptyno,d.spseno,c.colrno,d.spsean,d.spbano,c.versno,b.suitno
    </select>
 </mapper>

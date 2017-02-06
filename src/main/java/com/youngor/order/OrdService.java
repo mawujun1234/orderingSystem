@@ -567,7 +567,12 @@ public class OrdService extends AbstractService<Ord, String>{
 		//订单号
 		String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());
 		//获取已有品牌大类的审批版本号
-		String mlorvn=ordRepository.confirm2_get_mlorvn(mtorno);
+		String mlorvn=null;
+		try {
+				mlorvn=ordRepository.confirm2_get_mlorvn(mtorno);
+		} catch(Exception e) {
+			throw new BusinessException("订单版本不一致，请联系管理员更改!");
+		}
 		//为订单明细表生成审批订单号，和版本号
 		ordRepository.confirm2_updateMtornoMlorvn(mtorno,mlorvn);
 		//为订单规格明细更新审批订单号

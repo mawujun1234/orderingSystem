@@ -106,6 +106,10 @@ public class SizeController {
 		if (!ordmt.isBeforeMtstdt()) {
 			throw new BusinessException("订货会已经开始或结束，不能删除!");
 		}
+		//判断这个规格范围是否已经被引用，如果已经被引用就不能删除
+		if(sizeService.sizeInSample(size.getSizeno())>0){
+			throw new BusinessException("改规格范围已经被使用，不能删除!");
+		}
 
 		sizeService.delete(size);
 		return size;

@@ -66,7 +66,7 @@ public class PlanHdController {
 //		}
 
 		planHdService.onPass(ormtno, yxgsno, bradno, spclno);
-		return "success";
+		return "{success:true}";
 	}
 	
 	@RequestMapping("/planHd/exportHdGrid.do")
