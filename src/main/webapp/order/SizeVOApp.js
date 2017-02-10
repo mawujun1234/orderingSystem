@@ -2,7 +2,7 @@
 Ext.onReady(function(){
 	var panel=Ext.create('Ext.panel.Panel',{
 		region:'north',
-		height:120
+		height:160
 	});
 	window.load_num=0;
 	window.ordorg_load_num=0;
@@ -86,6 +86,12 @@ Ext.onReady(function(){
 		        		//ordorg.getStore().reload();
 		        		window.ordorg_load_num++;
 		        		reloadOrdorg();
+		        		if(record.get("channo")=='TX'){
+		        			panel.down("#sizeVO_auto_initsize").disable();
+		        		} else {
+		        			//panel.down("#sizeVO_auto_initsize").enable();
+		        		}
+		        		
 					}
 				}
 			 },{
@@ -372,11 +378,62 @@ Ext.onReady(function(){
 //					var grid=btn.up("grid");
 //    				grid.getStore().getProxy().extraParams=panel.getParams();
 //					grid.getStore().reload();
+					if(!panel.down("#ordorg").getValue()){
+						Ext.Msg.alert("消息","请先选择订货单位!");
+						return;
+					}
 					queryColumns();
 				},
 				iconCls: 'icon-refresh'
+			}]
+	});
+	panel.addDocked({
+		xtype: 'toolbar',
+	  	dock:'top',
+		items:[{
+				text: '初始化规格',
+				disabled:true,
+				itemId:'sizeVO_auto_initsize',
+				handler: function(btn){
+					//alert("存储过程还没写!");
+					//return;
+					var toolbars=panel.getDockedItems('toolbar[dock="top"]');
+					if(toolbars[0].down("#channo").getValue()=='TX'){
+						Ext.Msg.alert("消息","特许不准进行规格初始化!");
+						return;
+					}
+					
+					Ext.Msg.confirm("消息","是否确认把 "+toolbars[0].down("#ordorg").getRawValue()+"的"
+						+toolbars[1].down("#ortyno").getRawValue()+"的"
+						+toolbars[1].down("#bradno").getRawValue()+"的"
+						+toolbars[1].down("#spclno").getRawValue()+"大类   下的样衣规格 根据比例重新分配?",function(btnid){
+						if(btnid=='yes'){
+							Ext.Ajax.request({
+								url:Ext.ContextPath+"/ord/sizeVO/sizeVO_auto_initsize.do",
+								params:{
+									ormtno:grid.getStore().getProxy().extraParams.ormtno,
+									ortyno:grid.getStore().getProxy().extraParams.ortyno,
+									ordorg:grid.getStore().getProxy().extraParams.ordorg,
+									bradno:grid.getStore().getProxy().extraParams.bradno,
+									spclno:grid.getStore().getProxy().extraParams.spclno
+								},
+								success:function(response){
+								 	//console.log(response.responseText);
+									var obj=Ext.decode(response.responseText);
+									if(obj.success==false){
+										Ext.Msg.alert("消息",obj.msg);
+										return;
+									}
+									grid.getStore().reload();
+								}
+							});
+						}
+					});
+				},
+				iconCls: 'icon-certificate'
 			},{
 				text: '初始化成箱',
+				disabled:true,
 				itemId:'sizeVO_auto_box',
 				handler: function(btn){
 					//alert("存储过程还没写!");
@@ -410,9 +467,12 @@ Ext.onReady(function(){
 				iconCls: 'icon-suitcase'
 			},{
 				text: '提交审批',
+				disabled:true,
+				itemId:'sizeVO_submit_btn',
 				handler: function(btn){
 					//alert("存储过程还没写!");
 					//return;
+					
 					Ext.Msg.confirm("消息","根据 <span style='color:red;'>订单类型+订货单位+品牌+大类</span> 提交审批，提交后不允许修改规格数据，是否提交?",function(btnid){
 						if(btnid=='yes'){
 							Ext.Ajax.request({
@@ -442,7 +502,6 @@ Ext.onReady(function(){
 				iconCls: 'icon-edit'
 			}]
 	});
-	
 	function reloadOrdorg(){
 		if(window.ordorg_load_num>1){
 			var ordorg=panel.down("#ordorg");//combo.nextSibling("#ordorg");
@@ -603,6 +662,20 @@ Ext.onReady(function(){
 				}
 				//alert(obj.szstat);
 				window.szstat=obj.szstat;
+				if(obj.szstat==0){
+					
+					if(panel.down("#channo").getValue()=='TX'){
+		        		panel.down("#sizeVO_auto_initsize").disable();
+		        	} else {
+		        		panel.down("#sizeVO_auto_initsize").enable();
+		        	}
+					panel.down("#sizeVO_auto_box").enable();
+					panel.down("#sizeVO_submit_btn").enable();
+				} else {
+					panel.down("#sizeVO_auto_initsize").disable();
+					panel.down("#sizeVO_auto_box").disable();
+					panel.down("#sizeVO_submit_btn").disable();
+				}
 				
 			}
 		});

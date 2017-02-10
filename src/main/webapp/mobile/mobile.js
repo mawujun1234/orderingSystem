@@ -746,7 +746,7 @@ $(function(){
 				showOd_info_unsave_tips(false);
 			},
 			error:function(){
-				alert(2);	
+				alert("请求失败，请退出重新登录!");	
 			}
 		});
 	});

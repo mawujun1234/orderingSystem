@@ -698,6 +698,12 @@ public class OrdController {
 		ordService.sizeVO_auto_box(ormtno, ortyno, ordorg, bradno, spclno,suitno,sztype);
 		return "{success:true}";
 	}
+	@RequestMapping("/ord/sizeVO/sizeVO_auto_initsize.do")
+	@ResponseBody
+	public String sizeVO_auto_initsize(String ormtno,String ortyno,String ordorg,String bradno,String spclno){
+		ordService.sizeVO_auto_initsize(ormtno, ortyno, ordorg, bradno, spclno);
+		return "{success:true}";
+	}
 	/**
 	 * 提交审批
 	 * @author mawujun qq:16064988 mawujun1234@163.com

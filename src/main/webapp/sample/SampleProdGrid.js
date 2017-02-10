@@ -115,7 +115,7 @@ Ext.define('y.sample.SampleProdGrid',{
 	  me.store=Ext.create('Ext.data.Store',{
 			autoSync:false,
 			pageSize:50,
-			autoLoad:true,
+			autoLoad:false,
 			model: 'y.sample.SampleProd',
 			proxy:{
 				type: 'ajax',

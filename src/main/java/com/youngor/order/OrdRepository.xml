@@ -604,7 +604,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		INNER JOIN ORD_PUB_CODE E1 ON E1.TYNO='2' AND E1.FITNO=E.SPCLNO AND E1.ITNO=E.SPTYNO
 		INNER JOIN ORD_PUB_CODE E2 ON E2.TYNO='5' AND E2.FITNO=E.SPCLNO AND E2.ITNO=E.SPSENO
 		WHERE
-		A.ORMTNO=#{ormtno}  and (C.ORMTQT!=0 or C.ORMTQS!=0) and DECODE(A.ORTYNO,'BW',1,1)=1
+		A.ORMTNO=#{ormtno}  and (C.ORMTQT!=0 or C.ORMTQS!=0) --and DECODE(A.ORTYNO,'BW',1,1)=1
 		AND E.BRADNO=#{bradno}  AND E.SPCLNO=#{spclno} and b.isfect=1
 		<if test="sptyno!=null and sptyno!=''">
 			 and e.sptyno=#{sptyno}
@@ -739,6 +739,17 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	 </parameterMap>  
 	 <update id="order_dl__auto_box" parameterMap="order_dl__auto_box_params" statementType="CALLABLE">  
        {call ORDER_DL.AUTO_BOX(?,?,?,?,?,?)}  
+    </update>
+    <parameterMap type="map" id="sizeVO_auto_initsize_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_ORDTYNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_ORDORG" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>
+	 </parameterMap>  
+	 <update id="sizeVO_auto_initsize" parameterMap="sizeVO_auto_initsize_params" statementType="CALLABLE">  
+       {call ORDER_DL.SIZE_INIT(?,?,?,?,?,?)}  
     </update>
     <!-- 规格平衡-提交审批（订货批号，订单类型，订货单位,品牌，大类，操作人） -->
     <parameterMap type="map" id="order_dl__size_ap_box_params">  

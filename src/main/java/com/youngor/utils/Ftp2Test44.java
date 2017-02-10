@@ -77,14 +77,18 @@ public class Ftp2Test44 {
 			
 			log.info("暂停30000ms");
 			Thread.sleep(30000);//暂停10s，再启动试试,一个是删除需要时间，
+			
+			
 			//启动服务器
 			log.info("正在启动服务器："+map.get("host"));
 			execCmd(session,start_tomcat_cmd);
 			log.info("成功启动服务器："+map.get("host"));
 			
 			
-			log.info("暂停10000ms");
-			Thread.sleep(10000);
+			log.info("暂停30000ms");
+			Thread.sleep(30000);
+			log.info("修改文件权限:"+linux_od_folder);
+			execCmd(session,"chmod -R 755 "+linux_od_folder);
 			log.info("执行：channel.disconnect()");
 			channel.disconnect();
 			log.info("执行：session.disconnect()");

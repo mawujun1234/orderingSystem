@@ -193,6 +193,19 @@ Ext.onReady(function(){
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
+		  		text: '打印4(出样-区域)',
+				handler: function(btn){
+					var params=grid.getParams();
+					//alert(params["params['yxgsno']"]);
+					if(!params["params['yxgsno']"]){
+						Ext.Msg.alert("消息","请选择营销公司，营销公司必选!");
+						return;
+					}
+			    	var url=Ext.ContextPath+"/report/orderTotalPrint/export4.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
 		  		text: '打印-搭配',
 				handler: function(btn){
 					var params=grid.getParams();
