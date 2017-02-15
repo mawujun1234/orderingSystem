@@ -707,6 +707,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	 <update id="order_dl__comp_wx" parameterMap="order_dl__comp_wx_params" statementType="CALLABLE">  
        {call ORDER_DL.COMP_WX(?,?,?,?)}  
     </update>
+     <!--尾箱调整-尾箱调整去尾-->
+    <parameterMap type="map" id="order_dl__comp_wx_qw_params">  
+	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  
+	   <parameter property="P_BRADNO" jdbcType="VARCHAR" mode="IN"/>   
+	   <parameter property="P_SPCLNO" jdbcType="VARCHAR" mode="IN"/>    
+	   <parameter property="P_RESP" jdbcType="VARCHAR" mode="IN"/>  
+	 </parameterMap>  
+	 <update id="order_dl__comp_wx_qw" parameterMap="order_dl__comp_wx_qw_params" statementType="CALLABLE">  
+       {call ORDER_DL.COMP_WXQW(?,?,?,?)}  
+    </update>
      <!--尾箱调整-调整完成-->
     <parameterMap type="map" id="order_dl__comp_wxps_params">  
 	   <parameter property="P_ORMTNO" jdbcType="VARCHAR" mode="IN"/>  

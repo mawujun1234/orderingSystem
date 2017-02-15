@@ -55,7 +55,7 @@ public class ContextUtils {
 	}
 	
 	/**
-	 * 获取当前正在使用的订货会
+	 * 获取当前正在使用的订货会,
 	 * @author mawujun qq:16064988 mawujun1234@163.com
 	 * @return
 	 */
@@ -77,6 +77,13 @@ public class ContextUtils {
 		}
 		return ormtno_map.get(ormtno);
 		
+	}
+	/**
+	 * 清除缓存数据
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 */
+	public static void removeOrdmt(){
+		ormtno_map=new HashMap<String,Ordmt>();
 	}
 	
 	

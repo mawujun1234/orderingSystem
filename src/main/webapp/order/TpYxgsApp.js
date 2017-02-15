@@ -183,6 +183,7 @@ Ext.onReady(function(){
 	 panel.over=function(){
 	 	Ext.Msg.confirm("消息","确定要按‘大类+品牌’完成吗?",function(btn){
 	 		if(btn=='yes'){
+	 			Ext.getBody().mask("正在处理....");
 		var toolbars=panel.getDockedItems('toolbar[dock="top"]');
 		Ext.Ajax.request({
 			url:Ext.ContextPath+'/tp/tpYxgs_over.do',
@@ -203,6 +204,10 @@ Ext.onReady(function(){
 //				window.stat=0;
 				 panel.query_stat();
 				grid.getStore().reload();
+				Ext.getBody().unmask();
+			},
+			failure:function(){
+				Ext.getBody().unmask();
 			}
 		});
 	 		}

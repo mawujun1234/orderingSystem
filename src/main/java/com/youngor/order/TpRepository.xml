@@ -153,22 +153,24 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		            from ORD_ORD A 
 		            inner join ORD_ORDDTL B on A.mtorno=B.mtorno
 		            inner join (SELECT DISTINCT YXGSNO,QYNO FROM  V_ORD_ORG) C on A.ORDORG=C.QYNO
-		            WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='DZ' and a.channo='QY'
+		            WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='DZ' --and a.channo='QY'
 		            GROUP BY  B.SAMPNO,C.YXGSNO,B.SUITNO
 		          ) GROUP BY  SAMPNO,YXGSNO,SUITNO
 		) y on x.SAMPNO=y.SAMPNO and x.suitno=y.suitno
+		where x.ORMTQT_TP_GSBB>0
 		order by x.SAMPNO,x.suitno,y.YXGSNO
     </select> 
     <!-- 获取各个营销公司的订单的状态 -->
     <select id="tpYxgs_getStat" resultType="map" parameterType="map">
     	select distinct isfect,orstat from ORD_ORDhd where mtorno=#{mtorno}  and bradno=#{bradno} and spclno=#{spclno} 
     </select>
-    <!-- 获取各个营销公司和总公司的统配数量不一致的样衣编号-->
+    <!-- 获取各个营销公司和总公司的统配数量不一致的样衣编号,统配检查的时候不管裤子-->
     <select id="tpYxgs_check_diff" resultType="string" parameterType="map">
     	select distinct z.sampnm from (
 	     	select  c.sampno,c.suitno,sum(c.ormtqt) ormtqt from ORD_ORDhd b,ORD_ORDdtl c where b.mtorno=c.mtorno and  b.mlorno=c.mlorno and b.mtorno=#{mtorno}
-		    and b.bradno=#{bradno} and b.spclno=#{spclno}
+		    and b.bradno=#{bradno} and b.spclno=#{spclno} 
 		    group by c.sampno,c.suitno
+		    having sum(c.ormtqt)>0
 	    ) x left join (
 		    select c.sampno,c.suitno,sum(c.ormtqt) ormtqt from ORD_ORD a,ORD_ORDhd b,ORD_ORDdtl c
 		    where a.mtorno=b.mtorno and a.mtorno=c.mtorno and a.channo='YXGS' and a.ORTYNO='TP' and b.orstat=0 and a.ormtno=#{ormtno}
@@ -178,14 +180,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    inner join ord_sample_design z on x.sampno=z.sampno 
 	    where  x.ormtqt!=y.ormtqt  or y.ormtqt is null
     </select>
-    <!-- 检查输入的数量是否符合打包的要求-->
+    <!-- 检查输入的数量是否符合打包的要求,注意裤子不做包装性检查，因为裤子是单独订的，是拆套的-->
     <select id="tpYxgs_check_packqt" resultType="map" parameterType="map">
     select distinct b.sampnm,c.YXGSNM from ORD_ORDdtl a ,ord_sample_design b
        , (
 		      select distinct b.mlorno,c.YXGSNM from ORD_ORD a,ORD_ORDhd b,(SELECT DISTINCT YXGSNO,YXGSNM FROM  V_ORD_ORG) C 
 		      where a.mtorno=b.mtorno and A.ORDORG=C.YXGSNO and a.channo='YXGS' and a.ortyno='TP' and b.isfect=0 and b.orstat=0 and a.ormtno=#{ormtno}
 		       and b.bradno=#{bradno} and b.spclno=#{spclno} 
-    ) c where a.mlorno =c.mlorno and a.sampno=b.sampno and trunc(a.ormtqt/b.packqt)!=(a.ormtqt)/b.packqt
+    ) c where a.mlorno =c.mlorno and a.sampno=b.sampno and trunc(a.ormtqt/b.packqt)!=(a.ormtqt)/b.packqt and a.suitno!='T02'
     order by b.sampnm,c.YXGSNM
     </select>
     <!-- 营销公司，提交的时候，更新总部订单为无效-->
@@ -247,14 +249,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		            select B.SAMPNO,a.ordorg as QYNO,B.SUITNO,(sum(b.ORMTQT)-sum(NVL(b.ORMTQT1,0))) ORMTQT_TP_QY,sum(b.ORMTQT1) ORMTQT_TP_TX,0 as ORMTQT_DZ_QY,0 as ORMTQT_DZ_TX
 		            from ORD_ORD A 
 		            inner join ORD_ORDDTL B on A.mtorno=B.mtorno
-		            inner join (SELECT DISTINCT QYNO FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C on A.ORDORG=C.QYNO
+		            inner join (SELECT DISTINCT orgno, QYNO FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C on A.ORDORG=C.orgno
 		            WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='TP' and a.channo='QY'
 		            GROUP BY  B.SAMPNO,a.ordorg,B.SUITNO
 		            union all
 		            select B.SAMPNO,C.QYNO,B.SUITNO,0 as ORMTQT_TP_QY,0 AS ORMTQT_TP_TX,sum(DECODE(a.channo,'QY', b.ORMTQS,0)) ORMTQT_DZ_QY,sum(DECODE(a.channo,'TX', b.ORMTQS,0)) as ORMTQT_DZ_TX
 		            from ORD_ORD A 
 		            inner join ORD_ORDDTL B on A.mtorno=B.mtorno
-		            inner join (SELECT DISTINCT QYNO FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C on A.ORDORG=C.QYNO
+		            inner join (SELECT DISTINCT orgno, QYNO FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C on A.ORDORG=C.orgno
 		            WHERE  A.ORMTNO=#{ormtno} and A.ORTYNO='DZ' and a.channo IN ('QY','TX')
 		            GROUP BY  B.SAMPNO,C.QYNO,B.SUITNO 
 		          ) GROUP BY  SAMPNO,QYNO,SUITNO
@@ -269,11 +271,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	前一个子查询，已经限定了要比对的样衣编号-->
     <select id="tpQy_check_diff" resultType="string" parameterType="map">
     	select distinct z.sampnm from (
-		    select  c.sampno,c.suitno,sum(c.ormtqt) ormtqt from ORD_ORDhd b,ORD_ORDdtl c where b.mtorno=c.mtorno and  b.mlorno=c.mlorno and b.mtorno=#{mtorno}
+		    select  c.sampno,c.suitno,sum(nvl(c.ormtqt,0)) ormtqt from ORD_ORDhd b,ORD_ORDdtl c where b.mtorno=c.mtorno and  b.mlorno=c.mlorno and b.mtorno=#{mtorno}
 		    and b.bradno=#{bradno} and b.spclno=#{spclno}
 		    group by c.sampno,c.suitno
 	    ) x left join (
-		    select c.sampno,c.suitno,sum(c.ormtqt) ormtqt from ORD_ORD a,ORD_ORDhd b,ORD_ORDdtl c
+		    select c.sampno,c.suitno,sum(nvl(c.ormtqt,0)) ormtqt from ORD_ORD a,ORD_ORDhd b,ORD_ORDdtl c
 		    where a.mtorno=b.mtorno and a.mtorno=c.mtorno and a.channo='QY' and a.ORTYNO='TP'  and b.orstat=0 and a.ormtno=#{ormtno}
 		    AND A.ORDORG IN (SELECT DISTINCT QYNO FROM V_ORD_ORG WHERE YXGSNO=#{yxgsno})
 		    and b.bradno=#{bradno} and b.spclno=#{spclno} 
@@ -282,14 +284,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    inner join ord_sample_design z on  x.sampno=z.sampno 
 	    where  x.ormtqt!=y.ormtqt or y.ormtqt is null 
     </select>
-    <!-- 检查输入的数量是否符合打包的要求-->
+    <!-- 检查输入的数量是否符合打包的要求,注意裤子不做包装性检查，因为裤子是单独订的，是拆套的-->
     <select id="tpQy_check_packqt" resultType="map" parameterType="map">
     select distinct b.sampnm,c.qynm from ORD_ORDdtl a ,ord_sample_design b
        , (
 		      select distinct b.mlorno,c.qynm from ORD_ORD a,ORD_ORDhd b,(SELECT DISTINCT QYNO,qynm FROM  V_ORD_ORG WHERE YXGSNO=#{yxgsno}) C 
 		      where a.mtorno=b.mtorno and A.ORDORG=C.QYNO and a.channo='QY' and a.ortyno='TP' and b.isfect=0 and b.orstat=0 and a.ormtno=#{ormtno}
 		       and b.bradno=#{bradno} and b.spclno=#{spclno} 
-    ) c where a.mlorno =c.mlorno and a.sampno=b.sampno and trunc(a.ormtqt/b.packqt)!=(a.ormtqt)/b.packqt
+    ) c where a.mlorno =c.mlorno and a.sampno=b.sampno and trunc(a.ormtqt/b.packqt)!=(a.ormtqt)/b.packqt  and a.suitno!='T02'
     order by b.sampnm,c.qynm
     </select>
     <update id="tpQy_over_YXGS">

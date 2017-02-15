@@ -232,6 +232,12 @@ Ext.define('y.order.WxtzGrid',{
 				},
 				iconCls: 'icon-download-alt'
 		  	},{
+		  		text: '尾箱调整-去尾',
+				handler: function(btn){
+					me.comp_wx_qw();
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
 		  		text: '调整完成',
 				handler: function(btn){
 					me.comp_wxps();
@@ -298,6 +304,7 @@ Ext.define('y.order.WxtzGrid',{
 		var extraParams=this.getStore().getProxy().extraParams;
 		Ext.Msg.confirm("消息","确定进行尾箱调整?",function(btn){
 			if(btn=='yes'){
+				Ext.getBody().mask("正在处理....");
 				Ext.Ajax.request({
 						    url:Ext.ContextPath+'/ord/wxtz/comp_wx.do',
 						    params:{
@@ -315,6 +322,43 @@ Ext.define('y.order.WxtzGrid',{
 								}
 						    	me.getStore().reload();
 						    	Ext.Msg.alert("消息","成功");
+						    	Ext.getBody().unmask();
+						    },
+						    failure:function(){
+						    	Ext.getBody().unmask();
+						    }
+						   });
+			}
+		});
+			
+	},
+	comp_wx_qw:function(){
+		var me=this;
+		var extraParams=this.getStore().getProxy().extraParams;
+		Ext.Msg.confirm("消息","确定进行尾箱调整去尾?",function(btn){
+			if(btn=='yes'){
+				Ext.getBody().mask("正在处理....");
+				Ext.Ajax.request({
+						    url:Ext.ContextPath+'/ord/wxtz/comp_wx_qw.do',
+						    params:{
+								ormtno:extraParams["params['ormtno']"],
+								bradno:extraParams["params['bradno']"],
+								spclno:extraParams["params['spclno']"]
+							},
+						    //jsonData:data,
+						    method:'POST',
+						    success:function(response){
+						    	var obj=Ext.decode(response.responseText);
+								if(obj.success==false){
+									Ext.Msg.alert("消息",obj.msg);
+									return;
+								}
+						    	me.getStore().reload();
+						    	Ext.Msg.alert("消息","成功");
+						    	Ext.getBody().unmask();
+						    },
+						    failure:function(){
+						    	Ext.getBody().unmask();
 						    }
 						   });
 			}

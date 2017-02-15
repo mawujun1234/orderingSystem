@@ -11,6 +11,7 @@ import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
 import com.youngor.permission.ShiroUtils;
+import com.youngor.utils.ContextUtils;
 import com.youngor.utils.M;
 
 
@@ -75,5 +76,8 @@ public class OrdmtService extends AbstractService<Ordmt, String>{
 			ordmtSeasonRepository.create(a);
 		}
 		}
+		
+		
+		ContextUtils.removeOrdmt();
 	}
 }

@@ -543,6 +543,19 @@ public class OrdController {
 	 * @param bradno
 	 * @param spclno
 	 */
+	@RequestMapping("/ord/wxtz/comp_wx_qw.do")
+	@ResponseBody
+	public String comp_wx_qw(String ormtno,String bradno,String spclno){
+		ordService.comp_wx_qw(ormtno, bradno, spclno);
+		return "{success:true}";
+	}
+	/**
+	 * 尾箱调整完成
+	 * @author mawujun qq:16064988 mawujun1234@163.com
+	 * @param ormtno
+	 * @param bradno
+	 * @param spclno
+	 */
 	@RequestMapping("/ord/wxtz/comp_wxps.do")
 	@ResponseBody
 	public String wxtz_comp_wxps(String ormtno,String bradno,String spclno){
