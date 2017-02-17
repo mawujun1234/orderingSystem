@@ -314,6 +314,7 @@ Ext.define('y.order.WxtzGrid',{
 							},
 						    //jsonData:data,
 						    method:'POST',
+						    timeout: 100000000,
 						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){
@@ -347,6 +348,7 @@ Ext.define('y.order.WxtzGrid',{
 							},
 						    //jsonData:data,
 						    method:'POST',
+						    timeout: 100000000,
 						    success:function(response){
 						    	var obj=Ext.decode(response.responseText);
 								if(obj.success==false){

@@ -121,11 +121,11 @@ public class OrderNumTotalController {
 		cellStyle.setFillForegroundColor(HSSFColor.YELLOW.index);
 		
 		Font font = wb.createFont();
-	    //font.setFontHeightInPoints((short)18);
+	    //font.setFontHeightInPoints(18);
 	    font.setFontName("Courier New");
 	    cellStyle.setFont(font);
 		 
-		Row title = sheet1.createRow((short)0);
+		Row title = sheet1.createRow(0);
 		
 		int i=0;
 		for(Entry<String,String> entry:titles.entrySet()){
@@ -145,7 +145,7 @@ public class OrderNumTotalController {
 		}
 		for(int i=0;i<list.size();i++){
 			OrderNumTotal orderNumTotal=list.get(i);
-			Row row = sheet1.createRow((short)i+1);
+			Row row = sheet1.createRow(i+1);
 			int j=0;
 			for(Entry<String,String> entry:titles.entrySet()){
 				Cell cell = row.createCell(j);

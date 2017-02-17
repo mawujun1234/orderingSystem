@@ -991,7 +991,7 @@ public class OrdService extends AbstractService<Ord, String>{
 	}
 	
 	public List<Org> queryOrdorg(String ormtno,String qyno,String channo,String ortyno) {
-		return ordRepository.queryOrdorg(ormtno, qyno, channo,ortyno);
+		return ordRepository.queryOrdorg(ormtno, qyno, channo,ortyno,ShiroUtils.getUserId());
 	}
 	
 	public Pager<QyVO> queryQyVO(Pager<QyVO> pager) {

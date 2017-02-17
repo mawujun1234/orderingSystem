@@ -18,10 +18,18 @@ Ext.onReady(function(){
 			"params['bradno']":cgOrdhdGrid.getStore().getProxy().extraParams["params['bradno']"],
 			"params['spclno']":record.get("spclno"),
 			"params['orcgno']":cgOrdhdGrid.getStore().getProxy().extraParams["params['orcgno']"],
-			"params['cgorno']":record.get("cgorno")
+			"params['cgorno']":record.get("cgorno"),
+			"params['cg_orstat']":record.get("orstat")
 		});
 		cgOrddtlGrid.getStore().reload();
 		cgOrddtlGrid.CgOrdhd_orstat=record.get("orstat");
+		
+		
+		var sptyno=cgOrddtlGrid.down("#sptyno");
+		sptyno.reload(record.get("spclno"));
+		        		
+		var spseno=cgOrddtlGrid.down("#spseno");
+		spseno.reload(record.get("spclno"));
 	});
 	var viewPort=Ext.create('Ext.container.Viewport',{
 		layout:'border',

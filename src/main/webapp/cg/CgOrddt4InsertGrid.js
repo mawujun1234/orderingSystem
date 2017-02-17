@@ -96,7 +96,7 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 				orszqt : value
 			},
 			success : function() {
-				//record.set("orszqt_residue",record.get("orszqt_residue")-value);	
+				record.set("orszqt_residue",record.get("ormtqt")-value-record.get("orszqt_already"));
 				record.commit();							
 			}
 
@@ -116,6 +116,23 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		        fieldLabel: '小类',
+		        itemId: 'sptyno',
+		        labelWidth:40,
+		        width:140,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'2'
+		    },
+			{
+		        fieldLabel: '系列',
+		        itemId: 'spseno',
+		        labelWidth:40,
+		        width:160,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'5'
+		    },{
 	        fieldLabel: '上市批次',
 	        itemId: 'spbano',
             //allowBlank: false,
@@ -152,7 +169,13 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 					grid.getStore().reload();
 				},
 				iconCls: 'icon-refresh'
-			},{
+			}]
+		});
+
+        me.dockedItems.push({
+	  		xtype: 'toolbar',
+	  		dock:'top',
+		  	items:[{
 				text: '初始化"本次数量"',
 				//itemId:'reload',
 				//disabled:me.disabledAction,
@@ -161,10 +184,16 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 					grid.initOrszqt();
 				},
 				iconCls: 'icon-refresh'
+			},{
+				text: '关闭本窗口',
+				//itemId:'reload',
+				//disabled:me.disabledAction,
+				handler: function(btn){
+					me.win.close();
+				},
+				iconCls: 'icon-remove'
 			}]
-		});
-
-       
+        });
       me.callParent();
 	},
 	getParams:function(){
@@ -172,6 +201,8 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 
     	var params={
+    		"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    		"params['spseno']":toolbars[0].down("#spseno").getValue(),
     		"params['sampnm']":toolbars[0].down("#sampnm").getValue(),
     		"params['spbano']":toolbars[0].down("#spbano").getValue(),
     		"params['spmtno']":toolbars[0].down("#spmtno").getValue()
@@ -183,7 +214,7 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 		var me=this;
 		Ext.Msg.confirm("删除",'确定要初始化为剩余订货量吗?', function(btn, text){
 			if (btn == 'yes'){
-				Ext.getBody().mask();
+				Ext.getBody().mask("正在执行....");
 				Ext.Ajax.request({
 					url:Ext.ContextPath+'/cgOrddtl/initOrszqt.do',
 					params:me.getStore().getProxy().extraParams,
@@ -191,6 +222,9 @@ Ext.define('y.cg.CgOrddt4InsertGrid',{
 					success:function(response){
 						Ext.Msg.alert("消息","成功");
 						me.getStore().reload();
+						Ext.getBody().unmask();
+					},
+					failure:function(){
 						Ext.getBody().unmask();
 					}
 				});

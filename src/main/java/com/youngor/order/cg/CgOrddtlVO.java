@@ -17,6 +17,8 @@ public class CgOrddtlVO extends CgOrddtl {
 	private String pldate;
 	private String pplace;
 	
+	private String cg_orstat;
+	
 	public String getSuitno_name(){
 		return PubCodeCache.getSuitno_name(this.getSuitno());
 	}
@@ -28,7 +30,15 @@ public class CgOrddtlVO extends CgOrddtl {
 		if(orszqt_already==null){
 			orszqt_already=0;
 		}
-		return ormtqt-orszqt_already;
+		if(orszqt_now==null){
+			orszqt_now=0;
+		}
+		if("1".equals(cg_orstat)){
+			return ormtqt-orszqt_already;
+		} else {
+			return ormtqt-orszqt_already-orszqt_now;
+		}
+		
 	}
 	public String getOrszqt_zhanb(){
 		if(ormtqt==null || ormtqt==0){
@@ -38,7 +48,8 @@ public class CgOrddtlVO extends CgOrddtl {
 			//orszqt_already=0;
 			return "0";
 		}
-		return (new BigDecimal(orszqt_already)).divide(new BigDecimal(ormtqt),RoundingMode.HALF_UP).multiply(new BigDecimal(100)).toString();
+		
+		return (new BigDecimal(orszqt_already)).divide(new BigDecimal(ormtqt),2,RoundingMode.HALF_UP).multiply(new BigDecimal(100)).toString()+"%";
 	}
 	
 	public String getSampnm() {
@@ -100,6 +111,14 @@ public class CgOrddtlVO extends CgOrddtl {
 
 	public void setPplace(String pplace) {
 		this.pplace = pplace;
+	}
+
+	public String getCg_orstat() {
+		return cg_orstat;
+	}
+
+	public void setCg_orstat(String cg_orstat) {
+		this.cg_orstat = cg_orstat;
 	}
 
 }

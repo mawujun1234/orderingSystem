@@ -108,7 +108,7 @@ Ext.define('y.cg.CgOrddtlGrid',{
 				orszqt : value
 			},
 			success : function() {
-				//record.set("orszqt_residue",record.get("orszqt_residue")-value);	
+				record.set("orszqt_residue",record.get("ormtqt")-value-record.get("orszqt_already"));	
 				record.commit();							
 			}
 
@@ -128,6 +128,23 @@ Ext.define('y.cg.CgOrddtlGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+		        fieldLabel: '小类',
+		        itemId: 'sptyno',
+		        labelWidth:40,
+		        width:140,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'2'
+		    },
+			{
+		        fieldLabel: '系列',
+		        itemId: 'spseno',
+		        labelWidth:40,
+		        width:160,
+	            autoLoad:false,
+		        xtype:'pubcodecombo',
+		        tyno:'5'
+		    },{
 		        fieldLabel: '上市批次',
 		        itemId: 'spbano',
 	            //allowBlank: false,
@@ -187,7 +204,7 @@ Ext.define('y.cg.CgOrddtlGrid',{
 			    iconCls: 'icon-trash'
 			},{
 				text: '导出',
-				itemId:'reload',
+				//itemId:'reload',
 				disabled:me.disabledAction,
 				handler: function(btn){
 					//var grid=btn.up("grid");
@@ -226,9 +243,12 @@ Ext.define('y.cg.CgOrddtlGrid',{
 		var toolbars=grid.getDockedItems('toolbar[dock="top"]');
 
     	var params={
-    		"params['sampnm']":toolbars[0].down("#sampnm").getValue(),
+    		//"params['spclno']":toolbars[0].down("#spclno").getValue(),
+    		"params['sptyno']":toolbars[0].down("#sptyno").getValue(),
+    		"params['spseno']":toolbars[0].down("#spseno").getValue(),
     		"params['spbano']":toolbars[0].down("#spbano").getValue(),
-    		"params['spmtno']":toolbars[0].down("#spmtno").getValue()
+    		"params['spmtno']":toolbars[0].down("#spmtno").getValue(),
+    		"params['sampnm']":toolbars[0].down("#sampnm").getValue()
 			
     	};
     	return params;
@@ -250,7 +270,14 @@ Ext.define('y.cg.CgOrddtlGrid',{
 			"params['cgorno']":me.getStore().getProxy().extraParams["params['cgorno']"],
 			"params['sampnm']":null
 		});
+		
+		var spclno=me.getStore().getProxy().extraParams["params['spclno']"];
 		cgOrddt4InsertGrid.getStore().reload();
+		var sptyno=cgOrddt4InsertGrid.down("#sptyno");
+		sptyno.reload(spclno);
+		        		
+		var spseno=cgOrddt4InsertGrid.down("#spseno");
+		spseno.reload(spclno);
 		
 		
     	var win=Ext.create('Ext.window.Window',{
@@ -268,6 +295,7 @@ Ext.define('y.cg.CgOrddtlGrid',{
     			}
     		}
     	});
+    	cgOrddt4InsertGrid.win=win;
     	win.show();
     },
     

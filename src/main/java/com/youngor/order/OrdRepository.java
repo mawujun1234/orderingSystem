@@ -89,7 +89,7 @@ public interface OrdRepository extends IRepository<Ord, String>{
 	public List<String> ordMgr_check_process2ANDback_stat(@Param("stat")Integer stat,@Param("mlorno_in")String mlorno_in);
 	public List<String> ordMgr_check_ordercircle_stat(@Param("mlorno_in")String mlorno_in);
 	
-	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno);
+	public List<Org> queryOrdorg(@Param("ormtno")String ormtno,@Param("qyno")String qyno,@Param("channo")String channo,@Param("ortyno")String ortyno,@Param("user_id")String user_id);
 	
 	
 	public Pager<QyVO> queryQyVO(Pager<QyVO> pager);

@@ -470,6 +470,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="qyno!=null and qyno!=''">
 			and b.qyno=#{qyno}
 		</if>
+		and exists (select 1 from t_position_org_access c,t_position_org_user d where c.position_id=d.position_id and c.orgno=a.ORDORG and d.user_id=#{user_id})
      </select>
      
      <sql id="queryQyVO_where">

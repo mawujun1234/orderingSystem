@@ -7,7 +7,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.order.cg.CgOrddtlRepository">
 	<!-- 查询语句，会自动分页-->
     <select id="queryPage" resultType="com.youngor.order.cg.CgOrddtlVO" parameterType="map">
-		select x.*,y.ORSZQT_now ORSZQT,y.ORSZQT_now,y.ORSZQT_already,'${orcgno}' orcgno,'${cgorno}' cgorno,z.mldate,z.pldate,z.pplace from (
+		select x.*,y.ORSZQT_now ORSZQT,y.ORSZQT_now,y.ORSZQT_already,'${orcgno}' orcgno,'${cgorno}' cgorno,'${cg_orstat}' cg_orstat,z.mldate,z.pldate,z.pplace from (
 		select D.SAMPNO,D.SAMPNM,D.SAMPNM1,C.SUITNO,avg(B.ORSTAT) ORSTAT,SUM(ormtqt) ormtqt
 		from ORD_ORD a,ORD_ORDHD b,ORD_ORDDTL c,ORD_SAMPLE_DESIGN D,ord_sample_plan e
 		where a.mtorno=b.mtorno and b.mtorno=c.mtorno and b.mlorno=c.mlorno  AND C.SAMPNO=D.SAMPNO and d.plspno=e.plspno
@@ -19,6 +19,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="spmtno!=null and spmtno!=''">
 			and d.spmtno=#{spmtno}
+		</if>
+		<if test="sptyno!=null and sptyno!=''">
+			and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and e.spseno=#{spseno}
 		</if>
 		<if test="sampnm!=null and sampnm!=''">
 			and LOWER(d.sampnm) like LOWER('%${sampnm}%')
@@ -44,7 +50,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		left join (
 		select sampno,suitno,mldate,pldate,pplace  from ord_cg_orddt where orcgno=#{orcgno} and cgorno=#{cgorno}
 		) z on x.sampno=z.sampno and x.suitno=z.suitno  
-		where x.ormtqt>0
+		where x.ormtqt>0 and y.ORSZQT_now>0
+		order by x.SAMPNM
     </select> 
     
     <!-- 点新增的时候 -->
@@ -62,28 +69,37 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<if test="spmtno!=null and spmtno!=''">
 			and d.spmtno=#{spmtno}
 		</if>
+		<if test="sptyno!=null and sptyno!=''">
+			and e.sptyno=#{sptyno}
+		</if>
+		<if test="spseno!=null and spseno!=''">
+			and e.spseno=#{spseno}
+		</if>
 		<if test="sampnm!=null and sampnm!=''">
 			and LOWER(d.sampnm) like LOWER('%${sampnm}%')
 		</if>
 		GROUP BY D.SAMPNO,D.SAMPNM,D.SAMPNM1,C.SUITNO
 		) x left join (
-		--获取当前选中的子批次订单的数据,如果
-		select c.sampno,c.suitno,sum(c.ORSZQT) ORSZQT_now,0 ORSZQT_already from 
-		ORD_CG_ORDHD b
-		inner join ORD_CG_ORDDTL c on b.CGORNO=c.CGORNO
-		where b.Cgorno=#{cgorno}
-		group by c.sampno,c.suitno
-		union
-		--获取已经确认了的子批次订单的数量
-		select c.sampno,c.suitno,0 ORSZQT_now,sum(c.ORSZQT) ORSZQT_already from 
-		ORD_CG_ORDMT a
-		inner join ORD_CG_ORDHD b on a.ORCGNO=b.ORCGNO
-		inner join ORD_CG_ORDDTL c on b.CGORNO=c.CGORNO
-		where  b.ORSTAT=1 and b.bradno=#{bradno} and b.spclno=#{spclno} and a.ormtno=#{ormtno} 
-		group by c.sampno,c.suitno
+			select sampno,suitno,sum(ORSZQT_now) ORSZQT_now,sum(ORSZQT_already) ORSZQT_already from (
+				--获取当前选中的子批次订单的数据,如果
+				select c.sampno,c.suitno,sum(c.ORSZQT) ORSZQT_now,0 ORSZQT_already from 
+				ORD_CG_ORDHD b
+				inner join ORD_CG_ORDDTL c on b.CGORNO=c.CGORNO
+				where b.Cgorno=#{cgorno}
+				group by c.sampno,c.suitno
+				union
+				--获取已经确认了的子批次订单的数量
+				select c.sampno,c.suitno,0 ORSZQT_now,sum(c.ORSZQT) ORSZQT_already from 
+				ORD_CG_ORDMT a
+				inner join ORD_CG_ORDHD b on a.ORCGNO=b.ORCGNO
+				inner join ORD_CG_ORDDTL c on b.CGORNO=c.CGORNO
+				where  b.ORSTAT=1 and b.bradno=#{bradno} and b.spclno=#{spclno} and a.ormtno=#{ormtno} 
+				group by c.sampno,c.suitno
+			) group by sampno,suitno
 		) y
 		on x.sampno=y.sampno and x.suitno=y.suitno
-		where x.ormtqt>0
+		where x.ormtqt>0 
+		order by x.SAMPNM
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
     <select id="queryPage4Insert_count" resultType="int" parameterType="map">
@@ -100,6 +116,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="spmtno!=null and spmtno!=''">
 				and d.spmtno=#{spmtno}
+			</if>
+			<if test="sptyno!=null and sptyno!=''">
+				and e.sptyno=#{sptyno}
+			</if>
+			<if test="spseno!=null and spseno!=''">
+				and e.spseno=#{spseno}
 			</if>
 			<if test="sampnm!=null and sampnm!=''">
 				and d.sampnm like '%${sampnm}%'
@@ -119,6 +141,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				</if>
 				<if test="spmtno!=null and spmtno!=''">
 					and d.spmtno=#{spmtno}
+				</if>
+				<if test="sptyno!=null and sptyno!=''">
+					and e.sptyno=#{sptyno}
+				</if>
+				<if test="spseno!=null and spseno!=''">
+					and e.spseno=#{spseno}
 				</if>
 				<if test="sampnm!=null and sampnm!=''">
 					and LOWER(d.sampnm) like LOWER('%${sampnm}%')
