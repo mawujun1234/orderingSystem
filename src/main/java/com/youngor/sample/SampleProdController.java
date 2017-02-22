@@ -91,6 +91,7 @@ public class SampleProdController {
 		titles.put("prseqm", "序号");
 		//titles.put("prodno", "货号代码");
 		titles.put("prodnm", "货号名称");
+		titles.put("prprpt", "单位");
 		titles.put("sizegp_name", "规格系列");
 		titles.put("bradno_name", "品牌");
 		titles.put("spyear", "年份");

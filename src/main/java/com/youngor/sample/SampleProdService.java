@@ -104,6 +104,19 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 				}
 				
 			}
+			
+			cell = row.getCell(7);
+			if(cell!=null){
+	
+				if(cell.getCellType()==HSSFCell.CELL_TYPE_NUMERIC){
+					sampleProd.setPrprpt(cell.getNumericCellValue()+"");
+				} else if(cell.getCellType()==HSSFCell.CELL_TYPE_STRING){
+					sampleProd.setPrprpt(cell.getStringCellValue());
+				} 
+				
+			} else {
+				sampleProd.setPrprpt("V01");
+			}
 				
 			this.createOrUpdate(sampleProd);
 			

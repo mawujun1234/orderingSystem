@@ -85,12 +85,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>
     
     <update id="updatePrice">
-    	update ord_sample_prod x set (prftpr,prrtpr,prctpr,prmtam,prmlam)=
-    	(select prftpr,prrtpr,prctpr,prmtam,prmlam from 
-		  (select e.ormtno,a.sampno,a.suitno,avg(a.spftpr) as prftpr,avg(a.sprtpr) as prrtpr,avg(c.spctpr) as prctpr,avg(c.SPTAPA) as prmtam,sum(d.mtcnqt*d.mtpupr) as prmlam
-		  from ord_sample_design_stpr a,ord_sample_design b,ord_sample_colth c,ord_sample_mate d,ord_sample_plan e
-		  where a.sampno=b.sampno and b.sampno=c.sampno and b.sampno=d.sampno and b.plspno=e.plspno and e.ormtno=#{ormtno}
-		  group by e.ormtno,a.sampno,a.suitno) y
+    	update ord_sample_prod x set (prftpr,prrtpr,prctpr,prmtam,prmlam,sizegp,mateno)=
+    	(select prftpr,prrtpr,prctpr,prmtam,prmlam,y.ysizeno,y.mateno from 
+		  (select e.ormtno,a.sampno,a.suitno,g.ysizeno,d.mateno,avg(a.spftpr) as prftpr,avg(a.sprtpr) as prrtpr,avg(c.spctpr) as prctpr,avg(c.SPTAPA) as prmtam,sum(d.mtcnqt*d.mtpupr) as prmlam
+		  from ord_sample_design_stpr a,ord_sample_design b,ord_sample_colth c,(select * from ord_sample_mate where mateso=1) d,ord_sample_plan e,ord_sample_design_sizegp f,ord_size g
+		  where a.sampno=b.sampno and b.sampno=c.sampno and b.sampno=d.sampno and b.plspno=e.plspno and b.sampno=f.sampno and a.suitno=f.suitno and f.sizegp=g.sizeno and g.ormtno=#{ormtno} and g.sizety='PRDSZFW' and e.ormtno=#{ormtno}
+		  group by e.ormtno,a.sampno,a.suitno,g.ysizeno,d.mateno) y
 		   where x.sampno=y.sampno and x.suitno=y.suitno and x.ormtno=y.ormtno 
 		)
 		where x.ormtno=#{ormtno}
