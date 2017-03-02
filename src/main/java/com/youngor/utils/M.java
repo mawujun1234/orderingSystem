@@ -159,6 +159,18 @@ public static final class Ord {
 	    }
 	}
 }
+public static final class OrdChgdtl {
+	public static final String ormtno="ormtno";
+	public static final String ordorg="ordorg";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String orchqt="orchqt";
+	public static final String ormark="ormark";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
 public static final class Orddtl {
 	public static final String mtorno="mtorno";
 	public static final String sampno="sampno";

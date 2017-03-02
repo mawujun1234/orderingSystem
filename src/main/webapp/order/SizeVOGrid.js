@@ -81,6 +81,7 @@ Ext.define('y.order.SizeVOGrid',{
       		 	,width: 80
       		 	,editor: {
 	                xtype: 'numberfield',
+	                minValue :0,
 	                allowDecimals:false,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
@@ -102,6 +103,7 @@ Ext.define('y.order.SizeVOGrid',{
       		 	,editor: {
 	                xtype: 'numberfield',
 	                allowDecimals:false,
+	                minValue :0,
 	                selectOnFocus:true 
 	            },renderer:function(value, metaData, record, rowIndex, colIndex, store){
 	            	//自动成箱 后 ORD_ORDSZDTL.ORSZST=1 时，规格 合计 下的单元格不允许 编辑，标准箱  下的单元格 允许编辑；
@@ -243,7 +245,7 @@ Ext.define('y.order.SizeVOGrid',{
 	  	var value=context.value;
 	  	var originalValue =context.originalValue 
 	  	if(typeof(originalValue)=='undefined'){
-			originalValue=0;
+			field=0;
 		}
 	  	
 		//var params=grid.getStore().getProxy().extraParams;
@@ -275,7 +277,9 @@ Ext.define('y.order.SizeVOGrid',{
 				//me.getStore().reload();
 				var obj=Ext.decode(response.responseText);
 				if(obj.success==false){
-				 	Ext.Msg.alert("消息",obj.msg);return;
+				 	Ext.Msg.alert("消息",obj.msg);
+				 	record.set(field,originalValue);
+				 	return;
 				}
 				
 				if(record.get("SZTYPE")==0){
@@ -368,6 +372,9 @@ Ext.define('y.order.SizeVOGrid',{
 				}
 
 				
+			},
+			failure:function(){
+				record.set(field,originalValue);
 			}
 						
 		});

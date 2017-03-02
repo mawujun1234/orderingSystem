@@ -536,7 +536,7 @@ Ext.define('y.order.OrdMgrGrid',{
 					//alert("订单的审批版本号，还没有获取，一些规则还没有加进去");
 					//return;
 					var grid=btn.up("grid");
-					var records=grid.getSelectionModel().getLastSelected();
+					var records=grid.getSelectionModel().getSelection();
 					if(records==null || records.length==0){
 					    Ext.Msg.alert("消息","请先选择审批订单号!");
 					    return;

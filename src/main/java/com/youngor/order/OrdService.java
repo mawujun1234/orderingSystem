@@ -1445,10 +1445,13 @@ public class OrdService extends AbstractService<Ord, String>{
 				.andEquals(M.PubSizeDtl.fszno, ordszdtlVO.getSizeno()));
 		//判断是新增了还是减少了
 		Integer xiangcha=ordszdtlVO.getValue()-orginal_orbgqt;
+		int i=0;
 		for(Ordszdtl ordszdtl:ordszdtles){
 			
-			for(PubSizeDtl pubSizeDtl:pubSizeDtles){
+			for(PubSizeDtl pubSizeDtl:pubSizeDtles) {
+				System.out.println(ordszdtl.getSizeno()+"==========="+pubSizeDtl.getSizeno());
 				if(ordszdtl.getSizeno().equals(pubSizeDtl.getSizeno())){
+					i++;
 					ordszdtl.setOrbgqt(ordszdtl.getOrbgqt()-(xiangcha*pubSizeDtl.getSizeqt()));
 					//判断剩余数量是否足够指定的数量的比配
 					if(ordszdtl.getOrbgqt()<0){
@@ -1460,6 +1463,10 @@ public class OrdService extends AbstractService<Ord, String>{
 					}
 				}
 			}
+			
+		}
+		if(i!=pubSizeDtles.size()){
+			throw new BusinessException("订货规格和成箱规格不一致，不能成箱!");
 		}
 		
 		//如果都允许，就开始更新剩余规格的数量
