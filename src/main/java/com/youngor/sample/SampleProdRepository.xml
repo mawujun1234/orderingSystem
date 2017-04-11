@@ -11,7 +11,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		       ,b.suitty,b.desp
 		       ,h.prsuno
 		       , e.sizenm as sizegp_name
-		       ,g.prseqm,g.prodnm,g.prodds,e.sizeno as sizegp,g.prtype,g.prprpt,g.prorgd,DECODE(C.SUITNO,'T01','件','T03','件','T02','条','T04','条',U.SPUNMS) prunit,i.mateno,g.prdcno
+		       ,g.prseqm,g.prodnm,g.prodds,e.sizeno as sizegp,g.prtype,g.prprpt,g.prorgd
+		       --,DECODE(C.SUITNO,'T01','件','T03','件','T02','条','T04','条',U.SPUNMS) prunit
+		       ,decode(g.prunit,null,U.SPUNMS,g.prunit) prunit
+		       ,i.mateno,g.prdcno
 		       ,STPR.spftpr prftpr ,STPR.sprtpr prrtpr,h.spctpr as prctpr,g.prmtam,j.prmlam,g.prorpr,(h.spclbd+h.acsyam) prflam, g.prmark
 		       ,decode(f.sampno,null,'未订货','已订货') sample_state
 		from ord_sample_plan a

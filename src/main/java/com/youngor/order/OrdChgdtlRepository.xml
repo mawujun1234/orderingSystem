@@ -7,7 +7,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.youngor.order.OrdChgdtlRepository">
 	<!-- 查询语句，会自动分页-->
 	<sql id="queryPage1_where">
-		where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} and c.szstat=3 --AND A.CHANNO='QY'
+		where 1=1
 		<if test="sptyno!=null and sptyno!=''">
 			and e.sptyno=#{sptyno}
 		</if>
@@ -24,6 +24,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			and lower(f.prodnm) like lower('%${prodnm}%')
 		</if>
 	</sql>
+	<!--
     <select id="queryPager1" resultType="com.youngor.order.OrdChgdtlVO" parameterType="map">
     	select e.spclno,e.sptyno,e.spsean,e.spseno,d.sampno,d.sampnm,b.suitno,f.prodnm,sum(b.ormtqt) ormtqt,sum(g.orchqt) orchqt
 		from ord_ord a
@@ -35,6 +36,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		left join ord_ord_chgdtl g on b.sampno=g.sampno and b.suitno=g.suitno and a.ordorg=g.ordorg and g.ormtno=#{ormtno}
 		 <include refid="queryPage1_where" />	
 		group by e.spclno,e.sptyno,e.spsean,e.spseno,d.sampno,d.sampnm,b.suitno,f.prodnm
+		having sum(b.ormtqt)>0
+    	
+    </select> 
+    -->
+    <select id="queryPager1" resultType="com.youngor.order.OrdChgdtlVO" parameterType="map">
+    	select e.spclno,e.sptyno,e.spsean,e.spseno,d.sampno,d.sampnm,a.suitno,f.prodnm,sum(a.ormtqt) ormtqt,sum(g.orchqt) orchqt
+		from 
+		(
+			SELECT ORG.qyno ,b.sampno,b.suitno,sum(b.ormtqt) ormtqt
+			from ord_ord a
+			inner join ord_orddtl b on a.mtorno=b.mtorno 
+			inner join ord_ordhd c on a.mtorno=c.mtorno and b.mlorno=c.mlorno
+		    inner join v_ord_org org on a.ordorg=org.orgno
+		    where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} --and c.szstat=3
+		    GROUP BY ORG.qyno ,b.sampno,b.suitno
+		) a
+		inner join ord_sample_design d on a.sampno=d.sampno
+		inner join ord_sample_plan e on d.plspno=e.plspno
+		left join ord_sample_prod f on a.sampno=f.sampno and a.suitno=f.suitno and f.ormtno=#{ormtno}
+		left join ord_ord_chgdtl g on a.sampno=g.sampno and a.suitno=g.suitno and a.qyno=g.ordorg and g.ormtno=#{ormtno}
+		 <include refid="queryPage1_where" />	
+		group by e.spclno,e.sptyno,e.spsean,e.spseno,d.sampno,d.sampnm,a.suitno,f.prodnm
+		having sum(a.ormtqt)>0
     	
     </select> 
 
@@ -46,9 +70,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			inner join ord_orddtl b on a.mtorno=b.mtorno 
 			inner join ord_ordhd c on a.mtorno=c.mtorno and b.mlorno=c.mlorno
 		    inner join v_ord_org org on a.ordorg=org.orgno
-		    where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} and c.szstat=3
-		    and b.sampno=#{sampno} and b.suitno=#{suitno}  --AND A.CHANNO='QY'
-		    GROUP BY ORG.YXGSNO,org.yxgsnm,ORG.qyno,ORG.qyno ,b.sampno,b.suitno
+		    where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} --and c.szstat=3
+		    and b.sampno=#{sampno} and b.suitno=#{suitno}  
+		    GROUP BY ORG.YXGSNO,org.yxgsnm,ORG.qyno,b.sampno,b.suitno
 		) a
 	    left join ord_ord_chgdtl g on a.sampno=g.sampno and a.suitno=g.suitno and a.qyno=g.ordorg and g.ormtno=#{ormtno}
 	    group by a.YXGSNO,a.yxgsnm
@@ -63,8 +87,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		inner join ord_orddtl b on a.mtorno=b.mtorno 
 		inner join ord_ordhd c on a.mtorno=c.mtorno and b.mlorno=c.mlorno
 	    inner join v_ord_org org on a.ordorg=org.orgno
-	    where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} and c.szstat=3
-	    and b.sampno=#{sampno} and b.suitno=#{suitno} and org.yxgsno=#{compno} --AND A.CHANNO='QY'
+	    where a.ormtno=#{ormtno} and c.bradno=#{bradno} and c.spclno=#{spclno} --and c.szstat=3
+	    and b.sampno=#{sampno} and b.suitno=#{suitno} and org.yxgsno=#{compno} 
 	    GROUP BY ORG.qyno,org.qynm ,b.sampno,b.suitno
 	    ) A left join ord_ord_chgdtl g on A.sampno=g.sampno and A.suitno=g.suitno and a.qyno=g.ordorg and g.ormtno=#{ormtno}
 	    group by A.qyno ,A.qynm,g.ormark

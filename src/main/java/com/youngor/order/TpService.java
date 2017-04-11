@@ -36,7 +36,7 @@ public class TpService {
 	@Autowired
 	private OrdService ordService;
 	
-	private String spb_orgno="10206030000";//商品部的id，也就是总部的ordorg
+	private String spb_orgno="10217000000";//商品部的id，也就是总部的ordorg
 
 	public  List<Map<String,Object>> zgs_tpAllQuery(MapParams pager) {
 		pager.getParams().put("ordorg", spb_orgno);

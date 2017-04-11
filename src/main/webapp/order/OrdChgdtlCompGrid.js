@@ -87,35 +87,33 @@ Ext.define('y.order.OrdChgdtlCompGrid',{
 		}
 		Ext.Msg.confirm("消息","确认取消!",function(aa){
 			if(aa=='yes'){
-			
-			
-		//alert(records.length);
-		var compnos=[];
-		for(var i=0;i<records.length;i++){
-			//alert(records[i].get("compno"));
-			compnos.push(records[i].get("compno"));
-		}
-		var extraParams=me.getStore().getProxy().extraParams;
-		
-		//alert(compnos.length);
-		//return;
-		Ext.Ajax.request({
-	  		url:Ext.ContextPath+'/ordChgdtl/cancel.do',
-	  		params:{
-	  			ormtno:extraParams["params['ormtno']"],
-	  			sampno:extraParams["params['sampno']"],
-	  			suitno:extraParams["params['suitno']"],
-	  			bradno:extraParams["params['bradno']"],
-	  			spclno:extraParams["params['spclno']"],
-	  			compnos:compnos
-	  		},
-	  		success:function(response){
-	  			me.getStore().reload();
-	  			me.nextSibling("#ordChgdtlRegnGrid").mask();
-	  			//me.nextSibling("#ordChgdtlRegnGrid").getStore().reload();
-	  		}
-	  	});
-	  	}//if(aa=='yes'){
+				//alert(records.length);
+				var compnos=[];
+				for(var i=0;i<records.length;i++){
+					//alert(records[i].get("compno"));
+					compnos.push(records[i].get("compno"));
+				}
+				var extraParams=me.getStore().getProxy().extraParams;
+				
+				//alert(compnos.length);
+				//return;
+				Ext.Ajax.request({
+			  		url:Ext.ContextPath+'/ordChgdtl/cancel.do',
+			  		params:{
+			  			ormtno:extraParams["params['ormtno']"],
+			  			sampno:extraParams["params['sampno']"],
+			  			suitno:extraParams["params['suitno']"],
+			  			bradno:extraParams["params['bradno']"],
+			  			spclno:extraParams["params['spclno']"],
+			  			compnos:compnos
+			  		},
+			  		success:function(response){
+			  			me.getStore().reload();
+			  			me.nextSibling("#ordChgdtlRegnGrid").mask();
+			  			//me.nextSibling("#ordChgdtlRegnGrid").getStore().reload();
+			  		}
+			  	});
+	  		}//if(aa=='yes'){
 		})
 	}
 });

@@ -63,7 +63,7 @@ public class SizeController {
 	public Size create(@RequestBody Size size) {
 		//判断订货会是否已经开始，如果已经开始，就不能进行增，删，改了
 		Ordmt ordmt=  ContextUtils.getOrdmt(size.getOrmtno());
-		if(!ordmt.isBeforeMtstdt()){
+		if(ordmt.isBeforeMtstdt()){
 			throw new BusinessException("订货会已经开始或结束，不能新增!");
 		}
 		
@@ -81,7 +81,7 @@ public class SizeController {
 	public  Size update(@RequestBody Size size) {
 		// 判断订货会是否已经开始，如果已经开始，就不能进行增，删，改了
 		Ordmt ordmt = ContextUtils.getOrdmt(size.getOrmtno());
-		if (!ordmt.isBeforeMtstdt()) {
+		if (ordmt.isBeforeMtstdt()) {
 			throw new BusinessException("订货会已经开始或结束，不能更新!");
 		}
 
@@ -103,7 +103,7 @@ public class SizeController {
 	public Size destroy(@RequestBody Size size) {
 		// 判断订货会是否已经开始，如果已经开始，就不能进行增，删，改了
 		Ordmt ordmt = ContextUtils.getOrdmt(size.getOrmtno());
-		if (!ordmt.isBeforeMtstdt()) {
+		if (ordmt.isBeforeMtstdt()) {
 			throw new BusinessException("订货会已经开始或结束，不能删除!");
 		}
 		//判断这个规格范围是否已经被引用，如果已经被引用就不能删除
@@ -120,7 +120,7 @@ public class SizeController {
 	public  String copy(String sizeno_old) {
 		// 判断订货会是否已经开始，如果已经开始，就不能进行增，删，改了
 		Ordmt ordmt = ContextUtils.getFirstOrdmt();//ContextUtils.getOrdmt(size.getOrmtno());
-		if (!ordmt.isBeforeMtstdt()) {
+		if (ordmt.isBeforeMtstdt()) {
 			throw new BusinessException("订货会已经开始或结束，不能更新!");
 		}
 		sizeService.copy(sizeno_old);

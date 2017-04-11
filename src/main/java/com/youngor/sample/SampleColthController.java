@@ -59,6 +59,9 @@ public class SampleColthController {
 		SampleColth sampleColth= sampleColthService.load(id);
 		if(ContextUtils.getPubSuno(sampleColth.getSpsuno())!=null){
 			sampleColth.setSpsuno_name(ContextUtils.getPubSuno(sampleColth.getSpsuno()).getIdsunm());
+			
+		}
+		if(ContextUtils.getPubSuno(sampleColth.getPrsuno())!=null){
 			sampleColth.setPrsuno_name(ContextUtils.getPubSuno(sampleColth.getPrsuno()).getIdsunm());
 		}
 

@@ -54,7 +54,7 @@ public class SampleProd {
 	private String prtype;//基础属性，在大类下
 	@FieldDefine(title="商品性质",hidden=false)
 	@Column(length=36)
-	private String prprpt;//基础属性
+	private String prprpt;//商品性质
 	@FieldDefine(title="渠道限制",hidden=false)
 	@Column(length=36)
 	private String prorgd;//基础属性
