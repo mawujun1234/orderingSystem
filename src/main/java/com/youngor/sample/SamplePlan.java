@@ -55,9 +55,14 @@ public class SamplePlan extends BaseObject{
 	@FieldDefine(title="定位",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=true)
 	private String splcno;
-	@FieldDefine(title="上市批次",sort=50,hidden=false)
+	@FieldDefine(title="上市月份",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=true)
 	private String spbano;
+	@FieldDefine(title="上市日期",sort=50,hidden=false)
+	@Column(length=10,nullable=false,updatable=true)
+	private String spbadt;
+	@FieldDefine(title="生产周期",sort=50,hidden=false)
+	private Integer spfpcy;
 	@FieldDefine(title="商品等级",sort=50,hidden=false)
 	@Column(length=30,nullable=false,updatable=true)
 	private String plgrno;
@@ -220,6 +225,18 @@ public class SamplePlan extends BaseObject{
 	}
 	public void setPlgrno(String plgrno) {
 		this.plgrno = plgrno;
+	}
+	public String getSpbadt() {
+		return spbadt;
+	}
+	public void setSpbadt(String spbadt) {
+		this.spbadt = spbadt;
+	}
+	public Integer getSpfpcy() {
+		return spfpcy;
+	}
+	public void setSpfpcy(Integer spfpcy) {
+		this.spfpcy = spfpcy;
 	}
 
 }

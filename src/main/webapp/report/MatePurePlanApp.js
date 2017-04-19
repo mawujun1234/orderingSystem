@@ -195,7 +195,7 @@ Ext.onReady(function(){
 			{dataIndex:'HTTRQT',header:'合同数量'},
 			{dataIndex:'HTORDT',header:'合同交期'},
 			{dataIndex:'SPSEANM',header:'季节'},
-			{dataIndex:'SPBANM',header:'上市批次'},
+			{dataIndex:'SPBANM',header:'上市月份'},
 			{dataIndex:'COLRNM',header:'颜色'},
 			{dataIndex:'VERSNM',header:'版型'},
 			{dataIndex:'SPBSENM',header:'大系列'},

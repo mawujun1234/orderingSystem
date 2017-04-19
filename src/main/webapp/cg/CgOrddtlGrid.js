@@ -145,7 +145,7 @@ Ext.define('y.cg.CgOrddtlGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'5'
 		    },{
-		        fieldLabel: '上市批次',
+		        fieldLabel: '上市月份',
 		        itemId: 'spbano',
 	            //allowBlank: false,
 	            //afterLabelTextTpl: Ext.required,

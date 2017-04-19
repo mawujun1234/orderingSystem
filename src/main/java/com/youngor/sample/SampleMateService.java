@@ -25,6 +25,8 @@ public class SampleMateService extends AbstractService<SampleMate, SampleMate.PK
 
 	@Autowired
 	private SampleMateRepository sampleMateRepository;
+	@Autowired
+	private SampleDesignService sampleDesignService;
 	
 	@Override
 	public SampleMateRepository getRepository() {
@@ -41,6 +43,8 @@ public class SampleMateService extends AbstractService<SampleMate, SampleMate.PK
 //		sampleMate.setLmdt(new Date());
 //		sampleMate.setLmsp(ShiroUtils.getLoginName());
 		super.create(sampleMate);
+		
+		sampleDesignService.sum_sampleColth_sppdcy(sampleMate.getSampno());
 		return sampleMate.getPk();
 	}
 	
@@ -53,5 +57,10 @@ public class SampleMateService extends AbstractService<SampleMate, SampleMate.PK
 	
 	public List<SampleMate> queryAll(){
 		return sampleMateRepository.queryAll();
+	}
+	@Override
+	public void update(SampleMate entity) {
+		super.update(entity);
+		sampleDesignService.sum_sampleColth_sppdcy(entity.getSampno());
 	}
 }

@@ -785,6 +785,7 @@ public static final class SampleColth {
 	public static final String spctpr="spctpr";
 	public static final String sprmk="sprmk";
 	public static final String spctst="spctst";
+	public static final String sppdcy="sppdcy";
 	public static final String spftpr="spftpr";
 	public static final String sprtpr="sprtpr";
 	public static final String spsuno_name="spsuno_name";
@@ -861,6 +862,7 @@ public static final class SampleMate {
 	public static final String mtpupr="mtpupr";
 	public static final String mtcnqt="mtcnqt";
 	public static final String matest="matest";
+	public static final String mtmpcy="mtmpcy";
 	public static final String mtsuno_name="mtsuno_name";
 }
 public static final class SamplePhoto {
@@ -891,6 +893,8 @@ public static final class SamplePlan {
 	public static final String spseno="spseno";
 	public static final String splcno="splcno";
 	public static final String spbano="spbano";
+	public static final String spbadt="spbadt";
+	public static final String spfpcy="spfpcy";
 	public static final String plgrno="plgrno";
 	public static final String spftpr="spftpr";
 	public static final String sprtpr="sprtpr";

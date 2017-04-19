@@ -132,12 +132,12 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 	        tyno:'18'
 	    },
 		{
-	        fieldLabel: '上市批次',
+	        fieldLabel: '上市月份',
 	        name: 'spbano_name',
 	        readOnly:true,
             allowBlank: false,
             afterLabelTextTpl: Ext.required,
-            blankText:"上市批次不允许为空",
+            blankText:"上市月份不允许为空",
 	        xtype:'textfield',
 	        tyno:'23'
 	    },

@@ -45,7 +45,7 @@ Ext.define('y.sample.SampleClhdForm',{
 		        xtype:'pubcodecombo',
 		        tyno:'1'
 		},{
-		        fieldLabel: '上市批次',
+		        fieldLabel: '上市月份',
 		        allowBlank: false,
 		        showBlank:false,
 	            afterLabelTextTpl: Ext.required,

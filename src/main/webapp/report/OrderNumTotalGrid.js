@@ -29,7 +29,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
         },
         {dataIndex:'spsean_name',header:'季节'
         },
-        {dataIndex:'spbano_name',header:'上市批次'
+        {dataIndex:'spbano_name',header:'上市月份'
         },
         {dataIndex:'versno_name',header:'版型'
         },

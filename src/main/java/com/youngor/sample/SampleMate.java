@@ -66,6 +66,9 @@ public class SampleMate {
 	@FieldDefine(title="锁定状态",sort=50,hidden=true)
 	private Integer matest;//锁定状态：1：锁定；0：未锁定
 	
+	@FieldDefine(title="生产周期",sort=50,hidden=false)
+	private Integer mtmpcy;
+	
 	@Transient
 	private String mtsuno_name;
 	
@@ -228,5 +231,17 @@ public class SampleMate {
 
 	public void setMtsuno_name(String mtsuno_name) {
 		this.mtsuno_name = mtsuno_name;
+	}
+
+
+
+	public Integer getMtmpcy() {
+		return mtmpcy;
+	}
+
+
+
+	public void setMtmpcy(Integer mtmpcy) {
+		this.mtmpcy = mtmpcy;
 	}
 }

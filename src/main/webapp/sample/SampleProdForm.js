@@ -144,7 +144,7 @@ Ext.define('y.sample.SampleProdForm',{
 	        xtype:'textfield'
 	    },
 	    {
-	        fieldLabel: '上市批次',
+	        fieldLabel: '上市月份',
 	        name: 'spbano_name',
             fieldStyle:'background-color:#CDC9C9;',
 	        readOnly:true,

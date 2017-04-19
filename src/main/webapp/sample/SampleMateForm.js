@@ -197,6 +197,17 @@ Ext.define('y.sample.SampleMateForm',{
             allowDecimals:false,
             selectOnFocus:true,
 	        xtype:'numberfield'   
+	    },
+	    {
+	        fieldLabel: '生产周期 ',
+	        name: 'mtmpcy',
+            allowBlank: false,
+            selectOnFocus:true,
+            afterLabelTextTpl: Ext.required,
+            blankText:"生产周期不允许为空",
+            minValue:0,
+            allowDecimals:false,
+	        xtype:'numberfield'
 	    }
 	  ];   
 	  
@@ -245,6 +256,21 @@ Ext.define('y.sample.SampleMateForm',{
 //						    	});
 //				    		}
 //				    	);
+				    	
+				    	//更新城一中的数据
+				    	//成衣信息
+						window.sampleColthForm.reset();
+						y.sample.SampleColth.load(record.get("sampno"), {
+							scope: this,
+						    success: function(sampleColth) {
+						    	//console.log(sampleDesign);
+						       //sampleDesign.set("plspnm",record.get("plspnm"));
+						    	//var suitty_field=sampleDesignForm.getForm().findField("suitty");
+						    	//alert(sampleColth.get("sprtpr_spftpr"));
+						       sampleColthForm.loadRecord(sampleColth);
+						       
+						    }
+						});
 				    	
 				    	
 				    }

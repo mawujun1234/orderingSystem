@@ -226,6 +226,17 @@ Ext.define('y.sample.SampleColthForm',{
             hidden:true,
             selectOnFocus:true,
 	        xtype:'textfield'
+	    },
+	    {
+	        fieldLabel: '生产周期 ',
+	        name: 'sppdcy',
+            allowBlank: false,
+            selectOnFocus:true,
+            afterLabelTextTpl: Ext.required,
+            blankText:"生产周期不允许为空",
+            minValue:0,
+            allowDecimals:false,
+	        xtype:'numberfield'
 	    }
 	  ];   
 	  

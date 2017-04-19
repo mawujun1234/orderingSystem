@@ -204,7 +204,7 @@ Ext.onReady(function(){
 			{dataIndex:'SPSEANM',header:'季节'},
 			{dataIndex:'SPLCNM',header:'定位'},
 			{dataIndex:'PLGRNM',header:'商品等级'},
-			{dataIndex:'SPBANM',header:'上市批次'},
+			{dataIndex:'SPBANM',header:'上市月份'},
 			{dataIndex:'SAMPNM',header:'订货样衣编号'},
 			{dataIndex:'PRODNM',header:'成品货号'},
 			{dataIndex:'GUSTNO',header:'客供编号'},

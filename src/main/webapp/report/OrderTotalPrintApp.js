@@ -280,7 +280,7 @@ Ext.onReady(function(){
 			{dataIndex:'SPCLNM',header:'大类'},
 			{dataIndex:'SPTYNM',header:'小类'},
 			{dataIndex:'SPSENM',header:'系列'},
-			{dataIndex:'SPBANM',header:'上市批次'},
+			{dataIndex:'SPBANM',header:'上市月份'},
 			{dataIndex:'SPRTPR',header:'零售价'},
 			{dataIndex:'YXGSNM',header:'营销公司'},
 			{dataIndex:'ORMTQT',header:'订货总量'},

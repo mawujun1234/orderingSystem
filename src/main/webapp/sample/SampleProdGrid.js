@@ -49,7 +49,7 @@ Ext.define('y.sample.SampleProdGrid',{
         },
         {dataIndex:'splcno_name',header:'定位'
         },
-        {dataIndex:'spbano_name',header:'上市批次'
+        {dataIndex:'spbano_name',header:'上市月份'
         },
         {dataIndex:'versno_name',header:'版型'
         },

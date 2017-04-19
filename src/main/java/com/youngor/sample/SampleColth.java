@@ -64,6 +64,9 @@ public class SampleColth {
 	@FieldDefine(title="锁定状态",sort=50,hidden=false)
 	private Integer spctst=0;//：1：锁定；0：未锁定
 	
+	@FieldDefine(title="生产周期",sort=50,hidden=false)
+	private Integer sppdcy;
+	
 	@Transient
 	private Double spftpr;//出厂价
 	@Transient
@@ -240,6 +243,12 @@ public class SampleColth {
 	}
 	public void setPrsuno_name(String prsuno_name) {
 		this.prsuno_name = prsuno_name;
+	}
+	public Integer getSppdcy() {
+		return sppdcy;
+	}
+	public void setSppdcy(Integer sppdcy) {
+		this.sppdcy = sppdcy;
 	}
 
 

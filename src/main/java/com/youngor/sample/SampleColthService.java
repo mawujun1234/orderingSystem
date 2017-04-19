@@ -24,6 +24,8 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 	private SampleColthRepository sampleColthRepository;
 	@Autowired
 	private SampleDesignStprRepository sampleDesignStprRepository;
+	@Autowired
+	private SampleDesignService sampleDesignService;
 	
 	@Override
 	public SampleColthRepository getRepository() {
@@ -42,6 +44,8 @@ public class SampleColthService extends AbstractService<SampleColth, String>{
 				sampleDesignStprRepository.create(samplePlanStpr);
 			}
 		}
+		
+		sampleDesignService.sum_sampleColth_sppdcy(sampleColth.getSampno());
 		return id;
 	}
 //	@Override

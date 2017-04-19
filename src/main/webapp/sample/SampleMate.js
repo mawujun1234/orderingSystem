@@ -14,7 +14,8 @@ Ext.define("y.sample.SampleMate",{
 		{name:'width',type:'string'},
 		{name:'mtpupr',type:'string'},
 		{name:'mtcnqt',type:'string'},
-		{name:'matest',type:'int'}
+		{name:'matest',type:'int'},
+		{name:'mtmpcy',type:'int'}
 	],
 	proxy:{
 		type:'ajax',

@@ -22,7 +22,8 @@ Ext.define("y.sample.SampleColth",{
 		{name:'sprtpr',type:'float'},
 		{name:'spftpr_spctpr',type:'float'},
 		{name:'sprtpr_spftpr',type:'float'},
-		{name:'sprtpr_spctpr',type:'float'}
+		{name:'sprtpr_spctpr',type:'float'},
+		{name:'sppdcy',type:'int'}
 	],
 	proxy:{
 		type:'ajax',

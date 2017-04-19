@@ -43,4 +43,9 @@ public interface SampleDesignRepository extends IRepository<SampleDesign, String
 	
 	
 	public int checkExistOrddtl(@Param("sampno")String sampno);
+	
+	public Integer sum_sample_mate_mtmpcy(@Param("sampno")String sampno);
+	public Integer sum_sample_plan_spfpcy(@Param("sampno")String sampno);
+	public void update_sample_cloth_sppdcy(@Param("plspno")String plspno);
+	
 }

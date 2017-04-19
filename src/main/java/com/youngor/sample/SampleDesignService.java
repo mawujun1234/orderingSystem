@@ -166,6 +166,28 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 				sampleDesignSizegpRepository.create(sampleDesignSizegp);
 			}
 		}
+		
+		sum_sampleColth_sppdcy(sampleDesign.getSampno());
+	}
+	
+	public void sum_sampleColth_sppdcy(String sampno){
+		//只有自产的才进行这个更新
+		SampleDesign sampleDesign=sampleDesignRepository.get(sampno);
+		if("ZC".equals(sampleDesign.getSpmtno())){
+			//获取面料的最大生产周期
+			Integer mtmpcy= sampleDesignRepository.sum_sample_mate_mtmpcy(sampno);
+			if(mtmpcy==null){
+				mtmpcy=0;
+			}
+			//获取企划 样衣的成衣生产周期
+			Integer spfpcy=sampleDesignRepository.sum_sample_plan_spfpcy(sampno);
+			if(spfpcy==null){
+				spfpcy=0;
+			}
+			//更新成衣的生产周期
+			sampleColthRepository.update(Cnd.update().set(M.SampleColth.sppdcy, mtmpcy+spfpcy).andEquals(M.SampleColth.sampno, sampno));
+		}
+		
 	}
 
 	public Pager<SamplePlanDesignVO> queryPlanDesign(Pager<SamplePlanDesignVO> pager) {

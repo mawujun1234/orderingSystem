@@ -264,5 +264,26 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
      <select id="querySampnoBySampnm1" parameterType="map" resultType="string">
      	select distinct sampno from ord_sample_design where sampnm1=#{sampnm1} 
      </select>
+     
+     
+     <select id="sum_sample_mate_mtmpcy" resultType="int">
+     	select max(mtmpcy) mtmpcy from ord_sample_mate
+		where sampno=#{sampno}
+     </select>
+     
+     <select id="sum_sample_plan_spfpcy" resultType="int">
+     	select a.spfpcy from ord_sample_plan a,ord_sample_design b
+		where a.plspno=b.plspno and sampno=#{sampno}
+     </select>
+     <update id="update_sample_cloth_sppdcy">
+     	update ord_sample_colth x set sppdcy=(
+		select sppdcy from (
+		select b.sampno,max(c.mtmpcy)+avg(a.spfpcy) sppdcy from ord_sample_plan a,ord_sample_design b,ord_sample_mate c
+		where a.plspno=b.plspno and b.sampno=c.sampno and a.plspno=#{plspno} and Spmtno='ZC'
+		group by b.sampno
+		) y where x.sampno=y.sampno
+		)
+		where x.sampno in (select sampno from ord_sample_design where plspno=#{plspno} and Spmtno='ZC')
+     </update>
 </mapper>
 

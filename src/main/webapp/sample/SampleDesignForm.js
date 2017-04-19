@@ -161,6 +161,8 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				var sampleColthForm=tabpanel.down("form#sampleColthForm");
 	       				sampleColthForm.getForm().findField("spctpr").setReadOnly(false);
 	       				sampleColthForm.spctpr_sum=false;
+	       				
+	       				sampleColthForm.getForm().findField("sppdcy").setReadOnly(false);
 	       			} else if(newValue=='ZC') {
 	       				form.remove(gustnoField,true);
 	       				
@@ -168,6 +170,9 @@ Ext.define('y.sample.SampleDesignForm',{
 	       				var sampleColthForm=tabpanel.down("form#sampleColthForm");
 	       				sampleColthForm.getForm().findField("spctpr").setReadOnly(true);
 	       				sampleColthForm.spctpr_sum=true;
+	       				
+	       				sampleColthForm.getForm().findField("sppdcy").setReadOnly(true);
+
 	       			}
 	       		}
 	        
@@ -551,6 +556,22 @@ Ext.define('y.sample.SampleDesignForm',{
 				}
 			});
       me.callParent();
+	},
+	sum_sampleColth_sppdcy:function(sampledesign){//计算生产周期
+		var me=this;
+		if(sampledesign.get("spmtno")=='ZC'){
+			var tabpanel=me.up("tabpanel");
+		    var sampleColthForm=tabpanel.down("form#sampleColthForm");
+		   
+		    sampleColthForm.getForm().findField("sppdcy").setReadOnly(true);
+		    //获取自营的数据
+		    
+		} else {
+			 sampleColthForm.getForm().findField("sppdcy").setReadOnly(false);
+		}
+		
+	    
+	    
 	},
 	loadRecord:function(record){
 		var me=this;

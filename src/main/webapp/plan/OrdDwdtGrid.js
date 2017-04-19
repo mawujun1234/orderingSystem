@@ -19,7 +19,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
         },
         {dataIndex:'SPSENM',header:'系列'
         },
-        {dataIndex:'SPBANM',header:'上市批次'
+        {dataIndex:'SPBANM',header:'上市月份'
         },
         {dataIndex:'SAMPNM',header:'设计样衣编号'
         },
@@ -151,7 +151,7 @@ Ext.define('y.plan.OrdDwdtGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'5'
 		    },{
-		        fieldLabel: '上市批次',
+		        fieldLabel: '上市月份',
 		        labelWidth:75,
 		  		width:175,
 		        itemId: 'spbano',

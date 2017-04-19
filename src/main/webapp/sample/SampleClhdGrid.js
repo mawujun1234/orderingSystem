@@ -16,7 +16,7 @@ Ext.define('y.sample.SampleClhdGrid',{
         },
 //		{dataIndex:'bradno',header:'品牌'
 //        },
-		{dataIndex:'spbano_name',header:'上市批次'
+		{dataIndex:'spbano_name',header:'上市月份'
         },
         {dataIndex:'clppst',header:'搭配状态',xtype: 'numbercolumn', format:'0',align : 'right',
         	renderer:function(value){
@@ -92,7 +92,7 @@ Ext.define('y.sample.SampleClhdGrid',{
 	  		dock:'top',
 	  		//enableOverflow:true,
 		  	items:[{
-		        fieldLabel: '上市批次',
+		        fieldLabel: '上市月份',
 		        labelWidth:60,
 		        width:160,
 		        itemId: 'spbano',

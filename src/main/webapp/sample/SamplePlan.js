@@ -12,6 +12,8 @@ Ext.define("y.sample.SamplePlan",{
 		{name:'spseno',type:'string'},
 		{name:'splcno',type:'string'},
 		{name:'spbano',type:'string'},
+		{name:'spbadt',type:'string'},
+		{name:'spfpcy',type:'int'},
 		{name:'plgrno',type:'string'},
 		{name:'spftpr',type:'float'},
 		{name:'sprtpr',type:'float'},

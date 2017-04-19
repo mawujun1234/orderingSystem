@@ -44,7 +44,7 @@ Ext.define('y.sample.SamplePlanGrid',{
         },
 		{dataIndex:'splcno_name',header:'定位'
         },
-		{dataIndex:'spbano_name',header:'上市批次'
+		{dataIndex:'spbano_name',header:'上市月份'
         },
         {dataIndex:'plgrno_name',header:'商品等级'
         },
