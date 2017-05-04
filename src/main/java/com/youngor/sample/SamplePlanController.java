@@ -1,6 +1,7 @@
 package com.youngor.sample;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -134,6 +135,10 @@ public class SamplePlanController {
 		//System.out.println(params);
 		XSSFWorkbook wb = new XSSFWorkbook();    
 		Sheet sheet1 = wb.createSheet("资料");
+		LinkedHashMap<String,String> titles=new LinkedHashMap<String,String>();
+		
+		
+		
 		crreateTitle(wb,sheet1);
 		
 		List<SamplePlanVO> list=samplePlanService.queryList4Export(params);
@@ -204,26 +209,35 @@ public class SamplePlanController {
 		cell9.setCellStyle(cellStyle);
 		
 		Cell cell10 = title.createCell(10);
-		cell10.setCellValue("上市批次");
+		cell10.setCellValue("上市月份");
 		cell10.setCellStyle(cellStyle);
 		
-		Cell cell11 = title.createCell(11);
+		Cell cell_X = title.createCell(11);
+		cell_X.setCellValue("上市日期");
+		cell_X.setCellStyle(cellStyle);
+		
+		cell_X = title.createCell(12);
+		cell_X.setCellValue("上市生产周期");
+		cell_X.setCellStyle(cellStyle);
+		
+		
+		Cell cell11 = title.createCell(13);
 		cell11.setCellValue("商品等级");
 		cell11.setCellStyle(cellStyle);
 		
-		Cell cell12 = title.createCell(12);
+		Cell cell12 = title.createCell(14);
 		cell12.setCellValue("出厂价");
 		cell12.setCellStyle(cellStyle);
 		
-		Cell cell13 = title.createCell(13);
+		Cell cell13 = title.createCell(15);
 		cell13.setCellValue("零售价");
 		cell13.setCellStyle(cellStyle);
 		
-		Cell cell14 = title.createCell(14);
+		Cell cell14 = title.createCell(16);
 		cell14.setCellValue("企划倍率");
 		cell14.setCellStyle(cellStyle);
 		
-		Cell cell15 = title.createCell(15);
+		Cell cell15 = title.createCell(17);
 		cell15.setCellValue("企划成本");
 		cell15.setCellStyle(cellStyle);
 		
@@ -268,19 +282,25 @@ public class SamplePlanController {
 			Cell cell10 = row.createCell(10);
 			cell10.setCellValue(vo.getSpbano_name());
 			
-			Cell cell11 = row.createCell(11);
+			Cell cell_x = row.createCell(11);
+			cell_x.setCellValue(vo.getSpbadt());
+			
+			cell_x = row.createCell(12);
+			cell_x.setCellValue(vo.getSpfpcy());
+			
+			Cell cell11 = row.createCell(13);
 			cell11.setCellValue(vo.getPlgrno());
 			
-			Cell cell12 = row.createCell(12);
+			Cell cell12 = row.createCell(14);
 			cell12.setCellValue(vo.getSpftpr());
 			
-			Cell cell13 = row.createCell(13);
+			Cell cell13 = row.createCell(15);
 			cell13.setCellValue(vo.getSprtpr());
 			
-			Cell cell14 = row.createCell(14);
+			Cell cell14 = row.createCell(16);
 			cell14.setCellValue(vo.getSpplrd());
 			
-			Cell cell15 = row.createCell(15);
+			Cell cell15 = row.createCell(17);
 			cell15.setCellValue(vo.getPlctpr());
 			
 

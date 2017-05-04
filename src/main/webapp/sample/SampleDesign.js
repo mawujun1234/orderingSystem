@@ -32,7 +32,11 @@ Ext.define("y.sample.SampleDesign",{
 		{name:'lmsp',type:'string'},
 		{name:'lmdt',type:'date', dateFormat: 'Y-m-d H:i:s'},
 		
-		{name:'plspnm',type:'string'}
+		{name:'plspnm',type:'string'},
+		
+		{name:'spbadt',type:'string'},
+		{name:'spfpcy',type:'string'},
+		{name:'spordt',type:'string'}
 	],
 	proxy:{
 		type:'ajax',

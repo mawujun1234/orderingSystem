@@ -57,6 +57,14 @@ Ext.define('y.sample.SampleDesignGrid',{
         		return "";
         	}
         },
+        {dataIndex:'spbadt',header:'上市日期'
+        },
+        {dataIndex:'spfpcy',header:'生产周期'
+        },
+        {dataIndex:'spordt',header:'最晚下单日期'
+        },
+        {dataIndex:'spindt',header:'入库日期'
+        },
 		{dataIndex:'bradno_name',header:'品牌'
         },
 		{dataIndex:'spyear',header:'年份'

@@ -18,6 +18,9 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	private Integer matest;//面料信息锁定状态
 	private Integer spctst;//成衣信息锁定状态
 	
+	private String spordt;//最晚下单日期
+	private String spindt;
+	
 	
 	public String getSampno() {
 		return sampno;
@@ -72,5 +75,17 @@ public class SamplePlanDesignVO extends SamplePlanVO{
 	}
 	public void setSampnm1(String sampnm1) {
 		this.sampnm1 = sampnm1;
+	}
+	public String getSpordt() {
+		return spordt;
+	}
+	public void setSpordt(String spordt) {
+		this.spordt = spordt;
+	}
+	public String getSpindt() {
+		return spindt;
+	}
+	public void setSpindt(String spindt) {
+		this.spindt = spindt;
 	}
 }

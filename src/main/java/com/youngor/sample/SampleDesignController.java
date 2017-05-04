@@ -171,7 +171,13 @@ public class SampleDesignController {
 		titles.put("SPTYNM", "小类");
 		titles.put("SPSENM", "系列");
 		titles.put("SPLCNM", "定位");
-		titles.put("SPBANM", "上市批次");
+		
+		titles.put("SPBANM", "上市月份");
+		titles.put("SPBADT", "上市日期");
+		titles.put("SPFPCY", "生产周期");
+		titles.put("SPORDT", "最晚下单日期");
+		titles.put("SPINDT", "入库日期");
+		
 		titles.put("PLGRNM", "商品等级");
 		titles.put("SPFTPR", "出厂价");
 		titles.put("SPRTPR", "零售价");
@@ -309,6 +315,7 @@ public class SampleDesignController {
 		titles.put("WIDTH", "门幅");
 		titles.put("MTPUPR", "面料单价");
 		titles.put("MTCNQT", "单件用料");
+		titles.put("MTMPCY", "生产周期");
 		crreateTitle_exportSampleMate(wb,sheet1,titles);
 		
 		crreateData_exportSampleMate(wb,sheet1,titles,params);
@@ -400,6 +407,7 @@ public class SampleDesignController {
 		titles.put("WIDTH", "门幅");
 		titles.put("MTPUPR", "面料单价");
 		titles.put("MTCNQT", "单件用料");
+		titles.put("MTMPCY", "生产周期");
 		crreateTitle_exportSampleMate_other(wb,sheet1,titles);
 		
 		crreateData_exportSampleMate_other(wb,sheet1,titles,params);

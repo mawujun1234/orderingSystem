@@ -3,10 +3,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -108,6 +111,14 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		outputStream.close();
 		stream.close();
 		
+		File dir_thumb=new File(dir.getAbsolutePath() + File.separator +"thumb");
+		if(!dir_thumb.exists()){
+			dir_thumb.mkdirs();
+		}
+		File file_thumb=new File(dir.getAbsolutePath() + File.separator +"thumb" + File.separator+imgnm);
+		samplePhoto.setThumb("/photoes/"+ormtno+"/thumb/"+imgnm);
+		createThumb(file,file_thumb);
+		
 		//对上传文件进行备份
 		File photo_bak=new File(contextPath+ File.separator+"photoes_bak"+File.separator+ormtno);
 		if(!photo_bak.exists()){
@@ -125,6 +136,47 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		super.create(samplePhoto);
 		return photno;
 		
+	}
+	public void createThumb(File file,File file_thumb) {
+		if(file.exists() && file.isFile()){
+			//System.out.println(file.getAbsolutePath());
+			//samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
+			if(file.length()>204800){//200kb
+				try {
+					if(file.length()>2048000){
+						Thumbnails.of(file) .scale(0.1f).toFile(file_thumb);	 
+					} else if(file.length()>1024000){
+						Thumbnails.of(file) .scale(0.25f).toFile(file_thumb);	 
+					} else if(file.length()>512000){
+						Thumbnails.of(file) .scale(0.8f).toFile(file_thumb);	 
+					}  else {
+						FileUtils.copyFile(file, file_thumb);
+					}
+					   
+				} catch (IOException e) {
+					System.out.println(e);
+					throw new BusinessException("请把图片改成RGB模式，再上传");
+				}
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//					try {
+//						FileUtils.copyFile(file, destFile);
+//					} catch (IOException ex) {
+//						// TODO Auto-generated catch block
+//						ex.printStackTrace();
+//						thumb_imgnm=imgnm;//如果报错，就用原始图
+//					}
+				}  
+			} else {
+//				try {
+//					FileUtils.copyFile(file, destFile);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//					thumb_imgnm=imgnm;//如果报错，就用原始图
+//				}
+				
+			}
 	}
 	/**
 	 * SampleDesignService中也有相应的文件删除

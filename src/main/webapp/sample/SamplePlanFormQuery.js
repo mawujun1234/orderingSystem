@@ -142,6 +142,27 @@ Ext.define('y.sample.SamplePlanFormQuery',{
 	        tyno:'23'
 	    },
 	    {
+	        fieldLabel: '上市日期',
+	        name: 'spbadt',
+            allowBlank: false,
+            afterLabelTextTpl: Ext.required,
+            blankText:"上市日期不允许为空",
+	        xtype:'textfield',
+	        editable:false
+	    },
+	    {
+	        fieldLabel: '工厂生产周期 ',
+	        name: 'spfpcy',
+            allowBlank: false,
+            selectOnFocus:true,
+            afterLabelTextTpl: Ext.required,
+            blankText:"工厂生产周期不允许为空",
+            minValue:0,
+            allowDecimals:false,
+	        xtype:'numberfield',
+	        editable:false
+	    },
+	    {
 	        fieldLabel: '商品等级',
 	        name: 'plgrno_name',
 	        readOnly:true,
