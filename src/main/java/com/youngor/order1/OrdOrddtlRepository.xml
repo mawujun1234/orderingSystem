@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
+<mapper namespace="com.youngor.order1.OrdOrddtlRepository">
+	<!-- 查询语句，会自动分页-->
+	<sql id="queryPage1_sql">
+		select b.sampno,b.sampnm,b.sampnm1,c.suitno,g.prodnm,a.spclno,a.sptyno,a.spseno,a.spbano,STPR.spftpr,a.sprtpr
+		,ormtqt
+		,orddtl.lasted_ordate
+		,orddtl.total_orodqt
+		from ord_sample_plan a
+		inner join ord_sample_design b on a.plspno=b.plspno
+		inner join ORD_SAMPLE_DESIGN_SIZEGP c on b.sampno=c.sampno
+		inner join ORD_SAMPLE_DESIGN_STPR STPR on b.sampno=STPR.sampno AND C.SUITNO=STPR.SUITNO
+		left join ord_sample_colth h on b.sampno=h.sampno
+		left join ORD_SAMPLE_PROD g on a.ormtno=g.ormtno and b.sampno=g.sampno and c.suitno=g.suitno
+		left join (select  sampno,sum(ormtqt) ormtqt from ord_orddtl  where (ormtqs!=0 or ormtqt!=0) group by  sampno) f on b.sampno=f.sampno
+		left join (select ormtno,sampno,suitno,max(ordate) lasted_ordate,sum(orodqt) total_orodqt from ord_ord_orddtl group by ormtno,sampno,suitno) orddtl on a.ormtno=orddtl.ormtno and b.sampno=orddtl.sampno and c.suitno=orddtl.suitno
+		where a.ormtno=#{ormtno} and a.bradno=#{bradno} 
+			and not exists (select 1 from ORD_COMP_PAL p where a.ormtno=p.ormtno and b.sampno=p.sampno and p.paltpy='取消')
+			
+		<if test="spclno!=null and spclno!=''">
+    		and a.spclno=#{spclno}
+    	</if>
+    	<if test="spclno==null or spclno==''">
+    		and exists ( select 1 from  t_role_user x,t_role_class y
+      			where x.role_id=y.role_id and a.spclno=y.itno and x.user_id=#{user_id} )
+    	</if>
+		<if test="sptyno!=null and sptyno!=''">
+    		and a.sptyno=#{sptyno}
+    	</if>
+    	<if test="spseno!=null and spseno!=''">
+    		and a.spseno=#{spseno}
+    	</if>
+    	<if test="prsuno!=null and prsuno!=''">
+    		and h.prsuno=#{prsuno}
+    	</if>
+    	<if test="prod_state=='ok'">
+    		and g.sampno is not null
+    	</if>
+    	<if test="prod_state=='no'">
+    		and g.sampno is null
+    	</if>
+    	<if test="sampnm!=null and sampnm!=''">
+    		and lower(b.sampnm) like lower('%${sampnm}%')
+    	</if>
+    	<if test="prodnm!=null and prodnm!=''">
+    		and lower(g.prodnm) like lower('%${prodnm}%')
+    	</if>
+    	<!--f.ormtqt!=0很重要，排除了没订货的，排除了取消掉的，也同时排除了套装西服拆套西服只有上衣和裤子，没有标准的问题 -->
+    	<if test="sample_state=='ok'">
+    		and f.sampno is not null and f.ormtqt!=0
+    	</if>
+    	<if test="sample_state=='no'">
+    		and f.sampno is null
+    	</if>
+	</sql>
+	<!-- 查询语句，会自动分页-->
+    <select id="queryPage1" resultType="com.youngor.order1.OrdOrddtlQuery" parameterType="map">
+    	<include refid="queryPage1_sql"></include> 
+    	order by b.sampno,c.suitno,a.sptyno,a.spseno
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage1_count" resultType="int" parameterType="map">
+    	select count(*) from (
+			<include refid="queryPage1_sql"></include> 
+		)
+    </select>
+    
+    <select id="querymx" resultType="com.youngor.order1.AAAA" parameterType="map">
+    	select c.spclno as dlid,e.itnm as xl,f.itnm as xlie,count(distinct a.sampno) pzgs,sum(a.orodqt) cpsl,sum(d.spftpr) ccje,sum(d.sprtpr) lsje 
+		from ord_ord_orddtl a
+		inner join ord_sample_design b on a.sampno=b.sampno
+		inner join ord_sample_plan c on b.plspno=c.plspno
+		inner join ord_sample_design_stpr d on a.sampno=d.sampno and a.suitno=d.suitno
+		inner join ord_pub_code e on a.suitno=e.itno and e.tyno='3'
+		inner join ord_pub_code f on c.spseno=f.itno and f.tyno='5'
+		where a.ormtno=#{ormtno} and a.ordate=#{ordate}
+		group by c.spclno,e.itnm,f.itnm
+    </select>
+</mapper>
+

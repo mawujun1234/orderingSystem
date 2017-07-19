@@ -38,7 +38,12 @@ Ext.define('y.sample.SamplePlanForm',{
             //value:'Y',
             blankText:"品牌不允许为空",
 	        xtype:'pubcodecombo',
-	        tyno:'1'
+	        tyno:'1',
+	        listeners:{
+				select:function(combo , record , eOpts){
+					
+				}
+			}
 	    },
 		{
 	        fieldLabel: '年份',
@@ -127,8 +132,10 @@ Ext.define('y.sample.SamplePlanForm',{
 		{
 	        fieldLabel: '上市月份',
 	        name: 'spbano',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
+	        itemId:'spbano',
+            allowBlank: true,
+            //afterLabelTextTpl: Ext.required,
+            showBlank:true,
             blankText:"上市月份不允许为空",
 	        xtype:'pubcodecombo',
 	        tyno:'23',
@@ -140,35 +147,35 @@ Ext.define('y.sample.SamplePlanForm',{
 	        		
 	        		//spbadt.getStore().removeAll();
 	        		var data=[];
-	        		if(rawvalue=='一月份'){
+	        		if(rawvalue=='一月'){
 	        			data=[{key:'1230',name:'1230'},{key:'0110',name:'0110'},{key:'0120',name:'0120'}];
-	        		} else if(rawvalue=='二月份'){
-	        			data=[{key:'0131',name:'0131'},{key:'0210',name:'0210'},{key:'0220',name:'0210'}];
-	        		} else if(rawvalue=='三月份'){
+	        		} else if(rawvalue=='二月'){
+	        			data=[{key:'0131',name:'0131'},{key:'0210',name:'0210'},{key:'0220',name:'0220'}];
+	        		} else if(rawvalue=='三月'){
 	        			 var year = (new Date()).getFullYear();
 	        			if(!!((year & 3) == 0 && (year % 100 || (year % 400 == 0 && year)))){
 	        				data=[{key:'0229',name:'0229'},{key:'0310',name:'0310'},{key:'0320',name:'0320'}];
 	        			} else {
 	        				data=[{key:'0228',name:'0228'},{key:'0310',name:'0310'},{key:'0320',name:'0320'}];
 	        			}
-	        		} else if(rawvalue=='四月份'){
+	        		} else if(rawvalue=='四月'){
 	        			data=[{key:'0331',name:'0331'},{key:'0410',name:'0410'},{key:'0420',name:'0420'}];
-	        		} else if(rawvalue=='五月份'){
+	        		} else if(rawvalue=='五月'){
 	        			data=[{key:'0430',name:'0430'},{key:'0510',name:'0510'},{key:'0520',name:'0520'}];
-	        		} else if(rawvalue=='六月份'){
+	        		} else if(rawvalue=='六月'){
 	        			data=[{key:'0531',name:'0531'},{key:'0610',name:'0610'},{key:'0620',name:'0620'}];
-	        		} else if(rawvalue=='七月份'){
+	        		} else if(rawvalue=='七月'){
 	        			data=[{key:'0630',name:'0630'},{key:'0710',name:'0710'},{key:'0720',name:'0720'}];
-	        		} else if(rawvalue=='八月份'){
+	        		} else if(rawvalue=='八月'){
 	        			data=[{key:'0731',name:'0731'},{key:'0810',name:'0810'},{key:'0820',name:'0820'}];
-	        		} else if(rawvalue=='九月份'){
-	        			data=[{key:'0830',name:'0830'},{key:'0910',name:'0910'},{key:'0920',name:'0920'}];
-	        		} else if(rawvalue=='十月份'){
-	        			data=[{key:'0931',name:'0931'},{key:'1010',name:'1010'},{key:'1020',name:'1020'}];
-	        		} else if(rawvalue=='十一月份'){
-	        			data=[{key:'1030',name:'1030'},{key:'1110',name:'1110'},{key:'1120',name:'1120'}];
-	        		} else if(rawvalue=='十二月份'){
-	        			data=[{key:'1131',name:'1131'},{key:'1210',name:'1210'},{key:'1229',name:'1229'}];
+	        		} else if(rawvalue=='九月'){
+	        			data=[{key:'0831',name:'0831'},{key:'0910',name:'0910'},{key:'0920',name:'0920'}];
+	        		} else if(rawvalue=='十月'){
+	        			data=[{key:'0930',name:'0930'},{key:'1010',name:'1010'},{key:'1020',name:'1020'}];
+	        		} else if(rawvalue=='十一月'){
+	        			data=[{key:'1031',name:'1031'},{key:'1110',name:'1110'},{key:'1120',name:'1120'}];
+	        		} else if(rawvalue=='十二月'){
+	        			data=[{key:'1130',name:'1130'},{key:'1210',name:'1210'},{key:'1220',name:'1220'}];
 	        		}
 	        		spbadt.getStore().loadData(data);
 	        	}
@@ -177,8 +184,9 @@ Ext.define('y.sample.SamplePlanForm',{
 	    {
 	        fieldLabel: '上市日期',
 	        name: 'spbadt',
-            allowBlank: false,
-            afterLabelTextTpl: Ext.required,
+            allowBlank: true,
+            //afterLabelTextTpl: Ext.required,
+            showBlank:true,
             blankText:"上市日期不允许为空",
 	        xtype:'combobox',
 	        editable:false,
@@ -383,6 +391,16 @@ Ext.define('y.sample.SamplePlanForm',{
 				button.up('form').updateRecord();
 				var record=button.up('form').getForm().getRecord();
 				
+				if(record.get("bradno")=="Y"){
+						//var spbano=combo.nextSibling("#spbano");
+		        		//spbano
+		        		//spbadt
+					if(!record.get("spbano") || !record.get("spbadt")){
+						Ext.Msg.alert("消息","上市日期和上日月份不能为空!");
+						return;
+					}
+				}	
+					
 				record.save({
 					failure: function(record, operation) {
 				    },

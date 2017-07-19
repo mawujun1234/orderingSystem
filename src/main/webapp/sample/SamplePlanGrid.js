@@ -115,6 +115,10 @@ Ext.define('y.sample.SamplePlanGrid',{
 				listeners:{
 		        	select:function( combo, record, eOpts ) {
 		        		window.ordmt_record=record;
+		        		//alert(record.get("ormtst"));
+		        		
+		        		var spclno=combo.nextSibling("#spclno");
+		        		spclno.changeOrdmt(record.get("ormtst"));
 		        	}	
 		        }
 			},{

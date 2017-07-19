@@ -112,10 +112,13 @@ public class SampleProdService extends AbstractService<SampleProd, com.youngor.s
 					sampleProd.setPrunit(cell.getNumericCellValue()+"");
 				} else if(cell.getCellType()==HSSFCell.CELL_TYPE_STRING){
 					sampleProd.setPrunit(cell.getStringCellValue());
-				} 
+				} else {
+					throw new BusinessException("第"+(i+1)+"行的单位没有填写!");
+				}
 				
 			} else {
 				//sampleProd.setPrprpt("V01");
+				throw new BusinessException("第"+(i+1)+"行的单位没有填写!");
 			}
 			if(sampleProd.getPrprpt()==null || "".equals(sampleProd.getPrprpt())){
 				sampleProd.setPrprpt("V01");

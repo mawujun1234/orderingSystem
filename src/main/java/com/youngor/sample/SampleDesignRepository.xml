@@ -142,7 +142,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	    		and a.sampno=#{sampno}
 	    	</if>
 	    	<if test="sampnm!=null and sampnm!=''">
-	    		and lower(a.sampnm) like lower('%${sampnm}%')
+	    		and lower(b.sampnm) like lower('%${sampnm}%')
 	    	</if>
 	    	<if test="spsuno!=null and spsuno!=''">
 	    		and a.spsuno=#{spsuno}

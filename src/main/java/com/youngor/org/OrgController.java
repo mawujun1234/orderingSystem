@@ -50,6 +50,17 @@ public class OrgController {
 		List<NodeVO> orges=orgService.queryOnlyOrg(parent_id,dim);
 		return orges;
 	}
+	@RequestMapping("/org/queryOnlyOrgByorgnm.do")
+	@ResponseBody
+	public List<NodeVO> queryOnlyOrgByorgnm(String orgnm,Dim dim) {
+		if(dim==null){
+			dim=Dim.SALE;
+		}
+
+		//Cnd cnd=Cnd.select().andEquals(M.OrgOrg, "root".equals(parent_id)?null:parent_id);
+		List<NodeVO> orges=orgService.queryOnlyOrgByorgnm(orgnm,dim);
+		return orges;
+	}
 	/**
 	 * 添加了权限的组织节点过滤
 	 * @author mawujun qq:16064988 mawujun1234@163.com

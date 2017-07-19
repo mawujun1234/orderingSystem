@@ -197,7 +197,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 	        dock: 'bottom',
 	        displayInfo: true
 	  });
-	 me.initReloadSampleDesign_index=1,
+	 me.initReloadSampleDesign_index=1;
+	 var aaa=1;
 	 me.dockedItems.push({
 	  		xtype: 'toolbar',
 	  		dock:'top',
@@ -210,6 +211,13 @@ Ext.define('y.sample.SampleDesignGrid',{
 						window.ordmt_record=record;
 						me.initReloadSampleDesign_index++;
 						me.reload();
+						
+						if(aaa!=1){
+							var spclno=combo.nextSibling("#spclno");
+		        			spclno.changeOrdmt(record.get("ormtst"));
+						}
+						aaa++;
+						
 					}
 				}
 			},{
@@ -226,7 +234,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'1',
 		        listeners:{
-					select:function(combo , record , eOpts){
+					select:function(combo , record , eOpts){//alert("t");
 						me.initReloadSampleDesign_index++;
 						me.reload();
 					}
@@ -244,7 +252,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		        xtype:'pubcodecombo',
 		        tyno:'0',
 		        listeners:{
-		        	select:function( combo, record, eOpts ) {
+		        	select:function( combo, record, eOpts ) {//alert("p");
 		        		var sptyno=combo.nextSibling("#sptyno");
 		        		sptyno.reload(record.get("itno"));
 		        		
@@ -491,7 +499,7 @@ Ext.define('y.sample.SampleDesignGrid',{
 		//当3个必须条件都初始化结束，就自动进行查询
 		//alert(this.initReloadSampleDesign_index);
 		var grid=this;
-		if(this.initReloadSampleDesign_index>=3){
+		if(this.initReloadSampleDesign_index>=4){
 			grid.getStore().getProxy().extraParams=grid.getParams();
 			grid.getStore().reload({params:{start:0,page:1}});
 			
@@ -806,6 +814,8 @@ Ext.define('y.sample.SampleDesignGrid',{
 			sampleMateForm.reset();
 			sampleMateForm.lockOrUnlock(record.get("matest"));
 			sampleMateGrid.lockOrUnlock(record.get("matest"));
+			sampleMateForm.copy_aaaaaaaaaaaaaaaa=true;
+			
 			
 			//成衣信息
 			var sampleColthForm=tabpanel.down("form#sampleColthForm") ;

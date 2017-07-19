@@ -60,6 +60,7 @@ Ext.define('y.common.PubCode',{
 	//		name: 'roleType',
 	//value:'rolegroup',
 	tyno:'',
+	isdangji:true,
 	
 	selFirst:false,
 	showBlank:true,//是否显示“无”的数据
@@ -109,6 +110,10 @@ Ext.define('y.common.PubCode',{
 			},
 			listeners:{
 				beforeload:function(store){
+					if(me.stat_stat_aaa){
+						me.stat_stat_aaa=false;
+						return;
+					}
 					//添加是否当季
 					//console.log(window.stat_xtrydeeeeeeeee);
 					if(typeof(window.stat_xtrydeeeeeeeee)=='undefined' || window.stat_xtrydeeeeeeeee==null){
@@ -144,6 +149,22 @@ Ext.define('y.common.PubCode',{
 	        bradno:bradno
 	    });
 	},
+	changeOrdmt:function(not_isdangji){
+		var me=this;
+		
+		var stat_stat=1;
+		if(not_isdangji){
+			stat_stat=0
+		} else {
+			stat_stat=1;	
+		}
+		me.stat_stat_aaa=true;
+		
+		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
+	        stat_stat:stat_stat
+	    });
+	    me.getStore().reload();
+	},
 	/**
 	 * 调用这个的都是说明有父节点的
 	 * @param {} fitno
@@ -159,8 +180,10 @@ Ext.define('y.common.PubCode',{
 			fitno="none";
 		}
 		
+		
 		me.getStore().getProxy().extraParams=Ext.apply(me.getStore().getProxy().extraParams,{
 	        fitno:fitno
+	        
 	    })
 	    me.getStore().reload();
 	    me.reloaded=true;

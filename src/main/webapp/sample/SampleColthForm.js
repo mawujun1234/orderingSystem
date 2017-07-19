@@ -34,6 +34,7 @@ Ext.define('y.sample.SampleColthForm',{
 	        		var prsuno=combo.nextSibling("pubsunocombo#prsuno");
 
 	        		prsuno.select( record );
+	        		me.isValid();
 
 	        	}
 	        }
@@ -50,7 +51,7 @@ Ext.define('y.sample.SampleColthForm',{
 	    {
 	        fieldLabel: '纱厂',
 	        name: 'spcotn',
-//            allowBlank: false,
+            allowBlank: true,
 //            afterLabelTextTpl: Ext.required,
 //            blankText:"纱厂不允许为空",
             selectOnFocus:true,
@@ -244,6 +245,7 @@ Ext.define('y.sample.SampleColthForm',{
 	   var sampleDesignStprGrid=Ext.create('y.sample.SampleDesignStprGrid',{
 	  	itemId:'sampleDesignStprGrid'
 	  });
+	  me.sampleDesignStprGrid=sampleDesignStprGrid ;
 	  var fieldset={
         // Fieldset in Column 1 - collapsible via toggle button
         xtype:'fieldset',
@@ -267,15 +269,104 @@ Ext.define('y.sample.SampleColthForm',{
 			glyph : 0xf0c7,
 			hidden:!Permision.canShow('sample_design_clothsave'),
 			handler : function(button){
+				var formpanel = button.up('form');
+				formpanel.onSave();
+//				if(!window.sampno){
+//		    		Ext.Msg.alert("消息","请先建立‘设计开发’中的信息");
+//		    		return;
+//		    	}
+//		    	
+//				var formpanel = button.up('form');
+//				formpanel.updateRecord();
+//				//formpanel.getForm().getRecord().set("sampno",window.sampno.sampno);
+//				
+//				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();		
+//				var aa=[];
+//				//套件的其他值加起来，要等于标准套的值
+//				var t00_temp={
+//					spftpr:0,
+//					sprtpr:0,
+//					plctpr:0
+//				}
+//				var other_temp={
+//					spftpr:0,
+//					sprtpr:0,
+//					plctpr:0
+//				}
+//				for(var i=0;i<sampleDesignStpres.length;i++){
+//					if(sampleDesignStpres[i].get("suitno")=='T00'){
+//						t00_temp={
+//							spftpr:sampleDesignStpres[i].get("spftpr"),
+//							sprtpr:sampleDesignStpres[i].get("sprtpr"),
+//							plctpr:sampleDesignStpres[i].get("plctpr")
+//						}
+//					} else {
+//						other_temp.spftpr+=sampleDesignStpres[i].get("spftpr");
+//						other_temp.sprtpr+=sampleDesignStpres[i].get("sprtpr");
+//						other_temp.plctpr+=sampleDesignStpres[i].get("plctpr");
+//					}
+//					aa.push({
+//						//sampno:sampleDesignStpres[i].get("getSampno"),
+//						suitno:sampleDesignStpres[i].get("suitno"),
+//						spftpr:sampleDesignStpres[i].get("spftpr"),
+//						sprtpr:sampleDesignStpres[i].get("sprtpr"),
+//						plctpr:sampleDesignStpres[i].get("plctpr")
+//					});
+//				}
+//				//套件的其他值加起来，要等于标准套的值
+//				if(sampleDesignStpres.length>1){
+//					if(t00_temp.spftpr!=other_temp.spftpr){
+//						Ext.Msg.alert("消息","出厂价 ：其他套件的出厂价和不等于标准套的出厂价");
+//						return;
+//					}
+//					if(t00_temp.sprtpr!=other_temp.sprtpr){
+//						Ext.Msg.alert("消息","零售价：其他套件的零售价和不等于标准套的零售价");
+//						return;
+//					}
+//					if(t00_temp.plctpr!=other_temp.plctpr){
+//						Ext.Msg.alert("消息","企划成本价 ：其他套件的企划成本价和不等于标准套的企划成本价");
+//						return;
+//					}
+//				}
+//				var jsonData=formpanel.getForm().getFieldValues();
+//				//alert(jsonData.ctdwdt);
+//				jsonData.ctdwdt=Ext.Date.format(jsonData.ctdwdt,'Y-m-d H:i:s');
+//				jsonData.sampno=window.sampno.sampno;
+//				jsonData.sampleDesignStpres=aa;
+//				
+//				Ext.Ajax.request({
+//					url:Ext.ContextPath+"/sampleColth/create.do",
+//					actionMethods: { read: 'POST' },
+//					timeout :600000,
+//					headers:{ 'Accept':'application/json;'},
+//					jsonData:jsonData,
+//					success:function(response){
+//						Ext.Msg.alert("消息","保存成功!");
+//						//如果是锁定状态，就隐藏这个按钮
+//						//hidden:!Permision.canShow('sample_design_designsave'),
+//						if(sampleDesign.get("spctst")==1){
+//							me.down("#save").hide();		
+//						} else if(Permision.canShow('sample_design_designsave')){
+//							me.down("#save").show();
+//						}
+//					}
+//					
+//				});		
+				
+				}
+			});
+      me.callParent();
+	},
+	onSave:function(){
 				if(!window.sampno){
 		    		Ext.Msg.alert("消息","请先建立‘设计开发’中的信息");
 		    		return;
 		    	}
-		    	
-				var formpanel = button.up('form');
+		    	var me=this;
+				var formpanel = this;//button.up('form');
 				formpanel.updateRecord();
 				//formpanel.getForm().getRecord().set("sampno",window.sampno.sampno);
-				
+				var sampleDesignStprGrid=this.sampleDesignStprGrid;
 				var sampleDesignStpres=sampleDesignStprGrid.getStore().getRange();		
 				var aa=[];
 				//套件的其他值加起来，要等于标准套的值
@@ -347,11 +438,7 @@ Ext.define('y.sample.SampleColthForm',{
 						}
 					}
 					
-				});		
-				
-				}
-			});
-      me.callParent();
+				});	
 	},
 	/**
 	 * 统计预计成本价

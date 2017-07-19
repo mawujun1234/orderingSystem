@@ -12,6 +12,8 @@ public class NodeVO {
 	
 	private Boolean checked;//在查看职位可以访问的组织单元的时候用的
 	
+	private Boolean isleaf=null;
+	
 	public String getType_name(){
 		if( "position".equals(this.getType())){
 			return "职位";
@@ -33,6 +35,9 @@ public class NodeVO {
 	}
 	
 	public Boolean getLeaf(){
+		if(isleaf!=null){
+			return isleaf;
+		}
 		if( "position".equals(this.getType())){
 			return true;
 		} if( "SHOP".equals(this.getType())){
@@ -86,6 +91,14 @@ public class NodeVO {
 
 	public void setChecked(Boolean checked) {
 		this.checked = checked;
+	}
+
+	public Boolean getIsleaf() {
+		return isleaf;
+	}
+
+	public void setIsleaf(Boolean isleaf) {
+		this.isleaf = isleaf;
 	}
 
 }

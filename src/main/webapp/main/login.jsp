@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body style="background-image: url(bg.jpg);background-position:center;background-repeat:no-repeat;background-attachment:fixed;">
    <div class="ormtno_name">
-   	2017秋冬商品订货会
+   	2018春夏商品订货会
    </div>
   </body>
 </html>

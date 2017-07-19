@@ -23,6 +23,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     	and b.dim=#{dim} and a.orgst='KQ'
     </select> 
     
+    <select id="queryOnlyOrgByorgnm" resultType="com.youngor.org.NodeVO" parameterType="map">
+    	select a.orgno as id,orgnm as name,a.orgno,'' as remark,a.orgty as type,'1' as isleaf from t_org a,t_org_org b
+    	where a.orgno=b.child_no  
+    	and a.orgnm like '%${orgnm}%'
+    	and b.dim=#{dim} and a.orgst='KQ'
+    </select>
+    
 
 
 	<select id="query4Combo" resultType="com.youngor.org.Org" parameterType="map">

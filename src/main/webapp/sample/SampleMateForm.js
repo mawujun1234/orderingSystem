@@ -268,6 +268,8 @@ Ext.define('y.sample.SampleMateForm',{
 						    	//var suitty_field=sampleDesignForm.getForm().findField("suitty");
 						    	//alert(sampleColth.get("sprtpr_spftpr"));
 						       sampleColthForm.loadRecord(sampleColth);
+//		
+						      
 						       
 						    }
 						});

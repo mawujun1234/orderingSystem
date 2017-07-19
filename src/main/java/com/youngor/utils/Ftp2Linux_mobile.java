@@ -37,19 +37,19 @@ public class Ftp2Linux_mobile {
 		Map<String,String> params=new HashMap<String,String>();
 		params.put("host", "192.168.188.22");
 		params.put("username", "root");
-		params.put("password", "youngor");
+		params.put("password", "youngorymp1979");
 		list.add(params);
 		
 		Map<String,String> params1=new HashMap<String,String>();
 		params1.put("host", "192.168.188.23");
 		params1.put("username", "root");
-		params1.put("password", "youngor");
+		params1.put("password", "youngorymp1979");
 		list.add(params1);
 		
 		Map<String,String> params2=new HashMap<String,String>();
 		params2.put("host", "192.168.188.24");
 		params2.put("username", "root");
-		params2.put("password", "youngor");
+		params2.put("password", "youngorymp1979");
 		list.add(params2);
 	}
 

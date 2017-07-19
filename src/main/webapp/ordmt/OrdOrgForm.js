@@ -212,7 +212,8 @@ Ext.define('y.ordmt.OrdOrgForm',{
 							return;
 						}
 						button.up('window').close();
-						me.grid.getStore().reload();
+						//me.grid.getStore().reload();
+						me.grid.onReload();
 					}
 					
 				});	

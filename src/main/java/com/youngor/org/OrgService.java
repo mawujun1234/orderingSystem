@@ -37,6 +37,9 @@ public class OrgService extends AbstractService<Org, String>{
 	public List<NodeVO> queryOnlyOrg(String parent_id,Dim dim){
 		return orgRepository.queryOnlyOrg(parent_id, dim);
 	}
+	public List<NodeVO> queryOnlyOrgByorgnm(String orgnm,Dim dim) {
+		return orgRepository.queryOnlyOrgByorgnm(orgnm, dim);
+	}
 	
 	public List<Org> query4Combo(String parent_no,String channo,Dim dim,String user_id) {
 		return orgRepository.query4Combo(parent_no, channo, dim,user_id);

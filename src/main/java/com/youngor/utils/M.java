@@ -224,6 +224,19 @@ public static final class Ordty {
 	public static final String ortymk="ortymk";
 	public static final String stat="stat";
 }
+public static final class OrdOrddtl {
+	public static final String ormtno="ormtno";
+	public static final String sampno="sampno";
+	public static final String suitno="suitno";
+	public static final String ordseq="ordseq";
+	public static final String ordate="ordate";
+	public static final String orodqt="orodqt";
+	public static final String ormark="ormark";
+	public static final String rgsp="rgsp";
+	public static final String rgdt="rgdt";
+	public static final String lmsp="lmsp";
+	public static final String lmdt="lmdt";
+}
 public static final class Ordmt {
 	public static final String ormtno="ormtno";
 	public static final String ormtnm="ormtnm";

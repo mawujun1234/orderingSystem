@@ -13,8 +13,7 @@ import com.mawujun.exception.BusinessException;
 import com.mawujun.repository.cnd.Cnd;
 import com.mawujun.service.AbstractService;
 import com.mawujun.utils.page.Pager;
-import com.youngor.order.OrddtlRepository;
-import com.youngor.ordmt.Ordmt;
+import com.mawujun.utils.string.StringUtils;
 import com.youngor.ordmt.OrdmtRepository;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.utils.ContextUtils;
@@ -186,6 +185,32 @@ public class SampleDesignService extends AbstractService<SampleDesign, String>{
 			}
 			//更新成衣的生产周期
 			sampleColthRepository.update(Cnd.update().set(M.SampleColth.sppdcy, mtmpcy+spfpcy).andEquals(M.SampleColth.sampno, sampno));
+			
+			//计算成衣成本
+			SampleColth cloth=  sampleColthRepository.get(sampno);
+			if(cloth!=null){
+				Double value=cloth.getSptapa()+cloth.getSpacry()+cloth.getSpclbd()+cloth.getAcsyam();
+				//再加上面料
+				List<SampleMate> list=sampleMateRepository.query(Cnd.select().andEquals(M.SampleMate.sampno, sampno));
+				if(list!=null){
+					Double aa=0d;
+					//val+=records[i].get("mtpupr")*records[i].get("mtcnqt");
+					for(SampleMate mate:list){
+						if(!StringUtils.hasText(mate.getMtpupr()) || !StringUtils.hasText(mate.getMtcnqt())){
+							continue;
+						}
+						aa+=Double.valueOf(mate.getMtpupr())*Double.valueOf(mate.getMtcnqt());
+					}
+					value=value+aa;
+				}
+				
+				if(value!=null){
+					cloth.setSpctpr(value);
+					
+				}
+				
+				
+			}
 		}
 		
 	}

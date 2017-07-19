@@ -61,7 +61,7 @@ public class Ordmt extends BaseObject{
 	}
 	
 	public String getOrmtfg_name(){
-		if(this.getOrmtst()){
+		if(this.getOrmtfg()){
 			return "跟踪";
 		} else {
 			return "未跟踪";
