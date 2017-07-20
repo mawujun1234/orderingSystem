@@ -252,7 +252,7 @@
 	<title>
 		<band height="23">
 			<textField>
-				<reportElement uuid="0084f02e-9c73-4a3e-8a9f-49e7f058daed" x="353" y="2" width="100" height="20"/>
+				<reportElement uuid="0084f02e-9c73-4a3e-8a9f-49e7f058daed" x="325" y="2" width="172" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$P{ormtnm}]]></textFieldExpression>
 			</textField>

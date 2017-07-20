@@ -333,6 +333,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
        where  a.ormtno=#{ormtno} and a.ortyno='DZ' and a.channo='QY'
            and a.channo='QY' and (nvl(b.SDTYNO,0)!='10' or nvl(b.ORSTAT,0)!=2)
     </select>
+    <select id="can_confirm_tx" resultType="int" parameterType="map">
+    	select count(*) from ORD_ORDHD
+		where sdtyno='40' and mtorno=#{mtorno}
+    </select>
     <!--
     <select id="process1_check_stats" resultType="map" parameterType="map">
     	 select distinct c.qyno,c.qynm

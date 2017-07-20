@@ -28,6 +28,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mawujun.utils.page.Pager;
+import com.youngor.order.Ord;
+import com.youngor.order.OrdService;
+import com.youngor.org.Chancl;
+import com.youngor.org.Org;
 import com.youngor.org.OrgService;
 import com.youngor.permission.ShiroUtils;
 import com.youngor.pubcode.PubCodeCache;
@@ -49,6 +53,9 @@ public class OrderNumTotalController {
 	private OrderNumTotalRepository orderNumTotalRepository;
 	@Autowired
 	private OrgService orgService;
+	
+	@Autowired
+	private OrdService ordService;
 	
 	@RequestMapping("/ordernumtotal/query.do")
 	@ResponseBody
@@ -214,13 +221,21 @@ public class OrderNumTotalController {
 	@RequestMapping("/ordernumtotal/export_print.do")
 	@ResponseBody
 	public  void orderTotalPrint_export1(MapParams params,HttpServletRequest request,HttpServletResponse response) throws IOException, JRException {
+		String zhengshi=(String)params.getParams().get("zhengshi");
+		
+		String jasperName="OrderNumTotal.jasper";
+		if(zhengshi!=null && "1".equals(zhengshi)){
+			jasperName="OrderNumTotal_zhengshi.jasper";
+		}
+		
+		
 		List<OrderNumTotal> list=orderNumTotalRepository.query(params.getParams());//export_print.orderTotalPrint_export1(params.getParams());
 
 		String reportFilePath = "";
 		reportFilePath = request
 				.getSession()
 				.getServletContext()
-				.getRealPath(File.separator+"report"+File.separator+"ireport"+File.separator+"OrderNumTotal.jasper");
+				.getRealPath(File.separator+"report"+File.separator+"ireport"+File.separator+jasperName);
 
 		Map<String, Object> rpt_params = new HashMap<String, Object>();
 		
@@ -235,6 +250,10 @@ public class OrderNumTotalController {
 		rpt_params.put("qynm",qynm);
 		rpt_params.put("orgnm",orgnm);
 		String ormtnm=ContextUtils.getOrdmt(params.getParams().get("ormtno").toString()).getOrmtnm();
+		if(zhengshi==null || !"1".equals(zhengshi)){
+			ormtnm+="--草稿";
+		}
+		
 		rpt_params.put("ormtnm",ormtnm);
 
 
@@ -255,6 +274,22 @@ public class OrderNumTotalController {
 		expoertReportToExcelStream(jasperprint, httpOut);
 
 		httpOut.close(); 
+		//订单状态改成订货完成--特许
+		if(zhengshi!=null && "1".equals(zhengshi)){
+			Org org=orgService.get(params.getParams().get("ordorg").toString());
+			if(org.getChanno()==Chancl.TX){
+				String mtorno=ordService.getMtorno(params.getParams().get("ormtno").toString(), "DZ", org.getOrgno());
+				
+		
+				//先判断如果订单已经确认过了，就不需要确认了
+				if(ordService.can_confirm_tx(mtorno)){
+					//System.out.println(1111);
+					Ord ord=ordService.get(mtorno);
+					ordService.confirm(org, ord);
+				}
+				
+			}
+		}
 	}
 
 	

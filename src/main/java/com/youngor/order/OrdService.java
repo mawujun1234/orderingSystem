@@ -506,6 +506,60 @@ public class OrdService extends AbstractService<Ord, String>{
 		
 		//区域 订单确认时判断 必定款的样衣是否全部已订，提示未订的必定款样衣；
 		Org org=ShiroUtils.getAuthenticationInfo().getFirstCurrentOrg();
+		confirm(org,ord);
+		
+//		if(org.getChanno()!=Chancl.TX){
+//			//订单号
+//			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
+//			List<SampleDesign> none_abstat=ordRepository.query_none_abstat(ord.getOrmtno(), mtorno);
+//			if(none_abstat!=null && none_abstat.size()>0){
+////				StringBuilder builder=new StringBuilder();
+////				int i=0;
+////				for(SampleDesign sampleDesign:none_abstat){
+////					builder.append(",\""+sampleDesign.getSampnm1()+"\"");
+////					i++;
+////				}
+////				
+////				throw new BusinessException("["+builder.substring(1)+"]");//+none_abstat.get(0).getSampnm()
+//				throw new BusinessException("有必定款样衣未订");
+//			}
+//		}
+//
+//		
+//		//先为订单明细表生成 审批订单号 和审批订单号版本,订单号+品牌+大类
+//		ordRepository.updateMtornoMlorvn(ord.getMtorno());
+////		拷贝订单明细表中的确认数量-->原始数量,同时设置确认数量为0
+////		ordRepository.updateOrmtqtZeor(ord.getMtorno());
+//		
+//		//为订单副表 生成数据，根据订单明细表生成数据 ,
+//		ordRepository.createOrd_ordhd(ord.getMtorno());
+//	
+////		//拷贝订单副表--》订单副表-历史
+////		ordRepository.createOrd_ordhd_his(ord.getMtorno());
+////		
+////		//拷贝订单明细表-->订单明细表历史
+////		ordRepository.createOrd_orddtl_his(ord.getMtorno());
+//		
+//
+//		if(org.getChanno()==Chancl.TX){
+//			//如果是特许，节点类型 节点类型：尾箱调整40，状态：编辑中
+//			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"40","0");
+//		} else if(org.getChanno()==Chancl.ZY || org.getChanno()==Chancl.SC){
+//			//如果是门店，节点类型：总公司平衡30，状态还是编辑中。
+//			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"30","0");
+//		} else {
+//			//如果是区域，同时修改ordhd的订单节点类型为10，还是现场订货，订单状态变成“总部审批中”
+//			ordRepository.update_ordhd_SDTYNO(ord.getMtorno(),"10","2");
+//		}
+//		
+//		//更新订单规格明细表中的“审批订单号”
+//		ordRepository.update_ord_ordszdtl_MLORNO(ord.getMtorno());
+//		
+//		ord.getOrdCheckInfo().put("canConfirm", 2);
+//		//result.put("canConfirm", canConfirm);
+	}
+	
+	public void confirm(Org org,Ord ord){
 		if(org.getChanno()!=Chancl.TX){
 			//订单号
 			String mtorno=getMtorno(ord.getOrmtno(),ord.getOrtyno(),ord.getOrdorg());//ord.getOrmtno()+"_"+ord.getOrtyno()+"_"+ord.getOrdorg();ff
@@ -581,6 +635,14 @@ public class OrdService extends AbstractService<Ord, String>{
 		ordRepository.confirm2_createOrd_ordhd(mtorno, mlorvn, "20", "0");
 		//订单状态改成"大区审批中“
 		ordRepository.confirm2_update_orstat(mtorno, "1");
+	}
+	
+	public boolean can_confirm_tx(String mtorno){
+		int count=ordRepository.can_confirm_tx(mtorno);
+		if(count>0){
+			return false;
+		}
+		return true;
 	}
 	
 	private void ordMgr_check_process2ANDback_stat(Integer stat,String[] mlornoes){

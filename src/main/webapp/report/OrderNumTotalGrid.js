@@ -167,6 +167,17 @@ Ext.define('y.report.OrderNumTotalGrid',{
 		        		ordorg.reload();
 		        		//alert(2);
 		        		//ordorg.getStore().reload();
+		        		if(record.get("channo")=='TX'){
+		        			var toolbar=combo.up("grid");
+		        			toolbar.down("#quy_print").hide();
+		        			toolbar.down("#tx-caogao_print").show();
+		        			toolbar.down("#tx-zhengshi_print").show();
+		        		} else {
+		        			var toolbar=combo.up("grid");
+		        			toolbar.down("#quy_print").show();
+		        			toolbar.down("#tx-caogao_print").hide();
+		        			toolbar.down("#tx-zhengshi_print").hide();
+		        		}
 					}
 				}
 			 },{
@@ -365,6 +376,7 @@ Ext.define('y.report.OrderNumTotalGrid',{
 				iconCls: 'icon-refresh'
 			},{
 		  		text: '打印',
+		  		itemId:'quy_print',
 				handler: function(btn){
 					var grid=btn.up("grid");
 					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
@@ -374,12 +386,54 @@ Ext.define('y.report.OrderNumTotalGrid',{
 			    	}
 			    	
 			    	var params=grid.getParams();
+			    	params["params['zhengshi']"]=1;
 			    	//params["params['yxgsnm']"]=toolbars[0].down("#yxgsno").getRawValue();
 			    	//params["params['qynm']"]=toolbars[0].down("#qyno").getRawValue();
 			    	//params["params['orgnm']"]=toolbars[0].down("#ordorg").getRawValue();
 			    	
 			    	var url=Ext.ContextPath+"/ordernumtotal/export_print.do?"+Ext.urlEncode(params);
 			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
+		  		text: '打印草稿',
+		  		hidden:true,
+		  		itemId:'tx-caogao_print',
+				handler: function(btn){
+					var grid=btn.up("grid");
+					var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+			    	if(!toolbars[0].down("#ordorg").getValue()){
+			    		Ext.Msg.alert("消息","打印的时候，只能一家一家的打印，请先选择‘订货单位’!");
+			    		return;
+			    	}
+			    	
+			    	var params=grid.getParams();			    	
+			    	var url=Ext.ContextPath+"/ordernumtotal/export_print.do?"+Ext.urlEncode(params);
+			    	window.open(url);
+				},
+				iconCls: 'icon-download-alt'
+		  	},{
+		  		text: '打印正式',
+		  		hidden:true,
+		  		itemId:'tx-zhengshi_print',
+				handler: function(btn){
+					Ext.Msg.confirm("提示","打印将会确认订单,订单确认后，将不能修改",function(buttonId ){
+						if(buttonId=='yes'){
+							var grid=btn.up("grid");
+							var toolbars=grid.getDockedItems('toolbar[dock="top"]');
+					    	if(!toolbars[0].down("#ordorg").getValue()){
+					    		Ext.Msg.alert("消息","打印的时候，只能一家一家的打印，请先选择‘订货单位’!");
+					    		return;
+					    	}
+					    	
+					    	var params=grid.getParams();
+					    	params["params['zhengshi']"]=1;
+					    	
+					    	var url=Ext.ContextPath+"/ordernumtotal/export_print.do?"+Ext.urlEncode(params);
+					    	window.open(url);
+						}
+					});
+					
 				},
 				iconCls: 'icon-download-alt'
 		  	},{

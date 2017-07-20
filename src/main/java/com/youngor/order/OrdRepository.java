@@ -23,6 +23,8 @@ import com.youngor.utils.MapParams;
 public interface OrdRepository extends IRepository<Ord, String>{
 	public Ord haveOrd(Ord ord);
 	
+	public int can_confirm_tx(@Param("mtorno")String mtorno);
+	
 	public Integer order_dl__order_can(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDORG")String P_ORDORG,@Param("P_SAMPNO")String P_SAMPNO);
 	public Integer order_dl__order_isqy(@Param("P_ORMTNO")String P_ORMTNO,@Param("P_ORDORG")String P_ORDORG,@Param("P_SAMPNO")String P_SAMPNO);
 	public SampleVO querySample(@Param("sampnm")String sampnm,@Param("ormtno")String ormtno);
