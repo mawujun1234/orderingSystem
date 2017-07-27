@@ -267,11 +267,11 @@ public class UserController {
 	 */
 	@RequestMapping("/user/query.do")
 	@ResponseBody
-	public Pager<User> query(Pager<User> pager,String name,String loginName,String role_id){
+	public Pager<User> queryByRole(Pager<User> pager,String name,String loginName,String role_id){
 		pager.addParam_like(M.User.name,  name);
 		pager.addParam_like(M.User.loginName,  loginName);
 		pager.addParam("role_id",  role_id);
-		return userService.queryPage(pager);
+		return userService.queryByRole(pager);
 	}
 	
 	@RequestMapping("/user/queryByPosition.do")
@@ -305,7 +305,11 @@ public class UserController {
 		useres.add(0, wu);
 		return useres;
 	}
-	
+	@RequestMapping("/user/queryPage.do")
+	@ResponseBody
+	public Pager<User> queryPage(Pager<User> pager){
+		return userService.queryPage(pager);
+	}
 
 	@RequestMapping("/user/load.do")
 	@ResponseBody
@@ -361,6 +365,17 @@ public class UserController {
 		userService.deleteByRole(user_id,role_id);
 		return user_id;
 	}
-	
+	/**
+	 * 把用户添加到职位上
+	 * @param user_id
+	 * @param role_id
+	 * @return
+	 */
+	@RequestMapping("/user/addToPosition.do")
+	@ResponseBody
+	public String addToPosition(String user_id,String position_id,String org_id) {
+		userService.addToPosition(user_id,position_id,org_id);
+		return "{success:true}";
+	}
 	
 }

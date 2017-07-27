@@ -70,6 +70,10 @@ public class UserService extends AbstractService<User, String> {
 
 		//super.delete(user);
 	}
+	public void addToPosition(String user_id,String position_id,String org_id) {
+		PositionOrgUser positionOrgUser = new PositionOrgUser(positionRepository.load(position_id),orgRepository.load(org_id),userRepository.load(user_id));
+		positionOrgUserRepository.create(positionOrgUser);
+	}
 
 	public UserVO getByLoginName(String loginName) {
 		UserVO user = userRepository.getByLoginName(loginName);
@@ -92,6 +96,9 @@ public class UserService extends AbstractService<User, String> {
 	
 	public Pager<User> queryByPosition(Pager<User> pager){
 		return userRepository.queryByPosition(pager);
+	}
+	public Pager<User> queryByRole(Pager<User> pager) {
+		return userRepository.queryByRole(pager);
 	}
 	@Override
 	public void delete(User user) {

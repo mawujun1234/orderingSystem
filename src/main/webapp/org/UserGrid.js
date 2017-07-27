@@ -88,6 +88,13 @@ Ext.define('y.org.UserGrid',{
 	  		xtype: 'toolbar',
 	  		dock:'top',
 		  	items:[{
+				text: '选择用户',
+				//itemId:'create',
+				handler: function(btn){
+					me.onCreateByUser();
+				},
+				iconCls: 'icon-plus'
+			},{
 				text: '新增',
 				itemId:'create',
 				handler: function(btn){
@@ -124,6 +131,29 @@ Ext.define('y.org.UserGrid',{
        
       me.callParent();
 	},
+	onCreateByUser:function(){
+    	var me=this;
+    	var seluserWindow=Ext.create('y.permission.SelUserWindow',{
+    		listeners:{
+    			userdbclick:function(user){
+    				Ext.Ajax.request({
+						url:Ext.ContextPath+'/user/addToPosition.do',
+						params:{
+							user_id:user.get("id"),
+							position_id:window.selected_position.get("id"),
+							org_id:window.selected_position.get("orgno")
+						},
+						headers:{ 'Accept':'application/json;'},
+						success:function(){
+							//button.up('window').close();
+							me.getStore().reload();
+						}
+					});
+    			}
+    		}
+    	});
+    	seluserWindow.show();
+    },
 	onCreate:function(){
     	var me=this;
 		

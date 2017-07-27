@@ -399,9 +399,16 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 			if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
 				planOrg.setPlstat(0);
 				planOrgRepository.update(planOrg);
-			} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+			} else if((ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) || ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.DEPT)) && planOrg.getPlstat()==2) {
 				planOrg.setPlstat(1);
 				planOrgRepository.update(planOrg);
+			} else {
+				if(planOrg.getPlstat()==2){
+					throw new BusinessException("退回操作没有执行，请以公司本部的账号登录进行退回!");
+				} else if(planOrg.getPlstat()==1){
+					throw new BusinessException("退回操作没有执行，请以大区的账号登录进行退回!");
+				}
+				
 			}
 		} else {
 			List<Org> quyes=orgServcie.query4Combo(yxgsno, Chancl.QY.toString(),Dim.SALE, ShiroUtils.getUserId());
@@ -414,9 +421,16 @@ public class PlanOrgService extends AbstractService<PlanOrg, String>{
 				if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.YXGS) && planOrg.getPlstat()==1){
 					planOrg.setPlstat(0);
 					planOrgRepository.update(planOrg);
-				} else if(ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB) && planOrg.getPlstat()==2) {
+				} else if((ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.GSBB)|| ShiroUtils.getAuthenticationInfo().hasChanno(Chancl.DEPT)) && planOrg.getPlstat()==2) {
 					planOrg.setPlstat(1);
 					planOrgRepository.update(planOrg);
+				} else {
+					if(planOrg.getPlstat()==2){
+						throw new BusinessException(org.getName()+"退回操作没有执行，请以公司本部的账号登录进行退回!");
+					} else if(planOrg.getPlstat()==1){
+						throw new BusinessException(org.getName()+"退回操作没有执行，请以大区的账号登录进行退回!");
+					}
+					
 				}
 			}
 		}

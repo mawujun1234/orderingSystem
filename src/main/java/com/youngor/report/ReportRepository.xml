@@ -235,10 +235,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         order by B.sampnm,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,c.orgso
     </select>
     <select id="orderTotalPrint_export2" resultType="com.youngor.report.OrderPrint1" parameterType="map">
-    	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul,d.spsuno
+    	 select b.sampnm as yangybh,a.spclno,a.sptyno,a.spseno,a.spbano,spbseno,a.sprtpr as lingsj,c.yxgsnm as yxgsmc,c.ORMTQT as shul
+    	 	,decode(b.spmtno,'ZC',mate.mtsuno,d.spsuno) spsuno
               from ORD_SAMPLE_PLAN a
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join ord_sample_colth d on b.sampno=d.sampno 
+          inner join ord_sample_mate mate on b.sampno=mate.sampno and mate.mateso=1
           inner join (
             select org.yxgsno,org.orgso ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org

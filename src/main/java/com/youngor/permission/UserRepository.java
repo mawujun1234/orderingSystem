@@ -21,6 +21,7 @@ public interface UserRepository extends IRepository<User, String>{
 	 public List<String> findPermissions(@Param("user_id")String user_id); 
 	 
 	 public Pager<User> queryByPosition(Pager<User> pager);
+	 public Pager<User> queryByRole(Pager<User> pager);
 	 
 	 
 	 public List<User> querySjs(String positionType_id);

@@ -5,13 +5,37 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <!-- mawujun qq:16064988 e-mail:16064988@qq.com-->
 <mapper namespace="com.youngor.permission.UserRepository">
+		<select id="queryPage" resultType="com.youngor.permission.User" parameterType="map">
+    	select * from t_user a
+    	where 1=1
+    	<if test="loginName!=null and loginName!=''">
+    		and lower(a.loginName) like lower('%${loginName}%')
+    	</if>
+    	
+    	<if test="name!=null and name!=''">
+    		and lower(a.name) like lower('%${name}%')
+    	</if>
+    </select> 
+     <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
+    <select id="queryPage_count" resultType="int" parameterType="map">
+    	select count(a.id)
+		from t_user a
+		where 1=1
+		<if test="loginName!=null and loginName!=''">
+    		and lower(a.loginName) like lower('%${loginName}%')
+    	</if>
+    	<if test="name!=null and name!=''">
+    		and lower(a.name) like lower('%${name}%')
+    	</if>
+    </select>
+    
 	<!-- 查询语句，会自动分页-->
-    <select id="queryPage" resultType="com.youngor.permission.User" parameterType="map">
+    <select id="queryByRole" resultType="com.youngor.permission.User" parameterType="map">
     	select * from t_user a,t_role_user b
     	where a.id=b.user_id and b.role_id=#{role_id}
     </select> 
      <!-- 名称模式为：****_count,也可以不写，但如果查询叫复杂的话，自己写有助于控制查询性能-->
-    <select id="queryPage_count" resultType="int" parameterType="map">
+    <select id="queryByRole_count" resultType="int" parameterType="map">
     	select count(b.user_id) from t_role_user b
     	where b.role_id=#{role_id}
     </select>

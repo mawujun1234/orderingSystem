@@ -141,15 +141,17 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 		if(file.exists() && file.isFile()){
 			//System.out.println(file.getAbsolutePath());
 			//samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
-			if(file.length()>204800){//200kb
+			if(file.length()>102400){//200kb
 				try {
 					if(file.length()>2048000){
 						Thumbnails.of(file) .scale(0.1f).toFile(file_thumb);	 
 					} else if(file.length()>1024000){
 						Thumbnails.of(file) .scale(0.25f).toFile(file_thumb);	 
 					} else if(file.length()>512000){
+						Thumbnails.of(file) .scale(0.5f).toFile(file_thumb);	 
+					} else if(file.length()>102400){
 						Thumbnails.of(file) .scale(0.8f).toFile(file_thumb);	 
-					}  else {
+					} else {
 						FileUtils.copyFile(file, file_thumb);
 					}
 					   
@@ -168,13 +170,13 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 //					}
 				}  
 			} else {
-//				try {
-//					FileUtils.copyFile(file, destFile);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//					thumb_imgnm=imgnm;//如果报错，就用原始图
-//				}
+				try {
+					FileUtils.copyFile(file, file_thumb);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					//thumb_imgnm=imgnm;//如果报错，就用原始图
+				}
 				
 			}
 	}
@@ -230,15 +232,17 @@ public class SamplePhotoService extends AbstractService<SamplePhoto, String>{
 			if(file.exists() && file.isFile()){
 				//System.out.println(file.getAbsolutePath());
 				//samplePhotoService.update(Cnd.update().set("thumb", imgnm).andEquals(M.SamplePhoto.id, photo.getId()));
-				if(file.length()>204800){//200kb
+				if(file.length()>102400){//200kb
 					try {
 						if(file.length()>2048000){
 							Thumbnails.of(file) .scale(0.1f).toFile(destFile);	 
 						} else if(file.length()>1024000){
 							Thumbnails.of(file) .scale(0.25f).toFile(destFile);	 
 						} else if(file.length()>512000){
+							Thumbnails.of(file) .scale(0.5f).toFile(destFile);	 
+						} else if(file.length()>102400){
 							Thumbnails.of(file) .scale(0.8f).toFile(destFile);	 
-						}  else {
+						} else {
 							FileUtils.copyFile(file, destFile);
 						}
 						   

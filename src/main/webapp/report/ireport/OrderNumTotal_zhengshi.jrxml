@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderNumTotal" language="groovy" pageWidth="802" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8346c2f3-ba40-4113-b350-23288aecdbc7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="231"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bradno_name" class="java.lang.String"/>
+	<parameter name="yxgsnm" class="java.lang.String"/>
+	<parameter name="qynm" class="java.lang.String"/>
+	<parameter name="orgnm" class="java.lang.String"/>
+	<parameter name="ormtnm" class="java.lang.String"/>
+	<field name="spclno_name" class="java.lang.String"/>
+	<field name="sptyno_name" class="java.lang.String"/>
+	<field name="spseno_name" class="java.lang.String"/>
+	<field name="sampnm" class="java.lang.String"/>
+	<field name="versno_name" class="java.lang.String"/>
+	<field name="suitno_name" class="java.lang.String"/>
+	<field name="ormtqt" class="java.lang.Integer"/>
+	<field name="sprtpr" class="java.lang.Number"/>
+	<field name="sprtpr_jine_wan" class="java.lang.Number"/>
+	<variable name="ormtqt_sum" class="java.lang.Integer" resetType="Group" resetGroup="spseno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_avg" class="java.lang.Number" resetType="Group" resetGroup="spseno_name" calculation="Average">
+		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_jine_wan_sum" class="java.math.BigDecimal" resetType="Group" resetGroup="spseno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.String"/>
+	<variable name="ormtqt_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_1" class="java.lang.Number" calculation="Average">
+		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_jine_wan_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_jine_wan_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
+	</variable>
+	<variable name="ormtqt_2" class="java.lang.Integer" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_2" class="java.lang.Number" resetType="Group" resetGroup="sptyno_name" calculation="Average">
+		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_jine_wan_3" class="java.math.BigDecimal" resetType="Group" resetGroup="sptyno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
+	</variable>
+	<variable name="ormtqt_3" class="java.lang.Integer" resetType="Group" resetGroup="spclno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{ormtqt}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_3" class="java.lang.Number" resetType="Group" resetGroup="spclno_name" calculation="Average">
+		<variableExpression><![CDATA[$F{sprtpr}]]></variableExpression>
+	</variable>
+	<variable name="sprtpr_jine_wan_4" class="java.math.BigDecimal" resetType="Group" resetGroup="spclno_name" calculation="Sum">
+		<variableExpression><![CDATA[$F{sprtpr_jine_wan}]]></variableExpression>
+	</variable>
+	<group name="spclno_name">
+		<groupExpression><![CDATA[$F{spclno_name}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement uuid="347e23c2-bad3-4841-b320-c60d49264fdc" mode="Transparent" x="578" y="0" width="79" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{ormtqt_3}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement uuid="93b5cb97-42fc-4d7a-8230-1ab9aebac475" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3d5e0d2f-6fb9-4fd1-90dc-764095ce6a02" mode="Transparent" x="725" y="0" width="73" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="a249ccd0-6401-40ea-8010-b32ec46ac715" mode="Transparent" x="0" y="0" width="578" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{spclno_name}+"--小计:"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="sptyno_name">
+		<groupExpression><![CDATA[$F{sptyno_name}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement uuid="119f1cfc-af64-406a-8fbf-96d626c0b3ec" mode="Transparent" x="578" y="0" width="79" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{ormtqt_2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement uuid="f8924a29-aecc-49fb-948a-78b2eb98f158" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="1ca1c789-517f-46a4-912b-ddb6832fac85" mode="Transparent" x="725" y="0" width="73" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_3}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="55f67625-d90a-4f6d-b772-0d1311da899a" mode="Transparent" x="0" y="0" width="100" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="9acf0cb4-c0ea-4242-b288-52dbec0be556" mode="Transparent" x="100" y="0" width="478" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sptyno_name}+"--小计:"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="spseno_name">
+		<groupExpression><![CDATA[$F{spclno_name}+$F{spseno_name}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement uuid="cc74f765-4a4e-4320-854c-384c2999b403" mode="Transparent" x="578" y="0" width="79" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{ormtqt_sum}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="2c4a5de9-4167-427b-9b7f-b56d46393caa" mode="Transparent" x="200" y="0" width="378" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{spseno_name}+"--小计:"]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00">
+					<reportElement uuid="18056a87-ce82-4ce0-9120-47dd9d364d64" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_avg}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="05195628-9551-44d4-9bbd-e0e794519f00" mode="Transparent" x="725" y="0" width="73" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_sum}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="a3036741-03c0-4c07-88a9-f67fc6ad049d" mode="Transparent" x="0" y="0" width="200" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23">
+			<textField>
+				<reportElement uuid="0084f02e-9c73-4a3e-8a9f-49e7f058daed" x="353" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{ormtnm}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="93d25fe0-de31-41e4-8ab1-9a62f7106f5d" x="36" y="0" width="78" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{bradno_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ffe4da89-e2f4-43ad-ae39-35278b15be43" x="0" y="0" width="36" height="20"/>
+				<textElement/>
+				<text><![CDATA[品牌:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="77787871-cf9a-4518-824c-7216c14dc766" x="114" y="0" width="59" height="20"/>
+				<textElement/>
+				<text><![CDATA[营销公司:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3cb4e4f7-6d39-4356-8a44-69f24fc485ec" x="173" y="0" width="90" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{yxgsnm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="96aadeeb-d133-4138-bf92-0e037973f5b9" x="266" y="0" width="30" height="20"/>
+				<textElement/>
+				<text><![CDATA[区域:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="37080a99-2612-4d93-906e-046f208280b5" x="296" y="0" width="88" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{qynm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c3ef4617-88aa-4a1b-a21b-80c03378e495" x="387" y="0" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[订货单位:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3b1d00e1-8bad-4a0a-8c18-d8f4d9b9c119" x="445" y="0" width="187" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{orgnm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b51549a7-dbf4-4712-952c-cfaf132c6d42" x="632" y="0" width="88" height="20"/>
+				<textElement/>
+				<text><![CDATA[金额单位:万元]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8dc443d8-bda9-4ec7-b8f7-0bd36a52588b" x="0" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[大类]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7a72ddee-91aa-4738-bec7-6716f75c848c" x="100" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[小类]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="382f9126-04bd-4bd8-8576-9c850736fea4" x="200" y="0" width="139" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[系列]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a086d04e-71fa-434b-b6aa-97c09f1abff7" x="339" y="0" width="129" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[样衣编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="781c6bb0-995c-47d9-8847-f8a8261bf7a9" x="468" y="0" width="68" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[版型]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a6be6f29-43d4-4ab1-8e31-80d03c40ab92" x="536" y="0" width="42" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[套件]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8ee8ac8-73ea-44f6-85fa-e254c75fdf4a" x="578" y="0" width="79" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b21326a6-0248-4ae0-ab3f-310daec64e1b" x="657" y="0" width="68" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[零售价]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="beb7acc7-734b-4931-b53c-336375aad3d5" x="725" y="0" width="73" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[零售金额]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="58a5bf30-7417-43fa-968a-d2b7298c6531" x="0" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{spclno_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9a323e7-b279-4fd1-a829-0e517e075f0e" x="100" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sptyno_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="03433c36-d265-41cf-a5bd-f813f84594c1" x="200" y="0" width="139" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{spseno_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="63fa684c-0360-4e28-81da-7deaae4a81a4" x="339" y="0" width="129" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sampnm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d096b65-9d9d-4245-b9a6-4a2cc61bb445" x="468" y="0" width="68" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{versno_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="74c06072-c8da-4642-a758-f9dbf1bab9df" x="536" y="0" width="42" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{suitno_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bdb81511-4b64-483e-bd8b-34cbf7d6a495" x="578" y="0" width="79" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ormtqt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="302b659d-408f-4afc-bceb-4e44ad97edbf" x="657" y="0" width="68" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sprtpr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bf195671-5b63-4997-9e64-885b18145c54" x="725" y="0" width="73" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sprtpr_jine_wan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement uuid="92d7eff7-49dc-4f22-907f-273c883afed1" x="356" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="57" splitType="Stretch">
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="619c4f50-11e4-4f2e-9917-7937c3f1a471" mode="Transparent" x="578" y="0" width="79" height="20" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{ormtqt_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="963aae40-ff7e-48f5-85b0-d44c18333e27" mode="Transparent" x="657" y="0" width="68" height="20" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{sprtpr_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d3701d9-e0a7-4fb9-bc9d-15b39e5ed897" mode="Transparent" x="725" y="0" width="73" height="20" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{sprtpr_jine_wan_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="848593b7-fe30-4ae0-8090-fe05c5fefa24" mode="Transparent" x="0" y="0" width="578" height="20" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[合计:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a30aedc9-93b8-4c59-b5d9-def0e851e357" x="578" y="35" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[签名:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
