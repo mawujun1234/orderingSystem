@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.annotation.FieldDefine;
 @MappedSuperclass
 public class BaseObject {
 	@FieldDefine(title="创建人",sort=40,hidden=true)

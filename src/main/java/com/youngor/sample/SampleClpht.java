@@ -9,7 +9,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.annotation.FieldDefine;
 
 /**
  * 样衣搭配图片表

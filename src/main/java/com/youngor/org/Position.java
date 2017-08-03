@@ -9,8 +9,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.mawujun.generator.model.FieldDefine;
-import com.mawujun.generator.model.ShowType;
+import com.mawujun.annotation.FieldDefine;
+import com.mawujun.annotation.ShowType;
 
 @Entity(name="t_position")
 public class Position {

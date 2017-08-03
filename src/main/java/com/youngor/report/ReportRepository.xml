@@ -19,7 +19,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		,P18.ITNM AS SPLCNM,P30.ITNM AS PLGRNM
 		FROM ORD_SAMPLE_DESIGN A
 		INNER JOIN ORD_SAMPLE_PLAN B ON A.PLSPNO=B.PLSPNO 
-		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO,SUM(DECODE(C.SUITNO,'T01',0.75,'T02',0.25,'T04',0.25,1)*ORMTQT)ORMTQT FROM ORD_ORD A
+		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO
+			,SUM(DECODE(C.SUITNO,'T01',0.75,'T02',0.25,'T04',0.25,1)*ORMTQT)ORMTQT 
+			
+			FROM ORD_ORD A
 		          INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
 		          INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
 		          WHERE A.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno} 
@@ -89,7 +92,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		,P18.ITNM AS SPLCNM,P30.ITNM AS PLGRNM
 		FROM ORD_SAMPLE_DESIGN A
 		INNER JOIN ORD_SAMPLE_PLAN B ON A.PLSPNO=B.PLSPNO 
-		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO,SUM(DECODE(C.SUITNO,'T01',0.75,'T02',0.25,'T04',0.25,1)*ORMTQT)ORMTQT FROM ORD_ORD A
+		INNER JOIN(SELECT A.ORMTNO,C.SAMPNO,SUM(DECODE(C.SUITNO,'T01',0.75,'T02',0.25,'T04',0.25,1)*ORMTQT)ORMTQT 
+		FROM ORD_ORD A
 		          INNER JOIN ORD_ORDDTL C ON A.MTORNO=C.MTORNO 
 		          INNER JOIN ORD_ORDHD B ON A.MTORNO=B.MTORNO AND B.MLORNO=C.MLORNO AND B.MLORVN=C.MLORVN
 		          WHERE A.ORMTNO=#{ormtno} AND B.BRADNO=#{bradno} 
@@ -166,7 +170,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
               from ORD_SAMPLE_PLAN a
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join (
-            select a.CHANNO,org.yxgsno ,org.yxgsnm,c.SAMPNO,sum(c.ORMTQT) ORMTQT
+            select a.CHANNO,org.yxgsno ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',1,'T00',1,0)*c.ormtqt)) ORMTQT--,sum(c.ORMTQT) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
              and b.isfect=1
@@ -202,7 +206,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
               from ORD_SAMPLE_PLAN a
           inner join ORD_SAMPLE_DESIGN b on A.PLSPNO=B.PLSPNO 
           inner join (
-            select org.yxgsno,org.orgso ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
+            select org.yxgsno,org.orgso ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',1,'T00',1,0)*c.ormtqt)) ORMTQT--round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO  and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno and a.channo=org.channo and a.ordorg=org.orgno
             and b.isfect=1
@@ -242,7 +246,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ord_sample_colth d on b.sampno=d.sampno 
           inner join ord_sample_mate mate on b.sampno=mate.sampno and mate.mateso=1
           inner join (
-            select org.yxgsno,org.orgso ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
+            select org.yxgsno,org.orgso ,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',1,'T00',1,0)*c.ormtqt)) ORMTQT--,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
              and b.isfect=1
@@ -281,7 +285,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ORD_SAMPLE_mate mate on  b.sampno=mate.sampno and mate.mateso=1 
           inner join ord_sample_colth d on b.sampno=d.sampno 
           inner join (
-            select org.yxgsno ,org.orgso,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
+            select org.yxgsno ,org.orgso,org.yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',1,'T00',1,0)*c.ormtqt)) ORMTQT--,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
              and b.isfect=1
@@ -322,7 +326,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
           inner join ORD_SAMPLE_mate mate on  b.sampno=mate.sampno and mate.mateso=1 
           inner join ord_sample_colth d on b.sampno=d.sampno 
           inner join (
-            select org.qyno yxgsno ,org.orgso,org.qynm yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
+            select org.qyno yxgsno ,org.orgso,org.qynm yxgsnm,c.SAMPNO,round(sum(decode(c.suitno,'T01',1,'T00',1,0)*c.ormtqt)) ORMTQT--,round(sum(decode(c.suitno,'T01',0.75,'T02',0.25,'T04',0.25,1)*c.ormtqt)) ORMTQT
             from ORD_ORD a,ord_ordhd b,ORD_ORDDTL c, v_ord_org org
             where a.MTORNO=c.MTORNO and a.MTORNO=b.MTORNO and b.mlorno=c.mlorno  and a.channo=org.channo and a.ordorg=org.orgno
              and b.isfect=1

@@ -8,8 +8,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.mawujun.annotation.FieldDefine;
 import com.mawujun.controller.shiro.IShiroUser;
-import com.mawujun.generator.model.FieldDefine;
 
 @Entity
 @Table(name="t_user")

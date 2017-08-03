@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
-import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.annotation.FieldDefine;
 import com.youngor.sample.SampleProd.PK;
 /**
  * 同个样衣编号 不同套件的货号名称必须一致

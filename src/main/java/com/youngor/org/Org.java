@@ -7,8 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.mawujun.generator.model.FieldDefine;
-import com.mawujun.generator.model.ShowType;
+import com.mawujun.annotation.FieldDefine;
+import com.mawujun.annotation.ShowType;
 
 @Entity
 @Table(name="t_org")

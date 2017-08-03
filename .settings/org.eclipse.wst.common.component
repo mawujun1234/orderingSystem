@@ -10,6 +10,9 @@
         <dependent-module archiveName="leon-spring-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-spring/leon-spring">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="leon-utils-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-utils/leon-utils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="leon-generator-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leon-generator/leon-generator">
             <dependency-type>uses</dependency-type>
         </dependent-module>

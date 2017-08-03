@@ -768,7 +768,7 @@ public class OrdService extends AbstractService<Ord, String>{
 						ordszdtlRepository.update(Cnd.update().set(M.Ordszdtl.orszst, 0).andEquals(M.Ordszdtl.mlorno, mlorno));
 					}
 					
-				}
+				} 
 			}
 		}
 		
@@ -1474,9 +1474,12 @@ public class OrdService extends AbstractService<Ord, String>{
 			if(isNew){
 				ordszdtl.setOritqt(ordszdtl.getOrszqt());//原始数量，备份现场定后数量
 			}
-		} else {
+		} else  if (ordszdtlVO.getSztype() == 2){//整箱上报
 			if ("PRDPK".equals(ordszdtl.getSizety())) {
 				ordszdtl.setOrbgqt(ordszdtlVO.getValue());
+				//上报方式为整箱上报的时候，录入 标准箱的时候，保存  ORD_ORDSZDTL 的 ORSZST=0 ，ORSZQT=0 2017.08.03
+				ordszdtl.setOrszst(0);
+				ordszdtl.setOrszqt(0);
 			} else {
 				
 				ordszdtl.setOrszqt(ordszdtlVO.getValue());

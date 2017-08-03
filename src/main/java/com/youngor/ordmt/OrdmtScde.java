@@ -10,8 +10,8 @@ import javax.persistence.IdClass;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import com.mawujun.generator.model.FieldDefine;
-import com.mawujun.generator.model.ShowType;
+import com.mawujun.annotation.FieldDefine;
+import com.mawujun.annotation.ShowType;
 import com.youngor.ordmt.OrdmtScde.PK;
 import com.youngor.utils.BaseObject;
 

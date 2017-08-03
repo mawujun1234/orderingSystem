@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import com.mawujun.generator.model.FieldDefine;
-import com.mawujun.generator.model.ShowType;
+import com.mawujun.annotation.FieldDefine;
+import com.mawujun.annotation.ShowType;
 import com.youngor.utils.BaseObject;
 
 @Entity(name="ord_pub_code")

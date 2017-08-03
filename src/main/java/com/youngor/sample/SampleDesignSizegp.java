@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import com.mawujun.generator.model.FieldDefine;
+import com.mawujun.annotation.FieldDefine;
 import com.youngor.pubcode.PubCodeCache;
 import com.youngor.sample.SampleDesignSizegp.PK;
 

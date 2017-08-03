@@ -916,7 +916,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		and b.bradno=#{bradno} and b.spclno=#{spclno}
     </select>
 	
-	 <!--自动成箱的时候，判断规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱； -->
+	 <!--自动成箱的时候，判断规格合计的总量是否  和平衡数量一致，不一致 提示出来，不允许成箱； 
     <select id="sizeVO_auto_box_check_num" resultType="map" parameterType="map">
     	select x.sampno,x.sampnm,x.ormtqt,y.orszqt from (
 		       select a.sampno,c.sampnm, ormtqt from ORD_ORDDTL a,ord_sample_design c
@@ -925,6 +925,20 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		select sampno,sum(nvl(orszqt,0)) orszqt from ORD_ORDSZDTL
 		where mtorno=#{mtorno} and mlorno=#{mlorno}  and suitno=#{suitno} and sizety='STDSZ'
 		group by sampno
+		) y
+		on x.sampno=y.sampno  
+		 where   x.ormtqt!=nvl(y.orszqt,0)
+    </select>-->
+    <select id="sizeVO_auto_box_check_num" resultType="map" parameterType="map">
+    	select x.sampno,x.sampnm,x.ormtqt,y.orszqt from (
+		       select a.sampno,c.sampnm, ormtqt from ORD_ORDDTL a,ord_sample_design c
+		       where  a.sampno=c.sampno and mtorno=#{mtorno} and mlorno=#{mlorno} and suitno=#{suitno}
+		) x left join (
+		select a.sampno,sum(decode(a.sizety,'STDSZ',nvl(a.orszqt,0),nvl(a.orbgqt,0)*b.sizeqt)) orszqt  
+		from ORD_ORDSZDTL a
+		inner join ord_pub_size b on a.sizeno=b.sizeno and a.sizety=b.sizety
+		where a.mtorno=#{mtorno} and a.mlorno=#{mlorno}  and a.suitno=#{suitno} --and sizety='STDSZ'
+		group by a.sampno
 		) y
 		on x.sampno=y.sampno  
 		 where   x.ormtqt!=nvl(y.orszqt,0)
