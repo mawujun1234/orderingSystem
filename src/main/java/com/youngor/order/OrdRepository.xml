@@ -934,7 +934,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		       select a.sampno,c.sampnm, ormtqt from ORD_ORDDTL a,ord_sample_design c
 		       where  a.sampno=c.sampno and mtorno=#{mtorno} and mlorno=#{mlorno} and suitno=#{suitno}
 		) x left join (
-		select a.sampno,sum(decode(a.sizety,'STDSZ',nvl(a.orszqt,0),nvl(a.orbgqt,0)*b.sizeqt)) orszqt  
+		select a.sampno,sum(nvl(a.orbgqt,0)*b.sizeqt) orszqt  
 		from ORD_ORDSZDTL a
 		inner join ord_pub_size b on a.sizeno=b.sizeno and a.sizety=b.sizety
 		where a.mtorno=#{mtorno} and a.mlorno=#{mlorno}  and a.suitno=#{suitno} --and sizety='STDSZ'

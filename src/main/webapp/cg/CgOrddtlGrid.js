@@ -90,13 +90,16 @@ Ext.define('y.cg.CgOrddtlGrid',{
 	  	var grid=context.grid;
 	  	var field =context.field ;
 	  	var value=context.value;
+	  	var originalValue =context.originalValue;
 	  	
 	  	//alert(record.get("orszqt_residue"));
-		if(value>parseInt(record.get("orszqt_residue"))){
-			//Ext.Msg.alert("消息","输入数量不能大于剩余订货量!");
-			//return;
-			value=record.get("orszqt_residue");
+		if(value>(parseInt(record.get("orszqt_residue"))+originalValue)){
+
+			//value=record.get("orszqt_residue");
+			value=(parseInt(record.get("orszqt_residue"))+originalValue);
 		}
+		//alert(value);
+		//return;
 
 	  	Ext.Ajax.request({
 			url : Ext.ContextPath + '/cgOrddtl/update.do',
@@ -108,6 +111,9 @@ Ext.define('y.cg.CgOrddtlGrid',{
 				orszqt : value
 			},
 			success : function() {
+				//console.log(record.get("ormtqt"));
+				//console.log(record.get("value"));
+				//console.log(record.get("orszqt_already"));
 				record.set("orszqt_residue",record.get("ormtqt")-value-record.get("orszqt_already"));	
 				record.commit();							
 			}

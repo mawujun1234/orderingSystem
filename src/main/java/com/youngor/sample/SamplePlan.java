@@ -98,13 +98,21 @@ public class SamplePlan extends BaseObject{
 		return plspno;
 	}
 	public void setPlspno(String plspno) {
-		this.plspno = plspno;
+		if(plspno!=null){
+			this.plspno = plspno.trim();
+		} else {
+			this.plspno = plspno;
+		}
 	}
 	public String getPlspnm() {
 		return plspnm;
 	}
 	public void setPlspnm(String plspnm) {
-		this.plspnm = plspnm;
+		if(plspnm!=null){
+			this.plspnm = plspnm.trim();
+		} else {
+			this.plspnm = plspnm;
+		}
 	}
 	public String getOrmtno() {
 		return ormtno;

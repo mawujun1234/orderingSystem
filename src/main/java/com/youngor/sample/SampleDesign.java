@@ -96,13 +96,26 @@ public class SampleDesign extends BaseObject{
 	@Transient
 	private String ormtno;
 	public void setSampno(String sampno) {
-		this.sampno = sampno;
+		if(sampno!=null){
+			this.sampno = sampno.trim();
+		} else {
+			this.sampno = sampno;
+		}
+		
 	}
 	public void setSampnm(String sampnm) {
-		this.sampnm = sampnm;
+		if(sampnm!=null){
+			this.sampnm = sampnm.trim();
+		} else {
+			this.sampnm = sampnm;
+		}
 	}
 	public void setSampnm1(String sampnm1) {
-		this.sampnm1 = sampnm1;
+		if(sampnm1!=null){
+			this.sampnm1 = sampnm1.trim();
+		} else {
+			this.sampnm1 = sampnm1;
+		}
 	}
 	public void setPlspno(String plspno) {
 		this.plspno = plspno;
