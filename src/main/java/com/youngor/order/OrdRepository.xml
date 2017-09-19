@@ -931,16 +931,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
     </select>-->
     <select id="sizeVO_auto_box_check_num" resultType="map" parameterType="map">
     	select x.sampno,x.sampnm,x.ormtqt,y.orszqt from (
-		       select a.sampno,c.sampnm, ormtqt from ORD_ORDDTL a,ord_sample_design c
-		       where  a.sampno=c.sampno and mtorno=#{mtorno} and mlorno=#{mlorno} and suitno=#{suitno}
+		       select a.sampno,a.suitno,c.sampnm, nvl(ormtqt,0) ormtqt from ORD_ORDDTL a,ord_sample_design c
+		       where  a.sampno=c.sampno and mtorno=#{mtorno} and mlorno=#{mlorno} 
 		) x left join (
-		select a.sampno,sum(nvl(a.orbgqt,0)*b.sizeqt) orszqt  
+		select a.sampno,a.suitno,sum(nvl(a.orbgqt,0)*b.sizeqt) orszqt  
 		from ORD_ORDSZDTL a
 		inner join ord_pub_size b on a.sizeno=b.sizeno and a.sizety=b.sizety
-		where a.mtorno=#{mtorno} and a.mlorno=#{mlorno}  and a.suitno=#{suitno} --and sizety='STDSZ'
-		group by a.sampno
+		where a.mtorno=#{mtorno} and a.mlorno=#{mlorno} 
+		group by a.sampno,a.suitno
 		) y
-		on x.sampno=y.sampno  
+		on x.sampno=y.sampno  and x.suitno=y.suitno
 		 where   x.ormtqt!=nvl(y.orszqt,0)
     </select>
     <select id="sizeVO_size_ap_check_orstat" resultType="int" parameterType="map">
